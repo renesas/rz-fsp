@@ -5,24 +5,24 @@
 */
 
 #ifndef R_SPIBSC_H
-#define R_SPIBSC_H
+ #define R_SPIBSC_H
 
 /***********************************************************************************************************************
  * Includes
  **********************************************************************************************************************/
-#include "bsp_api.h"
-#include "r_spibsc_cfg.h"
-#include "r_spi_flash_api.h"
+ #include "bsp_api.h"
+ #include "r_spibsc_cfg.h"
+ #include "r_spi_flash_api.h"
 
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZA
 {
-#endif
-#endif
+  #endif
+ #endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZA_SPIBSC
@@ -50,6 +50,7 @@ struct st_spibsc_extended_cfg
     spibsc_delay_t delay;              ///< Delay setting
     uint8_t        io_fix_mask;        ///< Enable to fixture IOn signal level during idle state (bit mapped)
     uint8_t        io_fix_value;       ///< Value to fixture IOn signal level during idle state (bit mapped)
+    void         * p_reg;              ///< Register base address for specified channel
 };
 
 /** Extended configuration. Please refer to the struct st_spibsc_extended_cfg. */
@@ -111,11 +112,11 @@ fsp_err_t R_SPIBSC_AutoCalibrate(spi_flash_ctrl_t * p_api_ctrl);
  * @} (end defgroup SPIBSC)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
-#endif
-#endif
+  #endif
+ #endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

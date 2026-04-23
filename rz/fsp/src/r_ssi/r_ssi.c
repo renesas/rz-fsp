@@ -155,10 +155,10 @@ const i2s_api_t g_i2s_on_ssi =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -189,10 +189,11 @@ fsp_err_t R_SSI_Open (i2s_ctrl_t * const p_ctrl, i2s_cfg_t const * const p_cfg)
     FSP_ASSERT(NULL != p_cfg);
     FSP_ASSERT(NULL != p_cfg->p_callback);
     FSP_ASSERT(p_cfg->int_irq >= 0);
-    if (I2S_MODE_MASTER == p_cfg->operating_mode)
-    {
-        FSP_ASSERT(NULL != p_cfg->p_extend);
-    }
+
+    /* Get extended configuration structure pointer. */
+    ssi_extended_cfg_t * p_extend = (ssi_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(NULL != p_extend);
+    FSP_ASSERT(NULL != p_extend->p_reg);
 
  #if SSI_CFG_DMAC_ENABLE
     if (NULL != p_cfg->p_transfer_rx)
@@ -213,16 +214,12 @@ fsp_err_t R_SSI_Open (i2s_ctrl_t * const p_ctrl, i2s_cfg_t const * const p_cfg)
     FSP_ERROR_RETURN(SSI_PRV_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
     FSP_ERROR_RETURN(0U != ((1U << p_cfg->channel) & BSP_FEATURE_SSI_VALID_CHANNEL_MASK),
                      FSP_ERR_IP_CHANNEL_NOT_PRESENT);
-#endif
-
-#if BSP_FEATURE_SSI_VALID_CHANNEL_MASK == 1
-    uintptr_t base_address = (uintptr_t) R_SSI0;
 #else
 
-    /* Calculate base address for registers on this channel. */
-    uintptr_t base_address = (uintptr_t) R_SSI0 + (p_cfg->channel * ((uintptr_t) R_SSI1 - (uintptr_t) R_SSI0));
+    /* Get extended configuration structure pointer. */
+    ssi_extended_cfg_t * p_extend = (ssi_extended_cfg_t *) p_cfg->p_extend;
 #endif
-    R_SSI0_Type * p_reg = (R_SSI0_Type *) base_address;
+    R_SSI0_Type * p_reg = (R_SSI0_Type *) p_extend->p_reg;
 
     /* Determine how to access the FIFO (1 byte, 2 byte, or 4 byte access). */
     transfer_size_t fifo_access_size = TRANSFER_SIZE_4_BYTE;
@@ -268,8 +265,7 @@ fsp_err_t R_SSI_Open (i2s_ctrl_t * const p_ctrl, i2s_cfg_t const * const p_cfg)
     }
 
     /* Configure audio clock and WS continue in master mode only. */
-    uint32_t             ssiofr   = 0U;
-    ssi_extended_cfg_t * p_extend = (ssi_extended_cfg_t *) p_cfg->p_extend;
+    uint32_t ssiofr = 0U;
 
     if (I2S_MODE_MASTER == p_cfg->operating_mode)
     {
@@ -678,9 +674,9 @@ fsp_err_t R_SSI_CallbackSet (i2s_ctrl_t * const          p_api_ctrl,
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************

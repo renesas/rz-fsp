@@ -267,7 +267,7 @@ typedef enum e_ethsw_vlan_input_verification_mode
     ETHSW_VICM_DROP_ALL_FRAMES,                               ///< Do not use (drop all frames)
 } ethsw_vlan_input_verification_mode_t;
 
-/** The parameter for priority regeneration settings **/
+/** VLAN input tagging mode of priority regeneration settings **/
 typedef enum e_ethsw_vlan_input_tagging_mode
 {
     ETHSW_VITM_VLAN_TAG_IS_NEITHER_ADDED_NOR_OVERWRITTEN = 0, ///< Disabled, VLAN tag is neither added nor overwritten.
@@ -276,7 +276,8 @@ typedef enum e_ethsw_vlan_input_tagging_mode
     ETHSW_VITM_TAG_ALWAYS,                                    ///< Tag always
 } ethsw_vlan_input_tagging_mode_t;
 
-typedef struct st_ethsw_efp_priority_regeneration
+/** The parameter for priority regeneration settings **/
+struct st_ethsw_efp_priority_regeneration
 {
     uint8_t vid[2];                       ///< Port Domain VID
     uint8_t dei;                          ///< Port Drop Eligible Indicator
@@ -284,7 +285,10 @@ typedef struct st_ethsw_efp_priority_regeneration
     uint8_t tpid[2];                      ///< Port Tag Protocol Identifier
     ethsw_vlan_input_tagging_mode_t vitm; ///< VLAN input verification mode
     uint8_t pcp_remap[8];                 ///< VLAN Priority Code Point (PCP) Remap
-} ethsw_efp_priority_regeneration_t;
+};
+
+/** The parameter for priority regeneration settings Please refer to the struct st_ethsw_efp_priority_regeneration. */
+typedef struct st_ethsw_efp_priority_regeneration ethsw_efp_priority_regeneration_t;
 
 /** The parameter for filtering function settings **/
 typedef enum e_ethsw_vlan_tag_mode
@@ -305,7 +309,8 @@ typedef enum e_ethsw_efp_event
     ETHSW_EFP_INT_SRC_RUNTIME_ERROR        ///< Frame parser error interrupt (runtime error)
 } ethsw_efp_event_t;
 
-typedef struct st_ethsw_efp_qci_stream_filter
+/** The parameter for stream filter settings **/
+struct st_ethsw_efp_qci_stream_filter
 {
     uint8_t               qdasa;       ///< MAC address (MACA) select
     uint8_t               qmac[6];     ///< Qci stream filter table MAC address
@@ -317,7 +322,10 @@ typedef struct st_ethsw_efp_qci_stream_filter
     uint8_t               vlanidm[2];  ///< Qci stream filter table VLAN ID[11:0] bit mask
     uint8_t               deim;        ///< Qci stream filter table VLAN DEI bit mask
     uint8_t               pcpm;        ///< Qci stream filter table VLAN PCP[2:0] bit mask
-} ethsw_efp_qci_stream_filter_t;
+};
+
+/** The parameter for stream filter settings Please refer to the struct st_ethsw_efp_qci_stream_filter. */
+typedef struct st_ethsw_efp_qci_stream_filter ethsw_efp_qci_stream_filter_t;
 
 /** The parameter for gating check settings **/
 struct st_ethsw_efp_gating_check
@@ -908,7 +916,8 @@ struct st_ethsw_qos_mode
 /** QoS mode Please refer to the struct st_ethsw_qos_mode. */
 typedef struct st_ethsw_qos_mode ethsw_qos_mode_t;
 
-typedef struct st_ethsw_qos_prio_vlan
+/** QoS VLAN priority */
+struct st_ethsw_qos_prio_vlan
 {
     uint32_t priority0 : 3;            ///< Priority 0 Setting
     uint32_t priority1 : 3;            ///< Priority 1 Setting
@@ -919,7 +928,10 @@ typedef struct st_ethsw_qos_prio_vlan
     uint32_t priority6 : 3;            ///< Priority 6 Setting
     uint32_t priority7 : 3;            ///< Priority 7 Setting
     uint32_t           : 8;            ///< Reserved
-} ethsw_qos_prio_vlan_t;
+};
+
+/** QoS VLAN priority Please refer to the struct st_ethsw_qos_prio_vlan. */
+typedef struct st_ethsw_qos_prio_vlan ethsw_qos_prio_vlan_t;
 
 /** QoS IP priority */
 struct st_ethsw_qos_prio_ip

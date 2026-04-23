@@ -22,12 +22,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_ETHER_SELECTOR
@@ -72,20 +72,20 @@ extern const ether_selector_api_t g_ether_selector_on_ether_selector;
  **********************************************************************************************************************/
 fsp_err_t R_ETHER_SELECTOR_Open(ether_selector_ctrl_t * const p_ctrl, ether_selector_cfg_t const * const p_cfg);
 
-fsp_err_t R_ETHER_SELECTOR_Close(ether_selector_ctrl_t * const p_ctrl);
-
 fsp_err_t R_ETHER_SELECTOR_ConverterSet(ether_selector_ctrl_t * const p_ctrl,
                                         ether_selector_speed_t        speed,
                                         ether_selector_duplex_t       duplex);
 
+fsp_err_t R_ETHER_SELECTOR_Close(ether_selector_ctrl_t * const p_ctrl);
+
 /*******************************************************************************************************************//**
  * @} (end addtogroup ETHER_SELECTOR)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

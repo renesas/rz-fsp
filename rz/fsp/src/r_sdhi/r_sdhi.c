@@ -135,10 +135,10 @@
 
 /* 400 kHz maximum clock required for initialization. */
 #define SDHI_PRV_INIT_MAX_CLOCK_RATE_HZ                    (400000U)
-#define SDHI_PRV_BITS_PER_COMMAD                           (48U)
+#define SDHI_PRV_BITS_PER_COMMAND                          (48U)
 #define SDHI_PRV_BITS_PER_RESPONSE                         (48U)
 #define SDHI_PRV_CLOCKS_BETWEEN_COMMANDS                   (8U)
-#define SDHI_PRV_MIN_CYCLES_PER_COMMAND_RESPONSE           ((SDHI_PRV_BITS_PER_COMMAD +    \
+#define SDHI_PRV_MIN_CYCLES_PER_COMMAND_RESPONSE           ((SDHI_PRV_BITS_PER_COMMAND +   \
                                                              SDHI_PRV_BITS_PER_RESPONSE) + \
                                                             SDHI_PRV_CLOCKS_BETWEEN_COMMANDS)
 #define SDHI_PRV_INIT_ONE_SECOND_TIMEOUT_ITERATIONS        (SDHI_PRV_INIT_MAX_CLOCK_RATE_HZ / \
@@ -159,9 +159,9 @@
 #define SDHI_PRV_SECTOR_COUNT_IN_EXT_CSD                   (0xFFFU)
 #define SDHI_PRV_SD_CLK_CTRL_DEFAULT                       (0x20U)
 
-#define SDHI_PRV_SD_INFO2_CBSY_SDD0MON_IDLE_MASK           (0x4080)
-#define SDHI_PRV_SD_INFO2_CBSY_SDD0MON_IDLE_VAL            (0x80)
-#define SDHI_PRV_SD_CLK_CTRLEN_TIMEOUT                     (8U * 512U)
+#define SDHI_PRV_SD_INFO2_CBSY_DAT0_IDLE_MASK              (0x4080)
+#define SDHI_PRV_SD_INFO2_CBSY_DAT0_IDLE_VAL               (0x80)
+#define SDHI_PRV_SCLKDIVEN_TIMEOUT                         (8U * 512U)
 #define SDHI_PRV_SD_INFO1_MASK_MASK_ALL                    (0x31DU)
 #define SDHI_PRV_SD_INFO1_MASK_ACEND_ENABLE_BIT            (2U)
 
@@ -358,10 +358,10 @@ const sdmmc_api_t g_sdmmc_on_sdhi =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -399,12 +399,16 @@ fsp_err_t R_SDHI_Open (sdmmc_ctrl_t * const p_api_ctrl, sdmmc_cfg_t const * cons
 
     /* Initialize control block. */
     memset(p_ctrl, 0, sizeof(*p_ctrl));
-#if BSP_FEATURE_SDHI_VALID_CHANNEL_MASK > 1U
-    p_ctrl->p_reg = p_cfg->channel ? R_SDHI1 : R_SDHI0;
-#else
-    p_ctrl->p_reg = R_SDHI0;
-#endif
+
     p_ctrl->p_cfg = p_cfg;
+
+    const sdhi_extended_cfg_t * p_extend = (const sdhi_extended_cfg_t *) p_cfg->p_extend;
+
+#if SDHI_CFG_PARAM_CHECKING_ENABLE
+    FSP_ASSERT(NULL != p_extend->p_reg);
+#endif
+
+    p_ctrl->p_reg = (R_SDHI0_Type *) p_extend->p_reg;
 
     p_ctrl->p_aligned_buff = &uncached_buf[p_cfg->channel][0];
 
@@ -453,8 +457,10 @@ fsp_err_t R_SDHI_Open (sdmmc_ctrl_t * const p_api_ctrl, sdmmc_cfg_t const * cons
     p_ctrl->p_callback_memory = NULL;
 
     /* Configure and enable interrupts. */
-    const sdhi_extended_cfg_t * p_extend = (const sdhi_extended_cfg_t *) p_ctrl->p_cfg->p_extend;
     r_sdhi_irq_enable(p_extend->oxmnirq_irq, p_extend->oxmnirq_ipl, p_ctrl);
+
+    /* Initialize built-in DMAC trigger pending flag. */
+    p_ctrl->dmac_trigger_pending = false;
 
     p_ctrl->initialized = false;
     p_ctrl->open        = SDHI_PRV_OPEN;
@@ -576,11 +582,11 @@ fsp_err_t R_SDHI_Read (sdmmc_ctrl_t * const p_api_ctrl,
         command = SDHI_PRV_CMD_READ_SINGLE_BLOCK;
     }
 
-    r_sdhi_read_write_common(p_ctrl, sector_count, p_ctrl->p_cfg->block_size, command, argument);
-
     /* Configure the transfer interface for reading. */
     err = r_sdhi_transfer_read(p_ctrl, sector_count, p_ctrl->p_cfg->block_size, p_dest);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+
+    r_sdhi_read_write_common(p_ctrl, sector_count, p_ctrl->p_cfg->block_size, command, argument);
 
     return FSP_SUCCESS;
 }
@@ -643,12 +649,12 @@ fsp_err_t R_SDHI_Write (sdmmc_ctrl_t * const  p_api_ctrl,
         command = SDHI_PRV_CMD_WRITE_SINGLE_BLOCK;
     }
 
-    /* Casting to uint16_t safe because block size verified in R_SDHI_Open */
-    r_sdhi_read_write_common(p_ctrl, sector_count, p_ctrl->p_cfg->block_size, command, argument);
-
     /* Configure the transfer interface for writing. */
     err = r_sdhi_transfer_write(p_ctrl, sector_count, p_ctrl->p_cfg->block_size, p_source);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, FSP_ERR_WRITE_FAILED);
+
+    /* Casting to uint16_t safe because block size verified in R_SDHI_Open */
+    r_sdhi_read_write_common(p_ctrl, sector_count, p_ctrl->p_cfg->block_size, command, argument);
 
     return FSP_SUCCESS;
 }
@@ -797,8 +803,8 @@ fsp_err_t R_SDHI_StatusGet (sdmmc_ctrl_t * const p_api_ctrl, sdmmc_status_t * co
 
     /* Check if the card is busy. */
     p_status->transfer_in_progress =
-        (SDHI_PRV_SD_INFO2_CBSY_SDD0MON_IDLE_VAL !=
-         (p_ctrl->p_reg->SD_INFO2 & SDHI_PRV_SD_INFO2_CBSY_SDD0MON_IDLE_MASK));
+        (SDHI_PRV_SD_INFO2_CBSY_DAT0_IDLE_VAL !=
+         (p_ctrl->p_reg->SD_INFO2 & SDHI_PRV_SD_INFO2_CBSY_DAT0_IDLE_MASK));
 
     return FSP_SUCCESS;
 }
@@ -938,9 +944,9 @@ fsp_err_t R_SDHI_Close (sdmmc_ctrl_t * const p_api_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************
@@ -966,6 +972,7 @@ static fsp_err_t r_sdhi_open_param_check (sdhi_instance_ctrl_t * p_ctrl, sdmmc_c
 {
     FSP_ASSERT(NULL != p_ctrl);
     FSP_ASSERT(NULL != p_cfg);
+    FSP_ASSERT(NULL != p_cfg->p_extend);
     FSP_ERROR_RETURN(SDHI_PRV_OPEN != p_ctrl->open, FSP_ERR_ALREADY_OPEN);
 
     /* Verify the requested channel exists on the MPU. */
@@ -1054,9 +1061,9 @@ static fsp_err_t r_sdhi_common_error_check (sdhi_instance_ctrl_t * const p_ctrl)
 #endif
 
     /* To verify no command sequence is in progress in SDHI, verify SD_INFO2.CBSY is not set.  To verify the card has
-     * completed the requested operation, verify SD_INFO2.SDD0MON is set. */
-    FSP_ERROR_RETURN(SDHI_PRV_SD_INFO2_CBSY_SDD0MON_IDLE_VAL ==
-                     (p_ctrl->p_reg->SD_INFO2 & SDHI_PRV_SD_INFO2_CBSY_SDD0MON_IDLE_MASK),
+     * completed the requested operation, verify SD_INFO2.DAT0 is set. */
+    FSP_ERROR_RETURN(SDHI_PRV_SD_INFO2_CBSY_DAT0_IDLE_VAL ==
+                     (p_ctrl->p_reg->SD_INFO2 & SDHI_PRV_SD_INFO2_CBSY_DAT0_IDLE_MASK),
                      FSP_ERR_DEVICE_BUSY);
 
 #if SDHI_CFG_SD_SUPPORT_ENABLE
@@ -1153,8 +1160,8 @@ static void r_sdhi_access_irq_process (sdhi_instance_ctrl_t * p_ctrl, sdmmc_call
         if (SDHI_PRV_CMD_ERASE == p_ctrl->p_reg->SD_CMD)
         {
             /* Determine if erase is complete or not based on DAT0. Access interrupt is not required for erase. */
-            if (SDHI_PRV_SD_INFO2_CBSY_SDD0MON_IDLE_VAL ==
-                (p_ctrl->p_reg->SD_INFO2 & SDHI_PRV_SD_INFO2_CBSY_SDD0MON_IDLE_MASK))
+            if (SDHI_PRV_SD_INFO2_CBSY_DAT0_IDLE_VAL ==
+                (p_ctrl->p_reg->SD_INFO2 & SDHI_PRV_SD_INFO2_CBSY_DAT0_IDLE_MASK))
             {
                 p_args->event |= SDMMC_EVENT_ERASE_COMPLETE;
             }
@@ -1180,6 +1187,21 @@ static void r_sdhi_access_irq_process (sdhi_instance_ctrl_t * p_ctrl, sdmmc_call
                  * Reference section 'Multiple Block Write (when Using Internal Timer)' of the RZ microprocessor manual.*/
                 p_ctrl->p_reg->SD_INFO2_MASK &= ~(SDHI_PRV_SDHI_INFO2_CARD_BWE);
             }
+
+#if SDHI_CFG_DMAC_SUPPORT_ENABLE
+            else if (p_ctrl->dmac_trigger_pending)
+            {
+                /* DMAC Start.
+                 * The DMA transfer start (DM_CM_DTRAN_CTRL) is set after the response end.
+                 * Reference section 'SD_BUF DMA transfer' of the RZ microprocessor manual. */
+                p_ctrl->p_reg->DM_CM_DTRAN_CTRL = SDHI_PRV_SDHI_DM_CM_DTRAN_CTRL_DM_START;
+                p_ctrl->dmac_trigger_pending    = false;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+#endif
         }
     }
 
@@ -1308,7 +1330,7 @@ static fsp_err_t r_sdhi_max_clock_rate_set (sdhi_instance_ctrl_t * p_ctrl, uint3
 
             /* The clock register is accessible 8 SD clock counts after the last command completes.  Each register access
              * requires at least one PCLK count, so check the register up to 8 times the maximum PCLK divisor value (512). */
-            uint32_t timeout = SDHI_PRV_SD_CLK_CTRLEN_TIMEOUT;
+            uint32_t timeout = SDHI_PRV_SCLKDIVEN_TIMEOUT;
 
             while (timeout > 0U)
             {
@@ -1391,7 +1413,7 @@ static fsp_err_t r_sdhi_hw_cfg (sdhi_instance_ctrl_t * const p_ctrl)
     p_ctrl->p_reg->SOFT_RST = 0x0U;
     p_ctrl->p_reg->SOFT_RST = 0x1U;
 
-    /* Execute software reset or check SD_INFO2.SD_CLK_CTRLEN prior to calling this function. */
+    /* Execute software reset or check SD_INFO2.SCLKDIVEN prior to calling this function. */
     p_ctrl->p_reg->SD_CLK_CTRL = SDHI_PRV_SD_CLK_CTRL_DEFAULT;          // Automatic clock control disabled.
     p_ctrl->p_reg->SDIO_MODE   = 0x00U;                                 // SDIO not supported.
     p_ctrl->p_reg->CC_EXT_MODE = SDHI_PRV_SD_CC_EXT_MODE_DMASDRW_CLEAR; // Not in DMA mode initially.
@@ -1699,8 +1721,8 @@ static fsp_err_t r_sdhi_wait_for_device (sdhi_instance_ctrl_t * const p_ctrl)
 {
     /* Wait for the device to stop holding DAT0 low. */
     uint32_t timeout = SDHI_PRV_BUSY_TIMEOUT_US;
-    while (SDHI_PRV_SD_INFO2_CBSY_SDD0MON_IDLE_VAL !=
-           (p_ctrl->p_reg->SD_INFO2 & SDHI_PRV_SD_INFO2_CBSY_SDD0MON_IDLE_MASK))
+    while (SDHI_PRV_SD_INFO2_CBSY_DAT0_IDLE_VAL !=
+           (p_ctrl->p_reg->SD_INFO2 & SDHI_PRV_SD_INFO2_CBSY_DAT0_IDLE_MASK))
     {
         FSP_ERROR_RETURN(timeout > 0, FSP_ERR_DEVICE_BUSY);
 
@@ -2012,12 +2034,12 @@ static fsp_err_t r_sdhi_read_and_block (sdhi_instance_ctrl_t * const p_ctrl,
                                         uint32_t                     argument,
                                         uint32_t                     byte_count)
 {
-    /* Issue command. */
-    r_sdhi_read_write_common(p_ctrl, 1U, byte_count, command, argument);
-
     /* Prepare transfer interface to read. */
     fsp_err_t err = r_sdhi_transfer_read(p_ctrl, 1U, byte_count, p_ctrl->p_aligned_buff);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+
+    /* Issue command. */
+    r_sdhi_read_write_common(p_ctrl, 1U, byte_count, command, argument);
 
     /* Wait for access end, error, or timeout. */
     return r_sdhi_wait_for_event(p_ctrl, SDHI_PRV_ACCESS_BIT, SDHI_PRV_ACCESS_TIMEOUT_US);
@@ -2260,8 +2282,9 @@ static fsp_err_t r_sdhi_transfer_read (sdhi_instance_ctrl_t * const p_ctrl,
         p_ctrl->p_reg->DM_DTRAN_ADDR = (uint32_t) p_data;
  #endif
 
-        /* DMAC Start */
-        p_ctrl->p_reg->DM_CM_DTRAN_CTRL = SDHI_PRV_SDHI_DM_CM_DTRAN_CTRL_DM_START;
+        /* The DMA transfer start (DM_CM_DTRAN_CTRL) is set after the response ends.
+         * A flag is set here so that the DMA transfer start (DM_CM_DTRAN_CTRL) is set in the interrupt routine. */
+        p_ctrl->dmac_trigger_pending = true;
     }
 
 #else
@@ -2356,8 +2379,9 @@ static fsp_err_t r_sdhi_transfer_write (sdhi_instance_ctrl_t * const p_ctrl,
         p_ctrl->p_reg->DM_DTRAN_ADDR = (uint32_t) p_data;
  #endif
 
-        /* DMAC Start */
-        p_ctrl->p_reg->DM_CM_DTRAN_CTRL = SDHI_PRV_SDHI_DM_CM_DTRAN_CTRL_DM_START;
+        /* The DMA transfer start (DM_CM_DTRAN_CTRL) is set after the response ends.
+         * A flag is set here so that the DMA transfer start (DM_CM_DTRAN_CTRL) is set in the interrupt routine. */
+        p_ctrl->dmac_trigger_pending = true;
     }
 
 #else
@@ -2394,6 +2418,9 @@ static void r_sdhi_transfer_end (sdhi_instance_ctrl_t * const p_ctrl)
 
     p_ctrl->p_reg->DM_CM_DTRAN_CTRL = 0U;
     p_ctrl->p_reg->CC_EXT_MODE      = SDHI_PRV_SD_CC_EXT_MODE_DMASDRW_CLEAR;
+
+    /* Clear built-in DMAC trigger pending flag. */
+    p_ctrl->dmac_trigger_pending = false;
 }
 
 /*******************************************************************************************************************//**
@@ -2536,15 +2563,16 @@ void sdhimmc_oxmnirq_isr (void)
         /* Card access interrupt */
         sdhimmc_accs_isr();
     }
-    else if (0 != (info1 & SDHI_PRV_CARD_DETECT_INT_REQ_MASK_INFO1))
-    {
-        /* Card detect interrupt */
-        sdhimmc_card_isr();
-    }
     else if (0U != (dm_cm_info1 & SDHI_PRV_DMAC_INT_REQ_MASK_INFO3))
     {
         /* DMAC interrupt */
         sdhimmc_dmac_isr();
+    }
+    else if ((SDMMC_CARD_DETECT_NONE != p_ctrl->p_cfg->card_detect) &&
+             (0U != (info1 & SDHI_PRV_CARD_DETECT_INT_REQ_MASK_INFO1)))
+    {
+        /* Card detect interrupt */
+        sdhimmc_card_isr();
     }
     else
     {

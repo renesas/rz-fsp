@@ -2235,6 +2235,7 @@ fsp_err_t R_ETHSW_EfpInterruptEnable (ether_switch_ctrl_t * const p_ctrl,
     if ((p_conf->qsmoi != 0) || (p_conf->qgmoi != 0) || (p_conf->qrfi != 0))
     {
         p_reg_switch->INT_CONFIG_b.EFP_INT = 1;
+        p_reg_switch->INT_CONFIG_b.IRQ_EN  = 1;
     }
     else
     {
@@ -2467,6 +2468,7 @@ fsp_err_t R_ETHSW_RxPatternMatcherSet (ether_switch_ctrl_t * const  p_ctrl,
                 R_ETHSW_PATTERN_IRQ_CONTROL_MATCHINT_Msk;
             p_reg_switch->PATTERN_IRQ_CONTROL_b.ERROR_INT = 0xF;
             p_reg_switch->INT_CONFIG_b.PATTERN_INT        = 1;
+            p_reg_switch->INT_CONFIG_b.IRQ_EN             = 1;
         }
         else                           // IRQ disabe
         {
@@ -3842,11 +3844,11 @@ fsp_err_t R_ETHSW_EeeSet (ether_switch_ctrl_t * const p_ctrl, uint32_t port, eth
     if (true == p_cnf_eee->enable)
     {
         /* Enable EEE */
-        (&p_switch_reg->EEE_CTL_STAT_P0_b + (ETHSW_PORT_OFFSET / 4) * port)->EEE_AUTO = 1;
-
         *(&p_switch_reg->EEE_IDLE_TIME_P0 + (ETHSW_PORT_OFFSET / 4) * port) = p_cnf_eee->idle_time;
 
         *(&p_switch_reg->EEE_TWSYS_TIME_P0 + (ETHSW_PORT_OFFSET / 4) * port) = p_cnf_eee->wakeup_time;
+
+        (&p_switch_reg->EEE_CTL_STAT_P0_b + (ETHSW_PORT_OFFSET / 4) * port)->EEE_AUTO = 1;
     }
 
     return FSP_SUCCESS;
@@ -4482,12 +4484,12 @@ fsp_err_t R_ETHSW_PortCtrlDirSet (ether_switch_ctrl_t * const p_ctrl, uint32_t p
     /* check given direction value */
     if (false == dir_state)
     {
-        /* set port to controll input and output */
+        /* set port to control only input */
         p_switch_reg->AUTH_PORT_b[port].CTRL_BOTH = 0;
     }
     else
     {
-        /* set port to control only input */
+        /* set port to control input and output */
         p_switch_reg->AUTH_PORT_b[port].CTRL_BOTH = 1;
     }
 

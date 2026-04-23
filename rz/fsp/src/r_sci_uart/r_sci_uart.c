@@ -289,10 +289,10 @@ const uart_api_t g_uart_on_sci =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -332,6 +332,7 @@ fsp_err_t R_SCI_UART_Open (uart_ctrl_t * const p_ctrl, uart_cfg_t const * const 
     FSP_ASSERT(p_cfg);
 
     FSP_ASSERT(p_cfg->p_extend);
+    FSP_ASSERT(((sci_uart_extended_cfg_t *) p_cfg->p_extend)->p_reg);
     FSP_ASSERT(((sci_uart_extended_cfg_t *) p_cfg->p_extend)->p_baud_setting);
     FSP_ERROR_RETURN(SCI_UART_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
 
@@ -406,17 +407,7 @@ fsp_err_t R_SCI_UART_Open (uart_ctrl_t * const p_ctrl, uart_cfg_t const * const 
     R_BSP_MODULE_START(FSP_IP_SCI, p_cfg->channel);
     R_BSP_RegisterProtectEnable(BSP_REG_PROTECT_LPC_RESET);
 
-    if (p_cfg->channel != BSP_FEATURE_SCI_SAFETY_CHANNEL)
-    {
-        /* Non-Safety Peripheral */
-        p_instance_ctrl->p_reg =
-            (R_SCI0_Type *) ((uintptr_t) R_SCI0 + (p_cfg->channel * ((uintptr_t) R_SCI1 - (uintptr_t) R_SCI0)));
-    }
-    else
-    {
-        /* Safety Peripheral */
-        p_instance_ctrl->p_reg = (R_SCI0_Type *) BSP_FEATURE_SCI_SAFETY_CHANNEL_BASE_ADDRESS;
-    }
+    p_instance_ctrl->p_reg = (R_SCI0_Type *) p_extend->p_reg;
 
 #if SCI_UART_CFG_DMAC_SUPPORTED
 
@@ -1158,9 +1149,9 @@ fsp_err_t R_SCI_UART_ReceiveResume (uart_ctrl_t * const p_api_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************

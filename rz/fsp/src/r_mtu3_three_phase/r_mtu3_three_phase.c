@@ -127,10 +127,10 @@ const three_phase_api_t g_three_phase_on_mtu3_three_phase =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -293,8 +293,8 @@ fsp_err_t R_MTU3_THREE_PHASE_Start (three_phase_ctrl_t * const p_ctrl)
     r_mtu3_write_protect_disable(p_instance_ctrl); /* Enable Read/Write Registers */
 
     /* Start timer */
-    *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] + MTU36_TCNT_OFFSET_ADDRESS) = 0U;
-    *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] + MTU47_TCNT_OFFSET_ADDRESS) = 0U;
+    *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] + MTU36_TCNT_OFFSET_ADDRESS) = 0U;
+    *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] + MTU47_TCNT_OFFSET_ADDRESS) = 0U;
 
     /* When setting MTU6, "TSYRA" is used because the address of "MTU3_THREE_BREG_OFFSET" is added to p_reg_com at the time of "open". */
     p_instance_ctrl->p_reg_com->TOERA |= MTU3_THREE_TOER_ALL;                           /* MTU output is enabled; */
@@ -331,8 +331,8 @@ fsp_err_t R_MTU3_THREE_PHASE_Reset (three_phase_ctrl_t * const p_ctrl)
     p_instance_ctrl->p_reg_com->TOERA &= (uint8_t) ~MTU3_THREE_TOER_ALL;                           /* output is disabled (non-active level) */
 
     /* Restart timer */
-    *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] + MTU36_TCNT_OFFSET_ADDRESS) = 0U;
-    *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] + MTU47_TCNT_OFFSET_ADDRESS) = 0U;
+    *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] + MTU36_TCNT_OFFSET_ADDRESS) = 0U;
+    *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] + MTU47_TCNT_OFFSET_ADDRESS) = 0U;
     if (tstr != 0)                                                                          /* If timer is running then restart timer */
     {
         p_instance_ctrl->p_reg_com->TOERA |= MTU3_THREE_TOER_ALL;                           /* MTU output is enabled; */
@@ -376,21 +376,21 @@ fsp_err_t R_MTU3_THREE_PHASE_DutyCycleSet (three_phase_ctrl_t * const       p_ct
     /* Set double-buffer registers (if applicable) */
     if (THREE_PHASE_BUFFER_MODE_DOUBLE == p_instance_ctrl->buffer_mode)
     {
-        *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
-                       MTU36_TGRE_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty_buffer[MTU3_THREE_CHU0];
-        *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
-                       MTU47_TGRE_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty_buffer[MTU3_THREE_CHV1];
-        *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
-                       MTU47_TGRF_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty_buffer[MTU3_THREE_CHW2];
+        *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
+                                MTU36_TGRE_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty_buffer[MTU3_THREE_CHU0];
+        *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
+                                MTU47_TGRE_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty_buffer[MTU3_THREE_CHV1];
+        *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
+                                MTU47_TGRF_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty_buffer[MTU3_THREE_CHW2];
     }
 
     /* Set duty cycle registers */
-    *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
-                   MTU36_TGRD_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty[MTU3_THREE_CHU0];
-    *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
-                   MTU47_TGRC_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty[MTU3_THREE_CHV1];
-    *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
-                   MTU47_TGRD_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty[MTU3_THREE_CHW2];
+    *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
+                            MTU36_TGRD_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty[MTU3_THREE_CHU0];
+    *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
+                            MTU47_TGRC_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty[MTU3_THREE_CHV1];
+    *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
+                            MTU47_TGRD_OFFSET_ADDRESS) = (uint16_t) p_duty_cycle->duty[MTU3_THREE_CHW2];
 
     return FSP_SUCCESS;
 }
@@ -464,9 +464,9 @@ fsp_err_t R_MTU3_THREE_PHASE_Close (three_phase_ctrl_t * const p_ctrl)
 
 /** @} (end addtogroup MTU3_THREE_PHASE) */
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -578,36 +578,38 @@ static fsp_err_t r_mtu3_three_phase_regset (mtu3_three_phase_instance_ctrl_t * p
             ((R_MTU_Type *) R_MTU_BASE)->TSYRA = tsyra_clr_ch[p_extend->sync];                  /* TSYRA <- Synchronous ch 0..4   */
         }
 
-        *((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] + MTU36_TCR_OFFSET_ADDRESS) |= R_MTU3_TCR_CCLR_Msk;
-        *((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] + MTU47_TCR_OFFSET_ADDRESS) |= R_MTU3_TCR_CCLR_Msk;
+        *((volatile uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
+          MTU36_TCR_OFFSET_ADDRESS) |= R_MTU3_TCR_CCLR_Msk;
+        *((volatile uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
+          MTU47_TCR_OFFSET_ADDRESS) |= R_MTU3_TCR_CCLR_Msk;
     }
 
     /* Setting duty */
     /* Note that TGRA , TGRB  and TCDR are transferred from the buffer register, so no setting is required. */
-    *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
-                   MTU36_TGRD_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHU0];
-    *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
-                   MTU47_TGRC_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHV1];
-    *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
-                   MTU47_TGRD_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHW2];
+    *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
+                            MTU36_TGRD_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHU0];
+    *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
+                            MTU47_TGRC_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHV1];
+    *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
+                            MTU47_TGRD_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHW2];
     if (THREE_PHASE_BUFFER_MODE_DOUBLE == p_instance_ctrl->buffer_mode)
     {
-        *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
-                       MTU36_TGRE_OFFSET_ADDRESS) = p_extend->duty_double[MTU3_THREE_CHU0];
-        *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
-                       MTU47_TGRE_OFFSET_ADDRESS) = p_extend->duty_double[MTU3_THREE_CHV1];
-        *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
-                       MTU47_TGRF_OFFSET_ADDRESS) = p_extend->duty_double[MTU3_THREE_CHW2];
+        *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
+                                MTU36_TGRE_OFFSET_ADDRESS) = p_extend->duty_double[MTU3_THREE_CHU0];
+        *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
+                                MTU47_TGRE_OFFSET_ADDRESS) = p_extend->duty_double[MTU3_THREE_CHV1];
+        *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
+                                MTU47_TGRF_OFFSET_ADDRESS) = p_extend->duty_double[MTU3_THREE_CHW2];
     }
     else
     {
         /* Just in case, set TGRE, TGRE, TGRF even in single buffer mode. */
-        *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
-                       MTU36_TGRE_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHU0];
-        *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
-                       MTU47_TGRE_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHV1];
-        *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
-                       MTU47_TGRF_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHW2];
+        *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
+                                MTU36_TGRE_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHU0];
+        *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
+                                MTU47_TGRE_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHV1];
+        *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] +
+                                MTU47_TGRF_OFFSET_ADDRESS) = p_extend->duty_val[MTU3_THREE_CHW2];
     }
 
     /* setting Period and Dead time */
@@ -625,8 +627,8 @@ static fsp_err_t r_mtu3_three_phase_regset (mtu3_three_phase_instance_ctrl_t * p
     }
 
     p_instance_ctrl->p_reg_com->TDDRA = dtime;
-    *(uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
-                   MTU36_TGRC_OFFSET_ADDRESS) = (uint16_t) (p_extend->period_half + dtime);
+    *(volatile uint16_t *) ((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
+                            MTU36_TGRC_OFFSET_ADDRESS) = (uint16_t) (p_extend->period_half + dtime);
 
     /* set output control registers */
     uint8_t tocr1 = (MTU3_THREE_PHASE_PSYE_TOGGLE == p_extend->period_out) ? R_MTU_TOCR1A_PSYE_Msk : 0; /* Set PSYE bit or not */
@@ -640,15 +642,15 @@ static fsp_err_t r_mtu3_three_phase_regset (mtu3_three_phase_instance_ctrl_t * p
     }
 
     /* Clear TIORH/L  */
-    *((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] + MTU36_TIORH_OFFSET_ADDRESS) = 0;
-    *((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] + MTU36_TIORL_OFFSET_ADDRESS) = 0;
-    *((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] + MTU47_TIORH_OFFSET_ADDRESS) = 0;
-    *((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] + MTU47_TIORL_OFFSET_ADDRESS) = 0;
+    *((volatile uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] + MTU36_TIORH_OFFSET_ADDRESS) = 0;
+    *((volatile uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] + MTU36_TIORL_OFFSET_ADDRESS) = 0;
+    *((volatile uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] + MTU47_TIORH_OFFSET_ADDRESS) = 0;
+    *((volatile uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] + MTU47_TIORL_OFFSET_ADDRESS) = 0;
 
     /* setting TMDR1 */
-    *((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
+    *((volatile uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH1ST] +
       MTU36_TMDR1_OFFSET_ADDRESS) = tmdr1_md[p_extend->pwm_mode];
-    *((uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] + MTU47_TMDR1_OFFSET_ADDRESS) &=
+    *((volatile uint8_t *) p_instance_ctrl->p_reg[MTU3_THREE_CH2ND] + MTU47_TMDR1_OFFSET_ADDRESS) &=
         (uint8_t) ~(R_MTU3_TMDR1_BFA_Msk | R_MTU3_TMDR1_BFB_Msk);              /* clear BFA,BFB bit */
     if (THREE_PHASE_BUFFER_MODE_DOUBLE == p_instance_ctrl->buffer_mode)
     {

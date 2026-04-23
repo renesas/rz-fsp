@@ -5,9 +5,9 @@
 */
 
 #ifndef R_GETHER_H
-#define R_GETHER_H
+ #define R_GETHER_H
 
-#include "bsp_api.h"
+ #include "bsp_api.h"
 
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
@@ -15,19 +15,19 @@ FSP_HEADER
 /***********************************************************************************************************************
  * Includes
  **********************************************************************************************************************/
-#include "r_gether_cfg.h"
-#include "r_ether_api.h"
+ #include "r_gether_cfg.h"
+ #include "r_ether_api.h"
 
 /***********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZA
 {
-#endif
-#endif
+  #endif
+ #endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZA_GETHER
@@ -116,17 +116,18 @@ typedef enum e_gether_link_establish_status
 struct st_ether_instance_descriptor
 {
     volatile uint32_t status;
-#if ((defined(__GNUC__) && (__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__)) || (defined(__ARMCC_VERSION) && \
+ #if ((defined(__GNUC__) && (__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__)) || (defined(__ARMCC_VERSION) && \
     !defined(__ARM_BIG_ENDIAN)) || (defined(__ICCARM__) && (__LITTLE_ENDIAN__)))
 
     /* Little endian */
     volatile uint16_t size;
     volatile uint16_t buffer_size;
-#else
+ #else
+
     /* Big endian */
     volatile uint16_t buffer_size;
     volatile uint16_t size;
-#endif
+ #endif
     uint8_t * p_buffer;
     struct st_ether_instance_descriptor * p_next;
 };
@@ -172,6 +173,10 @@ struct st_ether_instance_extend
     /* Buffer of gethernet module. */
     gether_instance_tx_descriptor_t * p_tx_descriptor; ///< Pointer to the currently referenced transmit descriptor
     gether_instance_rx_descriptor_t * p_rx_descriptor; ///< Pointer to the currently referenced receive descriptor
+
+    void * p_reg_emac;                                 ///< Base register of gethernet controller for this channel
+    void * p_reg_ether;                                ///< Base register of DMA controller for this channel
+    void * p_reg_toe;                                  ///< Base register of TOE controller for this channel
 };
 
 /** Please refer to the struct. st_ether_instance_extend */
@@ -213,7 +218,7 @@ fsp_err_t R_GETHER_WakeOnLANEnable(ether_ctrl_t * const p_ctrl);
 fsp_err_t R_GETHER_TxStatusGet(ether_ctrl_t * const p_ctrl, void * const p_buffer_address);
 
 fsp_err_t R_GETHER_CallbackSet(ether_ctrl_t * const          p_api_ctrl,
-                               void (                      * p_callback ) (ether_callback_args_t *),
+                               void (                      * p_callback)(ether_callback_args_t *),
                                void * const                  p_context,
                                ether_callback_args_t * const p_callback_memory);
 
@@ -221,11 +226,11 @@ fsp_err_t R_GETHER_CallbackSet(ether_ctrl_t * const          p_api_ctrl,
  * @} (end addtogroup GETHER)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
-#endif
-#endif
+  #endif
+ #endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

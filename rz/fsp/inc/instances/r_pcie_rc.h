@@ -22,12 +22,12 @@ FSP_HEADER
  #define R_PCIE_RC_NUM_AXI_WINDOW     (8)
  #define R_PCIE_RC_NUM_PCIE_WINDOW    (8)
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_PCIE_RC
@@ -68,7 +68,8 @@ struct st_pcie_rc_msi_window_settings
 /** MSI window setting structure. Please refer to the struct st_pcie_rc_msi_window_settings. */
 typedef struct st_pcie_rc_msi_window_settings pcie_rc_msi_window_settings_t;
 
-typedef struct st_pcie_rc_configuration_register_1
+/** Type 1 Configuration Space Header structure. */
+struct st_pcie_rc_configuration_register_1
 {
     uint32_t vender_device_id;                     ///< Device ID / Vendor ID
     uint32_t command_status;                       ///< Status / Command
@@ -86,7 +87,10 @@ typedef struct st_pcie_rc_configuration_register_1
     uint32_t capability_pointer;                   ///< Capabitliry Pointer
     uint32_t expansion_rom_base_address;           ///< Expansion ROM Base Address
     uint32_t bridge_control_interrupt;             ///< Bridge Control / Interrupt Pin / Interrupt Line
-} pcie_rc_configuration_register_1_t;
+};
+
+/** Type 1 Configuration Space Header structure. Please refer to the struct st_pcie_rc_configuration_register_1. */
+typedef struct st_pcie_rc_configuration_register_1 pcie_rc_configuration_register_1_t;
 
 /** Driver instance control structure. */
 struct st_pcie_rc_instance_ctrl
@@ -131,6 +135,9 @@ struct st_pcie_rc_extended_cfg
     uint8_t   poweroff_indication_l2_ipl;                                         ///< POWEROFF indication on L2 interrupt priority
     IRQn_Type pcie_event_irq;                                                     ///< Event Interrupt
     uint8_t   pcie_event_ipl;                                                     ///< Event Interrupt priority
+
+    void * p_reg;                                                                 ///< AXI bridge registers base address for specified channel
+    void * p_reg_spl;                                                             ///< Supplemental setting registers base address for specified channel
 };
 
 /** PCIE_RC extension data structure. Please refer to the struct st_pcie_rc_extended_cfg. */
@@ -150,11 +157,9 @@ extern const pci_api_t g_pci_on_pcie_rc;
  * Public APIs
  **********************************************************************************************************************/
 fsp_err_t R_PCIE_RC_Open(pci_ctrl_t * const p_ctrl, pci_cfg_t const * const p_cfg);
+fsp_err_t R_PCIE_RC_SelfConfigurationRegisterSet(pci_ctrl_t * const p_ctrl, uint32_t register_number, uint32_t data);
 fsp_err_t R_PCIE_RC_SelfConfigurationRegisterGet(pci_ctrl_t * const p_ctrl, uint32_t register_number,
                                                  uint32_t * p_data);
-fsp_err_t R_PCIE_RC_SelfConfigurationRegisterSet(pci_ctrl_t * const p_ctrl, uint32_t register_number, uint32_t data);
-fsp_err_t R_PCIE_RC_MessageWrite(pci_ctrl_t * const p_ctrl, pci_message_transfer_t * const p_transfer, bool with_data);
-fsp_err_t R_PCIE_RC_MessageRead(pci_ctrl_t * const p_ctrl, pci_message_transfer_t * const p_transfer);
 fsp_err_t R_PCIE_RC_ConfigurationRegisterWrite(pci_ctrl_t * const                            p_ctrl,
                                                pci_configuration_write_type_t                transaction_type,
                                                pci_configuration_register_transfer_t * const p_transfer);
@@ -163,9 +168,11 @@ fsp_err_t R_PCIE_RC_ConfigurationRegisterRead(pci_ctrl_t * const                
                                               pci_configuration_register_transfer_t * const p_transfer);
 fsp_err_t R_PCIE_RC_IORegisterWrite(pci_ctrl_t * const p_ctrl, pci_io_register_transfer_t * const p_transfer);
 fsp_err_t R_PCIE_RC_IORegisterRead(pci_ctrl_t * const p_ctrl, pci_io_register_transfer_t * const p_transfer);
-fsp_err_t R_PCIE_RC_LinkStatusGet(pci_ctrl_t * const p_ctrl, pci_status_t * const p_status);
+fsp_err_t R_PCIE_RC_MessageWrite(pci_ctrl_t * const p_ctrl, pci_message_transfer_t * const p_transfer, bool with_data);
+fsp_err_t R_PCIE_RC_MessageRead(pci_ctrl_t * const p_ctrl, pci_message_transfer_t * const p_transfer);
 fsp_err_t R_PCIE_RC_IntxAssert(pci_ctrl_t * const p_ctrl);
 fsp_err_t R_PCIE_RC_IntxDeassert(pci_ctrl_t * const p_ctrl);
+fsp_err_t R_PCIE_RC_LinkStatusGet(pci_ctrl_t * const p_ctrl, pci_status_t * const p_status);
 fsp_err_t R_PCIE_RC_LinkWidthChange(pci_ctrl_t * const p_ctrl, uint32_t link_width, uint32_t option);
 fsp_err_t R_PCIE_RC_LinkSpeedChange(pci_ctrl_t * const p_ctrl, pci_link_speed_t link_speed, uint32_t option);
 fsp_err_t R_PCIE_RC_LinkEqualizationRequest(pci_ctrl_t * const p_ctrl);
@@ -178,11 +185,11 @@ fsp_err_t R_PCIE_RC_Close(pci_ctrl_t * const p_ctrl);
 /*******************************************************************************************************************//**
  * @} (end defgroup PCIE_RC)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

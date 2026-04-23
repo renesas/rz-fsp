@@ -567,10 +567,10 @@ static const uint32_t drenr_additional_4byte =
 #endif
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -625,6 +625,8 @@ fsp_err_t R_SPIBSC_Open (spi_flash_ctrl_t * p_api_ctrl, spi_flash_cfg_t const * 
 #if SPIBSC_CFG_PARAM_CHECKING_ENABLE
     FSP_ASSERT(NULL != p_api_ctrl);
     FSP_ASSERT(NULL != p_cfg);
+    FSP_ASSERT(NULL != p_cfg->p_extend);
+    FSP_ASSERT(NULL != ((spibsc_extended_cfg_t *) p_cfg->p_extend)->p_reg);
     FSP_ERROR_RETURN(SPIBSC_PRV_OPEN != p_ctrl->open, FSP_ERR_ALREADY_OPEN);
 
     /* Check configuration parameters */
@@ -652,7 +654,7 @@ fsp_err_t R_SPIBSC_Open (spi_flash_ctrl_t * p_api_ctrl, spi_flash_cfg_t const * 
     ctrl.p_erase_command_list = (spi_flash_erase_command_t *) p_erase_list;
     ctrl.open                 = SPIBSC_PRV_OPEN;
     ctrl.is_xip_enabled       = false;
-    ctrl.p_reg                = R_SPIBSC;
+    ctrl.p_reg                = ctrl.ext.p_reg;
 
 #if SPIBSC_CFG_INITIALIZATION == 1
     {
@@ -1313,9 +1315,9 @@ fsp_err_t R_SPIBSC_Close (spi_flash_ctrl_t * p_api_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

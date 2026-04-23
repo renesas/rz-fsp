@@ -22,10 +22,7 @@
  **********************************************************************************************************************/
 
 /** Used for holding reference counters for protection bits. */
-volatile uint16_t g_protect_counters[] =
-{
-    0U, 0U, 0U, 0U
-};
+volatile uint16_t g_protect_counters[4] BSP_SECTION_EARLY_INIT;
 
 /***********************************************************************************************************************
  * Private global variables and functions
@@ -41,10 +38,10 @@ static const uint16_t g_prcr_masks[] =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -150,9 +147,9 @@ void R_BSP_RegisterProtectDisable (bsp_reg_protect_t regs_to_unprotect)
 
 /** @} (end addtogroup BSP_MCU) */
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

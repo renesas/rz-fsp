@@ -141,6 +141,7 @@ typedef struct st_pdm_instance_ctrl pdm_instance_ctrl_t;
 struct st_pdm_extended_cfg
 {
     pdm_clk_div_t clock_div;                                   ///< PDM_CLKn's division ratio to core clock
+    void        * p_reg;                                       ///< Register base address for specified channel
 
     /** Function Settings. */
     uint8_t sound_detection_enable;                            ///< Sound detection enable

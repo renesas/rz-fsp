@@ -81,10 +81,10 @@ static void bsp_init_uninitialized_vars(void);
 #endif
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -250,6 +250,9 @@ void SystemInit (void)
  #endif
 #endif
 
+    /* Call any BSP specific code. No arguments are needed so NULL is sent. */
+    bsp_init(NULL);
+
 #if !(BSP_CFG_RAM_EXECUTION)
  #if (1U < BSP_FEATURE_BSP_CR52_CORE_NUM) || (1U < BSP_FEATURE_BSP_CA55_CORE_NUM)
 
@@ -267,13 +270,18 @@ void SystemInit (void)
 
     /* Jump to main. */
     main();
+
+    while (1)
+    {
+        /* Infinite Loop. */
+    }
 }
 
 /** @} (end addtogroup BSP_MCU) */
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 #if BSP_CFG_EARLY_INIT

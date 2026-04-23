@@ -53,6 +53,15 @@ struct st_poeg_instance_ctrl
 /** Channel control block. DO NOT INITIALIZE.  Initialization occurs when @ref poeg_api_t::open is called. Please refer to the struct st_poeg_instance_ctrl. */
 typedef struct st_poeg_instance_ctrl poeg_instance_ctrl_t;
 
+/** POEG extended configuration */
+struct st_poeg_extended_cfg
+{
+    void * p_reg;                      // Register base address for specified channel
+};
+
+/** POEG extended configuration. Please refer to the struct st_poeg_extended_cfg. */
+typedef struct st_poeg_extended_cfg poeg_extended_cfg_t;
+
 /**********************************************************************************************************************
  * Exported global variables
  **********************************************************************************************************************/

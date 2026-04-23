@@ -21,12 +21,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZV_TSU_B
@@ -59,6 +59,7 @@ struct st_tsu_b_extended_cfg
     int16_t             compare_ref_high; ///< Upper reference value
     IRQn_Type           compare_irq;      ///< IRQ number for Comparison Result Interrupts
     uint8_t             compare_ipl;      ///< Priority for Comparison Result Interrupts
+    void              * p_reg;            ///< Register base address for specified channel
 };
 
 /** Extended configuration structure for ADC. Please refer to the struct st_tsu_b_extended_cfg. */
@@ -116,11 +117,11 @@ fsp_err_t R_TSU_B_CalculateTemperature(adc_ctrl_t * p_ctrl, uint16_t temperature
  * @} (end defgroup TSU_B)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

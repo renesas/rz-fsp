@@ -44,6 +44,7 @@ rsip_ret_t r_rsip_p4d (const uint32_t InData_KeyIndex[],
                        const uint32_t InData_DomainParam[],
                        uint64_t       MAX_CNT)
 {
+    RSIP_PRV_PRIMITIVE_ENTRY;
     uint64_t iLoop;
     uint32_t jLoop;
     uint32_t kLoop;

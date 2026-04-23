@@ -354,7 +354,6 @@ void usb_hstd_hci_send_message_from_int (usb_utr_t * ptr,
 
     p_task_info = &usb_hci_manage_info.task[task_no];
 
-    ptr->keyword = (uint16_t) message;
 
     /* Registration of message */
     p_task_info->mess_buff[p_task_info->mess_write]  = message;

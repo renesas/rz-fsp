@@ -17,21 +17,23 @@ FSP_HEADER
  **********************************************************************************************************************/
  #include "r_ether_phy_cfg.h"
  #include "r_ether_phy_api.h"
- #include "r_ether_selector.h"
+ #if (BSP_FEATURE_ETHSS_SUPPORTED)
+  #include "r_ether_selector.h"
+ #endif
 
 /***********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
-namespace RZT
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
- * @addtogroup RZT_ETHER_PHY
+ * @addtogroup RZV_ETHER_PHY
  * @{
  **********************************************************************************************************************/
 
@@ -39,7 +41,7 @@ namespace RZT
  * Typedef definitions
  **********************************************************************************************************************/
 
-/** ETHER PHY control block. DO NOT INITIALIZE.  Initialization occurs when @ref RZT::ether_phy_api_t::open is called. */
+/** ETHER PHY control block. DO NOT INITIALIZE.  Initialization occurs when @ref RZV::ether_phy_api_t::open is called. */
 struct st_ether_phy_instance_ctrl
 {
     uint32_t open;                           ///< Used to determine if the channel is configured
@@ -54,7 +56,7 @@ struct st_ether_phy_instance_ctrl
     uint32_t local_advertise;                ///< Capabilities bitmap for local advertising.
 };
 
-/** ETHER PHY control block. DO NOT INITIALIZE.  Initialization occurs when @ref RZT::ether_phy_api_t::open is called. Please refer to the struct st_ether_phy_instance_ctrl. */
+/** ETHER PHY control block. DO NOT INITIALIZE.  Initialization occurs when @ref RZV::ether_phy_api_t::open is called. Please refer to the struct st_ether_phy_instance_ctrl. */
 typedef struct st_ether_phy_instance_ctrl ether_phy_instance_ctrl_t;
 
 /** Identify Ethernet and EtherCAT */
@@ -113,8 +115,9 @@ struct s_ether_phy_extend_cfg
     bsp_io_port_pin_t phy_reset_pin;                                     ///< PHY reset pin
     uint32_t          phy_reset_time;                                    ///< PHY reset assert time in millsecond
 
+ #if (BSP_FEATURE_ETHSS_SUPPORTED)
     ether_selector_instance_t * p_selector_instance;                     ///< Instance of selector driver
-
+ #endif
     void (* p_target_init)(ether_phy_instance_ctrl_t * p_instance_ctrl); ///< Pointer to callback that is called to initialize the target.
 };
 
@@ -158,13 +161,13 @@ fsp_err_t R_ETHER_PHY_LinkPartnerAbilityGet(ether_phy_ctrl_t * const p_ctrl,
 fsp_err_t R_ETHER_PHY_LinkStatusGet(ether_phy_ctrl_t * const p_ctrl);
 
 /*******************************************************************************************************************//**
- * @} (end addtogroup ETHER_PHY)
+ * @} (end addtogroup RZV_ETHER_PHY)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

@@ -45,7 +45,7 @@ rsip_ret_t r_rsip_p4d (const uint32_t InData_KeyIndex[],
                        uint64_t       MAX_CNT)
 {
     RSIP_PRV_PRIMITIVE_ENTRY;
-    uint32_t iLoop;
+    uint64_t iLoop;
     uint32_t jLoop;
     uint32_t kLoop;
     uint32_t oLoop;
@@ -242,7 +242,7 @@ rsip_ret_t r_rsip_p4d (const uint32_t InData_KeyIndex[],
             WR1_PROG(REG_1404H, 0x19100000U);
             r_rsip_subfunc003(0x01430021U);
             WR1_PROG(REG_1444H, 0x00020064U);
-            for (iLoop = 0; iLoop < (MAX_CNT & 0xfffffff0U); iLoop = iLoop + 16)
+            for (iLoop = 0; iLoop < (MAX_CNT & 0xfffffffffffffff0U); iLoop = iLoop + 16)
             {
                 WAIT_STS(REG_1444H, 31U, 1U);
                 WR1_ADDR(REG_1420H, &InData_Msg[iLoop + 0]);
@@ -264,7 +264,7 @@ rsip_ret_t r_rsip_p4d (const uint32_t InData_KeyIndex[],
             }
 
             WAIT_STS(REG_1444H, 31U, 1U);
-            for (iLoop = (MAX_CNT & 0xfffffff0U); iLoop < MAX_CNT; iLoop = iLoop + 1)
+            for (iLoop = (MAX_CNT & 0xfffffffffffffff0U); iLoop < MAX_CNT; iLoop = iLoop + 1)
             {
                 WR1_ADDR(REG_1420H, &InData_Msg[iLoop + 0]);
             }

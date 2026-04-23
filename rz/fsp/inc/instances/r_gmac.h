@@ -25,12 +25,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_ETHER
@@ -40,14 +40,17 @@ namespace RZT
 /***********************************************************************************************************************
  * Typedef definitions
  **********************************************************************************************************************/
+
+/** Mask of the line port. */
 typedef enum e_gmac_port_mask
 {
-    GMAC_PORT_MASK_0   = (1U << 0),
-    GMAC_PORT_MASK_1   = (1U << 1),
-    GMAC_PORT_MASK_2   = (1U << 2),
-    GMAC_PORT_MASK_ALL = (GMAC_PORT_MASK_0 | GMAC_PORT_MASK_1 | GMAC_PORT_MASK_2)
+    GMAC_PORT_MASK_0   = (1U << 0),                                               ///< Mask of Port 0
+    GMAC_PORT_MASK_1   = (1U << 1),                                               ///< Mask of Port 1
+    GMAC_PORT_MASK_2   = (1U << 2),                                               ///< Mask of Port 2
+    GMAC_PORT_MASK_ALL = (GMAC_PORT_MASK_0 | GMAC_PORT_MASK_1 | GMAC_PORT_MASK_2) ///< Mask of Port 0 .. 2
 } gmac_port_mask_t;
 
+/** Status of the link change. */
 typedef enum e_gmac_link_change
 {
     GMAC_LINK_CHANGE_NO_CHANGE = 0,    ///< Link status is no change
@@ -55,6 +58,7 @@ typedef enum e_gmac_link_change
     GMAC_LINK_CHANGE_LINK_UP   = 2,    ///< Link status changes to up
 } gmac_link_change_t;
 
+/** Status of the magic packet detection. */
 typedef enum e_gmac_magic_packet
 {
     GMAC_MAGIC_PACKET_NOT_DETECTED = 0, ///< Magic packet is not detected
@@ -74,13 +78,15 @@ struct st_gmac_instance_descriptor
 /** GMAC descriptor as defined in the hardware manual. Please refer to the struct st_gmac_instance_descriptor. */
 typedef struct st_gmac_instance_descriptor gmac_instance_descriptor_t;
 
+/** Enable or disable link status change by PHYLINK */
 typedef enum e_gmac_phylink
 {
     GMAC_PHYLINK_DISABLE = 0,          ///< Disable
     GMAC_PHYLINK_ENABLE  = 1           ///< Enable
 } gmac_phylink_t;
 
-typedef struct st_gmac_extend_cfg
+/** Extend Configuration parameters. */
+struct st_gmac_extend_cfg
 {
     gmac_instance_descriptor_t * p_rx_descriptors;                              ///< Receive descriptor buffer pool
     gmac_instance_descriptor_t * p_tx_descriptors;                              ///< Transmit descriptor buffer pool
@@ -97,7 +103,10 @@ typedef struct st_gmac_extend_cfg
 
     uint8_t * p_mac_address1;                                                   ///< Pointer of MAC address 1
     uint8_t * p_mac_address2;                                                   ///< Pointer of MAC address 2
-} gmac_extend_cfg_t;
+};
+
+/** Extend Configuration parameters. Please refer to the struct st_gmac_extend_cfg. */
+typedef struct st_gmac_extend_cfg gmac_extend_cfg_t;
 
 /** ETHER control block. DO NOT INITIALIZE.  Initialization occurs when @ref RZT::ether_api_t::open is called. */
 struct st_gmac_instance_ctrl
@@ -140,57 +149,59 @@ struct st_gmac_instance_ctrl
 /** ETHER control block. DO NOT INITIALIZE.  Initialization occurs when @ref RZT::ether_api_t::open is called. Please refer to the struct st_gmac_instance_ctrl. */
 typedef struct st_gmac_instance_ctrl gmac_instance_ctrl_t;
 
-/*
- * PauseMaskE, PauseValE and pause_resolutionS are use to create
- * PAUSE resolution Table 28B-3 in IEEE 802.3-2008 standard.
- */
+/** The "Pause Mask" used to create the PAUSE resolution table 28B-3 of the IEEE 802.3-2008 standard. */
 typedef enum e_gmac_pause_mask
 {
-    GMAC_PAUSE_MASK0,
-    GMAC_PAUSE_MASK1,
-    GMAC_PAUSE_MASK2,
-    GMAC_PAUSE_MASK3,
-    GMAC_PAUSE_MASK4,
-    GMAC_PAUSE_MASK5,
-    GMAC_PAUSE_MASK6,
-    GMAC_PAUSE_MASK7,
-    GMAC_PAUSE_MASK8,
-    GMAC_PAUSE_MASK9,
-    GMAC_PAUSE_MASKA,
-    GMAC_PAUSE_MASKB,
-    GMAC_PAUSE_MASKC,
-    GMAC_PAUSE_MASKD,
-    GMAC_PAUSE_MASKE,
-    GMAC_PAUSE_MASKF
+    GMAC_PAUSE_MASK0,                  ///< Pause Mask 0
+    GMAC_PAUSE_MASK1,                  ///< Pause Mask 1
+    GMAC_PAUSE_MASK2,                  ///< Pause Mask 2
+    GMAC_PAUSE_MASK3,                  ///< Pause Mask 3
+    GMAC_PAUSE_MASK4,                  ///< Pause Mask 4
+    GMAC_PAUSE_MASK5,                  ///< Pause Mask 5
+    GMAC_PAUSE_MASK6,                  ///< Pause Mask 6
+    GMAC_PAUSE_MASK7,                  ///< Pause Mask 7
+    GMAC_PAUSE_MASK8,                  ///< Pause Mask 8
+    GMAC_PAUSE_MASK9,                  ///< Pause Mask 9
+    GMAC_PAUSE_MASKA,                  ///< Pause Mask A
+    GMAC_PAUSE_MASKB,                  ///< Pause Mask B
+    GMAC_PAUSE_MASKC,                  ///< Pause Mask C
+    GMAC_PAUSE_MASKD,                  ///< Pause Mask D
+    GMAC_PAUSE_MASKE,                  ///< Pause Mask E
+    GMAC_PAUSE_MASKF                   ///< Pause Mask F
 } gmac_pause_mask_t;
 
+/** The "Pause Value" used to create the PAUSE resolution table 28B-3 of the IEEE 802.3-2008 standard. */
 typedef enum e_gmac_pause_val
 {
-    GMAC_PAUSE_VAL0,
-    GMAC_PAUSE_VAL1,
-    GMAC_PAUSE_VAL2,
-    GMAC_PAUSE_VAL3,
-    GMAC_PAUSE_VAL4,
-    GMAC_PAUSE_VAL5,
-    GMAC_PAUSE_VAL6,
-    GMAC_PAUSE_VAL7,
-    GMAC_PAUSE_VAL8,
-    GMAC_PAUSE_VAL9,
-    GMAC_PAUSE_VALA,
-    GMAC_PAUSE_VALB,
-    GMAC_PAUSE_VALC,
-    GMAC_PAUSE_VALD,
-    GMAC_PAUSE_VALE,
-    GMAC_PAUSE_VALF
+    GMAC_PAUSE_VAL0,                   ///< Pause Value 0
+    GMAC_PAUSE_VAL1,                   ///< Pause Value 1
+    GMAC_PAUSE_VAL2,                   ///< Pause Value 2
+    GMAC_PAUSE_VAL3,                   ///< Pause Value 3
+    GMAC_PAUSE_VAL4,                   ///< Pause Value 4
+    GMAC_PAUSE_VAL5,                   ///< Pause Value 5
+    GMAC_PAUSE_VAL6,                   ///< Pause Value 6
+    GMAC_PAUSE_VAL7,                   ///< Pause Value 7
+    GMAC_PAUSE_VAL8,                   ///< Pause Value 8
+    GMAC_PAUSE_VAL9,                   ///< Pause Value 9
+    GMAC_PAUSE_VALA,                   ///< Pause Value A
+    GMAC_PAUSE_VALB,                   ///< Pause Value B
+    GMAC_PAUSE_VALC,                   ///< Pause Value C
+    GMAC_PAUSE_VALD,                   ///< Pause Value D
+    GMAC_PAUSE_VALE,                   ///< Pause Value E
+    GMAC_PAUSE_VALF                    ///< Pause Value F
 } gmac_pause_val_t;
 
-typedef struct st_gmac_pause_resolution
+/** The "Pause Resolution" used to create the PAUSE resolution table 28B-3 of the IEEE 802.3-2008 standard. */
+struct st_gmac_pause_resolution
 {
-    gmac_pause_mask_t mask;
-    gmac_pause_val_t  value;
-    uint8_t           transmit;
-    uint8_t           receive;
-} gmac_pause_resolution_t;
+    gmac_pause_mask_t mask;            ///< Pause mask
+    gmac_pause_val_t  value;           ///< Pause value
+    uint8_t           transmit;        ///< Transmit pause enable / disable
+    uint8_t           receive;         ///< Receive pause enable / disable
+};
+
+/** The "Pause Resolution" used to create the PAUSE resolution table 28B-3 of the IEEE 802.3-2008 standard. Please refer to the struct st_gmac_pause_resolution. */
+typedef struct st_gmac_pause_resolution gmac_pause_resolution_t;
 
 /** Link status of each port */
 typedef enum e_gmac_link_status
@@ -217,19 +228,19 @@ fsp_err_t R_GMAC_Open(ether_ctrl_t * const p_ctrl, ether_cfg_t const * const p_c
 
 fsp_err_t R_GMAC_Close(ether_ctrl_t * const p_ctrl);
 
-fsp_err_t R_GMAC_Read(ether_ctrl_t * const p_ctrl, void * const p_buffer, uint32_t * const length_bytes);
-
 fsp_err_t R_GMAC_BufferRelease(ether_ctrl_t * const p_ctrl);
 
 fsp_err_t R_GMAC_RxBufferUpdate(ether_ctrl_t * const p_ctrl, void * const p_buffer);
-
-fsp_err_t R_GMAC_Write(ether_ctrl_t * const p_ctrl, void * const p_buffer, uint32_t const frame_length);
 
 fsp_err_t R_GMAC_LinkProcess(ether_ctrl_t * const p_ctrl);
 
 fsp_err_t R_GMAC_GetLinkStatus(ether_ctrl_t * const p_ctrl, uint8_t port, gmac_link_status_t * p_status);
 
 fsp_err_t R_GMAC_WakeOnLANEnable(ether_ctrl_t * const p_ctrl);
+
+fsp_err_t R_GMAC_Read(ether_ctrl_t * const p_ctrl, void * const p_buffer, uint32_t * const length_bytes);
+
+fsp_err_t R_GMAC_Write(ether_ctrl_t * const p_ctrl, void * const p_buffer, uint32_t const frame_length);
 
 fsp_err_t R_GMAC_TxStatusGet(ether_ctrl_t * const p_ctrl, void * const p_buffer_address);
 
@@ -241,11 +252,11 @@ fsp_err_t R_GMAC_CallbackSet(ether_ctrl_t * const          p_ctrl,
 /*******************************************************************************************************************//**
  * @} (end addtogroup ETHER)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

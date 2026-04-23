@@ -227,6 +227,7 @@ struct st_sci_b_uart_extended_cfg
     sci_b_uart_flow_control_t       flow_control;      ///< CTS/RTS function of the SSn pin
     sci_b_uart_rs485_setting_t      rs485_setting;     ///< RS-485 settings.
     sci_b_uart_half_data_setting_t  half_data_setting; ///< Half Data Function settings
+    void                          * p_reg;             ///< Register base address for specified channel
 };
 
 /** UART on SCI device Configuration. Please refer to the struct st_sci_b_uart_extended_cfg. */

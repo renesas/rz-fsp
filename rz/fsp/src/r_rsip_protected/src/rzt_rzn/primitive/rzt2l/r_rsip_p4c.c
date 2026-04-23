@@ -45,6 +45,7 @@ rsip_ret_t r_rsip_p4c (const uint32_t InData_PrivKeyIndex[],
                        uint32_t       OutData_Signature[],
                        uint64_t       MAX_CNT)
 {
+    RSIP_PRV_PRIMITIVE_ENTRY;
     uint64_t iLoop;
     uint32_t jLoop;
     uint32_t kLoop;

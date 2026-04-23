@@ -71,7 +71,7 @@
 #define BSP_FEATURE_CANFD_TXMB_OFFSET                         (32U)
 #define BSP_FEATURE_CANFD_TXMB_CHANNEL_OFFSET                 (64U)
 #define BSP_FEATURE_CANFD_RXMB_MAX                            (96U)
-#define BSP_FEATURE_CANFD_ERROR_GLOBAL_CH0_ECC_REG_POS        (26U)
+#define BSP_FEATURE_CANFD_ERROR_GLOBAL_CH0_ECC_REG_POS        (28U)
 #define BSP_FEATURE_CANFD_NUM_COMMON_FIFOS                    (18U)
 
 /* CPG-Related Definitions */
@@ -126,6 +126,7 @@
 /* DMAC-Related Definitions */
 #define BSP_FEATURE_DMAC_MAX_CHANNEL                          (16U)
 #define BSP_FEATURE_DMAC_MAX_UNIT                             (5U)
+#define BSP_FEATURE_DMAC_B_64BIT_SYSTEM                       (0U)
 
 /* GPT-Related Definitions */
 #define BSP_FEATURE_GPT_VALID_CHANNEL_MASK                    (0xFFFFU)

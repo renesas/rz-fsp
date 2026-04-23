@@ -170,10 +170,10 @@ const can_api_t g_canfd_on_canfd =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -224,6 +224,7 @@ fsp_err_t R_CANFD_Open (can_ctrl_t * const p_api_ctrl, can_cfg_t const * const p
     /* Check that the global config is present */
     canfd_extended_cfg_t * p_extend = (canfd_extended_cfg_t *) p_cfg->p_extend;
     FSP_ASSERT(p_extend->p_global_cfg);
+    FSP_ASSERT(NULL != p_extend->p_reg);
 
     /* Check nominal bit timing parameters for correctness */
     FSP_ERROR_RETURN(r_canfd_bit_timing_parameter_check(p_cfg->p_bit_timing, false), FSP_ERR_CAN_INIT_FAILED);
@@ -254,12 +255,7 @@ fsp_err_t R_CANFD_Open (can_ctrl_t * const p_api_ctrl, can_cfg_t const * const p
     fsp_err_t err = FSP_SUCCESS;
 
     /* Save the base register for this channel. */
-#if BSP_FEATURE_CANFD_NUM_INSTANCES > 1
-    R_CANFD_Type * p_reg =
-        (R_CANFD_Type *) ((uint32_t) R_CANFD0 + (channel * ((uint32_t) R_CANFD1 - (uint32_t) R_CANFD0)));
-#else
-    R_CANFD_Type * p_reg = R_CANFD;
-#endif
+    R_CANFD_Type * p_reg = p_extend->p_reg;
     p_ctrl->p_reg = p_reg;
 
     /* Initialize the control block */
@@ -302,11 +298,11 @@ fsp_err_t R_CANFD_Open (can_ctrl_t * const p_api_ctrl, can_cfg_t const * const p
 
         /* Configure rule count for both channels */
 #if BSP_FEATURE_CANFD_NUM_INSTANCES > 1
-        p_reg->CFDGAFLCFG0 = (CANFD_CFG_AFL_CH0_RULE_NUM << R_CANFD_CFDGAFLCFG0_RNC0_Pos);
+        p_reg->CFDGAFLCFG[0] = (CANFD_CFG_AFL_CH0_RULE_NUM << R_CANFD_CFDGAFLCFG_RNC0_Pos);
 #else
  #if BSP_FEATURE_CANFD_HAS_RSCANFD
-        p_reg->CFDGAFLCFG0 = (CANFD_CFG_AFL_CH0_RULE_NUM << R_CANFD_CFDGAFLCFG0_RNC0_Pos) |
-                             (CANFD_CFG_AFL_CH1_RULE_NUM << R_CANFD_CFDGAFLCFG0_RNC1_Pos);
+        p_reg->CFDGAFLCFG[0] = (CANFD_CFG_AFL_CH0_RULE_NUM << R_CANFD_CFDGAFLCFG_RNC0_Pos) |
+                               (CANFD_CFG_AFL_CH1_RULE_NUM << R_CANFD_CFDGAFLCFG_RNC1_Pos);
  #else
         for (uint32_t i = 0; i < BSP_FEATURE_CANFD_NUM_CHANNELS; i++)
         {
@@ -1055,9 +1051,9 @@ fsp_err_t R_CANFD_CallbackSet (can_ctrl_t * const          p_api_ctrl,
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************

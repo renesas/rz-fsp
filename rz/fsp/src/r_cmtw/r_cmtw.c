@@ -145,25 +145,13 @@ fsp_err_t R_CMTW_Open (timer_ctrl_t * const p_ctrl, timer_cfg_t const * const p_
     fsp_err_t err = r_cmtw_open_param_checking(p_instance_ctrl, p_cfg);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 #endif
-#if (BSP_FEATURE_CMTW_UNIT_NUM < 2)
-    uint32_t base_address = (uint32_t) BSP_FEATURE_CMTW_UNIT_0_REG +
-                            (p_cfg->channel * ((uint32_t) R_CMTW1 - (uint32_t) R_CMTW0));
-#else
-    uint32_t base_address;
-    if ((p_cfg->channel) <= BSP_FEATURE_CMTW_UNIT_0_MAX_CHANNEL_NUM)
-    {
-        base_address = (uint32_t) BSP_FEATURE_CMTW_UNIT_0_REG +
-                       ((p_cfg->channel) * ((uint32_t) R_CMTW1 - (uint32_t) R_CMTW0));
-    }
-    else
-    {
-        base_address = (uint32_t) BSP_FEATURE_CMTW_UNIT_1_REG +
-                       (((p_cfg->channel) - (BSP_FEATURE_CMTW_UNIT_0_MAX_CHANNEL_NUM + 1)) *
-                        ((uint32_t) R_CMTW1 - (uint32_t) R_CMTW0));
-    }
-#endif
 
-    p_instance_ctrl->p_reg = (R_CMTW0_Type *) base_address;
+    /* Get extended configuration structure pointer. */
+    cmtw_extended_cfg_t * p_extend = (cmtw_extended_cfg_t *) p_cfg->p_extend;
+
+    /* Set the base address for specified channel. */
+    p_instance_ctrl->p_reg = (R_CMTW0_Type *) p_extend->p_reg;
+
     p_instance_ctrl->p_cfg = p_cfg;
 
     /* Power on the CMTW channel. */
@@ -651,10 +639,11 @@ static fsp_err_t r_cmtw_open_param_checking (cmtw_instance_ctrl_t * p_instance_c
 {
     FSP_ASSERT(NULL != p_instance_ctrl);
     FSP_ASSERT(NULL != p_cfg);
-    FSP_ASSERT(NULL != p_cfg->p_extend);
-    FSP_ERROR_RETURN(CMTW_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
 
     cmtw_extended_cfg_t * p_extend = (cmtw_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(p_extend != NULL);
+    FSP_ASSERT(NULL != p_extend->p_reg);
+    FSP_ERROR_RETURN(CMTW_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
 
     /* Enable IRQ if user supplied a callback function,
      *  or if the timer is a one-shot timer (so the driver is able to

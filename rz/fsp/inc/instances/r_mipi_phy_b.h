@@ -5,13 +5,13 @@
 */
 
 #ifndef R_MIPI_PHY_B_H
-#define R_MIPI_PHY_B_H
+ #define R_MIPI_PHY_B_H
 
 /***********************************************************************************************************************
  * Includes
  **********************************************************************************************************************/
 
-#include "bsp_api.h"
+ #include "bsp_api.h"
 
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
@@ -19,9 +19,23 @@ FSP_HEADER
 /***********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
-#ifndef   __PACKED_STRUCT
- #define __PACKED_STRUCT    struct __attribute__((packed, aligned(1)))
-#endif
+ #ifndef   __PACKED_STRUCT
+  #define __PACKED_STRUCT    struct __attribute__((packed, aligned(1)))
+ #endif
+
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+namespace RZG
+{
+  #endif
+ #endif
+
+/** @cond DOXYGEN_IGNORE_ATTRIBUTE */
+
+/*******************************************************************************************************************//**
+ * @addtogroup RZG_MIPI_PHY_B
+ * @{
+ **********************************************************************************************************************/
 
 /***********************************************************************************************************************
  * Typedef definitions
@@ -43,7 +57,7 @@ struct st_mipi_phy_b_timing
     uint8_t  t_lp_exit;                ///< Low-power transition time to High-Speed mode
 };
 
-/** MIPI PHY D-PHY power mode transition timing Please refer to the struct st_mipi_phy_b_timing. */
+/** MIPI PHY D-PHY power mode transition timing. Please refer to the struct st_mipi_phy_b_timing. */
 typedef struct st_mipi_phy_b_timing mipi_phy_b_timing_t;
 
 /** MIPI_PHY configuration structure. */
@@ -80,7 +94,7 @@ struct st_mipi_phy_b_api
     fsp_err_t (* close)(mipi_phy_b_ctrl_t * const p_ctrl);
 };
 
-/** Private Interface definition for MIPI PHY peripheral Please refer to the struct st_mipi_phy_b_api. */
+/** Private Interface definition for MIPI PHY peripheral. Please refer to the struct st_mipi_phy_b_api. */
 typedef struct st_mipi_phy_b_api mipi_phy_b_api_t;
 
 /** This structure encompasses everything that is needed to use an instance of this interface. */
@@ -113,6 +127,18 @@ extern const mipi_phy_b_api_t g_mipi_phy;
  **********************************************************************************************************************/
 fsp_err_t r_mipi_phy_b_open(mipi_phy_b_ctrl_t * const p_api_ctrl, mipi_phy_b_cfg_t const * const p_cfg);
 fsp_err_t r_mipi_phy_b_close(mipi_phy_b_ctrl_t * const p_api_ctrl);
+
+/*******************************************************************************************************************//**
+ * @} (end defgroup RZG_MIPI_PHY_B)
+ **********************************************************************************************************************/
+ 
+ /** @endcond */
+ 
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+}
+  #endif
+ #endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

@@ -37,6 +37,7 @@
 #define BSP_FEATURE_ADC_C_HAS_ADIVC                                       (1U)
 #define BSP_FEATURE_ADC_C_TSU_CONTROL_AVAILABLE                           (0U)
 #define BSP_FEATURE_ADC_C_VALID_UNIT_MASK                                 (0x1U)
+#define BSP_FEATURE_ADC_C_TSUMODE_TSUEN_SETTING                           (0U)
 
 /* BSP Capabilities Definitions */
 #define BSP_FEATURE_BSP_ACCESS_CONTROL_SET_SUPPORT                        (0U)
@@ -102,6 +103,7 @@
 /* DMAC-Related Definitions */
 #define BSP_FEATURE_DMAC_MAX_CHANNEL                                      (16U)
 #define BSP_FEATURE_DMAC_MAX_UNIT                                         (2U)
+#define BSP_FEATURE_DMAC_B_64BIT_SYSTEM                                   (0U)
 
 /* GPT-Related Definitions */
 #define BSP_FEATURE_GPT_VALID_CHANNEL_MASK                                (0xFFU)
@@ -188,6 +190,8 @@
 /* MTU3-Related Definitions */
 #define BSP_FEATURE_MTU3_VALID_CHANNEL_MASK                               (0x01FF)
 #define BSP_FEATURE_MTU3_MAX_CHANNELS                                     (9U)
+#define BSP_FEATURE_MTU3_CLOCK_DIVIDER_STEP_SIZE                          (2U)
+#define BSP_FEATURE_MTU3_CLOCK_DIVIDER_VALUE_7_9_VALID                    (0U)
 #define BSP_FEATURE_MTU3_CLOCK_SOURCE                                     (FSP_PRIV_CLOCK_P0CLK)
 
 /* Startup Process-Related Definitions */

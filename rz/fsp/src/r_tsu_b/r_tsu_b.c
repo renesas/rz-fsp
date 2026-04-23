@@ -40,15 +40,6 @@ static void     r_tsu_b_call_callback(tsu_b_instance_ctrl_t * p_ctrl, adc_callba
 static uint32_t r_tsu_b_calculate_comparison_value(tsu_b_instance_ctrl_t * const p_instance_ctrl,
                                                    int                           setting_temperature);
 
-/* TSU_B base address */
-static const uint32_t volatile * p_tsu_b_base_address[BSP_FEATURE_TSU_B_MAX_UNIT] =
-{
-    (uint32_t *) R_TSU_B0,
-#if BSP_FEATURE_TSU_B_MAX_UNIT > 1
-    (uint32_t *) R_TSU_B1,
-#endif
-};
-
 /***********************************************************************************************************************
  * Global Variables
  **********************************************************************************************************************/
@@ -72,10 +63,10 @@ const adc_api_t g_adc_on_tsu_b =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -119,6 +110,7 @@ fsp_err_t R_TSU_B_Open (adc_ctrl_t * p_ctrl, adc_cfg_t const * const p_cfg)
         FSP_ERROR_RETURN((p_cfg->scan_end_irq >= 0) || (p_extend->compare_irq >= 0), FSP_ERR_IRQ_BSP_DISABLED);
     }
 
+    FSP_ASSERT(NULL != p_extend->p_reg);
 #else
     tsu_b_extended_cfg_t const * p_extend = (tsu_b_extended_cfg_t const *) p_cfg->p_extend;
 #endif
@@ -140,7 +132,7 @@ fsp_err_t R_TSU_B_Open (adc_ctrl_t * p_ctrl, adc_cfg_t const * const p_cfg)
     p_instance_ctrl->p_callback_memory = NULL;
 
     /* Save register base address. */
-    p_instance_ctrl->p_reg = (R_TSU_B0_Type *) p_tsu_b_base_address[p_cfg->unit];
+    p_instance_ctrl->p_reg = p_extend->p_reg;
 
     /* Initialize the hardware based on the configuration. */
     r_tsu_b_open_sub(p_instance_ctrl, p_cfg);
@@ -440,12 +432,12 @@ fsp_err_t R_TSU_B_CalculateTemperature (adc_ctrl_t * p_ctrl, uint16_t temperatur
 fsp_err_t R_TSU_B_Close (adc_ctrl_t * p_ctrl)
 {
     tsu_b_instance_ctrl_t * p_instance_ctrl = (tsu_b_instance_ctrl_t *) p_ctrl;
-    tsu_b_extended_cfg_t  * p_extend        = (tsu_b_extended_cfg_t *) p_instance_ctrl->p_cfg->p_extend;
 
 #if TSU_B_CFG_PARAM_CHECKING_ENABLE
     FSP_ASSERT(NULL != p_instance_ctrl);
     FSP_ERROR_RETURN(TSU_B_OPEN == p_instance_ctrl->open, FSP_ERR_NOT_OPEN);
 #endif
+    tsu_b_extended_cfg_t * p_extend = (tsu_b_extended_cfg_t *) p_instance_ctrl->p_cfg->p_extend;
 
     /* Mark driver as closed   */
     p_instance_ctrl->open        = 0U;
@@ -549,9 +541,9 @@ fsp_err_t R_TSU_B_OffsetSet (adc_ctrl_t * const p_ctrl, adc_channel_t const reg_
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************

@@ -408,7 +408,7 @@ FSP_HEADER
 #define BSP_FEATURE_SCI_UART_FIFO_DEPTH                        (16U)
 #define BSP_FEATURE_SCIE_SUPPORTED                             (1U)
 
-#define BSP_FEATURE_SDHI_CLOCK                                 (FSP_PRIV_CLOCK_PCLKAM)
+#define BSP_FEATURE_SDHI_CLOCK                                 (FSP_PRIV_CLOCK_SDHI_IMCLK)
 #define BSP_FEATURE_SDHI_HAS_CARD_DETECTION                    (1U)
 #define BSP_FEATURE_SDHI_MAX_CHANNELS                          (2U)
 #define BSP_FEATURE_SDHI_MIN_CLOCK_DIVISION_SHIFT              (0U) // 1 (2^0) is minimum division supported

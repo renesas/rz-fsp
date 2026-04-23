@@ -110,7 +110,7 @@ void usb_cstd_pipe_init (usb_utr_t * ptr, uint16_t pipe)
     {
  #if ((USB_CFG_MODE & USB_CFG_PERI) == USB_CFG_PERI)
   #if (BSP_CFG_RTOS == 2)
-        if (USB_NULL != g_p_usb_pstd_pipe[pipe])
+        if (NULL != g_p_usb_pstd_pipe[pipe])
         {
             vPortFree(g_p_usb_pstd_pipe[pipe]);
         }
@@ -217,7 +217,7 @@ void usb_cstd_clr_pipe_cnfg (usb_utr_t * ptr, uint16_t pipe_no)
     {
  #if ((USB_CFG_MODE & USB_CFG_PERI) == USB_CFG_PERI)
   #if (BSP_CFG_RTOS == 2)
-        if (USB_NULL != g_p_usb_pstd_pipe[pipe_no])
+        if (NULL != g_p_usb_pstd_pipe[pipe_no])
         {
             vPortFree(g_p_usb_pstd_pipe[pipe_no]);
         }

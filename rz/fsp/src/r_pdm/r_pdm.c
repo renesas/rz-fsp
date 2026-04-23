@@ -106,16 +106,6 @@ static void r_pdm_start_sub(pdm_instance_ctrl_t * const p_instance_ctrl);
 /***********************************************************************************************************************
  * Private global variables
  **********************************************************************************************************************/
-static uintptr_t const pdm_reg_base[] =
-{
-    (uintptr_t) R_PDM0,
-#if (1 < BSP_FEATURE_PDM_UNITS)
-    (uintptr_t) R_PDM1,
- #if (2 < BSP_FEATURE_PDM_UNITS)
-    (uintptr_t) R_PDM2,
- #endif                                /* 2 */
-#endif                                 /* 1 */
-};
 
 /***********************************************************************************************************************
  * Global Variables
@@ -168,6 +158,9 @@ fsp_err_t R_PDM_Open (pdm_ctrl_t * const p_ctrl, pdm_cfg_t const * const p_cfg)
     FSP_ASSERT(NULL != p_cfg);
     FSP_ERROR_RETURN(BSP_FEATURE_PDM_CHANNELS_PER_UNIT > p_cfg->channel, FSP_ERR_IP_CHANNEL_NOT_PRESENT);
     FSP_ERROR_RETURN(BSP_FEATURE_PDM_UNITS > p_cfg->unit, FSP_ERR_IP_CHANNEL_NOT_PRESENT);
+    pdm_extended_cfg_t * p_extend = (pdm_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(NULL != p_extend);
+    FSP_ASSERT(NULL != p_extend->p_reg);
 
  #if PDM_CFG_DMAC_ENABLE
     if (NULL != p_cfg->p_transfer_rx)
@@ -186,17 +179,14 @@ fsp_err_t R_PDM_Open (pdm_ctrl_t * const p_ctrl, pdm_cfg_t const * const p_cfg)
  #endif
 
     FSP_ERROR_RETURN(PDM_PRV_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
-#endif
 
-#if BSP_FEATURE_PDM_VALID_CHANNEL_MASK == 1
-    uint32_t base_address = (uint32_t) R_PDM0;
 #else
-
-    /* Calculate base address for registers on this channel. */
-    uintptr_t base_address = pdm_reg_base[p_cfg->unit];
-#endif
-    R_PDM0_Type        * p_reg    = (R_PDM0_Type *) base_address;
     pdm_extended_cfg_t * p_extend = (pdm_extended_cfg_t *) p_cfg->p_extend;
+#endif
+
+    /* Set the base address for specified channel. */
+    R_PDM0_Type * p_reg    = (R_PDM0_Type *) p_extend->p_reg;
+    
 
     /************************************
      *   MODULE_ON
@@ -840,10 +830,10 @@ static void r_pdm_stop_sub (pdm_instance_ctrl_t * const p_instance_ctrl)
 
 #if PDM_CFG_DMAC_ENABLE
 
-        /* If transfer is used, disable transfer when stop is requested. */
+        /* If transfer is used, close transfer when stop is requested. */
         if (NULL != p_instance_ctrl->p_cfg->p_transfer_rx)
         {
-            (void) p_instance_ctrl->p_cfg->p_transfer_rx->p_api->disable(p_instance_ctrl->p_cfg->p_transfer_rx->p_ctrl);
+            (void) p_instance_ctrl->p_cfg->p_transfer_rx->p_api->close(p_instance_ctrl->p_cfg->p_transfer_rx->p_ctrl);
         }
 #endif
 

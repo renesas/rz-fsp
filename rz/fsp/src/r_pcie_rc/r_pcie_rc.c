@@ -48,10 +48,19 @@
 #define PCIE_RC_REQUEST_TIMEOUT_US                             (500000U)
 
 /* Setting value for Lane Equalization Control Register */
-#define PCIE_RC_LEQCTL_SETTING_VALUE                           (0x78787878)
+#if PCIE_RC_CFG_LINK_MODE == (1U << R_PCIE_LNK_PCIE_LINKMODE_LINK_MASTER_Pos)
+
+/* For the 2 lanes x 1 channel configuration.*/
+ #define PCIE_RC_LEQCTL_SETTING_VALUE             (0x78787878)
+
+#elif PCIE_RC_CFG_LINK_MODE == (3U << R_PCIE_LNK_PCIE_LINKMODE_LINK_MASTER_Pos)
+
+/* For the 1 lane x 2 channels configuration.*/
+ #define PCIE_RC_LEQCTL_SETTING_VALUE             (0x7F7F7878)
+#endif
 
 /* Offset address value for nth window setting register. */
-#define PCIE_RC_WINDOW_SETTING_ADDR_NTH_OFFSET                 (0x20)
+#define PCIE_RC_WINDOW_SETTING_ADDR_NTH_OFFSET    (0x20)
 
 #define PCIE_RC_HARDWARE_REGISTER_WAIT(reg, required_value, timeout) \
     while ((timeout))                                                \
@@ -228,10 +237,10 @@ const pci_api_t g_pci_on_pcie_rc =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -261,16 +270,20 @@ fsp_err_t R_PCIE_RC_Open (pci_ctrl_t * const p_ctrl, pci_cfg_t const * const p_c
     FSP_ERROR_RETURN(PCIE_RC_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
 #endif
 
+    pcie_rc_extended_cfg_t const * p_extend = (pcie_rc_extended_cfg_t const *) p_cfg->p_extend;
+
+#if PCIE_RC_CFG_PARAM_CHECKING_ENABLE
+    FSP_ASSERT(NULL != p_extend->p_reg);
+    FSP_ASSERT(NULL != p_extend->p_reg_spl);
+#endif
+
     /* Initialize control structure.  */
     p_instance_ctrl->p_cfg     = p_cfg;
     p_instance_ctrl->channel   = p_cfg->channel;
-    p_instance_ctrl->p_reg     = (R_PCIE0_Type *) (R_PCIE0_BASE + (R_PCIE1_BASE - R_PCIE0_BASE) * p_cfg->channel);
+    p_instance_ctrl->p_reg     = (R_PCIE0_Type *) p_extend->p_reg;
     p_instance_ctrl->p_reg_phy = (R_PCIE_PHY_Type *) R_PCIE_PHY_BASE;
-    p_instance_ctrl->p_reg_spl =
-        (R_PCIE_SPL0_Type *) (R_PCIE_SPL0_BASE + (R_PCIE_SPL1_BASE - R_PCIE_SPL0_BASE) * p_cfg->channel);
+    p_instance_ctrl->p_reg_spl = (R_PCIE_SPL0_Type *) p_extend->p_reg_spl;
     p_instance_ctrl->p_reg_lnk = (R_PCIE_LNK_Type *) R_PCIE_LNK_BASE;
-
-    pcie_rc_extended_cfg_t const * p_extend = (pcie_rc_extended_cfg_t const *) p_instance_ctrl->p_cfg->p_extend;
 
     /* Set the Root-complex mode and Channel Configuration.
      * Set MODE_PORT bit in the PCIE_MODE register to 1.
@@ -323,12 +336,21 @@ fsp_err_t R_PCIE_RC_Open (pci_ctrl_t * const p_ctrl, pci_cfg_t const * const p_c
     /* Setting PCI Express Configuration Registers (Type1 : Root Complex) */
     r_pcie_rc_configuration_register_type1_init(p_instance_ctrl);
 
-    /* PCI_RC_LEQCTL b27-b24 8: Upstream Port 8.0 GTs Transmitter Preset Lane1
-     *               b19-b16 8: Downstream Port 8.0 GTs Transmitter Preset Lane1
-     *               b11-b8  8: Upstream Port 8.0 GTs Transmitter Preset Lane0
-     *               b3-b0   8: Downstream Port 8.0 GTs Transmitter Preset Lane0
+    /* Setting Lane Equalization Control Register.
+     * For the 2 lanes x 1 channel configuration:
+     *     b27-b24 8: Upstream Port 8.0 GTs Transmitter Preset Lane1
+     *     b19-b16 8: Downstream Port 8.0 GTs Transmitter Preset Lane1
+     *     b11-b8  8: Upstream Port 8.0 GTs Transmitter Preset Lane0
+     *     b3-b0   8: Downstream Port 8.0 GTs Transmitter Preset Lane0
+     * For the 1 lane × 2 channels configuration:
+     *     b11-b8  8: Upstream Port 8.0 GTs Transmitter Preset Lane0
+     *     b3-b0   8: Downstream Port 8.0 GTs Transmitter Preset Lane0
      */
     p_instance_ctrl->p_reg->PCI_RC_LEQCTL = PCIE_RC_LEQCTL_SETTING_VALUE;
+
+    /* Use Autonomous Mechanisms
+     * Set MODE_EQ_AUTONOMOUS bit in PCI_RC_PCCTRL1 to 1. */
+    p_instance_ctrl->p_reg->PCI_RC_PCCTRL1 |= R_PCIE0_PCI_EP_MSET4_MODE_EQ_AUTONOMOUS1_Msk;
 
     /* Permit ASPM L1 State Transition.
      * Set ALLOW_ENTER_L1 bit in the PCIE_MISC register to 1. */
@@ -934,9 +956,9 @@ fsp_err_t R_PCIE_RC_Close (pci_ctrl_t * const p_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

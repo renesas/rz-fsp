@@ -21,12 +21,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_SCI_SMCI
@@ -139,11 +139,6 @@ fsp_err_t R_SCI_SMCI_Write(smci_ctrl_t * const p_ctrl, uint8_t const * const p_s
 fsp_err_t R_SCI_SMCI_Read(smci_ctrl_t * const p_ctrl, uint8_t * const p_dest, uint32_t const bytes);
 fsp_err_t R_SCI_SMCI_TransferModeSet(smci_ctrl_t * const                p_ctrl,
                                      smci_transfer_mode_t const * const p_transfer_mode_params);
-fsp_err_t R_SCI_SMCI_BaudCalculate(smci_speed_params_t const * const p_speed_params,
-                                   uint32_t                          baud_rate_error_x_1000,
-                                   sci_smci_clock_source_t           clock_source,
-                                   void * const                      p_baud_setting);
-
 fsp_err_t R_SCI_SMCI_BaudSet(smci_ctrl_t * const p_ctrl, void const * const p_baud_setting);
 fsp_err_t R_SCI_SMCI_StatusGet(smci_ctrl_t * const p_ctrl, smci_status_t * const p_status);
 fsp_err_t R_SCI_SMCI_ClockControl(smci_ctrl_t * const p_ctrl, bool clock_enable);
@@ -152,15 +147,19 @@ fsp_err_t R_SCI_SMCI_CallbackSet(smci_ctrl_t * const          p_ctrl,
                                  void * const                 p_context,
                                  smci_callback_args_t * const p_callback_memory);
 fsp_err_t R_SCI_SMCI_Close(smci_ctrl_t * const p_ctrl);
+fsp_err_t R_SCI_SMCI_BaudCalculate(smci_speed_params_t const * const p_speed_params,
+                                   uint32_t                          baud_rate_error_x_1000,
+                                   sci_smci_clock_source_t           clock_source,
+                                   void * const                      p_baud_setting);
 
 /*******************************************************************************************************************//**
  * @} (end addtogroup SCI_SMCI)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

@@ -45,6 +45,16 @@ typedef usb_event_info_t usb_instance_ctrl_t;
 /** @cond INC_HEADER_DEFS_SEC */
 extern const usb_api_t g_usb_on_usb;
 
+/** USB device Configuration. */
+struct st_usb_extended_cfg
+{
+    void * p_reg;                                  ///< Register base address.
+};
+
+/** USB device Configuration. Please refer to the struct st_usb_extended_cfg. */
+typedef struct st_usb_extended_cfg usb_extended_cfg_t;
+
+
 /** @endcond */
 
 /**********************************************************************************************************************

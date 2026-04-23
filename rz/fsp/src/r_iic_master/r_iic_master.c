@@ -169,10 +169,10 @@ i2c_master_api_t const g_i2c_master_on_iic =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -227,21 +227,18 @@ fsp_err_t R_IIC_MASTER_Open (i2c_master_ctrl_t * const p_ctrl, i2c_master_cfg_t 
  #endif
 #endif
 
+    iic_master_extended_cfg_t * p_extend = (iic_master_extended_cfg_t *) p_cfg->p_extend;
+
+#if IIC_MASTER_CFG_PARAM_CHECKING_ENABLE
+    FSP_ASSERT(p_extend);
+    FSP_ASSERT(p_extend->p_reg);
+#endif
+
     R_BSP_RegisterProtectDisable(BSP_REG_PROTECT_LPC_RESET);
     R_BSP_MODULE_START(FSP_IP_IIC, p_cfg->channel);
     R_BSP_RegisterProtectEnable(BSP_REG_PROTECT_LPC_RESET);
 
-    if (p_cfg->channel != BSP_FEATURE_IIC_SAFETY_CHANNEL)
-    {
-        /* Non-Safety Peripheral */
-        p_instance_ctrl->p_reg =
-            (R_IIC0_Type *) ((uintptr_t) R_IIC0 + (p_cfg->channel * ((uintptr_t) R_IIC1 - (uintptr_t) R_IIC0)));
-    }
-    else
-    {
-        /* Safety Peripheral */
-        p_instance_ctrl->p_reg = (R_IIC0_Type *) BSP_FEATURE_IIC_SAFETY_CHANNEL_BASE_ADDRESS;
-    }
+    p_instance_ctrl->p_reg = (R_IIC0_Type *) p_extend->p_reg;
 
     /* Record the pointer to the configuration structure for later use */
     p_instance_ctrl->p_cfg             = p_cfg;
@@ -514,9 +511,9 @@ fsp_err_t R_IIC_MASTER_Close (i2c_master_ctrl_t * const p_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************

@@ -29,12 +29,12 @@ FSP_HEADER
 /** Maximum period value allowed for GTM. */
  #define GTM_MAX_PERIOD          ((uint64_t) UINT32_MAX + 1ULL)
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZV_GTM
@@ -80,6 +80,7 @@ struct st_gtm_extended_cfg
 {
     gtm_giws_type_t  generate_interrupt_when_starts; // Controls enabling/disabling of interrupt requests when start
     gtm_timer_mode_t gtm_mode;                       // Select GTM timer mode
+    void           * p_reg;                          // Register base address for specified channel
 };
 
 /** Optional GTM extension data structure. Please refer to the struct st_gtm_extended_cfg. */
@@ -118,11 +119,11 @@ fsp_err_t R_GTM_CompareMatchSet(timer_ctrl_t * const        p_ctrl,
  * @} (end defgroup GTM)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 

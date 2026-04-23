@@ -137,13 +137,8 @@ static const uint8_t g_usb_pipe_peri[] =
  #endif                                          /* defined(USB_CFG_PCDC_USE) */
 
  #if defined(USB_CFG_PHID_USE)
-  #if (BSP_CFG_RTOS != 1)
-    USB_CFG_PHID_INT_OUT,   USB_CFG_PHID_INT_IN,  /* USB_PHID  (4) */
-    USB_CFG_PHID_INT_OUT2,  USB_CFG_PHID_INT_IN2, /* USB_PHID2 (5) */
-  #else /* #if (BSP_CFG_RTOS != 1) */
     USB_CFG_PHID_INT_OUT,   USB_CFG_PHID_INT_IN,  /* USB_PHID  (4) */
     USB_NULL,               USB_NULL,             /* USB_PHID2 (5) */
-  #endif /* #if (BSP_CFG_RTOS != 1) */
  #else                                           /* defined(USB_CFG_PHID_USE) */
     USB_NULL,               USB_NULL,
     USB_NULL,               USB_NULL,
@@ -313,25 +308,25 @@ usb_pipe_table_t g_usb_pipe_table[USB_NUM_USBIP][USB_MAXPIPE_NUM + 1];
 uint16_t         g_usb_cstd_bemp_skip[USB_NUM_USBIP][USB_MAX_PIPE_NO + 1U];
 
 #if USB_IP_EHCI_OHCI == 1
-uint8_t  g_data_read_buf[USB_NUM_USBIP][USB_VAL_1024 + 4]  USB_BUFFER_PLACE_IN_SECTION;
+uint8_t  g_data_read_buf[USB_NUM_USBIP][USB_CFG_BUFF_SIZE + 4]  USB_BUFFER_PLACE_IN_SECTION;
 #if defined(BSP_CFG_CORE_CA55)
 uintptr_t g_data_buf_addr[USB_NUM_USBIP][USB_MAXDEVADDR * USB_OHCI_DEVICE_ENDPOINT_MAX + 1];
 #else
 uint32_t g_data_buf_addr[USB_NUM_USBIP][USB_MAXDEVADDR * USB_OHCI_DEVICE_ENDPOINT_MAX + 1];
 #endif
 uint8_t  g_data_read_flag;
-uint8_t  g_data_write_buf[USB_NUM_USBIP][USB_MAXDEVADDR * USB_OHCI_DEVICE_ENDPOINT_MAX + 1][USB_VAL_1024 +
+uint8_t  g_data_write_buf[USB_NUM_USBIP][USB_MAXDEVADDR * USB_OHCI_DEVICE_ENDPOINT_MAX + 1][USB_CFG_BUFF_SIZE +
                                                                                             4]
 USB_BUFFER_PLACE_IN_SECTION;
 #else
  #if (USB_CFG_DMA == USB_CFG_ENABLE)
-uint8_t  g_data_read_buf[USB_NUM_USBIP][USB_VAL_1024 + 4]  USB_BUFFER_PLACE_IN_SECTION;
+uint8_t  g_data_read_buf[USB_NUM_USBIP][USB_CFG_BUFF_SIZE + 4]  USB_BUFFER_PLACE_IN_SECTION;
 #if defined(BSP_CFG_CORE_CA55)
 uintptr_t g_data_buf_addr[USB_NUM_USBIP][USB_MAXDEVADDR * USB_OHCI_DEVICE_ENDPOINT_MAX + 1];
 #else
 uint32_t g_data_buf_addr[USB_NUM_USBIP][USB_MAXDEVADDR * USB_OHCI_DEVICE_ENDPOINT_MAX + 1];
 #endif
-uint8_t  g_data_write_buf[USB_NUM_USBIP][USB_MAXDEVADDR * USB_OHCI_DEVICE_ENDPOINT_MAX + 1][USB_VAL_1024 +
+uint8_t  g_data_write_buf[USB_NUM_USBIP][USB_MAXDEVADDR * USB_OHCI_DEVICE_ENDPOINT_MAX + 1][USB_CFG_BUFF_SIZE +
                                                                                             4]
 USB_BUFFER_PLACE_IN_SECTION;
  #endif
@@ -448,7 +443,7 @@ usb_er_t usb_ctrl_write (usb_instance_ctrl_t * p_ctrl, uint8_t * buf, uint32_t s
 
     if (USB_MODE_PERI == g_usb_usbmode[p_ctrl->module_number])
     {
-        if ((USB_NULL == buf) && (USB_NULL == size))
+        if ((NULL == buf) && (USB_NULL == size))
         {
             if (USB_SETUP_STATUS_ACK == p_ctrl->status)
             {
@@ -502,7 +497,7 @@ usb_er_t usb_ctrl_stop (usb_instance_ctrl_t * p_ctrl)
  #if ((USB_CFG_MODE & USB_CFG_HOST) == USB_CFG_HOST)
         utr.ip  = p_ctrl->module_number;
         utr.ipp = usb_hstd_get_usb_ip_adr(utr.ip);
-        err     = usb_hstd_transfer_end(&utr, USB_PIPE0, (uint16_t) USB_DATA_STOP);
+        err     = usb_hstd_transfer_end(&utr, USB_PIPE0);
  #endif
     }
     else
@@ -706,8 +701,15 @@ usb_er_t usb_data_stop (usb_instance_ctrl_t * p_ctrl, usb_transfer_t type)
     uint8_t   pipe;
     usb_er_t  err = USB_ERROR;
     usb_utr_t utr;
+#if USB_IP_EHCI_OHCI == 1
+    uint8_t epnum;
+#endif                                 /* USB_IP_EHCI_OHCI == 1 */
 
     pipe = usb_get_usepipe(p_ctrl, type);
+#if USB_IP_EHCI_OHCI == 1
+    epnum = R_USB_HstdConvertEndpointNum(pipe);
+    pipe  = (uint8_t) R_USB_HstdGetPipeID(p_ctrl->device_address, epnum);
+#endif                                 /* USB_IP_EHCI_OHCI == 1 */
 
     if (USB_NULL == pipe)
     {
@@ -720,7 +722,7 @@ usb_er_t usb_data_stop (usb_instance_ctrl_t * p_ctrl, usb_transfer_t type)
  #if ((USB_CFG_MODE & USB_CFG_HOST) == USB_CFG_HOST)
         utr.ip  = p_ctrl->module_number;
         utr.ipp = usb_hstd_get_usb_ip_adr(utr.ip);
-        err     = usb_hstd_transfer_end(&utr, pipe, (uint16_t) USB_DATA_STOP);
+        err     = usb_hstd_transfer_end(&utr, pipe);
  #endif
     }
     else

@@ -82,18 +82,18 @@ void Default_Handler (void)
     BSP_CFG_HANDLE_UNRECOVERABLE_ERROR(0);
 }
 
-__WEAK void SyncSp0_Handler(void);
-__WEAK void SerrSp0_Handler(void);
-__WEAK void SyncSpx_Handler(void);
-__WEAK void SerrSpx_Handler(void);
-__WEAK void SyncLowEl64_Handler(void);
-__WEAK void IrqLowEl64_Handler(void);
-__WEAK void FiqLowEl64_Handler(void);
-__WEAK void SerrorLowEl64_Handler(void);
-__WEAK void SyncLowEl32_Handler(void);
-__WEAK void IrqLowEl32_Handler(void);
-__WEAK void FiqLowEl32_Handler(void);
-__WEAK void SerrorLowEl32_Handler(void);
+void SyncSp0_Handler(void);
+void SerrSp0_Handler(void);
+void SyncSpx_Handler(void);
+void SerrSpx_Handler(void);
+void SyncLowEl64_Handler(void);
+void IrqLowEl64_Handler(void);
+void FiqLowEl64_Handler(void);
+void SerrorLowEl64_Handler(void);
+void SyncLowEl32_Handler(void);
+void IrqLowEl32_Handler(void);
+void FiqLowEl32_Handler(void);
+void SerrorLowEl32_Handler(void);
 
 void __Vectors(void)                       BSP_PLACE_IN_SECTION(".intvec"); /* branch_to_SyncSp0_Handler */
 void branch_to_IrqSp0_Handler(void)        BSP_PLACE_IN_SECTION(".intvec_0x080");
@@ -112,11 +112,11 @@ void branch_to_IrqLowEl32_Handler(void)    BSP_PLACE_IN_SECTION(".intvec_0x680")
 void branch_to_FiqLowEl32_Handler(void)    BSP_PLACE_IN_SECTION(".intvec_0x700");
 void branch_to_SerrorLowEl32_Handler(void) BSP_PLACE_IN_SECTION(".intvec_0x780");
 
-void        Software_Reset_Handler(void);
-__WEAK void FIQ_Handler(void);
-__WEAK void IRQ_Handler(void);
-void        FIQ_ExecuteHandler(void);
-void        IRQ_ExecuteHandler(void);
+void Software_Reset_Handler(void);
+void FIQ_Handler(void);
+void IRQ_Handler(void);
+void FIQ_ExecuteHandler(void);
+void IRQ_ExecuteHandler(void);
 
 /* Stacks */
 BSP_DONT_REMOVE static uint8_t g_stack[BSP_CFG_STACK_AARCH64_BYTES] BSP_ALIGN_VARIABLE(BSP_STACK_ALIGNMENT)

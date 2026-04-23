@@ -94,6 +94,9 @@ fsp_err_t R_POEG_Open (poeg_ctrl_t * const p_ctrl, poeg_cfg_t const * const p_cf
 #if POEG_CFG_PARAM_CHECKING_ENABLE
     FSP_ASSERT(NULL != p_cfg);
     FSP_ASSERT(NULL != p_instance_ctrl);
+    poeg_extended_cfg_t * p_extend = (poeg_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(NULL != p_extend);
+    FSP_ASSERT(NULL != p_extend->p_reg);
     FSP_ERROR_RETURN(POEG_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
     FSP_ERROR_RETURN(((1U << p_cfg->channel) & BSP_FEATURE_POEG_CHANNEL_MASK), FSP_ERR_IP_CHANNEL_NOT_PRESENT);
     if (p_cfg->p_callback)
@@ -105,12 +108,14 @@ fsp_err_t R_POEG_Open (poeg_ctrl_t * const p_ctrl, poeg_cfg_t const * const p_cf
     {
         FSP_ASSERT(NULL != p_cfg->p_callback);
     }
+#else
+    /* Get extended configuration structure pointer. */
+    poeg_extended_cfg_t * p_extend = (poeg_extended_cfg_t *) p_cfg->p_extend;
 #endif
 
-    /* Save register base address. */
-    uint32_t base_address = (uint32_t) R_POEGA +
-                            (p_cfg->channel * ((uint32_t) R_POEGB - (uint32_t) R_POEGA));
-    p_instance_ctrl->p_reg = (R_POEGA_Type *) base_address;
+    /* Set the base address for specified channel. */
+    p_instance_ctrl->p_reg = (R_POEGA_Type *) p_extend->p_reg;
+    
     p_instance_ctrl->p_cfg = p_cfg;
 
     /* Power on POEG before setting any hardware registers. */

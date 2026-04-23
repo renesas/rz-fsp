@@ -300,7 +300,7 @@ typedef enum IRQn
     MTU8_TGIC_PLS_IRQn          = 242, /* Interrupt ID:242, tgi8c_pls_n */
     MTU8_TGID_PLS_IRQn          = 243, /* Interrupt ID:243, tgi8d_pls_n */
     MTU8_TCIV_PLS_IRQn          = 244, /* Interrupt ID:244, tci8v_pls_n */
-    MTU8_TCIU_PLS_IRQn          = 245, /* Interrupt ID:245, tci8u_pls_n */
+                                       /* Interrupt ID:245, Reserved */
     POE3_OEI1_IRQn              = 246, /* Interrupt ID:246, poe_oei1_n */
     POE3_OEI2_IRQn              = 247, /* Interrupt ID:247, poe_oei2_n */
     POE3_OEI3_IRQn              = 248, /* Interrupt ID:248, poe_oei3_n */

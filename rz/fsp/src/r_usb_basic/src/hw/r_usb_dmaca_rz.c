@@ -28,6 +28,7 @@
  *******************************************************************************/
 
 /* Definitions for DMACA support */
+#include "r_usb_extern.h"
 #include "r_usb_dmaca_rz_if.h"
 #include "r_usb_dmaca_rz_private.h"
 #include "r_usb_bitdefine.h"
@@ -649,7 +650,7 @@ static bool r_usb_dmaca_set_transfer_data (uint8_t channel, usb_dmaca_transfer_d
     }
 
     /*USB_DMACA_N0SA(channel) = (uint32_t)p_cfg->p_src_addr;*/
-    USB_DMACA_NOSA(channel) = (uint32_t) p_src_pa_adr;
+    USB_DMACA_NOSA(channel) = (uint32_t) r_usb_va_to_pa((uint64_t) p_src_pa_adr);
 
 /* R_USBF->CHa[channel].N[0].SA_b.SAWD = (uint32_t)p_src_pa_adr; */
 
@@ -664,7 +665,7 @@ static bool r_usb_dmaca_set_transfer_data (uint8_t channel, usb_dmaca_transfer_d
     }
 
     /*USB_DMACA_N0DA(channel) = (uint32_t)p_cfg->p_des_addr;*/
-    USB_DMACA_N0DA(channel) = (uint32_t) p_des_pa_adr;
+    USB_DMACA_N0DA(channel) = (uint32_t) r_usb_va_to_pa((uint64_t) p_des_pa_adr);
 
     /* R_USBF->CHa[channel].N[0].SA_b.SAWD = (uint32_t)p_src_pa_adr; */
 
@@ -715,7 +716,7 @@ static bool r_usb_dmaca_set_transfer_data (uint8_t channel, usb_dmaca_transfer_d
         }
 
         /*USB_DMACA_N0SA(channel) = (uint32_t)p_cfg->p_src_addr;*/
-        USB_DMACA_N0SA_0 = (uint32_t) (uintptr_t) p_src_pa_adr;
+        USB_DMACA_N0SA_0 = (uint32_t) r_usb_va_to_pa((uint64_t) p_src_pa_adr);
 
         /* R_USBF->CHa[channel].N[0].SA_b.SAWD = (uint32_t)p_src_pa_adr; */
 
@@ -730,7 +731,7 @@ static bool r_usb_dmaca_set_transfer_data (uint8_t channel, usb_dmaca_transfer_d
         }
 
         /*USB_DMACA_N0DA(channel) = (uint32_t)p_cfg->p_des_addr;*/
-        USB_DMACA_N0DA_0 = (uint32_t) (uintptr_t) p_des_pa_adr;
+        USB_DMACA_N0DA_0 = (uint32_t) r_usb_va_to_pa((uint64_t) p_des_pa_adr);
 
         /* R_USBF->CHa[channel].N[0].SA_b.SAWD = (uint32_t)p_src_pa_adr; */
 
@@ -786,7 +787,7 @@ static bool r_usb_dmaca_set_transfer_data (uint8_t channel, usb_dmaca_transfer_d
         }
 
         /*USB_DMACA_N0SA(channel) = (uint32_t)p_cfg->p_src_addr;*/
-        USB_DMACA_N0SA_1 = (uint32_t) (uintptr_t) p_src_pa_adr;
+        USB_DMACA_N0SA_1 = (uint32_t) r_usb_va_to_pa((uint64_t) p_src_pa_adr);
 
         /* R_USBF->CHa[channel].N[0].SA_b.SAWD = (uint32_t)p_src_pa_adr; */
 
@@ -801,7 +802,7 @@ static bool r_usb_dmaca_set_transfer_data (uint8_t channel, usb_dmaca_transfer_d
         }
 
         /*USB_DMACA_N0DA(channel) = (uint32_t)p_cfg->p_des_addr;*/
-        USB_DMACA_N0DA_1 = (uint32_t) (uintptr_t) p_des_pa_adr;
+        USB_DMACA_N0DA_1 = (uint32_t) r_usb_va_to_pa((uint64_t) p_des_pa_adr);
 
         /* R_USBF->CHa[channel].N[0].SA_b.SAWD = (uint32_t)p_src_pa_adr; */
 

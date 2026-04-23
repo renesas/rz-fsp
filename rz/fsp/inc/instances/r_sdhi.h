@@ -17,12 +17,12 @@
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_SDHI
@@ -95,6 +95,7 @@ struct st_sdmmc_instance_ctrl
     uint32_t              transfer_block_current;
     uint32_t              transfer_block_size;
     uint32_t            * p_aligned_buff;
+    bool                  dmac_trigger_pending;
 
     void (* p_callback)(sdmmc_callback_args_t *); // Pointer to callback
     sdmmc_callback_args_t * p_callback_memory;    // Pointer to optional callback argument memory
@@ -111,6 +112,7 @@ struct st_sdhi_extended_cfg
     uint8_t        oxmnirq_ipl;        ///< OXMNIRQ interrupt priority
     bsp_io_level_t sd_pwen_output;     ///< SD_PWEN output signal
     bsp_io_level_t sd_iovs_output;     ///< SD_IOVS output signal
+    void         * p_reg;              ///< Register base address for specified channel
 };
 
 /** Optional SDHI extension data structure. Please refer to the struct st_sdhi_extended_cfg. */
@@ -175,11 +177,11 @@ fsp_err_t R_SDHI_Close(sdmmc_ctrl_t * const p_api_ctrl);
 /*******************************************************************************************************************//**
  * @} (end defgroup SDHI)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

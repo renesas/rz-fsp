@@ -26,7 +26,7 @@
 #define ADC_E_SHIFT_LEFT_ALIGNED_32_BIT    (16U)
 #define ADC_E_OPEN                         (0x41444345U)
 
-#define ADC_E_PRV_ADCSR_ADST_TRGE_MASK     (R_ADC_E_ADCSR_ADST_Msk | R_ADC_E_ADCSR_TRGE_Msk)
+#define ADC_E_PRV_ADCSR_ADST_TRGE_MASK     (R_ADC_E0_ADCSR_ADST_Msk | R_ADC_E0_ADCSR_TRGE_Msk)
 #define ADC_E_PRV_ADCSR_CLEAR_ADST_TRGE    (~ADC_E_PRV_ADCSR_ADST_TRGE_MASK)
 
 /***********************************************************************************************************************
@@ -72,18 +72,6 @@ static const uint32_t g_adc_valid_channels[] =
 };
 #endif
 
-/* ADC_E base address */
-static const uint32_t volatile * p_adc_e_base_address[BSP_FEATURE_ADC_E_MAX_UNIT] =
-{
-    (uint32_t *) R_ADC_E0,
-#if BSP_FEATURE_ADC_E_MAX_UNIT > 1
-    (uint32_t *) R_ADC_E1,
- #if BSP_FEATURE_ADC_E_MAX_UNIT > 2
-    (uint32_t *) R_ADC_E2,
- #endif
-#endif
-};
-
 /***********************************************************************************************************************
  * Global Variables
  **********************************************************************************************************************/
@@ -107,10 +95,10 @@ const adc_api_t g_adc_on_adc_e =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -166,6 +154,7 @@ fsp_err_t R_ADC_E_Open (adc_ctrl_t * p_ctrl, adc_cfg_t const * const p_cfg)
          * has priority over group B. */
     }
 
+    FSP_ASSERT(NULL != p_extend->p_reg);
 #else
     adc_e_extended_cfg_t const * p_extend = (adc_e_extended_cfg_t const *) p_cfg->p_extend;
 #endif
@@ -176,7 +165,7 @@ fsp_err_t R_ADC_E_Open (adc_ctrl_t * p_ctrl, adc_cfg_t const * const p_cfg)
     p_instance_ctrl->p_callback        = p_cfg->p_callback;
     p_instance_ctrl->p_context         = p_cfg->p_context;
     p_instance_ctrl->p_callback_memory = NULL;
-    p_instance_ctrl->p_reg             = (R_ADC_E0_Type *) p_adc_e_base_address[p_cfg->unit];
+    p_instance_ctrl->p_reg             = p_extend->p_reg;
 
     /* Initialize the hardware based on the configuration. */
     r_adc_e_open_sub(p_instance_ctrl, p_cfg);
@@ -587,9 +576,9 @@ fsp_err_t R_ADC_E_OffsetSet (adc_ctrl_t * const p_ctrl, adc_channel_t const reg_
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************
@@ -679,18 +668,18 @@ static void r_adc_e_open_sub (adc_e_instance_ctrl_t * const p_instance_ctrl, adc
      *   * The value to set in ADCSR to start a scan is stored in the control structure. ADCSR.ADST is set in
      *     R_ADC_ScanStart if software trigger mode is used.
      */
-    uint16_t adcsr = (uint16_t) (p_cfg->mode << R_ADC_E_ADCSR_ADCS_Pos);
-    adcsr |= R_ADC_E_ADCSR_GBADIE_Msk;
-    adcsr |= R_ADC_E_ADCSR_ADIE_Msk;
-    adcsr |= (uint16_t) (p_cfg->trigger << R_ADC_E_ADCSR_EXTRG_Pos);
+    uint16_t adcsr = (uint16_t) (p_cfg->mode << R_ADC_E0_ADCSR_ADCS_Pos);
+    adcsr |= R_ADC_E0_ADCSR_GBADIE_Msk;
+    adcsr |= R_ADC_E0_ADCSR_ADIE_Msk;
+    adcsr |= (uint16_t) (p_cfg->trigger << R_ADC_E0_ADCSR_EXTRG_Pos);
 
     if (ADC_E_DOUBLE_TRIGGER_DISABLED != p_cfg_extend->double_trigger_mode)
     {
-        adcsr |= R_ADC_E_ADCSR_TRGE_Msk | R_ADC_E_ADCSR_DBLE_Msk;
+        adcsr |= R_ADC_E0_ADCSR_TRGE_Msk | R_ADC_E0_ADCSR_DBLE_Msk;
     }
     else if (ADC_TRIGGER_SOFTWARE == p_cfg->trigger)
     {
-        adcsr |= R_ADC_E_ADCSR_ADST_Msk;
+        adcsr |= R_ADC_E0_ADCSR_ADST_Msk;
     }
     else
     {
@@ -709,12 +698,12 @@ static void r_adc_e_open_sub (adc_e_instance_ctrl_t * const p_instance_ctrl, adc
     uint16_t adcer = 0U;
 
 #if BSP_FEATURE_ADC_E_HAS_ADCER_ADPRC
-    adcer |= (uint16_t) (p_cfg->resolution << R_ADC_E_ADCER_ADPRC_Pos);
+    adcer |= (uint16_t) (p_cfg->resolution << R_ADC_E0_ADCER_ADPRC_Pos);
 #endif
 #if BSP_FEATURE_ADC_E_HAS_ADCER_ADRFMT
-    adcer |= (uint16_t) (p_cfg->alignment << R_ADC_E_ADCER_ADRFMT_Pos);
+    adcer |= (uint16_t) (p_cfg->alignment << R_ADC_E0_ADCER_ADRFMT_Pos);
 #endif
-    adcer |= (uint16_t) (p_cfg_extend->clearing << R_ADC_E_ADCER_ACE_Pos);
+    adcer |= (uint16_t) (p_cfg_extend->clearing << R_ADC_E0_ADCER_ACE_Pos);
 
     /* Determine the value for ADADC:
      *   * The addition/averaging modes are set as configured in ADADC.ADC and ADADC.AVEE.
@@ -733,8 +722,8 @@ static void r_adc_e_open_sub (adc_e_instance_ctrl_t * const p_instance_ctrl, adc
     /* Set the predetermined values for ADCSR, ADSTRGR, ADGCTRGR, ADCER, and ADADC without setting ADCSR.ADST or ADCSR.TRGE.
      * ADCSR.ADST or ADCSR.TRGE are set as configured in R_ADC_ScanStart. */
     p_instance_ctrl->p_reg->ADCSR = (uint16_t) (adcsr & ADC_E_PRV_ADCSR_CLEAR_ADST_TRGE);
-    uint16_t adstrgr = (uint16_t) (((uint16_t) p_cfg_extend->adc_start_trigger_a << R_ADC_E_ADSTRGR_TRSA_Pos) |
-                                   ((uint16_t) p_cfg_extend->adc_start_trigger_b << R_ADC_E_ADSTRGR_TRSB_Pos));
+    uint16_t adstrgr = (uint16_t) (((uint16_t) p_cfg_extend->adc_start_trigger_a << R_ADC_E0_ADSTRGR_TRSA_Pos) |
+                                   ((uint16_t) p_cfg_extend->adc_start_trigger_b << R_ADC_E0_ADSTRGR_TRSB_Pos));
     p_instance_ctrl->p_reg->ADSTRGR     = adstrgr;
     p_instance_ctrl->scan_start_adstrgr = adstrgr;
     p_instance_ctrl->p_reg->ADCER       = adcer;
@@ -744,9 +733,9 @@ static void r_adc_e_open_sub (adc_e_instance_ctrl_t * const p_instance_ctrl, adc
     if (true == p_cfg_extend->adc_start_trigger_c_enabled)
     {
         uint8_t adgctrgr =
-            ((uint8_t) p_cfg_extend->adc_start_trigger_c) << R_ADC_E_ADGCTRGR_TRSC_Pos |
-            (uint8_t) (R_ADC_E_ADGCTRGR_GCADIE_Msk |
-                       R_ADC_E_ADGCTRGR_GRCE_Msk);
+            ((uint8_t) p_cfg_extend->adc_start_trigger_c) << R_ADC_E0_ADGCTRGR_TRSC_Pos |
+            (uint8_t) (R_ADC_E0_ADGCTRGR_GCADIE_Msk |
+                       R_ADC_E0_ADGCTRGR_GRCE_Msk);
         p_instance_ctrl->p_reg->ADGCTRGR     = adgctrgr;
         p_instance_ctrl->scan_start_adgctrgr = adgctrgr;
     }
@@ -766,10 +755,10 @@ static void r_adc_e_stop_sub (adc_e_instance_ctrl_t * const p_instance_ctrl)
     /* Disable triggers. */
     if (ADC_MODE_GROUP_SCAN == p_instance_ctrl->p_cfg->mode)
     {
-        p_instance_ctrl->p_reg->ADSTRGR = R_ADC_E_ADSTRGR_TRSA_Msk | R_ADC_E_ADSTRGR_TRSB_Msk;
+        p_instance_ctrl->p_reg->ADSTRGR = R_ADC_E0_ADSTRGR_TRSA_Msk | R_ADC_E0_ADSTRGR_TRSB_Msk;
         if (true == p_extend->adc_start_trigger_c_enabled)
         {
-            p_instance_ctrl->p_reg->ADGCTRGR_b.TRSC   = R_ADC_E_ADGCTRGR_TRSC_Msk;
+            p_instance_ctrl->p_reg->ADGCTRGR_b.TRSC   = R_ADC_E0_ADGCTRGR_TRSC_Msk;
             p_instance_ctrl->p_reg->ADGCTRGR_b.GCADIE = 0U;
             p_instance_ctrl->p_reg->ADGCTRGR_b.GRCE   = 0U;
         }
@@ -782,7 +771,7 @@ static void r_adc_e_stop_sub (adc_e_instance_ctrl_t * const p_instance_ctrl)
     }
     else
     {
-        p_instance_ctrl->p_reg->ADSTRGR = R_ADC_E_ADSTRGR_TRSA_Msk;
+        p_instance_ctrl->p_reg->ADSTRGR = R_ADC_E0_ADSTRGR_TRSA_Msk;
     }
 
     /* Disable interrupts. */
@@ -807,14 +796,14 @@ static fsp_err_t r_adc_e_scan_cfg_check_window_compare (adc_e_window_cfg_t const
         uint32_t compare_cfg = p_window_cfg->compare_cfg;
         if (0U != compare_cfg)
         {
-            if ((compare_cfg & R_ADC_E_ADCMPCR_CMPAE_Msk) && (compare_cfg & R_ADC_E_ADCMPCR_CMPBE_Msk))
+            if ((compare_cfg & R_ADC_E0_ADCMPCR_CMPAE_Msk) && (compare_cfg & R_ADC_E0_ADCMPCR_CMPBE_Msk))
             {
                 /* Ensure channels selected for Window A do not conflict with Window B */
                 uint32_t compare_b_ch = p_window_cfg->compare_b_channel;
                 FSP_ASSERT(!(p_window_cfg->compare_mask & (uint32_t) (1 << compare_b_ch)));
             }
 
-            if (compare_cfg & R_ADC_E_ADCMPCR_WCMPE_Msk)
+            if (compare_cfg & R_ADC_E0_ADCMPCR_WCMPE_Msk)
             {
                 /* Ensure lower reference values are less than or equal to the high reference values */
                 FSP_ASSERT((p_window_cfg->compare_ref_low <= p_window_cfg->compare_ref_high) &&
@@ -922,7 +911,7 @@ static void r_adc_e_scan_cfg (adc_e_instance_ctrl_t * const     p_instance_ctrl,
         /* Save window compare config */
         adcmpcr = (uint16_t) p_window_cfg->compare_cfg;
 
-        if (p_window_cfg->compare_cfg & R_ADC_E_ADCMPCR_CMPAE_Msk)
+        if (p_window_cfg->compare_cfg & R_ADC_E0_ADCMPCR_CMPAE_Msk)
         {
             /* Set Window A boundary values */
             p_instance_ctrl->p_reg->ADCMPCR  = p_window_cfg->compare_cfg & UINT16_MAX;
@@ -936,7 +925,7 @@ static void r_adc_e_scan_cfg (adc_e_instance_ctrl_t * const     p_instance_ctrl,
             p_instance_ctrl->p_reg->ADCMPLR0 = p_window_cfg->compare_mode_mask & UINT16_MAX;
         }
 
-        if (p_window_cfg->compare_cfg & R_ADC_E_ADCMPCR_CMPBE_Msk)
+        if (p_window_cfg->compare_cfg & R_ADC_E0_ADCMPCR_CMPBE_Msk)
         {
             /* Set Window B channel and mode */
             p_instance_ctrl->p_reg->ADCMPBNSR = (uint8_t) ((adc_e_window_b_mode_t) p_window_cfg->compare_b_channel |
@@ -960,7 +949,7 @@ static void r_adc_e_scan_cfg (adc_e_instance_ctrl_t * const     p_instance_ctrl,
     if (ADC_E_DOUBLE_TRIGGER_DISABLED != p_cfg_extend->double_trigger_mode)
     {
         uint32_t adcsr = p_instance_ctrl->p_reg->ADCSR;
-        adcsr = (adcsr & ~R_ADC_E_ADCSR_DBLANS_Msk) + (31U - __CLZ(p_channel_cfg->scan_mask));
+        adcsr = (adcsr & ~R_ADC_E0_ADCSR_DBLANS_Msk) + (31U - __CLZ(p_channel_cfg->scan_mask));
         p_instance_ctrl->p_reg->ADCSR      = (uint16_t) adcsr;
         p_instance_ctrl->scan_start_adcsr |= (uint16_t) adcsr;
     }

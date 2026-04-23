@@ -68,10 +68,10 @@ const rai_data_collector_api_t g_dc_on_rai_data_collector =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -421,9 +421,9 @@ fsp_err_t RM_RAI_DATA_COLLECTOR_ChannelWrite (rai_data_collector_ctrl_t * const 
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

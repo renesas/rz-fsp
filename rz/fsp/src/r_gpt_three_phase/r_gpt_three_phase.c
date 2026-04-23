@@ -39,6 +39,14 @@ enum e_gpt_three_phase_prv_gtccr
     GPT_THREE_PHASE_PRV_GTCCRF
 };
 
+/* Duty cycle mode. */
+typedef enum e_gpt_duty_cycle_mode
+{
+    GPT_DUTY_CYCLE_MODE_REGISTER    = 0, // Duty cycle depends on compare match
+    GPT_DUTY_CYCLE_MODE_0_PERCENT   = 2, // Output low
+    GPT_DUTY_CYCLE_MODE_100_PERCENT = 3, // Output high
+} gpt_duty_cycle_mode_t;
+
 /***********************************************************************************************************************
  * Private function prototypes
  **********************************************************************************************************************/
@@ -70,10 +78,10 @@ const three_phase_api_t g_gpt_three_phase_on_gpt_three_phase =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -254,13 +262,12 @@ fsp_err_t R_GPT_THREE_PHASE_DutyCycleSet (three_phase_ctrl_t * const       p_ctr
     for (three_phase_channel_t ch = THREE_PHASE_CHANNEL_U; ch <= THREE_PHASE_CHANNEL_W; ch++)
     {
         uint32_t gtpr = p_instance_ctrl->p_reg[THREE_PHASE_CHANNEL_U]->GTPR;
-        FSP_ERROR_RETURN((p_duty_cycle->duty[ch] < gtpr) && (p_duty_cycle->duty[ch] > 0), FSP_ERR_INVALID_ARGUMENT);
+        FSP_ERROR_RETURN((p_duty_cycle->duty[ch] <= gtpr), FSP_ERR_INVALID_ARGUMENT);
 
         /* In double-buffer mode also check double buffer */
         if (THREE_PHASE_BUFFER_MODE_DOUBLE == p_instance_ctrl->buffer_mode)
         {
-            FSP_ERROR_RETURN((p_duty_cycle->duty_buffer[ch] < gtpr) && (p_duty_cycle->duty_buffer[ch] > 0),
-                             FSP_ERR_INVALID_ARGUMENT);
+            FSP_ERROR_RETURN((p_duty_cycle->duty_buffer[ch] <= gtpr), FSP_ERR_INVALID_ARGUMENT);
         }
     }
 #endif
@@ -270,15 +277,72 @@ fsp_err_t R_GPT_THREE_PHASE_DutyCycleSet (three_phase_ctrl_t * const       p_ctr
     /* Set all duty cycle registers */
     for (three_phase_channel_t ch = THREE_PHASE_CHANNEL_U; ch <= THREE_PHASE_CHANNEL_W; ch++)
     {
-        p_instance_ctrl->p_reg[ch]->GTCCR[GPT_THREE_PHASE_PRV_GTCCRC] = p_duty_cycle->duty[ch];
-        p_instance_ctrl->p_reg[ch]->GTCCR[GPT_THREE_PHASE_PRV_GTCCRE] = p_duty_cycle->duty[ch];
+        uint32_t duty      = p_duty_cycle->duty[ch];
+        uint32_t gtuddtyc  = p_instance_ctrl->p_reg[ch]->GTUDDTYC;
+        bool     duty_zero = (duty == 0U);
+        bool     duty_high = (duty >= p_instance_ctrl->p_reg[THREE_PHASE_CHANNEL_U]->GTPR);
 
-        /* Set double-buffer registers (if applicable) */
-        if ((THREE_PHASE_BUFFER_MODE_DOUBLE == p_instance_ctrl->buffer_mode) ||
-            (TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM_MODE3 == p_instance_ctrl->p_cfg->p_timer_instance[0]->p_cfg->mode))
+        /* Get GTIOR register */
+        uint32_t gtioa = p_instance_ctrl->p_reg[ch]->GTIOR_b.GTIOA;
+        uint32_t gtiob = p_instance_ctrl->p_reg[ch]->GTIOR_b.GTIOB;
+
+        /* Determine initial level from GTIOR */
+        bool first_level_low_a = ((gtioa & 0x10U) == 0U);
+        bool first_level_low_b = ((gtiob & 0x10U) == 0U);
+        if (duty_zero || duty_high)
         {
-            p_instance_ctrl->p_reg[ch]->GTCCR[GPT_THREE_PHASE_PRV_GTCCRD] = p_duty_cycle->duty_buffer[ch];
-            p_instance_ctrl->p_reg[ch]->GTCCR[GPT_THREE_PHASE_PRV_GTCCRF] = p_duty_cycle->duty_buffer[ch];
+            uint32_t omdty_a;
+            uint32_t omdty_b;
+
+            if ((duty_zero && !first_level_low_a) || (duty_high && first_level_low_a))
+            {
+                omdty_a = GPT_DUTY_CYCLE_MODE_0_PERCENT;
+            }
+            else
+            {
+                omdty_a = GPT_DUTY_CYCLE_MODE_100_PERCENT;
+            }
+
+            if ((duty_zero && !first_level_low_b) || (duty_high && first_level_low_b))
+            {
+                omdty_b = GPT_DUTY_CYCLE_MODE_0_PERCENT;
+            }
+            else
+            {
+                omdty_b = GPT_DUTY_CYCLE_MODE_100_PERCENT;
+            }
+
+#if 1U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
+            gtuddtyc &= ~R_GPT7_GTUDDTYC_OADTY_Msk;
+            gtuddtyc |= omdty_a << R_GPT7_GTUDDTYC_OADTY_Pos;
+#elif 2U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
+            gtuddtyc &= (uint32_t) ~R_GPT09_0_GTUDDTYC_OADTY_Msk;
+            gtuddtyc |= omdty_a << R_GPT09_0_GTUDDTYC_OADTY_Pos;
+#endif
+
+#if 1U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
+            gtuddtyc &= ~R_GPT7_GTUDDTYC_OBDTY_Msk;
+            gtuddtyc |= omdty_b << R_GPT7_GTUDDTYC_OBDTY_Pos;
+#elif 2U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
+            gtuddtyc &= (uint32_t) ~R_GPT09_0_GTUDDTYC_OBDTY_Msk;
+            gtuddtyc |= omdty_b << R_GPT09_0_GTUDDTYC_OBDTY_Pos;
+#endif
+
+            p_instance_ctrl->p_reg[ch]->GTUDDTYC = gtuddtyc;
+        }
+        else
+        {
+            p_instance_ctrl->p_reg[ch]->GTCCR[GPT_THREE_PHASE_PRV_GTCCRC] = p_duty_cycle->duty[ch];
+            p_instance_ctrl->p_reg[ch]->GTCCR[GPT_THREE_PHASE_PRV_GTCCRE] = p_duty_cycle->duty[ch];
+
+            /* Set double-buffer registers (if applicable) */
+            if ((THREE_PHASE_BUFFER_MODE_DOUBLE == p_instance_ctrl->buffer_mode) ||
+                (TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM_MODE3 ==
+                 p_instance_ctrl->p_cfg->p_timer_instance[0]->p_cfg->mode))
+            {
+                p_instance_ctrl->p_reg[ch]->GTCCR[GPT_THREE_PHASE_PRV_GTCCRD] = p_duty_cycle->duty_buffer[ch];
+                p_instance_ctrl->p_reg[ch]->GTCCR[GPT_THREE_PHASE_PRV_GTCCRF] = p_duty_cycle->duty_buffer[ch];
+            }
         }
     }
 
@@ -352,9 +416,9 @@ fsp_err_t R_GPT_THREE_PHASE_Close (three_phase_ctrl_t * const p_ctrl)
 
 /** @} (end addtogroup GPT_THREE_PHASE) */
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

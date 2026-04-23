@@ -18,12 +18,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_SCI_I2C
@@ -104,6 +104,7 @@ typedef struct st_sci_i2c_instance_ctrl sci_i2c_instance_ctrl_t;
 struct st_sci_i2c_extended_cfg
 {
     sci_i2c_clock_settings_t clock_settings; ///< I2C Clock settings
+    void * p_reg;                            ///< Register base address for specified channel
 };
 
 /** SCI I2C extended configuration Please refer to the struct st_sci_i2c_extended_cfg. */
@@ -123,7 +124,6 @@ extern i2c_master_api_t const g_i2c_master_on_sci;
  * Public APIs
  **********************************************************************************************************************/
 fsp_err_t R_SCI_I2C_Open(i2c_master_ctrl_t * const p_ctrl, i2c_master_cfg_t const * const p_cfg);
-fsp_err_t R_SCI_I2C_Close(i2c_master_ctrl_t * const p_ctrl);
 fsp_err_t R_SCI_I2C_Read(i2c_master_ctrl_t * const p_ctrl,
                          uint8_t * const           p_dest,
                          uint32_t const            bytes,
@@ -141,15 +141,16 @@ fsp_err_t R_SCI_I2C_CallbackSet(i2c_master_ctrl_t * const          p_ctrl,
                                 void * const                       p_context,
                                 i2c_master_callback_args_t * const p_callback_memory);
 fsp_err_t R_SCI_I2C_StatusGet(i2c_master_ctrl_t * const p_ctrl, i2c_master_status_t * p_status);
+fsp_err_t R_SCI_I2C_Close(i2c_master_ctrl_t * const p_ctrl);
 
 /*******************************************************************************************************************//**
  * @} (end addtogroup SCI_I2C)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

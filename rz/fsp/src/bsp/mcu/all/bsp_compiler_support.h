@@ -11,7 +11,7 @@
  * Includes   <System Includes> , "Project Includes"
  **********************************************************************************************************************/
  #if (defined(__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3))
-  #include <arm_cmse.h>
+  #include "arm_cmse.h"
  #endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
@@ -37,15 +37,19 @@ namespace RZT
 /* The AC6 linker requires uninitialized code to be placed in a section that starts with ".bss." Without this, load
  * memory (ROM) is reserved unnecessarily. */
   #define BSP_UNINIT_SECTION_PREFIX         ".bss"
-  #define BSP_SECTION_HEAP                  BSP_UNINIT_SECTION_PREFIX ".heap"
-  #define BSP_DONT_REMOVE
+  #ifndef BSP_SECTION_HEAP
+   #define BSP_SECTION_HEAP                 BSP_UNINIT_SECTION_PREFIX ".heap"
+  #endif
+  #define BSP_DONT_REMOVE                   __attribute__((used))
   #define BSP_ATTRIBUTE_STACKLESS           __attribute__((naked))
   #define BSP_FORCE_INLINE                  __attribute__((always_inline))
   #define BSP_TARGET_ARM                    #pragma arm
  #elif   defined(__GNUC__)             /* GCC compiler */
   #define BSP_UNINIT_SECTION_PREFIX
-  #define BSP_SECTION_HEAP                  ".heap"
-  #define BSP_DONT_REMOVE
+  #ifndef BSP_SECTION_HEAP
+   #define BSP_SECTION_HEAP                 ".heap"
+  #endif
+  #define BSP_DONT_REMOVE                   __attribute__((used))
   #define BSP_LP64_SUPPORT                  __LP64__
   #if 1 == BSP_LP64_SUPPORT
    #define BSP_ATTRIBUTE_STACKLESS
@@ -56,7 +60,9 @@ namespace RZT
   #define BSP_TARGET_ARM                    __attribute__((target("arm")))
  #elif defined(__ICCARM__)             /* IAR compiler */
   #define BSP_UNINIT_SECTION_PREFIX
-  #define BSP_SECTION_HEAP                  "HEAP"
+  #ifndef BSP_SECTION_HEAP
+   #define BSP_SECTION_HEAP                 "HEAP"
+  #endif
   #define BSP_DONT_REMOVE                   __root
   #define BSP_LP64_SUPPORT                  __lp64__
   #define BSP_ATTRIBUTE_STACKLESS           __stackless
@@ -84,7 +90,7 @@ namespace RZT
 
  #define BSP_ALIGN_VARIABLE(x)      __attribute__((aligned(x)))
 
- #define BSP_PACKED             __attribute__((aligned(1)))
+ #define BSP_PACKED             __attribute__((aligned(1))) // DEPRECATED
 
  #define BSP_WEAK_REFERENCE     __attribute__((weak))
 

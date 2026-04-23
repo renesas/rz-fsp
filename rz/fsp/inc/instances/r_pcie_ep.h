@@ -22,12 +22,12 @@ FSP_HEADER
  #define R_PCIE_EP_NUM_AXI_WINDOW     (8)
  #define R_PCIE_EP_NUM_PCIE_WINDOW    (8)
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_PCIE_EP
@@ -57,7 +57,8 @@ struct st_pcie_ep_window_settings
 /** AXI/PCIe window setting structure. Please refer to the struct st_pcie_ep_window_settings. */
 typedef struct st_pcie_ep_window_settings pcie_ep_window_settings_t;
 
-typedef struct st_pcie_ep_configuration_register_0
+/** Type 0 Configuration Space Header structure. */
+struct st_pcie_ep_configuration_register_0
 {
     uint32_t vender_device_id;           ///< Device ID / Vendor ID
     uint32_t command_status;             ///< Status / Command
@@ -75,7 +76,10 @@ typedef struct st_pcie_ep_configuration_register_0
     uint32_t capability_pointer;         ///< Capabilities Pointer
     uint32_t reserved;                   ///< Reserved
     uint32_t interrupt;                  ///< Max_Lat / Min_Gnt / Interrupt Pin / Interrupt Line
-} pcie_ep_configuration_register_0_t;
+};
+
+/** Type 0 Configuration Space Header structure. Please refer to the struct st_pcie_ep_configuration_register_0. */
+typedef struct st_pcie_ep_configuration_register_0 pcie_ep_configuration_register_0_t;
 
 /** Driver instance control structure. */
 struct st_pcie_ep_instance_ctrl
@@ -123,6 +127,9 @@ struct st_pcie_ep_extended_cfg
     uint8_t   poweroff_indication_l2_ipl;                                     ///< POWEROFF indication on L2 interrupt priority
     IRQn_Type pcie_event_irq;                                                 ///< Event Interrupt
     uint8_t   pcie_event_ipl;                                                 ///< Event Interrupt priority
+
+    void * p_reg;                                                             ///< AXI bridge registers base address for specified channel
+    void * p_reg_spl;                                                         ///< Supplemental setting registers base address for specified channel
 };
 
 /** PCIE_EP extension data structure. Please refer to the struct st_pcie_ep_extended_cfg. */
@@ -142,15 +149,15 @@ extern const pci_api_t g_pci_on_pcie_ep;
  * Public APIs
  **********************************************************************************************************************/
 fsp_err_t R_PCIE_EP_Open(pci_ctrl_t * const p_ctrl, pci_cfg_t const * const p_cfg);
+fsp_err_t R_PCIE_EP_SelfConfigurationRegisterSet(pci_ctrl_t * const p_ctrl, uint32_t register_number, uint32_t data);
+fsp_err_t R_PCIE_EP_SelfConfigurationRegisterGet(pci_ctrl_t * const p_ctrl, uint32_t register_number,
+                                                 uint32_t * p_data);
 fsp_err_t R_PCIE_EP_ConfigurationRegisterWrite(pci_ctrl_t * const                            p_ctrl,
                                                pci_configuration_write_type_t                transaction_type,
                                                pci_configuration_register_transfer_t * const p_transfer);
 fsp_err_t R_PCIE_EP_ConfigurationRegisterRead(pci_ctrl_t * const                            p_ctrl,
                                               pci_configuration_read_type_t                 transaction_type,
                                               pci_configuration_register_transfer_t * const p_transfer);
-fsp_err_t R_PCIE_EP_SelfConfigurationRegisterGet(pci_ctrl_t * const p_ctrl, uint32_t register_number,
-                                                 uint32_t * p_data);
-fsp_err_t R_PCIE_EP_SelfConfigurationRegisterSet(pci_ctrl_t * const p_ctrl, uint32_t register_number, uint32_t data);
 fsp_err_t R_PCIE_EP_IORegisterWrite(pci_ctrl_t * const p_ctrl, pci_io_register_transfer_t * const p_transfer);
 fsp_err_t R_PCIE_EP_IORegisterRead(pci_ctrl_t * const p_ctrl, pci_io_register_transfer_t * const p_transfer);
 fsp_err_t R_PCIE_EP_MessageWrite(pci_ctrl_t * const p_ctrl, pci_message_transfer_t * const p_transfer, bool with_data);
@@ -170,11 +177,11 @@ fsp_err_t R_PCIE_EP_Close(pci_ctrl_t * const p_ctrl);
 /*******************************************************************************************************************//**
  * @} (end defgroup PCIE_EP)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

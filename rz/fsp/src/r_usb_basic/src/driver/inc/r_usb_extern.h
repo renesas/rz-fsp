@@ -261,7 +261,7 @@ void      usb_hstd_receive_start(usb_utr_t * ptr, uint16_t pipe);
 void      usb_hstd_fifo_to_buf(usb_utr_t * ptr, uint16_t pipe, uint16_t useport);
 uint16_t  usb_hstd_read_data(usb_utr_t * ptr, uint16_t pipe, uint16_t pipemode);
 void      usb_hstd_data_end(usb_utr_t * ptr, uint16_t pipe, uint16_t status);
-usb_er_t  usb_hstd_transfer_end(usb_utr_t * ptr, uint16_t pipe, uint16_t status);
+usb_er_t  usb_hstd_transfer_end (usb_utr_t *ptr, uint16_t pipe_id);
 usb_er_t  usb_hstd_change_device_state(usb_utr_t * ptr, usb_cb_t complete, uint16_t msginfo, uint16_t member);
 usb_er_t  usb_hstd_mgr_open(usb_utr_t * ptr);
 void      usb_hstd_driver_registration(usb_utr_t * ptr, usb_hcdreg_t * callback);

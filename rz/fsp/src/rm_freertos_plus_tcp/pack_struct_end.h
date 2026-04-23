@@ -1,5 +1,3 @@
-#include "cmsis_compiler.h"
-
 #if defined(__GNUC__)
  #include \
     "../../../aws/FreeRTOS-Plus-TCP/source/portable/Compiler/GCC/pack_struct_end.h"

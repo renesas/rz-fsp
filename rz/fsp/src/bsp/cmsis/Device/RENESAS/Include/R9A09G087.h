@@ -4,11 +4,11 @@
 * SPDX-License-Identifier: BSD-3-Clause
 */
 
-/** @addtogroup RZN_Renesas Electronics Corporation
+/** @addtogroup Renesas Electronics Corporation
  * @{
  */
 
-/** @addtogroup RZN_R9A09G087
+/** @addtogroup R9A09G087
  * @{
  */
 
@@ -19,7 +19,7 @@
 extern "C" {
  #endif
 
-/** @addtogroup RZN_Configuration_of_CMSIS
+/** @addtogroup Configuration_of_CMSIS
  * @{
  */
 
@@ -93,7 +93,7 @@ extern "C" {
 /* ================                              Device Specific Cluster Section                              ================ */
 /* =========================================================================================================================== */
 
-/** @addtogroup RZN_Device_Peripheral_clusters
+/** @addtogroup Device_Peripheral_clusters
  * @{
  */
 
@@ -432,10 +432,10 @@ typedef struct
 
             struct
             {
-                __IM uint32_t RMDB_LL : 8; /*!< [7..0] RX Message Buffer Data Byte (4 * p)                               */
-                __IM uint32_t RMDB_LH : 8; /*!< [15..8] RX Message Buffer Data Byte (4 * p + 1)                          */
-                __IM uint32_t RMDB_HL : 8; /*!< [23..16] RX Message Buffer Data Byte (4 * p + 2)                         */
-                __IM uint32_t RMDB_HH : 8; /*!< [31..24] RX Message Buffer Data Byte (4 * p + 3)                         */
+                __IM uint32_t RMDB_LL : 8; /*!< [7..0] RX Message Buffer Data Byte (4 * p)                                */
+                __IM uint32_t RMDB_LH : 8; /*!< [15..8] RX Message Buffer Data Byte (4 * p + 1)                           */
+                __IM uint32_t RMDB_HL : 8; /*!< [23..16] RX Message Buffer Data Byte (4 * p + 2)                          */
+                __IM uint32_t RMDB_HH : 8; /*!< [31..24] RX Message Buffer Data Byte (4 * p + 3)                          */
             } DF_WD_b[16];
         };
 
@@ -508,10 +508,10 @@ typedef struct
 
             struct
             {
-                __IM uint32_t RFDB_LL : 8; /*!< [7..0] RX FIFO Buffer Data Byte (4 * p)                                  */
-                __IM uint32_t RFDB_LH : 8; /*!< [15..8] RX FIFO Buffer Data Byte (4 * p + 1)                             */
-                __IM uint32_t RFDB_HL : 8; /*!< [23..16] RX FIFO Buffer Data Byte (4 * p + 2)                            */
-                __IM uint32_t RFDB_HH : 8; /*!< [31..24] RX FIFO Buffer Data Byte (4 * p + 3)                            */
+                __IM uint32_t RFDB_LL : 8; /*!< [7..0] RX FIFO Buffer Data Byte (4 * p)                                   */
+                __IM uint32_t RFDB_LH : 8; /*!< [15..8] RX FIFO Buffer Data Byte (4 * p + 1)                              */
+                __IM uint32_t RFDB_HL : 8; /*!< [23..16] RX FIFO Buffer Data Byte (4 * p + 2)                             */
+                __IM uint32_t RFDB_HH : 8; /*!< [31..24] RX FIFO Buffer Data Byte (4 * p + 3)                             */
             } DF_WD_b[16];
         };
 
@@ -585,10 +585,10 @@ typedef struct
 
             struct
             {
-                __IOM uint32_t CFDB_LL : 8; /*!< [7..0] Common FIFO Buffer Data Bytes (4 * p)                             */
-                __IOM uint32_t CFDB_LH : 8; /*!< [15..8] Common FIFO Buffer Data Bytes (4 * p + 1)                        */
-                __IOM uint32_t CFDB_HL : 8; /*!< [23..16] Common FIFO Buffer Data Bytes (4 * p + 2)                       */
-                __IOM uint32_t CFDB_HH : 8; /*!< [31..24] Common FIFO Buffer Data Bytes (4 * p + 3)                       */
+                __IOM uint32_t CFDB_LL : 8; /*!< [7..0] Common FIFO Buffer Data Bytes (4 * p)                              */
+                __IOM uint32_t CFDB_LH : 8; /*!< [15..8] Common FIFO Buffer Data Bytes (4 * p + 1)                         */
+                __IOM uint32_t CFDB_HL : 8; /*!< [23..16] Common FIFO Buffer Data Bytes (4 * p + 2)                        */
+                __IOM uint32_t CFDB_HH : 8; /*!< [31..24] Common FIFO Buffer Data Bytes (4 * p + 3)                        */
             } DF_WD_b[16];
         };
 
@@ -694,17 +694,17 @@ typedef struct
 
             struct
             {
-                __IOM uint32_t TMDB_LL : 8; /*!< [7..0] TX Message Buffer Data Byte (4 * p)                               */
-                __IOM uint32_t TMDB_LH : 8; /*!< [15..8] TX Message Buffer Data Byte (4 * p + 1)                          */
-                __IOM uint32_t TMDB_HL : 8; /*!< [23..16] TX Message Buffer Data Byte (4 * p + 2)                         */
-                __IOM uint32_t TMDB_HH : 8; /*!< [31..24] TX Message Buffer Data Byte (4 * p + 3)                         */
+                __IOM uint32_t TMDB_LL : 8; /*!< [7..0] TX Message Buffer Data Byte (4 * p)                                */
+                __IOM uint32_t TMDB_LH : 8; /*!< [15..8] TX Message Buffer Data Byte (4 * p + 1)                           */
+                __IOM uint32_t TMDB_HL : 8; /*!< [23..16] TX Message Buffer Data Byte (4 * p + 2)                          */
+                __IOM uint32_t TMDB_HH : 8; /*!< [31..24] TX Message Buffer Data Byte (4 * p + 3)                          */
             } DF_WD_b[16];
         };
 
         union
         {
             __IOM uint8_t DF[64];       /*!< (@ 0x0000000C) TX Message Buffer Data Field p Register n (p
-                                         *                  = 0 to 63, n = 0 to 127)                                     */
+                                         *                  = 0 to 63, n = 0 to 127)                                   */
 
             struct
             {
@@ -1336,7 +1336,7 @@ typedef struct
             uint32_t                     : 28;
         } RX_CONTROL_b;
     };
-} R_GMAC0_MTL_Q_Type;                         /*!< Size = 64 (0x40)                                                        */
+} R_GMAC0_MTL_Q_Type;                         /*!< Size = 64 (0x40)                                                          */
 
 /**
  * @brief R_GMAC0_DMA_CH [DMA_CH] ([0..7])
@@ -2565,8 +2565,7 @@ typedef struct
         struct
         {
             __IOM uint32_t IUE   : 1;  /*!< [0..0] Current data register update interrupt enable                      */
-            __IOM uint32_t IAUE  : 1;  /*!< [1..1] Capture current data register A update interrupt enable            */
-            __IOM uint32_t IBUE  : 1;  /*!< [2..2] Capture current data register B update interrupt enable            */
+            uint32_t             : 2;
             __IOM uint32_t ISE   : 1;  /*!< [3..3] Short circuit detection error interrupt enable bit                 */
             uint32_t             : 4;
             __IOM uint32_t IOEL0 : 1;  /*!< [8..8] Overcurrent lower limit detection interrupt 0                      */
@@ -3273,7 +3272,7 @@ typedef struct
 /* ================                            Device Specific Peripheral Section                             ================ */
 /* =========================================================================================================================== */
 
-/** @addtogroup RZN_Device_Peripheral_peripherals
+/** @addtogroup Device_Peripheral_peripherals
  * @{
  */
 
@@ -3729,16 +3728,14 @@ typedef struct                         /*!< (@ 0x80000000) R_GPT09_0 Structure  
     __IOM uint32_t GTPBR;              /*!< (@ 0x00000068) General PWM Timer Cycle Setting Buffer Register            */
     __IOM uint32_t GTPDBR;             /*!< (@ 0x0000006C) General PWM Timer Cycle Setting Double-Buffer
                                         *                  Register                                                   */
-    __IOM uint32_t GTADTRA;            /*!< (@ 0x00000070) A/D Converter Start Request Timing Register A
-                                        *                  (m = A, B)                                                 */
+    __IOM uint32_t GTADTRA;            /*!< (@ 0x00000070) A/D Converter Start Request Timing Register A              */
     __IOM uint32_t GTADTBRA;           /*!< (@ 0x00000074) A/D Converter Start Request Timing Buffer Register
-                                        *                  A (m = A, B)                                               */
+                                        *                  A                                                          */
     __IOM uint32_t GTADTDBRA;          /*!< (@ 0x00000078) A/D Converter Start Request Timing Double-Buffer
                                         *                  Register A                                                 */
-    __IOM uint32_t GTADTRB;            /*!< (@ 0x0000007C) A/D Converter Start Request Timing Register B
-                                        *                  (m = A, B)                                                 */
+    __IOM uint32_t GTADTRB;            /*!< (@ 0x0000007C) A/D Converter Start Request Timing Register B              */
     __IOM uint32_t GTADTBRB;           /*!< (@ 0x00000080) A/D Converter Start Request Timing Buffer Register
-                                        *                  B (m = A, B)                                               */
+                                        *                  B                                                          */
     __IOM uint32_t GTADTDBRB;          /*!< (@ 0x00000084) A/D Converter Start Request Timing Double-Buffer
                                         *                  Register B                                                 */
 
@@ -3757,14 +3754,12 @@ typedef struct                         /*!< (@ 0x80000000) R_GPT09_0 Structure  
             uint32_t             : 23;
         } GTDTCR_b;
     };
-    __IOM uint32_t GTDVU;              /*!< (@ 0x0000008C) General PWM Timer Dead Time Value Register U
-                                        *                  (m = U, D)                                                 */
-    __IOM uint32_t GTDVD;              /*!< (@ 0x00000090) General PWM Timer Dead Time Value Register D
-                                        *                  (m = U, D)                                                 */
+    __IOM uint32_t GTDVU;              /*!< (@ 0x0000008C) General PWM Timer Dead Time Value Register U               */
+    __IOM uint32_t GTDVD;              /*!< (@ 0x00000090) General PWM Timer Dead Time Value Register D               */
     __IOM uint32_t GTDBU;              /*!< (@ 0x00000094) General PWM Timer Dead Time Value Buffer Register
-                                        *                  U (m = U, D)                                               */
+                                        *                  U                                                          */
     __IOM uint32_t GTDBD;              /*!< (@ 0x00000098) General PWM Timer Dead Time Value Buffer Register
-                                        *                  D (m = U, D)                                               */
+                                        *                  D                                                          */
 
     union
     {
@@ -4476,7 +4471,7 @@ typedef struct                         /*!< (@ 0x80007000) R_SPI0 Structure     
 
     union
     {
-        __IOM uint8_t MRCKD;           /*!< (@ 0x00000007) SPI ClocK Digital control Register for Master
+        __IOM uint8_t MRCKD;           /*!< (@ 0x00000007) SPI Clock Digital Control Register for Master
                                         *                  Receive                                                    */
 
         struct
@@ -4610,7 +4605,7 @@ typedef struct                         /*!< (@ 0x80007000) R_SPI0 Structure     
 
     union
     {
-        __IOM uint32_t SPCMD[8];       /*!< (@ 0x00000014) SPI Command Register [0..7] (m = 0 to 7)                   */
+        __IOM uint32_t SPCMD[8];       /*!< (@ 0x00000014) SPI Command Register [0..7]                                */
 
         struct
         {
@@ -6956,7 +6951,7 @@ typedef struct                            /*!< (@ 0x80100000) R_GMAC0 Structure 
 
         struct
         {
-            __IOM uint32_t HT : 32;           /*!< [31..0] HT                                                          */
+            __IOM uint32_t HT : 32;           /*!< [31..0] HT                                                                */
         } MAC_HASH_TABLE_REG_b[8];
     };
     __IM uint32_t RESERVED[8];
@@ -9615,6 +9610,35 @@ typedef struct                         /*!< (@ 0x80110000) R_ETHSS Structure    
 } R_ETHSS_Type;                            /*!< Size = 780 (0x30c)                                                        */
 
 /* =========================================================================================================================== */
+/* ================                                          R_GMACC                                          ================ */
+/* =========================================================================================================================== */
+
+/**
+ * @brief R_GMACC (R_GMACC)
+ */
+
+typedef struct                         /*!< (@ 0x80110100) R_GMACC Structure                                          */
+{
+    __IM uint32_t RESERVED[192];
+
+    union
+    {
+        __IOM uint32_t GMACTRGSEL;        /*!< (@ 0x00000300) GMACTRGSEL                                                 */
+
+        struct
+        {
+            __IOM uint32_t G0TRGSEL0 : 1; /*!< [0..0] G0TRGSEL0                                                          */
+            __IOM uint32_t G0TRGSEL1 : 1; /*!< [1..1] G0TRGSEL1                                                          */
+            __IOM uint32_t G1TRGSEL0 : 1; /*!< [2..2] G1TRGSEL0                                                          */
+            __IOM uint32_t G1TRGSEL1 : 1; /*!< [3..3] G1TRGSEL1                                                          */
+            __IOM uint32_t G2TRGSEL0 : 1; /*!< [4..4] G2TRGSEL0                                                          */
+            __IOM uint32_t G2TRGSEL1 : 1; /*!< [5..5] G2TRGSEL1                                                          */
+            uint32_t                 : 26;
+        } GMACTRGSEL_b;
+    };
+} R_GMACC_Type;                           /*!< Size = 772 (0x304)                                                        */
+
+/* =========================================================================================================================== */
 /* ================                                         R_ESC_INI                                         ================ */
 /* =========================================================================================================================== */
 
@@ -9723,33 +9747,6 @@ typedef struct                         /*!< (@ 0x80110400) R_ETHSW_PTP Structure
     __IM uint32_t               RESERVED1[254];
     __IOM R_ETHSW_PTP_SWTM_Type SWTM[4]; /*!< (@ 0x00000400) Ethernet Switch Timer output pins 0-3 Registers            */
 } R_ETHSW_PTP_Type;                      /*!< Size = 2048 (0x800)                                                       */
-
-/* =========================================================================================================================== */
-/* ================                                          R_GMACC                                          ================ */
-/* =========================================================================================================================== */
-
-/**
- * @brief R_GMACC (R_GMACC)
- */
-
-typedef struct                            /*!< (@ 0x80110400) R_GMACC Structure                                          */
-{
-    union
-    {
-        __IOM uint32_t GMACTRGSEL;        /*!< (@ 0x00000000) GMACTRGSEL                                                 */
-
-        struct
-        {
-            __IOM uint32_t G0TRGSEL0 : 1; /*!< [0..0] G0TRGSEL0                                                          */
-            __IOM uint32_t G0TRGSEL1 : 1; /*!< [1..1] G0TRGSEL1                                                          */
-            __IOM uint32_t G1TRGSEL0 : 1; /*!< [2..2] G1TRGSEL0                                                          */
-            __IOM uint32_t G1TRGSEL1 : 1; /*!< [3..3] G1TRGSEL1                                                          */
-            __IOM uint32_t G2TRGSEL0 : 1; /*!< [4..4] G2TRGSEL0                                                          */
-            __IOM uint32_t G2TRGSEL1 : 1; /*!< [5..5] G2TRGSEL1                                                          */
-            uint32_t                 : 26;
-        } GMACTRGSEL_b;
-    };
-} R_GMACC_Type;                           /*!< Size = 4 (0x4)                                                            */
 
 /* =========================================================================================================================== */
 /* ================                                          R_ETHSW                                          ================ */
@@ -11664,8 +11661,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PEERDELAY_P0_T0;    /*!< (@ 0x00000540) Port 0 Peer Delay Value for Timer 0 (n = 0 to
-                                            *                  3)                                                         */
+        __IOM uint32_t PEERDELAY_P0_T0;    /*!< (@ 0x00000540) Port 0 Peer Delay Value for Timer 0                        */
 
         struct
         {
@@ -11677,8 +11673,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PEERDELAY_P0_T1;    /*!< (@ 0x00000544) Port 0 Peer Delay Value for Timer 1 (n = 0 to
-                                            *                  3)                                                         */
+        __IOM uint32_t PEERDELAY_P0_T1;    /*!< (@ 0x00000544) Port 0 Peer Delay Value for Timer 1                        */
 
         struct
         {
@@ -11691,8 +11686,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PEERDELAY_P1_T0;    /*!< (@ 0x00000550) Port 1 Peer Delay Value for Timer 0 (n = 0 to
-                                            *                  3)                                                         */
+        __IOM uint32_t PEERDELAY_P1_T0;    /*!< (@ 0x00000550) Port 1 Peer Delay Value for Timer 0                        */
 
         struct
         {
@@ -11704,8 +11698,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PEERDELAY_P1_T1;    /*!< (@ 0x00000554) Port 1 Peer Delay Value for Timer 1 (n = 0 to
-                                            *                  3)                                                         */
+        __IOM uint32_t PEERDELAY_P1_T1;    /*!< (@ 0x00000554) Port 1 Peer Delay Value for Timer 1                        */
 
         struct
         {
@@ -11718,8 +11711,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PEERDELAY_P2_T0;    /*!< (@ 0x00000560) Port 2 Peer Delay Value for Timer 0 (n = 0 to
-                                            *                  3)                                                         */
+        __IOM uint32_t PEERDELAY_P2_T0;    /*!< (@ 0x00000560) Port 2 Peer Delay Value for Timer 0                        */
 
         struct
         {
@@ -11731,8 +11723,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PEERDELAY_P2_T1;    /*!< (@ 0x00000564) Port 2 Peer Delay Value for Timer 1 (n = 0 to
-                                            *                  3)                                                         */
+        __IOM uint32_t PEERDELAY_P2_T1;    /*!< (@ 0x00000564) Port 2 Peer Delay Value for Timer 1                        */
 
         struct
         {
@@ -11745,8 +11736,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PEERDELAY_P3_T0;    /*!< (@ 0x00000570) Port 3 Peer Delay Value for Timer 0 (n = 0 to
-                                            *                  3)                                                         */
+        __IOM uint32_t PEERDELAY_P3_T0;    /*!< (@ 0x00000570) Port 3 Peer Delay Value for Timer 0                        */
 
         struct
         {
@@ -11758,8 +11748,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PEERDELAY_P3_T1;    /*!< (@ 0x00000574) Port 3 Peer Delay Value for Timer 1 (n = 0 to
-                                            *                  3)                                                         */
+        __IOM uint32_t PEERDELAY_P3_T1;    /*!< (@ 0x00000574) Port 3 Peer Delay Value for Timer 1                        */
 
         struct
         {
@@ -11875,7 +11864,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_CTRL0;            /*!< (@ 0x00000680) Timer 0 Control Register (n = 0, 1)                        */
+        __IOM uint32_t ATIME_CTRL0;            /*!< (@ 0x00000680) Timer 0 Control Register                                   */
 
         struct
         {
@@ -11898,7 +11887,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME0;             /*!< (@ 0x00000684) Timer 0 Count Register (n = 0, 1)                          */
+        __IOM uint32_t ATIME0;             /*!< (@ 0x00000684) Timer 0 Count Register                                     */
 
         struct
         {
@@ -11908,7 +11897,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_OFFSET0;   /*!< (@ 0x00000688) Timer 0 Offset Register (n = 0, 1)                         */
+        __IOM uint32_t ATIME_OFFSET0;   /*!< (@ 0x00000688) Timer 0 Offset Register                                    */
 
         struct
         {
@@ -11919,7 +11908,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_EVT_PERIOD0; /*!< (@ 0x0000068C) Timer 0 Periodic Event Register (n = 0, 1)                 */
+        __IOM uint32_t ATIME_EVT_PERIOD0; /*!< (@ 0x0000068C) Timer 0 Periodic Event Register                            */
 
         struct
         {
@@ -11929,7 +11918,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_CORR0;          /*!< (@ 0x00000690) Timer 0 Correction Period Register (n = 0, 1)              */
+        __IOM uint32_t ATIME_CORR0;          /*!< (@ 0x00000690) Timer 0 Correction Period Register                         */
 
         struct
         {
@@ -11940,7 +11929,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_INC0;            /*!< (@ 0x00000694) Timer 0 Increment Register (n = 0, 1)                      */
+        __IOM uint32_t ATIME_INC0;            /*!< (@ 0x00000694) Timer 0 Increment Register                                 */
 
         struct
         {
@@ -11955,7 +11944,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_SEC0;        /*!< (@ 0x00000698) Timer 0 Seconds Time Register (n = 0, 1)                   */
+        __IOM uint32_t ATIME_SEC0;        /*!< (@ 0x00000698) Timer 0 Seconds Time Register                              */
 
         struct
         {
@@ -11965,8 +11954,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_OFFS_CORR0;       /*!< (@ 0x0000069C) Timer 0 Offset Correction Counter Register (n
-                                                *                  = 0, 1)                                                    */
+        __IOM uint32_t ATIME_OFFS_CORR0;       /*!< (@ 0x0000069C) Timer 0 Offset Correction Counter Register                 */
 
         struct
         {
@@ -11976,7 +11964,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_CTRL1;            /*!< (@ 0x000006A0) Timer 1 Control Register (n = 0, 1)                        */
+        __IOM uint32_t ATIME_CTRL1;            /*!< (@ 0x000006A0) Timer 1 Control Register                                   */
 
         struct
         {
@@ -11999,7 +11987,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME1;             /*!< (@ 0x000006A4) Timer 1 Count Register (n = 0, 1)                          */
+        __IOM uint32_t ATIME1;             /*!< (@ 0x000006A4) Timer 1 Count Register                                     */
 
         struct
         {
@@ -12009,7 +11997,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_OFFSET1;   /*!< (@ 0x000006A8) Timer 1 Offset Register (n = 0, 1)                         */
+        __IOM uint32_t ATIME_OFFSET1;   /*!< (@ 0x000006A8) Timer 1 Offset Register                                    */
 
         struct
         {
@@ -12020,7 +12008,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_EVT_PERIOD1; /*!< (@ 0x000006AC) Timer 1 Periodic Event Register (n = 0, 1)                 */
+        __IOM uint32_t ATIME_EVT_PERIOD1; /*!< (@ 0x000006AC) Timer 1 Periodic Event Register                            */
 
         struct
         {
@@ -12030,7 +12018,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_CORR1;          /*!< (@ 0x000006B0) Timer 1 Correction Period Register (n = 0, 1)              */
+        __IOM uint32_t ATIME_CORR1;          /*!< (@ 0x000006B0) Timer 1 Correction Period Register                         */
 
         struct
         {
@@ -12041,7 +12029,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_INC1;            /*!< (@ 0x000006B4) Timer 1 Increment Register (n = 0, 1)                      */
+        __IOM uint32_t ATIME_INC1;            /*!< (@ 0x000006B4) Timer 1 Increment Register                                 */
 
         struct
         {
@@ -12056,7 +12044,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_SEC1;        /*!< (@ 0x000006B8) Timer 1 Seconds Time Register (n = 0, 1)                   */
+        __IOM uint32_t ATIME_SEC1;        /*!< (@ 0x000006B8) Timer 1 Seconds Time Register                              */
 
         struct
         {
@@ -12066,8 +12054,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t ATIME_OFFS_CORR1;       /*!< (@ 0x000006BC) Timer 1 Offset Correction Counter Register (n
-                                                *                  = 0, 1)                                                    */
+        __IOM uint32_t ATIME_OFFS_CORR1;       /*!< (@ 0x000006BC) Timer 1 Offset Correction Counter Register                 */
 
         struct
         {
@@ -12120,7 +12107,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t REV_P0;          /*!< (@ 0x00000800) Port 0 MAC Core Revision (n = 0 to 3)                      */
+        __IM uint32_t REV_P0;          /*!< (@ 0x00000800) Port 0 MAC Core Revision                                   */
 
         struct
         {
@@ -12131,8 +12118,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t COMMAND_CONFIG_P0;       /*!< (@ 0x00000808) Port 0 Command Configuration Register (n = 0
-                                                 *                  to 3)                                                      */
+        __IOM uint32_t COMMAND_CONFIG_P0;       /*!< (@ 0x00000808) Port 0 Command Configuration Register                      */
 
         struct
         {
@@ -12172,7 +12158,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t MAC_ADDR_0_P0;     /*!< (@ 0x0000080C) Port 0 MAC Address Register 0 (n = 0 to 2)                 */
+        __IOM uint32_t MAC_ADDR_0_P0;     /*!< (@ 0x0000080C) Port 0 MAC Address Register 0                              */
 
         struct
         {
@@ -12184,7 +12170,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t MAC_ADDR_1_P0;     /*!< (@ 0x00000810) Port 0 MAC Address Register 1 (n = 0 to 2)                 */
+        __IOM uint32_t MAC_ADDR_1_P0;     /*!< (@ 0x00000810) Port 0 MAC Address Register 1                              */
 
         struct
         {
@@ -12196,8 +12182,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t FRM_LENGTH_P0;       /*!< (@ 0x00000814) Port 0 Maximum Frame Length Register (n = 0 to
-                                             *                  3)                                                         */
+        __IOM uint32_t FRM_LENGTH_P0;       /*!< (@ 0x00000814) Port 0 Maximum Frame Length Register                       */
 
         struct
         {
@@ -12208,7 +12193,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t PAUSE_QUANT_P0;       /*!< (@ 0x00000818) Port 0 MAC Pause Quanta (n = 0 to 3)                       */
+        __IM uint32_t PAUSE_QUANT_P0;       /*!< (@ 0x00000818) Port 0 MAC Pause Quanta                                    */
 
         struct
         {
@@ -12219,8 +12204,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t MAC_LINK_QTRIG_P0;  /*!< (@ 0x0000081C) Port 0 Trigger Event Configuration Register (n
-                                            *                  = 0 to 2)                                                  */
+        __IOM uint32_t MAC_LINK_QTRIG_P0;  /*!< (@ 0x0000081C) Port 0 Trigger Event Configuration Register                */
 
         struct
         {
@@ -12250,8 +12234,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PTPCLOCKIDENTITY1_P0;  /*!< (@ 0x00000830) Port 0 PTP Clock Identity 1 Register (n = 0 to
-                                               *                  2)                                                         */
+        __IOM uint32_t PTPCLOCKIDENTITY1_P0;  /*!< (@ 0x00000830) Port 0 PTP Clock Identity 1 Register                       */
 
         struct
         {
@@ -12264,8 +12247,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PTPCLOCKIDENTITY2_P0;  /*!< (@ 0x00000834) Port 0 PTP Clock Identity 2 Register (n = 0 to
-                                               *                  2)                                                         */
+        __IOM uint32_t PTPCLOCKIDENTITY2_P0;  /*!< (@ 0x00000834) Port 0 PTP Clock Identity 2 Register                       */
 
         struct
         {
@@ -12278,7 +12260,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PTPAUTORESPONSE_P0; /*!< (@ 0x00000838) Port 0 PTP Auto Response Register (n = 0 to 2)             */
+        __IOM uint32_t PTPAUTORESPONSE_P0; /*!< (@ 0x00000838) Port 0 PTP Auto Response Register                          */
 
         struct
         {
@@ -12315,8 +12297,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t TX_IPG_LENGTH_P0;      /*!< (@ 0x00000844) Port 0 Transmit IPG Length Register (n = 0 to
-                                               *                  3)                                                         */
+        __IOM uint32_t TX_IPG_LENGTH_P0;      /*!< (@ 0x00000844) Port 0 Transmit IPG Length Register                        */
 
         struct
         {
@@ -12330,8 +12311,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t EEE_CTL_STAT_P0;        /*!< (@ 0x00000848) Port 0 MAC EEE Functions Control and Status (n
-                                                *                  = 0 to 2)                                                  */
+        __IOM uint32_t EEE_CTL_STAT_P0;        /*!< (@ 0x00000848) Port 0 MAC EEE Functions Control and Status                */
 
         struct
         {
@@ -12358,7 +12338,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t EEE_IDLE_TIME_P0;       /*!< (@ 0x0000084C) Port 0 EEE Idle Time Register (n = 0 to 2)                 */
+        __IOM uint32_t EEE_IDLE_TIME_P0;       /*!< (@ 0x0000084C) Port 0 EEE Idle Time Register                              */
 
         struct
         {
@@ -12371,7 +12351,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t EEE_TWSYS_TIME_P0;      /*!< (@ 0x00000850) Port 0 EEE Wake Up Time Register (n = 0 to 2)              */
+        __IOM uint32_t EEE_TWSYS_TIME_P0;      /*!< (@ 0x00000850) Port 0 EEE Wake Up Time Register                           */
 
         struct
         {
@@ -12452,8 +12432,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AFRAMESTRANSMITTEDOK_P0; /*!< (@ 0x00000868) Port 0 MAC Transmitted Valid Frame Count Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AFRAMESTRANSMITTEDOK_P0; /*!< (@ 0x00000868) Port 0 MAC Transmitted Valid Frame Count Register          */
 
         struct
         {
@@ -12475,8 +12454,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AFRAMECHECKSEQUENCEERRORS_P0; /*!< (@ 0x00000870) Port 0 MAC FCS Error Frame Count Register (n
-                                                     *                  = 0 to 3)                                                  */
+        __IM uint32_t AFRAMECHECKSEQUENCEERRORS_P0; /*!< (@ 0x00000870) Port 0 MAC FCS Error Frame Count Register                  */
 
         struct
         {
@@ -12487,8 +12465,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AALIGNMENTERRORS_P0;   /*!< (@ 0x00000874) Port 0 MAC Alignment Error Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t AALIGNMENTERRORS_P0;   /*!< (@ 0x00000874) Port 0 MAC Alignment Error Frame Count Register            */
 
         struct
         {
@@ -12499,8 +12476,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AOCTETSTRANSMITTEDOK_P0; /*!< (@ 0x00000878) Port 0 MAC Transmitted Valid Frame Octets Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AOCTETSTRANSMITTEDOK_P0; /*!< (@ 0x00000878) Port 0 MAC Transmitted Valid Frame Octets Register         */
 
         struct
         {
@@ -12511,8 +12487,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AOCTETSRECEIVEDOK_P0;   /*!< (@ 0x0000087C) Port 0 MAC Received Valid Frame Octets Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t AOCTETSRECEIVEDOK_P0;   /*!< (@ 0x0000087C) Port 0 MAC Received Valid Frame Octets Register            */
 
         struct
         {
@@ -12523,8 +12498,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ATXPAUSEMACCTRLFRAMES_P0; /*!< (@ 0x00000880) Port 0 MAC Transmitted Pause Frame Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t ATXPAUSEMACCTRLFRAMES_P0; /*!< (@ 0x00000880) Port 0 MAC Transmitted Pause Frame Count Register          */
 
         struct
         {
@@ -12535,8 +12509,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ARXPAUSEMACCTRLFRAMES_P0; /*!< (@ 0x00000884) Port 0 MAC Received Pause Frame Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t ARXPAUSEMACCTRLFRAMES_P0; /*!< (@ 0x00000884) Port 0 MAC Received Pause Frame Count Register             */
 
         struct
         {
@@ -12547,8 +12520,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINERRORS_P0;       /*!< (@ 0x00000888) Port 0 MAC Input Error Count Register (n = 0
-                                            *                  to 3)                                                      */
+        __IM uint32_t IFINERRORS_P0;       /*!< (@ 0x00000888) Port 0 MAC Input Error Count Register                      */
 
         struct
         {
@@ -12560,8 +12532,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTERRORS_P0;       /*!< (@ 0x0000088C) Port 0 MAC Output Error Count Register (n = 0
-                                             *                  to 3)                                                      */
+        __IM uint32_t IFOUTERRORS_P0;       /*!< (@ 0x0000088C) Port 0 MAC Output Error Count Register                     */
 
         struct
         {
@@ -12572,8 +12543,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINUCASTPKTS_P0;      /*!< (@ 0x00000890) Port 0 MAC Received Unicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINUCASTPKTS_P0;      /*!< (@ 0x00000890) Port 0 MAC Received Unicast Frame Count Register           */
 
         struct
         {
@@ -12584,8 +12554,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINMULTICASTPKTS_P0;  /*!< (@ 0x00000894) Port 0 MAC Received Multicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINMULTICASTPKTS_P0;  /*!< (@ 0x00000894) Port 0 MAC Received Multicast Frame Count Register         */
 
         struct
         {
@@ -12596,8 +12565,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINBROADCASTPKTS_P0;  /*!< (@ 0x00000898) Port 0 MAC Received Broadcast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINBROADCASTPKTS_P0;  /*!< (@ 0x00000898) Port 0 MAC Received Broadcast Frame Count Register         */
 
         struct
         {
@@ -12608,8 +12576,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTDISCARDS_P0;     /*!< (@ 0x0000089C) Port 0 MAC Discarded Outbound Frame Count Register
-                                             *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFOUTDISCARDS_P0;     /*!< (@ 0x0000089C) Port 0 MAC Discarded Outbound Frame Count Register         */
 
         struct
         {
@@ -12619,8 +12586,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTUCASTPKTS_P0;     /*!< (@ 0x000008A0) Port 0 MAC Transmitted Unicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFOUTUCASTPKTS_P0;     /*!< (@ 0x000008A0) Port 0 MAC Transmitted Unicast Frame Count Register        */
 
         struct
         {
@@ -12632,7 +12598,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t IFOUTMULTICASTPKTS_P0; /*!< (@ 0x000008A4) Port 0 MAC Transmitted Multicast Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -12644,7 +12610,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t IFOUTBROADCASTPKTS_P0; /*!< (@ 0x000008A8) Port 0 MAC Transmitted Broadcast Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -12655,8 +12621,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSDROPEVENTS_P0; /*!< (@ 0x000008AC) Port 0 MAC Dropped Frame Count Register (n =
-                                                *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSDROPEVENTS_P0; /*!< (@ 0x000008AC) Port 0 MAC Dropped Frame Count Register                    */
 
         struct
         {
@@ -12667,8 +12632,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSOCTETS_P0; /*!< (@ 0x000008B0) Port 0 MAC All Frame Octets Register (n = 0 to
-                                            *                  3)                                                         */
+        __IM uint32_t ETHERSTATSOCTETS_P0; /*!< (@ 0x000008B0) Port 0 MAC All Frame Octets Register                       */
 
         struct
         {
@@ -12678,8 +12642,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS_P0; /*!< (@ 0x000008B4) Port 0 MAC All Frame Count Register (n = 0 to
-                                          *                  3)                                                         */
+        __IM uint32_t ETHERSTATSPKTS_P0; /*!< (@ 0x000008B4) Port 0 MAC All Frame Count Register                        */
 
         struct
         {
@@ -12689,8 +12652,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSUNDERSIZEPKTS_P0; /*!< (@ 0x000008B8) Port 0 MAC Too Short Frame Count Register (n
-                                                   *                  = 0 to 3)                                                  */
+        __IM uint32_t ETHERSTATSUNDERSIZEPKTS_P0; /*!< (@ 0x000008B8) Port 0 MAC Too Short Frame Count Register                  */
 
         struct
         {
@@ -12701,8 +12663,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSOVERSIZEPKTS_P0; /*!< (@ 0x000008BC) Port 0 MAC Too Long Frame Count Register (n =
-                                                  *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSOVERSIZEPKTS_P0; /*!< (@ 0x000008BC) Port 0 MAC Too Long Frame Count Register                   */
 
         struct
         {
@@ -12713,8 +12674,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS64OCTETS_P0; /*!< (@ 0x000008C0) Port 0 MAC 64 Octets Frame Count Register (n
-                                                  *                  = 0 to 3)                                                  */
+        __IM uint32_t ETHERSTATSPKTS64OCTETS_P0; /*!< (@ 0x000008C0) Port 0 MAC 64 Octets Frame Count Register                  */
 
         struct
         {
@@ -12725,8 +12685,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS65TO127OCTETS_P0; /*!< (@ 0x000008C4) Port 0 MAC 65 to 127 Octets Frame Count Register
-                                                       *                (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS65TO127OCTETS_P0; /*!< (@ 0x000008C4) Port 0 MAC 65 to 127 Octets Frame Count Register         */
 
         struct
         {
@@ -12737,8 +12696,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS128TO255OCTETS_P0; /*!< (@ 0x000008C8) Port 0 MAC 128 to 255 Octets Frame Count Register
-                                                        *               (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS128TO255OCTETS_P0; /*!< (@ 0x000008C8) Port 0 MAC 128 to 255 Octets Frame Count Register       */
 
         struct
         {
@@ -12749,8 +12707,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS256TO511OCTETS_P0; /*!< (@ 0x000008CC) Port 0 MAC 256 to 511 Octets Frame Count Register
-                                                        *               (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS256TO511OCTETS_P0; /*!< (@ 0x000008CC) Port 0 MAC 256 to 511 Octets Frame Count Register       */
 
         struct
         {
@@ -12761,8 +12718,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS512TO1023OCTETS_P0; /*!< (@ 0x000008D0) Port 0 MAC 512 to 1023 Octets Frame Count Register
-                                                         *              (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS512TO1023OCTETS_P0; /*!< (@ 0x000008D0) Port 0 MAC 512 to 1023 Octets Frame Count Register     */
 
         struct
         {
@@ -12773,8 +12729,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS1024TO1518OCTETS_P0; /*!< (@ 0x000008D4) Port 0 MAC 1024 to 1518 Octets Frame Count Register
-                                                          *             (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS1024TO1518OCTETS_P0; /*!< (@ 0x000008D4) Port 0 MAC 1024 to 1518 Octets Frame Count Register   */
 
         struct
         {
@@ -12785,8 +12740,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS1519TOXOCTETS_P0; /*!< (@ 0x000008D8) Port 0 MAC Over 1519 Octets Frame Count Register
-                                                       *                (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS1519TOXOCTETS_P0; /*!< (@ 0x000008D8) Port 0 MAC Over 1519 Octets Frame Count Register         */
 
         struct
         {
@@ -12797,8 +12751,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSJABBERS_P0; /*!< (@ 0x000008DC) Port 0 MAC Jabbers Frame Count Register (n =
-                                             *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSJABBERS_P0; /*!< (@ 0x000008DC) Port 0 MAC Jabbers Frame Count Register                    */
 
         struct
         {
@@ -12809,8 +12762,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSFRAGMENTS_P0; /*!< (@ 0x000008E0) Port 0 MAC Fragment Frame Count Register (n =
-                                               *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSFRAGMENTS_P0; /*!< (@ 0x000008E0) Port 0 MAC Fragment Frame Count Register                   */
 
         struct
         {
@@ -12822,8 +12774,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t VLANRECEIVEDOK_P0;     /*!< (@ 0x000008E8) Port 0 MAC Received VLAN Tagged Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t VLANRECEIVEDOK_P0;     /*!< (@ 0x000008E8) Port 0 MAC Received VLAN Tagged Frame Count Register       */
 
         struct
         {
@@ -12836,7 +12787,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t VLANTRANSMITTEDOK_P0;  /*!< (@ 0x000008F4) Port 0 MAC Transmitted VLAN Tagged Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -12847,8 +12798,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t FRAMESRETRANSMITTED_P0; /*!< (@ 0x000008F8) Port 0 MAC Retransmitted Frame Count Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t FRAMESRETRANSMITTED_P0; /*!< (@ 0x000008F8) Port 0 MAC Retransmitted Frame Count Register              */
 
         struct
         {
@@ -12860,8 +12810,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t STATS_HIWORD_P0;       /*!< (@ 0x00000900) Port 0 MAC Statistics Counter High Word Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t STATS_HIWORD_P0;       /*!< (@ 0x00000900) Port 0 MAC Statistics Counter High Word Register           */
 
         struct
         {
@@ -12872,8 +12821,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CTRL_P0;   /*!< (@ 0x00000904) Port 0 MAC Statistics Control Register (n = 0
-                                         *                  to 3)                                                      */
+        __IOM uint32_t STATS_CTRL_P0;   /*!< (@ 0x00000904) Port 0 MAC Statistics Control Register                     */
 
         struct
         {
@@ -12885,8 +12833,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CLEAR_VALUELO_P0;       /*!< (@ 0x00000908) Port 0 MAC Statistics Clear Value Lower Register
-                                                      *                  (n = 0 to 3)                                               */
+        __IOM uint32_t STATS_CLEAR_VALUELO_P0;       /*!< (@ 0x00000908) Port 0 MAC Statistics Clear Value Lower Register           */
 
         struct
         {
@@ -12899,8 +12846,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CLEAR_VALUEHI_P0;       /*!< (@ 0x0000090C) Port 0 MAC Statistics Clear Value Higher Register
-                                                      *                  (n = 0 to 3)                                               */
+        __IOM uint32_t STATS_CLEAR_VALUEHI_P0;       /*!< (@ 0x0000090C) Port 0 MAC Statistics Clear Value Higher Register          */
 
         struct
         {
@@ -12913,8 +12859,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ADEFERRED_P0;        /*!< (@ 0x00000910) Port 0 MAC Deferred Count Register (n = 0 to
-                                            *                  3)                                                         */
+        __IM uint32_t ADEFERRED_P0;        /*!< (@ 0x00000910) Port 0 MAC Deferred Count Register                         */
 
         struct
         {
@@ -12925,8 +12870,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AMULTIPLECOLLISIONS_P0;   /*!< (@ 0x00000914) Port 0 MAC Multiple Collision Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t AMULTIPLECOLLISIONS_P0;   /*!< (@ 0x00000914) Port 0 MAC Multiple Collision Count Register               */
 
         struct
         {
@@ -12937,8 +12881,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ASINGLECOLLISIONS_P0;      /*!< (@ 0x00000918) Port 0 MAC Single Collision Count Register (n
-                                                  *                  = 0 to 3)                                                  */
+        __IM uint32_t ASINGLECOLLISIONS_P0;      /*!< (@ 0x00000918) Port 0 MAC Single Collision Count Register                 */
 
         struct
         {
@@ -12949,8 +12892,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ALATECOLLISIONS_P0;     /*!< (@ 0x0000091C) Port 0 MAC Late Collision Count Register (n =
-                                               *                  0 to 3)                                                    */
+        __IM uint32_t ALATECOLLISIONS_P0;     /*!< (@ 0x0000091C) Port 0 MAC Late Collision Count Register                   */
 
         struct
         {
@@ -12961,8 +12903,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AEXCESSIVECOLLISIONS_P0; /*!< (@ 0x00000920) Port 0 MAC Excessive Collision Count Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AEXCESSIVECOLLISIONS_P0; /*!< (@ 0x00000920) Port 0 MAC Excessive Collision Count Register              */
 
         struct
         {
@@ -12973,8 +12914,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ACARRIERSENSEERRORS_P0; /*!< (@ 0x00000924) Port 0 MAC Carrier Sense Error Count Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t ACARRIERSENSEERRORS_P0; /*!< (@ 0x00000924) Port 0 MAC Carrier Sense Error Count Register              */
 
         struct
         {
@@ -12987,7 +12927,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t REV_P1;          /*!< (@ 0x00000C00) Port 1 MAC Core Revision (n = 0 to 3)                      */
+        __IM uint32_t REV_P1;          /*!< (@ 0x00000C00) Port 1 MAC Core Revision                                   */
 
         struct
         {
@@ -12998,8 +12938,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t COMMAND_CONFIG_P1;       /*!< (@ 0x00000C08) Port 1 Command Configuration Register (n = 0
-                                                 *                  to 3)                                                      */
+        __IOM uint32_t COMMAND_CONFIG_P1;       /*!< (@ 0x00000C08) Port 1 Command Configuration Register                      */
 
         struct
         {
@@ -13039,7 +12978,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t MAC_ADDR_0_P1;     /*!< (@ 0x00000C0C) Port 1 MAC Address Register 0 (n = 0 to 2)                 */
+        __IOM uint32_t MAC_ADDR_0_P1;     /*!< (@ 0x00000C0C) Port 1 MAC Address Register 0                              */
 
         struct
         {
@@ -13051,7 +12990,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t MAC_ADDR_1_P1;     /*!< (@ 0x00000C10) Port 1 MAC Address Register 1 (n = 0 to 2)                 */
+        __IOM uint32_t MAC_ADDR_1_P1;     /*!< (@ 0x00000C10) Port 1 MAC Address Register 1                              */
 
         struct
         {
@@ -13063,8 +13002,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t FRM_LENGTH_P1;       /*!< (@ 0x00000C14) Port 1 Maximum Frame Length Register (n = 0 to
-                                             *                  3)                                                         */
+        __IOM uint32_t FRM_LENGTH_P1;       /*!< (@ 0x00000C14) Port 1 Maximum Frame Length Register                       */
 
         struct
         {
@@ -13075,7 +13013,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t PAUSE_QUANT_P1;       /*!< (@ 0x00000C18) Port 1 MAC Pause Quanta (n = 0 to 3)                       */
+        __IM uint32_t PAUSE_QUANT_P1;       /*!< (@ 0x00000C18) Port 1 MAC Pause Quanta                                    */
 
         struct
         {
@@ -13086,8 +13024,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t MAC_LINK_QTRIG_P1;  /*!< (@ 0x00000C1C) Port 1 Trigger Event Configuration Register (n
-                                            *                  = 0 to 2)                                                  */
+        __IOM uint32_t MAC_LINK_QTRIG_P1;  /*!< (@ 0x00000C1C) Port 1 Trigger Event Configuration Register                */
 
         struct
         {
@@ -13117,8 +13054,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PTPCLOCKIDENTITY1_P1;  /*!< (@ 0x00000C30) Port 1 PTP Clock Identity 1 Register (n = 0 to
-                                               *                  2)                                                         */
+        __IOM uint32_t PTPCLOCKIDENTITY1_P1;  /*!< (@ 0x00000C30) Port 1 PTP Clock Identity 1 Register                       */
 
         struct
         {
@@ -13131,8 +13067,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PTPCLOCKIDENTITY2_P1;  /*!< (@ 0x00000C34) Port 1 PTP Clock Identity 2 Register (n = 0 to
-                                               *                  2)                                                         */
+        __IOM uint32_t PTPCLOCKIDENTITY2_P1;  /*!< (@ 0x00000C34) Port 1 PTP Clock Identity 2 Register                       */
 
         struct
         {
@@ -13145,7 +13080,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PTPAUTORESPONSE_P1; /*!< (@ 0x00000C38) Port 1 PTP Auto Response Register (n = 0 to 2)             */
+        __IOM uint32_t PTPAUTORESPONSE_P1; /*!< (@ 0x00000C38) Port 1 PTP Auto Response Register                          */
 
         struct
         {
@@ -13182,8 +13117,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t TX_IPG_LENGTH_P1;      /*!< (@ 0x00000C44) Port 1 Transmit IPG Length Register (n = 0 to
-                                               *                  3)                                                         */
+        __IOM uint32_t TX_IPG_LENGTH_P1;      /*!< (@ 0x00000C44) Port 1 Transmit IPG Length Register                        */
 
         struct
         {
@@ -13197,8 +13131,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t EEE_CTL_STAT_P1;        /*!< (@ 0x00000C48) Port 1 MAC EEE Functions Control and Status (n
-                                                *                  = 0 to 2)                                                  */
+        __IOM uint32_t EEE_CTL_STAT_P1;        /*!< (@ 0x00000C48) Port 1 MAC EEE Functions Control and Status                */
 
         struct
         {
@@ -13225,7 +13158,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t EEE_IDLE_TIME_P1;       /*!< (@ 0x00000C4C) Port 1 EEE Idle Time Register (n = 0 to 2)                 */
+        __IOM uint32_t EEE_IDLE_TIME_P1;       /*!< (@ 0x00000C4C) Port 1 EEE Idle Time Register                              */
 
         struct
         {
@@ -13238,7 +13171,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t EEE_TWSYS_TIME_P1;      /*!< (@ 0x00000C50) Port 1 EEE Wake Up Time Register (n = 0 to 2)              */
+        __IOM uint32_t EEE_TWSYS_TIME_P1;      /*!< (@ 0x00000C50) Port 1 EEE Wake Up Time Register                           */
 
         struct
         {
@@ -13319,8 +13252,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AFRAMESTRANSMITTEDOK_P1; /*!< (@ 0x00000C68) Port 1 MAC Transmitted Valid Frame Count Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AFRAMESTRANSMITTEDOK_P1; /*!< (@ 0x00000C68) Port 1 MAC Transmitted Valid Frame Count Register          */
 
         struct
         {
@@ -13342,8 +13274,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AFRAMECHECKSEQUENCEERRORS_P1; /*!< (@ 0x00000C70) Port 1 MAC FCS Error Frame Count Register (n
-                                                     *                  = 0 to 3)                                                  */
+        __IM uint32_t AFRAMECHECKSEQUENCEERRORS_P1; /*!< (@ 0x00000C70) Port 1 MAC FCS Error Frame Count Register                  */
 
         struct
         {
@@ -13354,8 +13285,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AALIGNMENTERRORS_P1;   /*!< (@ 0x00000C74) Port 1 MAC Alignment Error Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t AALIGNMENTERRORS_P1;   /*!< (@ 0x00000C74) Port 1 MAC Alignment Error Frame Count Register            */
 
         struct
         {
@@ -13366,8 +13296,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AOCTETSTRANSMITTEDOK_P1; /*!< (@ 0x00000C78) Port 1 MAC Transmitted Valid Frame Octets Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AOCTETSTRANSMITTEDOK_P1; /*!< (@ 0x00000C78) Port 1 MAC Transmitted Valid Frame Octets Register         */
 
         struct
         {
@@ -13378,8 +13307,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AOCTETSRECEIVEDOK_P1;   /*!< (@ 0x00000C7C) Port 1 MAC Received Valid Frame Octets Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t AOCTETSRECEIVEDOK_P1;   /*!< (@ 0x00000C7C) Port 1 MAC Received Valid Frame Octets Register            */
 
         struct
         {
@@ -13390,8 +13318,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ATXPAUSEMACCTRLFRAMES_P1; /*!< (@ 0x00000C80) Port 1 MAC Transmitted Pause Frame Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t ATXPAUSEMACCTRLFRAMES_P1; /*!< (@ 0x00000C80) Port 1 MAC Transmitted Pause Frame Count Register          */
 
         struct
         {
@@ -13402,8 +13329,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ARXPAUSEMACCTRLFRAMES_P1; /*!< (@ 0x00000C84) Port 1 MAC Received Pause Frame Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t ARXPAUSEMACCTRLFRAMES_P1; /*!< (@ 0x00000C84) Port 1 MAC Received Pause Frame Count Register             */
 
         struct
         {
@@ -13414,8 +13340,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINERRORS_P1;       /*!< (@ 0x00000C88) Port 1 MAC Input Error Count Register (n = 0
-                                            *                  to 3)                                                      */
+        __IM uint32_t IFINERRORS_P1;       /*!< (@ 0x00000C88) Port 1 MAC Input Error Count Register                      */
 
         struct
         {
@@ -13427,8 +13352,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTERRORS_P1;       /*!< (@ 0x00000C8C) Port 1 MAC Output Error Count Register (n = 0
-                                             *                  to 3)                                                      */
+        __IM uint32_t IFOUTERRORS_P1;       /*!< (@ 0x00000C8C) Port 1 MAC Output Error Count Register                     */
 
         struct
         {
@@ -13439,8 +13363,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINUCASTPKTS_P1;      /*!< (@ 0x00000C90) Port 1 MAC Received Unicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINUCASTPKTS_P1;      /*!< (@ 0x00000C90) Port 1 MAC Received Unicast Frame Count Register           */
 
         struct
         {
@@ -13451,8 +13374,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINMULTICASTPKTS_P1;  /*!< (@ 0x00000C94) Port 1 MAC Received Multicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINMULTICASTPKTS_P1;  /*!< (@ 0x00000C94) Port 1 MAC Received Multicast Frame Count Register         */
 
         struct
         {
@@ -13463,8 +13385,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINBROADCASTPKTS_P1;  /*!< (@ 0x00000C98) Port 1 MAC Received Broadcast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINBROADCASTPKTS_P1;  /*!< (@ 0x00000C98) Port 1 MAC Received Broadcast Frame Count Register         */
 
         struct
         {
@@ -13475,8 +13396,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTDISCARDS_P1;     /*!< (@ 0x00000C9C) Port 1 MAC Discarded Outbound Frame Count Register
-                                             *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFOUTDISCARDS_P1;     /*!< (@ 0x00000C9C) Port 1 MAC Discarded Outbound Frame Count Register         */
 
         struct
         {
@@ -13486,8 +13406,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTUCASTPKTS_P1;     /*!< (@ 0x00000CA0) Port 1 MAC Transmitted Unicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFOUTUCASTPKTS_P1;     /*!< (@ 0x00000CA0) Port 1 MAC Transmitted Unicast Frame Count Register        */
 
         struct
         {
@@ -13499,7 +13418,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t IFOUTMULTICASTPKTS_P1; /*!< (@ 0x00000CA4) Port 1 MAC Transmitted Multicast Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -13511,7 +13430,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t IFOUTBROADCASTPKTS_P1; /*!< (@ 0x00000CA8) Port 1 MAC Transmitted Broadcast Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -13522,8 +13441,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSDROPEVENTS_P1; /*!< (@ 0x00000CAC) Port 1 MAC Dropped Frame Count Register (n =
-                                                *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSDROPEVENTS_P1; /*!< (@ 0x00000CAC) Port 1 MAC Dropped Frame Count Register                    */
 
         struct
         {
@@ -13534,8 +13452,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSOCTETS_P1; /*!< (@ 0x00000CB0) Port 1 MAC All Frame Octets Register (n = 0 to
-                                            *                  3)                                                         */
+        __IM uint32_t ETHERSTATSOCTETS_P1; /*!< (@ 0x00000CB0) Port 1 MAC All Frame Octets Register                       */
 
         struct
         {
@@ -13545,8 +13462,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS_P1; /*!< (@ 0x00000CB4) Port 1 MAC All Frame Count Register (n = 0 to
-                                          *                  3)                                                         */
+        __IM uint32_t ETHERSTATSPKTS_P1; /*!< (@ 0x00000CB4) Port 1 MAC All Frame Count Register                        */
 
         struct
         {
@@ -13556,8 +13472,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSUNDERSIZEPKTS_P1; /*!< (@ 0x00000CB8) Port 1 MAC Too Short Frame Count Register (n
-                                                   *                  = 0 to 3)                                                  */
+        __IM uint32_t ETHERSTATSUNDERSIZEPKTS_P1; /*!< (@ 0x00000CB8) Port 1 MAC Too Short Frame Count Register                  */
 
         struct
         {
@@ -13568,8 +13483,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSOVERSIZEPKTS_P1; /*!< (@ 0x00000CBC) Port 1 MAC Too Long Frame Count Register (n =
-                                                  *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSOVERSIZEPKTS_P1; /*!< (@ 0x00000CBC) Port 1 MAC Too Long Frame Count Register                   */
 
         struct
         {
@@ -13580,8 +13494,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS64OCTETS_P1; /*!< (@ 0x00000CC0) Port 1 MAC 64 Octets Frame Count Register (n
-                                                  *                  = 0 to 3)                                                  */
+        __IM uint32_t ETHERSTATSPKTS64OCTETS_P1; /*!< (@ 0x00000CC0) Port 1 MAC 64 Octets Frame Count Register                  */
 
         struct
         {
@@ -13592,8 +13505,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS65TO127OCTETS_P1; /*!< (@ 0x00000CC4) Port 1 MAC 65 to 127 Octets Frame Count Register
-                                                       *                (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS65TO127OCTETS_P1; /*!< (@ 0x00000CC4) Port 1 MAC 65 to 127 Octets Frame Count Register         */
 
         struct
         {
@@ -13604,8 +13516,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS128TO255OCTETS_P1; /*!< (@ 0x00000CC8) Port 1 MAC 128 to 255 Octets Frame Count Register
-                                                        *               (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS128TO255OCTETS_P1; /*!< (@ 0x00000CC8) Port 1 MAC 128 to 255 Octets Frame Count Register       */
 
         struct
         {
@@ -13616,8 +13527,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS256TO511OCTETS_P1; /*!< (@ 0x00000CCC) Port 1 MAC 256 to 511 Octets Frame Count Register
-                                                        *               (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS256TO511OCTETS_P1; /*!< (@ 0x00000CCC) Port 1 MAC 256 to 511 Octets Frame Count Register       */
 
         struct
         {
@@ -13628,8 +13538,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS512TO1023OCTETS_P1; /*!< (@ 0x00000CD0) Port 1 MAC 512 to 1023 Octets Frame Count Register
-                                                         *              (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS512TO1023OCTETS_P1; /*!< (@ 0x00000CD0) Port 1 MAC 512 to 1023 Octets Frame Count Register     */
 
         struct
         {
@@ -13640,8 +13549,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS1024TO1518OCTETS_P1; /*!< (@ 0x00000CD4) Port 1 MAC 1024 to 1518 Octets Frame Count Register
-                                                          *             (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS1024TO1518OCTETS_P1; /*!< (@ 0x00000CD4) Port 1 MAC 1024 to 1518 Octets Frame Count Register   */
 
         struct
         {
@@ -13652,8 +13560,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS1519TOXOCTETS_P1; /*!< (@ 0x00000CD8) Port 1 MAC Over 1519 Octets Frame Count Register
-                                                       *                (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS1519TOXOCTETS_P1; /*!< (@ 0x00000CD8) Port 1 MAC Over 1519 Octets Frame Count Register         */
 
         struct
         {
@@ -13664,8 +13571,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSJABBERS_P1; /*!< (@ 0x00000CDC) Port 1 MAC Jabbers Frame Count Register (n =
-                                             *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSJABBERS_P1; /*!< (@ 0x00000CDC) Port 1 MAC Jabbers Frame Count Register                    */
 
         struct
         {
@@ -13676,8 +13582,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSFRAGMENTS_P1; /*!< (@ 0x00000CE0) Port 1 MAC Fragment Frame Count Register (n =
-                                               *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSFRAGMENTS_P1; /*!< (@ 0x00000CE0) Port 1 MAC Fragment Frame Count Register                   */
 
         struct
         {
@@ -13689,8 +13594,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t VLANRECEIVEDOK_P1;     /*!< (@ 0x00000CE8) Port 1 MAC Received VLAN Tagged Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t VLANRECEIVEDOK_P1;     /*!< (@ 0x00000CE8) Port 1 MAC Received VLAN Tagged Frame Count Register       */
 
         struct
         {
@@ -13703,7 +13607,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t VLANTRANSMITTEDOK_P1;  /*!< (@ 0x00000CF4) Port 1 MAC Transmitted VLAN Tagged Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -13714,8 +13618,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t FRAMESRETRANSMITTED_P1; /*!< (@ 0x00000CF8) Port 1 MAC Retransmitted Frame Count Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t FRAMESRETRANSMITTED_P1; /*!< (@ 0x00000CF8) Port 1 MAC Retransmitted Frame Count Register              */
 
         struct
         {
@@ -13727,8 +13630,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t STATS_HIWORD_P1;       /*!< (@ 0x00000D00) Port 1 MAC Statistics Counter High Word Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t STATS_HIWORD_P1;       /*!< (@ 0x00000D00) Port 1 MAC Statistics Counter High Word Register           */
 
         struct
         {
@@ -13739,8 +13641,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CTRL_P1;   /*!< (@ 0x00000D04) Port 1 MAC Statistics Control Register (n = 0
-                                         *                  to 3)                                                      */
+        __IOM uint32_t STATS_CTRL_P1;   /*!< (@ 0x00000D04) Port 1 MAC Statistics Control Register                     */
 
         struct
         {
@@ -13752,8 +13653,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CLEAR_VALUELO_P1;       /*!< (@ 0x00000D08) Port 1 MAC Statistics Clear Value Lower Register
-                                                      *                  (n = 0 to 3)                                               */
+        __IOM uint32_t STATS_CLEAR_VALUELO_P1;       /*!< (@ 0x00000D08) Port 1 MAC Statistics Clear Value Lower Register           */
 
         struct
         {
@@ -13766,8 +13666,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CLEAR_VALUEHI_P1;       /*!< (@ 0x00000D0C) Port 1 MAC Statistics Clear Value Higher Register
-                                                      *                  (n = 0 to 3)                                               */
+        __IOM uint32_t STATS_CLEAR_VALUEHI_P1;       /*!< (@ 0x00000D0C) Port 1 MAC Statistics Clear Value Higher Register          */
 
         struct
         {
@@ -13780,8 +13679,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ADEFERRED_P1;        /*!< (@ 0x00000D10) Port 1 MAC Deferred Count Register (n = 0 to
-                                            *                  3)                                                         */
+        __IM uint32_t ADEFERRED_P1;        /*!< (@ 0x00000D10) Port 1 MAC Deferred Count Register                         */
 
         struct
         {
@@ -13792,8 +13690,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AMULTIPLECOLLISIONS_P1;   /*!< (@ 0x00000D14) Port 1 MAC Multiple Collision Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t AMULTIPLECOLLISIONS_P1;   /*!< (@ 0x00000D14) Port 1 MAC Multiple Collision Count Register               */
 
         struct
         {
@@ -13804,8 +13701,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ASINGLECOLLISIONS_P1;      /*!< (@ 0x00000D18) Port 1 MAC Single Collision Count Register (n
-                                                  *                  = 0 to 3)                                                  */
+        __IM uint32_t ASINGLECOLLISIONS_P1;      /*!< (@ 0x00000D18) Port 1 MAC Single Collision Count Register                 */
 
         struct
         {
@@ -13816,8 +13712,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ALATECOLLISIONS_P1;     /*!< (@ 0x00000D1C) Port 1 MAC Late Collision Count Register (n =
-                                               *                  0 to 3)                                                    */
+        __IM uint32_t ALATECOLLISIONS_P1;     /*!< (@ 0x00000D1C) Port 1 MAC Late Collision Count Register                   */
 
         struct
         {
@@ -13828,8 +13723,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AEXCESSIVECOLLISIONS_P1; /*!< (@ 0x00000D20) Port 1 MAC Excessive Collision Count Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AEXCESSIVECOLLISIONS_P1; /*!< (@ 0x00000D20) Port 1 MAC Excessive Collision Count Register              */
 
         struct
         {
@@ -13840,8 +13734,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ACARRIERSENSEERRORS_P1; /*!< (@ 0x00000D24) Port 1 MAC Carrier Sense Error Count Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t ACARRIERSENSEERRORS_P1; /*!< (@ 0x00000D24) Port 1 MAC Carrier Sense Error Count Register              */
 
         struct
         {
@@ -13854,7 +13747,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t REV_P2;          /*!< (@ 0x00001000) Port 2 MAC Core Revision (n = 0 to 3)                      */
+        __IM uint32_t REV_P2;          /*!< (@ 0x00001000) Port 2 MAC Core Revision                                   */
 
         struct
         {
@@ -13865,8 +13758,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t COMMAND_CONFIG_P2;       /*!< (@ 0x00001008) Port 2 Command Configuration Register (n = 0
-                                                 *                  to 3)                                                      */
+        __IOM uint32_t COMMAND_CONFIG_P2;       /*!< (@ 0x00001008) Port 2 Command Configuration Register                      */
 
         struct
         {
@@ -13906,7 +13798,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t MAC_ADDR_0_P2;     /*!< (@ 0x0000100C) Port 2 MAC Address Register 0 (n = 0 to 2)                 */
+        __IOM uint32_t MAC_ADDR_0_P2;     /*!< (@ 0x0000100C) Port 2 MAC Address Register 0                              */
 
         struct
         {
@@ -13918,7 +13810,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t MAC_ADDR_1_P2;     /*!< (@ 0x00001010) Port 2 MAC Address Register 1 (n = 0 to 2)                 */
+        __IOM uint32_t MAC_ADDR_1_P2;     /*!< (@ 0x00001010) Port 2 MAC Address Register 1                              */
 
         struct
         {
@@ -13930,8 +13822,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t FRM_LENGTH_P2;       /*!< (@ 0x00001014) Port 2 Maximum Frame Length Register (n = 0 to
-                                             *                  3)                                                         */
+        __IOM uint32_t FRM_LENGTH_P2;       /*!< (@ 0x00001014) Port 2 Maximum Frame Length Register                       */
 
         struct
         {
@@ -13942,7 +13833,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t PAUSE_QUANT_P2;       /*!< (@ 0x00001018) Port 2 MAC Pause Quanta (n = 0 to 3)                       */
+        __IM uint32_t PAUSE_QUANT_P2;       /*!< (@ 0x00001018) Port 2 MAC Pause Quanta                                    */
 
         struct
         {
@@ -13953,8 +13844,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t MAC_LINK_QTRIG_P2;  /*!< (@ 0x0000101C) Port 2 Trigger Event Configuration Register (n
-                                            *                  = 0 to 2)                                                  */
+        __IOM uint32_t MAC_LINK_QTRIG_P2;  /*!< (@ 0x0000101C) Port 2 Trigger Event Configuration Register                */
 
         struct
         {
@@ -13984,8 +13874,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PTPCLOCKIDENTITY1_P2;  /*!< (@ 0x00001030) Port 2 PTP Clock Identity 1 Register (n = 0 to
-                                               *                  2)                                                         */
+        __IOM uint32_t PTPCLOCKIDENTITY1_P2;  /*!< (@ 0x00001030) Port 2 PTP Clock Identity 1 Register                       */
 
         struct
         {
@@ -13998,8 +13887,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PTPCLOCKIDENTITY2_P2;  /*!< (@ 0x00001034) Port 2 PTP Clock Identity 2 Register (n = 0 to
-                                               *                  2)                                                         */
+        __IOM uint32_t PTPCLOCKIDENTITY2_P2;  /*!< (@ 0x00001034) Port 2 PTP Clock Identity 2 Register                       */
 
         struct
         {
@@ -14012,7 +13900,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t PTPAUTORESPONSE_P2; /*!< (@ 0x00001038) Port 2 PTP Auto Response Register (n = 0 to 2)             */
+        __IOM uint32_t PTPAUTORESPONSE_P2; /*!< (@ 0x00001038) Port 2 PTP Auto Response Register                          */
 
         struct
         {
@@ -14049,8 +13937,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t TX_IPG_LENGTH_P2;      /*!< (@ 0x00001044) Port 2 Transmit IPG Length Register (n = 0 to
-                                               *                  3)                                                         */
+        __IOM uint32_t TX_IPG_LENGTH_P2;      /*!< (@ 0x00001044) Port 2 Transmit IPG Length Register                        */
 
         struct
         {
@@ -14064,8 +13951,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t EEE_CTL_STAT_P2;        /*!< (@ 0x00001048) Port 2 MAC EEE Functions Control and Status (n
-                                                *                  = 0 to 2)                                                  */
+        __IOM uint32_t EEE_CTL_STAT_P2;        /*!< (@ 0x00001048) Port 2 MAC EEE Functions Control and Status                */
 
         struct
         {
@@ -14092,7 +13978,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t EEE_IDLE_TIME_P2;       /*!< (@ 0x0000104C) Port 2 EEE Idle Time Register (n = 0 to 2)                 */
+        __IOM uint32_t EEE_IDLE_TIME_P2;       /*!< (@ 0x0000104C) Port 2 EEE Idle Time Register                              */
 
         struct
         {
@@ -14105,7 +13991,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t EEE_TWSYS_TIME_P2;      /*!< (@ 0x00001050) Port 2 EEE Wake Up Time Register (n = 0 to 2)              */
+        __IOM uint32_t EEE_TWSYS_TIME_P2;      /*!< (@ 0x00001050) Port 2 EEE Wake Up Time Register                           */
 
         struct
         {
@@ -14186,8 +14072,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AFRAMESTRANSMITTEDOK_P2; /*!< (@ 0x00001068) Port 2 MAC Transmitted Valid Frame Count Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AFRAMESTRANSMITTEDOK_P2; /*!< (@ 0x00001068) Port 2 MAC Transmitted Valid Frame Count Register          */
 
         struct
         {
@@ -14209,8 +14094,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AFRAMECHECKSEQUENCEERRORS_P2; /*!< (@ 0x00001070) Port 2 MAC FCS Error Frame Count Register (n
-                                                     *                  = 0 to 3)                                                  */
+        __IM uint32_t AFRAMECHECKSEQUENCEERRORS_P2; /*!< (@ 0x00001070) Port 2 MAC FCS Error Frame Count Register                  */
 
         struct
         {
@@ -14221,8 +14105,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AALIGNMENTERRORS_P2;   /*!< (@ 0x00001074) Port 2 MAC Alignment Error Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t AALIGNMENTERRORS_P2;   /*!< (@ 0x00001074) Port 2 MAC Alignment Error Frame Count Register            */
 
         struct
         {
@@ -14233,8 +14116,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AOCTETSTRANSMITTEDOK_P2; /*!< (@ 0x00001078) Port 2 MAC Transmitted Valid Frame Octets Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AOCTETSTRANSMITTEDOK_P2; /*!< (@ 0x00001078) Port 2 MAC Transmitted Valid Frame Octets Register         */
 
         struct
         {
@@ -14245,8 +14127,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AOCTETSRECEIVEDOK_P2;   /*!< (@ 0x0000107C) Port 2 MAC Received Valid Frame Octets Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t AOCTETSRECEIVEDOK_P2;   /*!< (@ 0x0000107C) Port 2 MAC Received Valid Frame Octets Register            */
 
         struct
         {
@@ -14257,8 +14138,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ATXPAUSEMACCTRLFRAMES_P2; /*!< (@ 0x00001080) Port 2 MAC Transmitted Pause Frame Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t ATXPAUSEMACCTRLFRAMES_P2; /*!< (@ 0x00001080) Port 2 MAC Transmitted Pause Frame Count Register          */
 
         struct
         {
@@ -14269,8 +14149,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ARXPAUSEMACCTRLFRAMES_P2; /*!< (@ 0x00001084) Port 2 MAC Received Pause Frame Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t ARXPAUSEMACCTRLFRAMES_P2; /*!< (@ 0x00001084) Port 2 MAC Received Pause Frame Count Register             */
 
         struct
         {
@@ -14281,8 +14160,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINERRORS_P2;       /*!< (@ 0x00001088) Port 2 MAC Input Error Count Register (n = 0
-                                            *                  to 3)                                                      */
+        __IM uint32_t IFINERRORS_P2;       /*!< (@ 0x00001088) Port 2 MAC Input Error Count Register                      */
 
         struct
         {
@@ -14294,8 +14172,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTERRORS_P2;       /*!< (@ 0x0000108C) Port 2 MAC Output Error Count Register (n = 0
-                                             *                  to 3)                                                      */
+        __IM uint32_t IFOUTERRORS_P2;       /*!< (@ 0x0000108C) Port 2 MAC Output Error Count Register                     */
 
         struct
         {
@@ -14306,8 +14183,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINUCASTPKTS_P2;      /*!< (@ 0x00001090) Port 2 MAC Received Unicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINUCASTPKTS_P2;      /*!< (@ 0x00001090) Port 2 MAC Received Unicast Frame Count Register           */
 
         struct
         {
@@ -14318,8 +14194,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINMULTICASTPKTS_P2;  /*!< (@ 0x00001094) Port 2 MAC Received Multicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINMULTICASTPKTS_P2;  /*!< (@ 0x00001094) Port 2 MAC Received Multicast Frame Count Register         */
 
         struct
         {
@@ -14330,8 +14205,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINBROADCASTPKTS_P2;  /*!< (@ 0x00001098) Port 2 MAC Received Broadcast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINBROADCASTPKTS_P2;  /*!< (@ 0x00001098) Port 2 MAC Received Broadcast Frame Count Register         */
 
         struct
         {
@@ -14342,8 +14216,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTDISCARDS_P2;     /*!< (@ 0x0000109C) Port 2 MAC Discarded Outbound Frame Count Register
-                                             *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFOUTDISCARDS_P2;     /*!< (@ 0x0000109C) Port 2 MAC Discarded Outbound Frame Count Register         */
 
         struct
         {
@@ -14353,8 +14226,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTUCASTPKTS_P2;     /*!< (@ 0x000010A0) Port 2 MAC Transmitted Unicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFOUTUCASTPKTS_P2;     /*!< (@ 0x000010A0) Port 2 MAC Transmitted Unicast Frame Count Register        */
 
         struct
         {
@@ -14366,7 +14238,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t IFOUTMULTICASTPKTS_P2; /*!< (@ 0x000010A4) Port 2 MAC Transmitted Multicast Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -14378,7 +14250,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t IFOUTBROADCASTPKTS_P2; /*!< (@ 0x000010A8) Port 2 MAC Transmitted Broadcast Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -14389,8 +14261,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSDROPEVENTS_P2; /*!< (@ 0x000010AC) Port 2 MAC Dropped Frame Count Register (n =
-                                                *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSDROPEVENTS_P2; /*!< (@ 0x000010AC) Port 2 MAC Dropped Frame Count Register                    */
 
         struct
         {
@@ -14401,8 +14272,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSOCTETS_P2; /*!< (@ 0x000010B0) Port 2 MAC All Frame Octets Register (n = 0 to
-                                            *                  3)                                                         */
+        __IM uint32_t ETHERSTATSOCTETS_P2; /*!< (@ 0x000010B0) Port 2 MAC All Frame Octets Register                       */
 
         struct
         {
@@ -14412,8 +14282,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS_P2; /*!< (@ 0x000010B4) Port 2 MAC All Frame Count Register (n = 0 to
-                                          *                  3)                                                         */
+        __IM uint32_t ETHERSTATSPKTS_P2; /*!< (@ 0x000010B4) Port 2 MAC All Frame Count Register                        */
 
         struct
         {
@@ -14423,8 +14292,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSUNDERSIZEPKTS_P2; /*!< (@ 0x000010B8) Port 2 MAC Too Short Frame Count Register (n
-                                                   *                  = 0 to 3)                                                  */
+        __IM uint32_t ETHERSTATSUNDERSIZEPKTS_P2; /*!< (@ 0x000010B8) Port 2 MAC Too Short Frame Count Register                  */
 
         struct
         {
@@ -14435,8 +14303,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSOVERSIZEPKTS_P2; /*!< (@ 0x000010BC) Port 2 MAC Too Long Frame Count Register (n =
-                                                  *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSOVERSIZEPKTS_P2; /*!< (@ 0x000010BC) Port 2 MAC Too Long Frame Count Register                   */
 
         struct
         {
@@ -14447,8 +14314,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS64OCTETS_P2; /*!< (@ 0x000010C0) Port 2 MAC 64 Octets Frame Count Register (n
-                                                  *                  = 0 to 3)                                                  */
+        __IM uint32_t ETHERSTATSPKTS64OCTETS_P2; /*!< (@ 0x000010C0) Port 2 MAC 64 Octets Frame Count Register                  */
 
         struct
         {
@@ -14459,8 +14325,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS65TO127OCTETS_P2; /*!< (@ 0x000010C4) Port 2 MAC 65 to 127 Octets Frame Count Register
-                                                       *                (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS65TO127OCTETS_P2; /*!< (@ 0x000010C4) Port 2 MAC 65 to 127 Octets Frame Count Register         */
 
         struct
         {
@@ -14471,8 +14336,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS128TO255OCTETS_P2; /*!< (@ 0x000010C8) Port 2 MAC 128 to 255 Octets Frame Count Register
-                                                        *               (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS128TO255OCTETS_P2; /*!< (@ 0x000010C8) Port 2 MAC 128 to 255 Octets Frame Count Register       */
 
         struct
         {
@@ -14483,8 +14347,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS256TO511OCTETS_P2; /*!< (@ 0x000010CC) Port 2 MAC 256 to 511 Octets Frame Count Register
-                                                        *               (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS256TO511OCTETS_P2; /*!< (@ 0x000010CC) Port 2 MAC 256 to 511 Octets Frame Count Register       */
 
         struct
         {
@@ -14495,8 +14358,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS512TO1023OCTETS_P2; /*!< (@ 0x000010D0) Port 2 MAC 512 to 1023 Octets Frame Count Register
-                                                         *              (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS512TO1023OCTETS_P2; /*!< (@ 0x000010D0) Port 2 MAC 512 to 1023 Octets Frame Count Register     */
 
         struct
         {
@@ -14507,8 +14369,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS1024TO1518OCTETS_P2; /*!< (@ 0x000010D4) Port 2 MAC 1024 to 1518 Octets Frame Count Register
-                                                          *             (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS1024TO1518OCTETS_P2; /*!< (@ 0x000010D4) Port 2 MAC 1024 to 1518 Octets Frame Count Register   */
 
         struct
         {
@@ -14519,8 +14380,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS1519TOXOCTETS_P2; /*!< (@ 0x000010D8) Port 2 MAC Over 1519 Octets Frame Count Register
-                                                       *                (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS1519TOXOCTETS_P2; /*!< (@ 0x000010D8) Port 2 MAC Over 1519 Octets Frame Count Register         */
 
         struct
         {
@@ -14531,8 +14391,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSJABBERS_P2; /*!< (@ 0x000010DC) Port 2 MAC Jabbers Frame Count Register (n =
-                                             *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSJABBERS_P2; /*!< (@ 0x000010DC) Port 2 MAC Jabbers Frame Count Register                    */
 
         struct
         {
@@ -14543,8 +14402,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSFRAGMENTS_P2; /*!< (@ 0x000010E0) Port 2 MAC Fragment Frame Count Register (n =
-                                               *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSFRAGMENTS_P2; /*!< (@ 0x000010E0) Port 2 MAC Fragment Frame Count Register                   */
 
         struct
         {
@@ -14556,8 +14414,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t VLANRECEIVEDOK_P2;     /*!< (@ 0x000010E8) Port 2 MAC Received VLAN Tagged Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t VLANRECEIVEDOK_P2;     /*!< (@ 0x000010E8) Port 2 MAC Received VLAN Tagged Frame Count Register       */
 
         struct
         {
@@ -14570,7 +14427,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t VLANTRANSMITTEDOK_P2;  /*!< (@ 0x000010F4) Port 2 MAC Transmitted VLAN Tagged Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -14581,8 +14438,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t FRAMESRETRANSMITTED_P2; /*!< (@ 0x000010F8) Port 2 MAC Retransmitted Frame Count Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t FRAMESRETRANSMITTED_P2; /*!< (@ 0x000010F8) Port 2 MAC Retransmitted Frame Count Register              */
 
         struct
         {
@@ -14594,8 +14450,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t STATS_HIWORD_P2;       /*!< (@ 0x00001100) Port 2 MAC Statistics Counter High Word Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t STATS_HIWORD_P2;       /*!< (@ 0x00001100) Port 2 MAC Statistics Counter High Word Register           */
 
         struct
         {
@@ -14606,8 +14461,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CTRL_P2;   /*!< (@ 0x00001104) Port 2 MAC Statistics Control Register (n = 0
-                                         *                  to 3)                                                      */
+        __IOM uint32_t STATS_CTRL_P2;   /*!< (@ 0x00001104) Port 2 MAC Statistics Control Register                     */
 
         struct
         {
@@ -14619,8 +14473,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CLEAR_VALUELO_P2;       /*!< (@ 0x00001108) Port 2 MAC Statistics Clear Value Lower Register
-                                                      *                  (n = 0 to 3)                                               */
+        __IOM uint32_t STATS_CLEAR_VALUELO_P2;       /*!< (@ 0x00001108) Port 2 MAC Statistics Clear Value Lower Register           */
 
         struct
         {
@@ -14633,8 +14486,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CLEAR_VALUEHI_P2;       /*!< (@ 0x0000110C) Port 2 MAC Statistics Clear Value Higher Register
-                                                      *                  (n = 0 to 3)                                               */
+        __IOM uint32_t STATS_CLEAR_VALUEHI_P2;       /*!< (@ 0x0000110C) Port 2 MAC Statistics Clear Value Higher Register          */
 
         struct
         {
@@ -14647,8 +14499,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ADEFERRED_P2;        /*!< (@ 0x00001110) Port 2 MAC Deferred Count Register (n = 0 to
-                                            *                  3)                                                         */
+        __IM uint32_t ADEFERRED_P2;        /*!< (@ 0x00001110) Port 2 MAC Deferred Count Register                         */
 
         struct
         {
@@ -14659,8 +14510,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AMULTIPLECOLLISIONS_P2;   /*!< (@ 0x00001114) Port 2 MAC Multiple Collision Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t AMULTIPLECOLLISIONS_P2;   /*!< (@ 0x00001114) Port 2 MAC Multiple Collision Count Register               */
 
         struct
         {
@@ -14671,8 +14521,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ASINGLECOLLISIONS_P2;      /*!< (@ 0x00001118) Port 2 MAC Single Collision Count Register (n
-                                                  *                  = 0 to 3)                                                  */
+        __IM uint32_t ASINGLECOLLISIONS_P2;      /*!< (@ 0x00001118) Port 2 MAC Single Collision Count Register                 */
 
         struct
         {
@@ -14683,8 +14532,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ALATECOLLISIONS_P2;     /*!< (@ 0x0000111C) Port 2 MAC Late Collision Count Register (n =
-                                               *                  0 to 3)                                                    */
+        __IM uint32_t ALATECOLLISIONS_P2;     /*!< (@ 0x0000111C) Port 2 MAC Late Collision Count Register                   */
 
         struct
         {
@@ -14695,8 +14543,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AEXCESSIVECOLLISIONS_P2; /*!< (@ 0x00001120) Port 2 MAC Excessive Collision Count Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AEXCESSIVECOLLISIONS_P2; /*!< (@ 0x00001120) Port 2 MAC Excessive Collision Count Register              */
 
         struct
         {
@@ -14707,8 +14554,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ACARRIERSENSEERRORS_P2; /*!< (@ 0x00001124) Port 2 MAC Carrier Sense Error Count Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t ACARRIERSENSEERRORS_P2; /*!< (@ 0x00001124) Port 2 MAC Carrier Sense Error Count Register              */
 
         struct
         {
@@ -14721,7 +14567,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t REV_P3;          /*!< (@ 0x00001400) Port 3 MAC Core Revision (n = 0 to 3)                      */
+        __IM uint32_t REV_P3;          /*!< (@ 0x00001400) Port 3 MAC Core Revision                                   */
 
         struct
         {
@@ -14732,8 +14578,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t COMMAND_CONFIG_P3;       /*!< (@ 0x00001408) Port 3 Command Configuration Register (n = 0
-                                                 *                  to 3)                                                      */
+        __IOM uint32_t COMMAND_CONFIG_P3;       /*!< (@ 0x00001408) Port 3 Command Configuration Register                      */
 
         struct
         {
@@ -14774,8 +14619,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t FRM_LENGTH_P3;       /*!< (@ 0x00001414) Port 3 Maximum Frame Length Register (n = 0 to
-                                             *                  3)                                                         */
+        __IOM uint32_t FRM_LENGTH_P3;       /*!< (@ 0x00001414) Port 3 Maximum Frame Length Register                       */
 
         struct
         {
@@ -14786,7 +14630,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t PAUSE_QUANT_P3;       /*!< (@ 0x00001418) Port 3 MAC Pause Quanta (n = 0 to 3)                       */
+        __IM uint32_t PAUSE_QUANT_P3;       /*!< (@ 0x00001418) Port 3 MAC Pause Quanta                                    */
 
         struct
         {
@@ -14820,8 +14664,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t TX_IPG_LENGTH_P3;      /*!< (@ 0x00001444) Port 3 Transmit IPG Length Register (n = 0 to
-                                               *                  3)                                                         */
+        __IOM uint32_t TX_IPG_LENGTH_P3;      /*!< (@ 0x00001444) Port 3 Transmit IPG Length Register                        */
 
         struct
         {
@@ -14848,8 +14691,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AFRAMESTRANSMITTEDOK_P3; /*!< (@ 0x00001468) Port 3 MAC Transmitted Valid Frame Count Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AFRAMESTRANSMITTEDOK_P3; /*!< (@ 0x00001468) Port 3 MAC Transmitted Valid Frame Count Register          */
 
         struct
         {
@@ -14871,8 +14713,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AFRAMECHECKSEQUENCEERRORS_P3; /*!< (@ 0x00001470) Port 3 MAC FCS Error Frame Count Register (n
-                                                     *                  = 0 to 3)                                                  */
+        __IM uint32_t AFRAMECHECKSEQUENCEERRORS_P3; /*!< (@ 0x00001470) Port 3 MAC FCS Error Frame Count Register                  */
 
         struct
         {
@@ -14883,8 +14724,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AALIGNMENTERRORS_P3;   /*!< (@ 0x00001474) Port 3 MAC Alignment Error Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t AALIGNMENTERRORS_P3;   /*!< (@ 0x00001474) Port 3 MAC Alignment Error Frame Count Register            */
 
         struct
         {
@@ -14895,8 +14735,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AOCTETSTRANSMITTEDOK_P3; /*!< (@ 0x00001478) Port 3 MAC Transmitted Valid Frame Octets Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AOCTETSTRANSMITTEDOK_P3; /*!< (@ 0x00001478) Port 3 MAC Transmitted Valid Frame Octets Register         */
 
         struct
         {
@@ -14907,8 +14746,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AOCTETSRECEIVEDOK_P3;   /*!< (@ 0x0000147C) Port 3 MAC Received Valid Frame Octets Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t AOCTETSRECEIVEDOK_P3;   /*!< (@ 0x0000147C) Port 3 MAC Received Valid Frame Octets Register            */
 
         struct
         {
@@ -14919,8 +14757,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ATXPAUSEMACCTRLFRAMES_P3; /*!< (@ 0x00001480) Port 3 MAC Transmitted Pause Frame Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t ATXPAUSEMACCTRLFRAMES_P3; /*!< (@ 0x00001480) Port 3 MAC Transmitted Pause Frame Count Register          */
 
         struct
         {
@@ -14931,8 +14768,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ARXPAUSEMACCTRLFRAMES_P3; /*!< (@ 0x00001484) Port 3 MAC Received Pause Frame Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t ARXPAUSEMACCTRLFRAMES_P3; /*!< (@ 0x00001484) Port 3 MAC Received Pause Frame Count Register             */
 
         struct
         {
@@ -14943,8 +14779,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINERRORS_P3;       /*!< (@ 0x00001488) Port 3 MAC Input Error Count Register (n = 0
-                                            *                  to 3)                                                      */
+        __IM uint32_t IFINERRORS_P3;       /*!< (@ 0x00001488) Port 3 MAC Input Error Count Register                      */
 
         struct
         {
@@ -14956,8 +14791,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTERRORS_P3;       /*!< (@ 0x0000148C) Port 3 MAC Output Error Count Register (n = 0
-                                             *                  to 3)                                                      */
+        __IM uint32_t IFOUTERRORS_P3;       /*!< (@ 0x0000148C) Port 3 MAC Output Error Count Register                     */
 
         struct
         {
@@ -14968,8 +14802,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINUCASTPKTS_P3;      /*!< (@ 0x00001490) Port 3 MAC Received Unicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINUCASTPKTS_P3;      /*!< (@ 0x00001490) Port 3 MAC Received Unicast Frame Count Register           */
 
         struct
         {
@@ -14980,8 +14813,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINMULTICASTPKTS_P3;  /*!< (@ 0x00001494) Port 3 MAC Received Multicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINMULTICASTPKTS_P3;  /*!< (@ 0x00001494) Port 3 MAC Received Multicast Frame Count Register         */
 
         struct
         {
@@ -14992,8 +14824,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFINBROADCASTPKTS_P3;  /*!< (@ 0x00001498) Port 3 MAC Received Broadcast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFINBROADCASTPKTS_P3;  /*!< (@ 0x00001498) Port 3 MAC Received Broadcast Frame Count Register         */
 
         struct
         {
@@ -15004,8 +14835,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTDISCARDS_P3;     /*!< (@ 0x0000149C) Port 3 MAC Discarded Outbound Frame Count Register
-                                             *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFOUTDISCARDS_P3;     /*!< (@ 0x0000149C) Port 3 MAC Discarded Outbound Frame Count Register         */
 
         struct
         {
@@ -15015,8 +14845,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IFOUTUCASTPKTS_P3;     /*!< (@ 0x000014A0) Port 3 MAC Transmitted Unicast Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t IFOUTUCASTPKTS_P3;     /*!< (@ 0x000014A0) Port 3 MAC Transmitted Unicast Frame Count Register        */
 
         struct
         {
@@ -15028,7 +14857,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t IFOUTMULTICASTPKTS_P3; /*!< (@ 0x000014A4) Port 3 MAC Transmitted Multicast Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -15040,7 +14869,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t IFOUTBROADCASTPKTS_P3; /*!< (@ 0x000014A8) Port 3 MAC Transmitted Broadcast Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -15051,8 +14880,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSDROPEVENTS_P3; /*!< (@ 0x000014AC) Port 3 MAC Dropped Frame Count Register (n =
-                                                *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSDROPEVENTS_P3; /*!< (@ 0x000014AC) Port 3 MAC Dropped Frame Count Register                    */
 
         struct
         {
@@ -15063,8 +14891,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSOCTETS_P3; /*!< (@ 0x000014B0) Port 3 MAC All Frame Octets Register (n = 0 to
-                                            *                  3)                                                         */
+        __IM uint32_t ETHERSTATSOCTETS_P3; /*!< (@ 0x000014B0) Port 3 MAC All Frame Octets Register                       */
 
         struct
         {
@@ -15074,8 +14901,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS_P3; /*!< (@ 0x000014B4) Port 3 MAC All Frame Count Register (n = 0 to
-                                          *                  3)                                                         */
+        __IM uint32_t ETHERSTATSPKTS_P3; /*!< (@ 0x000014B4) Port 3 MAC All Frame Count Register                        */
 
         struct
         {
@@ -15085,8 +14911,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSUNDERSIZEPKTS_P3; /*!< (@ 0x000014B8) Port 3 MAC Too Short Frame Count Register (n
-                                                   *                  = 0 to 3)                                                  */
+        __IM uint32_t ETHERSTATSUNDERSIZEPKTS_P3; /*!< (@ 0x000014B8) Port 3 MAC Too Short Frame Count Register                  */
 
         struct
         {
@@ -15097,8 +14922,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSOVERSIZEPKTS_P3; /*!< (@ 0x000014BC) Port 3 MAC Too Long Frame Count Register (n =
-                                                  *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSOVERSIZEPKTS_P3; /*!< (@ 0x000014BC) Port 3 MAC Too Long Frame Count Register                   */
 
         struct
         {
@@ -15109,8 +14933,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS64OCTETS_P3; /*!< (@ 0x000014C0) Port 3 MAC 64 Octets Frame Count Register (n
-                                                  *                  = 0 to 3)                                                  */
+        __IM uint32_t ETHERSTATSPKTS64OCTETS_P3; /*!< (@ 0x000014C0) Port 3 MAC 64 Octets Frame Count Register                  */
 
         struct
         {
@@ -15121,8 +14944,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS65TO127OCTETS_P3; /*!< (@ 0x000014C4) Port 3 MAC 65 to 127 Octets Frame Count Register
-                                                       *                (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS65TO127OCTETS_P3; /*!< (@ 0x000014C4) Port 3 MAC 65 to 127 Octets Frame Count Register         */
 
         struct
         {
@@ -15133,8 +14955,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS128TO255OCTETS_P3; /*!< (@ 0x000014C8) Port 3 MAC 128 to 255 Octets Frame Count Register
-                                                        *               (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS128TO255OCTETS_P3; /*!< (@ 0x000014C8) Port 3 MAC 128 to 255 Octets Frame Count Register       */
 
         struct
         {
@@ -15145,8 +14966,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS256TO511OCTETS_P3; /*!< (@ 0x000014CC) Port 3 MAC 256 to 511 Octets Frame Count Register
-                                                        *               (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS256TO511OCTETS_P3; /*!< (@ 0x000014CC) Port 3 MAC 256 to 511 Octets Frame Count Register       */
 
         struct
         {
@@ -15157,8 +14977,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS512TO1023OCTETS_P3; /*!< (@ 0x000014D0) Port 3 MAC 512 to 1023 Octets Frame Count Register
-                                                         *              (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS512TO1023OCTETS_P3; /*!< (@ 0x000014D0) Port 3 MAC 512 to 1023 Octets Frame Count Register     */
 
         struct
         {
@@ -15169,8 +14988,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS1024TO1518OCTETS_P3; /*!< (@ 0x000014D4) Port 3 MAC 1024 to 1518 Octets Frame Count Register
-                                                          *             (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS1024TO1518OCTETS_P3; /*!< (@ 0x000014D4) Port 3 MAC 1024 to 1518 Octets Frame Count Register   */
 
         struct
         {
@@ -15181,8 +14999,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSPKTS1519TOXOCTETS_P3; /*!< (@ 0x000014D8) Port 3 MAC Over 1519 Octets Frame Count Register
-                                                       *                (n = 0 to 3)                                               */
+        __IM uint32_t ETHERSTATSPKTS1519TOXOCTETS_P3; /*!< (@ 0x000014D8) Port 3 MAC Over 1519 Octets Frame Count Register         */
 
         struct
         {
@@ -15193,8 +15010,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSJABBERS_P3; /*!< (@ 0x000014DC) Port 3 MAC Jabbers Frame Count Register (n =
-                                             *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSJABBERS_P3; /*!< (@ 0x000014DC) Port 3 MAC Jabbers Frame Count Register                    */
 
         struct
         {
@@ -15205,8 +15021,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ETHERSTATSFRAGMENTS_P3; /*!< (@ 0x000014E0) Port 3 MAC Fragment Frame Count Register (n =
-                                               *                  0 to 3)                                                    */
+        __IM uint32_t ETHERSTATSFRAGMENTS_P3; /*!< (@ 0x000014E0) Port 3 MAC Fragment Frame Count Register                   */
 
         struct
         {
@@ -15218,8 +15033,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t VLANRECEIVEDOK_P3;     /*!< (@ 0x000014E8) Port 3 MAC Received VLAN Tagged Frame Count Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t VLANRECEIVEDOK_P3;     /*!< (@ 0x000014E8) Port 3 MAC Received VLAN Tagged Frame Count Register       */
 
         struct
         {
@@ -15232,7 +15046,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
     union
     {
         __IM uint32_t VLANTRANSMITTEDOK_P3;  /*!< (@ 0x000014F4) Port 3 MAC Transmitted VLAN Tagged Frame Count
-                                              *                  Register (n = 0 to 3)                                      */
+                                              *                  Register                                                   */
 
         struct
         {
@@ -15243,8 +15057,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t FRAMESRETRANSMITTED_P3; /*!< (@ 0x000014F8) Port 3 MAC Retransmitted Frame Count Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t FRAMESRETRANSMITTED_P3; /*!< (@ 0x000014F8) Port 3 MAC Retransmitted Frame Count Register              */
 
         struct
         {
@@ -15256,8 +15069,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t STATS_HIWORD_P3;       /*!< (@ 0x00001500) Port 3 MAC Statistics Counter High Word Register
-                                              *                  (n = 0 to 3)                                               */
+        __IM uint32_t STATS_HIWORD_P3;       /*!< (@ 0x00001500) Port 3 MAC Statistics Counter High Word Register           */
 
         struct
         {
@@ -15268,8 +15080,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CTRL_P3;   /*!< (@ 0x00001504) Port 3 MAC Statistics Control Register (n = 0
-                                         *                  to 3)                                                      */
+        __IOM uint32_t STATS_CTRL_P3;   /*!< (@ 0x00001504) Port 3 MAC Statistics Control Register                     */
 
         struct
         {
@@ -15281,8 +15092,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CLEAR_VALUELO_P3;       /*!< (@ 0x00001508) Port 3 MAC Statistics Clear Value Lower Register
-                                                      *                  (n = 0 to 3)                                               */
+        __IOM uint32_t STATS_CLEAR_VALUELO_P3;       /*!< (@ 0x00001508) Port 3 MAC Statistics Clear Value Lower Register           */
 
         struct
         {
@@ -15295,8 +15105,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IOM uint32_t STATS_CLEAR_VALUEHI_P3;       /*!< (@ 0x0000150C) Port 3 MAC Statistics Clear Value Higher Register
-                                                      *                  (n = 0 to 3)                                               */
+        __IOM uint32_t STATS_CLEAR_VALUEHI_P3;       /*!< (@ 0x0000150C) Port 3 MAC Statistics Clear Value Higher Register          */
 
         struct
         {
@@ -15309,8 +15118,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ADEFERRED_P3;        /*!< (@ 0x00001510) Port 3 MAC Deferred Count Register (n = 0 to
-                                            *                  3)                                                         */
+        __IM uint32_t ADEFERRED_P3;        /*!< (@ 0x00001510) Port 3 MAC Deferred Count Register                         */
 
         struct
         {
@@ -15321,8 +15129,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AMULTIPLECOLLISIONS_P3;   /*!< (@ 0x00001514) Port 3 MAC Multiple Collision Count Register
-                                                 *                  (n = 0 to 3)                                               */
+        __IM uint32_t AMULTIPLECOLLISIONS_P3;   /*!< (@ 0x00001514) Port 3 MAC Multiple Collision Count Register               */
 
         struct
         {
@@ -15333,8 +15140,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ASINGLECOLLISIONS_P3;      /*!< (@ 0x00001518) Port 3 MAC Single Collision Count Register (n
-                                                  *                  = 0 to 3)                                                  */
+        __IM uint32_t ASINGLECOLLISIONS_P3;      /*!< (@ 0x00001518) Port 3 MAC Single Collision Count Register                 */
 
         struct
         {
@@ -15345,8 +15151,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ALATECOLLISIONS_P3;     /*!< (@ 0x0000151C) Port 3 MAC Late Collision Count Register (n =
-                                               *                  0 to 3)                                                    */
+        __IM uint32_t ALATECOLLISIONS_P3;     /*!< (@ 0x0000151C) Port 3 MAC Late Collision Count Register                   */
 
         struct
         {
@@ -15357,8 +15162,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t AEXCESSIVECOLLISIONS_P3; /*!< (@ 0x00001520) Port 3 MAC Excessive Collision Count Register
-                                                *                  (n = 0 to 3)                                               */
+        __IM uint32_t AEXCESSIVECOLLISIONS_P3; /*!< (@ 0x00001520) Port 3 MAC Excessive Collision Count Register              */
 
         struct
         {
@@ -15369,8 +15173,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t ACARRIERSENSEERRORS_P3; /*!< (@ 0x00001524) Port 3 MAC Carrier Sense Error Count Register
-                                               *                  (n = 0 to 3)                                               */
+        __IM uint32_t ACARRIERSENSEERRORS_P3; /*!< (@ 0x00001524) Port 3 MAC Carrier Sense Error Count Register              */
 
         struct
         {
@@ -16449,7 +16252,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P0_QGDPC0;       /*!< (@ 0x00002208) Qci Gate 0 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGDPC0;       /*!< (@ 0x00002208) Qci Gate 0 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -16461,7 +16264,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P0_QGDPC1;       /*!< (@ 0x00002210) Qci Gate 1 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGDPC1;       /*!< (@ 0x00002210) Qci Gate 1 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -16473,7 +16276,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P0_QGDPC2;       /*!< (@ 0x00002218) Qci Gate 2 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGDPC2;       /*!< (@ 0x00002218) Qci Gate 2 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -16485,7 +16288,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P0_QGDPC3;       /*!< (@ 0x00002220) Qci Gate 3 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGDPC3;       /*!< (@ 0x00002220) Qci Gate 3 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -16497,7 +16300,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P0_QGDPC4;       /*!< (@ 0x00002228) Qci Gate 4 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGDPC4;       /*!< (@ 0x00002228) Qci Gate 4 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -16509,7 +16312,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P0_QGDPC5;       /*!< (@ 0x00002230) Qci Gate 5 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGDPC5;       /*!< (@ 0x00002230) Qci Gate 5 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -16521,7 +16324,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P0_QGDPC6;       /*!< (@ 0x00002238) Qci Gate 6 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGDPC6;       /*!< (@ 0x00002238) Qci Gate 6 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -16533,7 +16336,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P0_QGDPC7;       /*!< (@ 0x00002240) Qci Gate 7 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGDPC7;       /*!< (@ 0x00002240) Qci Gate 7 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -18314,7 +18117,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P1_QGDPC0;       /*!< (@ 0x00002608) Qci Gate 0 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGDPC0;       /*!< (@ 0x00002608) Qci Gate 0 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -18326,7 +18129,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P1_QGDPC1;       /*!< (@ 0x00002610) Qci Gate 1 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGDPC1;       /*!< (@ 0x00002610) Qci Gate 1 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -18338,7 +18141,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P1_QGDPC2;       /*!< (@ 0x00002618) Qci Gate 2 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGDPC2;       /*!< (@ 0x00002618) Qci Gate 2 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -18350,7 +18153,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P1_QGDPC3;       /*!< (@ 0x00002620) Qci Gate 3 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGDPC3;       /*!< (@ 0x00002620) Qci Gate 3 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -18362,7 +18165,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P1_QGDPC4;       /*!< (@ 0x00002628) Qci Gate 4 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGDPC4;       /*!< (@ 0x00002628) Qci Gate 4 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -18374,7 +18177,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P1_QGDPC5;       /*!< (@ 0x00002630) Qci Gate 5 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGDPC5;       /*!< (@ 0x00002630) Qci Gate 5 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -18386,7 +18189,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P1_QGDPC6;       /*!< (@ 0x00002638) Qci Gate 6 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGDPC6;       /*!< (@ 0x00002638) Qci Gate 6 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -18398,7 +18201,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P1_QGDPC7;       /*!< (@ 0x00002640) Qci Gate 7 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGDPC7;       /*!< (@ 0x00002640) Qci Gate 7 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -20106,7 +19909,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P2_QGDPC0;       /*!< (@ 0x00002A08) Qci Gate 0 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGDPC0;       /*!< (@ 0x00002A08) Qci Gate 0 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -20118,7 +19921,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P2_QGDPC1;       /*!< (@ 0x00002A10) Qci Gate 1 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGDPC1;       /*!< (@ 0x00002A10) Qci Gate 1 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -20130,7 +19933,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P2_QGDPC2;       /*!< (@ 0x00002A18) Qci Gate 2 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGDPC2;       /*!< (@ 0x00002A18) Qci Gate 2 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -20142,7 +19945,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P2_QGDPC3;       /*!< (@ 0x00002A20) Qci Gate 3 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGDPC3;       /*!< (@ 0x00002A20) Qci Gate 3 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -20154,7 +19957,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P2_QGDPC4;       /*!< (@ 0x00002A28) Qci Gate 4 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGDPC4;       /*!< (@ 0x00002A28) Qci Gate 4 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -20166,7 +19969,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P2_QGDPC5;       /*!< (@ 0x00002A30) Qci Gate 5 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGDPC5;       /*!< (@ 0x00002A30) Qci Gate 5 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -20178,7 +19981,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P2_QGDPC6;       /*!< (@ 0x00002A38) Qci Gate 6 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGDPC6;       /*!< (@ 0x00002A38) Qci Gate 6 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -20190,7 +19993,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P2_QGDPC7;       /*!< (@ 0x00002A40) Qci Gate 7 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGDPC7;       /*!< (@ 0x00002A40) Qci Gate 7 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -20939,8 +20742,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IDISC_ANY0;         /*!< (@ 0x00003478) Port 0 Discarded Any Frame Count Register (n
-                                           *                  = 0 to 3)                                                  */
+        __IM uint32_t IDISC_ANY0;         /*!< (@ 0x00003478) Port 0 Discarded Any Frame Count Register                  */
 
         struct
         {
@@ -21141,8 +20943,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IDISC_ANY1;         /*!< (@ 0x000034C0) Port 1 Discarded Any Frame Count Register (n
-                                           *                  = 0 to 3)                                                  */
+        __IM uint32_t IDISC_ANY1;         /*!< (@ 0x000034C0) Port 1 Discarded Any Frame Count Register                  */
 
         struct
         {
@@ -21343,8 +21144,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IDISC_ANY2;         /*!< (@ 0x00003508) Port 2 Discarded Any Frame Count Register (n
-                                           *                  = 0 to 3)                                                  */
+        __IM uint32_t IDISC_ANY2;         /*!< (@ 0x00003508) Port 2 Discarded Any Frame Count Register                  */
 
         struct
         {
@@ -21545,8 +21345,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t IDISC_ANY3;         /*!< (@ 0x00003550) Port 3 Discarded Any Frame Count Register (n
-                                           *                  = 0 to 3)                                                  */
+        __IM uint32_t IDISC_ANY3;         /*!< (@ 0x00003550) Port 3 Discarded Any Frame Count Register                  */
 
         struct
         {
@@ -23795,7 +23594,7 @@ typedef struct                         /*!< (@ 0x80130000) R_ESC Structure      
 
     union
     {
-        __IM uint16_t RX_ERR_COUNT[3];   /*!< (@ 0x00000300) RX Error Counter [0..2] Register (n = 0 to 2)              */
+        __IM uint16_t RX_ERR_COUNT[3];   /*!< (@ 0x00000300) RX Error Counter [0..2] Register                           */
 
         struct
         {
@@ -23807,8 +23606,7 @@ typedef struct                         /*!< (@ 0x80130000) R_ESC Structure      
 
     union
     {
-        __IM uint8_t FWD_RX_ERR_COUNT[3]; /*!< (@ 0x00000308) Forwarded RX Error Counter [0..2] Register (n
-                                           *                  = 0 to 2)                                                  */
+        __IM uint8_t FWD_RX_ERR_COUNT[3]; /*!< (@ 0x00000308) Forwarded RX Error Counter [0..2] Register                 */
 
         struct
         {
@@ -23840,7 +23638,7 @@ typedef struct                         /*!< (@ 0x80130000) R_ESC Structure      
 
     union
     {
-        __IM uint8_t LOST_LINK_COUNT[3];  /*!< (@ 0x00000310) Lost Link Counter [0..2] Register (n = 0 to 2)             */
+        __IM uint8_t LOST_LINK_COUNT[3];  /*!< (@ 0x00000310) Lost Link Counter [0..2] Register                          */
 
         struct
         {
@@ -29334,9 +29132,9 @@ typedef struct                             /*!< (@ 0x80292000) R_PCIE_SPL0 Struc
         struct
         {
             __IOM uint32_t INTX_EP_F0 : 1; /*!< [0..0] Legacy Interrupt (Assert_INTx/Deassert_INTx message)
-                                            *   Trigger for Endpoint Funtion #0                                           */
+                                            *   Trigger for Endpoint Function #0                                          */
             __IOM uint32_t INTX_EP_F1 : 1; /*!< [1..1] Legacy Interrupt (Assert_INTx/Deassert_INTx message)
-                                            *   Trigger for Endpoint Funtion #1                                           */
+                                            *   Trigger for Endpoint Function #1                                          */
             uint32_t : 30;
         } PCIE_INTX_b;
     };
@@ -29462,8 +29260,8 @@ typedef struct                             /*!< (@ 0x80292000) R_PCIE_SPL0 Struc
             uint32_t                      : 15;
             __OM uint32_t FLR_RESET0      : 1; /*!< [16..16] Function Level Reset (FLR) for Function #0                       */
             __OM uint32_t FLR_RESET1      : 1; /*!< [17..17] Function Level Reset (FLR) for Function #1                       */
-            __IM uint32_t FLR_REQ0        : 1; /*!< [18..18] Indicates FLR Request for Funtion #0                             */
-            __IM uint32_t FLR_REQ1        : 1; /*!< [19..19] Indicates FLR Request for Funtion #1                             */
+            __IM uint32_t FLR_REQ0        : 1; /*!< [18..18] Indicates FLR Request for Function #0                            */
+            __IM uint32_t FLR_REQ1        : 1; /*!< [19..19] Indicates FLR Request for Function #1                            */
             uint32_t                      : 12;
         } PCIE_MISC_b;
     };
@@ -29508,7 +29306,7 @@ typedef struct                         /*!< (@ 0x80292060) R_PCIE_LNK Structure 
 /* =========================================================================================================================== */
 
 /**
- * @brief xSPI0 Voltage and Size Registers (R_XSPI0_MISC)
+ * @brief xSPI Voltage and Size Registers (R_XSPI0_MISC)
  */
 
 typedef struct                           /*!< (@ 0x80293000) R_XSPI0_MISC Structure                                     */
@@ -29719,7 +29517,7 @@ typedef struct                         /*!< (@ 0x802A0000) R_ICU_NS Structure   
             __IOM uint32_t MD11  : 2;  /*!< [23..22] Select detection mode for IRQ11                                  */
             __IOM uint32_t MD12  : 2;  /*!< [25..24] Select detection mode for IRQ12                                  */
             __IOM uint32_t MD13  : 2;  /*!< [27..26] Select detection mode for IRQ13                                  */
-            __IOM uint32_t MDDRQ : 2;  /*!< [29..28] Select detection mode for DREQ of DMAC                           */
+            __IOM uint32_t MDDRQ : 2;  /*!< [29..28] Select input mode for DREQ of DMAC                               */
             uint32_t             : 2;
         } NS_PORTNF_MD_b;
     };
@@ -31774,14 +31572,14 @@ typedef struct                         /*!< (@ 0x802B0000) R_PORT_SRN Structure 
 
         struct
         {
-            __IOM uint8_t POUT_0 : 1;  /*!< [0..0] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_1 : 1;  /*!< [1..1] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_2 : 1;  /*!< [2..2] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_3 : 1;  /*!< [3..3] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_4 : 1;  /*!< [4..4] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_5 : 1;  /*!< [5..5] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_6 : 1;  /*!< [6..6] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_7 : 1;  /*!< [7..7] Pm_n Output Data Store (n: bit position)                           */
+            __IOM uint8_t POUT_0 : 1;  /*!< [0..0] Port Output Data Store                                             */
+            __IOM uint8_t POUT_1 : 1;  /*!< [1..1] Port Output Data Store                                             */
+            __IOM uint8_t POUT_2 : 1;  /*!< [2..2] Port Output Data Store                                             */
+            __IOM uint8_t POUT_3 : 1;  /*!< [3..3] Port Output Data Store                                             */
+            __IOM uint8_t POUT_4 : 1;  /*!< [4..4] Port Output Data Store                                             */
+            __IOM uint8_t POUT_5 : 1;  /*!< [5..5] Port Output Data Store                                             */
+            __IOM uint8_t POUT_6 : 1;  /*!< [6..6] Port Output Data Store                                             */
+            __IOM uint8_t POUT_7 : 1;  /*!< [7..7] Port Output Data Store                                             */
         } P_b[13];
     };
     __IM uint8_t  RESERVED;
@@ -31940,14 +31738,14 @@ typedef struct                         /*!< (@ 0x802C0000) R_PORT_NSR Structure 
 
         struct
         {
-            __IOM uint8_t POUT_0 : 1;  /*!< [0..0] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_1 : 1;  /*!< [1..1] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_2 : 1;  /*!< [2..2] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_3 : 1;  /*!< [3..3] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_4 : 1;  /*!< [4..4] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_5 : 1;  /*!< [5..5] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_6 : 1;  /*!< [6..6] Pm_n Output Data Store (n: bit position)                           */
-            __IOM uint8_t POUT_7 : 1;  /*!< [7..7] Pm_n Output Data Store (n: bit position)                           */
+            __IOM uint8_t POUT_0 : 1;  /*!< [0..0] Port Output Data Store                                             */
+            __IOM uint8_t POUT_1 : 1;  /*!< [1..1] Port Output Data Store                                             */
+            __IOM uint8_t POUT_2 : 1;  /*!< [2..2] Port Output Data Store                                             */
+            __IOM uint8_t POUT_3 : 1;  /*!< [3..3] Port Output Data Store                                             */
+            __IOM uint8_t POUT_4 : 1;  /*!< [4..4] Port Output Data Store                                             */
+            __IOM uint8_t POUT_5 : 1;  /*!< [5..5] Port Output Data Store                                             */
+            __IOM uint8_t POUT_6 : 1;  /*!< [6..6] Port Output Data Store                                             */
+            __IOM uint8_t POUT_7 : 1;  /*!< [7..7] Port Output Data Store                                             */
         } P_b[36];
     };
     __IM uint32_t RESERVED[119];
@@ -32123,7 +31921,7 @@ typedef struct                         /*!< (@ 0x802C0000) R_PORT_NSR Structure 
 
     union
     {
-        __IOM uint32_t SLELC_PDBF[2];       /*!< (@ 0x00001E04) ELC_PDBFn Security Level Register [0..1]                   */
+        __IOM uint32_t SLELC_PDBF[2];       /*!< (@ 0x00001E04) ELC_PDBF Security Level Register [0..1]                    */
 
         struct
         {
@@ -36011,14 +35809,12 @@ typedef struct                         /*!< (@ 0x81000000) R_GPT10_0 Structure  
             uint32_t             : 23;
         } GTDTCR_b;
     };
-    __IOM uint32_t GTDVU;              /*!< (@ 0x0000008C) General PWM Timer Dead Time Value Register U
-                                        *                  (m = U, D)                                                 */
-    __IOM uint32_t GTDVD;              /*!< (@ 0x00000090) General PWM Timer Dead Time Value Register D
-                                        *                  (m = U, D)                                                 */
+    __IOM uint32_t GTDVU;              /*!< (@ 0x0000008C) General PWM Timer Dead Time Value Register U               */
+    __IOM uint32_t GTDVD;              /*!< (@ 0x00000090) General PWM Timer Dead Time Value Register D               */
     __IOM uint32_t GTDBU;              /*!< (@ 0x00000094) General PWM Timer Dead Time Value Buffer Register
-                                        *                  U (m = U, D)                                               */
+                                        *                  U                                                          */
     __IOM uint32_t GTDBD;              /*!< (@ 0x00000098) General PWM Timer Dead Time Value Buffer Register
-                                        *                  D (m = U, D)                                               */
+                                        *                  D                                                          */
 
     union
     {
@@ -37993,6 +37789,21 @@ typedef struct                             /*!< (@ 0x81294000) R_SHOSTIF_CFG Str
 } R_SHOSTIF_CFG_Type;                      /*!< Size = 4 (0x4)                                                            */
 
 /* =========================================================================================================================== */
+/* ================                                          R_CA55                                           ================ */
+/* =========================================================================================================================== */
+
+/**
+ * @brief Cortex-A55 (R_CA55)
+ */
+
+typedef struct                         /*!< (@ 0x81295000) R_CA55 Structure                                           */
+{
+    __IM uint32_t          RESERVED[8];
+    __IOM R_CA55_RVBA_Type RVBA[4];    /*!< (@ 0x00000020) CA55 Core [0..3] Reset Vector Address Configuration
+                                        *                  Register                                                   */
+} R_CA55_Type;                         /*!< Size = 64 (0x40)                                                          */
+
+/* =========================================================================================================================== */
 /* ================                                          R_TCMAW                                          ================ */
 /* =========================================================================================================================== */
 
@@ -38000,13 +37811,11 @@ typedef struct                             /*!< (@ 0x81294000) R_SHOSTIF_CFG Str
  * @brief TCM access wait state (R_TCMAW)
  */
 
-typedef struct                         /*!< (@ 0x81295000) R_TCMAW Structure                                          */
+typedef struct                          /*!< (@ 0x81295008) R_TCMAW Structure                                          */
 {
-    __IM uint32_t RESERVED[2];
-
     union
     {
-        __IM uint32_t CPU0WAIT;         /*!< (@ 0x00000008) CPU0 ATCM Wait State Register                              */
+        __IM uint32_t CPU0WAIT;         /*!< (@ 0x00000000) CPU0 ATCM Wait State Register                              */
 
         struct
         {
@@ -38017,7 +37826,7 @@ typedef struct                         /*!< (@ 0x81295000) R_TCMAW Structure    
 
     union
     {
-        __IM uint32_t CPU1WAIT;         /*!< (@ 0x0000000C) CPU1 ATCM Wait State Register                              */
+        __IM uint32_t CPU1WAIT;         /*!< (@ 0x00000004) CPU1 ATCM Wait State Register                              */
 
         struct
         {
@@ -38028,7 +37837,7 @@ typedef struct                         /*!< (@ 0x81295000) R_TCMAW Structure    
 
     union
     {
-        __IOM uint32_t CPU1HALT;         /*!< (@ 0x00000010) CPU1 HALT Control Register                                 */
+        __IOM uint32_t CPU1HALT;         /*!< (@ 0x00000008) CPU1 HALT Control Register                                 */
 
         struct
         {
@@ -38036,21 +37845,7 @@ typedef struct                         /*!< (@ 0x81295000) R_TCMAW Structure    
             uint32_t                : 31;
         } CPU1HALT_b;
     };
-} R_TCMAW_Type;                          /*!< Size = 20 (0x14)                                                          */
-
-/* =========================================================================================================================== */
-/* ================                                          R_CA55                                           ================ */
-/* =========================================================================================================================== */
-
-/**
- * @brief Cortex-A55 (R_CA55)
- */
-
-typedef struct                         /*!< (@ 0x81295020) R_CA55 Structure                                           */
-{
-    __IOM R_CA55_RVBA_Type RVBA[4];    /*!< (@ 0x00000000) CA55 Core [0..3] Reset Vector Address Configuration
-                                        *                  Register                                                   */
-} R_CA55_Type;                         /*!< Size = 32 (0x20)                                                          */
+} R_TCMAW_Type;                          /*!< Size = 12 (0xc)                                                           */
 
 /* =========================================================================================================================== */
 /* ================                                         R_WDT_DBG                                         ================ */
@@ -40316,7 +40111,7 @@ typedef struct                         /*!< (@ 0x90010000) R_TFU0 Structure     
     union
     {
         __IOM float FPATDT0;             /*!< (@ 0x00000018) Floating-point Arctangent hypot_k Data Register
-                                          *                  0                                                          */
+                                          *                     0                                                          */
 
         struct
         {
@@ -40327,7 +40122,7 @@ typedef struct                         /*!< (@ 0x90010000) R_TFU0 Structure     
     union
     {
         __IOM float FPATDT1;             /*!< (@ 0x0000001C) Floating-point Arctangent hypot_k Data Register
-                                          *                  1                                                          */
+                                          *                     1                                                          */
 
         struct
         {
@@ -48738,7 +48533,7 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
                 uint32_t                                    : 3;
                 __IM uint32_t MSG_INT                       : 1; /*!< [8..8] Message interrupt signal monitor                                   */
                 __IM uint32_t PCIE_EVT_INT                  : 1; /*!< [9..9] Event interrupt signal monitor                                     */
-                __IM uint32_t AXI_ERR_IN                    : 1; /*!< [10..10] Error interrupt signal monitor                                   */
+                __IM uint32_t AXI_ERR_INT                   : 1; /*!< [10..10] Error interrupt signal monitor                                   */
                 uint32_t                                    : 4;
                 __IM uint32_t INT_LINK_EQUALIZATION_REQUEST : 1; /*!< [15..15] LINK_EQUALIZATION_REQUEST Interrupt signal level monitor */
                 uint32_t                                    : 16;
@@ -48804,7 +48599,7 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
             struct
             {
                 uint32_t                            : 9;
-                __IOM uint32_t DLUDEN               : 1;      /*!< [9..9] DL_UpDown EN                                                       */
+                __IOM uint32_t DLUD                 : 1;      /*!< [9..9] DL_UpDown                                                          */
                 __IOM uint32_t ASPML1               : 1;      /*!< [10..10] ASPM L1                                                          */
                 uint32_t                            : 1;
                 __IOM uint32_t RX_DLLP_PM_ENTER_L23 : 1;      /*!< [12..12] Indicates transition to L2/L3 State in Power Management
@@ -48832,7 +48627,7 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
             struct
             {
                 uint32_t                            : 9;
-                __IOM uint32_t DLUDEN               : 1;      /*!< [9..9] DL_UpDown EN                                                       */
+                __IOM uint32_t DLUD                 : 1;      /*!< [9..9] DL_UpDown                                                          */
                 __IOM uint32_t ASPML1R              : 1;      /*!< [10..10] ASPM L1 Rejected                                                 */
                 uint32_t                            : 1;
                 __IOM uint32_t RX_DLLP_PM_ENTER_L23 : 1;      /*!< [12..12] Indicates transition to L2/L3 State in Power Management
@@ -49092,11 +48887,15 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
     {
         union
         {
-            __IOM uint32_t PCI_EP_PERM; /*!< (@ 0x00000300) Permission Register                                        */
+            __IOM uint32_t PCI_EP_PERM;            /*!< (@ 0x00000300) Permission Register                                        */
 
             struct
             {
-                uint32_t                      : 1;
+                __IOM uint32_t STEALTH_ENABLE : 1; /*!< [0..0] Sets the stealth (invisible) function of the Bridge Register.
+                                                    *   The stealth function is to restrict access from the PCIe
+                                                    *   for security. Write access to this bit from the PCIe is
+                                                    *   invalid. The PCIe cannot access the all Bridge Registers
+                                                    *   when this function is enabled. Returns 0 when read.                       */
                 __IOM uint32_t PHY_REG_CLK_EN : 1; /*!< [1..1] Write enable for Physical Layer Control/Status Registers.          */
                 uint32_t                      : 30;
             } PCI_EP_PERM_b;
@@ -49175,8 +48974,9 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
 
             struct
             {
-                __IOM uint32_t ARCACHE : 4;   /*!< [3..0] Lock type for PCIe-to-AXI transactions. This bit provides
-                                               *   information about the atomic nature of the transfer.                      */
+                __IOM uint32_t ARCACHE : 4;   /*!< [3..0] Cache type for PCIe-to-AXI transactions. These bits specify
+                                               *   bufferable, cacheable, write-through, write-back, or allocation
+                                               *   as the attribute of the transaction.                                      */
                 __IOM uint32_t ARLOCK : 2;    /*!< [5..4] Lock type for PCIe-to-AXI transactions. This bit provides
                                                *   information about the atomic nature of the transfer.                      */
                 uint32_t                 : 6;
@@ -49199,10 +48999,8 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
 
             struct
             {
-                __IOM uint32_t ARCACHE : 4;   /*!< [3..0] Lock type for PCIe-to-AXI transactions. This bit provides
-                                               *   information about the atomic nature of the transfer.                      */
-                __IOM uint32_t ARLOCK : 2;    /*!< [5..4] Lock type for PCIe-to-AXI transactions. This bit provides
-                                               *   information about the atomic nature of the transfer.                      */
+                __IOM uint32_t ARCACHE   : 4; /*!< [3..0] Cache type for PCIe-to-AXI transactions.                           */
+                __IOM uint32_t ARLOCK    : 2; /*!< [5..4] Lock type for PCIe-to-AXI transactions.                            */
                 uint32_t                 : 6;
                 __IOM uint32_t ARPROT    : 3; /*!< [14..12] Sets the protection type for PCIe->AXI transactions.            */
                 uint32_t                 : 1;
@@ -49368,7 +49166,7 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
                                                   *   Request Equalization bit (Symbol6, bit7) = 1 in Recovery.RcvrCfg
                                                   *   state                                                                     */
                 __IM uint32_t RX_EQ_REQTYPE : 2; /*!< [3..2] Quiesce Guarantee and Equalization Request Data Rate
-                                                  *   bit display when receiv ing 8 consecutive TS2OS with Request
+                                                  *   bit display when receiving 8 consecutive TS2OS with Request
                                                   *   Equalization bit (Symbol6, bit7) = 1 in Recovery.RcvrCfg
                                                   *   state                                                                     */
                 uint32_t : 28;
@@ -49387,7 +49185,7 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
                                                   *   Request Equalization bit (Symbol6, bit7) = 1 in Recovery.RcvrCfg
                                                   *   state                                                                     */
                 __IM uint32_t RX_EQ_REQTYPE : 2; /*!< [3..2] Quiesce Guarantee and Equalization Request Data Rate
-                                                  *   bit display when receiv ing 8 consecutive TS2OS with Request
+                                                  *   bit display when receiving 8 consecutive TS2OS with Request
                                                   *   Equalization bit (Symbol6, bit7) = 1 in Recovery.RcvrCfg
                                                   *   state                                                                     */
                 uint32_t : 28;
@@ -49452,7 +49250,7 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
                 uint32_t                                    : 8;
                 __IOM uint32_t MODE_RESET_EIEOS_INTERVALL0S : 1; /*!< [8..8] Gen3 features:                                             */
                 __IOM uint32_t MODE_EQ_PHASE23_ENABLE       : 1; /*!< [9..9] Gen3 features:                                                   */
-                __IOM uint32_t MODE_EQ_AUTONOMOUS           : 1; /*!< [10..10] Gen3 feature: Autonomous Equalization                            */
+                __IOM uint32_t MODE_EQ_AUTONOMOUS           : 1; /*!< [10..10] Gen3 feature: Autonomous Equalization for RC mode                */
                 __IOM uint32_t UI_ENTER_TXMODE_SRIS         : 1; /*!< [11..11] Setting Clock Tolerance Compensation                             */
                 __IOM uint32_t MODE_QUIESCE_GUARANTEE       : 1; /*!< [12..12] Symbol6 bit6 Quiesce Guarantee control bit of TS2OS            */
                 uint32_t                                    : 3;
@@ -49461,7 +49259,7 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
                 __IOM uint32_t UI_ENTER_L1_STATUS           : 1; /*!< [21..21] L1 transition status                                             */
                 __IOM uint32_t UI_ENTER_L1S                 : 1; /*!< [22..22] L1SubState transition permission setting                         */
                 uint32_t                                    : 5;
-                __IOM uint32_t BLB_RELAX_ORDERING_EN        : 1; /*!< [28..28] Control of RO bit of Request to be sent                         */
+                __IOM uint32_t BLB_RELAX_ORDERING_EN        : 1; /*!< [28..28] Control of RO bit of request to be sent                         */
                 uint32_t                                    : 3;
             } PCI_EP_PCCTRL1_b;
         };
@@ -49552,7 +49350,7 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
                 __IOM uint32_t UI_LINK_SPEED_CHANGE        : 2; /*!< [9..8] Link speed setting                                                 */
                 uint32_t                                   : 6;
                 __IOM uint32_t UI_LINK_WIDTH_CHANGE_REQ    : 1; /*!< [16..16] Link Width change request control                            */
-                __IOM uint32_t MODE_PRESET_ENABLE          : 5; /*!< [21..17] Reduced Swing mode setting for Gen3 operation                    */
+                __IOM uint32_t MODE_PRESET_ENABLE          : 5; /*!< [21..17] Reduced Swing mode setting for Gen3 operation (unused)           */
                 __IOM uint32_t MODE_NODEEMPHASIS           : 2; /*!< [23..22] No de-emphasis mode setting for Gen1/Gen3 operation              */
                 __IOM uint32_t UI_LINK_WIDTH_CHANGE_ENABLE : 8; /*!< [31..24] Link Width setting to change                              */
             } PCI_EP_PCCTRL2_b;
@@ -59587,7 +59385,9 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
                 __IOM uint32_t TM   : 3;      /*!< [9..7] Transmit Margin                                                    */
                 __IOM uint32_t EMC  : 1;      /*!< [10..10] Enter Modified Compliance                                        */
                 __IOM uint32_t CSOS : 1;      /*!< [11..11] Compliance SOS                                                   */
-                __IOM uint32_t CPD  : 4;      /*!< [15..12] Compliance Preset De-emphasis                                    */
+                __IOM uint32_t CPD  : 4;      /*!< [15..12] Set Transmitter Preset (Gen3) and De-emphasis Level
+                                               *   (Gen2) for Polling Compliance State processing during Enter
+                                               *   Compliance.                                                               */
                 __IM uint32_t  CDL  : 1;      /*!< [16..16] Current De-emphasis Level                                        */
                 __IM uint32_t  EQC  : 1;      /*!< [17..17] Equalization Complete                                            */
                 __IM uint32_t  EP1S : 1;      /*!< [18..18] Equalization Phase 1 Successful                                  */
@@ -59611,7 +59411,8 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
                 __IOM uint32_t TM   : 3;   /*!< [9..7] Transmit Margin                                                    */
                 __IOM uint32_t EMC  : 1;   /*!< [10..10] Enter Modified Compliance                                        */
                 __IOM uint32_t CSOS : 1;   /*!< [11..11] Compliance SOS                                                   */
-                __IOM uint32_t CPD  : 4;   /*!< [15..12] Compliance Preset De-emphasis                                    */
+                __IOM uint32_t CPD  : 4;   /*!< [15..12] Set Transmitter Preset (Gen3) and De-emphasis Level
+                                            *   (Gen2) for Polling                                                        */
                 __IM uint32_t  CDL  : 1;   /*!< [16..16] Current De-emphasis Level                                        */
                 __IM uint32_t  EQC  : 1;   /*!< [17..17] Equalization Complete                                            */
                 __IM uint32_t  EP1S : 1;   /*!< [18..18] Equalization Phase 1 Successful                                  */
@@ -60457,23 +60258,23 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
     {
         union
         {
-            __IM uint32_t PCI_EP_LEQCTL_F0; /*!< (@ 0x000061BC) Lane Equalization Control Register (Function
-                                             #0)                                                        */
+            __IOM uint32_t PCI_EP_LEQCTL_F0; /*!< (@ 0x000061BC) Lane Equalization Control Register (Function
+                                              #0)                                                        */
 
             struct
             {
-                __IM uint32_t DPTP0  : 4;   /*!< [3..0] Downstream Port 8.0 GTs Transmitter Preset Lane0                   */
-                __IM uint32_t DPRPH0 : 3;   /*!< [6..4] Downstream Port 8.0 GTs Receiver Preset Hint Lane0                 */
-                uint32_t             : 1;
-                __IM uint32_t UPTP0  : 4;   /*!< [11..8] Upstream Port 8.0 GTs Transmitter Preset Lane0                    */
-                __IM uint32_t UPRPH0 : 3;   /*!< [14..12] Upstream Port 8.0 GTs Receiver Preset Hint Lane0                 */
-                uint32_t             : 1;
-                __IM uint32_t DPTP1  : 4;   /*!< [19..16] Downstream Port 8.0 GTs Transmitter Preset Lane1                 */
-                __IM uint32_t DPRPH1 : 3;   /*!< [22..20] Downstream Port 8.0 GTs Receiver Preset Hint Lane1               */
-                uint32_t             : 1;
-                __IM uint32_t UPTP1  : 4;   /*!< [27..24] Upstream Port 8.0 GTs Transmitter Preset Lane1                   */
-                __IM uint32_t UPRPH1 : 3;   /*!< [30..28] Upstream Port 8.0 GTs Receiver Preset Hint Lane1                 */
-                uint32_t             : 1;
+                __IOM uint32_t DPTP0  : 4;   /*!< [3..0] Downstream Port 8.0 GTs Transmitter Preset Lane0                   */
+                __IOM uint32_t DPRPH0 : 3;   /*!< [6..4] Downstream Port 8.0 GTs Receiver Preset Hint Lane0                 */
+                uint32_t              : 1;
+                __IOM uint32_t UPTP0  : 4;   /*!< [11..8] Upstream Port 8.0 GTs Transmitter Preset Lane0                    */
+                __IOM uint32_t UPRPH0 : 3;   /*!< [14..12] Upstream Port 8.0 GTs Receiver Preset Hint Lane0                 */
+                uint32_t              : 1;
+                __IOM uint32_t DPTP1  : 4;   /*!< [19..16] Downstream Port 8.0 GTs Transmitter Preset Lane1                 */
+                __IOM uint32_t DPRPH1 : 3;   /*!< [22..20] Downstream Port 8.0 GTs Receiver Preset Hint Lane1               */
+                uint32_t              : 1;
+                __IOM uint32_t UPTP1  : 4;   /*!< [27..24] Upstream Port 8.0 GTs Transmitter Preset Lane1                   */
+                __IOM uint32_t UPRPH1 : 3;   /*!< [30..28] Upstream Port 8.0 GTs Receiver Preset Hint Lane1                 */
+                uint32_t              : 1;
             } PCI_EP_LEQCTL_F0_b;
         };
 
@@ -60867,7 +60668,9 @@ typedef struct                                     /*!< (@ 0x92100000) R_PCIE0 S
             __IOM uint32_t TM   : 3;      /*!< [9..7] Transmit Margin                                                    */
             __IOM uint32_t EMC  : 1;      /*!< [10..10] Enter Modified Compliance                                        */
             __IOM uint32_t CSOS : 1;      /*!< [11..11] Compliance SOS                                                   */
-            __IOM uint32_t CPD  : 4;      /*!< [15..12] Compliance Preset De-emphasis                                    */
+            __IOM uint32_t CPD  : 4;      /*!< [15..12] Set Transmitter Preset (Gen3) and De-emphasis Level
+                                           *   (Gen2) for Polling Compliance State processing during Enter
+                                           *   Compliance.                                                               */
             __IM uint32_t  CDL  : 1;      /*!< [16..16] Current De-emphasis Level                                        */
             __IM uint32_t  EQC  : 1;      /*!< [17..17] Equalization Complete                                            */
             __IM uint32_t  EP1S : 1;      /*!< [18..18] Equalization Phase 1 Successful                                  */
@@ -61311,7 +61114,7 @@ typedef struct                                                     /*!< (@ 0x921
 /* ================                          Device Specific Peripheral Address Map                           ================ */
 /* =========================================================================================================================== */
 
-/** @addtogroup  RZN_Device_Peripheral_peripheralAddr
+/** @addtogroup Device_Peripheral_peripheralAddr
  * @{
  */
 
@@ -61355,9 +61158,9 @@ typedef struct                                                     /*!< (@ 0x921
  #define R_DMAC2_BASE          0x800C2000UL
  #define R_GMAC0_BASE          0x80100000UL
  #define R_ETHSS_BASE          0x80110000UL
+ #define R_GMACC_BASE          0x80110100UL
  #define R_ESC_INI_BASE        0x80110200UL
  #define R_ETHSW_PTP_BASE      0x80110400UL
- #define R_GMACC_BASE          0x80110400UL
  #define R_ETHSW_BASE          0x80120000UL
  #define R_ESC_BASE            0x80130000UL
  #define R_XSPI0_BASE          0x801C0000UL
@@ -61431,8 +61234,8 @@ typedef struct                                                     /*!< (@ 0x921
  #define R_MPU9_BASE           0x81291D00UL
  #define R_SYSRAM_CTL_BASE     0x81293000UL
  #define R_SHOSTIF_CFG_BASE    0x81294000UL
- #define R_TCMAW_BASE          0x81295000UL
- #define R_CA55_BASE           0x81295020UL
+ #define R_CA55_BASE           0x81295000UL
+ #define R_TCMAW_BASE          0x81295008UL
  #define R_WDT_DBG_BASE        0x81295100UL
  #define R_RWP_S_BASE          0x81296000UL
  #define R_ICU_S_BASE          0x812A0000UL
@@ -61639,7 +61442,7 @@ typedef struct                                                     /*!< (@ 0x921
 /* ================                                  Peripheral declaration                                   ================ */
 /* =========================================================================================================================== */
 
-/** @addtogroup RZN_Device_Peripheral_declaration
+/** @addtogroup Device_Peripheral_declaration
  * @{
  */
 
@@ -61683,9 +61486,9 @@ typedef struct                                                     /*!< (@ 0x921
  #define R_DMAC2          ((R_DMAC0_Type *) R_DMAC2_BASE)
  #define R_GMAC0          ((R_GMAC_Type *) R_GMAC0_BASE)
  #define R_ETHSS          ((R_ETHSS_Type *) R_ETHSS_BASE)
+ #define R_GMACC          ((R_GMACC_Type *) R_GMACC_BASE)
  #define R_ESC_INI        ((R_ESC_INI_Type *) R_ESC_INI_BASE)
  #define R_ETHSW_PTP      ((R_ETHSW_PTP_Type *) R_ETHSW_PTP_BASE)
- #define R_GMACC          ((R_GMACC_Type *) R_GMACC_BASE)
  #define R_ETHSW          ((R_ETHSW_Type *) R_ETHSW_BASE)
  #define R_ESC            ((R_ESC_Type *) R_ESC_BASE)
  #define R_XSPI0          ((R_XSPI0_Type *) R_XSPI0_BASE)
@@ -61759,8 +61562,8 @@ typedef struct                                                     /*!< (@ 0x921
  #define R_MPU9           ((R_MPU10_Type *) R_MPU9_BASE)
  #define R_SYSRAM_CTL     ((R_SYSRAM_CTL_Type *) R_SYSRAM_CTL_BASE)
  #define R_SHOSTIF_CFG    ((R_SHOSTIF_CFG_Type *) R_SHOSTIF_CFG_BASE)
- #define R_TCMAW          ((R_TCMAW_Type *) R_TCMAW_BASE)
  #define R_CA55           ((R_CA55_Type *) R_CA55_BASE)
+ #define R_TCMAW          ((R_TCMAW_Type *) R_TCMAW_BASE)
  #define R_WDT_DBG        ((R_WDT_DBG_Type *) R_WDT_DBG_BASE)
  #define R_RWP_S          ((R_RWP_S_Type *) R_RWP_S_BASE)
  #define R_ICU_S          ((R_ICU_S_Type *) R_ICU_S_BASE)
@@ -61988,7 +61791,7 @@ typedef struct                                                     /*!< (@ 0x921
 /* ================                                 Pos/Mask Cluster Section                                  ================ */
 /* =========================================================================================================================== */
 
-/** @addtogroup RZN_PosMask_clusters
+/** @addtogroup PosMask_clusters
  * @{
  */
 
@@ -63512,10 +63315,6 @@ typedef struct                                                     /*!< (@ 0x921
 /* =========================================================  DSICR  ========================================================= */
  #define R_DSMIF0_CH_DSICR_IUE_Pos          (0UL)          /*!< IUE (Bit 0)                                           */
  #define R_DSMIF0_CH_DSICR_IUE_Msk          (0x1UL)        /*!< IUE (Bitfield-Mask: 0x01)                             */
- #define R_DSMIF0_CH_DSICR_IAUE_Pos         (1UL)          /*!< IAUE (Bit 1)                                          */
- #define R_DSMIF0_CH_DSICR_IAUE_Msk         (0x2UL)        /*!< IAUE (Bitfield-Mask: 0x01)                            */
- #define R_DSMIF0_CH_DSICR_IBUE_Pos         (2UL)          /*!< IBUE (Bit 2)                                          */
- #define R_DSMIF0_CH_DSICR_IBUE_Msk         (0x4UL)        /*!< IBUE (Bitfield-Mask: 0x01)                            */
  #define R_DSMIF0_CH_DSICR_ISE_Pos          (3UL)          /*!< ISE (Bit 3)                                           */
  #define R_DSMIF0_CH_DSICR_ISE_Msk          (0x8UL)        /*!< ISE (Bitfield-Mask: 0x01)                             */
  #define R_DSMIF0_CH_DSICR_IOEL0_Pos        (8UL)          /*!< IOEL0 (Bit 8)                                         */
@@ -63939,7 +63738,7 @@ typedef struct                                                     /*!< (@ 0x921
 /* ================                                Pos/Mask Peripheral Section                                ================ */
 /* =========================================================================================================================== */
 
-/** @addtogroup RZN_PosMask_peripherals
+/** @addtogroup PosMask_peripherals
  * @{
  */
 
@@ -65972,97 +65771,97 @@ typedef struct                                                     /*!< (@ 0x921
 /* =========================================================================================================================== */
 
 /* =======================================================  POEG1GA0  ======================================================== */
- #define R_POEG1_POEG1GA0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG1_POEG1GA0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GA0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG1_POEG1GA0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GA0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG1_POEG1GA0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG1_POEG1GA0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG1_POEG1GA0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG1_POEG1GA0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG1_POEG1GA0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GA0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG1_POEG1GA0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GA0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG1_POEG1GA0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG1_POEG1GA0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG1_POEG1GA0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG1_POEG1GA0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG1_POEG1GA0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG1_POEG1GA0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG1_POEG1GA0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GA0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG1_POEG1GA0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG1GA_POEG1G0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG1GA_POEG1G0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GA_POEG1G0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG1GA_POEG1G0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GA_POEG1G0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG1GA_POEG1G0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG1GA_POEG1G0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG1GA_POEG1G0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG1GA_POEG1G0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG1GA_POEG1G0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GA_POEG1G0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG1GA_POEG1G0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GA_POEG1G0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG1GA_POEG1G0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG1GA_POEG1G0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG1GA_POEG1G0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG1GA_POEG1G0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG1GA_POEG1G0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG1GA_POEG1G0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG1GA_POEG1G0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GA_POEG1G0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG1GA_POEG1G0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 /* =======================================================  POEG1GB0  ======================================================== */
- #define R_POEG1_POEG1GB0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG1_POEG1GB0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GB0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG1_POEG1GB0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GB0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG1_POEG1GB0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG1_POEG1GB0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG1_POEG1GB0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG1_POEG1GB0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG1_POEG1GB0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GB0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG1_POEG1GB0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GB0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG1_POEG1GB0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG1_POEG1GB0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG1_POEG1GB0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG1_POEG1GB0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG1_POEG1GB0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG1_POEG1GB0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG1_POEG1GB0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GB0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG1_POEG1GB0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG1GB_POEG1G0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG1GB_POEG1G0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GB_POEG1G0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG1GB_POEG1G0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GB_POEG1G0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG1GB_POEG1G0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG1GB_POEG1G0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG1GB_POEG1G0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG1GB_POEG1G0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG1GB_POEG1G0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GB_POEG1G0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG1GB_POEG1G0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GB_POEG1G0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG1GB_POEG1G0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG1GB_POEG1G0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG1GB_POEG1G0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG1GB_POEG1G0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG1GB_POEG1G0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG1GB_POEG1G0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG1GB_POEG1G0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GB_POEG1G0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG1GB_POEG1G0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 /* =======================================================  POEG1GC0  ======================================================== */
- #define R_POEG1_POEG1GC0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG1_POEG1GC0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GC0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG1_POEG1GC0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GC0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG1_POEG1GC0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG1_POEG1GC0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG1_POEG1GC0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG1_POEG1GC0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG1_POEG1GC0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GC0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG1_POEG1GC0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GC0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG1_POEG1GC0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG1_POEG1GC0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG1_POEG1GC0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG1_POEG1GC0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG1_POEG1GC0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG1_POEG1GC0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG1_POEG1GC0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GC0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG1_POEG1GC0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG1GC_POEG1G0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG1GC_POEG1G0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GC_POEG1G0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG1GC_POEG1G0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GC_POEG1G0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG1GC_POEG1G0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG1GC_POEG1G0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG1GC_POEG1G0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG1GC_POEG1G0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG1GC_POEG1G0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GC_POEG1G0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG1GC_POEG1G0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GC_POEG1G0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG1GC_POEG1G0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG1GC_POEG1G0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG1GC_POEG1G0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG1GC_POEG1G0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG1GC_POEG1G0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG1GC_POEG1G0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG1GC_POEG1G0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GC_POEG1G0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG1GC_POEG1G0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 /* =======================================================  POEG1GD0  ======================================================== */
- #define R_POEG1_POEG1GD0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG1_POEG1GD0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GD0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG1_POEG1GD0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GD0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG1_POEG1GD0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG1_POEG1GD0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG1_POEG1GD0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG1_POEG1GD0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG1_POEG1GD0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GD0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG1_POEG1GD0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GD0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG1_POEG1GD0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG1_POEG1GD0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG1_POEG1GD0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG1_POEG1GD0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG1_POEG1GD0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG1_POEG1GD0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG1_POEG1GD0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG1_POEG1GD0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG1_POEG1GD0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG1GD_POEG1G0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG1GD_POEG1G0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GD_POEG1G0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG1GD_POEG1G0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GD_POEG1G0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG1GD_POEG1G0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG1GD_POEG1G0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG1GD_POEG1G0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG1GD_POEG1G0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG1GD_POEG1G0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GD_POEG1G0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG1GD_POEG1G0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GD_POEG1G0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG1GD_POEG1G0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG1GD_POEG1G0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG1GD_POEG1G0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG1GD_POEG1G0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG1GD_POEG1G0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG1GD_POEG1G0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG1GD_POEG1G0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG1GD_POEG1G0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG1GD_POEG1G0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 
 /* =========================================================================================================================== */
 /* ================                                          R_IIC0                                           ================ */
@@ -67872,6 +67671,24 @@ typedef struct                                                     /*!< (@ 0x921
  #define R_ETHSS_SWDUPC_PHY_DUPLEX_Msk         (0x7UL)     /*!< PHY_DUPLEX (Bitfield-Mask: 0x07)                      */
 
 /* =========================================================================================================================== */
+/* ================                                          R_GMACC                                          ================ */
+/* =========================================================================================================================== */
+
+/* ======================================================  GMACTRGSEL  ======================================================= */
+ #define R_GMACC_GMACTRGSEL_G0TRGSEL0_Pos    (0UL)    /*!< G0TRGSEL0 (Bit 0)                                     */
+ #define R_GMACC_GMACTRGSEL_G0TRGSEL0_Msk    (0x1UL)  /*!< G0TRGSEL0 (Bitfield-Mask: 0x01)                       */
+ #define R_GMACC_GMACTRGSEL_G0TRGSEL1_Pos    (1UL)    /*!< G0TRGSEL1 (Bit 1)                                     */
+ #define R_GMACC_GMACTRGSEL_G0TRGSEL1_Msk    (0x2UL)  /*!< G0TRGSEL1 (Bitfield-Mask: 0x01)                       */
+ #define R_GMACC_GMACTRGSEL_G1TRGSEL0_Pos    (2UL)    /*!< G1TRGSEL0 (Bit 2)                                     */
+ #define R_GMACC_GMACTRGSEL_G1TRGSEL0_Msk    (0x4UL)  /*!< G1TRGSEL0 (Bitfield-Mask: 0x01)                       */
+ #define R_GMACC_GMACTRGSEL_G1TRGSEL1_Pos    (3UL)    /*!< G1TRGSEL1 (Bit 3)                                     */
+ #define R_GMACC_GMACTRGSEL_G1TRGSEL1_Msk    (0x8UL)  /*!< G1TRGSEL1 (Bitfield-Mask: 0x01)                       */
+ #define R_GMACC_GMACTRGSEL_G2TRGSEL0_Pos    (4UL)    /*!< G2TRGSEL0 (Bit 4)                                     */
+ #define R_GMACC_GMACTRGSEL_G2TRGSEL0_Msk    (0x10UL) /*!< G2TRGSEL0 (Bitfield-Mask: 0x01)                       */
+ #define R_GMACC_GMACTRGSEL_G2TRGSEL1_Pos    (5UL)    /*!< G2TRGSEL1 (Bit 5)                                     */
+ #define R_GMACC_GMACTRGSEL_G2TRGSEL1_Msk    (0x20UL) /*!< G2TRGSEL1 (Bitfield-Mask: 0x01)                       */
+
+/* =========================================================================================================================== */
 /* ================                                         R_ESC_INI                                         ================ */
 /* =========================================================================================================================== */
 
@@ -67920,24 +67737,6 @@ typedef struct                                                     /*!< (@ 0x921
  #define R_ETHSW_PTP_SWPTPOUTSEL_EVTSEL2_Msk    (0x40UL) /*!< EVTSEL2 (Bitfield-Mask: 0x01)                         */
  #define R_ETHSW_PTP_SWPTPOUTSEL_EVTSEL3_Pos    (7UL)    /*!< EVTSEL3 (Bit 7)                                       */
  #define R_ETHSW_PTP_SWPTPOUTSEL_EVTSEL3_Msk    (0x80UL) /*!< EVTSEL3 (Bitfield-Mask: 0x01)                         */
-
-/* =========================================================================================================================== */
-/* ================                                          R_GMACC                                          ================ */
-/* =========================================================================================================================== */
-
-/* ======================================================  GMACTRGSEL  ======================================================= */
- #define R_GMACC_GMACTRGSEL_G0TRGSEL0_Pos    (0UL)    /*!< G0TRGSEL0 (Bit 0)                                     */
- #define R_GMACC_GMACTRGSEL_G0TRGSEL0_Msk    (0x1UL)  /*!< G0TRGSEL0 (Bitfield-Mask: 0x01)                       */
- #define R_GMACC_GMACTRGSEL_G0TRGSEL1_Pos    (1UL)    /*!< G0TRGSEL1 (Bit 1)                                     */
- #define R_GMACC_GMACTRGSEL_G0TRGSEL1_Msk    (0x2UL)  /*!< G0TRGSEL1 (Bitfield-Mask: 0x01)                       */
- #define R_GMACC_GMACTRGSEL_G1TRGSEL0_Pos    (2UL)    /*!< G1TRGSEL0 (Bit 2)                                     */
- #define R_GMACC_GMACTRGSEL_G1TRGSEL0_Msk    (0x4UL)  /*!< G1TRGSEL0 (Bitfield-Mask: 0x01)                       */
- #define R_GMACC_GMACTRGSEL_G1TRGSEL1_Pos    (3UL)    /*!< G1TRGSEL1 (Bit 3)                                     */
- #define R_GMACC_GMACTRGSEL_G1TRGSEL1_Msk    (0x8UL)  /*!< G1TRGSEL1 (Bitfield-Mask: 0x01)                       */
- #define R_GMACC_GMACTRGSEL_G2TRGSEL0_Pos    (4UL)    /*!< G2TRGSEL0 (Bit 4)                                     */
- #define R_GMACC_GMACTRGSEL_G2TRGSEL0_Msk    (0x10UL) /*!< G2TRGSEL0 (Bitfield-Mask: 0x01)                       */
- #define R_GMACC_GMACTRGSEL_G2TRGSEL1_Pos    (5UL)    /*!< G2TRGSEL1 (Bit 5)                                     */
- #define R_GMACC_GMACTRGSEL_G2TRGSEL1_Msk    (0x20UL) /*!< G2TRGSEL1 (Bitfield-Mask: 0x01)                       */
 
 /* =========================================================================================================================== */
 /* ================                                          R_ETHSW                                          ================ */
@@ -81080,97 +80879,97 @@ typedef struct                                                     /*!< (@ 0x921
 /* =========================================================================================================================== */
 
 /* =======================================================  POEG2GA0  ======================================================== */
- #define R_POEG2_POEG2GA0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG2_POEG2GA0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GA0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG2_POEG2GA0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GA0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG2_POEG2GA0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG2_POEG2GA0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG2_POEG2GA0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG2_POEG2GA0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG2_POEG2GA0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GA0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG2_POEG2GA0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GA0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG2_POEG2GA0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG2_POEG2GA0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG2_POEG2GA0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG2_POEG2GA0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG2_POEG2GA0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG2_POEG2GA0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG2_POEG2GA0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GA0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG2_POEG2GA0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG2GA_POEG2G0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG2GA_POEG2G0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GA_POEG2G0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG2GA_POEG2G0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GA_POEG2G0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG2GA_POEG2G0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG2GA_POEG2G0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG2GA_POEG2G0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG2GA_POEG2G0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG2GA_POEG2G0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GA_POEG2G0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG2GA_POEG2G0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GA_POEG2G0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG2GA_POEG2G0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG2GA_POEG2G0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG2GA_POEG2G0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG2GA_POEG2G0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG2GA_POEG2G0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG2GA_POEG2G0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG2GA_POEG2G0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GA_POEG2G0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG2GA_POEG2G0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 /* =======================================================  POEG2GB0  ======================================================== */
- #define R_POEG2_POEG2GB0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG2_POEG2GB0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GB0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG2_POEG2GB0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GB0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG2_POEG2GB0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG2_POEG2GB0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG2_POEG2GB0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG2_POEG2GB0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG2_POEG2GB0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GB0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG2_POEG2GB0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GB0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG2_POEG2GB0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG2_POEG2GB0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG2_POEG2GB0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG2_POEG2GB0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG2_POEG2GB0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG2_POEG2GB0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG2_POEG2GB0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GB0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG2_POEG2GB0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG2GB_POEG2G0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG2GB_POEG2G0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GB_POEG2G0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG2GB_POEG2G0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GB_POEG2G0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG2GB_POEG2G0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG2GB_POEG2G0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG2GB_POEG2G0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG2GB_POEG2G0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG2GB_POEG2G0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GB_POEG2G0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG2GB_POEG2G0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GB_POEG2G0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG2GB_POEG2G0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG2GB_POEG2G0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG2GB_POEG2G0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG2GB_POEG2G0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG2GB_POEG2G0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG2GB_POEG2G0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG2GB_POEG2G0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GB_POEG2G0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG2GB_POEG2G0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 /* =======================================================  POEG2GC0  ======================================================== */
- #define R_POEG2_POEG2GC0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG2_POEG2GC0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GC0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG2_POEG2GC0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GC0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG2_POEG2GC0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG2_POEG2GC0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG2_POEG2GC0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG2_POEG2GC0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG2_POEG2GC0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GC0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG2_POEG2GC0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GC0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG2_POEG2GC0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG2_POEG2GC0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG2_POEG2GC0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG2_POEG2GC0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG2_POEG2GC0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG2_POEG2GC0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG2_POEG2GC0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GC0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG2_POEG2GC0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG2GC_POEG2G0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG2GC_POEG2G0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GC_POEG2G0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG2GC_POEG2G0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GC_POEG2G0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG2GC_POEG2G0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG2GC_POEG2G0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG2GC_POEG2G0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG2GC_POEG2G0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG2GC_POEG2G0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GC_POEG2G0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG2GC_POEG2G0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GC_POEG2G0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG2GC_POEG2G0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG2GC_POEG2G0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG2GC_POEG2G0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG2GC_POEG2G0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG2GC_POEG2G0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG2GC_POEG2G0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG2GC_POEG2G0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GC_POEG2G0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG2GC_POEG2G0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 /* =======================================================  POEG2GD0  ======================================================== */
- #define R_POEG2_POEG2GD0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG2_POEG2GD0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GD0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG2_POEG2GD0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GD0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG2_POEG2GD0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG2_POEG2GD0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG2_POEG2GD0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG2_POEG2GD0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG2_POEG2GD0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GD0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG2_POEG2GD0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GD0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG2_POEG2GD0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG2_POEG2GD0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG2_POEG2GD0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG2_POEG2GD0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG2_POEG2GD0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG2_POEG2GD0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG2_POEG2GD0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG2_POEG2GD0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG2_POEG2GD0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG2GD_POEG2G0_PIDF_Pos     (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG2GD_POEG2G0_PIDF_Msk     (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GD_POEG2G0_IOCF_Pos     (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG2GD_POEG2G0_IOCF_Msk     (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GD_POEG2G0_OSTPF_Pos    (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG2GD_POEG2G0_OSTPF_Msk    (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG2GD_POEG2G0_SSF_Pos      (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG2GD_POEG2G0_SSF_Msk      (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG2GD_POEG2G0_PIDE_Pos     (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG2GD_POEG2G0_PIDE_Msk     (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GD_POEG2G0_IOCE_Pos     (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG2GD_POEG2G0_IOCE_Msk     (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GD_POEG2G0_OSTPE_Pos    (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG2GD_POEG2G0_OSTPE_Msk    (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG2GD_POEG2G0_ST_Pos       (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG2GD_POEG2G0_ST_Msk       (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG2GD_POEG2G0_INV_Pos      (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG2GD_POEG2G0_INV_Msk      (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG2GD_POEG2G0_NFEN_Pos     (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG2GD_POEG2G0_NFEN_Msk     (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG2GD_POEG2G0_NFCS_Pos     (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG2GD_POEG2G0_NFCS_Msk     (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 
 /* =========================================================================================================================== */
 /* ================                                         R_SYSRAM0                                         ================ */
@@ -82019,6 +81818,10 @@ typedef struct                                                     /*!< (@ 0x921
  #define R_SHOSTIF_CFG_SHCFG_INTMASKE_Msk      (0x3f000000UL) /*!< INTMASKE (Bitfield-Mask: 0x3f)                        */
 
 /* =========================================================================================================================== */
+/* ================                                          R_CA55                                           ================ */
+/* =========================================================================================================================== */
+
+/* =========================================================================================================================== */
 /* ================                                          R_TCMAW                                          ================ */
 /* =========================================================================================================================== */
 
@@ -82031,10 +81834,6 @@ typedef struct                                                     /*!< (@ 0x921
 /* =======================================================  CPU1HALT  ======================================================== */
  #define R_TCMAW_CPU1HALT_CPU1HALT_Pos    (0UL)   /*!< CPU1HALT (Bit 0)                                      */
  #define R_TCMAW_CPU1HALT_CPU1HALT_Msk    (0x1UL) /*!< CPU1HALT (Bitfield-Mask: 0x01)                        */
-
-/* =========================================================================================================================== */
-/* ================                                          R_CA55                                           ================ */
-/* =========================================================================================================================== */
 
 /* =========================================================================================================================== */
 /* ================                                         R_WDT_DBG                                         ================ */
@@ -83846,425 +83645,425 @@ typedef struct                                                     /*!< (@ 0x921
 /* =========================================================================================================================== */
 
 /* =======================================================  POEG0GA0  ======================================================== */
- #define R_POEG0_POEG0GA0_PIDF_Pos        (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG0_POEG0GA0_PIDF_Msk        (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GA0_IOCF_Pos        (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG0_POEG0GA0_IOCF_Msk        (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GA0_OSTPF_Pos       (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG0_POEG0GA0_OSTPF_Msk       (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG0_POEG0GA0_SSF_Pos         (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG0_POEG0GA0_SSF_Msk         (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG0_POEG0GA0_PIDE_Pos        (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG0_POEG0GA0_PIDE_Msk        (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GA0_IOCE_Pos        (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG0_POEG0GA0_IOCE_Msk        (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GA0_OSTPE_Pos       (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG0_POEG0GA0_OSTPE_Msk       (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG0_POEG0GA0_ST_Pos          (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG0_POEG0GA0_ST_Msk          (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG0_POEG0GA0_INV_Pos         (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG0_POEG0GA0_INV_Msk         (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG0_POEG0GA0_NFEN_Pos        (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG0_POEG0GA0_NFEN_Msk        (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GA0_NFCS_Pos        (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG0_POEG0GA0_NFCS_Msk        (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG0GA_POEG0G0_PIDF_Pos        (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG0GA_POEG0G0_PIDF_Msk        (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GA_POEG0G0_IOCF_Pos        (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG0GA_POEG0G0_IOCF_Msk        (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GA_POEG0G0_OSTPF_Pos       (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG0GA_POEG0G0_OSTPF_Msk       (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG0GA_POEG0G0_SSF_Pos         (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG0GA_POEG0G0_SSF_Msk         (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG0GA_POEG0G0_PIDE_Pos        (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG0GA_POEG0G0_PIDE_Msk        (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GA_POEG0G0_IOCE_Pos        (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG0GA_POEG0G0_IOCE_Msk        (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GA_POEG0G0_OSTPE_Pos       (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG0GA_POEG0G0_OSTPE_Msk       (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG0GA_POEG0G0_ST_Pos          (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG0GA_POEG0G0_ST_Msk          (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG0GA_POEG0G0_INV_Pos         (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG0GA_POEG0G0_INV_Msk         (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG0GA_POEG0G0_NFEN_Pos        (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG0GA_POEG0G0_NFEN_Msk        (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GA_POEG0G0_NFCS_Pos        (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG0GA_POEG0G0_NFCS_Msk        (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 /* =======================================================  POEG0GA1  ======================================================== */
- #define R_POEG0_POEG0GA1_D0ERR0ST_Pos    (0UL)          /*!< D0ERR0ST (Bit 0)                                      */
- #define R_POEG0_POEG0GA1_D0ERR0ST_Msk    (0x1UL)        /*!< D0ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D1ERR0ST_Pos    (1UL)          /*!< D1ERR0ST (Bit 1)                                      */
- #define R_POEG0_POEG0GA1_D1ERR0ST_Msk    (0x2UL)        /*!< D1ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D2ERR0ST_Pos    (2UL)          /*!< D2ERR0ST (Bit 2)                                      */
- #define R_POEG0_POEG0GA1_D2ERR0ST_Msk    (0x4UL)        /*!< D2ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D3ERR0ST_Pos    (3UL)          /*!< D3ERR0ST (Bit 3)                                      */
- #define R_POEG0_POEG0GA1_D3ERR0ST_Msk    (0x8UL)        /*!< D3ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D4ERR0ST_Pos    (4UL)          /*!< D4ERR0ST (Bit 4)                                      */
- #define R_POEG0_POEG0GA1_D4ERR0ST_Msk    (0x10UL)       /*!< D4ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D5ERR0ST_Pos    (5UL)          /*!< D5ERR0ST (Bit 5)                                      */
- #define R_POEG0_POEG0GA1_D5ERR0ST_Msk    (0x20UL)       /*!< D5ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D6ERR0ST_Pos    (6UL)          /*!< D6ERR0ST (Bit 6)                                      */
- #define R_POEG0_POEG0GA1_D6ERR0ST_Msk    (0x40UL)       /*!< D6ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D7ERR0ST_Pos    (7UL)          /*!< D7ERR0ST (Bit 7)                                      */
- #define R_POEG0_POEG0GA1_D7ERR0ST_Msk    (0x80UL)       /*!< D7ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D8ERR0ST_Pos    (8UL)          /*!< D8ERR0ST (Bit 8)                                      */
- #define R_POEG0_POEG0GA1_D8ERR0ST_Msk    (0x100UL)      /*!< D8ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D9ERR0ST_Pos    (9UL)          /*!< D9ERR0ST (Bit 9)                                      */
- #define R_POEG0_POEG0GA1_D9ERR0ST_Msk    (0x200UL)      /*!< D9ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D0ERR1ST_Pos    (16UL)         /*!< D0ERR1ST (Bit 16)                                     */
- #define R_POEG0_POEG0GA1_D0ERR1ST_Msk    (0x10000UL)    /*!< D0ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D1ERR1ST_Pos    (17UL)         /*!< D1ERR1ST (Bit 17)                                     */
- #define R_POEG0_POEG0GA1_D1ERR1ST_Msk    (0x20000UL)    /*!< D1ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D2ERR1ST_Pos    (18UL)         /*!< D2ERR1ST (Bit 18)                                     */
- #define R_POEG0_POEG0GA1_D2ERR1ST_Msk    (0x40000UL)    /*!< D2ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D3ERR1ST_Pos    (19UL)         /*!< D3ERR1ST (Bit 19)                                     */
- #define R_POEG0_POEG0GA1_D3ERR1ST_Msk    (0x80000UL)    /*!< D3ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D4ERR1ST_Pos    (20UL)         /*!< D4ERR1ST (Bit 20)                                     */
- #define R_POEG0_POEG0GA1_D4ERR1ST_Msk    (0x100000UL)   /*!< D4ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D5ERR1ST_Pos    (21UL)         /*!< D5ERR1ST (Bit 21)                                     */
- #define R_POEG0_POEG0GA1_D5ERR1ST_Msk    (0x200000UL)   /*!< D5ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D6ERR1ST_Pos    (22UL)         /*!< D6ERR1ST (Bit 22)                                     */
- #define R_POEG0_POEG0GA1_D6ERR1ST_Msk    (0x400000UL)   /*!< D6ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D7ERR1ST_Pos    (23UL)         /*!< D7ERR1ST (Bit 23)                                     */
- #define R_POEG0_POEG0GA1_D7ERR1ST_Msk    (0x800000UL)   /*!< D7ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D8ERR1ST_Pos    (24UL)         /*!< D8ERR1ST (Bit 24)                                     */
- #define R_POEG0_POEG0GA1_D8ERR1ST_Msk    (0x1000000UL)  /*!< D8ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GA1_D9ERR1ST_Pos    (25UL)         /*!< D9ERR1ST (Bit 25)                                     */
- #define R_POEG0_POEG0GA1_D9ERR1ST_Msk    (0x2000000UL)  /*!< D9ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D0ERR0ST_Pos    (0UL)          /*!< D0ERR0ST (Bit 0)                                      */
+ #define R_POEG0GA_POEG0G1_D0ERR0ST_Msk    (0x1UL)        /*!< D0ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D1ERR0ST_Pos    (1UL)          /*!< D1ERR0ST (Bit 1)                                      */
+ #define R_POEG0GA_POEG0G1_D1ERR0ST_Msk    (0x2UL)        /*!< D1ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D2ERR0ST_Pos    (2UL)          /*!< D2ERR0ST (Bit 2)                                      */
+ #define R_POEG0GA_POEG0G1_D2ERR0ST_Msk    (0x4UL)        /*!< D2ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D3ERR0ST_Pos    (3UL)          /*!< D3ERR0ST (Bit 3)                                      */
+ #define R_POEG0GA_POEG0G1_D3ERR0ST_Msk    (0x8UL)        /*!< D3ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D4ERR0ST_Pos    (4UL)          /*!< D4ERR0ST (Bit 4)                                      */
+ #define R_POEG0GA_POEG0G1_D4ERR0ST_Msk    (0x10UL)       /*!< D4ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D5ERR0ST_Pos    (5UL)          /*!< D5ERR0ST (Bit 5)                                      */
+ #define R_POEG0GA_POEG0G1_D5ERR0ST_Msk    (0x20UL)       /*!< D5ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D6ERR0ST_Pos    (6UL)          /*!< D6ERR0ST (Bit 6)                                      */
+ #define R_POEG0GA_POEG0G1_D6ERR0ST_Msk    (0x40UL)       /*!< D6ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D7ERR0ST_Pos    (7UL)          /*!< D7ERR0ST (Bit 7)                                      */
+ #define R_POEG0GA_POEG0G1_D7ERR0ST_Msk    (0x80UL)       /*!< D7ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D8ERR0ST_Pos    (8UL)          /*!< D8ERR0ST (Bit 8)                                      */
+ #define R_POEG0GA_POEG0G1_D8ERR0ST_Msk    (0x100UL)      /*!< D8ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D9ERR0ST_Pos    (9UL)          /*!< D9ERR0ST (Bit 9)                                      */
+ #define R_POEG0GA_POEG0G1_D9ERR0ST_Msk    (0x200UL)      /*!< D9ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D0ERR1ST_Pos    (16UL)         /*!< D0ERR1ST (Bit 16)                                     */
+ #define R_POEG0GA_POEG0G1_D0ERR1ST_Msk    (0x10000UL)    /*!< D0ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D1ERR1ST_Pos    (17UL)         /*!< D1ERR1ST (Bit 17)                                     */
+ #define R_POEG0GA_POEG0G1_D1ERR1ST_Msk    (0x20000UL)    /*!< D1ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D2ERR1ST_Pos    (18UL)         /*!< D2ERR1ST (Bit 18)                                     */
+ #define R_POEG0GA_POEG0G1_D2ERR1ST_Msk    (0x40000UL)    /*!< D2ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D3ERR1ST_Pos    (19UL)         /*!< D3ERR1ST (Bit 19)                                     */
+ #define R_POEG0GA_POEG0G1_D3ERR1ST_Msk    (0x80000UL)    /*!< D3ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D4ERR1ST_Pos    (20UL)         /*!< D4ERR1ST (Bit 20)                                     */
+ #define R_POEG0GA_POEG0G1_D4ERR1ST_Msk    (0x100000UL)   /*!< D4ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D5ERR1ST_Pos    (21UL)         /*!< D5ERR1ST (Bit 21)                                     */
+ #define R_POEG0GA_POEG0G1_D5ERR1ST_Msk    (0x200000UL)   /*!< D5ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D6ERR1ST_Pos    (22UL)         /*!< D6ERR1ST (Bit 22)                                     */
+ #define R_POEG0GA_POEG0G1_D6ERR1ST_Msk    (0x400000UL)   /*!< D6ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D7ERR1ST_Pos    (23UL)         /*!< D7ERR1ST (Bit 23)                                     */
+ #define R_POEG0GA_POEG0G1_D7ERR1ST_Msk    (0x800000UL)   /*!< D7ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D8ERR1ST_Pos    (24UL)         /*!< D8ERR1ST (Bit 24)                                     */
+ #define R_POEG0GA_POEG0G1_D8ERR1ST_Msk    (0x1000000UL)  /*!< D8ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GA_POEG0G1_D9ERR1ST_Pos    (25UL)         /*!< D9ERR1ST (Bit 25)                                     */
+ #define R_POEG0GA_POEG0G1_D9ERR1ST_Msk    (0x2000000UL)  /*!< D9ERR1ST (Bitfield-Mask: 0x01)                        */
 /* =======================================================  POEG0GA2  ======================================================== */
- #define R_POEG0_POEG0GA2_D0ERR0E_Pos     (0UL)          /*!< D0ERR0E (Bit 0)                                       */
- #define R_POEG0_POEG0GA2_D0ERR0E_Msk     (0x1UL)        /*!< D0ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D1ERR0E_Pos     (1UL)          /*!< D1ERR0E (Bit 1)                                       */
- #define R_POEG0_POEG0GA2_D1ERR0E_Msk     (0x2UL)        /*!< D1ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D2ERR0E_Pos     (2UL)          /*!< D2ERR0E (Bit 2)                                       */
- #define R_POEG0_POEG0GA2_D2ERR0E_Msk     (0x4UL)        /*!< D2ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D3ERR0E_Pos     (3UL)          /*!< D3ERR0E (Bit 3)                                       */
- #define R_POEG0_POEG0GA2_D3ERR0E_Msk     (0x8UL)        /*!< D3ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D4ERR0E_Pos     (4UL)          /*!< D4ERR0E (Bit 4)                                       */
- #define R_POEG0_POEG0GA2_D4ERR0E_Msk     (0x10UL)       /*!< D4ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D5ERR0E_Pos     (5UL)          /*!< D5ERR0E (Bit 5)                                       */
- #define R_POEG0_POEG0GA2_D5ERR0E_Msk     (0x20UL)       /*!< D5ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D6ERR0E_Pos     (6UL)          /*!< D6ERR0E (Bit 6)                                       */
- #define R_POEG0_POEG0GA2_D6ERR0E_Msk     (0x40UL)       /*!< D6ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D7ERR0E_Pos     (7UL)          /*!< D7ERR0E (Bit 7)                                       */
- #define R_POEG0_POEG0GA2_D7ERR0E_Msk     (0x80UL)       /*!< D7ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D8ERR0E_Pos     (8UL)          /*!< D8ERR0E (Bit 8)                                       */
- #define R_POEG0_POEG0GA2_D8ERR0E_Msk     (0x100UL)      /*!< D8ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D9ERR0E_Pos     (9UL)          /*!< D9ERR0E (Bit 9)                                       */
- #define R_POEG0_POEG0GA2_D9ERR0E_Msk     (0x200UL)      /*!< D9ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D0ERR1E_Pos     (16UL)         /*!< D0ERR1E (Bit 16)                                      */
- #define R_POEG0_POEG0GA2_D0ERR1E_Msk     (0x10000UL)    /*!< D0ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D1ERR1E_Pos     (17UL)         /*!< D1ERR1E (Bit 17)                                      */
- #define R_POEG0_POEG0GA2_D1ERR1E_Msk     (0x20000UL)    /*!< D1ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D2ERR1E_Pos     (18UL)         /*!< D2ERR1E (Bit 18)                                      */
- #define R_POEG0_POEG0GA2_D2ERR1E_Msk     (0x40000UL)    /*!< D2ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D3ERR1E_Pos     (19UL)         /*!< D3ERR1E (Bit 19)                                      */
- #define R_POEG0_POEG0GA2_D3ERR1E_Msk     (0x80000UL)    /*!< D3ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D4ERR1E_Pos     (20UL)         /*!< D4ERR1E (Bit 20)                                      */
- #define R_POEG0_POEG0GA2_D4ERR1E_Msk     (0x100000UL)   /*!< D4ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D5ERR1E_Pos     (21UL)         /*!< D5ERR1E (Bit 21)                                      */
- #define R_POEG0_POEG0GA2_D5ERR1E_Msk     (0x200000UL)   /*!< D5ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D6ERR1E_Pos     (22UL)         /*!< D6ERR1E (Bit 22)                                      */
- #define R_POEG0_POEG0GA2_D6ERR1E_Msk     (0x400000UL)   /*!< D6ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D7ERR1E_Pos     (23UL)         /*!< D7ERR1E (Bit 23)                                      */
- #define R_POEG0_POEG0GA2_D7ERR1E_Msk     (0x800000UL)   /*!< D7ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D8ERR1E_Pos     (24UL)         /*!< D8ERR1E (Bit 24)                                      */
- #define R_POEG0_POEG0GA2_D8ERR1E_Msk     (0x1000000UL)  /*!< D8ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GA2_D9ERR1E_Pos     (25UL)         /*!< D9ERR1E (Bit 25)                                      */
- #define R_POEG0_POEG0GA2_D9ERR1E_Msk     (0x2000000UL)  /*!< D9ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D0ERR0E_Pos     (0UL)          /*!< D0ERR0E (Bit 0)                                       */
+ #define R_POEG0GA_POEG0G2_D0ERR0E_Msk     (0x1UL)        /*!< D0ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D1ERR0E_Pos     (1UL)          /*!< D1ERR0E (Bit 1)                                       */
+ #define R_POEG0GA_POEG0G2_D1ERR0E_Msk     (0x2UL)        /*!< D1ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D2ERR0E_Pos     (2UL)          /*!< D2ERR0E (Bit 2)                                       */
+ #define R_POEG0GA_POEG0G2_D2ERR0E_Msk     (0x4UL)        /*!< D2ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D3ERR0E_Pos     (3UL)          /*!< D3ERR0E (Bit 3)                                       */
+ #define R_POEG0GA_POEG0G2_D3ERR0E_Msk     (0x8UL)        /*!< D3ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D4ERR0E_Pos     (4UL)          /*!< D4ERR0E (Bit 4)                                       */
+ #define R_POEG0GA_POEG0G2_D4ERR0E_Msk     (0x10UL)       /*!< D4ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D5ERR0E_Pos     (5UL)          /*!< D5ERR0E (Bit 5)                                       */
+ #define R_POEG0GA_POEG0G2_D5ERR0E_Msk     (0x20UL)       /*!< D5ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D6ERR0E_Pos     (6UL)          /*!< D6ERR0E (Bit 6)                                       */
+ #define R_POEG0GA_POEG0G2_D6ERR0E_Msk     (0x40UL)       /*!< D6ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D7ERR0E_Pos     (7UL)          /*!< D7ERR0E (Bit 7)                                       */
+ #define R_POEG0GA_POEG0G2_D7ERR0E_Msk     (0x80UL)       /*!< D7ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D8ERR0E_Pos     (8UL)          /*!< D8ERR0E (Bit 8)                                       */
+ #define R_POEG0GA_POEG0G2_D8ERR0E_Msk     (0x100UL)      /*!< D8ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D9ERR0E_Pos     (9UL)          /*!< D9ERR0E (Bit 9)                                       */
+ #define R_POEG0GA_POEG0G2_D9ERR0E_Msk     (0x200UL)      /*!< D9ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D0ERR1E_Pos     (16UL)         /*!< D0ERR1E (Bit 16)                                      */
+ #define R_POEG0GA_POEG0G2_D0ERR1E_Msk     (0x10000UL)    /*!< D0ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D1ERR1E_Pos     (17UL)         /*!< D1ERR1E (Bit 17)                                      */
+ #define R_POEG0GA_POEG0G2_D1ERR1E_Msk     (0x20000UL)    /*!< D1ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D2ERR1E_Pos     (18UL)         /*!< D2ERR1E (Bit 18)                                      */
+ #define R_POEG0GA_POEG0G2_D2ERR1E_Msk     (0x40000UL)    /*!< D2ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D3ERR1E_Pos     (19UL)         /*!< D3ERR1E (Bit 19)                                      */
+ #define R_POEG0GA_POEG0G2_D3ERR1E_Msk     (0x80000UL)    /*!< D3ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D4ERR1E_Pos     (20UL)         /*!< D4ERR1E (Bit 20)                                      */
+ #define R_POEG0GA_POEG0G2_D4ERR1E_Msk     (0x100000UL)   /*!< D4ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D5ERR1E_Pos     (21UL)         /*!< D5ERR1E (Bit 21)                                      */
+ #define R_POEG0GA_POEG0G2_D5ERR1E_Msk     (0x200000UL)   /*!< D5ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D6ERR1E_Pos     (22UL)         /*!< D6ERR1E (Bit 22)                                      */
+ #define R_POEG0GA_POEG0G2_D6ERR1E_Msk     (0x400000UL)   /*!< D6ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D7ERR1E_Pos     (23UL)         /*!< D7ERR1E (Bit 23)                                      */
+ #define R_POEG0GA_POEG0G2_D7ERR1E_Msk     (0x800000UL)   /*!< D7ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D8ERR1E_Pos     (24UL)         /*!< D8ERR1E (Bit 24)                                      */
+ #define R_POEG0GA_POEG0G2_D8ERR1E_Msk     (0x1000000UL)  /*!< D8ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GA_POEG0G2_D9ERR1E_Pos     (25UL)         /*!< D9ERR1E (Bit 25)                                      */
+ #define R_POEG0GA_POEG0G2_D9ERR1E_Msk     (0x2000000UL)  /*!< D9ERR1E (Bitfield-Mask: 0x01)                         */
 /* =======================================================  POEG0GB0  ======================================================== */
- #define R_POEG0_POEG0GB0_PIDF_Pos        (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG0_POEG0GB0_PIDF_Msk        (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GB0_IOCF_Pos        (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG0_POEG0GB0_IOCF_Msk        (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GB0_OSTPF_Pos       (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG0_POEG0GB0_OSTPF_Msk       (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG0_POEG0GB0_SSF_Pos         (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG0_POEG0GB0_SSF_Msk         (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG0_POEG0GB0_PIDE_Pos        (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG0_POEG0GB0_PIDE_Msk        (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GB0_IOCE_Pos        (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG0_POEG0GB0_IOCE_Msk        (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GB0_OSTPE_Pos       (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG0_POEG0GB0_OSTPE_Msk       (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG0_POEG0GB0_ST_Pos          (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG0_POEG0GB0_ST_Msk          (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG0_POEG0GB0_INV_Pos         (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG0_POEG0GB0_INV_Msk         (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG0_POEG0GB0_NFEN_Pos        (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG0_POEG0GB0_NFEN_Msk        (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GB0_NFCS_Pos        (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG0_POEG0GB0_NFCS_Msk        (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG0GB_POEG0G0_PIDF_Pos        (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG0GB_POEG0G0_PIDF_Msk        (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GB_POEG0G0_IOCF_Pos        (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG0GB_POEG0G0_IOCF_Msk        (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GB_POEG0G0_OSTPF_Pos       (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG0GB_POEG0G0_OSTPF_Msk       (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG0GB_POEG0G0_SSF_Pos         (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG0GB_POEG0G0_SSF_Msk         (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG0GB_POEG0G0_PIDE_Pos        (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG0GB_POEG0G0_PIDE_Msk        (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GB_POEG0G0_IOCE_Pos        (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG0GB_POEG0G0_IOCE_Msk        (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GB_POEG0G0_OSTPE_Pos       (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG0GB_POEG0G0_OSTPE_Msk       (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG0GB_POEG0G0_ST_Pos          (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG0GB_POEG0G0_ST_Msk          (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG0GB_POEG0G0_INV_Pos         (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG0GB_POEG0G0_INV_Msk         (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG0GB_POEG0G0_NFEN_Pos        (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG0GB_POEG0G0_NFEN_Msk        (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GB_POEG0G0_NFCS_Pos        (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG0GB_POEG0G0_NFCS_Msk        (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 /* =======================================================  POEG0GB1  ======================================================== */
- #define R_POEG0_POEG0GB1_D0ERR0ST_Pos    (0UL)          /*!< D0ERR0ST (Bit 0)                                      */
- #define R_POEG0_POEG0GB1_D0ERR0ST_Msk    (0x1UL)        /*!< D0ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D1ERR0ST_Pos    (1UL)          /*!< D1ERR0ST (Bit 1)                                      */
- #define R_POEG0_POEG0GB1_D1ERR0ST_Msk    (0x2UL)        /*!< D1ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D2ERR0ST_Pos    (2UL)          /*!< D2ERR0ST (Bit 2)                                      */
- #define R_POEG0_POEG0GB1_D2ERR0ST_Msk    (0x4UL)        /*!< D2ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D3ERR0ST_Pos    (3UL)          /*!< D3ERR0ST (Bit 3)                                      */
- #define R_POEG0_POEG0GB1_D3ERR0ST_Msk    (0x8UL)        /*!< D3ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D4ERR0ST_Pos    (4UL)          /*!< D4ERR0ST (Bit 4)                                      */
- #define R_POEG0_POEG0GB1_D4ERR0ST_Msk    (0x10UL)       /*!< D4ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D5ERR0ST_Pos    (5UL)          /*!< D5ERR0ST (Bit 5)                                      */
- #define R_POEG0_POEG0GB1_D5ERR0ST_Msk    (0x20UL)       /*!< D5ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D6ERR0ST_Pos    (6UL)          /*!< D6ERR0ST (Bit 6)                                      */
- #define R_POEG0_POEG0GB1_D6ERR0ST_Msk    (0x40UL)       /*!< D6ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D7ERR0ST_Pos    (7UL)          /*!< D7ERR0ST (Bit 7)                                      */
- #define R_POEG0_POEG0GB1_D7ERR0ST_Msk    (0x80UL)       /*!< D7ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D8ERR0ST_Pos    (8UL)          /*!< D8ERR0ST (Bit 8)                                      */
- #define R_POEG0_POEG0GB1_D8ERR0ST_Msk    (0x100UL)      /*!< D8ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D9ERR0ST_Pos    (9UL)          /*!< D9ERR0ST (Bit 9)                                      */
- #define R_POEG0_POEG0GB1_D9ERR0ST_Msk    (0x200UL)      /*!< D9ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D0ERR1ST_Pos    (16UL)         /*!< D0ERR1ST (Bit 16)                                     */
- #define R_POEG0_POEG0GB1_D0ERR1ST_Msk    (0x10000UL)    /*!< D0ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D1ERR1ST_Pos    (17UL)         /*!< D1ERR1ST (Bit 17)                                     */
- #define R_POEG0_POEG0GB1_D1ERR1ST_Msk    (0x20000UL)    /*!< D1ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D2ERR1ST_Pos    (18UL)         /*!< D2ERR1ST (Bit 18)                                     */
- #define R_POEG0_POEG0GB1_D2ERR1ST_Msk    (0x40000UL)    /*!< D2ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D3ERR1ST_Pos    (19UL)         /*!< D3ERR1ST (Bit 19)                                     */
- #define R_POEG0_POEG0GB1_D3ERR1ST_Msk    (0x80000UL)    /*!< D3ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D4ERR1ST_Pos    (20UL)         /*!< D4ERR1ST (Bit 20)                                     */
- #define R_POEG0_POEG0GB1_D4ERR1ST_Msk    (0x100000UL)   /*!< D4ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D5ERR1ST_Pos    (21UL)         /*!< D5ERR1ST (Bit 21)                                     */
- #define R_POEG0_POEG0GB1_D5ERR1ST_Msk    (0x200000UL)   /*!< D5ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D6ERR1ST_Pos    (22UL)         /*!< D6ERR1ST (Bit 22)                                     */
- #define R_POEG0_POEG0GB1_D6ERR1ST_Msk    (0x400000UL)   /*!< D6ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D7ERR1ST_Pos    (23UL)         /*!< D7ERR1ST (Bit 23)                                     */
- #define R_POEG0_POEG0GB1_D7ERR1ST_Msk    (0x800000UL)   /*!< D7ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D8ERR1ST_Pos    (24UL)         /*!< D8ERR1ST (Bit 24)                                     */
- #define R_POEG0_POEG0GB1_D8ERR1ST_Msk    (0x1000000UL)  /*!< D8ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GB1_D9ERR1ST_Pos    (25UL)         /*!< D9ERR1ST (Bit 25)                                     */
- #define R_POEG0_POEG0GB1_D9ERR1ST_Msk    (0x2000000UL)  /*!< D9ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D0ERR0ST_Pos    (0UL)          /*!< D0ERR0ST (Bit 0)                                      */
+ #define R_POEG0GB_POEG0G1_D0ERR0ST_Msk    (0x1UL)        /*!< D0ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D1ERR0ST_Pos    (1UL)          /*!< D1ERR0ST (Bit 1)                                      */
+ #define R_POEG0GB_POEG0G1_D1ERR0ST_Msk    (0x2UL)        /*!< D1ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D2ERR0ST_Pos    (2UL)          /*!< D2ERR0ST (Bit 2)                                      */
+ #define R_POEG0GB_POEG0G1_D2ERR0ST_Msk    (0x4UL)        /*!< D2ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D3ERR0ST_Pos    (3UL)          /*!< D3ERR0ST (Bit 3)                                      */
+ #define R_POEG0GB_POEG0G1_D3ERR0ST_Msk    (0x8UL)        /*!< D3ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D4ERR0ST_Pos    (4UL)          /*!< D4ERR0ST (Bit 4)                                      */
+ #define R_POEG0GB_POEG0G1_D4ERR0ST_Msk    (0x10UL)       /*!< D4ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D5ERR0ST_Pos    (5UL)          /*!< D5ERR0ST (Bit 5)                                      */
+ #define R_POEG0GB_POEG0G1_D5ERR0ST_Msk    (0x20UL)       /*!< D5ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D6ERR0ST_Pos    (6UL)          /*!< D6ERR0ST (Bit 6)                                      */
+ #define R_POEG0GB_POEG0G1_D6ERR0ST_Msk    (0x40UL)       /*!< D6ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D7ERR0ST_Pos    (7UL)          /*!< D7ERR0ST (Bit 7)                                      */
+ #define R_POEG0GB_POEG0G1_D7ERR0ST_Msk    (0x80UL)       /*!< D7ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D8ERR0ST_Pos    (8UL)          /*!< D8ERR0ST (Bit 8)                                      */
+ #define R_POEG0GB_POEG0G1_D8ERR0ST_Msk    (0x100UL)      /*!< D8ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D9ERR0ST_Pos    (9UL)          /*!< D9ERR0ST (Bit 9)                                      */
+ #define R_POEG0GB_POEG0G1_D9ERR0ST_Msk    (0x200UL)      /*!< D9ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D0ERR1ST_Pos    (16UL)         /*!< D0ERR1ST (Bit 16)                                     */
+ #define R_POEG0GB_POEG0G1_D0ERR1ST_Msk    (0x10000UL)    /*!< D0ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D1ERR1ST_Pos    (17UL)         /*!< D1ERR1ST (Bit 17)                                     */
+ #define R_POEG0GB_POEG0G1_D1ERR1ST_Msk    (0x20000UL)    /*!< D1ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D2ERR1ST_Pos    (18UL)         /*!< D2ERR1ST (Bit 18)                                     */
+ #define R_POEG0GB_POEG0G1_D2ERR1ST_Msk    (0x40000UL)    /*!< D2ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D3ERR1ST_Pos    (19UL)         /*!< D3ERR1ST (Bit 19)                                     */
+ #define R_POEG0GB_POEG0G1_D3ERR1ST_Msk    (0x80000UL)    /*!< D3ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D4ERR1ST_Pos    (20UL)         /*!< D4ERR1ST (Bit 20)                                     */
+ #define R_POEG0GB_POEG0G1_D4ERR1ST_Msk    (0x100000UL)   /*!< D4ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D5ERR1ST_Pos    (21UL)         /*!< D5ERR1ST (Bit 21)                                     */
+ #define R_POEG0GB_POEG0G1_D5ERR1ST_Msk    (0x200000UL)   /*!< D5ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D6ERR1ST_Pos    (22UL)         /*!< D6ERR1ST (Bit 22)                                     */
+ #define R_POEG0GB_POEG0G1_D6ERR1ST_Msk    (0x400000UL)   /*!< D6ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D7ERR1ST_Pos    (23UL)         /*!< D7ERR1ST (Bit 23)                                     */
+ #define R_POEG0GB_POEG0G1_D7ERR1ST_Msk    (0x800000UL)   /*!< D7ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D8ERR1ST_Pos    (24UL)         /*!< D8ERR1ST (Bit 24)                                     */
+ #define R_POEG0GB_POEG0G1_D8ERR1ST_Msk    (0x1000000UL)  /*!< D8ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GB_POEG0G1_D9ERR1ST_Pos    (25UL)         /*!< D9ERR1ST (Bit 25)                                     */
+ #define R_POEG0GB_POEG0G1_D9ERR1ST_Msk    (0x2000000UL)  /*!< D9ERR1ST (Bitfield-Mask: 0x01)                        */
 /* =======================================================  POEG0GB2  ======================================================== */
- #define R_POEG0_POEG0GB2_D0ERR0E_Pos     (0UL)          /*!< D0ERR0E (Bit 0)                                       */
- #define R_POEG0_POEG0GB2_D0ERR0E_Msk     (0x1UL)        /*!< D0ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D1ERR0E_Pos     (1UL)          /*!< D1ERR0E (Bit 1)                                       */
- #define R_POEG0_POEG0GB2_D1ERR0E_Msk     (0x2UL)        /*!< D1ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D2ERR0E_Pos     (2UL)          /*!< D2ERR0E (Bit 2)                                       */
- #define R_POEG0_POEG0GB2_D2ERR0E_Msk     (0x4UL)        /*!< D2ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D3ERR0E_Pos     (3UL)          /*!< D3ERR0E (Bit 3)                                       */
- #define R_POEG0_POEG0GB2_D3ERR0E_Msk     (0x8UL)        /*!< D3ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D4ERR0E_Pos     (4UL)          /*!< D4ERR0E (Bit 4)                                       */
- #define R_POEG0_POEG0GB2_D4ERR0E_Msk     (0x10UL)       /*!< D4ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D5ERR0E_Pos     (5UL)          /*!< D5ERR0E (Bit 5)                                       */
- #define R_POEG0_POEG0GB2_D5ERR0E_Msk     (0x20UL)       /*!< D5ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D6ERR0E_Pos     (6UL)          /*!< D6ERR0E (Bit 6)                                       */
- #define R_POEG0_POEG0GB2_D6ERR0E_Msk     (0x40UL)       /*!< D6ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D7ERR0E_Pos     (7UL)          /*!< D7ERR0E (Bit 7)                                       */
- #define R_POEG0_POEG0GB2_D7ERR0E_Msk     (0x80UL)       /*!< D7ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D8ERR0E_Pos     (8UL)          /*!< D8ERR0E (Bit 8)                                       */
- #define R_POEG0_POEG0GB2_D8ERR0E_Msk     (0x100UL)      /*!< D8ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D9ERR0E_Pos     (9UL)          /*!< D9ERR0E (Bit 9)                                       */
- #define R_POEG0_POEG0GB2_D9ERR0E_Msk     (0x200UL)      /*!< D9ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D0ERR1E_Pos     (16UL)         /*!< D0ERR1E (Bit 16)                                      */
- #define R_POEG0_POEG0GB2_D0ERR1E_Msk     (0x10000UL)    /*!< D0ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D1ERR1E_Pos     (17UL)         /*!< D1ERR1E (Bit 17)                                      */
- #define R_POEG0_POEG0GB2_D1ERR1E_Msk     (0x20000UL)    /*!< D1ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D2ERR1E_Pos     (18UL)         /*!< D2ERR1E (Bit 18)                                      */
- #define R_POEG0_POEG0GB2_D2ERR1E_Msk     (0x40000UL)    /*!< D2ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D3ERR1E_Pos     (19UL)         /*!< D3ERR1E (Bit 19)                                      */
- #define R_POEG0_POEG0GB2_D3ERR1E_Msk     (0x80000UL)    /*!< D3ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D4ERR1E_Pos     (20UL)         /*!< D4ERR1E (Bit 20)                                      */
- #define R_POEG0_POEG0GB2_D4ERR1E_Msk     (0x100000UL)   /*!< D4ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D5ERR1E_Pos     (21UL)         /*!< D5ERR1E (Bit 21)                                      */
- #define R_POEG0_POEG0GB2_D5ERR1E_Msk     (0x200000UL)   /*!< D5ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D6ERR1E_Pos     (22UL)         /*!< D6ERR1E (Bit 22)                                      */
- #define R_POEG0_POEG0GB2_D6ERR1E_Msk     (0x400000UL)   /*!< D6ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D7ERR1E_Pos     (23UL)         /*!< D7ERR1E (Bit 23)                                      */
- #define R_POEG0_POEG0GB2_D7ERR1E_Msk     (0x800000UL)   /*!< D7ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D8ERR1E_Pos     (24UL)         /*!< D8ERR1E (Bit 24)                                      */
- #define R_POEG0_POEG0GB2_D8ERR1E_Msk     (0x1000000UL)  /*!< D8ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GB2_D9ERR1E_Pos     (25UL)         /*!< D9ERR1E (Bit 25)                                      */
- #define R_POEG0_POEG0GB2_D9ERR1E_Msk     (0x2000000UL)  /*!< D9ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D0ERR0E_Pos     (0UL)          /*!< D0ERR0E (Bit 0)                                       */
+ #define R_POEG0GB_POEG0G2_D0ERR0E_Msk     (0x1UL)        /*!< D0ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D1ERR0E_Pos     (1UL)          /*!< D1ERR0E (Bit 1)                                       */
+ #define R_POEG0GB_POEG0G2_D1ERR0E_Msk     (0x2UL)        /*!< D1ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D2ERR0E_Pos     (2UL)          /*!< D2ERR0E (Bit 2)                                       */
+ #define R_POEG0GB_POEG0G2_D2ERR0E_Msk     (0x4UL)        /*!< D2ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D3ERR0E_Pos     (3UL)          /*!< D3ERR0E (Bit 3)                                       */
+ #define R_POEG0GB_POEG0G2_D3ERR0E_Msk     (0x8UL)        /*!< D3ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D4ERR0E_Pos     (4UL)          /*!< D4ERR0E (Bit 4)                                       */
+ #define R_POEG0GB_POEG0G2_D4ERR0E_Msk     (0x10UL)       /*!< D4ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D5ERR0E_Pos     (5UL)          /*!< D5ERR0E (Bit 5)                                       */
+ #define R_POEG0GB_POEG0G2_D5ERR0E_Msk     (0x20UL)       /*!< D5ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D6ERR0E_Pos     (6UL)          /*!< D6ERR0E (Bit 6)                                       */
+ #define R_POEG0GB_POEG0G2_D6ERR0E_Msk     (0x40UL)       /*!< D6ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D7ERR0E_Pos     (7UL)          /*!< D7ERR0E (Bit 7)                                       */
+ #define R_POEG0GB_POEG0G2_D7ERR0E_Msk     (0x80UL)       /*!< D7ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D8ERR0E_Pos     (8UL)          /*!< D8ERR0E (Bit 8)                                       */
+ #define R_POEG0GB_POEG0G2_D8ERR0E_Msk     (0x100UL)      /*!< D8ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D9ERR0E_Pos     (9UL)          /*!< D9ERR0E (Bit 9)                                       */
+ #define R_POEG0GB_POEG0G2_D9ERR0E_Msk     (0x200UL)      /*!< D9ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D0ERR1E_Pos     (16UL)         /*!< D0ERR1E (Bit 16)                                      */
+ #define R_POEG0GB_POEG0G2_D0ERR1E_Msk     (0x10000UL)    /*!< D0ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D1ERR1E_Pos     (17UL)         /*!< D1ERR1E (Bit 17)                                      */
+ #define R_POEG0GB_POEG0G2_D1ERR1E_Msk     (0x20000UL)    /*!< D1ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D2ERR1E_Pos     (18UL)         /*!< D2ERR1E (Bit 18)                                      */
+ #define R_POEG0GB_POEG0G2_D2ERR1E_Msk     (0x40000UL)    /*!< D2ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D3ERR1E_Pos     (19UL)         /*!< D3ERR1E (Bit 19)                                      */
+ #define R_POEG0GB_POEG0G2_D3ERR1E_Msk     (0x80000UL)    /*!< D3ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D4ERR1E_Pos     (20UL)         /*!< D4ERR1E (Bit 20)                                      */
+ #define R_POEG0GB_POEG0G2_D4ERR1E_Msk     (0x100000UL)   /*!< D4ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D5ERR1E_Pos     (21UL)         /*!< D5ERR1E (Bit 21)                                      */
+ #define R_POEG0GB_POEG0G2_D5ERR1E_Msk     (0x200000UL)   /*!< D5ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D6ERR1E_Pos     (22UL)         /*!< D6ERR1E (Bit 22)                                      */
+ #define R_POEG0GB_POEG0G2_D6ERR1E_Msk     (0x400000UL)   /*!< D6ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D7ERR1E_Pos     (23UL)         /*!< D7ERR1E (Bit 23)                                      */
+ #define R_POEG0GB_POEG0G2_D7ERR1E_Msk     (0x800000UL)   /*!< D7ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D8ERR1E_Pos     (24UL)         /*!< D8ERR1E (Bit 24)                                      */
+ #define R_POEG0GB_POEG0G2_D8ERR1E_Msk     (0x1000000UL)  /*!< D8ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GB_POEG0G2_D9ERR1E_Pos     (25UL)         /*!< D9ERR1E (Bit 25)                                      */
+ #define R_POEG0GB_POEG0G2_D9ERR1E_Msk     (0x2000000UL)  /*!< D9ERR1E (Bitfield-Mask: 0x01)                         */
 /* =======================================================  POEG0GC0  ======================================================== */
- #define R_POEG0_POEG0GC0_PIDF_Pos        (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG0_POEG0GC0_PIDF_Msk        (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GC0_IOCF_Pos        (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG0_POEG0GC0_IOCF_Msk        (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GC0_OSTPF_Pos       (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG0_POEG0GC0_OSTPF_Msk       (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG0_POEG0GC0_SSF_Pos         (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG0_POEG0GC0_SSF_Msk         (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG0_POEG0GC0_PIDE_Pos        (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG0_POEG0GC0_PIDE_Msk        (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GC0_IOCE_Pos        (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG0_POEG0GC0_IOCE_Msk        (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GC0_OSTPE_Pos       (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG0_POEG0GC0_OSTPE_Msk       (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG0_POEG0GC0_ST_Pos          (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG0_POEG0GC0_ST_Msk          (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG0_POEG0GC0_INV_Pos         (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG0_POEG0GC0_INV_Msk         (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG0_POEG0GC0_NFEN_Pos        (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG0_POEG0GC0_NFEN_Msk        (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GC0_NFCS_Pos        (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG0_POEG0GC0_NFCS_Msk        (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG0GC_POEG0G0_PIDF_Pos        (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG0GC_POEG0G0_PIDF_Msk        (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GC_POEG0G0_IOCF_Pos        (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG0GC_POEG0G0_IOCF_Msk        (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GC_POEG0G0_OSTPF_Pos       (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG0GC_POEG0G0_OSTPF_Msk       (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG0GC_POEG0G0_SSF_Pos         (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG0GC_POEG0G0_SSF_Msk         (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG0GC_POEG0G0_PIDE_Pos        (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG0GC_POEG0G0_PIDE_Msk        (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GC_POEG0G0_IOCE_Pos        (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG0GC_POEG0G0_IOCE_Msk        (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GC_POEG0G0_OSTPE_Pos       (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG0GC_POEG0G0_OSTPE_Msk       (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG0GC_POEG0G0_ST_Pos          (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG0GC_POEG0G0_ST_Msk          (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG0GC_POEG0G0_INV_Pos         (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG0GC_POEG0G0_INV_Msk         (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG0GC_POEG0G0_NFEN_Pos        (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG0GC_POEG0G0_NFEN_Msk        (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GC_POEG0G0_NFCS_Pos        (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG0GC_POEG0G0_NFCS_Msk        (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 /* =======================================================  POEG0GC1  ======================================================== */
- #define R_POEG0_POEG0GC1_D0ERR0ST_Pos    (0UL)          /*!< D0ERR0ST (Bit 0)                                      */
- #define R_POEG0_POEG0GC1_D0ERR0ST_Msk    (0x1UL)        /*!< D0ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D1ERR0ST_Pos    (1UL)          /*!< D1ERR0ST (Bit 1)                                      */
- #define R_POEG0_POEG0GC1_D1ERR0ST_Msk    (0x2UL)        /*!< D1ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D2ERR0ST_Pos    (2UL)          /*!< D2ERR0ST (Bit 2)                                      */
- #define R_POEG0_POEG0GC1_D2ERR0ST_Msk    (0x4UL)        /*!< D2ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D3ERR0ST_Pos    (3UL)          /*!< D3ERR0ST (Bit 3)                                      */
- #define R_POEG0_POEG0GC1_D3ERR0ST_Msk    (0x8UL)        /*!< D3ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D4ERR0ST_Pos    (4UL)          /*!< D4ERR0ST (Bit 4)                                      */
- #define R_POEG0_POEG0GC1_D4ERR0ST_Msk    (0x10UL)       /*!< D4ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D5ERR0ST_Pos    (5UL)          /*!< D5ERR0ST (Bit 5)                                      */
- #define R_POEG0_POEG0GC1_D5ERR0ST_Msk    (0x20UL)       /*!< D5ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D6ERR0ST_Pos    (6UL)          /*!< D6ERR0ST (Bit 6)                                      */
- #define R_POEG0_POEG0GC1_D6ERR0ST_Msk    (0x40UL)       /*!< D6ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D7ERR0ST_Pos    (7UL)          /*!< D7ERR0ST (Bit 7)                                      */
- #define R_POEG0_POEG0GC1_D7ERR0ST_Msk    (0x80UL)       /*!< D7ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D8ERR0ST_Pos    (8UL)          /*!< D8ERR0ST (Bit 8)                                      */
- #define R_POEG0_POEG0GC1_D8ERR0ST_Msk    (0x100UL)      /*!< D8ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D9ERR0ST_Pos    (9UL)          /*!< D9ERR0ST (Bit 9)                                      */
- #define R_POEG0_POEG0GC1_D9ERR0ST_Msk    (0x200UL)      /*!< D9ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D0ERR1ST_Pos    (16UL)         /*!< D0ERR1ST (Bit 16)                                     */
- #define R_POEG0_POEG0GC1_D0ERR1ST_Msk    (0x10000UL)    /*!< D0ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D1ERR1ST_Pos    (17UL)         /*!< D1ERR1ST (Bit 17)                                     */
- #define R_POEG0_POEG0GC1_D1ERR1ST_Msk    (0x20000UL)    /*!< D1ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D2ERR1ST_Pos    (18UL)         /*!< D2ERR1ST (Bit 18)                                     */
- #define R_POEG0_POEG0GC1_D2ERR1ST_Msk    (0x40000UL)    /*!< D2ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D3ERR1ST_Pos    (19UL)         /*!< D3ERR1ST (Bit 19)                                     */
- #define R_POEG0_POEG0GC1_D3ERR1ST_Msk    (0x80000UL)    /*!< D3ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D4ERR1ST_Pos    (20UL)         /*!< D4ERR1ST (Bit 20)                                     */
- #define R_POEG0_POEG0GC1_D4ERR1ST_Msk    (0x100000UL)   /*!< D4ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D5ERR1ST_Pos    (21UL)         /*!< D5ERR1ST (Bit 21)                                     */
- #define R_POEG0_POEG0GC1_D5ERR1ST_Msk    (0x200000UL)   /*!< D5ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D6ERR1ST_Pos    (22UL)         /*!< D6ERR1ST (Bit 22)                                     */
- #define R_POEG0_POEG0GC1_D6ERR1ST_Msk    (0x400000UL)   /*!< D6ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D7ERR1ST_Pos    (23UL)         /*!< D7ERR1ST (Bit 23)                                     */
- #define R_POEG0_POEG0GC1_D7ERR1ST_Msk    (0x800000UL)   /*!< D7ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D8ERR1ST_Pos    (24UL)         /*!< D8ERR1ST (Bit 24)                                     */
- #define R_POEG0_POEG0GC1_D8ERR1ST_Msk    (0x1000000UL)  /*!< D8ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GC1_D9ERR1ST_Pos    (25UL)         /*!< D9ERR1ST (Bit 25)                                     */
- #define R_POEG0_POEG0GC1_D9ERR1ST_Msk    (0x2000000UL)  /*!< D9ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D0ERR0ST_Pos    (0UL)          /*!< D0ERR0ST (Bit 0)                                      */
+ #define R_POEG0GC_POEG0G1_D0ERR0ST_Msk    (0x1UL)        /*!< D0ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D1ERR0ST_Pos    (1UL)          /*!< D1ERR0ST (Bit 1)                                      */
+ #define R_POEG0GC_POEG0G1_D1ERR0ST_Msk    (0x2UL)        /*!< D1ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D2ERR0ST_Pos    (2UL)          /*!< D2ERR0ST (Bit 2)                                      */
+ #define R_POEG0GC_POEG0G1_D2ERR0ST_Msk    (0x4UL)        /*!< D2ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D3ERR0ST_Pos    (3UL)          /*!< D3ERR0ST (Bit 3)                                      */
+ #define R_POEG0GC_POEG0G1_D3ERR0ST_Msk    (0x8UL)        /*!< D3ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D4ERR0ST_Pos    (4UL)          /*!< D4ERR0ST (Bit 4)                                      */
+ #define R_POEG0GC_POEG0G1_D4ERR0ST_Msk    (0x10UL)       /*!< D4ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D5ERR0ST_Pos    (5UL)          /*!< D5ERR0ST (Bit 5)                                      */
+ #define R_POEG0GC_POEG0G1_D5ERR0ST_Msk    (0x20UL)       /*!< D5ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D6ERR0ST_Pos    (6UL)          /*!< D6ERR0ST (Bit 6)                                      */
+ #define R_POEG0GC_POEG0G1_D6ERR0ST_Msk    (0x40UL)       /*!< D6ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D7ERR0ST_Pos    (7UL)          /*!< D7ERR0ST (Bit 7)                                      */
+ #define R_POEG0GC_POEG0G1_D7ERR0ST_Msk    (0x80UL)       /*!< D7ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D8ERR0ST_Pos    (8UL)          /*!< D8ERR0ST (Bit 8)                                      */
+ #define R_POEG0GC_POEG0G1_D8ERR0ST_Msk    (0x100UL)      /*!< D8ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D9ERR0ST_Pos    (9UL)          /*!< D9ERR0ST (Bit 9)                                      */
+ #define R_POEG0GC_POEG0G1_D9ERR0ST_Msk    (0x200UL)      /*!< D9ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D0ERR1ST_Pos    (16UL)         /*!< D0ERR1ST (Bit 16)                                     */
+ #define R_POEG0GC_POEG0G1_D0ERR1ST_Msk    (0x10000UL)    /*!< D0ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D1ERR1ST_Pos    (17UL)         /*!< D1ERR1ST (Bit 17)                                     */
+ #define R_POEG0GC_POEG0G1_D1ERR1ST_Msk    (0x20000UL)    /*!< D1ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D2ERR1ST_Pos    (18UL)         /*!< D2ERR1ST (Bit 18)                                     */
+ #define R_POEG0GC_POEG0G1_D2ERR1ST_Msk    (0x40000UL)    /*!< D2ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D3ERR1ST_Pos    (19UL)         /*!< D3ERR1ST (Bit 19)                                     */
+ #define R_POEG0GC_POEG0G1_D3ERR1ST_Msk    (0x80000UL)    /*!< D3ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D4ERR1ST_Pos    (20UL)         /*!< D4ERR1ST (Bit 20)                                     */
+ #define R_POEG0GC_POEG0G1_D4ERR1ST_Msk    (0x100000UL)   /*!< D4ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D5ERR1ST_Pos    (21UL)         /*!< D5ERR1ST (Bit 21)                                     */
+ #define R_POEG0GC_POEG0G1_D5ERR1ST_Msk    (0x200000UL)   /*!< D5ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D6ERR1ST_Pos    (22UL)         /*!< D6ERR1ST (Bit 22)                                     */
+ #define R_POEG0GC_POEG0G1_D6ERR1ST_Msk    (0x400000UL)   /*!< D6ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D7ERR1ST_Pos    (23UL)         /*!< D7ERR1ST (Bit 23)                                     */
+ #define R_POEG0GC_POEG0G1_D7ERR1ST_Msk    (0x800000UL)   /*!< D7ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D8ERR1ST_Pos    (24UL)         /*!< D8ERR1ST (Bit 24)                                     */
+ #define R_POEG0GC_POEG0G1_D8ERR1ST_Msk    (0x1000000UL)  /*!< D8ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GC_POEG0G1_D9ERR1ST_Pos    (25UL)         /*!< D9ERR1ST (Bit 25)                                     */
+ #define R_POEG0GC_POEG0G1_D9ERR1ST_Msk    (0x2000000UL)  /*!< D9ERR1ST (Bitfield-Mask: 0x01)                        */
 /* =======================================================  POEG0GC2  ======================================================== */
- #define R_POEG0_POEG0GC2_D0ERR0E_Pos     (0UL)          /*!< D0ERR0E (Bit 0)                                       */
- #define R_POEG0_POEG0GC2_D0ERR0E_Msk     (0x1UL)        /*!< D0ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D1ERR0E_Pos     (1UL)          /*!< D1ERR0E (Bit 1)                                       */
- #define R_POEG0_POEG0GC2_D1ERR0E_Msk     (0x2UL)        /*!< D1ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D2ERR0E_Pos     (2UL)          /*!< D2ERR0E (Bit 2)                                       */
- #define R_POEG0_POEG0GC2_D2ERR0E_Msk     (0x4UL)        /*!< D2ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D3ERR0E_Pos     (3UL)          /*!< D3ERR0E (Bit 3)                                       */
- #define R_POEG0_POEG0GC2_D3ERR0E_Msk     (0x8UL)        /*!< D3ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D4ERR0E_Pos     (4UL)          /*!< D4ERR0E (Bit 4)                                       */
- #define R_POEG0_POEG0GC2_D4ERR0E_Msk     (0x10UL)       /*!< D4ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D5ERR0E_Pos     (5UL)          /*!< D5ERR0E (Bit 5)                                       */
- #define R_POEG0_POEG0GC2_D5ERR0E_Msk     (0x20UL)       /*!< D5ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D6ERR0E_Pos     (6UL)          /*!< D6ERR0E (Bit 6)                                       */
- #define R_POEG0_POEG0GC2_D6ERR0E_Msk     (0x40UL)       /*!< D6ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D7ERR0E_Pos     (7UL)          /*!< D7ERR0E (Bit 7)                                       */
- #define R_POEG0_POEG0GC2_D7ERR0E_Msk     (0x80UL)       /*!< D7ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D8ERR0E_Pos     (8UL)          /*!< D8ERR0E (Bit 8)                                       */
- #define R_POEG0_POEG0GC2_D8ERR0E_Msk     (0x100UL)      /*!< D8ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D9ERR0E_Pos     (9UL)          /*!< D9ERR0E (Bit 9)                                       */
- #define R_POEG0_POEG0GC2_D9ERR0E_Msk     (0x200UL)      /*!< D9ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D0ERR1E_Pos     (16UL)         /*!< D0ERR1E (Bit 16)                                      */
- #define R_POEG0_POEG0GC2_D0ERR1E_Msk     (0x10000UL)    /*!< D0ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D1ERR1E_Pos     (17UL)         /*!< D1ERR1E (Bit 17)                                      */
- #define R_POEG0_POEG0GC2_D1ERR1E_Msk     (0x20000UL)    /*!< D1ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D2ERR1E_Pos     (18UL)         /*!< D2ERR1E (Bit 18)                                      */
- #define R_POEG0_POEG0GC2_D2ERR1E_Msk     (0x40000UL)    /*!< D2ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D3ERR1E_Pos     (19UL)         /*!< D3ERR1E (Bit 19)                                      */
- #define R_POEG0_POEG0GC2_D3ERR1E_Msk     (0x80000UL)    /*!< D3ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D4ERR1E_Pos     (20UL)         /*!< D4ERR1E (Bit 20)                                      */
- #define R_POEG0_POEG0GC2_D4ERR1E_Msk     (0x100000UL)   /*!< D4ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D5ERR1E_Pos     (21UL)         /*!< D5ERR1E (Bit 21)                                      */
- #define R_POEG0_POEG0GC2_D5ERR1E_Msk     (0x200000UL)   /*!< D5ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D6ERR1E_Pos     (22UL)         /*!< D6ERR1E (Bit 22)                                      */
- #define R_POEG0_POEG0GC2_D6ERR1E_Msk     (0x400000UL)   /*!< D6ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D7ERR1E_Pos     (23UL)         /*!< D7ERR1E (Bit 23)                                      */
- #define R_POEG0_POEG0GC2_D7ERR1E_Msk     (0x800000UL)   /*!< D7ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D8ERR1E_Pos     (24UL)         /*!< D8ERR1E (Bit 24)                                      */
- #define R_POEG0_POEG0GC2_D8ERR1E_Msk     (0x1000000UL)  /*!< D8ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GC2_D9ERR1E_Pos     (25UL)         /*!< D9ERR1E (Bit 25)                                      */
- #define R_POEG0_POEG0GC2_D9ERR1E_Msk     (0x2000000UL)  /*!< D9ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D0ERR0E_Pos     (0UL)          /*!< D0ERR0E (Bit 0)                                       */
+ #define R_POEG0GC_POEG0G2_D0ERR0E_Msk     (0x1UL)        /*!< D0ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D1ERR0E_Pos     (1UL)          /*!< D1ERR0E (Bit 1)                                       */
+ #define R_POEG0GC_POEG0G2_D1ERR0E_Msk     (0x2UL)        /*!< D1ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D2ERR0E_Pos     (2UL)          /*!< D2ERR0E (Bit 2)                                       */
+ #define R_POEG0GC_POEG0G2_D2ERR0E_Msk     (0x4UL)        /*!< D2ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D3ERR0E_Pos     (3UL)          /*!< D3ERR0E (Bit 3)                                       */
+ #define R_POEG0GC_POEG0G2_D3ERR0E_Msk     (0x8UL)        /*!< D3ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D4ERR0E_Pos     (4UL)          /*!< D4ERR0E (Bit 4)                                       */
+ #define R_POEG0GC_POEG0G2_D4ERR0E_Msk     (0x10UL)       /*!< D4ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D5ERR0E_Pos     (5UL)          /*!< D5ERR0E (Bit 5)                                       */
+ #define R_POEG0GC_POEG0G2_D5ERR0E_Msk     (0x20UL)       /*!< D5ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D6ERR0E_Pos     (6UL)          /*!< D6ERR0E (Bit 6)                                       */
+ #define R_POEG0GC_POEG0G2_D6ERR0E_Msk     (0x40UL)       /*!< D6ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D7ERR0E_Pos     (7UL)          /*!< D7ERR0E (Bit 7)                                       */
+ #define R_POEG0GC_POEG0G2_D7ERR0E_Msk     (0x80UL)       /*!< D7ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D8ERR0E_Pos     (8UL)          /*!< D8ERR0E (Bit 8)                                       */
+ #define R_POEG0GC_POEG0G2_D8ERR0E_Msk     (0x100UL)      /*!< D8ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D9ERR0E_Pos     (9UL)          /*!< D9ERR0E (Bit 9)                                       */
+ #define R_POEG0GC_POEG0G2_D9ERR0E_Msk     (0x200UL)      /*!< D9ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D0ERR1E_Pos     (16UL)         /*!< D0ERR1E (Bit 16)                                      */
+ #define R_POEG0GC_POEG0G2_D0ERR1E_Msk     (0x10000UL)    /*!< D0ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D1ERR1E_Pos     (17UL)         /*!< D1ERR1E (Bit 17)                                      */
+ #define R_POEG0GC_POEG0G2_D1ERR1E_Msk     (0x20000UL)    /*!< D1ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D2ERR1E_Pos     (18UL)         /*!< D2ERR1E (Bit 18)                                      */
+ #define R_POEG0GC_POEG0G2_D2ERR1E_Msk     (0x40000UL)    /*!< D2ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D3ERR1E_Pos     (19UL)         /*!< D3ERR1E (Bit 19)                                      */
+ #define R_POEG0GC_POEG0G2_D3ERR1E_Msk     (0x80000UL)    /*!< D3ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D4ERR1E_Pos     (20UL)         /*!< D4ERR1E (Bit 20)                                      */
+ #define R_POEG0GC_POEG0G2_D4ERR1E_Msk     (0x100000UL)   /*!< D4ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D5ERR1E_Pos     (21UL)         /*!< D5ERR1E (Bit 21)                                      */
+ #define R_POEG0GC_POEG0G2_D5ERR1E_Msk     (0x200000UL)   /*!< D5ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D6ERR1E_Pos     (22UL)         /*!< D6ERR1E (Bit 22)                                      */
+ #define R_POEG0GC_POEG0G2_D6ERR1E_Msk     (0x400000UL)   /*!< D6ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D7ERR1E_Pos     (23UL)         /*!< D7ERR1E (Bit 23)                                      */
+ #define R_POEG0GC_POEG0G2_D7ERR1E_Msk     (0x800000UL)   /*!< D7ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D8ERR1E_Pos     (24UL)         /*!< D8ERR1E (Bit 24)                                      */
+ #define R_POEG0GC_POEG0G2_D8ERR1E_Msk     (0x1000000UL)  /*!< D8ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GC_POEG0G2_D9ERR1E_Pos     (25UL)         /*!< D9ERR1E (Bit 25)                                      */
+ #define R_POEG0GC_POEG0G2_D9ERR1E_Msk     (0x2000000UL)  /*!< D9ERR1E (Bitfield-Mask: 0x01)                         */
 /* =======================================================  POEG0GD0  ======================================================== */
- #define R_POEG0_POEG0GD0_PIDF_Pos        (0UL)          /*!< PIDF (Bit 0)                                          */
- #define R_POEG0_POEG0GD0_PIDF_Msk        (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GD0_IOCF_Pos        (1UL)          /*!< IOCF (Bit 1)                                          */
- #define R_POEG0_POEG0GD0_IOCF_Msk        (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GD0_OSTPF_Pos       (2UL)          /*!< OSTPF (Bit 2)                                         */
- #define R_POEG0_POEG0GD0_OSTPF_Msk       (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
- #define R_POEG0_POEG0GD0_SSF_Pos         (3UL)          /*!< SSF (Bit 3)                                           */
- #define R_POEG0_POEG0GD0_SSF_Msk         (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
- #define R_POEG0_POEG0GD0_PIDE_Pos        (4UL)          /*!< PIDE (Bit 4)                                          */
- #define R_POEG0_POEG0GD0_PIDE_Msk        (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GD0_IOCE_Pos        (5UL)          /*!< IOCE (Bit 5)                                          */
- #define R_POEG0_POEG0GD0_IOCE_Msk        (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GD0_OSTPE_Pos       (6UL)          /*!< OSTPE (Bit 6)                                         */
- #define R_POEG0_POEG0GD0_OSTPE_Msk       (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
- #define R_POEG0_POEG0GD0_ST_Pos          (16UL)         /*!< ST (Bit 16)                                           */
- #define R_POEG0_POEG0GD0_ST_Msk          (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
- #define R_POEG0_POEG0GD0_INV_Pos         (28UL)         /*!< INV (Bit 28)                                          */
- #define R_POEG0_POEG0GD0_INV_Msk         (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
- #define R_POEG0_POEG0GD0_NFEN_Pos        (29UL)         /*!< NFEN (Bit 29)                                         */
- #define R_POEG0_POEG0GD0_NFEN_Msk        (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
- #define R_POEG0_POEG0GD0_NFCS_Pos        (30UL)         /*!< NFCS (Bit 30)                                         */
- #define R_POEG0_POEG0GD0_NFCS_Msk        (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
+ #define R_POEG0GD_POEG0G0_PIDF_Pos        (0UL)          /*!< PIDF (Bit 0)                                          */
+ #define R_POEG0GD_POEG0G0_PIDF_Msk        (0x1UL)        /*!< PIDF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GD_POEG0G0_IOCF_Pos        (1UL)          /*!< IOCF (Bit 1)                                          */
+ #define R_POEG0GD_POEG0G0_IOCF_Msk        (0x2UL)        /*!< IOCF (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GD_POEG0G0_OSTPF_Pos       (2UL)          /*!< OSTPF (Bit 2)                                         */
+ #define R_POEG0GD_POEG0G0_OSTPF_Msk       (0x4UL)        /*!< OSTPF (Bitfield-Mask: 0x01)                           */
+ #define R_POEG0GD_POEG0G0_SSF_Pos         (3UL)          /*!< SSF (Bit 3)                                           */
+ #define R_POEG0GD_POEG0G0_SSF_Msk         (0x8UL)        /*!< SSF (Bitfield-Mask: 0x01)                             */
+ #define R_POEG0GD_POEG0G0_PIDE_Pos        (4UL)          /*!< PIDE (Bit 4)                                          */
+ #define R_POEG0GD_POEG0G0_PIDE_Msk        (0x10UL)       /*!< PIDE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GD_POEG0G0_IOCE_Pos        (5UL)          /*!< IOCE (Bit 5)                                          */
+ #define R_POEG0GD_POEG0G0_IOCE_Msk        (0x20UL)       /*!< IOCE (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GD_POEG0G0_OSTPE_Pos       (6UL)          /*!< OSTPE (Bit 6)                                         */
+ #define R_POEG0GD_POEG0G0_OSTPE_Msk       (0x40UL)       /*!< OSTPE (Bitfield-Mask: 0x01)                           */
+ #define R_POEG0GD_POEG0G0_ST_Pos          (16UL)         /*!< ST (Bit 16)                                           */
+ #define R_POEG0GD_POEG0G0_ST_Msk          (0x10000UL)    /*!< ST (Bitfield-Mask: 0x01)                              */
+ #define R_POEG0GD_POEG0G0_INV_Pos         (28UL)         /*!< INV (Bit 28)                                          */
+ #define R_POEG0GD_POEG0G0_INV_Msk         (0x10000000UL) /*!< INV (Bitfield-Mask: 0x01)                             */
+ #define R_POEG0GD_POEG0G0_NFEN_Pos        (29UL)         /*!< NFEN (Bit 29)                                         */
+ #define R_POEG0GD_POEG0G0_NFEN_Msk        (0x20000000UL) /*!< NFEN (Bitfield-Mask: 0x01)                            */
+ #define R_POEG0GD_POEG0G0_NFCS_Pos        (30UL)         /*!< NFCS (Bit 30)                                         */
+ #define R_POEG0GD_POEG0G0_NFCS_Msk        (0xc0000000UL) /*!< NFCS (Bitfield-Mask: 0x03)                            */
 /* =======================================================  POEG0GD1  ======================================================== */
- #define R_POEG0_POEG0GD1_D0ERR0ST_Pos    (0UL)          /*!< D0ERR0ST (Bit 0)                                      */
- #define R_POEG0_POEG0GD1_D0ERR0ST_Msk    (0x1UL)        /*!< D0ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D1ERR0ST_Pos    (1UL)          /*!< D1ERR0ST (Bit 1)                                      */
- #define R_POEG0_POEG0GD1_D1ERR0ST_Msk    (0x2UL)        /*!< D1ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D2ERR0ST_Pos    (2UL)          /*!< D2ERR0ST (Bit 2)                                      */
- #define R_POEG0_POEG0GD1_D2ERR0ST_Msk    (0x4UL)        /*!< D2ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D3ERR0ST_Pos    (3UL)          /*!< D3ERR0ST (Bit 3)                                      */
- #define R_POEG0_POEG0GD1_D3ERR0ST_Msk    (0x8UL)        /*!< D3ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D4ERR0ST_Pos    (4UL)          /*!< D4ERR0ST (Bit 4)                                      */
- #define R_POEG0_POEG0GD1_D4ERR0ST_Msk    (0x10UL)       /*!< D4ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D5ERR0ST_Pos    (5UL)          /*!< D5ERR0ST (Bit 5)                                      */
- #define R_POEG0_POEG0GD1_D5ERR0ST_Msk    (0x20UL)       /*!< D5ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D6ERR0ST_Pos    (6UL)          /*!< D6ERR0ST (Bit 6)                                      */
- #define R_POEG0_POEG0GD1_D6ERR0ST_Msk    (0x40UL)       /*!< D6ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D7ERR0ST_Pos    (7UL)          /*!< D7ERR0ST (Bit 7)                                      */
- #define R_POEG0_POEG0GD1_D7ERR0ST_Msk    (0x80UL)       /*!< D7ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D8ERR0ST_Pos    (8UL)          /*!< D8ERR0ST (Bit 8)                                      */
- #define R_POEG0_POEG0GD1_D8ERR0ST_Msk    (0x100UL)      /*!< D8ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D9ERR0ST_Pos    (9UL)          /*!< D9ERR0ST (Bit 9)                                      */
- #define R_POEG0_POEG0GD1_D9ERR0ST_Msk    (0x200UL)      /*!< D9ERR0ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D0ERR1ST_Pos    (16UL)         /*!< D0ERR1ST (Bit 16)                                     */
- #define R_POEG0_POEG0GD1_D0ERR1ST_Msk    (0x10000UL)    /*!< D0ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D1ERR1ST_Pos    (17UL)         /*!< D1ERR1ST (Bit 17)                                     */
- #define R_POEG0_POEG0GD1_D1ERR1ST_Msk    (0x20000UL)    /*!< D1ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D2ERR1ST_Pos    (18UL)         /*!< D2ERR1ST (Bit 18)                                     */
- #define R_POEG0_POEG0GD1_D2ERR1ST_Msk    (0x40000UL)    /*!< D2ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D3ERR1ST_Pos    (19UL)         /*!< D3ERR1ST (Bit 19)                                     */
- #define R_POEG0_POEG0GD1_D3ERR1ST_Msk    (0x80000UL)    /*!< D3ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D4ERR1ST_Pos    (20UL)         /*!< D4ERR1ST (Bit 20)                                     */
- #define R_POEG0_POEG0GD1_D4ERR1ST_Msk    (0x100000UL)   /*!< D4ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D5ERR1ST_Pos    (21UL)         /*!< D5ERR1ST (Bit 21)                                     */
- #define R_POEG0_POEG0GD1_D5ERR1ST_Msk    (0x200000UL)   /*!< D5ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D6ERR1ST_Pos    (22UL)         /*!< D6ERR1ST (Bit 22)                                     */
- #define R_POEG0_POEG0GD1_D6ERR1ST_Msk    (0x400000UL)   /*!< D6ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D7ERR1ST_Pos    (23UL)         /*!< D7ERR1ST (Bit 23)                                     */
- #define R_POEG0_POEG0GD1_D7ERR1ST_Msk    (0x800000UL)   /*!< D7ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D8ERR1ST_Pos    (24UL)         /*!< D8ERR1ST (Bit 24)                                     */
- #define R_POEG0_POEG0GD1_D8ERR1ST_Msk    (0x1000000UL)  /*!< D8ERR1ST (Bitfield-Mask: 0x01)                        */
- #define R_POEG0_POEG0GD1_D9ERR1ST_Pos    (25UL)         /*!< D9ERR1ST (Bit 25)                                     */
- #define R_POEG0_POEG0GD1_D9ERR1ST_Msk    (0x2000000UL)  /*!< D9ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D0ERR0ST_Pos    (0UL)          /*!< D0ERR0ST (Bit 0)                                      */
+ #define R_POEG0GD_POEG0G1_D0ERR0ST_Msk    (0x1UL)        /*!< D0ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D1ERR0ST_Pos    (1UL)          /*!< D1ERR0ST (Bit 1)                                      */
+ #define R_POEG0GD_POEG0G1_D1ERR0ST_Msk    (0x2UL)        /*!< D1ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D2ERR0ST_Pos    (2UL)          /*!< D2ERR0ST (Bit 2)                                      */
+ #define R_POEG0GD_POEG0G1_D2ERR0ST_Msk    (0x4UL)        /*!< D2ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D3ERR0ST_Pos    (3UL)          /*!< D3ERR0ST (Bit 3)                                      */
+ #define R_POEG0GD_POEG0G1_D3ERR0ST_Msk    (0x8UL)        /*!< D3ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D4ERR0ST_Pos    (4UL)          /*!< D4ERR0ST (Bit 4)                                      */
+ #define R_POEG0GD_POEG0G1_D4ERR0ST_Msk    (0x10UL)       /*!< D4ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D5ERR0ST_Pos    (5UL)          /*!< D5ERR0ST (Bit 5)                                      */
+ #define R_POEG0GD_POEG0G1_D5ERR0ST_Msk    (0x20UL)       /*!< D5ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D6ERR0ST_Pos    (6UL)          /*!< D6ERR0ST (Bit 6)                                      */
+ #define R_POEG0GD_POEG0G1_D6ERR0ST_Msk    (0x40UL)       /*!< D6ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D7ERR0ST_Pos    (7UL)          /*!< D7ERR0ST (Bit 7)                                      */
+ #define R_POEG0GD_POEG0G1_D7ERR0ST_Msk    (0x80UL)       /*!< D7ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D8ERR0ST_Pos    (8UL)          /*!< D8ERR0ST (Bit 8)                                      */
+ #define R_POEG0GD_POEG0G1_D8ERR0ST_Msk    (0x100UL)      /*!< D8ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D9ERR0ST_Pos    (9UL)          /*!< D9ERR0ST (Bit 9)                                      */
+ #define R_POEG0GD_POEG0G1_D9ERR0ST_Msk    (0x200UL)      /*!< D9ERR0ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D0ERR1ST_Pos    (16UL)         /*!< D0ERR1ST (Bit 16)                                     */
+ #define R_POEG0GD_POEG0G1_D0ERR1ST_Msk    (0x10000UL)    /*!< D0ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D1ERR1ST_Pos    (17UL)         /*!< D1ERR1ST (Bit 17)                                     */
+ #define R_POEG0GD_POEG0G1_D1ERR1ST_Msk    (0x20000UL)    /*!< D1ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D2ERR1ST_Pos    (18UL)         /*!< D2ERR1ST (Bit 18)                                     */
+ #define R_POEG0GD_POEG0G1_D2ERR1ST_Msk    (0x40000UL)    /*!< D2ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D3ERR1ST_Pos    (19UL)         /*!< D3ERR1ST (Bit 19)                                     */
+ #define R_POEG0GD_POEG0G1_D3ERR1ST_Msk    (0x80000UL)    /*!< D3ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D4ERR1ST_Pos    (20UL)         /*!< D4ERR1ST (Bit 20)                                     */
+ #define R_POEG0GD_POEG0G1_D4ERR1ST_Msk    (0x100000UL)   /*!< D4ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D5ERR1ST_Pos    (21UL)         /*!< D5ERR1ST (Bit 21)                                     */
+ #define R_POEG0GD_POEG0G1_D5ERR1ST_Msk    (0x200000UL)   /*!< D5ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D6ERR1ST_Pos    (22UL)         /*!< D6ERR1ST (Bit 22)                                     */
+ #define R_POEG0GD_POEG0G1_D6ERR1ST_Msk    (0x400000UL)   /*!< D6ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D7ERR1ST_Pos    (23UL)         /*!< D7ERR1ST (Bit 23)                                     */
+ #define R_POEG0GD_POEG0G1_D7ERR1ST_Msk    (0x800000UL)   /*!< D7ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D8ERR1ST_Pos    (24UL)         /*!< D8ERR1ST (Bit 24)                                     */
+ #define R_POEG0GD_POEG0G1_D8ERR1ST_Msk    (0x1000000UL)  /*!< D8ERR1ST (Bitfield-Mask: 0x01)                        */
+ #define R_POEG0GD_POEG0G1_D9ERR1ST_Pos    (25UL)         /*!< D9ERR1ST (Bit 25)                                     */
+ #define R_POEG0GD_POEG0G1_D9ERR1ST_Msk    (0x2000000UL)  /*!< D9ERR1ST (Bitfield-Mask: 0x01)                        */
 /* =======================================================  POEG0GD2  ======================================================== */
- #define R_POEG0_POEG0GD2_D0ERR0E_Pos     (0UL)          /*!< D0ERR0E (Bit 0)                                       */
- #define R_POEG0_POEG0GD2_D0ERR0E_Msk     (0x1UL)        /*!< D0ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D1ERR0E_Pos     (1UL)          /*!< D1ERR0E (Bit 1)                                       */
- #define R_POEG0_POEG0GD2_D1ERR0E_Msk     (0x2UL)        /*!< D1ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D2ERR0E_Pos     (2UL)          /*!< D2ERR0E (Bit 2)                                       */
- #define R_POEG0_POEG0GD2_D2ERR0E_Msk     (0x4UL)        /*!< D2ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D3ERR0E_Pos     (3UL)          /*!< D3ERR0E (Bit 3)                                       */
- #define R_POEG0_POEG0GD2_D3ERR0E_Msk     (0x8UL)        /*!< D3ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D4ERR0E_Pos     (4UL)          /*!< D4ERR0E (Bit 4)                                       */
- #define R_POEG0_POEG0GD2_D4ERR0E_Msk     (0x10UL)       /*!< D4ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D5ERR0E_Pos     (5UL)          /*!< D5ERR0E (Bit 5)                                       */
- #define R_POEG0_POEG0GD2_D5ERR0E_Msk     (0x20UL)       /*!< D5ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D6ERR0E_Pos     (6UL)          /*!< D6ERR0E (Bit 6)                                       */
- #define R_POEG0_POEG0GD2_D6ERR0E_Msk     (0x40UL)       /*!< D6ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D7ERR0E_Pos     (7UL)          /*!< D7ERR0E (Bit 7)                                       */
- #define R_POEG0_POEG0GD2_D7ERR0E_Msk     (0x80UL)       /*!< D7ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D8ERR0E_Pos     (8UL)          /*!< D8ERR0E (Bit 8)                                       */
- #define R_POEG0_POEG0GD2_D8ERR0E_Msk     (0x100UL)      /*!< D8ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D9ERR0E_Pos     (9UL)          /*!< D9ERR0E (Bit 9)                                       */
- #define R_POEG0_POEG0GD2_D9ERR0E_Msk     (0x200UL)      /*!< D9ERR0E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D0ERR1E_Pos     (16UL)         /*!< D0ERR1E (Bit 16)                                      */
- #define R_POEG0_POEG0GD2_D0ERR1E_Msk     (0x10000UL)    /*!< D0ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D1ERR1E_Pos     (17UL)         /*!< D1ERR1E (Bit 17)                                      */
- #define R_POEG0_POEG0GD2_D1ERR1E_Msk     (0x20000UL)    /*!< D1ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D2ERR1E_Pos     (18UL)         /*!< D2ERR1E (Bit 18)                                      */
- #define R_POEG0_POEG0GD2_D2ERR1E_Msk     (0x40000UL)    /*!< D2ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D3ERR1E_Pos     (19UL)         /*!< D3ERR1E (Bit 19)                                      */
- #define R_POEG0_POEG0GD2_D3ERR1E_Msk     (0x80000UL)    /*!< D3ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D4ERR1E_Pos     (20UL)         /*!< D4ERR1E (Bit 20)                                      */
- #define R_POEG0_POEG0GD2_D4ERR1E_Msk     (0x100000UL)   /*!< D4ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D5ERR1E_Pos     (21UL)         /*!< D5ERR1E (Bit 21)                                      */
- #define R_POEG0_POEG0GD2_D5ERR1E_Msk     (0x200000UL)   /*!< D5ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D6ERR1E_Pos     (22UL)         /*!< D6ERR1E (Bit 22)                                      */
- #define R_POEG0_POEG0GD2_D6ERR1E_Msk     (0x400000UL)   /*!< D6ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D7ERR1E_Pos     (23UL)         /*!< D7ERR1E (Bit 23)                                      */
- #define R_POEG0_POEG0GD2_D7ERR1E_Msk     (0x800000UL)   /*!< D7ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D8ERR1E_Pos     (24UL)         /*!< D8ERR1E (Bit 24)                                      */
- #define R_POEG0_POEG0GD2_D8ERR1E_Msk     (0x1000000UL)  /*!< D8ERR1E (Bitfield-Mask: 0x01)                         */
- #define R_POEG0_POEG0GD2_D9ERR1E_Pos     (25UL)         /*!< D9ERR1E (Bit 25)                                      */
- #define R_POEG0_POEG0GD2_D9ERR1E_Msk     (0x2000000UL)  /*!< D9ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D0ERR0E_Pos     (0UL)          /*!< D0ERR0E (Bit 0)                                       */
+ #define R_POEG0GD_POEG0G2_D0ERR0E_Msk     (0x1UL)        /*!< D0ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D1ERR0E_Pos     (1UL)          /*!< D1ERR0E (Bit 1)                                       */
+ #define R_POEG0GD_POEG0G2_D1ERR0E_Msk     (0x2UL)        /*!< D1ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D2ERR0E_Pos     (2UL)          /*!< D2ERR0E (Bit 2)                                       */
+ #define R_POEG0GD_POEG0G2_D2ERR0E_Msk     (0x4UL)        /*!< D2ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D3ERR0E_Pos     (3UL)          /*!< D3ERR0E (Bit 3)                                       */
+ #define R_POEG0GD_POEG0G2_D3ERR0E_Msk     (0x8UL)        /*!< D3ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D4ERR0E_Pos     (4UL)          /*!< D4ERR0E (Bit 4)                                       */
+ #define R_POEG0GD_POEG0G2_D4ERR0E_Msk     (0x10UL)       /*!< D4ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D5ERR0E_Pos     (5UL)          /*!< D5ERR0E (Bit 5)                                       */
+ #define R_POEG0GD_POEG0G2_D5ERR0E_Msk     (0x20UL)       /*!< D5ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D6ERR0E_Pos     (6UL)          /*!< D6ERR0E (Bit 6)                                       */
+ #define R_POEG0GD_POEG0G2_D6ERR0E_Msk     (0x40UL)       /*!< D6ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D7ERR0E_Pos     (7UL)          /*!< D7ERR0E (Bit 7)                                       */
+ #define R_POEG0GD_POEG0G2_D7ERR0E_Msk     (0x80UL)       /*!< D7ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D8ERR0E_Pos     (8UL)          /*!< D8ERR0E (Bit 8)                                       */
+ #define R_POEG0GD_POEG0G2_D8ERR0E_Msk     (0x100UL)      /*!< D8ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D9ERR0E_Pos     (9UL)          /*!< D9ERR0E (Bit 9)                                       */
+ #define R_POEG0GD_POEG0G2_D9ERR0E_Msk     (0x200UL)      /*!< D9ERR0E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D0ERR1E_Pos     (16UL)         /*!< D0ERR1E (Bit 16)                                      */
+ #define R_POEG0GD_POEG0G2_D0ERR1E_Msk     (0x10000UL)    /*!< D0ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D1ERR1E_Pos     (17UL)         /*!< D1ERR1E (Bit 17)                                      */
+ #define R_POEG0GD_POEG0G2_D1ERR1E_Msk     (0x20000UL)    /*!< D1ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D2ERR1E_Pos     (18UL)         /*!< D2ERR1E (Bit 18)                                      */
+ #define R_POEG0GD_POEG0G2_D2ERR1E_Msk     (0x40000UL)    /*!< D2ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D3ERR1E_Pos     (19UL)         /*!< D3ERR1E (Bit 19)                                      */
+ #define R_POEG0GD_POEG0G2_D3ERR1E_Msk     (0x80000UL)    /*!< D3ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D4ERR1E_Pos     (20UL)         /*!< D4ERR1E (Bit 20)                                      */
+ #define R_POEG0GD_POEG0G2_D4ERR1E_Msk     (0x100000UL)   /*!< D4ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D5ERR1E_Pos     (21UL)         /*!< D5ERR1E (Bit 21)                                      */
+ #define R_POEG0GD_POEG0G2_D5ERR1E_Msk     (0x200000UL)   /*!< D5ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D6ERR1E_Pos     (22UL)         /*!< D6ERR1E (Bit 22)                                      */
+ #define R_POEG0GD_POEG0G2_D6ERR1E_Msk     (0x400000UL)   /*!< D6ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D7ERR1E_Pos     (23UL)         /*!< D7ERR1E (Bit 23)                                      */
+ #define R_POEG0GD_POEG0G2_D7ERR1E_Msk     (0x800000UL)   /*!< D7ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D8ERR1E_Pos     (24UL)         /*!< D8ERR1E (Bit 24)                                      */
+ #define R_POEG0GD_POEG0G2_D8ERR1E_Msk     (0x1000000UL)  /*!< D8ERR1E (Bitfield-Mask: 0x01)                         */
+ #define R_POEG0GD_POEG0G2_D9ERR1E_Pos     (25UL)         /*!< D9ERR1E (Bit 25)                                      */
+ #define R_POEG0GD_POEG0G2_D9ERR1E_Msk     (0x2000000UL)  /*!< D9ERR1E (Bitfield-Mask: 0x01)                         */
 
 /* =========================================================================================================================== */
 /* ================                                         R_DSMIF0                                          ================ */
@@ -87768,8 +87567,8 @@ typedef struct                                                     /*!< (@ 0x921
  #define R_PCIE0_PCI_RC_INTTABLE_MSG_INT_Msk                                     (0x100UL)      /*!< MSG_INT (Bitfield-Mask: 0x01)                         */
  #define R_PCIE0_PCI_RC_INTTABLE_PCIE_EVT_INT_Pos                                (9UL)          /*!< PCIE_EVT_INT (Bit 9)                                  */
  #define R_PCIE0_PCI_RC_INTTABLE_PCIE_EVT_INT_Msk                                (0x200UL)      /*!< PCIE_EVT_INT (Bitfield-Mask: 0x01)                    */
- #define R_PCIE0_PCI_RC_INTTABLE_AXI_ERR_IN_Pos                                  (10UL)         /*!< AXI_ERR_IN (Bit 10)                                   */
- #define R_PCIE0_PCI_RC_INTTABLE_AXI_ERR_IN_Msk                                  (0x400UL)      /*!< AXI_ERR_IN (Bitfield-Mask: 0x01)                      */
+ #define R_PCIE0_PCI_RC_INTTABLE_AXI_ERR_INT_Pos                                 (10UL)         /*!< AXI_ERR_INT (Bit 10)                                  */
+ #define R_PCIE0_PCI_RC_INTTABLE_AXI_ERR_INT_Msk                                 (0x400UL)      /*!< AXI_ERR_INT (Bitfield-Mask: 0x01)                     */
  #define R_PCIE0_PCI_RC_INTTABLE_INT_LINK_EQUALIZATION_REQUEST_Pos               (15UL)         /*!< INT_LINK_EQUALIZATION_REQUEST (Bit 15)           */
  #define R_PCIE0_PCI_RC_INTTABLE_INT_LINK_EQUALIZATION_REQUEST_Msk               (0x8000UL)     /*!< INT_LINK_EQUALIZATION_REQUEST (Bitfield-Mask: 0x01) */
 /* =====================================================  PCI_EP_PEIE0  ====================================================== */
@@ -87807,8 +87606,8 @@ typedef struct                                                     /*!< (@ 0x921
  #define R_PCIE0_PCI_RC_PEIE0_UI_LINK_WIDTH_CHANGE_DONE_EN_Pos                   (30UL)         /*!< UI_LINK_WIDTH_CHANGE_DONE_EN (Bit 30)                */
  #define R_PCIE0_PCI_RC_PEIE0_UI_LINK_WIDTH_CHANGE_DONE_EN_Msk                   (0x40000000UL) /*!< UI_LINK_WIDTH_CHANGE_DONE_EN (Bitfield-Mask: 0x01) */
 /* =====================================================  PCI_EP_PEIS0  ====================================================== */
- #define R_PCIE0_PCI_EP_PEIS0_DLUDEN_Pos                                         (9UL)          /*!< DLUDEN (Bit 9)                                        */
- #define R_PCIE0_PCI_EP_PEIS0_DLUDEN_Msk                                         (0x200UL)      /*!< DLUDEN (Bitfield-Mask: 0x01)                          */
+ #define R_PCIE0_PCI_EP_PEIS0_DLUD_Pos                                           (9UL)          /*!< DLUD (Bit 9)                                          */
+ #define R_PCIE0_PCI_EP_PEIS0_DLUD_Msk                                           (0x200UL)      /*!< DLUD (Bitfield-Mask: 0x01)                            */
  #define R_PCIE0_PCI_EP_PEIS0_ASPML1_Pos                                         (10UL)         /*!< ASPML1 (Bit 10)                                       */
  #define R_PCIE0_PCI_EP_PEIS0_ASPML1_Msk                                         (0x400UL)      /*!< ASPML1 (Bitfield-Mask: 0x01)                          */
  #define R_PCIE0_PCI_EP_PEIS0_RX_DLLP_PM_ENTER_L23_Pos                           (12UL)         /*!< RX_DLLP_PM_ENTER_L23 (Bit 12)                         */
@@ -87826,8 +87625,8 @@ typedef struct                                                     /*!< (@ 0x921
  #define R_PCIE0_PCI_EP_PEIS0_UI_LINK_WIDTH_CHANGE_DONE_Pos                      (30UL)         /*!< UI_LINK_WIDTH_CHANGE_DONE (Bit 30)                    */
  #define R_PCIE0_PCI_EP_PEIS0_UI_LINK_WIDTH_CHANGE_DONE_Msk                      (0x40000000UL) /*!< UI_LINK_WIDTH_CHANGE_DONE (Bitfield-Mask: 0x01) */
 /* =====================================================  PCI_RC_PEIS0  ====================================================== */
- #define R_PCIE0_PCI_RC_PEIS0_DLUDEN_Pos                                         (9UL)          /*!< DLUDEN (Bit 9)                                        */
- #define R_PCIE0_PCI_RC_PEIS0_DLUDEN_Msk                                         (0x200UL)      /*!< DLUDEN (Bitfield-Mask: 0x01)                          */
+ #define R_PCIE0_PCI_RC_PEIS0_DLUD_Pos                                           (9UL)          /*!< DLUD (Bit 9)                                          */
+ #define R_PCIE0_PCI_RC_PEIS0_DLUD_Msk                                           (0x200UL)      /*!< DLUD (Bitfield-Mask: 0x01)                            */
  #define R_PCIE0_PCI_RC_PEIS0_ASPML1R_Pos                                        (10UL)         /*!< ASPML1R (Bit 10)                                      */
  #define R_PCIE0_PCI_RC_PEIS0_ASPML1R_Msk                                        (0x400UL)      /*!< ASPML1R (Bitfield-Mask: 0x01)                         */
  #define R_PCIE0_PCI_RC_PEIS0_RX_DLLP_PM_ENTER_L23_Pos                           (12UL)         /*!< RX_DLLP_PM_ENTER_L23 (Bit 12)                         */
@@ -87953,6 +87752,8 @@ typedef struct                                                     /*!< (@ 0x921
  #define R_PCIE0_PCI_EP_PEIS2_LTR_MECHANISM_Pos                                  (16UL)         /*!< LTR_MECHANISM (Bit 16)                                */
  #define R_PCIE0_PCI_EP_PEIS2_LTR_MECHANISM_Msk                                  (0x10000UL)    /*!< LTR_MECHANISM (Bitfield-Mask: 0x01)                   */
 /* ======================================================  PCI_EP_PERM  ====================================================== */
+ #define R_PCIE0_PCI_EP_PERM_STEALTH_ENABLE_Pos                                  (0UL)          /*!< STEALTH_ENABLE (Bit 0)                                */
+ #define R_PCIE0_PCI_EP_PERM_STEALTH_ENABLE_Msk                                  (0x1UL)        /*!< STEALTH_ENABLE (Bitfield-Mask: 0x01)                  */
  #define R_PCIE0_PCI_EP_PERM_PHY_REG_CLK_EN_Pos                                  (1UL)          /*!< PHY_REG_CLK_EN (Bit 1)                                */
  #define R_PCIE0_PCI_EP_PERM_PHY_REG_CLK_EN_Msk                                  (0x2UL)        /*!< PHY_REG_CLK_EN (Bitfield-Mask: 0x01)                  */
 /* ======================================================  PCI_RC_PERM  ====================================================== */

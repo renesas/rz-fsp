@@ -170,6 +170,7 @@ struct st_xspi_ospi_extended_cfg
     xspi_ospi_io_voltage_t              io_voltage;                              ///< Voltage setting of xSPI IO domain
     xspi_ospi_byte_order_t              byte_order;                              ///< Byte order on external bus. Only applicable in 8D-8D-8D(OPI) mode.
     xspi_ospi_address_space_t const   * p_address_space;                         ///< Memory mapped address space settings
+    void * p_reg;                                                                ///< Register base address for specified channel
  #if XSPI_OSPI_CFG_DMAC_SUPPORT_ENABLE
     transfer_instance_t const * p_lower_lvl_transfer;                            ///< DMAC Transfer instance used for data transmission
  #endif
@@ -201,27 +202,27 @@ extern const spi_flash_api_t g_spi_flash_on_xspi_ospi;
 
 /** @endcond */
 
-fsp_err_t R_XSPI_OSPI_Open(spi_flash_ctrl_t * p_ctrl, spi_flash_cfg_t const * const p_cfg);
-fsp_err_t R_XSPI_OSPI_Close(spi_flash_ctrl_t * p_ctrl);
-fsp_err_t R_XSPI_OSPI_DirectWrite(spi_flash_ctrl_t    * p_ctrl,
-                                  uint8_t const * const p_src,
-                                  uint32_t const        bytes,
-                                  bool const            read_after_write);
-fsp_err_t R_XSPI_OSPI_DirectRead(spi_flash_ctrl_t * p_ctrl, uint8_t * const p_dest, uint32_t const bytes);
-fsp_err_t R_XSPI_OSPI_SpiProtocolSet(spi_flash_ctrl_t * p_ctrl, spi_flash_protocol_t spi_protocol);
-fsp_err_t R_XSPI_OSPI_XipEnter(spi_flash_ctrl_t * p_ctrl);
-fsp_err_t R_XSPI_OSPI_XipExit(spi_flash_ctrl_t * p_ctrl);
-fsp_err_t R_XSPI_OSPI_Write(spi_flash_ctrl_t    * p_ctrl,
-                            uint8_t const * const p_src,
-                            uint8_t * const       p_dest,
-                            uint32_t              byte_count);
-fsp_err_t R_XSPI_OSPI_Erase(spi_flash_ctrl_t * p_ctrl, uint8_t * const p_device_address, uint32_t byte_count);
-fsp_err_t R_XSPI_OSPI_StatusGet(spi_flash_ctrl_t * p_ctrl, spi_flash_status_t * const p_status);
-fsp_err_t R_XSPI_OSPI_BankSet(spi_flash_ctrl_t * p_ctrl, uint32_t bank);
-fsp_err_t R_XSPI_OSPI_DirectTransfer(spi_flash_ctrl_t                  * p_ctrl,
+fsp_err_t R_XSPI_OSPI_Open(spi_flash_ctrl_t * const p_ctrl, spi_flash_cfg_t const * const p_cfg);
+fsp_err_t R_XSPI_OSPI_DirectWrite(spi_flash_ctrl_t * const p_ctrl,
+                                  uint8_t const * const    p_src,
+                                  uint32_t const           bytes,
+                                  bool const               read_after_write);
+fsp_err_t R_XSPI_OSPI_DirectRead(spi_flash_ctrl_t * const p_ctrl, uint8_t * const p_dest, uint32_t const bytes);
+fsp_err_t R_XSPI_OSPI_DirectTransfer(spi_flash_ctrl_t * const            p_ctrl,
                                      spi_flash_direct_transfer_t * const p_transfer,
                                      spi_flash_direct_transfer_dir_t     direction);
-fsp_err_t R_XSPI_OSPI_AutoCalibrate(spi_flash_ctrl_t * p_ctrl);
+fsp_err_t R_XSPI_OSPI_XipEnter(spi_flash_ctrl_t * const p_ctrl);
+fsp_err_t R_XSPI_OSPI_XipExit(spi_flash_ctrl_t * const p_ctrl);
+fsp_err_t R_XSPI_OSPI_Write(spi_flash_ctrl_t * const p_ctrl,
+                            uint8_t const * const    p_src,
+                            uint8_t * const          p_dest,
+                            uint32_t                 byte_count);
+fsp_err_t R_XSPI_OSPI_Erase(spi_flash_ctrl_t * const p_ctrl, uint8_t * const p_device_address, uint32_t byte_count);
+fsp_err_t R_XSPI_OSPI_StatusGet(spi_flash_ctrl_t * const p_ctrl, spi_flash_status_t * const p_status);
+fsp_err_t R_XSPI_OSPI_BankSet(spi_flash_ctrl_t * const p_ctrl, uint32_t bank);
+fsp_err_t R_XSPI_OSPI_SpiProtocolSet(spi_flash_ctrl_t * const p_ctrl, spi_flash_protocol_t spi_protocol);
+fsp_err_t R_XSPI_OSPI_AutoCalibrate(spi_flash_ctrl_t * const p_ctrl);
+fsp_err_t R_XSPI_OSPI_Close(spi_flash_ctrl_t * const p_ctrl);
 
 /*******************************************************************************************************************//**
  * @} (end defgroup XSPI_OSPI)

@@ -466,9 +466,6 @@ static void r_cru_mipi_dphy_set (cru_cfg_t const * const p_cfg)
     /* skew adjustment setting */
     R_CRU->CSIDPHYSKW0 = CSI2_DPHYSKW0;
 
-    /* D-PHY control setting */
-    R_CRU->CSIDPHYCTRL0_b.CAL_EN_HSRX_OFS = 1;
-
     R_CRU->CSIDPHYCTRL0_b.EN_BGR = 1;
     R_BSP_SoftwareDelay(MICROSEC_WAIT_20, BSP_DELAY_UNITS_MICROSECONDS);
 
@@ -571,9 +568,6 @@ static void r_cru_axi_set (cru_cfg_t const * const p_cfg)
     /* FIFO control setting for image data */
     R_CRU->AMnFIFO_b.FIFOOVFREC = 1;
 
-    /* AXI Master BID check setting */
-    R_CRU->AMnAXIBID_b.BIDCHK = 1;
-
     /* AXI Master transfer stop setting */
     R_CRU->AMnAXISTP_b.AXI_STOP = 0;
 
@@ -613,11 +607,8 @@ static void r_cru_axi_set (cru_cfg_t const * const p_cfg)
         /* Statistics AXI Resume Transfer Control */
         R_CRU->AMnSDFIFOTRST_b.SDAXI_TRANS_START = 0;
 
-        /* Statistics AXI BID check */
-        R_CRU->AMnSDAXIBID_b.SDBIDCHK = 1;
-
         /* Statistics AXI Stop transfer */
-        R_CRU->AMnSDAXISTP_b.SDAXI_STOP = 0;
+        R_CRU->AMnSDAXISTP_b.SDAXISTOP = 0;
     }
     else
     {
@@ -780,9 +771,6 @@ static void r_cru_image_processing_set (cru_cfg_t const * const p_cfg)
     /* select offset binary of U and V */
     R_CRU->ICnMC_b.IBINSEL = 0;
 
-    /* setting RGB Extension */
-    R_CRU->ICnMC_b.DES0 = pextend->rgb_bit_extension & CAST_TO_UINT1;
-
     /** Linear Matrix processing settings */
     if ((0 == R_CRU->ICnMC_b.DEMTHR) && (0 == R_CRU->ICnMC_b.LMXTHR))
     {
@@ -825,9 +813,7 @@ static void r_cru_image_processing_set (cru_cfg_t const * const p_cfg)
     {
         R_CRU->ICnYCCR3_b.YCLCEN   = 1;
         R_CRU->ICnCBCCR3_b.CBCLCEN = 1;
-        R_CRU->ICnCBCCR3_b.CBEXPEN = 1;
         R_CRU->ICnCRCCR3_b.CRCLCEN = 1;
-        R_CRU->ICnCRCCR3_b.CREXPEN = 1;
     }
 
     /* Alpha value setting in ARGB format */
@@ -934,7 +920,7 @@ static void r_cru_stop_imageprocessing (void)
     R_CRU->AMnAXISTP_b.AXI_STOP = 0;
 
     /* Stop processing Statistics data */
-    if (0 == R_CRU->AMnSDAXISTPACK_b.SDAXI_STOP_ACK)
+    if (0 == R_CRU->AMnSDAXISTPACK_b.SDAXISTOPACK)
     {
         while (R_CRU->AMnSDFIFOPNTR_b.SDFIFORPNTR != R_CRU->AMnSDFIFOPNTR_b.SDFIFOWPNTR)
         {
@@ -944,10 +930,10 @@ static void r_cru_stop_imageprocessing (void)
         }
 
         /* Request the AXI bus to stop */
-        R_CRU->AMnSDAXISTP_b.SDAXI_STOP = 1;
+        R_CRU->AMnSDAXISTP_b.SDAXISTOP = 1;
 
         /* Check AXi bus stopped */
-        while (0 == R_CRU->AMnSDAXISTPACK_b.SDAXI_STOP_ACK)
+        while (0 == R_CRU->AMnSDAXISTPACK_b.SDAXISTOPACK)
         {
             /*
              * No operation
@@ -955,7 +941,7 @@ static void r_cru_stop_imageprocessing (void)
         }
 
         /* Cancel the AXI bus stop request */
-        R_CRU->AMnSDAXISTP_b.SDAXI_STOP = 0;
+        R_CRU->AMnSDAXISTP_b.SDAXISTOP = 0;
     }
 
     /* Reset the CRU */

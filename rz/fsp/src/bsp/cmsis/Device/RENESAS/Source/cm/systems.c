@@ -126,7 +126,7 @@ void SystemInit_S (void)
 /** @cond DOXYGEN_IGNORE_ATTRIBUTE */
 __attribute__((naked))
 
-/** @endcond DOXYGEN_IGNORE_ATTRIBUTE */
+/** @endcond */
 
 /*******************************************************************************************************************//**
  * In the Cortex-M33 CPU core of this device, the secure vector address must be set to SYS_CM33_CFG2
@@ -169,7 +169,7 @@ static void warm_reset_sub (void)
 /** @cond DOXYGEN_IGNORE_ATTRIBUTE */
 __attribute__((naked))
 
-/** @endcond DOXYGEN_IGNORE_ATTRIBUTE */
+/** @endcond */
 
 /*******************************************************************************************************************//**
  * Entry function when debugging RAM load using a debugger

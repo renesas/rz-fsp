@@ -59,7 +59,7 @@
 
 /* BSP DDR Includes. */
  #if BSP_FEATURE_DDR_SUPPORTED
-  #include "../../src/bsp/mcu/all/bsp_ddr.h"
+  #include "../../src/bsp/mcu/rzn2h/bsp_ddr.h"
  #endif
 
  #if BSP_CFG_ESD_BOOT || BSP_CFG_EMMC_BOOT

@@ -11,18 +11,18 @@
  *********************************************************************************************************************/
 
 #ifndef BSP_DMAC_H
-#define BSP_DMAC_H
+ #define BSP_DMAC_H
 
 /**********************************************************************************************************************
  * Macro definitions
  *********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZA
 {
-#endif
-#endif
+  #endif
+ #endif
 
 /**********************************************************************************************************************
  * @addtogroup RZA_BSP_MPU_RZA3UL
@@ -40,6 +40,10 @@ namespace RZA
 /**********************************************************************************************************************
  * Exported global functions (to be accessed by other files)
  *********************************************************************************************************************/
+
+ #define R_BSP_DMAC_EXTERNAL_OUTPUT_ACTIVE_LEVEL_SET(unit, channel, ack_active_level, tend_active_level) \
+    { /* No clearing required for this device. */;                                                       \
+    }                                                                                                    \
 
 typedef enum e_dmac_trigger_event
 {
@@ -128,12 +132,22 @@ typedef enum e_dmac_trigger_event
     DMAC_TRIGGER_EVENT_CANFD_COM_DMA1   = 739,
 } dmac_trigger_event_t;
 
+typedef enum e_dmac_external_input_pin
+{
+    DMAC_EXTERNAL_INPUT_PIN_NO_INPUT = 0x7F
+} dmac_external_input_pin_t;
+
+typedef enum e_dmac_external_output_pin
+{
+    DMAC_EXTERNAL_OUTPUT_PIN_NO_OUTPUT = 0x7F
+} dmac_external_output_pin_t;
+
 /** @} (end addtogroup BSP_MPU_RZA3UL) */
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
-#endif
-#endif
+  #endif
+ #endif
 
 #endif                                 /* BSP_DMAC_H */

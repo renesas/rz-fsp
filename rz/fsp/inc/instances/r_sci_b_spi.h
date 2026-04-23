@@ -71,6 +71,7 @@ struct st_sci_b_spi_extended_cfg
     sci_b_spi_clock_source_t clock_source;
 
     sci_b_spi_rx_sampling_delay_t rx_sampling_delay; ///< Receive sampling timing adjustment
+    void                        * p_reg;             ///< Register base address for specified channel
 };
 
 /** SCI SPI extended configuration. Please refer to the struct st_sci_b_spi_extended_cfg. */

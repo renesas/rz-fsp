@@ -8,9 +8,6 @@
  * Includes
  **********************************************************************************************************************/
 #include "r_riic_master.h"
-#if RIIC_MASTER_CFG_DMAC_B_ENABLE
- #include "r_dmac_b.h"
-#endif
 
 /***********************************************************************************************************************
  * Macro definitions
@@ -144,36 +141,6 @@ static fsp_err_t iic_master_transfer_configure(transfer_instance_t const * p_tra
  * Private global variables
  **********************************************************************************************************************/
 
-/* IIC base address */
-static const uint32_t volatile * p_iic_base_address[BSP_FEATURE_IIC_MAX_CHANNEL] =
-{
-    (uint32_t *) R_RIIC0,
-#if BSP_FEATURE_IIC_MAX_CHANNEL > 1U
-    (uint32_t *) R_RIIC1,
- #if BSP_FEATURE_IIC_MAX_CHANNEL > 2U
-    (uint32_t *) R_RIIC2,
-  #if BSP_FEATURE_IIC_MAX_CHANNEL > 3U
-    (uint32_t *) R_RIIC3,
-   #if BSP_FEATURE_IIC_MAX_CHANNEL > 4U
-    (uint32_t *) R_RIIC4,
-    #if BSP_FEATURE_IIC_MAX_CHANNEL > 5U
-    (uint32_t *) R_RIIC5,
-     #if BSP_FEATURE_IIC_MAX_CHANNEL > 6U
-    (uint32_t *) R_RIIC6,
-      #if BSP_FEATURE_IIC_MAX_CHANNEL > 7U
-    (uint32_t *) R_RIIC7,
-       #if BSP_FEATURE_IIC_MAX_CHANNEL > 8U
-    (uint32_t *) R_RIIC8,
-       #endif
-      #endif
-     #endif
-    #endif
-   #endif
-  #endif
- #endif
-#endif
-};
-
 /***********************************************************************************************************************
  * Global variables
  **********************************************************************************************************************/
@@ -192,10 +159,10 @@ i2c_master_api_t const g_i2c_master_on_iic =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -230,6 +197,7 @@ fsp_err_t R_RIIC_MASTER_Open (i2c_master_ctrl_t * const p_api_ctrl, i2c_master_c
 
     riic_master_extended_cfg_t * p_extend = (riic_master_extended_cfg_t *) p_cfg->p_extend;
     FSP_ASSERT(p_extend != NULL);
+    FSP_ASSERT(NULL != p_extend->p_reg);
     FSP_ASSERT(p_cfg->rxi_irq >= (IRQn_Type) 0);
     FSP_ASSERT(p_cfg->txi_irq >= (IRQn_Type) 0);
     FSP_ASSERT(p_cfg->tei_irq >= (IRQn_Type) 0);
@@ -241,10 +209,12 @@ fsp_err_t R_RIIC_MASTER_Open (i2c_master_ctrl_t * const p_api_ctrl, i2c_master_c
     FSP_ERROR_RETURN(IIC_MASTER_OPEN != p_ctrl->open, FSP_ERR_ALREADY_OPEN);
 
     FSP_ERROR_RETURN(BSP_FEATURE_IIC_VALID_CHANNEL_MASK & (1 << p_cfg->channel), FSP_ERR_IP_CHANNEL_NOT_PRESENT);
+#else
+    riic_master_extended_cfg_t * p_extend = (riic_master_extended_cfg_t *) p_cfg->p_extend;
 #endif
 
     /* Save register base address. */
-    p_ctrl->p_reg = (R_RIIC0_Type *) p_iic_base_address[p_cfg->channel];
+    p_ctrl->p_reg = (R_RIIC0_Type *) p_extend->p_reg;
 
     /* Record the pointer to the configuration structure for later use */
     p_ctrl->p_cfg             = p_cfg;
@@ -544,9 +514,9 @@ fsp_err_t R_RIIC_MASTER_Close (i2c_master_ctrl_t * const p_api_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************

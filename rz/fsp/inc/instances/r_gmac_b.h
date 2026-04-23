@@ -4,8 +4,8 @@
 * SPDX-License-Identifier: BSD-3-Clause
 */
 
-#ifndef R_ETHER_H
- #define R_ETHER_H
+#ifndef R_GMAC_B_H
+ #define R_GMAC_B_H
 
  #include "bsp_api.h"
 
@@ -25,15 +25,15 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
-namespace RZT
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
- * @addtogroup RZT_ETHER_B
+ * @addtogroup RZV_GMAC_B
  * @{
  **********************************************************************************************************************/
 
@@ -86,7 +86,8 @@ typedef enum e_gmac_b_phylink
     GMAC_B_PHYLINK_ENABLE  = 1         ///< Enable
 } gmac_b_phylink_t;
 
-typedef struct st_gmac_b_extend_cfg
+/** Extended configuration structure for GMAC_B. */
+struct st_gmac_b_extend_cfg
 {
     gmac_b_instance_descriptor_t * p_rx_descriptors;                            ///< Receive descriptor buffer pool
     gmac_b_instance_descriptor_t * p_tx_descriptors;                            ///< Transmit descriptor buffer pool
@@ -100,9 +101,14 @@ typedef struct st_gmac_b_extend_cfg
 
     uint8_t * p_mac_address1;                                                   ///< Pointer of MAC address 1
     uint8_t * p_mac_address2;                                                   ///< Pointer of MAC address 2
-} gmac_b_extend_cfg_t;
 
-/** ETHER control block. DO NOT INITIALIZE.  Initialization occurs when @ref RZT::ether_api_t::open is called. */
+    void * p_reg_gmac;                                                          ///< Base register of ethernet controller for this channel
+};
+
+/** Extended configuration structure for GMAC_B. Please refer to the struct st_gmac_b_extend_cfg. */
+typedef struct st_gmac_b_extend_cfg gmac_b_extend_cfg_t;
+
+/** ETHER control block. DO NOT INITIALIZE.  Initialization occurs when @ref RZV::ether_api_t::open is called. */
 struct st_gmac_b_instance_ctrl
 {
     uint32_t open;                            ///< Used to determine if the channel is configured
@@ -140,7 +146,7 @@ struct st_gmac_b_instance_ctrl
     void * p_context;
 };
 
-/** ETHER control block. DO NOT INITIALIZE.  Initialization occurs when @ref RZT::ether_api_t::open is called. Please refer to the struct st_gmac_b_instance_ctrl. */
+/** ETHER control block. DO NOT INITIALIZE.  Initialization occurs when @ref RZV::ether_api_t::open is called. Please refer to the struct st_gmac_b_instance_ctrl. */
 typedef struct st_gmac_b_instance_ctrl gmac_b_instance_ctrl_t;
 
 /** The "Pause Mask" used to create the PAUSE resolution table 28B-3 of the IEEE 802.3-2008 standard. */
@@ -244,15 +250,15 @@ fsp_err_t R_GMAC_B_CallbackSet(ether_ctrl_t * const          p_ctrl,
                                ether_callback_args_t * const p_callback_memory);
 
 /*******************************************************************************************************************//**
- * @} (end addtogroup ETHER_B)
+ * @} (end addtogroup RZV_GMAC_B)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER
 
-#endif                                 // R_ETHER_H
+#endif                                 // R_GMAC_B_H

@@ -84,18 +84,19 @@ FSP_HEADER
  #define RSIP_PRV_DKM_SUBTYPE_INVALID                (0x0)
  #define RSIP_PRV_DKM_SUBTYPE_SHA_256                (0x0)
  #define RSIP_PRV_DKM_SUBTYPE_SHA_384                (0x1)
- #define RSIP_PRV_DKM_SUBTYPE_SHA_NUM                (0x2)
+ #define RSIP_PRV_DKM_SUBTYPE_SHA_512                (0x2)
+ #define RSIP_PRV_DKM_SUBTYPE_SHA_NUM                (0x3)
  #define RSIP_PRV_DKM_SUBTYPE_HMAC_SHA256            (0x0)
  #define RSIP_PRV_DKM_SUBTYPE_HMAC_SHA384            (0x1)
  #define RSIP_PRV_DKM_SUBTYPE_HMAC_SHA512            (0x2)
  #define RSIP_PRV_DKM_SUBTYPE_HMAC_NUM               (0x3)
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @ingroup RZT_RENESAS_SECURITY_INTERFACES
@@ -1344,11 +1345,11 @@ typedef struct st_rsip_instance rsip_instance_t;
 /*******************************************************************************************************************//**
  * @} (end addtogroup RSIP_PROTECTED_API)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

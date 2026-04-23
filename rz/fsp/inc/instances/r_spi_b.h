@@ -19,12 +19,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZV_SPI_B
@@ -148,6 +148,7 @@ struct st_spi_b_extended_cfg
     uint8_t transmit_fifo_threshold;                   ///< Transmit FIFO threshold (0~15)
     uint8_t receive_fifo_threshold;                    ///< Receive FIFO threshold  (0~15)
     uint8_t receive_data_ready_detect_adjustment;      ///< Receive data ready detect timing (0~255 counts of operation clock)
+    void  * p_reg;                                     ///< Register base address for specified channel
 };
 
 /** Extended SPI interface configuration. Please refer to the struct st_spi_b_extended_cfg. */
@@ -220,11 +221,11 @@ fsp_err_t R_SPI_B_CallbackSet(spi_ctrl_t * const          p_api_ctrl,
  * @} (end ingroup SPI_B)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

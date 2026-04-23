@@ -227,10 +227,10 @@ const pci_api_t g_pci_on_pcie_ep =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -259,17 +259,21 @@ fsp_err_t R_PCIE_EP_Open (pci_ctrl_t * const p_ctrl, pci_cfg_t const * const p_c
     FSP_ERROR_RETURN(PCIE_EP_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
 #endif
 
+    pcie_ep_extended_cfg_t const * p_extend = (pcie_ep_extended_cfg_t const *) p_cfg->p_extend;
+
+#if PCIE_EP_CFG_PARAM_CHECKING_ENABLE
+    FSP_ASSERT(NULL != p_extend->p_reg);
+    FSP_ASSERT(NULL != p_extend->p_reg_spl);
+#endif
+
     /* Initialize control structure.  */
     p_instance_ctrl->p_cfg     = p_cfg;
     p_instance_ctrl->channel   = p_cfg->channel;
     p_instance_ctrl->function  = p_cfg->function;
-    p_instance_ctrl->p_reg     = (R_PCIE0_Type *) (R_PCIE0_BASE + (R_PCIE1_BASE - R_PCIE0_BASE) * p_cfg->channel);
+    p_instance_ctrl->p_reg     = (R_PCIE0_Type *) p_extend->p_reg;
     p_instance_ctrl->p_reg_phy = (R_PCIE_PHY_Type *) R_PCIE_PHY_BASE;
-    p_instance_ctrl->p_reg_spl =
-        (R_PCIE_SPL0_Type *) (R_PCIE_SPL0_BASE + (R_PCIE_SPL1_BASE - R_PCIE_SPL0_BASE) * p_cfg->channel);
+    p_instance_ctrl->p_reg_spl = (R_PCIE_SPL0_Type *) p_extend->p_reg_spl;
     p_instance_ctrl->p_reg_lnk = (R_PCIE_LNK_Type *) R_PCIE_LNK_BASE;
-
-    pcie_ep_extended_cfg_t const * p_extend = (pcie_ep_extended_cfg_t const *) p_instance_ctrl->p_cfg->p_extend;
 
     if (p_instance_ctrl->function == 0)
     {
@@ -943,9 +947,9 @@ fsp_err_t R_PCIE_EP_Close (pci_ctrl_t * const p_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -1192,6 +1196,9 @@ static void r_pcie_ep_interrupt_setup (pcie_ep_instance_ctrl_t * p_instance_ctrl
 
     /* Initialize PCIe Event Interrupt Status / Enable 0 Register. */
     p_instance_ctrl->p_reg->PCI_EP_PEIS0 = PCIE_EP_PEIS0_REG_SETTING_VALUE;
+
+    /* ASPML1REN bit should not be enabled in Endpoint mode, so clear it before writing. */
+    p_extend->event0_interrupts         &= (uint32_t) (~R_PCIE0_PCI_EP_PEIE0_ASPML1REN_Msk);
     p_instance_ctrl->p_reg->PCI_EP_PEIE0 = p_extend->event0_interrupts;
 
     /* Initialize PCIe Event Interrupt Status / Enable 1 Register. */

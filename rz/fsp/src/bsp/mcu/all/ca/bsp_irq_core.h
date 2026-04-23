@@ -5,7 +5,7 @@
 */
 
 #ifndef BSP_IRQ_CORE_H
-#define BSP_IRQ_CORE_H
+ #define BSP_IRQ_CORE_H
 
 /***********************************************************************************************************************
  * Includes   <System Includes> , "Project Includes"
@@ -17,50 +17,50 @@ FSP_HEADER
 /***********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
-#define BSP_GIC_NONMASK_ACCESS                 ((uint64_t) 0xFFFFFFFFFFFFFFFF)
-#define BSP_GIC_NONSHIFT_ACCESS                (0)
+ #define BSP_GIC_NONMASK_ACCESS                 ((uint64_t) 0xFFFFFFFFFFFFFFFF)
+ #define BSP_GIC_NONSHIFT_ACCESS                (0)
 
-#define BSP_EVENT_SGI_PPI_ARRAY_NUM            (2U)
-#define BSP_ICU_VECTOR_MAX_ENTRIES             (BSP_VECTOR_TABLE_MAX_ENTRIES)
-#define BSP_NON_SELECTABLE_ICFGR_MAX           (BSP_FEATURE_BSP_NON_SELECTABLE_INTERRUPT_EVENT_NUM / \
-                                                BSP_INTERRUPT_TYPE_OFFSET)
-#define BSP_EVENT_ARRAY_NUM                    (BSP_FEATURE_BSP_EVENT_NUM_MAX / BSP_INTERRUPT_TYPE_OFFSET + 1U)
+ #define BSP_EVENT_SGI_PPI_ARRAY_NUM            (2U)
+ #define BSP_ICU_VECTOR_MAX_ENTRIES             (BSP_VECTOR_TABLE_MAX_ENTRIES)
+ #define BSP_NON_SELECTABLE_ICFGR_MAX           (BSP_FEATURE_BSP_NON_SELECTABLE_INTERRUPT_EVENT_NUM / \
+                                                 BSP_INTERRUPT_TYPE_OFFSET)
+ #define BSP_EVENT_ARRAY_NUM                    (BSP_FEATURE_BSP_EVENT_NUM_MAX / BSP_INTERRUPT_TYPE_OFFSET + 1U)
 
-#define BSP_PRV_GIC_ROUTE_MASK                 (0x0000000000FFFFFF)
-#define BSP_PRV_GIC_ROUTE_LEVEL3_MASK          (0x00000000FF000000)
-#define BSP_PRV_GIC_ROUTE_SHIFT                (8)
+ #define BSP_PRV_GIC_ROUTE_MASK                 (0x0000000000FFFFFF)
+ #define BSP_PRV_GIC_ROUTE_LEVEL3_MASK          (0x00000000FF000000)
+ #define BSP_PRV_GIC_ROUTE_SHIFT                (8)
 
-#define BSP_PRV_GIC_SENSE_SHIFT                (1)
+ #define BSP_PRV_GIC_SENSE_SHIFT                (1)
 
-#define BSP_PRV_GIC_PRIORITY_MASK              (0xFF)
-#define BSP_PRV_GIC_PRIORITY_SHIFT             (3)
+ #define BSP_PRV_GIC_PRIORITY_MASK              (0xFF)
+ #define BSP_PRV_GIC_PRIORITY_SHIFT             (3)
 
-#define BSP_PRV_DAIF_BIT_D                     (1 << 3)
-#define BSP_PRV_DAIF_BIT_A                     (1 << 2)
-#define BSP_PRV_DAIF_BIT_I                     (1 << 1)
-#define BSP_PRV_DAIF_BIT_F                     (1 << 0)
-#define BSP_PRV_DAIF_BIT_ALL_EXCEPTION         (BSP_PRV_DAIF_BIT_D | \
-                                                BSP_PRV_DAIF_BIT_A | \
-                                                BSP_PRV_DAIF_BIT_I | \
-                                                BSP_PRV_DAIF_BIT_F)
+ #define BSP_PRV_DAIF_BIT_D                     (1 << 3)
+ #define BSP_PRV_DAIF_BIT_A                     (1 << 2)
+ #define BSP_PRV_DAIF_BIT_I                     (1 << 1)
+ #define BSP_PRV_DAIF_BIT_F                     (1 << 0)
+ #define BSP_PRV_DAIF_BIT_ALL_EXCEPTION         (BSP_PRV_DAIF_BIT_D | \
+                                                 BSP_PRV_DAIF_BIT_A | \
+                                                 BSP_PRV_DAIF_BIT_I | \
+                                                 BSP_PRV_DAIF_BIT_F)
 
-#if (0 == BSP_CFG_CORE_CA55)
- #define BSP_PRV_GICR_TARGET_INTREG_ADDRESS    (GICR0_TARGET0_INTREG)
- #define BSP_PRV_GICR_TARGET_IFREG_ADDRESS     (GICR0_TARGET0_IFREG)
+ #if (0 == BSP_CFG_CORE_CA55)
+  #define BSP_PRV_GICR_TARGET_INTREG_ADDRESS    (GICR0_TARGET0_INTREG)
+  #define BSP_PRV_GICR_TARGET_IFREG_ADDRESS     (GICR0_TARGET0_IFREG)
 
-#elif (1 == BSP_CFG_CORE_CA55)
- #define BSP_PRV_GICR_TARGET_INTREG_ADDRESS    (GICR0_TARGET1_INTREG)
- #define BSP_PRV_GICR_TARGET_IFREG_ADDRESS     (GICR0_TARGET1_IFREG)
+ #elif (1 == BSP_CFG_CORE_CA55)
+  #define BSP_PRV_GICR_TARGET_INTREG_ADDRESS    (GICR0_TARGET1_INTREG)
+  #define BSP_PRV_GICR_TARGET_IFREG_ADDRESS     (GICR0_TARGET1_IFREG)
 
-#elif (2 == BSP_CFG_CORE_CA55)
- #define BSP_PRV_GICR_TARGET_INTREG_ADDRESS    (GICR0_TARGET2_INTREG)
- #define BSP_PRV_GICR_TARGET_IFREG_ADDRESS     (GICR0_TARGET2_IFREG)
+ #elif (2 == BSP_CFG_CORE_CA55)
+  #define BSP_PRV_GICR_TARGET_INTREG_ADDRESS    (GICR0_TARGET2_INTREG)
+  #define BSP_PRV_GICR_TARGET_IFREG_ADDRESS     (GICR0_TARGET2_IFREG)
 
-#elif (3 == BSP_CFG_CORE_CA55)
- #define BSP_PRV_GICR_TARGET_INTREG_ADDRESS    (GICR0_TARGET3_INTREG)
- #define BSP_PRV_GICR_TARGET_IFREG_ADDRESS     (GICR0_TARGET3_IFREG)
+ #elif (3 == BSP_CFG_CORE_CA55)
+  #define BSP_PRV_GICR_TARGET_INTREG_ADDRESS    (GICR0_TARGET3_INTREG)
+  #define BSP_PRV_GICR_TARGET_IFREG_ADDRESS     (GICR0_TARGET3_IFREG)
 
-#endif
+ #endif
 
 /***********************************************************************************************************************
  * Typedef definitions
@@ -116,12 +116,12 @@ typedef enum
     BSP_GIC_IGROUPR_G1S  = (1UL << 1)
 } bsp_gic_igroupr_secure_t;
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
-#endif
-#endif
+  #endif
+ #endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_BSP_MCU
@@ -143,10 +143,10 @@ typedef void (* bsp_grp_irq_cb_t)(bsp_grp_irq_t irq);
  **********************************************************************************************************************/
 extern void * gp_renesas_isr_context[BSP_ICU_VECTOR_MAX_ENTRIES + BSP_CORTEX_VECTOR_TABLE_ENTRIES];
 
-#if (1 == BSP_FEATURE_BSP_IRQ_CR52_SEL_SUPPORTED)
+ #if (1 == BSP_FEATURE_BSP_IRQ_CR52_SEL_SUPPORTED)
 extern const uint32_t BSP_GICD_ICFGR_INIT[BSP_EVENT_ARRAY_NUM];
 extern const uint32_t BSP_GICR_SGI_PPI_ICFGR_INIT[BSP_EVENT_SGI_PPI_ARRAY_NUM];
-#endif
+ #endif
 
 /***********************************************************************************************************************
  * Exported global functions (to be accessed by other files)
@@ -212,11 +212,11 @@ uint32_t R_BSP_GICC_Get_IntIdGrp0(void);
 uint32_t R_BSP_GICC_Get_IntIdGrp1(void);
 
 /** @} (end addtogroup BSP_MCU) */
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
-#endif
-#endif
+  #endif
+ #endif
 
 /*******************************************************************************************************************//**
  * @brief      Sets the ISR context associated with the requested IRQ.
@@ -428,4 +428,4 @@ fsp_err_t R_BSP_GroupIrqWrite(bsp_grp_irq_t irq, void (* p_callback)(bsp_grp_irq
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER
 
-#endif                                 /* BSP_IRQ_CORE_H */
+#endif

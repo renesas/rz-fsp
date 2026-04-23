@@ -5,34 +5,34 @@
 */
 
 #ifndef BSP_COMMON_H
-#define BSP_COMMON_H
+ #define BSP_COMMON_H
 
 /***********************************************************************************************************************
  * Includes   <System Includes> , "Project Includes"
  **********************************************************************************************************************/
 
 /* C99 includes. */
-#include <stdint.h>
-#include <stddef.h>
-#include <stdbool.h>
-#include <assert.h>
-#include <string.h>
-#include <stdlib.h>
+ #include <stdint.h>
+ #include <stddef.h>
+ #include <stdbool.h>
+ #include <assert.h>
+ #include <string.h>
+ #include <stdlib.h>
 
 /* Different compiler support. */
-#include "../../inc/api/fsp_common_api.h"
-#include "bsp_compiler_support.h"
-#include "bsp_cfg.h"
+ #include "../../inc/api/fsp_common_api.h"
+ #include "bsp_compiler_support.h"
+ #include "bsp_cfg.h"
 
 /** Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
-#endif
-#endif
+  #endif
+ #endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_BSP_MCU
@@ -44,137 +44,138 @@ namespace RZT
  **********************************************************************************************************************/
 
 /** Used to signify that an ELC event is not able to be used as an interrupt. */
-#define BSP_IRQ_DISABLED                       (0xFFU)
+ #define BSP_IRQ_DISABLED                       (0xFFU)
 
 /* Vector Number offset */
-#define BSP_VECTOR_NUM_OFFSET                  (32)
-#define BSP_INTERRUPT_TYPE_OFFSET              (16U)
+ #define BSP_VECTOR_NUM_OFFSET                  (32)
+ #define BSP_INTERRUPT_TYPE_OFFSET              (16U)
 
-#define FSP_CONTEXT_SAVE
-#define FSP_CONTEXT_RESTORE
+ #define FSP_CONTEXT_SAVE
+ #define FSP_CONTEXT_RESTORE
 
-#define BSP_PRV_CPU_FREQ_1000_MHZ              (1000000000U) // CPU frequency is 1000 MHz
-#define BSP_PRV_CPU_FREQ_800_MHZ               (800000000U)  // CPU frequency is 800 MHz
-#define BSP_PRV_CPU_FREQ_600_MHZ               (600000000U)  // CPU frequency is 600 MHz
-#define BSP_PRV_CPU_FREQ_500_MHZ               (500000000U)  // CPU frequency is 500 MHz
+ #define BSP_PRV_CPU_FREQ_1000_MHZ              (1000000000U) // CPU frequency is 1000 MHz
+ #define BSP_PRV_CPU_FREQ_800_MHZ               (800000000U)  // CPU frequency is 800 MHz
+ #define BSP_PRV_CPU_FREQ_600_MHZ               (600000000U)  // CPU frequency is 600 MHz
+ #define BSP_PRV_CPU_FREQ_500_MHZ               (500000000U)  // CPU frequency is 500 MHz
 
-#define BSP_PRV_CA55CLK_FREQ_1200_MHZ          (1200000000U) // CA55CLK frequency is 1200 MHz
-#define BSP_PRV_CA55CLK_FREQ_600_MHZ           (600000000U)  // CA55CLK frequency is 600 MHz
+ #define BSP_PRV_CA55CLK_FREQ_1200_MHZ          (1200000000U) // CA55CLK frequency is 1200 MHz
+ #define BSP_PRV_CA55CLK_FREQ_600_MHZ           (600000000U)  // CA55CLK frequency is 600 MHz
 
-#define BSP_PRV_CA55SCLK_FREQ_1000_MHZ         (1000000000U) // CA55SCLK frequency is 500 MHz
-#define BSP_PRV_CA55SCLK_FREQ_500_MHZ          (500000000U)  // CA55SCLK frequency is 500 MHz
+ #define BSP_PRV_CA55SCLK_FREQ_1000_MHZ         (1000000000U) // CA55SCLK frequency is 1000 MHz
+ #define BSP_PRV_CA55SCLK_FREQ_500_MHZ          (500000000U)  // CA55SCLK frequency is 500 MHz
 
-#define BSP_PRV_ICLK_FREQ_200_MHZ              (200000000U)  // ICLK frequency is 200 MHz
-#define BSP_PRV_ICLK_FREQ_150_MHZ              (150000000U)  // ICLK frequency is 150 MHz
+ #define BSP_PRV_ICLK_FREQ_200_MHZ              (200000000U)  // ICLK frequency is 200 MHz
+ #define BSP_PRV_ICLK_FREQ_150_MHZ              (150000000U)  // ICLK frequency is 150 MHz
 
-#define BSP_PRV_PCLKAM_FREQ_200_MHz            (200000000U)  // PCLKAM frequency is 200 MHz
+ #define BSP_PRV_PCLKAM_FREQ_200_MHz            (200000000U)  // PCLKAM frequency is 200 MHz
 
-#define BSP_PRV_PCLKH_FREQ_250_MHZ             (250000000U)  // PCLKH frequency is 250 MHz
-#define BSP_PRV_PCLKH_FREQ_200_MHZ             (200000000U)  // PCLKH frequency is 200 MHz
-#define BSP_PRV_PCLKH_FREQ_150_MHZ             (150000000U)  // PCLKH frequency is 150 MHz
+ #define BSP_PRV_PCLKH_FREQ_250_MHZ             (250000000U)  // PCLKH frequency is 250 MHz
+ #define BSP_PRV_PCLKH_FREQ_200_MHZ             (200000000U)  // PCLKH frequency is 200 MHz
+ #define BSP_PRV_PCLKH_FREQ_150_MHZ             (150000000U)  // PCLKH frequency is 150 MHz
 
-#define BSP_PRV_PCLKM_FREQ_125_MHZ             (125000000U)  // PCLKM frequency is 125 MHz
-#define BSP_PRV_PCLKM_FREQ_100_MHZ             (100000000U)  // PCLKM frequency is 100 MHz
-#define BSP_PRV_PCLKM_FREQ_75_MHZ              (75000000U)   // PCLKM frequency is 750 MHz
+ #define BSP_PRV_PCLKM_FREQ_125_MHZ             (125000000U)  // PCLKM frequency is 125 MHz
+ #define BSP_PRV_PCLKM_FREQ_100_MHZ             (100000000U)  // PCLKM frequency is 100 MHz
+ #define BSP_PRV_PCLKM_FREQ_75_MHZ              (75000000U)   // PCLKM frequency is 750 MHz
 
-#define BSP_PRV_PCLKL_FREQ_62_5_MHZ            (62500000U)   // PCLKL frequency is 62.5 MHz
-#define BSP_PRV_PCLKL_FREQ_50_MHZ              (50000000U)   // PCLKL frequency is 50 MHz
-#define BSP_PRV_PCLKL_FREQ_37_5_MHZ            (37500000U)   // PCLKL frequency is 37.5 MHz
+ #define BSP_PRV_PCLKL_FREQ_62_5_MHZ            (62500000U)   // PCLKL frequency is 62.5 MHz
+ #define BSP_PRV_PCLKL_FREQ_50_MHZ              (50000000U)   // PCLKL frequency is 50 MHz
+ #define BSP_PRV_PCLKL_FREQ_37_5_MHZ            (37500000U)   // PCLKL frequency is 37.5 MHz
 
-#define BSP_PRV_PCLKADC_FREQ_25_MHZ            (25000000U)   // PCLKADC frequency is 25 MHz
-#define BSP_PRV_PCLKADC_FREQ_18_75_MHZ         (18750000U)   // PCLKADC frequency is 18.75 MHz
+ #define BSP_PRV_PCLKADC_FREQ_25_MHZ            (25000000U)   // PCLKADC frequency is 25 MHz
+ #define BSP_PRV_PCLKADC_FREQ_18_75_MHZ         (18750000U)   // PCLKADC frequency is 18.75 MHz
 
-#define BSP_PRV_PCLKGPTL_FREQ_500_MHZ          (500000000U)  // PCLKGPTL frequency is 500 MHz
-#define BSP_PRV_PCLKGPTL_FREQ_400_MHZ          (400000000U)  // PCLKGPTL frequency is 400 MHz
-#define BSP_PRV_PCLKGPTL_FREQ_300_MHZ          (300000000U)  // PCLKGPTL frequency is 300 MHz
+ #define BSP_PRV_PCLKGPTL_FREQ_500_MHZ          (500000000U)  // PCLKGPTL frequency is 500 MHz
+ #define BSP_PRV_PCLKGPTL_FREQ_400_MHZ          (400000000U)  // PCLKGPTL frequency is 400 MHz
+ #define BSP_PRV_PCLKGPTL_FREQ_300_MHZ          (300000000U)  // PCLKGPTL frequency is 300 MHz
 
-#define BSP_PRV_PCLKSCI_FREQ_75_MHZ            (75000000U)   // PCLKSCI frequency is 75 MHz
-#define BSP_PRV_PCLKSCI_FREQ_80_MHZ            (80000000U)   // PCLKSCI frequency is 80 MHz
-#define BSP_PRV_PCLKSCI_FREQ_96_MHZ            (96000000U)   // PCLKSCI frequency is 96 MHz
-#define BSP_PRV_PCLKSCI_FREQ_100_MHZ           (100000000U)  // PCLKSCI frequency is 100 MHz
+ #define BSP_PRV_PCLKSCI_FREQ_75_MHZ            (75000000U)   // PCLKSCI frequency is 75 MHz
+ #define BSP_PRV_PCLKSCI_FREQ_80_MHZ            (80000000U)   // PCLKSCI frequency is 80 MHz
+ #define BSP_PRV_PCLKSCI_FREQ_96_MHZ            (96000000U)   // PCLKSCI frequency is 96 MHz
+ #define BSP_PRV_PCLKSCI_FREQ_100_MHZ           (100000000U)  // PCLKSCI frequency is 100 MHz
 
-#define BSP_PRV_PCLKSPI_FREQ_75_MHZ            (75000000U)   // PCLKSPI frequency is 75 MHz
-#define BSP_PRV_PCLKSPI_FREQ_80_MHZ            (80000000U)   // PCLKSPI frequency is 80 MHz
-#define BSP_PRV_PCLKSPI_FREQ_96_MHZ            (96000000U)   // PCLKSPI frequency is 96 MHz
-#define BSP_PRV_PCLKSPI_FREQ_100_MHZ           (100000000U)  // PCLKSPI frequency is 100 MHz
+ #define BSP_PRV_PCLKSPI_FREQ_75_MHZ            (75000000U)   // PCLKSPI frequency is 75 MHz
+ #define BSP_PRV_PCLKSPI_FREQ_80_MHZ            (80000000U)   // PCLKSPI frequency is 80 MHz
+ #define BSP_PRV_PCLKSPI_FREQ_96_MHZ            (96000000U)   // PCLKSPI frequency is 96 MHz
+ #define BSP_PRV_PCLKSPI_FREQ_100_MHZ           (100000000U)  // PCLKSPI frequency is 100 MHz
 
-#define BSP_PRV_PCLKENCO_FREQ_20_MHZ           (20000000U)   // PCLKENCO frequency is 20 MHz
-#define BSP_PRV_PCLKENCO_FREQ_80_MHZ           (80000000U)   // PCLKENCO frequency is 80 MHz
+ #define BSP_PRV_PCLKENCO_FREQ_20_MHZ           (20000000U)   // PCLKENCO frequency is 20 MHz
+ #define BSP_PRV_PCLKENCO_FREQ_80_MHZ           (80000000U)   // PCLKENCO frequency is 80 MHz
 
-#define BSP_PRV_PCLKCAN_FREQ_80_MHZ            (80000000U)   // PCLKCAN frequency is 80 MHz
-#define BSP_PRV_PCLKCAN_FREQ_40_MHZ            (40000000U)   // PCLKCAN frequency is 40 MHz
+ #define BSP_PRV_PCLKCAN_FREQ_80_MHZ            (80000000U)   // PCLKCAN frequency is 80 MHz
+ #define BSP_PRV_PCLKCAN_FREQ_40_MHZ            (40000000U)   // PCLKCAN frequency is 40 MHz
 
-#define BSP_PRV_CKIO_FREQ_125_MHZ              (125000000U)  // CKIO frequency is 125 MHz
-#define BSP_PRV_CKIO_FREQ_100_MHZ              (100000000U)  // CKIO frequency is 100 MHz
-#define BSP_PRV_CKIO_FREQ_83_3_MHZ             (83333333U)   // CKIO frequency is 83.3 MHz
-#define BSP_PRV_CKIO_FREQ_75_MHZ               (75000000U)   // CKIO frequency is 75 MHz
-#define BSP_PRV_CKIO_FREQ_66_7_MHZ             (66666666U)   // CKIO frequency is 66.7 MHz
-#define BSP_PRV_CKIO_FREQ_62_5_MHZ             (62500000U)   // CKIO frequency is 62.5 MHz
-#define BSP_PRV_CKIO_FREQ_50_MHZ               (50000000U)   // CKIO frequency is 50 MHz
-#define BSP_PRV_CKIO_FREQ_41_7_MHZ             (41666666U)   // CKIO frequency is 41.6 MHz
-#define BSP_PRV_CKIO_FREQ_40_MHZ               (40000000U)   // CKIO frequency is 40 MHz
-#define BSP_PRV_CKIO_FREQ_37_5_MHZ             (37500000U)   // CKIO frequency is 37.5 MHz
-#define BSP_PRV_CKIO_FREQ_35_7_MHZ             (35714285U)   // CKIO frequency is 125 MHz
-#define BSP_PRV_CKIO_FREQ_33_3_MHZ             (33333333U)   // CKIO frequency is 33.3MHz
-#define BSP_PRV_CKIO_FREQ_31_25_MHZ            (31250000U)   // CKIO frequency is 31.25 MHz
-#define BSP_PRV_CKIO_FREQ_30_MHZ               (30000000U)   // CKIO frequency is 30 MHz
-#define BSP_PRV_CKIO_FREQ_28_6_MHZ             (28571428U)   // CKIO frequency is 28.6 MHz
-#define BSP_PRV_CKIO_FREQ_25_MHZ               (25000000U)   // CKIO frequency is 25 MHz
-#define BSP_PRV_CKIO_FREQ_21_4_MHZ             (21428571U)   // CKIO frequency is 21.4 MHz
-#define BSP_PRV_CKIO_FREQ_18_75_MHZ            (18750000U)   // CKIO frequency is 18.75 MHz
-#define BSP_PRV_CKIO_FREQ_NOT_SUPPORTED        (0xFFFFFFFFU) // CKIO frequency is not supported
+ #define BSP_PRV_CKIO_FREQ_125_MHZ              (125000000U)  // CKIO frequency is 125 MHz
+ #define BSP_PRV_CKIO_FREQ_100_MHZ              (100000000U)  // CKIO frequency is 100 MHz
+ #define BSP_PRV_CKIO_FREQ_83_3_MHZ             (83333333U)   // CKIO frequency is 83.3 MHz
+ #define BSP_PRV_CKIO_FREQ_75_MHZ               (75000000U)   // CKIO frequency is 75 MHz
+ #define BSP_PRV_CKIO_FREQ_66_7_MHZ             (66666666U)   // CKIO frequency is 66.7 MHz
+ #define BSP_PRV_CKIO_FREQ_62_5_MHZ             (62500000U)   // CKIO frequency is 62.5 MHz
+ #define BSP_PRV_CKIO_FREQ_50_MHZ               (50000000U)   // CKIO frequency is 50 MHz
+ #define BSP_PRV_CKIO_FREQ_41_7_MHZ             (41666666U)   // CKIO frequency is 41.6 MHz
+ #define BSP_PRV_CKIO_FREQ_40_MHZ               (40000000U)   // CKIO frequency is 40 MHz
+ #define BSP_PRV_CKIO_FREQ_37_5_MHZ             (37500000U)   // CKIO frequency is 37.5 MHz
+ #define BSP_PRV_CKIO_FREQ_35_7_MHZ             (35714285U)   // CKIO frequency is 125 MHz
+ #define BSP_PRV_CKIO_FREQ_33_3_MHZ             (33333333U)   // CKIO frequency is 33.3MHz
+ #define BSP_PRV_CKIO_FREQ_31_25_MHZ            (31250000U)   // CKIO frequency is 31.25 MHz
+ #define BSP_PRV_CKIO_FREQ_30_MHZ               (30000000U)   // CKIO frequency is 30 MHz
+ #define BSP_PRV_CKIO_FREQ_28_6_MHZ             (28571428U)   // CKIO frequency is 28.6 MHz
+ #define BSP_PRV_CKIO_FREQ_25_MHZ               (25000000U)   // CKIO frequency is 25 MHz
+ #define BSP_PRV_CKIO_FREQ_21_4_MHZ             (21428571U)   // CKIO frequency is 21.4 MHz
+ #define BSP_PRV_CKIO_FREQ_18_75_MHZ            (18750000U)   // CKIO frequency is 18.75 MHz
+ #define BSP_PRV_CKIO_FREQ_NOT_SUPPORTED        (0xFFFFFFFFU) // CKIO frequency is not supported
 
-#define BSP_PRV_XSPI_CLK_FREQ_150_MHZ          (150000000U)  // XSPI_CLK frequency is 150.0 MHz
-#define BSP_PRV_XSPI_CLK_FREQ_133_3_MHZ        (133333333U)  // XSPI_CLK frequency is 133.3 MHz
-#define BSP_PRV_XSPI_CLK_FREQ_100_MHZ          (100000000U)  // XSPI_CLK frequency is 100.0 MHz
-#define BSP_PRV_XSPI_CLK_FREQ_75_MHZ           (75000000U)   // XSPI_CLK frequency is 75.0 MHz
-#define BSP_PRV_XSPI_CLK_FREQ_50_MHZ           (50000000U)   // XSPI_CLK frequency is 50.0 MHz
-#define BSP_PRV_XSPI_CLK_FREQ_37_5_MHZ         (37500000U)   // XSPI_CLK frequency is 37.5 MHz
-#define BSP_PRV_XSPI_CLK_FREQ_25_MHZ           (25000000U)   // XSPI_CLK frequency is 25.0 MHz
-#define BSP_PRV_XSPI_CLK_FREQ_12_5_MHZ         (12500000U)   // XSPI_CLK frequency is 12.5 MHz
-#define BSP_PRV_XSPI_CLK_FREQ_NOT_SUPPORTED    (0xFFFFFFFFU) // XSPI_CLK frequency is not supported
+ #define BSP_PRV_XSPI_CLK_FREQ_150_MHZ          (150000000U)  // XSPI_CLK frequency is 150.0 MHz
+ #define BSP_PRV_XSPI_CLK_FREQ_133_3_MHZ        (133333333U)  // XSPI_CLK frequency is 133.3 MHz
+ #define BSP_PRV_XSPI_CLK_FREQ_100_MHZ          (100000000U)  // XSPI_CLK frequency is 100.0 MHz
+ #define BSP_PRV_XSPI_CLK_FREQ_75_MHZ           (75000000U)   // XSPI_CLK frequency is 75.0 MHz
+ #define BSP_PRV_XSPI_CLK_FREQ_50_MHZ           (50000000U)   // XSPI_CLK frequency is 50.0 MHz
+ #define BSP_PRV_XSPI_CLK_FREQ_37_5_MHZ         (37500000U)   // XSPI_CLK frequency is 37.5 MHz
+ #define BSP_PRV_XSPI_CLK_FREQ_25_MHZ           (25000000U)   // XSPI_CLK frequency is 25.0 MHz
+ #define BSP_PRV_XSPI_CLK_FREQ_12_5_MHZ         (12500000U)   // XSPI_CLK frequency is 12.5 MHz
+ #define BSP_PRV_XSPI_CLK_FREQ_NOT_SUPPORTED    (0xFFFFFFFFU) // XSPI_CLK frequency is not supported
+ #define BSP_PRV_SDHI_IMCLK_FREQ_200_MHz        (200000000U)  // SDHI_IMCLK frequency is 200 MHz
 
 /** Macro to log and return error without an assertion. */
-#ifndef FSP_RETURN
+ #ifndef FSP_RETURN
 
- #define FSP_RETURN(err)    FSP_ERROR_LOG((err)); \
+  #define FSP_RETURN(err)    FSP_ERROR_LOG((err)); \
     return err;
-#endif
+ #endif
 
 /** This function is called before returning an error code. To stop on a runtime error, define fsp_error_log in
  * user code and do required debugging (breakpoints, stack dump, etc) in this function.*/
-#if (1 == BSP_CFG_ERROR_LOG)
+ #if (1 == BSP_CFG_ERROR_LOG)
 
- #ifndef FSP_ERROR_LOG
-  #define FSP_ERROR_LOG(err) \
+  #ifndef FSP_ERROR_LOG
+   #define FSP_ERROR_LOG(err) \
     fsp_error_log((err), __FILE__, __LINE__);
+  #endif
+ #else
+
+  #define FSP_ERROR_LOG(err)
  #endif
-#else
 
- #define FSP_ERROR_LOG(err)
-#endif
-
-#if (3 == BSP_CFG_ASSERT)
- #define FSP_ASSERT_ACTION(a, error_func)
-#elif (2 == BSP_CFG_ASSERT)
- #define FSP_ASSERT_ACTION(a, error_func) \
-    {                                     \
-        R_BSP_FspAssert();                \
-        assert(a);                        \
+ #if (3 == BSP_CFG_ASSERT)
+  #define FSP_ASSERT_ACTION(a, error_func)
+ #elif (2 == BSP_CFG_ASSERT)
+  #define FSP_ASSERT_ACTION(a, error_func) \
+    {                                      \
+        R_BSP_FspAssert();                 \
+        assert(a);                         \
     }
-#else
- #define FSP_ASSERT_ACTION(a, error_func)                   error_func((a), FSP_ERR_ASSERTION)
-#endif
+ #else
+  #define FSP_ASSERT_ACTION(a, error_func)                   error_func((a), FSP_ERR_ASSERTION)
+ #endif
 
 /** Default assertion calls ::FSP_ERROR_RETURN if condition "a" is false. Used to identify incorrect use of API's in FSP
  * functions. */
-#define FSP_ASSERT(a)                                       FSP_ASSERT_ACTION(a, FSP_ERROR_RETURN)
+ #define FSP_ASSERT(a)                                       FSP_ASSERT_ACTION(a, FSP_ERROR_RETURN)
 
 /** Default assertion calls ::FSP_ERROR_NOT_RETURN_VALUE if condition "a" is false. Used to identify incorrect use of API's in FSP
  * functions. */
-#define FSP_ASSERT_NOT_RETURN_VALUE(a)                      FSP_ASSERT_ACTION(a, FSP_ERROR_NOT_RETURN_VALUE)
+ #define FSP_ASSERT_NOT_RETURN_VALUE(a)                      FSP_ASSERT_ACTION(a, FSP_ERROR_NOT_RETURN_VALUE)
 
-#define FSP_ERROR_ACTION(a, err, return_value)          \
+ #define FSP_ERROR_ACTION(a, err, return_value)         \
     {                                                   \
         if ((a))                                        \
         {                                               \
@@ -190,93 +191,90 @@ namespace RZT
 
 /** All FSP error codes are returned using this macro. Calls ::FSP_ERROR_LOG function if condition "a" is false. Used
  * to identify runtime errors in FSP functions. */
-#define FSP_ERROR_RETURN(a, err)                            FSP_ERROR_ACTION(a, err, err)
+ #define FSP_ERROR_RETURN(a, err)                            FSP_ERROR_ACTION(a, err, err)
 
 /** This function performs the same operation as ::FSP_ERROR_RETURN, but can be applied to functions that do not return
  *  an error code. */
-#define FSP_ERROR_NOT_RETURN_VALUE(a, err)                  FSP_ERROR_ACTION(a, err, )
+ #define FSP_ERROR_NOT_RETURN_VALUE(a, err)                  FSP_ERROR_ACTION(a, err, )
 
 /* Function-like macro used to wait for a condition to be met, most often used to wait for hardware register updates.
  * This macro can be redefined to add a timeout if necessary. */
-#ifndef FSP_HARDWARE_REGISTER_WAIT
- #define FSP_HARDWARE_REGISTER_WAIT(reg, required_value)    while (reg != required_value) {__asm volatile ("nop");}
-#endif
+ #ifndef FSP_HARDWARE_REGISTER_WAIT
+  #define FSP_HARDWARE_REGISTER_WAIT(reg, required_value)    while (reg != required_value) {__asm volatile ("nop");}
+ #endif
+
+/* Read a register and discard the result. */
+ #ifndef FSP_REGISTER_READ
+  #define FSP_REGISTER_READ(A)                               __ASM volatile ("" : : "r" (A));
+ #endif
 
 /* Function-like macro used to wait for a condition to be met with timeout,
  * most often used to wait for hardware register updates. */
-#define BSP_HARDWARE_REGISTER_WAIT_WITH_TIMEOUT(reg, required_value, timeout) \
-    while ((timeout))                                                         \
-    {                                                                         \
-        if ((required_value) == (reg))                                        \
-        {                                                                     \
-            break;                                                            \
-        }                                                                     \
-        (timeout)--;                                                          \
+ #define BSP_HARDWARE_REGISTER_WAIT_WITH_TIMEOUT(reg, required_value, timeout) \
+    while ((timeout))                                                          \
+    {                                                                          \
+        if ((required_value) == (reg))                                         \
+        {                                                                      \
+            break;                                                             \
+        }                                                                      \
+        (timeout)--;                                                           \
     }
 
-#ifndef BSP_CFG_IRQ_MASK_LEVEL_FOR_CRITICAL_SECTION
+ #ifdef BSP_CFG_IRQ_MASK_LEVEL_FOR_CRITICAL_SECTION
+  #undef BSP_CFG_IRQ_MASK_LEVEL_FOR_CRITICAL_SECTION
+ #endif
  #define BSP_CFG_IRQ_MASK_LEVEL_FOR_CRITICAL_SECTION    (0U)
-#endif
 
 /* This macro defines a variable for saving previous mask value */
-#ifndef FSP_CRITICAL_SECTION_DEFINE
+ #ifndef FSP_CRITICAL_SECTION_DEFINE
 
- #define FSP_CRITICAL_SECTION_DEFINE              uintptr_t old_mask_level = 0U
-#endif
+  #define FSP_CRITICAL_SECTION_DEFINE                   uintptr_t old_mask_level = 0U
+ #endif
 
 /* These macros abstract methods to save and restore the interrupt state. */
-#define FSP_CRITICAL_SECTION_GET_CURRENT_STATE    __get_ICC_PMR
-#define FSP_CRITICAL_SECTION_SET_STATE            __set_ICC_PMR
-#define FSP_CRITICAL_SECTION_IRQ_MASK_SET         ((uint8_t) (BSP_CFG_IRQ_MASK_LEVEL_FOR_CRITICAL_SECTION << \
-                                                              BSP_FEATURE_BSP_IRQ_PRIORITY_POS_BIT))
+ #define FSP_CRITICAL_SECTION_GET_CURRENT_STATE         __get_ICC_PMR
+ #define FSP_CRITICAL_SECTION_SET_STATE                 __set_ICC_PMR
+ #define FSP_CRITICAL_SECTION_IRQ_MASK_SET              ((uint8_t) (BSP_CFG_IRQ_MASK_LEVEL_FOR_CRITICAL_SECTION << \
+                                                                    BSP_FEATURE_BSP_IRQ_PRIORITY_POS_BIT))
 
 /** This macro temporarily saves the current interrupt state and disables interrupts. */
-#ifndef FSP_CRITICAL_SECTION_ENTER
- #define FSP_CRITICAL_SECTION_ENTER                            \
+ #ifndef FSP_CRITICAL_SECTION_ENTER
+  #define FSP_CRITICAL_SECTION_ENTER                           \
     old_mask_level = FSP_CRITICAL_SECTION_GET_CURRENT_STATE(); \
     FSP_CRITICAL_SECTION_SET_STATE(FSP_CRITICAL_SECTION_IRQ_MASK_SET)
-#endif
+ #endif
 
 /** This macro restores the previously saved interrupt state, reenabling interrupts. */
-#ifndef FSP_CRITICAL_SECTION_EXIT
- #define FSP_CRITICAL_SECTION_EXIT              FSP_CRITICAL_SECTION_SET_STATE(old_mask_level)
-#endif
+ #ifndef FSP_CRITICAL_SECTION_EXIT
+  #define FSP_CRITICAL_SECTION_EXIT              FSP_CRITICAL_SECTION_SET_STATE(old_mask_level)
+ #endif
 
 /* Number of Cortex processor exceptions. */
-#define FSP_PRIV_CORTEX_PROCESSOR_EXCEPTIONS    (32U)
+ #define FSP_PRIV_CORTEX_PROCESSOR_EXCEPTIONS    (32U)
 
 /** Used to signify that the requested IRQ vector is not defined in this system. */
-#define FSP_INVALID_VECTOR                      ((IRQn_Type) - 33)
+ #define FSP_INVALID_VECTOR                      ((IRQn_Type) - 33)
 
 /* This macro Enable or Disable interrupts. */
-#if defined(BSP_CFG_CORE_CA55)
- #define BSP_INTERRUPT_ENABLE                   r_bsp_enable_fiq()
+ #if defined(BSP_CFG_CORE_CA55)
+  #define BSP_INTERRUPT_ENABLE                   r_bsp_enable_fiq()
 
- #define BSP_INTERRUPT_DISABLE                  r_bsp_disable_fiq()
+  #define BSP_INTERRUPT_DISABLE                  r_bsp_disable_fiq()
 
-#elif defined(BSP_CFG_CORE_CR52)
- #define BSP_INTERRUPT_ENABLE                   __asm volatile ("cpsie i"); \
+ #elif defined(BSP_CFG_CORE_CR52)
+  #define BSP_INTERRUPT_ENABLE                   __asm volatile ("cpsie i"); \
     __asm volatile ("isb");
 
- #define BSP_INTERRUPT_DISABLE                  __asm volatile ("cpsid i"); \
+  #define BSP_INTERRUPT_DISABLE                  __asm volatile ("cpsid i"); \
     __asm volatile ("isb");
-#endif
+ #endif
 
-/** In the event of an unrecoverable error, the BSP will by default take no action.
- *  The user can override this default behavior by defining their own BSP_CFG_HANDLE_UNRECOVERABLE_ERROR macro.
- *
- *  When BSP_CFG_HANDLE_UNRECOVERABLE_ERROR is called from error handlers, the user will need to investigate the cause.
- *  Common problems are stack corruption or the use of an invalid pointer.
- *
- *  Use the Fault Status window in e2 studio or manually check the fault status registers for more information.
- *  After an error handler, other interrupts may occur. Therefore, override  BSP_CFG_HANDLE_UNRECOVERABLE_ERROR macro
- *  with a user-defined function and place a breakpoint inside it. This will help you catch the first interrupt and
- *  identify the root cause of the error.
- */
-#if !defined(BSP_CFG_HANDLE_UNRECOVERABLE_ERROR)
-
- #define BSP_CFG_HANDLE_UNRECOVERABLE_ERROR(x)
-#endif
+/* Put certain BSP variables in uninitialized RAM when initializing BSP early. */
+ #if BSP_CFG_EARLY_INIT
+  #define BSP_SECTION_EARLY_INIT                 BSP_PLACE_IN_SECTION(BSP_SECTION_NOINIT)
+ #else
+  #define BSP_SECTION_EARLY_INIT
+ #endif
 
 /***********************************************************************************************************************
  * Typedef definitions
@@ -287,7 +285,7 @@ typedef enum e_bsp_warm_start_event
 {
     BSP_WARM_START_RESET = 0,          ///< Called almost immediately after reset. No C runtime environment, clocks, or IRQs.
     BSP_WARM_START_POST_CLOCK,         ///< Called after clock initialization. No C runtime environment or IRQs.
-    BSP_WARM_START_POST_C,             ///< Called after clocks and C runtime environment have been set up
+    BSP_WARM_START_POST_C              ///< Called after clocks and C runtime environment have been set up
 } bsp_warm_start_event_t;
 
 /* Private enum used in R_FSP_SystemClockHzGet. */
@@ -333,18 +331,19 @@ typedef enum e_fsp_priv_clock
     FSP_PRIV_CLOCK_CKIO,
     FSP_PRIV_CLOCK_XSPI0_CLK,
     FSP_PRIV_CLOCK_XSPI1_CLK,
-    FSP_PRIV_CLOCK_PCLKAM
+    FSP_PRIV_CLOCK_PCLKAM,
+    FSP_PRIV_CLOCK_SDHI_IMCLK,
 } fsp_priv_clock_t;
 
 /***********************************************************************************************************************
  * Exported global variables
  **********************************************************************************************************************/
-#if (1 == BSP_FEATURE_CGC_CKIO_CLOCK_FREQ_TYPE)
+ #if (1 == BSP_FEATURE_CGC_CKIO_CLOCK_FREQ_TYPE)
 
 extern const uint32_t g_bsp_system_clock_select_ckio[][2];
-#elif (2 == BSP_FEATURE_CGC_CKIO_CLOCK_FREQ_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_CKIO_CLOCK_FREQ_TYPE)
 extern const uint32_t g_bsp_system_clock_select_ckio[];
-#endif
+ #endif
 extern const uint32_t g_bsp_system_clock_select_xspi_clk[][2];
 extern const uint32_t g_bsp_system_clock_select_spi_clk[];
 extern const uint32_t g_bsp_system_clock_select_sci_clk[];
@@ -353,7 +352,7 @@ extern IRQn_Type g_current_interrupt_num[];
 extern uint8_t   g_current_interrupt_pointer;
 
 /***********************************************************************************************************************
- * Exported global functions (to be accessed by other files)
+ * Global variables (defined in other files)
  **********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -379,43 +378,43 @@ __STATIC_INLINE IRQn_Type R_FSP_CurrentIrqGet (void)
 __STATIC_INLINE uint32_t R_FSP_SystemClockHzGet (fsp_priv_clock_t clock)
 {
     uint32_t clock_hz = 0;
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
     uint32_t fselcpu0  = R_SYSC_S->SCKCR2_b.FSELCPU0;
     uint32_t divselsub = R_SYSC_S->SCKCR2_b.DIVSELSUB;
- #if (2 == BSP_FEATURE_BSP_CR52_CORE_NUM)
+  #if (2 == BSP_FEATURE_BSP_CR52_CORE_NUM)
     uint32_t fselcpu1 = R_SYSC_S->SCKCR2_b.FSELCPU1;
- #endif
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+  #endif
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
     uint32_t cr52cpu0 = R_SYSC_S->SCKCR2_b.CR52CPU0;
     uint32_t cr52cpu1 = R_SYSC_S->SCKCR2_b.CR52CPU1;
-#endif
+ #endif
     switch (clock)
     {
         case FSP_PRIV_CLOCK_CPU0:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = (0 == divselsub) ? BSP_PRV_CPU_FREQ_800_MHZ : BSP_PRV_CPU_FREQ_600_MHZ;
             clock_hz = clock_hz >> fselcpu0;
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = (0 == cr52cpu0) ? BSP_PRV_CPU_FREQ_500_MHZ : BSP_PRV_CPU_FREQ_1000_MHZ;
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_CPU1:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
- #if (2 == BSP_FEATURE_BSP_CR52_CORE_NUM)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+  #if (2 == BSP_FEATURE_BSP_CR52_CORE_NUM)
             clock_hz = (0 == divselsub) ? BSP_PRV_CPU_FREQ_800_MHZ : BSP_PRV_CPU_FREQ_600_MHZ;
             clock_hz = clock_hz >> fselcpu1;
- #endif
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+  #endif
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = (0 == cr52cpu1) ? BSP_PRV_CPU_FREQ_500_MHZ : BSP_PRV_CPU_FREQ_1000_MHZ;
-#endif
+ #endif
             break;
         }
 
-#if (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
         case FSP_PRIV_CLOCK_CA55C0:
         {
             uint32_t ca55core0 = R_SYSC_S->SCKCR2_b.CA55CORE0;
@@ -450,101 +449,101 @@ __STATIC_INLINE uint32_t R_FSP_SystemClockHzGet (fsp_priv_clock_t clock)
             clock_hz = (0 == ca55sclk) ? BSP_PRV_CA55SCLK_FREQ_500_MHZ : BSP_PRV_CA55SCLK_FREQ_1000_MHZ;
             break;
         }
-#endif
+ #endif
 
         case FSP_PRIV_CLOCK_ICLK:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = (0 == divselsub) ? BSP_PRV_ICLK_FREQ_200_MHZ : BSP_PRV_ICLK_FREQ_150_MHZ;
-#endif
+ #endif
             break;
         }
 
-#if (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
         case FSP_PRIV_CLOCK_PCLKAM:
         {
             clock_hz = BSP_PRV_PCLKAM_FREQ_200_MHz;
             break;
         }
-#endif
+ #endif
 
         case FSP_PRIV_CLOCK_PCLKH:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = (0 == divselsub) ? BSP_PRV_PCLKH_FREQ_200_MHZ : BSP_PRV_PCLKH_FREQ_150_MHZ;
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = BSP_PRV_PCLKH_FREQ_250_MHZ;
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_PCLKM:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = (0 == divselsub) ? BSP_PRV_PCLKM_FREQ_100_MHZ : BSP_PRV_PCLKM_FREQ_75_MHZ;
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = BSP_PRV_PCLKM_FREQ_125_MHZ;
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_PCLKL:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = (0 == divselsub) ? BSP_PRV_PCLKL_FREQ_50_MHZ : BSP_PRV_PCLKL_FREQ_37_5_MHZ;
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = BSP_PRV_PCLKL_FREQ_62_5_MHZ;
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_PCLKADC:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = (0 == divselsub) ? BSP_PRV_PCLKADC_FREQ_25_MHZ : BSP_PRV_PCLKADC_FREQ_18_75_MHZ;
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = BSP_PRV_PCLKADC_FREQ_25_MHZ;
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_PCLKGPTL:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = (0 == divselsub) ? BSP_PRV_PCLKGPTL_FREQ_400_MHZ : BSP_PRV_PCLKGPTL_FREQ_300_MHZ;
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = BSP_PRV_PCLKGPTL_FREQ_500_MHZ;
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_PCLKSPI0:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_spi_clk[R_SYSC_NS->SCKCR_b.SPI0ASYNCSEL];
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_spi_clk[R_SYSC_NS->SCKCR3_b.SPI0ASYNCSEL];
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_PCLKSPI1:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_spi_clk[R_SYSC_NS->SCKCR_b.SPI1ASYNCSEL];
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_spi_clk[R_SYSC_NS->SCKCR3_b.SPI1ASYNCSEL];
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_PCLKSPI2:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_spi_clk[R_SYSC_NS->SCKCR_b.SPI2ASYNCSEL];
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_spi_clk[R_SYSC_NS->SCKCR3_b.SPI2ASYNCSEL];
-#endif
+ #endif
             break;
         }
 
@@ -556,51 +555,51 @@ __STATIC_INLINE uint32_t R_FSP_SystemClockHzGet (fsp_priv_clock_t clock)
 
         case FSP_PRIV_CLOCK_PCLKSCI0:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR_b.SCI0ASYNCSEL];
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR3_b.SCI0ASYNCSEL];
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_PCLKSCI1:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR_b.SCI1ASYNCSEL];
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR3_b.SCI1ASYNCSEL];
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_PCLKSCI2:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR_b.SCI2ASYNCSEL];
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR3_b.SCI2ASYNCSEL];
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_PCLKSCI3:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR_b.SCI3ASYNCSEL];
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR3_b.SCI3ASYNCSEL];
-#endif
+ #endif
             break;
         }
 
         case FSP_PRIV_CLOCK_PCLKSCI4:
         {
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR_b.SCI4ASYNCSEL];
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR3_b.SCI4ASYNCSEL];
-#endif
+ #endif
             break;
         }
 
@@ -610,7 +609,7 @@ __STATIC_INLINE uint32_t R_FSP_SystemClockHzGet (fsp_priv_clock_t clock)
             break;
         }
 
-#if (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
         case FSP_PRIV_CLOCK_PCLKSCIE0:
         {
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR4_b.SCIE0ASYNCSEL];
@@ -682,7 +681,7 @@ __STATIC_INLINE uint32_t R_FSP_SystemClockHzGet (fsp_priv_clock_t clock)
             clock_hz = g_bsp_system_clock_select_sci_clk[R_SYSC_NS->SCKCR4_b.SCIE11ASYNCSEL];
             break;
         }
-#endif
+ #endif
 
         case FSP_PRIV_CLOCK_PCLKCAN:
         {
@@ -694,11 +693,11 @@ __STATIC_INLINE uint32_t R_FSP_SystemClockHzGet (fsp_priv_clock_t clock)
         case FSP_PRIV_CLOCK_CKIO:
         {
             uint32_t ckio = R_SYSC_NS->SCKCR_b.CKIO;
-#if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_ckio[ckio][divselsub];
-#elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+ #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = g_bsp_system_clock_select_ckio[ckio];
-#endif
+ #endif
             break;
         }
 
@@ -716,18 +715,26 @@ __STATIC_INLINE uint32_t R_FSP_SystemClockHzGet (fsp_priv_clock_t clock)
             break;
         }
 
-#if (BSP_FEATURE_BSP_ENCOUT_SUPPORTED)
+ #if (BSP_FEATURE_BSP_ENCOUT_SUPPORTED)
         case FSP_PRIV_CLOCK_PCLKENCO:
         {
- #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
+  #if (1 == BSP_FEATURE_CGC_SCKCR_TYPE)
             clock_hz = BSP_PRV_PCLKENCO_FREQ_20_MHZ;
- #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+  #elif (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
             uint32_t encoutclk = R_SYSC_NS->SCKCR4_b.ENCOUTCLK;
             clock_hz = (0 == encoutclk) ? BSP_PRV_PCLKENCO_FREQ_20_MHZ : BSP_PRV_PCLKENCO_FREQ_80_MHZ;
- #endif
+  #endif
             break;
         }
-#endif
+ #endif
+
+ #if (2 == BSP_FEATURE_CGC_SCKCR_TYPE)
+        case FSP_PRIV_CLOCK_SDHI_IMCLK:
+        {
+            clock_hz = BSP_PRV_SDHI_IMCLK_FREQ_200_MHz;
+            break;
+        }
+ #endif
 
         default:
         {
@@ -738,24 +745,43 @@ __STATIC_INLINE uint32_t R_FSP_SystemClockHzGet (fsp_priv_clock_t clock)
     return clock_hz;
 }
 
-#if ((1 == BSP_CFG_ERROR_LOG) || (1 == BSP_CFG_ASSERT))
+/***********************************************************************************************************************
+ * Exported global functions (to be accessed by other files)
+ **********************************************************************************************************************/
+ #if ((1 == BSP_CFG_ERROR_LOG) || (1 == BSP_CFG_ASSERT))
 
 /** Prototype of default function called before errors are returned in FSP code if BSP_CFG_LOG_ERRORS is set to 1. */
 void fsp_error_log(fsp_err_t err, const char * file, int32_t line);
 
-#endif
+ #endif
+
+/** In the event of an unrecoverable error, the BSP will by default take no action.
+ *  The user can override this default behavior by defining their own BSP_CFG_HANDLE_UNRECOVERABLE_ERROR macro.
+ *
+ *  When BSP_CFG_HANDLE_UNRECOVERABLE_ERROR is called from error handlers, the user will need to investigate the cause.
+ *  Common problems are stack corruption or the use of an invalid pointer.
+ *
+ *  Use the Fault Status window in e2 studio or manually check the fault status registers for more information.
+ *  After an error handler, other interrupts may occur. Therefore, override  BSP_CFG_HANDLE_UNRECOVERABLE_ERROR macro
+ *  with a user-defined function and place a breakpoint inside it. This will help you catch the first interrupt and
+ *  identify the root cause of the error.
+ */
+ #if !defined(BSP_CFG_HANDLE_UNRECOVERABLE_ERROR)
+
+  #define BSP_CFG_HANDLE_UNRECOVERABLE_ERROR(x)
+ #endif
 
 /** @} (end addtogroup BSP_MCU) */
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
-#endif
-#endif
+  #endif
+ #endif
 
 void * bsp_prv_malloc(size_t size);
 void   bsp_prv_free(void * ptr);
 
-__WEAK void R_BSP_FspAssert(void);
+void R_BSP_FspAssert(void);
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

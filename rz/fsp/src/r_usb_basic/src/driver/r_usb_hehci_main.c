@@ -34,6 +34,7 @@
 #define USB_VAL_INTR      (0x00000037U)
 #define USB_VAL_X1000     (0x00001000U)
 #define USB_VAL_XFFD5     (0xFFFFFFD5U)
+#define USB_VAL_XEFD5     (0xFFFFEFD5U)
 #define USB_VAL_FFFF      (0xFFFFFFFFU)
 #define USB_VAL_0100      (0x00000100U)
 #define USB_VAL_XFED5     (0xFFFFFED5U)
@@ -2028,8 +2029,11 @@ static void usb_hstd_ehci_set_port_route (void)
         /* USB00->PORTSC1_b.PTOWNR = 0; */    /* Port Owner : EHCI */
         /* USB00.PORTSC1.BIT.PP        = 1; */    /* Port Power : ON */
         portsc1_save   = USB00->PORTSC1;
+#if USB_CFG_VBUS == USB_CFG_HIGH
         USB00->PORTSC1 = USB_VAL_X1000 | (portsc1_save & USB_VAL_XFFD5);
-
+#else
+        USB00->PORTSC1 = USB_VAL_X1000 | (portsc1_save & USB_VAL_XEFD5);
+#endif  /* USB_CFG_VBUS == USB_CFG_HIGH */
         /* PORTC.PODR.BIT.PODR6 = 0x0; */     /* debug */
 
         if (1 == USB00->PORTSC1_b.OVCC)

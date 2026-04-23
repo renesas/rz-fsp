@@ -258,11 +258,13 @@ void vEtherISRCallback (ether_callback_args_t * p_args) {
     }
 }
 
-void vNetworkInterfaceAllocateRAMToBuffers (
+size_t uxNetworkInterfaceAllocateRAMToBuffers (
     NetworkBufferDescriptor_t pxNetworkBuffers[ipconfigNUM_NETWORK_BUFFER_DESCRIPTORS])
 {
     /* Remove compiler warning about unused parameter. */
-    (void) pxNetworkBuffers;
+    FSP_PARAMETER_NOT_USED(pxNetworkBuffers);
+
+    return 0;
 }
 
 NetworkInterface_t * pxFSP_Eth_FillInterfaceDescriptor (BaseType_t xEMACIndex, NetworkInterface_t * pxInterface)

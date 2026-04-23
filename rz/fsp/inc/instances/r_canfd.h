@@ -408,6 +408,7 @@ struct st_canfd_extended_cfg
     uint8_t                 delay_compensation;     ///< FD Transceiver Delay Compensation (enable or disable)
     canfd_global_cfg_t    * p_global_cfg;           ///< Global configuration (global error callback channel only)
     canfd_txmb_merge_mode_t txmb_merge_mode_enable; ///< TXMB buffer marge mode configuration
+    void * p_reg;                                   ///< Register base address for specified channel
 };
 
 /** CANFD Extended Configuration. Please refer to the struct st_canfd_extended_cfg. */

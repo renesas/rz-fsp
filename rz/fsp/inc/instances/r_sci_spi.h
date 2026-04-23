@@ -15,12 +15,12 @@
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*****************************************************************************************************************//**
  * @addtogroup RZT_SCI_SPI
@@ -64,6 +64,8 @@ struct st_sci_spi_extended_cfg
 
     /** Clock source to generate SCK can either be selected as PCLKM or SCInASYNCCLK. */
     sci_spi_clock_source_t clock_source;
+
+    void * p_reg;                      ///< Register base address.
 };
 
 /** SCI SPI extended configuration Please refer to the struct st_sci_spi_extended_cfg. */
@@ -119,23 +121,23 @@ fsp_err_t R_SCI_SPI_WriteRead(spi_ctrl_t * const    p_ctrl,
                               void                * p_dest,
                               uint32_t const        length,
                               spi_bit_width_t const bit_width);
-fsp_err_t R_SCI_SPI_Close(spi_ctrl_t * const p_ctrl);
-fsp_err_t R_SCI_SPI_CalculateBitrate(uint32_t                bitrate,
-                                     sci_spi_clock_source_t  clock_source,
-                                     sci_spi_div_setting_t * sclk_div);
 fsp_err_t R_SCI_SPI_CallbackSet(spi_ctrl_t * const          p_ctrl,
                                 void (                    * p_callback)(spi_callback_args_t *),
                                 void * const                p_context,
                                 spi_callback_args_t * const p_callback_memory);
+fsp_err_t R_SCI_SPI_Close(spi_ctrl_t * const p_ctrl);
+fsp_err_t R_SCI_SPI_CalculateBitrate(uint32_t                bitrate,
+                                     sci_spi_clock_source_t  clock_source,
+                                     sci_spi_div_setting_t * sclk_div);
 
 /*******************************************************************************************************************//**
  * @} (end addtogroup SCI_SPI)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

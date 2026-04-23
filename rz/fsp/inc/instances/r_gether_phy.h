@@ -5,9 +5,9 @@
 */
 
 #ifndef R_GETHER_PHY_H
-#define R_GETHER_PHY_H
+ #define R_GETHER_PHY_H
 
-#include "bsp_api.h"
+ #include "bsp_api.h"
 
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
@@ -15,19 +15,19 @@ FSP_HEADER
 /***********************************************************************************************************************
  * Includes
  **********************************************************************************************************************/
-#include "r_gether_phy_cfg.h"
-#include "r_ether_phy_api.h"
+ #include "r_gether_phy_cfg.h"
+ #include "r_ether_phy_api.h"
 
 /***********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZA
 {
-#endif
-#endif
+  #endif
+ #endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZA_GETHER_PHY
@@ -74,9 +74,11 @@ typedef struct st_ether_phy_instance_ctrl ether_phy_instance_ctrl_t;
 
 struct st_ether_phy_instance_extend
 {
-    ether_phy_voltage_t voltage;                                                                                         ///< Voltage is 3.3V o 2.5V or 1.8V
-    void (* p_target_init)(ether_phy_instance_ctrl_t * p_instance_ctrl);                                                 ///< Pointer to callback that is called to initialize the target.
-    bool (* p_target_link_partner_ability_get)(ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t line_speed_duplex); ///< Pointer to callback that is called to get the link partner ability.
+    ether_phy_voltage_t voltage;                                                                              ///< Voltage is 3.3V o 2.5V or 1.8V
+    void                (* p_target_init)(ether_phy_instance_ctrl_t * p_instance_ctrl);                       ///< Pointer to callback that is called to initialize the target.
+    bool                (* p_target_link_partner_ability_get)(ether_phy_instance_ctrl_t * p_instance_ctrl,
+                                                              uint32_t                    line_speed_duplex); ///< Pointer to callback that is called to get the link partner ability.
+    void * p_reg_emac;                                                                                        ///< Pointer to E-MAC peripheral registers.
 };
 
 /* Please refer to the struct. st_ether_phy_instance_extend */
@@ -122,11 +124,11 @@ fsp_err_t R_GETHER_PHY_LinkStatusGet(ether_phy_ctrl_t * const p_ctrl);
  * @} (end addtogroup GETHER_PHY)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
-#endif
-#endif
+  #endif
+ #endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

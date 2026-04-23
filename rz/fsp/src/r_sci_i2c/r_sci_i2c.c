@@ -118,10 +118,10 @@ i2c_master_api_t const g_i2c_master_on_sci =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -161,7 +161,13 @@ fsp_err_t R_SCI_I2C_Open (i2c_master_ctrl_t * const p_ctrl, i2c_master_cfg_t con
     FSP_ERROR_RETURN(SCI_I2C_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
     FSP_ERROR_RETURN((p_cfg->channel < 8 * sizeof(unsigned int)) && (BSP_FEATURE_SCI_CHANNELS & (1U << p_cfg->channel)),
                      FSP_ERR_IP_CHANNEL_NOT_PRESENT);
+#endif
+
     sci_i2c_extended_cfg_t * pextend = (sci_i2c_extended_cfg_t *) p_cfg->p_extend;
+
+#if SCI_I2C_CFG_PARAM_CHECKING_ENABLE
+    FSP_ASSERT(pextend->p_reg != NULL);
+
     if (true == pextend->clock_settings.bitrate_modulation)
     {
         FSP_ASSERT(pextend->clock_settings.mddr_value >= SCI_I2C_PRV_MDDR_REG_MIN);
@@ -185,17 +191,7 @@ fsp_err_t R_SCI_I2C_Open (i2c_master_ctrl_t * const p_ctrl, i2c_master_cfg_t con
     fsp_err_t err = FSP_SUCCESS;
 #endif
 
-    if (p_cfg->channel != BSP_FEATURE_SCI_SAFETY_CHANNEL)
-    {
-        /* Non-Safety Peripheral */
-        p_instance_ctrl->p_reg =
-            (R_SCI0_Type *) ((uintptr_t) R_SCI0 + (p_cfg->channel * ((uintptr_t) R_SCI1 - (uintptr_t) R_SCI0)));
-    }
-    else
-    {
-        /* Safety Peripheral */
-        p_instance_ctrl->p_reg = (R_SCI0_Type *) BSP_FEATURE_SCI_SAFETY_CHANNEL_BASE_ADDRESS;
-    }
+    p_instance_ctrl->p_reg = (R_SCI0_Type *) pextend->p_reg;
 
     /* Record the configuration on the device for use later */
     p_instance_ctrl->p_cfg             = p_cfg;
@@ -471,9 +467,9 @@ fsp_err_t R_SCI_I2C_Close (i2c_master_ctrl_t * const p_ctrl)
  * @} (end addtogroup SCI_I2C)
  **********************************************************************************************************************/
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /**********************************************************************************************************************

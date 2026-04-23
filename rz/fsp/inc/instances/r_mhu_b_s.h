@@ -20,12 +20,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZV_MHU_B_S
@@ -65,6 +65,15 @@ struct st_mhu_b_s_instance_ctrl
 /** Channel control block. DO NOT INITIALIZE.  Initialization occurs when @ref mhu_api_t::open is called. Please refer to the struct st_mhu_b_s_instance_ctrl. */
 typedef struct st_mhu_b_s_instance_ctrl mhu_b_s_instance_ctrl_t;
 
+/** R_MHU_B_S extended configuration */
+struct st_mhu_b_s_extended_cfg
+{
+    void * p_reg;                      ///< Register base address for specified channel
+};
+
+/** R_MHU_B_S extended configuration. Please refer to the struct st_mhu_b_s_extended_cfg. */
+typedef struct st_mhu_b_s_extended_cfg mhu_b_s_extended_cfg_t;
+
 /**********************************************************************************************************************
  * Exported global variables
  **********************************************************************************************************************/
@@ -95,11 +104,11 @@ void R_MHU_B_S_IsrSub(uint32_t irq);
  * @} (end defgroup MHU_B_S)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

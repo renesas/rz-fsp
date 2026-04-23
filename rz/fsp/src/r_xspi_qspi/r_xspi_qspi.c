@@ -105,10 +105,10 @@ static fsp_err_t r_xspi_qspi_program_param_check(xspi_qspi_instance_ctrl_t * p_i
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -171,16 +171,15 @@ fsp_err_t R_XSPI_QSPI_Open (spi_flash_ctrl_t * p_ctrl, spi_flash_cfg_t const * c
 #endif
 
     xspi_qspi_extended_cfg_t * p_cfg_extend = (xspi_qspi_extended_cfg_t *) p_cfg->p_extend;
+#if XSPI_QSPI_CFG_PARAM_CHECKING_ENABLE
+    FSP_ASSERT(NULL != p_cfg_extend->p_reg);
+#endif
 
     /* Enable clock to the QSPI block */
     R_BSP_MODULE_START(FSP_IP_XSPI, p_cfg_extend->unit);
 
-#if (defined(BSP_FEATURE_XSPI_NUM_UNITS) && (1U == BSP_FEATURE_XSPI_NUM_UNITS))
-    uint32_t base_address = (uint32_t) R_XSPI0;
-#else
-    uint32_t base_address = (uint32_t) R_XSPI0 + (p_cfg_extend->unit * ((uint32_t) R_XSPI1 - (uint32_t) R_XSPI0));
-#endif
-    p_instance_ctrl->p_reg = (R_XSPI0_Type *) base_address;
+    /* Register base address */
+    p_instance_ctrl->p_reg = p_cfg_extend->p_reg;
 
     /* Initialize control block. */
     p_instance_ctrl->p_cfg = p_cfg;
@@ -711,9 +710,9 @@ fsp_err_t R_XSPI_QSPI_Close (spi_flash_ctrl_t * p_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

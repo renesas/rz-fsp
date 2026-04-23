@@ -132,24 +132,6 @@ void scif_uart_rx_dmac_callback(scif_uart_instance_ctrl_t * p_ctrl);
  * Private global variables
  **********************************************************************************************************************/
 
-/* SCIF_UART base address */
-static const uint16_t volatile * p_scif_base_address[BSP_FEATURE_SCIF_MAX_CHANNEL] =
-{
-    (uint16_t *) R_SCIFA0,
-#if BSP_FEATURE_SCIF_MAX_CHANNEL > 1
-    (uint16_t *) R_SCIFA1,
- #if BSP_FEATURE_SCIF_MAX_CHANNEL > 2
-    (uint16_t *) R_SCIFA2,
-  #if BSP_FEATURE_SCIF_MAX_CHANNEL > 3
-    (uint16_t *) R_SCIFA3,
-   #if BSP_FEATURE_SCIF_MAX_CHANNEL > 4
-    (uint16_t *) R_SCIFA4,
-   #endif
-  #endif
- #endif
-#endif
-};
-
 /** Name of module used by error logger macro */
 #if BSP_CFG_ERROR_LOG != 0
 static const char g_module_name[] = "scif_uart";
@@ -237,6 +219,8 @@ fsp_err_t R_SCIF_UART_Open (uart_ctrl_t * const p_api_ctrl, uart_cfg_t const * c
     FSP_ASSERT(p_ctrl);
     FSP_ASSERT(p_cfg);
     FSP_ASSERT(p_cfg->p_extend);
+    scif_uart_extended_cfg_t * p_extend = (scif_uart_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(NULL != p_extend->p_reg);
     FSP_ASSERT(((scif_uart_extended_cfg_t *) p_cfg->p_extend)->p_baud_setting);
     FSP_ERROR_RETURN(SCIF_UART_OPEN != p_ctrl->open, FSP_ERR_ALREADY_OPEN);
 
@@ -256,9 +240,13 @@ fsp_err_t R_SCIF_UART_Open (uart_ctrl_t * const p_api_ctrl, uart_cfg_t const * c
             FSP_ERR_INVALID_ARGUMENT);
     }
  #endif
+#else
+    /* Get extended configuration structure pointer. */
+    scif_uart_extended_cfg_t * p_extend = (scif_uart_extended_cfg_t *) p_cfg->p_extend;
 #endif
 
-    p_ctrl->p_reg = (R_SCIFA0_Type *) p_scif_base_address[p_cfg->channel];
+    /* Set the base address for specified channel */
+    p_ctrl->p_reg = (R_SCIFA0_Type *) p_extend->p_reg;
 
     p_ctrl->p_cfg = p_cfg;
 
@@ -276,8 +264,6 @@ fsp_err_t R_SCIF_UART_Open (uart_ctrl_t * const p_api_ctrl, uart_cfg_t const * c
 
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 #endif
-
-    scif_uart_extended_cfg_t * p_extend = (scif_uart_extended_cfg_t *) p_ctrl->p_cfg->p_extend;
 
     /* Enable the SCIF channel. */
     R_BSP_MODULE_START(FSP_IP_SCIF, p_cfg->channel);

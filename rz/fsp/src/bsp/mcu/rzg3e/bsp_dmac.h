@@ -17,12 +17,12 @@
  * Macro definitions
  *********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZG
 {
+  #endif
  #endif
-#endif
 
 /**********************************************************************************************************************
  * @addtogroup RZG_BSP_MPU_RZG3E
@@ -248,6 +248,10 @@ namespace RZG
                 break;                                                                 \
         }                                                                              \
     } while (0)
+
+ #define R_BSP_DMAC_EXTERNAL_OUTPUT_ACTIVE_LEVEL_SET(unit, channel, ack_active_level, tend_active_level) \
+    { /* No clearing required for this device. */;                                                       \
+    }                                                                                                    \
 
 typedef enum e_dmac_trigger_event
 {
@@ -759,10 +763,10 @@ typedef enum e_dmac_b_external_output_pin
 
 /** @} (end addtogroup BSP_MPU_RZG3E) */
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 #endif                                 /* BSP_DMAC_H */

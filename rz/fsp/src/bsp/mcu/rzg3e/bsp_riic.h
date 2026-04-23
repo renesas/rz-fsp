@@ -61,6 +61,20 @@ namespace RZG
                    ((uint8_t) p_ctrl->p_cfg->general_call_enable << R_RIIC0_ICSER_GCAE_Pos)); \
 
 
+/* Clock source mapping for each RIIC_MASTER channel */
+static const fsp_priv_clock_t g_iic_master_clock_map[] =
+{
+    FSP_PRIV_CLOCK_P5CLK,              /* CH0 */
+    FSP_PRIV_CLOCK_P5CLK,              /* CH1 */
+    FSP_PRIV_CLOCK_P5CLK,              /* CH2 */
+    FSP_PRIV_CLOCK_P5CLK,              /* CH3 */
+    FSP_PRIV_CLOCK_P5CLK,              /* CH4 */
+    FSP_PRIV_CLOCK_P5CLK,              /* CH5 */
+    FSP_PRIV_CLOCK_P5CLK,              /* CH6 */
+    FSP_PRIV_CLOCK_P5CLK,              /* CH7 */
+    FSP_PRIV_CLOCK_P1CLK,              /* CH8 */
+};
+
 /** @} (end addtogroup BSP_MPU_RZG3E) */
 
 #ifdef __FOR_FSP_DOCUMENT__

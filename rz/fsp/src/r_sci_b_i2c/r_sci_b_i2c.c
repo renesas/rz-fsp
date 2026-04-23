@@ -193,10 +193,11 @@ fsp_err_t R_SCI_B_I2C_Open (i2c_master_ctrl_t * const p_api_ctrl, i2c_master_cfg
     FSP_ERROR_RETURN((p_cfg->channel < 8 * sizeof(unsigned int)) &&
                      (BSP_FEATURE_SCI_CHANNELS_MASK & (1U << p_cfg->channel)),
                      FSP_ERR_IP_CHANNEL_NOT_PRESENT);
-    sci_b_i2c_extended_cfg_t * pextend = (sci_b_i2c_extended_cfg_t *) p_cfg->p_extend;
-    if (true == pextend->clock_settings.bitrate_modulation)
+    sci_b_i2c_extended_cfg_t * p_extend = (sci_b_i2c_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(NULL != p_extend->p_reg);
+    if (true == p_extend->clock_settings.bitrate_modulation)
     {
-        FSP_ASSERT(pextend->clock_settings.mddr_value >= SCI_B_I2C_PRV_MDDR_REG_MIN);
+        FSP_ASSERT(p_extend->clock_settings.mddr_value >= SCI_B_I2C_PRV_MDDR_REG_MIN);
     }
 
  #if SCI_B_I2C_CFG_DTC_ENABLE || SCI_B_I2C_CFG_DMAC_ENABLE
@@ -206,12 +207,14 @@ fsp_err_t R_SCI_B_I2C_Open (i2c_master_ctrl_t * const p_api_ctrl, i2c_master_cfg
         FSP_ASSERT(p_cfg->p_transfer_tx != NULL);
     }
  #endif
+#else
+    sci_b_i2c_extended_cfg_t * p_extend = (sci_b_i2c_extended_cfg_t *) p_cfg->p_extend;
 #endif
 #if SCI_B_I2C_CFG_DTC_ENABLE || SCI_B_I2C_CFG_DMAC_ENABLE
     fsp_err_t err = FSP_SUCCESS;
 #endif
 
-    p_ctrl->p_reg = (R_SCI_B0_Type *) ((uint32_t) R_SCI0 + (p_cfg->channel * ((uint32_t) R_SCI1 - (uint32_t) R_SCI0)));;
+    p_ctrl->p_reg = (R_SCI_B0_Type *) p_extend->p_reg;
 
     /* Record the configuration on the device for use later */
     p_ctrl->p_cfg             = p_cfg;
@@ -691,7 +694,7 @@ static void sci_b_i2c_open_hw_master (sci_b_i2c_instance_ctrl_t * const p_ctrl, 
 {
     /* SCI Initialization in Simple IIC Mode */
 
-    sci_b_i2c_extended_cfg_t * pextend = (sci_b_i2c_extended_cfg_t *) p_ctrl->p_cfg->p_extend;
+    sci_b_i2c_extended_cfg_t * p_extend = (sci_b_i2c_extended_cfg_t *) p_ctrl->p_cfg->p_extend;
 
     /* Set TEIE, TIE, RIE, TE, and RE to 0. */
     p_ctrl->p_reg->CCR0 = 0U;
@@ -707,7 +710,7 @@ static void sci_b_i2c_open_hw_master (sci_b_i2c_instance_ctrl_t * const p_ctrl, 
      * - Enable NACK transmission and reception of ACK/NACK.
      */
     uint32_t icr = R_SCI_B0_ICR_IICSCLS_Msk | R_SCI_B0_ICR_IICSDAS_Msk;
-    icr |= (uint32_t) (pextend->clock_settings.cycles_value & R_SCI_B0_ICR_IICDL_Msk) <<
+    icr |= (uint32_t) (p_extend->clock_settings.cycles_value & R_SCI_B0_ICR_IICDL_Msk) <<
            R_SCI_B0_ICR_IICDL_Pos;
     icr               |= R_SCI_B0_ICR_IICINTM_Msk | R_SCI_B0_ICR_IICCSC_Msk | R_SCI_B0_ICR_IICACKT_Msk;
     p_ctrl->p_reg->ICR = icr;
@@ -719,7 +722,7 @@ static void sci_b_i2c_open_hw_master (sci_b_i2c_instance_ctrl_t * const p_ctrl, 
      * - Set Simple IIC Mode.
      */
     uint32_t ccr3 = 2U << R_SCI_B0_CCR3_CHR_Pos;
-    ccr3               |= (uint32_t) pextend->clock_settings.clock_source << R_SCI_B0_CCR3_BPEN_Pos;
+    ccr3               |= (uint32_t) p_extend->clock_settings.clock_source << R_SCI_B0_CCR3_BPEN_Pos;
     ccr3               |= 4U << R_SCI_B0_CCR3_MOD_Pos;
     p_ctrl->p_reg->CCR3 = ccr3;
 
@@ -730,17 +733,17 @@ static void sci_b_i2c_open_hw_master (sci_b_i2c_instance_ctrl_t * const p_ctrl, 
      * - Write the MDDR setting.
      */
     uint32_t ccr2 = 4U << R_SCI_B0_CCR2_BCP_Pos;
-    ccr2               |= (uint32_t) pextend->clock_settings.brr_value << R_SCI_B0_CCR2_BRR_Pos;
-    ccr2               |= (uint32_t) pextend->clock_settings.bitrate_modulation << R_SCI_B0_CCR2_BRME_Pos;
-    ccr2               |= (uint32_t) pextend->clock_settings.clk_divisor_value << R_SCI_B0_CCR2_CKS_Pos;
-    ccr2               |= (uint32_t) pextend->clock_settings.mddr_value << R_SCI_B0_CCR2_MDDR_Pos;
+    ccr2               |= (uint32_t) p_extend->clock_settings.brr_value << R_SCI_B0_CCR2_BRR_Pos;
+    ccr2               |= (uint32_t) p_extend->clock_settings.bitrate_modulation << R_SCI_B0_CCR2_BRME_Pos;
+    ccr2               |= (uint32_t) p_extend->clock_settings.clk_divisor_value << R_SCI_B0_CCR2_CKS_Pos;
+    ccr2               |= (uint32_t) p_extend->clock_settings.mddr_value << R_SCI_B0_CCR2_MDDR_Pos;
     p_ctrl->p_reg->CCR2 = ccr2;
 
     /* Write settings to CCR1:
      * - Write the Noise filter setting.
      * - Enable the Noise filter.
      */
-    uint32_t ccr1 = (uint32_t) pextend->clock_settings.snfr_value << R_SCI_B0_CCR1_NFCS_Pos;
+    uint32_t ccr1 = (uint32_t) p_extend->clock_settings.snfr_value << R_SCI_B0_CCR1_NFCS_Pos;
     ccr1               |= 1 << R_SCI_B0_CCR1_NFEN_Pos; /* Enable Noise filter */
     p_ctrl->p_reg->CCR1 = ccr1;
 

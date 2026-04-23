@@ -18,12 +18,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_IIC_MASTER
@@ -106,6 +106,7 @@ struct st_iic_master_extended_cfg
     iic_master_timeout_mode_t    timeout_mode;    ///< Timeout Detection Time Select: Long Mode = 0 and Short Mode = 1.
     iic_master_timeout_scl_low_t timeout_scl_low; ///< Allows timeouts to occur when SCL is held low.
     iic_master_clock_settings_t  clock_settings;  ///< I2C Clock settings
+    void * p_reg;                                 ///< Register base address for specified channel
 };
 
 /** R_IIC extended configuration Please refer to the struct st_iic_master_extended_cfg. */
@@ -138,21 +139,21 @@ fsp_err_t R_IIC_MASTER_Abort(i2c_master_ctrl_t * const p_ctrl);
 fsp_err_t R_IIC_MASTER_SlaveAddressSet(i2c_master_ctrl_t * const    p_ctrl,
                                        uint32_t const               slave,
                                        i2c_master_addr_mode_t const addr_mode);
-fsp_err_t R_IIC_MASTER_Close(i2c_master_ctrl_t * const p_ctrl);
 fsp_err_t R_IIC_MASTER_CallbackSet(i2c_master_ctrl_t * const          p_ctrl,
                                    void (                           * p_callback)(i2c_master_callback_args_t *),
                                    void * const                       p_context,
                                    i2c_master_callback_args_t * const p_callback_memory);
 fsp_err_t R_IIC_MASTER_StatusGet(i2c_master_ctrl_t * const p_ctrl, i2c_master_status_t * p_status);
+fsp_err_t R_IIC_MASTER_Close(i2c_master_ctrl_t * const p_ctrl);
 
 /*******************************************************************************************************************//**
  * @} (end defgroup IIC_MASTER)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

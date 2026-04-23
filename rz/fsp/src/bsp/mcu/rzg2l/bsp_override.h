@@ -21,6 +21,7 @@
  #define BSP_OVERRIDE_CANFD_TX_BUFFER_T
  #define BSP_OVERRIDE_CANFD_TX_MB_T
  #define BSP_OVERRIDE_DMAC_B_EXTERNAL_DETECTION_T
+ #define BSP_OVERRIDE_DMAC_B_EXTETNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_T
  #define BSP_OVERRIDE_TRANSFER_ADDR_MODE_T
  #define BSP_OVERRIDE_TRANSFER_CALLBACK_ARGS_T
  #define BSP_OVERRIDE_TRANSFER_INFO_T
@@ -47,6 +48,12 @@ typedef enum e_dmac_b_external_detection
 {
     DMAC_B_EXTERNAL_DETECTION_NO_DETECTION = 0, ///< Not using hardware detection.
 } dmac_b_external_detection_t;
+
+/** Active level of the external DMA ACK signal. */
+typedef enum e_dmac_b_external_output_signal_active_level
+{
+    DMAC_B_EXTERNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_NO_OUTPUT = 0, ///< Not using external output.
+} dmac_b_external_output_signal_active_level_t;
 
 /*==============================================
  * Transfer API Overrides

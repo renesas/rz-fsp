@@ -84,6 +84,7 @@ static uint8_t usb_hvnd_make_pipe_reg_info(usb_utr_t            * p_utr,
                                            uint16_t               speed,
                                            uint8_t              * descriptor,
                                            usb_pipe_table_reg_t * pipe_table_work);
+usb_er_t usb_hvnd_set_pipe_registration (usb_utr_t * ptr, uint16_t dev_addr);
 
  #endif                                /* defined(USB_CFG_HVND_USE) */
  #if USB_IP_EHCI_OHCI == 0
@@ -661,58 +662,6 @@ void usb_class_request_complete (usb_utr_t * mess, uint16_t data1, uint16_t data
  * End of function usb_class_request_complete
  ******************************************************************************/
 
- #if (USB_UT_MODE == 0)
-
-/******************************************************************************
- * Function Name   : usb_hstd_transfer_end
- * Description     : Request HCD to force termination of data transfer.
- * Arguments       : usb_utr_t *ptr       : Pointer to usb_utr_t structure.
- *               : uint16_t pipe        : Pipe number
- *               : uint16_t status      : Data transfer status
- * Return          : usb_err_t error code : USB_OK etc
- ******************************************************************************/
-usb_er_t usb_hstd_transfer_end (usb_utr_t * ptr, uint16_t pipe, uint16_t status)
-{
-    uint16_t msg;
-    usb_er_t err;
-
-  #if (BSP_CFG_RTOS == 0)
-    if (USB_MAX_PIPE_NO < pipe)
-    {
-        return USB_ERROR;              /* Error */
-    }
-
-    if (USB_ON == g_usb_hstd_pipe_request[ptr->ip][pipe])
-    {
-        return USB_ERROR;
-    }
-  #endif                               /* (BSP_CFG_RTOS == 0) */
-
-    if (NULL == g_p_usb_hstd_pipe[ptr->ip][pipe])
-    {
-        USB_PRINTF1("### usb_hstd_transfer_end overlaps %d\n", pipe);
-
-        return USB_QOVR;
-    }
-
-    if (USB_DATA_TMO == status)
-    {
-        msg = USB_MSG_HCD_TRANSEND1;
-    }
-    else
-    {
-        msg = USB_MSG_HCD_TRANSEND2;
-    }
-
-    err = usb_hstd_hcd_snd_mbx(ptr, msg, pipe, (uint16_t *) 0, &usb_hstd_dummy_function);
-
-    return err;
-}
-
-/******************************************************************************
- * End of function usb_hstd_transfer_end
- ******************************************************************************/
- #endif                                /* #if (USB_UT_MODE == 0) */
 
 /******************************************************************************
  * Function Name   : usb_hstd_driver_registration
@@ -1253,7 +1202,7 @@ usb_er_t usb_hvnd_set_pipe_registration (usb_utr_t * ptr, uint16_t dev_addr)
             if (USB_TRUE == g_usb_pipe_table[ptr->ip][pipe_no].use_flag)
             {
                 /* Check USB Device address */
-                if ((dev_addr << USB_DEVADDRBIT) == (g_usb_pipe_table[ptr->ip][pipe_no].pipe_maxp & USB_DEVSEL))
+                if ((dev_addr << USB_DEVADDRBIT) == (uint16_t)(g_usb_pipe_table[ptr->ip][pipe_no].pipe_maxp & USB_DEVSEL))
                 {
                     usb_hstd_set_pipe_reg(ptr, pipe_no);
                     err = USB_OK;
@@ -1286,8 +1235,10 @@ void usb_hvnd_configured (usb_utr_t * ptr, uint16_t dev_addr, uint16_t data2)
 {
     usb_instance_ctrl_t ctrl;
 
+    FSP_PARAMETER_NOT_USED(data2);
+
     ctrl.module_number  = ptr->ip;     /* Module number setting */
-    ctrl.device_address = dev_addr;
+    ctrl.device_address = (uint8_t)dev_addr;
     if (0 != dev_addr)
     {
         /* Registration */
@@ -1313,10 +1264,12 @@ void usb_hvnd_detach (usb_utr_t * ptr, uint16_t dev_addr, uint16_t data2)
 {
     usb_instance_ctrl_t ctrl;
 
+    FSP_PARAMETER_NOT_USED(data2);
+
     usb_hstd_clr_pipe_table(ptr->ip, dev_addr);
 
     ctrl.module_number  = ptr->ip;     /* Module number setting */
-    ctrl.device_address = dev_addr;
+    ctrl.device_address = (uint8_t)dev_addr;
     usb_set_event(USB_STATUS_DETACH, &ctrl);
 }
 
@@ -1414,12 +1367,15 @@ void usb_hvnd_read_complete (usb_utr_t * ptr, uint16_t data1, uint16_t data2)
 {
     usb_instance_ctrl_t ctrl;
 
+    FSP_PARAMETER_NOT_USED(data1);
+    FSP_PARAMETER_NOT_USED(data2);
+
     ctrl.module_number = ptr->ip;                 /* Module number setting */
-    ctrl.pipe          = ptr->keyword;            /* Pipe number setting */
-    ctrl.type          = USB_CLASS_INTERNAL_HVND; /* Vendor class  */
+    ctrl.pipe          = (uint8_t)ptr->keyword;            /* Pipe number setting */
+    ctrl.type          = (usb_class_t)USB_CLASS_INTERNAL_HVND; /* Vendor class  */
 
     ctrl.data_size      = ptr->read_req_len - ptr->tranlen;
-    ctrl.device_address = usb_hstd_get_devsel(ptr, ctrl.pipe) >> 12;
+    ctrl.device_address = (uint8_t)usb_hstd_get_device_address(ptr, ctrl.pipe);
   #if (BSP_CFG_RTOS == 2)
     ctrl.p_data = (void *) ptr->cur_task_hdl;
   #endif                               /* #if (BSP_CFG_RTOS == 2) */
@@ -1470,10 +1426,13 @@ void usb_hvnd_write_complete (usb_utr_t * ptr, uint16_t data1, uint16_t data2)
 {
     usb_instance_ctrl_t ctrl;
 
+    FSP_PARAMETER_NOT_USED(data1);
+    FSP_PARAMETER_NOT_USED(data2);
+
     ctrl.module_number  = ptr->ip;                 /* Module number setting */
-    ctrl.pipe           = ptr->keyword;            /* Pipe number setting */
-    ctrl.type           = USB_CLASS_INTERNAL_HVND; /* Vendor class  */
-    ctrl.device_address = usb_hstd_get_devsel(ptr, ctrl.pipe) >> 12;
+    ctrl.pipe           = (uint8_t)ptr->keyword;            /* Pipe number setting */
+    ctrl.type           = (usb_class_t)USB_CLASS_INTERNAL_HVND; /* Vendor class  */
+    ctrl.device_address = (uint8_t) usb_hstd_get_device_address(ptr, ctrl.pipe);
   #if (BSP_CFG_RTOS == 2)
     ctrl.p_data = (void *) ptr->cur_task_hdl;
   #endif /* #if (BSP_CFG_RTOS == 2) */

@@ -39,5 +39,6 @@
 #include "iobitmasks/tzc_iobitmask.h"
 #include "iobitmasks/wdt_iobitmask.h"
 #include "iobitmasks/xspi_iobitmask.h"
+#include "iobitmasks/r_ethosu_iobitmask.h"
 
 #endif                                 /* __IOBITMASK_HEADER__ */

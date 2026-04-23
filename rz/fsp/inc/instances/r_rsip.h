@@ -15,12 +15,12 @@
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_RSIP_PROTECTED
@@ -49,6 +49,7 @@ namespace RZT
 /* Wrapped ECDH secret size */
  #define RSIP_PRV_BYTE_SIZE_ECDH_WRAPPED_SECRET_256      RSIP_PRV_BYTE_SIZE_WRAPPED_DATA(8)
  #define RSIP_PRV_BYTE_SIZE_ECDH_WRAPPED_SECRET_384      RSIP_PRV_BYTE_SIZE_WRAPPED_DATA(12)
+ #define RSIP_PRV_BYTE_SIZE_ECDH_WRAPPED_SECRET_512      RSIP_PRV_BYTE_SIZE_WRAPPED_DATA(16)
  #define RSIP_PRV_BYTE_SIZE_ECDH_WRAPPED_SECRET_521      RSIP_PRV_BYTE_SIZE_WRAPPED_DATA(20)
 
 /* Internal state buffer size for SHA */
@@ -136,9 +137,9 @@ namespace RZT
  #endif
 
 /* Buffer sizes for PKI */
- #if RSIP_CFG_ECC_SECP521R1_ENABLE
+ #if RSIP_CFG_ECC_SECP521R1_ENABLE || RSIP_CFG_ECC_BRAINPOOLP512R1_ENABLE
   #define  RSIP_PRV_BYTE_SIZE_PKI_ENC_CERT_INFO          RSIP_BYTE_SIZE_WRAPPED_KEY(16)
- #elif RSIP_CFG_ECC_SECP384R1_ENABLE
+ #elif RSIP_CFG_ECC_SECP384R1_ENABLE || RSIP_CFG_ECC_BRAINPOOLP384R1_ENABLE
   #define  RSIP_PRV_BYTE_SIZE_PKI_ENC_CERT_INFO          RSIP_BYTE_SIZE_WRAPPED_KEY(12)
  #else
   #define  RSIP_PRV_BYTE_SIZE_PKI_ENC_CERT_INFO          RSIP_BYTE_SIZE_WRAPPED_KEY(8)
@@ -256,6 +257,10 @@ typedef enum e_rsip_byte_size_wrapped_key
         RSIP_BYTE_SIZE_WRAPPED_KEY(RSIP_KEY_TYPE_HMAC_SHA384),                 ///< HMAC-SHA384
     RSIP_BYTE_SIZE_WRAPPED_KEY_HMAC_SHA512 =
         RSIP_BYTE_SIZE_WRAPPED_KEY(RSIP_KEY_TYPE_HMAC_SHA512),                 ///< HMAC-SHA512
+    RSIP_BYTE_SIZE_WRAPPED_KEY_HMAC_SHA512_224 =
+        RSIP_BYTE_SIZE_WRAPPED_KEY(RSIP_KEY_TYPE_HMAC_SHA512_224),             ///< HMAC-SHA512/224
+    RSIP_BYTE_SIZE_WRAPPED_KEY_HMAC_SHA512_256 =
+        RSIP_BYTE_SIZE_WRAPPED_KEY(RSIP_KEY_TYPE_HMAC_SHA512_256),             ///< HMAC-SHA512/256
     RSIP_BYTE_SIZE_WRAPPED_KEY_KDF_HMAC_SHA256 =
         RSIP_BYTE_SIZE_WRAPPED_KEY(RSIP_KEY_TYPE_KDF_HMAC_SHA256),             ///< KDF HMAC-SHA256
     RSIP_BYTE_SIZE_WRAPPED_KEY_KDF_HMAC_SHA384 =
@@ -341,6 +346,10 @@ typedef enum e_rsip_byte_size_encrypted_key
         RSIP_BYTE_SIZE_ENCRYPTED_KEY(RSIP_KEY_TYPE_HMAC_SHA384),                 ///< HMAC-SHA384
     RSIP_BYTE_SIZE_ENCRYPTED_KEY_HMAC_SHA512 =
         RSIP_BYTE_SIZE_ENCRYPTED_KEY(RSIP_KEY_TYPE_HMAC_SHA512),                 ///< HMAC-SHA512
+    RSIP_BYTE_SIZE_ENCRYPTED_KEY_HMAC_SHA512_224 =
+        RSIP_BYTE_SIZE_ENCRYPTED_KEY(RSIP_KEY_TYPE_HMAC_SHA512_224),             ///< HMAC-SHA512/224
+    RSIP_BYTE_SIZE_ENCRYPTED_KEY_HMAC_SHA512_256 =
+        RSIP_BYTE_SIZE_ENCRYPTED_KEY(RSIP_KEY_TYPE_HMAC_SHA512_256),             ///< HMAC-SHA512/256
     RSIP_BYTE_SIZE_ENCRYPTED_KEY_KDF_HMAC_SHA256 =
         RSIP_BYTE_SIZE_ENCRYPTED_KEY(RSIP_KEY_TYPE_KDF_HMAC_SHA256),             ///< KDF HMAC-SHA256
     RSIP_BYTE_SIZE_ENCRYPTED_KEY_KDF_HMAC_SHA384 =
@@ -357,7 +366,7 @@ typedef enum e_rsip_byte_size_wrapped_dkm
     RSIP_BYTE_SIZE_WRAPPED_DKM_HEADER       = 12,                                  ///< Header
     RSIP_BYTE_SIZE_WRAPPED_DKM_BLOCK_SHA256 = RSIP_PRV_BYTE_SIZE_WRAPPED_DATA(8),  ///< A block of SHA-256
     RSIP_BYTE_SIZE_WRAPPED_DKM_BLOCK_SHA384 = RSIP_PRV_BYTE_SIZE_WRAPPED_DATA(12), ///< A block of SHA-384
-    RSIP_BYTE_SIZE_WRAPPED_DKM_BLOCK_SHA512 = RSIP_PRV_BYTE_SIZE_WRAPPED_DATA(16), ///< A block of SHA-384
+    RSIP_BYTE_SIZE_WRAPPED_DKM_BLOCK_SHA512 = RSIP_PRV_BYTE_SIZE_WRAPPED_DATA(16), ///< A block of SHA-512
 } rsip_byte_size_wrapped_dkm_t;
 
 /** Byte size of wrapped IV or nonce */
@@ -975,11 +984,11 @@ fsp_err_t R_RSIP_SB_ManifestVerify(rsip_ctrl_t * const   p_ctrl,
 /*******************************************************************************************************************//**
  * @} (end addtogroup RSIP_PROTECTED)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

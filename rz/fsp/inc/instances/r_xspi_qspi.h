@@ -136,7 +136,8 @@ struct st_xspi_qspi_extended_cfg
     xspi_qspi_prefetch_function_t      prefetch_en;       ///< Prefetch function settings
     xspi_qspi_init_callback_t          pre_init;          ///< Pre-initialize callback
     xspi_qspi_init_callback_t          post_init;         ///< Post-initialize callback
-    bool stop_on_close;                                   ///< Stop controller on close
+    bool   stop_on_close;                                 ///< Stop controller on close
+    void * p_reg;                                         ///< Register base address for specified channel
 };
 
 /** Extended configuration. Please refer to the struct st_xspi_qspi_extended_cfg. */

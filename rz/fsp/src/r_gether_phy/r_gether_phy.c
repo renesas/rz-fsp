@@ -164,10 +164,10 @@ const ether_phy_api_t g_ether_phy_on_gether_phy =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -201,12 +201,18 @@ fsp_err_t R_GETHER_PHY_Open (ether_phy_ctrl_t * const p_ctrl, ether_phy_cfg_t co
 #if (GETHER_PHY_CFG_PARAM_CHECKING_ENABLE)
     FSP_ASSERT(p_instance_ctrl);
     GETHER_PHY_ERROR_RETURN(NULL != p_cfg, FSP_ERR_INVALID_POINTER);
+    GETHER_PHY_ERROR_RETURN(NULL != p_cfg->p_extend, FSP_ERR_INVALID_POINTER);
     GETHER_PHY_ERROR_RETURN((GETHER_PHY_OPEN != p_instance_ctrl->open), FSP_ERR_ALREADY_OPEN);
     GETHER_PHY_ERROR_RETURN((BSP_FEATURE_GETHER_MAX_CHANNELS > p_cfg->channel), FSP_ERR_INVALID_CHANNEL);
 #endif
 
     /** Make sure this channel exists. */
-    p_reg_emac = ((R_EMAC0_Type *) (R_EMAC0_BASE + (GETHER_REG_SIZE * p_cfg->channel)));
+    ether_phy_instance_extend_t * p_phy_instance_extend = (ether_phy_instance_extend_t *) p_cfg->p_extend;
+
+    p_reg_emac = (R_EMAC0_Type *) p_phy_instance_extend->p_reg_emac;
+#if (GETHER_PHY_CFG_PARAM_CHECKING_ENABLE)
+    GETHER_PHY_ERROR_RETURN(NULL != p_reg_emac, FSP_ERR_INVALID_POINTER);
+#endif
     p_instance_ctrl->p_reg_cxr23     = (uint32_t *) &p_reg_emac->CXR23;
     p_instance_ctrl->local_advertise = 0;
 
@@ -616,9 +622,9 @@ fsp_err_t R_GETHER_PHY_Write (ether_phy_ctrl_t * const p_ctrl, uint32_t reg_addr
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /**

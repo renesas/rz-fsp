@@ -203,8 +203,8 @@ static fsp_err_t gmac_b_write_param_check(gmac_b_instance_ctrl_t * p_instance_ct
                                           uint32_t const           frame_length);
 static void gmac_b_enable_icu(gmac_b_instance_ctrl_t * const p_instance_ctrl);
 static void gmac_b_disable_icu(gmac_b_instance_ctrl_t * const p_instance_ctrl);
-static void gmac_b_reset_mac(volatile R_GMAC_Type * const p_reg);
-static void gmac_b_init_sysbus(volatile R_GMAC_Type * const p_reg);
+static void gmac_b_reset_mac(volatile R_GBETH_Type * const p_reg);
+static void gmac_b_init_sysbus(volatile R_GBETH_Type * const p_reg);
 
 #ifdef GMAC_B_IMPLEMENT_ETHSW
 fsp_err_t gmac_b_open_ethsw(gmac_b_instance_ctrl_t * p_instance_ctrl);
@@ -295,17 +295,28 @@ static const gmac_b_pause_resolution_t pause_resolution[GMAC_B_PAUSE_TABLE_ENTRI
 };
 
 static const gmac_b_port_mask_t g_gmac_port_mask[BSP_FEATURE_GMAC_MAX_PORTS] =
-{GMAC_B_PORT_MASK_0, GMAC_B_PORT_MASK_1, GMAC_B_PORT_MASK_2, GMAC_B_PORT_MASK_3};
+{
+    GMAC_B_PORT_MASK_0
+#if (1 < BSP_FEATURE_GMAC_MAX_PORTS)
+    , GMAC_B_PORT_MASK_1
+ #if (2 < BSP_FEATURE_GMAC_MAX_PORTS)
+    , GMAC_B_PORT_MASK_2
+  #if (3 < BSP_FEATURE_GMAC_MAX_PORTS)
+    , GMAC_B_PORT_MASK_3
+  #endif
+ #endif
+#endif
+};
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
-namespace RZT
+ #ifdef __cplusplus
+namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
- * @addtogroup RZT_ETHER_B
+ * @addtogroup RZV_GMAC_B
  * @{
  **********************************************************************************************************************/
 
@@ -329,8 +340,8 @@ namespace RZT
  ***********************************************************************************************************************/
 fsp_err_t R_GMAC_B_Open (ether_ctrl_t * const p_ctrl, ether_cfg_t const * const p_cfg)
 {
-    volatile R_GMAC_Type * p_reg[BSP_FEATURE_GMAC_MAX_CHANNELS] = {R_GMAC0, R_GMAC1, R_GMAC2};
-    bsp_module_reset_t     aclk[BSP_FEATURE_GMAC_MAX_CHANNELS]  =
+#if (BSP_FEATURE_GMAC_HAS_PROTECTED_REGISTER)
+    bsp_module_reset_t aclk[BSP_FEATURE_GMAC_MAX_CHANNELS] =
     {
         BSP_MODULE_RESET_GMAC0_PCLKH, BSP_MODULE_RESET_GMAC1_ACLK, BSP_MODULE_RESET_GMAC2_ACLK
     };
@@ -338,7 +349,8 @@ fsp_err_t R_GMAC_B_Open (ether_ctrl_t * const p_ctrl, ether_cfg_t const * const 
     {
         BSP_MODULE_RESET_GMAC0_PCLKM, BSP_MODULE_RESET_GMAC1_HCLK, BSP_MODULE_RESET_GMAC2_HCLK
     };
-    volatile R_GMAC_Type   * p_reg_gmac;
+#endif                                 /* BSP_FEATURE_GMAC_HAS_PROTECTED_REGISTER */
+    volatile R_GBETH_Type  * p_reg_gmac;
     gmac_b_instance_ctrl_t * p_instance_ctrl = (gmac_b_instance_ctrl_t *) p_ctrl;
     gmac_b_extend_cfg_t    * p_extend;
     uint32_t                 index;
@@ -349,8 +361,11 @@ fsp_err_t R_GMAC_B_Open (ether_ctrl_t * const p_ctrl, ether_cfg_t const * const 
     err = gmac_b_open_param_check(p_instance_ctrl, p_cfg); /** check arguments */
     GMAC_ERROR_RETURN((FSP_SUCCESS == err), err);
 
+    /* Initialize the transmit and receive descriptor */
+    p_extend = (gmac_b_extend_cfg_t *) p_cfg->p_extend;
+
     /** Make sure this channel exists. */
-    p_reg_gmac = p_reg[p_cfg->channel];
+    p_reg_gmac = p_extend->p_reg_gmac;
     p_instance_ctrl->p_reg_gmac = (void *) p_reg_gmac;
 
     /* Initialize configuration of Ethernet module. */
@@ -363,9 +378,6 @@ fsp_err_t R_GMAC_B_Open (ether_ctrl_t * const p_ctrl, ether_cfg_t const * const 
     p_instance_ctrl->link_status           = (gmac_b_port_mask_t) 0;
     p_instance_ctrl->previous_link_status  = (gmac_b_port_mask_t) 0;
     p_instance_ctrl->link_establish_status = (gmac_b_port_mask_t) 0;
-
-    /* Initialize the transmit and receive descriptor */
-    p_extend = (gmac_b_extend_cfg_t *) p_cfg->p_extend;
 
     /* receive descriptor */
     p_instance_ctrl->rx_desc_pos = 0;
@@ -399,12 +411,15 @@ fsp_err_t R_GMAC_B_Open (ether_ctrl_t * const p_ctrl, ether_cfg_t const * const 
     p_instance_ctrl->p_callback_memory = NULL;
 
     /* Module start */
+#if (BSP_FEATURE_GMAC_HAS_PROTECTED_REGISTER)
     R_BSP_RegisterProtectDisable(BSP_REG_PROTECT_LPC_RESET);
     R_BSP_MODULE_START(FSP_IP_GMAC, p_cfg->channel);
     R_BSP_ModuleResetDisable(aclk[p_cfg->channel]);
     R_BSP_ModuleResetDisable(hclk[p_cfg->channel]);
     R_BSP_RegisterProtectEnable(BSP_REG_PROTECT_LPC_RESET);
-
+#else
+    R_BSP_MODULE_START(FSP_IP_GBETH, p_cfg->channel);
+#endif
 #ifdef GMAC_B_IMPLEMENT_ETHSW
 
     /* Open Ether-Switch Driver */
@@ -451,7 +466,7 @@ fsp_err_t R_GMAC_B_Close (ether_ctrl_t * const p_ctrl)
     fsp_err_t                err = FSP_SUCCESS;
     uint32_t                 i;
     gmac_b_instance_ctrl_t * p_instance_ctrl = (gmac_b_instance_ctrl_t *) p_ctrl;
-    volatile R_GMAC_Type   * p_reg_gmac;
+    volatile R_GBETH_Type  * p_reg_gmac;
     gmac_b_extend_cfg_t    * p_extend;
     ether_phy_instance_t  ** pp_phy_instance;
 
@@ -463,7 +478,7 @@ fsp_err_t R_GMAC_B_Close (ether_ctrl_t * const p_ctrl)
     /* Disable Ethernet interrupt. */
     gmac_b_disable_icu(p_instance_ctrl);
 
-    p_reg_gmac      = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    p_reg_gmac      = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
     p_extend        = (gmac_b_extend_cfg_t *) p_instance_ctrl->p_gmac_cfg->p_extend;
     pp_phy_instance = (ether_phy_instance_t **) p_extend->pp_phy_instance;
 
@@ -482,11 +497,11 @@ fsp_err_t R_GMAC_B_Close (ether_ctrl_t * const p_ctrl)
     }
 #endif                                 // GMAC_B_IMPLEMENT_ETHSW
 
-    p_reg_gmac->DMA_CH[0].INTERRUPT_ENABLE = 0;
+    p_reg_gmac->DMA_CH[0].DCIER = 0;
 
     /* Disable TE and RE  */
-    p_reg_gmac->MAC_Configuration_b.RE = 0U; /* Receiver Disable */
-    p_reg_gmac->MAC_Configuration_b.TE = 0U; /* Transmitter Disable */
+    p_reg_gmac->MACCR_b.RE = 0U;       /* Receiver Disable */
+    p_reg_gmac->MACCR_b.TE = 0U;       /* Transmitter Disable */
 
     /* Initialize the flags */
     p_instance_ctrl->magic_packet = GMAC_B_MAGIC_PACKET_NOT_DETECTED;
@@ -519,7 +534,7 @@ fsp_err_t R_GMAC_B_BufferRelease (ether_ctrl_t * const p_ctrl)
 {
     fsp_err_t                      err             = FSP_SUCCESS;
     gmac_b_instance_ctrl_t       * p_instance_ctrl = (gmac_b_instance_ctrl_t *) p_ctrl;
-    volatile R_GMAC_Type         * p_reg_gmac;
+    volatile R_GBETH_Type        * p_reg_gmac;
     gmac_b_extend_cfg_t          * p_extend;
     gmac_b_instance_descriptor_t * p_rx_descriptor;
     uint32_t desc_tail_addr;
@@ -537,7 +552,7 @@ fsp_err_t R_GMAC_B_BufferRelease (ether_ctrl_t * const p_ctrl)
     GMAC_ERROR_RETURN(0 == gmac_b_check_magic_packet_detection_bit(p_instance_ctrl),
                       FSP_ERR_ETHER_ERROR_MAGIC_PACKET_MODE);
 
-    p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
     p_extend   = (gmac_b_extend_cfg_t *) p_instance_ctrl->p_gmac_cfg->p_extend;
 
     p_rx_descriptor = &p_extend->p_rx_descriptors[p_instance_ctrl->rx_desc_pos];
@@ -579,7 +594,7 @@ fsp_err_t R_GMAC_B_BufferRelease (ether_ctrl_t * const p_ctrl)
         (uint32_t) (uintptr_t) (p_extend->p_rx_descriptors + p_instance_ctrl->p_gmac_cfg->num_rx_descriptors);
 #endif
 
-    p_reg_gmac->DMA_CH[0].RXDESC_TAIL_POINTER_b.RDTP = desc_tail_addr;
+    p_reg_gmac->DMA_CH[0].DCRTPR = desc_tail_addr;
 
     err = FSP_SUCCESS;
 
@@ -600,7 +615,7 @@ fsp_err_t R_GMAC_B_RxBufferUpdate (ether_ctrl_t * const p_ctrl, void * const p_b
 {
     fsp_err_t                      err             = FSP_SUCCESS;
     gmac_b_instance_ctrl_t       * p_instance_ctrl = (gmac_b_instance_ctrl_t *) p_ctrl;
-    volatile R_GMAC_Type         * p_reg_gmac;
+    volatile R_GBETH_Type        * p_reg_gmac;
     gmac_b_extend_cfg_t          * p_extend;
     gmac_b_instance_descriptor_t * p_rx_descriptor;
     uint32_t desc_tail_addr;
@@ -613,7 +628,7 @@ fsp_err_t R_GMAC_B_RxBufferUpdate (ether_ctrl_t * const p_ctrl, void * const p_b
 #endif
 
     /* need to implement */
-    p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
     p_extend   = (gmac_b_extend_cfg_t *) p_instance_ctrl->p_gmac_cfg->p_extend;
 
     p_rx_descriptor = &p_extend->p_rx_descriptors[p_instance_ctrl->rx_desc_pos];
@@ -657,7 +672,7 @@ fsp_err_t R_GMAC_B_RxBufferUpdate (ether_ctrl_t * const p_ctrl, void * const p_b
             (uint32_t) (uintptr_t) (p_extend->p_rx_descriptors + p_instance_ctrl->p_gmac_cfg->num_rx_descriptors);
 #endif
 
-        p_reg_gmac->DMA_CH[0].RXDESC_TAIL_POINTER_b.RDTP = desc_tail_addr;
+        p_reg_gmac->DMA_CH[0].DCRTPR = desc_tail_addr;
     }
     else
     {
@@ -991,7 +1006,7 @@ fsp_err_t R_GMAC_B_Write (ether_ctrl_t * const p_ctrl, void * const p_buffer, ui
     fsp_err_t                      err             = FSP_SUCCESS;
     gmac_b_instance_ctrl_t       * p_instance_ctrl = (gmac_b_instance_ctrl_t *) p_ctrl;
     gmac_b_instance_descriptor_t * p_tx_descriptor;
-    volatile R_GMAC_Type         * p_reg_gmac;
+    volatile R_GBETH_Type        * p_reg_gmac;
     gmac_b_extend_cfg_t          * p_extend;
     uint32_t desc_tail_addr;
 
@@ -1000,7 +1015,7 @@ fsp_err_t R_GMAC_B_Write (ether_ctrl_t * const p_ctrl, void * const p_buffer, ui
     GMAC_ERROR_RETURN((FSP_SUCCESS == err), err);
 
     /* When the Link up processing is completed */
-    p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
     p_extend   = (gmac_b_extend_cfg_t *) p_instance_ctrl->p_gmac_cfg->p_extend;
 
     p_tx_descriptor = &p_extend->p_tx_descriptors[p_instance_ctrl->tx_desc_pos];
@@ -1099,7 +1114,7 @@ fsp_err_t R_GMAC_B_Write (ether_ctrl_t * const p_ctrl, void * const p_buffer, ui
 #else
         __ASM volatile ("dmb");
 #endif
-        p_reg_gmac->DMA_CH[0].TXDESC_TAIL_POINTER_b.TDTP = desc_tail_addr;
+        p_reg_gmac->DMA_CH[0].DCTTPR = desc_tail_addr;
     }
 
     return err;
@@ -1118,7 +1133,7 @@ fsp_err_t R_GMAC_B_TxStatusGet (ether_ctrl_t * const p_ctrl, void * const p_buff
 {
     gmac_b_instance_ctrl_t       * p_instance_ctrl       = (gmac_b_instance_ctrl_t *) p_ctrl;
     uint8_t                     ** p_sent_buffer_address = (uint8_t **) p_buffer_address;
-    volatile R_GMAC_Type         * p_reg_gmac;
+    volatile R_GBETH_Type        * p_reg_gmac;
     ether_cfg_t                  * p_gmac_cfg;
     gmac_b_extend_cfg_t          * p_extend;
     gmac_b_instance_descriptor_t * p_tx_descriptor;
@@ -1131,11 +1146,11 @@ fsp_err_t R_GMAC_B_TxStatusGet (ether_ctrl_t * const p_ctrl, void * const p_buff
     GMAC_ERROR_RETURN(GMAC_B_OPEN == p_instance_ctrl->open, FSP_ERR_NOT_OPEN);
     GMAC_ERROR_RETURN(NULL != p_buffer_address, FSP_ERR_INVALID_POINTER);
 #endif
-    p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
     p_gmac_cfg = (ether_cfg_t *) p_instance_ctrl->p_gmac_cfg;
     p_extend   = (gmac_b_extend_cfg_t *) p_gmac_cfg->p_extend;
 
-    current = p_reg_gmac->DMA_CH[0].CURRENT_APP_TXDESC_b.CURTDESAPTR;
+    current = p_reg_gmac->DMA_CH[0].DCCATDR_b.CURTDESAPTR;
 
 #if (BSP_LP64_SUPPORT)
     uint64_t va;
@@ -1208,13 +1223,13 @@ fsp_err_t R_GMAC_B_CallbackSet (ether_ctrl_t * const          p_ctrl,
 }                                      /* End of function R_GMAC_B_CallbackSet() */
 
 /*******************************************************************************************************************//**
- * @} (end addtogroup ETHER_B)
+ * @} (end addtogroup RZV_GMAC_B)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************
@@ -1254,6 +1269,8 @@ static fsp_err_t gmac_b_open_param_check (gmac_b_instance_ctrl_t const * const p
     GMAC_ERROR_RETURN((NULL != p_extend->p_rx_descriptors), FSP_ERR_INVALID_POINTER);
     GMAC_ERROR_RETURN((NULL != p_extend->p_tx_descriptors), FSP_ERR_INVALID_POINTER);
 
+    GMAC_ERROR_RETURN((NULL != p_extend->p_reg_gmac), FSP_ERR_INVALID_POINTER);
+
     GMAC_ERROR_RETURN((GMAC_B_OPEN != p_instance_ctrl->open), FSP_ERR_ALREADY_OPEN);
 #else
     FSP_PARAMETER_NOT_USED(p_instance_ctrl);
@@ -1277,7 +1294,7 @@ static fsp_err_t gmac_b_open_param_check (gmac_b_instance_ctrl_t const * const p
  * @retval  FSP_ERR_ETHER_ERROR_MAGIC_PACKET_MODE        As a Magic Packet is being detected, transmission and reception
  *                                                      is not enabled.
  * @retval  FSP_ERR_INVALID_POINTER                     Value of the pointer is NULL.
- * @retval  FSP_ERR_INVALID_SIZE                        The buffer size is smaller than  @ref RZT::ether_cfg_t::ether_buffer_size.
+ * @retval  FSP_ERR_INVALID_SIZE                        The buffer size is smaller than  @ref RZV::ether_cfg_t::ether_buffer_size.
  **********************************************************************************************************************/
 static fsp_err_t gmac_b_read_param_check (gmac_b_instance_ctrl_t * p_instance_ctrl,
                                           void * const             p_buffer,
@@ -1355,12 +1372,12 @@ static fsp_err_t gmac_b_write_param_check (gmac_b_instance_ctrl_t * p_instance_c
  *
  * @retval  none
  **********************************************************************************************************************/
-static void gmac_b_reset_mac (volatile R_GMAC_Type * const p_reg)
+static void gmac_b_reset_mac (volatile R_GBETH_Type * const p_reg)
 {
     /* reset DMA */
-    p_reg->DMA_Mode_b.SWR = 1;
+    p_reg->DMR_b.SWR = 1;
 
-    while (1 == p_reg->DMA_Mode_b.SWR)
+    while (1 == p_reg->DMR_b.SWR)
     {
         ;
     }
@@ -1373,18 +1390,18 @@ static void gmac_b_reset_mac (volatile R_GMAC_Type * const p_reg)
  *
  * @retval  none
  **********************************************************************************************************************/
-static void gmac_b_init_sysbus (volatile R_GMAC_Type * const p_reg)
+static void gmac_b_init_sysbus (volatile R_GBETH_Type * const p_reg)
 {
     /* initialize sysbus */
-    p_reg->DMA_SysBus_Mode_b.FB         = 1;
-    p_reg->DMA_SysBus_Mode_b.AAL        = 1;
-    p_reg->DMA_SysBus_Mode_b.BLEN4      = 1;
-    p_reg->DMA_SysBus_Mode_b.BLEN8      = 1;
-    p_reg->DMA_SysBus_Mode_b.BLEN16     = 1;
-    p_reg->DMA_SysBus_Mode_b.RD_OSR_LMT = 3;
-    p_reg->DMA_SysBus_Mode_b.WR_OSR_LMT = 3;
+    p_reg->DSMR_b.FB         = 1;
+    p_reg->DSMR_b.AAL        = 1;
+    p_reg->DSMR_b.BLEN4      = 1;
+    p_reg->DSMR_b.BLEN8      = 1;
+    p_reg->DSMR_b.BLEN16     = 1;
+    p_reg->DSMR_b.RD_OSR_LMT = 3;
+    p_reg->DSMR_b.WR_OSR_LMT = 3;
 
-    p_reg->DMA_Mode_b.INTM = 2;
+    p_reg->DMR_b.INTM = 2;
 }                                      /* End of function gmac_b_init_sysbus() */
 
 #ifdef GMAC_B_IMPLEMENT_ETHSW
@@ -1443,6 +1460,8 @@ fsp_err_t gmac_b_open_phy (gmac_b_instance_ctrl_t * p_instance_ctrl)
         if (NULL != p_phy_instance)
         {
             /* Open Ether-Phy */
+            ether_phy_instance_ctrl_t * p_phy_instance_ctrl = (ether_phy_instance_ctrl_t *) p_phy_instance->p_ctrl;
+            p_phy_instance_ctrl->p_reg_etherc = (uint32_t *) p_instance_ctrl->p_reg_gmac;
             err = p_phy_instance->p_api->open(p_phy_instance->p_ctrl, p_phy_instance->p_cfg);
             if (FSP_SUCCESS == err)
             {
@@ -1531,19 +1550,19 @@ static void gmac_b_init_descriptors (gmac_b_instance_ctrl_t * const p_instance_c
  ***********************************************************************************************************************/
 static void gmac_config_ethernet (gmac_b_instance_ctrl_t const * const p_instance_ctrl, const uint8_t mode)
 {
-    volatile R_GMAC_Type * const p_reg = p_instance_ctrl->p_reg_gmac;
-    ether_cfg_t                * p_gmac_cfg;
-    gmac_b_extend_cfg_t        * p_extend;
+    volatile R_GBETH_Type * const p_reg = p_instance_ctrl->p_reg_gmac;
+    ether_cfg_t                 * p_gmac_cfg;
+    gmac_b_extend_cfg_t         * p_extend;
 
     p_gmac_cfg = (ether_cfg_t *) p_instance_ctrl->p_gmac_cfg;
     p_extend   = (gmac_b_extend_cfg_t *) p_gmac_cfg->p_extend;
 
-    p_reg->MAC_Packet_Filter_b.PR = p_gmac_cfg->promiscuous; /* Promiscuous Mode */
+    p_reg->MACPFR_b.PR = p_gmac_cfg->promiscuous; /* Promiscuous Mode */
 
     /* tx descriptor */
-    p_reg->DMA_CH[0].TXDESC_RING_LENGTH =
-        ((uint32_t) (p_gmac_cfg->num_tx_descriptors - 1) << R_GMAC0_DMA_CH_TXDESC_RING_LENGTH_TDRL_Pos) &
-        R_GMAC0_DMA_CH_TXDESC_RING_LENGTH_TDRL_Msk; /* count */
+    p_reg->DMA_CH[0].DCTRLR =
+        ((uint32_t) (p_gmac_cfg->num_tx_descriptors - 1) << R_GBETH0_DCTRLR0_TDRL_Pos) &
+        R_GBETH0_DCTRLR0_TDRL_Msk;     /* count */
 
 #if (BSP_LP64_SUPPORT)
     {
@@ -1552,30 +1571,30 @@ static void gmac_config_ethernet (gmac_b_instance_ctrl_t const * const p_instanc
 
         va = (uint64_t) (uintptr_t) p_extend->p_tx_descriptors;
         R_BSP_MmuVatoPa(va, &pa);
-        p_reg->DMA_CH[0].TXDESC_LIST_ADDRESS_b.TDESLA = (uint32_t) (uintptr_t) pa; /* top */
+        p_reg->DMA_CH[0].DCTLAR = (uint32_t) (uintptr_t) pa; /* top */
 
         va = (uint64_t) (uintptr_t) (p_extend->p_tx_descriptors + p_gmac_cfg->num_tx_descriptors);
         R_BSP_MmuVatoPa(va, &pa);
-        p_reg->DMA_CH[0].TXDESC_TAIL_POINTER_b.TDTP = (uint32_t) (uintptr_t) pa;   /* end */
+        p_reg->DMA_CH[0].DCTTPR = (uint32_t) (uintptr_t) pa; /* end */
     }
 #else
     {
         uint32_t desc_tail_addr = (uint32_t) (uintptr_t) (p_extend->p_tx_descriptors + p_gmac_cfg->num_tx_descriptors);
 
-        p_reg->DMA_CH[0].TXDESC_LIST_ADDRESS_b.TDESLA = (uint32_t) (uintptr_t) p_extend->p_tx_descriptors; /* top */
-        p_reg->DMA_CH[0].TXDESC_TAIL_POINTER_b.TDTP   = desc_tail_addr;                                    /* end */
+        p_reg->DMA_CH[0].DCTLAR = (uint32_t) (uintptr_t) p_extend->p_tx_descriptors; /* top */
+        p_reg->DMA_CH[0].DCTTPR = desc_tail_addr;                                    /* end */
     }
 #endif
 
-    p_reg->DMA_CH[0].TX_CONTROL_b.ST = 1;
+    p_reg->DMA_CH[0].DCTCR_b.ST = 1;
 
-    p_reg->MTL_Q[0].TX_OPERATION_MODE_b.TSF   = 1;
-    p_reg->MTL_Q[0].TX_OPERATION_MODE_b.TXQEN = 2;
+    p_reg->MTL_Q[0].MTLTOMR_b.TSF   = 1;
+    p_reg->MTL_Q[0].MTLTOMR_b.TXQEN = 2;
 
     /* rx descriptor */
-    p_reg->DMA_CH[0].RX_CONTROL2 =
-        ((uint32_t) (p_gmac_cfg->num_rx_descriptors - 1) << R_GMAC0_DMA_CH_RX_CONTROL2_RDRL_Pos) &
-        R_GMAC0_DMA_CH_RX_CONTROL2_RDRL_Msk; /* count */
+    p_reg->DMA_CH[0].DCRC2R =
+        ((uint32_t) (p_gmac_cfg->num_rx_descriptors - 1) << R_GBETH0_DCRC2R0_RDRL_Pos) &
+        R_GBETH0_DCRC2R0_RDRL_Msk;     /* count */
 
 #if (BSP_LP64_SUPPORT)
     {
@@ -1584,51 +1603,55 @@ static void gmac_config_ethernet (gmac_b_instance_ctrl_t const * const p_instanc
 
         va = (uint64_t) (uintptr_t) p_extend->p_rx_descriptors;
         R_BSP_MmuVatoPa(va, &pa);
-        p_reg->DMA_CH[0].RXDESC_LIST_ADDRESS_b.RDESLA = (uint32_t) (uintptr_t) pa; /* top */
+        p_reg->DMA_CH[0].DCRLAR = (uint32_t) (uintptr_t) pa; /* top */
 
         va = (uint64_t) (uintptr_t) (p_extend->p_rx_descriptors + p_gmac_cfg->num_rx_descriptors);
         R_BSP_MmuVatoPa(va, &pa);
-        p_reg->DMA_CH[0].RXDESC_TAIL_POINTER_b.RDTP = (uint32_t) (uintptr_t) pa;   /* end */
+        p_reg->DMA_CH[0].DCRTPR = (uint32_t) (uintptr_t) pa; /* end */
     }
 #else
     {
         uint32_t desc_tail_addr = (uint32_t) (uintptr_t) (p_extend->p_rx_descriptors + p_gmac_cfg->num_rx_descriptors);
 
-        p_reg->DMA_CH[0].RXDESC_LIST_ADDRESS_b.RDESLA = (uint32_t) (uintptr_t) p_extend->p_rx_descriptors; /* top */
-        p_reg->DMA_CH[0].RXDESC_TAIL_POINTER_b.RDTP   = desc_tail_addr;                                    /* end */
+        p_reg->DMA_CH[0].DCRLAR = (uint32_t) (uintptr_t) p_extend->p_rx_descriptors;                                     /* top */
+        p_reg->DMA_CH[0].DCRTPR = desc_tail_addr;                                                                        /* end */
     }
 #endif
 
-    p_reg->DMA_CH[0].RX_CONTROL      = (uint32_t) ((uint16_t) p_gmac_cfg->ether_buffer_size << 1);         /* rx buffer size */
-    p_reg->DMA_CH[0].RX_CONTROL_b.SR = 1;                                                                  /* rx start */
+    p_reg->DMA_CH[0].DCRCR      = (uint32_t) ((uint16_t) p_gmac_cfg->ether_buffer_size << R_GBETH0_DCRCR0_RBSZ_4_0_Pos); /* rx buffer size */
+    p_reg->DMA_CH[0].DCRCR_b.SR = 1;                                                                                     /* rx start */
 
-    p_reg->MAC_RxQ_Ctrl0_b.RXQ0EN  = 2;
-    p_reg->MAC_RxQ_Ctrl1_b.MCBCQ   = 0;
-    p_reg->MAC_RxQ_Ctrl1_b.MCBCQEN = 1;
+    p_reg->MACRC0_b.RXQ0EN  = 2;
+    p_reg->MACRC1_b.MCBCQ   = 0;
+    p_reg->MACRC1_b.MCBCQEN = 1;
 
-    p_reg->MTL_Q[0].RX_CONTROL_b.RXQ_FRM_ARBIT = 1;
-    p_reg->MTL_Q[0].RX_CONTROL_b.RXQ_WEGT      = 1;
+#if (BSP_FEATURE_GMAC_RXQ_ARBITRATION_SUPPORT)
+    p_reg->MTL_Q[0].MTLRCR_b.RXQ_FRM_ARBIT = 1;
+#endif
+    p_reg->MTL_Q[0].MTLRCR_b.RXQ_WEGT = 1;
 
-    p_reg->MTL_Q[0].RX_OPERATION_MODE_b.RQS = 0xF;
-    p_reg->MTL_Q[0].RX_OPERATION_MODE_b.FEP = 1;
-    p_reg->MTL_Q[0].RX_OPERATION_MODE_b.FUP = 1;
-    p_reg->MTL_Q[0].RX_OPERATION_MODE_b.RSF = 1;
+    p_reg->MTL_Q[0].MTLROMR_b.RQS = 0xF;
+    p_reg->MTL_Q[0].MTLROMR_b.FEP = 1;
+    p_reg->MTL_Q[0].MTLROMR_b.FUP = 1;
+    p_reg->MTL_Q[0].MTLROMR_b.RSF = 1;
 
-    p_reg->MTL_RxQ_DMA_Map0_b.Q0MDMACH = 0;
-    p_reg->MTL_RxQ_DMA_Map0_b.Q0DDMACH = 1;
-    p_reg->MTL_RxQ_DMA_Map1            = 0;
+    p_reg->MTLRDMR_b.Q0MDMACH = 0;
+    p_reg->MTLRDMR_b.Q0DDMACH = 1;
+#if (1 <= BSP_FEATURE_GMAC_RXQ_DMA_MAX_MAP)
+    p_reg->MTL_RxQ_DMA_Map1 = 0;
+#endif
 
     if (GMAC_B_USE_MAGIC_PACKET_DETECT == mode)
     {
         /* Magic packet detection mode */
-        p_reg->MAC_Interrupt_Enable_b.PMTIE = 1;
+        p_reg->MACIER_b.PMTIE = 1;
     }
     else
     {
         /* Normal mode */
-        p_reg->MAC_Interrupt_Enable_b.PMTIE = 0;
+        p_reg->MACIER_b.PMTIE = 0;
 
-        p_reg->DMA_CH[0].INTERRUPT_ENABLE =
+        p_reg->DMA_CH[0].DCIER =
             GMAC_B_DMA_CH_INTERRUPT_ENABLE_NIE |  /* Normal Interrupt Summary Enable */
             GMAC_B_DMA_CH_INTERRUPT_ENABLE_AIE |  /* Abnormal Interrupt Summary Enable */
             GMAC_B_DMA_CH_INTERRUPT_ENABLE_CDEE | /* Context Descriptor Error Enable */
@@ -1704,53 +1727,53 @@ static void gmac_b_configure_mac (gmac_b_instance_ctrl_t * const p_instance_ctrl
                                   const uint8_t                  mac_addr[],
                                   const uint8_t                  mode)
 {
-    volatile R_GMAC_Type * const p_reg = p_instance_ctrl->p_reg_gmac;
+    volatile R_GBETH_Type * const p_reg = p_instance_ctrl->p_reg_gmac;
 
     gmac_b_disable(p_instance_ctrl);
 
     /* set mac address 0 */
-    p_reg->MAC_ADDRESS[0].HIGH_b.DCS = 0;
+    p_reg->MAC_ADDRESS[0].MACAHR_b.DCS = 0;
 
-    p_reg->MAC_ADDRESS[0].HIGH_b.ADDRHI = (uint16_t) ((mac_addr[5] << 8) |
-                                                      (mac_addr[4]));
+    p_reg->MAC_ADDRESS[0].MACAHR_b.ADDRHI = (uint16_t) ((mac_addr[5] << 8) |
+                                                        (mac_addr[4]));
 
-    p_reg->MAC_ADDRESS[0].LOW_b.ADDRLO = (uint32_t) ((mac_addr[3] << 24) |
-                                                     (mac_addr[2] << 16) |
-                                                     (mac_addr[1] << 8) |
-                                                     (mac_addr[0]));
+    p_reg->MAC_ADDRESS[0].MACALR_b.ADDRLO = (uint32_t) ((mac_addr[3] << 24) |
+                                                        (mac_addr[2] << 16) |
+                                                        (mac_addr[1] << 8) |
+                                                        (mac_addr[0]));
 
     /* set mac address 1 */
     uint8_t * mac_addr1 = ((gmac_b_extend_cfg_t *) p_instance_ctrl->p_gmac_cfg->p_extend)->p_mac_address1;
     if (0 != mac_addr1)
     {
-        p_reg->MAC_ADDRESS[1].HIGH_b.AE  = 1; /* enable address */
-        p_reg->MAC_ADDRESS[1].HIGH_b.DCS = 0;
-        p_reg->MAC_ADDRESS[1].HIGH_b.MBC = 0;
+        p_reg->MAC_ADDRESS[1].MACAHR_b.AE  = 1; /* enable address */
+        p_reg->MAC_ADDRESS[1].MACAHR_b.DCS = 0;
+        p_reg->MAC_ADDRESS[1].MACAHR_b.MBC = 0;
 
-        p_reg->MAC_ADDRESS[1].HIGH_b.ADDRHI = (uint16_t) ((mac_addr1[5] << 8) |
-                                                          (mac_addr1[4]));
+        p_reg->MAC_ADDRESS[1].MACAHR_b.ADDRHI = (uint16_t) ((mac_addr1[5] << 8) |
+                                                            (mac_addr1[4]));
 
-        p_reg->MAC_ADDRESS[1].LOW_b.ADDRLO = (uint32_t) ((mac_addr1[3] << 24) |
-                                                         (mac_addr1[2] << 16) |
-                                                         (mac_addr1[1] << 8) |
-                                                         (mac_addr1[0]));
+        p_reg->MAC_ADDRESS[1].MACALR_b.ADDRLO = (uint32_t) ((mac_addr1[3] << 24) |
+                                                            (mac_addr1[2] << 16) |
+                                                            (mac_addr1[1] << 8) |
+                                                            (mac_addr1[0]));
     }
 
     /* set mac address 2 */
     uint8_t * mac_addr2 = ((gmac_b_extend_cfg_t *) p_instance_ctrl->p_gmac_cfg->p_extend)->p_mac_address2;
     if (0 != mac_addr2)
     {
-        p_reg->MAC_ADDRESS[2].HIGH_b.AE  = 1; /* enable address */
-        p_reg->MAC_ADDRESS[2].HIGH_b.DCS = 0;
-        p_reg->MAC_ADDRESS[2].HIGH_b.MBC = 0;
+        p_reg->MAC_ADDRESS[2].MACAHR_b.AE  = 1; /* enable address */
+        p_reg->MAC_ADDRESS[2].MACAHR_b.DCS = 0;
+        p_reg->MAC_ADDRESS[2].MACAHR_b.MBC = 0;
 
-        p_reg->MAC_ADDRESS[2].HIGH_b.ADDRHI = (uint16_t) ((mac_addr2[5] << 8) |
-                                                          (mac_addr2[4]));
+        p_reg->MAC_ADDRESS[2].MACAHR_b.ADDRHI = (uint16_t) ((mac_addr2[5] << 8) |
+                                                            (mac_addr2[4]));
 
-        p_reg->MAC_ADDRESS[2].LOW_b.ADDRLO = (uint32_t) ((mac_addr2[3] << 24) |
-                                                         (mac_addr2[2] << 16) |
-                                                         (mac_addr2[1] << 8) |
-                                                         (mac_addr2[0]));
+        p_reg->MAC_ADDRESS[2].MACALR_b.ADDRLO = (uint32_t) ((mac_addr2[3] << 24) |
+                                                            (mac_addr2[2] << 16) |
+                                                            (mac_addr2[1] << 8) |
+                                                            (mac_addr2[0]));
     }
 
     gmac_b_init_descriptors(p_instance_ctrl);
@@ -1767,17 +1790,17 @@ static void gmac_b_configure_mac (gmac_b_instance_ctrl_t * const p_instance_ctrl
  ***********************************************************************************************************************/
 static void gmac_b_disable (gmac_b_instance_ctrl_t * const p_instance_ctrl)
 {
-    volatile R_GMAC_Type * p_reg_gmac;
+    volatile R_GBETH_Type * p_reg_gmac;
 
-    p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
 
     /* Disable TE and RE  */
-    p_reg_gmac->MAC_Configuration_b.RE = 0U; /* Receiver Disable */
-    p_reg_gmac->MAC_Configuration_b.TE = 0U; /* Transmitter Disable */
-}                                            /* End of function gmac_b_disable() */
+    p_reg_gmac->MACCR_b.RE = 0U;       /* Receiver Disable */
+    p_reg_gmac->MACCR_b.TE = 0U;       /* Transmitter Disable */
+}                                      /* End of function gmac_b_disable() */
 
 /*******************************************************************************************************************//**
- * Call user's callback function from R_GMAC_B_LinkProcess
+ * Call user's callback function from R_GMAC_LinkProcess
  *
  * @param[in] p_instance_ctrl           Ethernet driver control block.
  * @param[in] event                     Event code.
@@ -2070,20 +2093,33 @@ static fsp_err_t gmac_b_do_link (gmac_b_instance_ctrl_t * const p_instance_ctrl,
  ***********************************************************************************************************************/
 static void gmac_b_configure_operation (gmac_b_instance_ctrl_t * const p_instance_ctrl)
 {
-    volatile R_GMAC_Type * p_reg_gmac;
-    uint32_t               transmit_pause_set = 0;
-    uint32_t               receive_pause_set  = 0;
+    volatile R_GBETH_Type * p_reg_gmac;
+    uint32_t                transmit_pause_set = 0;
+    uint32_t                receive_pause_set  = 0;
     bool full_duplex = false;
+#if (0 == BSP_FEATURE_ETHSS_SUPPORTED)
+    fsp_priv_clock_divider_t divider;
+    uint32_t                 divide_value = BSP_CLOCKS_PLLETH_GBE0_DIV_2;
 
-    p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    if (0 == p_instance_ctrl->p_gmac_cfg->channel)
+    {
+        divider = FSP_PRIV_CLOCK_DIVIDER_PLLETH_GBE0;
+    }
+    else
+    {
+        divider = FSP_PRIV_CLOCK_DIVIDER_PLLETH_GBE1;
+    }
+#endif
+
+    p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
 
 #ifdef GMAC_B_IMPLEMENT_ETHSW
     if (0 == p_instance_ctrl->p_gmac_cfg->channel)
     {
-        p_reg_gmac->MAC_Configuration_b.PS  = 0; /* Port Selec: 1Gbps */
-        p_reg_gmac->MAC_Configuration_b.FES = 1; /* Speed: 100Mbps */
-        p_reg_gmac->MAC_Configuration_b.DM  = 1; /* Duplex Mode: Full-duple */
-        full_duplex = true;
+        p_reg_gmac->MACCR_b.PS  = 0;   /* Port Selec: 1Gbps */
+        p_reg_gmac->MACCR_b.FES = 1;   /* Speed: 100Mbps */
+        p_reg_gmac->MACCR_b.DM  = 1;   /* Duplex Mode: Full-duple */
+        full_duplex             = true;
     }
     else
 #endif /* GMAC_B_IMPLEMENT_ETHSW */
@@ -2093,62 +2129,83 @@ static void gmac_b_configure_operation (gmac_b_instance_ctrl_t * const p_instanc
             /* Half duplex link */
             case ETHER_PHY_LINK_SPEED_1000H:
             {
-                p_reg_gmac->MAC_Configuration_b.PS  = 0; /* Port Selec: 1Gbps */
-                p_reg_gmac->MAC_Configuration_b.FES = 1;
-                p_reg_gmac->MAC_Configuration_b.DM  = 0; /* Duplex Mode: Half-duple */
+                p_reg_gmac->MACCR_b.PS  = 0;                 /* Port Selec: 1Gbps */
+                p_reg_gmac->MACCR_b.FES = 0;
+                p_reg_gmac->MACCR_b.DM  = 0;                 /* Duplex Mode: Half-duple */
+#if (0 == BSP_FEATURE_ETHSS_SUPPORTED)
+                divide_value = BSP_CLOCKS_PLLETH_GBE0_DIV_2; /* 125MHz = 250MHz / 2 */
+#endif
                 break;
             }
 
             case ETHER_PHY_LINK_SPEED_100H:
             {
-                p_reg_gmac->MAC_Configuration_b.PS  = 1; /* Port Selec: 10Mbps or 100Mbps */
-                p_reg_gmac->MAC_Configuration_b.FES = 1; /* Speed Select: 100Mbps */
-                p_reg_gmac->MAC_Configuration_b.DM  = 0; /* Duplex Mode: Half-duple */
+                p_reg_gmac->MACCR_b.PS  = 1;                  /* Port Selec: 10Mbps or 100Mbps */
+                p_reg_gmac->MACCR_b.FES = 1;                  /* Speed Select: 100Mbps */
+                p_reg_gmac->MACCR_b.DM  = 0;                  /* Duplex Mode: Half-duple */
+#if (0 == BSP_FEATURE_ETHSS_SUPPORTED)
+                divide_value = BSP_CLOCKS_PLLETH_GBE0_DIV_10; /* 25MHz = 250MHz / 10 */
+#endif
                 break;
             }
 
             case ETHER_PHY_LINK_SPEED_10H:
             {
-                p_reg_gmac->MAC_Configuration_b.PS  = 1; /* Port Selec: 10Mbps or 100Mbps */
-                p_reg_gmac->MAC_Configuration_b.FES = 0; /* Speed Select: 10Mbps */
-                p_reg_gmac->MAC_Configuration_b.DM  = 0; /* Duplex Mode: Half-duple */
+                p_reg_gmac->MACCR_b.PS  = 1;                   /* Port Selec: 10Mbps or 100Mbps */
+                p_reg_gmac->MACCR_b.FES = 0;                   /* Speed Select: 10Mbps */
+                p_reg_gmac->MACCR_b.DM  = 0;                   /* Duplex Mode: Half-duple */
+#if (0 == BSP_FEATURE_ETHSS_SUPPORTED)
+                divide_value = BSP_CLOCKS_PLLETH_GBE0_DIV_100; /* 2.5MHz = 250MHz / 100 */
+#endif
                 break;
             }
 
             /* Full duplex link */
             case ETHER_PHY_LINK_SPEED_1000F:
             {
-                p_reg_gmac->MAC_Configuration_b.PS  = 0; /* Port Selec: 1Gbps */
-                p_reg_gmac->MAC_Configuration_b.FES = 1;
-                p_reg_gmac->MAC_Configuration_b.DM  = 1; /* Duplex Mode: Full-duple */
-                full_duplex = true;
+                p_reg_gmac->MACCR_b.PS  = 0;                 /* Port Selec: 1Gbps */
+                p_reg_gmac->MACCR_b.FES = 0;
+                p_reg_gmac->MACCR_b.DM  = 1;                 /* Duplex Mode: Full-duple */
+                full_duplex             = true;
+#if (0 == BSP_FEATURE_ETHSS_SUPPORTED)
+                divide_value = BSP_CLOCKS_PLLETH_GBE0_DIV_2; /* 125MHz = 250MHz / 2 */
+#endif
                 break;
             }
 
             case ETHER_PHY_LINK_SPEED_100F:
             {
-                p_reg_gmac->MAC_Configuration_b.PS  = 1; /* Port Selec: 10Mbps or 100Mbps */
-                p_reg_gmac->MAC_Configuration_b.FES = 1; /* Speed Select: 100Mbps */
-                p_reg_gmac->MAC_Configuration_b.DM  = 1; /* Duplex Mode: Full-duple */
-                full_duplex = true;
+                p_reg_gmac->MACCR_b.PS  = 1;                  /* Port Selec: 10Mbps or 100Mbps */
+                p_reg_gmac->MACCR_b.FES = 1;                  /* Speed Select: 100Mbps */
+                p_reg_gmac->MACCR_b.DM  = 1;                  /* Duplex Mode: Full-duple */
+                full_duplex             = true;
+#if (0 == BSP_FEATURE_ETHSS_SUPPORTED)
+                divide_value = BSP_CLOCKS_PLLETH_GBE0_DIV_10; /* 25MHz = 250MHz / 10 */
+#endif
                 break;
             }
 
             case ETHER_PHY_LINK_SPEED_10F:
             {
-                p_reg_gmac->MAC_Configuration_b.PS  = 1; /* Port Selec: 10Mbps or 100Mbps */
-                p_reg_gmac->MAC_Configuration_b.FES = 0; /* Speed Select: 10Mbps */
-                p_reg_gmac->MAC_Configuration_b.DM  = 1; /* Duplex Mode: Full-duple */
-                full_duplex = true;
+                p_reg_gmac->MACCR_b.PS  = 1;                   /* Port Selec: 10Mbps or 100Mbps */
+                p_reg_gmac->MACCR_b.FES = 0;                   /* Speed Select: 10Mbps */
+                p_reg_gmac->MACCR_b.DM  = 1;                   /* Duplex Mode: Full-duple */
+                full_duplex             = true;
+#if (0 == BSP_FEATURE_ETHSS_SUPPORTED)
+                divide_value = BSP_CLOCKS_PLLETH_GBE0_DIV_100; /* 2.5MHz = 250MHz / 100 */
+#endif
                 break;
             }
 
             /* Unknown */
             default:
             {
-                p_reg_gmac->MAC_Configuration_b.PS  = 0; /* Port Selec: 1Gbps */
-                p_reg_gmac->MAC_Configuration_b.FES = 1;
-                p_reg_gmac->MAC_Configuration_b.DM  = 1; /* Duplex Mode: Full-duple */
+                p_reg_gmac->MACCR_b.PS  = 0;                 /* Port Selec: 1Gbps */
+                p_reg_gmac->MACCR_b.FES = 0;
+                p_reg_gmac->MACCR_b.DM  = 1;                 /* Duplex Mode: Full-duple */
+#if (0 == BSP_FEATURE_ETHSS_SUPPORTED)
+                divide_value = BSP_CLOCKS_PLLETH_GBE0_DIV_2; /* 125MHz = 250MHz / 2 */
+#endif
                 break;
             }
         }
@@ -2171,40 +2228,46 @@ static void gmac_b_configure_operation (gmac_b_instance_ctrl_t * const p_instanc
         if (GMAC_B_PAUSE_XMIT_ON == transmit_pause_set)
         {
             /* Enable automatic PAUSE frame transmission */
-            p_reg_gmac->MTL_Q[0].RX_OPERATION_MODE_b.RFD  = 2; /* Threshold for Deactivating Flow Control = FULL - 3KB */
-            p_reg_gmac->MTL_Q[0].RX_OPERATION_MODE_b.RFA  = 1; /* Threshold for Deactivating Flow Control = FULL - 2KB */
-            p_reg_gmac->MTL_Q[0].RX_OPERATION_MODE_b.EHFC = 1; /* Enable HW Flow Control */
+            p_reg_gmac->MTL_Q[0].MTLROMR_b.RFD  = 2; /* Threshold for Deactivating Flow Control = FULL - 3KB */
+            p_reg_gmac->MTL_Q[0].MTLROMR_b.RFA  = 1; /* Threshold for Deactivating Flow Control = FULL - 2KB */
+            p_reg_gmac->MTL_Q[0].MTLROMR_b.EHFC = 1; /* Enable HW Flow Control */
 
-            p_reg_gmac->MAC_Q0_Tx_Flow_Ctrl_b.PT  = GMAC_B_PAUSE_TIME;
-            p_reg_gmac->MAC_Q0_Tx_Flow_Ctrl_b.PLT = 2;
-            p_reg_gmac->MAC_Q0_Tx_Flow_Ctrl_b.TFE = 1;
+            p_reg_gmac->MACQTFCR_b.PT  = GMAC_B_PAUSE_TIME;
+            p_reg_gmac->MACQTFCR_b.PLT = 2;
+            p_reg_gmac->MACQTFCR_b.TFE = 1;
         }
 
         if (GMAC_B_PAUSE_RECV_ON == receive_pause_set)
         {
             /* Enable reception of PAUSE frames */
-            p_reg_gmac->MAC_Rx_Flow_Ctrl_b.RFE = 1;
+            p_reg_gmac->MACRFCR_b.RFE = 1;
         }
     }
     else
     {
         /* pause frame is not used */
-        p_reg_gmac->MTL_Q[0].RX_OPERATION_MODE_b.RFD  = 0;
-        p_reg_gmac->MTL_Q[0].RX_OPERATION_MODE_b.RFA  = 0;
-        p_reg_gmac->MTL_Q[0].RX_OPERATION_MODE_b.EHFC = 0;
-        p_reg_gmac->MAC_Q0_Tx_Flow_Ctrl_b.TFE         = 0;
-        p_reg_gmac->MAC_Rx_Flow_Ctrl = 0;
+        p_reg_gmac->MTL_Q[0].MTLROMR_b.RFD  = 0;
+        p_reg_gmac->MTL_Q[0].MTLROMR_b.RFA  = 0;
+        p_reg_gmac->MTL_Q[0].MTLROMR_b.EHFC = 0;
+        p_reg_gmac->MACQTFCR_b.TFE          = 0;
+        p_reg_gmac->MACRFCR                 = 0;
     }
 
     /* CRC Stripping for Type Frames */
-    p_reg_gmac->MAC_Configuration_b.CST = 1;
+    p_reg_gmac->MACCR_b.CST = 1;
 
     /* Automatic Pad or CRC Stripping */
-    p_reg_gmac->MAC_Configuration_b.ACS = 1;
+    p_reg_gmac->MACCR_b.ACS = 1;
+
+#if (0 == BSP_FEATURE_ETHSS_SUPPORTED)
+
+    /* Set TX_CLK frequency */
+    R_BSP_ClockDividerSet(divider, divide_value);
+#endif
 
     /* Enable receive and transmit. */
-    p_reg_gmac->MAC_Configuration_b.TE = 1U;
-    p_reg_gmac->MAC_Configuration_b.RE = 1U;
+    p_reg_gmac->MACCR_b.TE = 1U;
+    p_reg_gmac->MACCR_b.RE = 1U;
 }                                      /* End of function gmac_b_configure_operation() */
 
 /*******************************************************************************************************************//**
@@ -2216,16 +2279,16 @@ static void gmac_b_configure_operation (gmac_b_instance_ctrl_t * const p_instanc
  ***********************************************************************************************************************/
 void gmac_b_magic_packet_detection (gmac_b_instance_ctrl_t * const p_instance_ctrl)
 {
-    volatile R_GMAC_Type * p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    volatile R_GBETH_Type * p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
 
     /* The magic packet detection is permitted. */
-    p_reg_gmac->MAC_PMT_Control_Status =
+    p_reg_gmac->MACPCSR =
         GMAC_B_PMT_CONTROL_STATUS_MGKPKTEN | /* Magic Packet Enable */
         GMAC_B_PMT_CONTROL_STATUS_PWRDWN;    /* Power Down */
 
     /* Because data is not transmitted for the magic packet detection waiting,
      * only the reception is permitted. */
-    p_reg_gmac->MAC_Configuration_b.RE = 1;
+    p_reg_gmac->MACCR_b.RE = 1;
 }                                            /* End of function gmac_b_magic_packet_detection() */
 
 /*******************************************************************************************************************//**
@@ -2240,9 +2303,9 @@ static uint8_t gmac_b_check_magic_packet_detection_bit (gmac_b_instance_ctrl_t c
 {
     uint8_t ret = 0;
 
-    volatile R_GMAC_Type * p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    volatile R_GBETH_Type * p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
 
-    if (1 == p_reg_gmac->MAC_PMT_Control_Status_b.MGKPKTEN)
+    if (1 == p_reg_gmac->MACPCSR_b.MGKPKTEN)
     {
         ret = 1;
     }
@@ -2363,18 +2426,18 @@ static void gmac_b_call_callback (gmac_b_instance_ctrl_t * p_instance_ctrl, ethe
  **********************************************************************************************************************/
 static void gmac_b_isr_dma_ch (gmac_b_instance_ctrl_t * p_instance_ctrl)
 {
-    ether_callback_args_t  callback_arg;
-    volatile R_GMAC_Type * p_reg_gmac;
-    uint32_t               status;
-    volatile uint32_t      dammy_read;
+    ether_callback_args_t   callback_arg;
+    volatile R_GBETH_Type * p_reg_gmac;
+    uint32_t                status;
+    volatile uint32_t       dammy_read;
 
-    p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
 
-    status = p_reg_gmac->DMA_CH[0].STATUS;
-    p_reg_gmac->DMA_CH[0].STATUS = status; /* clear */
+    status = p_reg_gmac->DMA_CH[0].DCSR;
+    p_reg_gmac->DMA_CH[0].DCSR = status; /* clear */
 
     /* Dammy read for Countermeasure when the CPU clock is 400 or 800MHz */
-    dammy_read = p_reg_gmac->DMA_CH[0].STATUS;
+    dammy_read = p_reg_gmac->DMA_CH[0].DCSR;
     dammy_read = dammy_read;
 
     /* Callback : Interrupt handler */
@@ -2397,17 +2460,17 @@ static void gmac_b_isr_dma_ch (gmac_b_instance_ctrl_t * p_instance_ctrl)
  **********************************************************************************************************************/
 static void gmac_b_isr_mtl (gmac_b_instance_ctrl_t * p_instance_ctrl)
 {
-    uint32_t               status;
-    volatile R_GMAC_Type * p_reg_gmac;
-    volatile uint32_t      dammy_read;
+    uint32_t                status;
+    volatile R_GBETH_Type * p_reg_gmac;
+    volatile uint32_t       dammy_read;
 
-    p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
 
-    status = p_reg_gmac->MTL_Q[0].INTERRUPT_CONTROL_STATUS;
-    p_reg_gmac->MTL_Q[0].INTERRUPT_CONTROL_STATUS = status; /* clear */
+    status = p_reg_gmac->MTL_Q[0].MTLQICSR;
+    p_reg_gmac->MTL_Q[0].MTLQICSR = status; /* clear */
 
     /* Dammy read  */
-    dammy_read = p_reg_gmac->MTL_Q[0].INTERRUPT_CONTROL_STATUS;
+    dammy_read = p_reg_gmac->MTL_Q[0].MTLQICSR;
     dammy_read = dammy_read;
 }                                      /* End of function gmac_b_isr_mtl() */
 
@@ -2418,13 +2481,13 @@ static void gmac_b_isr_mtl (gmac_b_instance_ctrl_t * p_instance_ctrl)
  **********************************************************************************************************************/
 static void gmac_b_isr_pmt (gmac_b_instance_ctrl_t * p_instance_ctrl)
 {
-    ether_callback_args_t  callback_arg;
-    volatile R_GMAC_Type * p_reg_gmac;
-    uint32_t               pmt_control_status;
+    ether_callback_args_t   callback_arg;
+    volatile R_GBETH_Type * p_reg_gmac;
+    uint32_t                pmt_control_status;
 
-    p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
 
-    pmt_control_status = p_reg_gmac->MAC_PMT_Control_Status;
+    pmt_control_status = p_reg_gmac->MACPCSR;
 
     /* Callback : Interrupt handler */
     if (NULL != p_instance_ctrl->p_callback)
@@ -2445,7 +2508,7 @@ static void gmac_b_isr_pmt (gmac_b_instance_ctrl_t * p_instance_ctrl)
     }
     else
     {
-        p_reg_gmac->MAC_PMT_Control_Status =
+        p_reg_gmac->MACPCSR =
             GMAC_B_PMT_CONTROL_STATUS_MGKPKTEN | /* Magic Packet Enable */
             GMAC_B_PMT_CONTROL_STATUS_PWRDWN;    /* Power Down */
     }
@@ -2458,12 +2521,12 @@ static void gmac_b_isr_pmt (gmac_b_instance_ctrl_t * p_instance_ctrl)
  **********************************************************************************************************************/
 static void gmac_b_isr_mac (gmac_b_instance_ctrl_t * p_instance_ctrl)
 {
-    uint32_t               status;
-    volatile R_GMAC_Type * p_reg_gmac;
+    uint32_t                status;
+    volatile R_GBETH_Type * p_reg_gmac;
 
-    p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
 
-    status = p_reg_gmac->MAC_Interrupt_Status;
+    status = p_reg_gmac->MACISR;
 
     if (GMAC_B_MAC_INTERRUPT_STATUS_PMTIS == (status & GMAC_B_MAC_INTERRUPT_STATUS_PMTIS))
     {
@@ -2479,13 +2542,13 @@ static void gmac_b_isr_mac (gmac_b_instance_ctrl_t * p_instance_ctrl)
 void gmac_b_isr_sbd (void)
 {
     uint32_t                 status;
-    volatile R_GMAC_Type   * p_reg_gmac;
+    volatile R_GBETH_Type  * p_reg_gmac;
     IRQn_Type                irq             = R_FSP_CurrentIrqGet();
     gmac_b_instance_ctrl_t * p_instance_ctrl = (gmac_b_instance_ctrl_t *) R_FSP_IsrContextGet(irq);
 
-    p_reg_gmac = (R_GMAC_Type *) p_instance_ctrl->p_reg_gmac;
+    p_reg_gmac = (R_GBETH_Type *) p_instance_ctrl->p_reg_gmac;
 
-    status = p_reg_gmac->DMA_Interrupt_Status;
+    status = p_reg_gmac->DISR;
 
     if (GMAC_B_DMA_INTERRUPT_STATUS_DC0IS == (status & GMAC_B_DMA_INTERRUPT_STATUS_DC0IS))
     {
@@ -2513,6 +2576,9 @@ void gmac_b_isr_sbd (void)
  **********************************************************************************************************************/
 static void gmac_b_enable_icu (gmac_b_instance_ctrl_t * const p_instance_ctrl)
 {
+    R_BSP_IrqDisable(p_instance_ctrl->p_gmac_cfg->irq);
+    R_BSP_IrqStatusClear(p_instance_ctrl->p_gmac_cfg->irq);
+
     /** Configure the Ethernet interrupt. */
     R_BSP_IrqCfgEnable(p_instance_ctrl->p_gmac_cfg->irq,
                        p_instance_ctrl->p_gmac_cfg->interrupt_priority,

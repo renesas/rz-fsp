@@ -96,6 +96,7 @@ struct st_riic_slave_extended_cfg
     IRQn_Type spi_irq;                         ///< Stop condition IRQ Number
     IRQn_Type ali_irq;                         ///< Arbitration lost IRQ Number
     IRQn_Type tmoi_irq;                        ///< Timeout IRQ Number
+    void    * p_reg;                           ///< Register base address for specified channel
 };
 
 /** R_IIC_SLAVE extended configuration. Please refer to the struct st_riic_slave_extended_cfg. */

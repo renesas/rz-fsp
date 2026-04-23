@@ -69,7 +69,7 @@ void r_rsip_func501 (const uint32_t ARG1[], const uint32_t ARG2[], uint32_t ARG3
     WAIT_STS(REG_1444H, 31U, 1U);
     WR1_PROG(REG_1420H, bswap_32big(0x00000000U));
     WR1_PROG(REG_1444H, 0x00020061U);
-    WR1_PROG(REG_1824H, 0xf8000006U);
+    WR1_PROG(REG_1824H, 0x0e108406U);
     for (iLoop = 0; iLoop < ARG3; iLoop = iLoop + 4)
     {
         WAIT_STS(REG_1444H, 31U, 1U);

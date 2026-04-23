@@ -89,10 +89,10 @@ void sci_spi_eri_isr(void);
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -144,18 +144,13 @@ fsp_err_t R_SCI_SPI_Open (spi_ctrl_t * p_ctrl, spi_cfg_t const * const p_cfg)
  #endif
 #endif
 
-    if (p_cfg->channel == BSP_FEATURE_SCI_SAFETY_CHANNEL)
-    {
-        /* Safety Peripheral */
-        p_instance_ctrl->p_reg = (R_SCI0_Type *) BSP_FEATURE_SCI_SAFETY_CHANNEL_BASE_ADDRESS;
-    }
-    else
-    {
-        /* Non-Safety Peripheral */
-        p_instance_ctrl->p_reg =
-            (R_SCI0_Type *) (((uintptr_t) R_SCI1 - (uintptr_t) R_SCI0) * p_cfg->channel + (uintptr_t) R_SCI0);
-    }
+    sci_spi_extended_cfg_t * p_extend = (sci_spi_extended_cfg_t *) p_cfg->p_extend;
 
+#if SCI_SPI_CFG_PARAM_CHECKING_ENABLE
+    FSP_ASSERT(NULL != p_extend->p_reg);
+#endif
+
+    p_instance_ctrl->p_reg = (R_SCI0_Type *) p_extend->p_reg;
     p_instance_ctrl->p_cfg = p_cfg;
 
     p_instance_ctrl->p_callback        = p_cfg->p_callback;
@@ -173,8 +168,21 @@ fsp_err_t R_SCI_SPI_Open (spi_ctrl_t * p_ctrl, spi_cfg_t const * const p_cfg)
     r_sci_spi_hw_config(p_instance_ctrl);
 
     /* Enable required interrupts. */
+#if SCI_SPI_CFG_DMAC_SUPPORT_ENABLE == 1
+    if (NULL == p_instance_ctrl->p_cfg->p_transfer_rx)
+    {
+        R_BSP_IrqCfgEnable(p_cfg->rxi_irq, p_cfg->rxi_ipl, p_instance_ctrl);
+    }
+
+    if (NULL == p_instance_ctrl->p_cfg->p_transfer_tx)
+    {
+        R_BSP_IrqCfgEnable(p_cfg->txi_irq, p_cfg->txi_ipl, p_instance_ctrl);
+    }
+
+#else
     R_BSP_IrqCfgEnable(p_cfg->rxi_irq, p_cfg->rxi_ipl, p_instance_ctrl);
     R_BSP_IrqCfgEnable(p_cfg->txi_irq, p_cfg->txi_ipl, p_instance_ctrl);
+#endif
     R_BSP_IrqCfgEnable(p_cfg->tei_irq, p_cfg->tei_ipl, p_instance_ctrl);
     R_BSP_IrqCfgEnable(p_cfg->eri_irq, p_cfg->eri_ipl, p_instance_ctrl);
 
@@ -391,11 +399,23 @@ fsp_err_t R_SCI_SPI_Close (spi_ctrl_t * const p_ctrl)
 
     /* Clear the RE and TE bits in CCR0. */
     p_instance_ctrl->p_reg->CCR0 = 0;
-    FSP_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->CCR0_b.RE, 0);
-    FSP_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->CCR0_b.TE, 0);
+    FSP_HARDWARE_REGISTER_WAIT((p_instance_ctrl->p_reg->CCR0 & (R_SCI0_CCR0_RE_Msk | R_SCI0_CCR0_TE_Msk)), 0);
 
+#if SCI_SPI_CFG_DMAC_SUPPORT_ENABLE == 1
+    if (NULL == p_instance_ctrl->p_cfg->p_transfer_tx)
+    {
+        R_BSP_IrqDisable(p_instance_ctrl->p_cfg->txi_irq);
+    }
+
+    if (NULL == p_instance_ctrl->p_cfg->p_transfer_rx)
+    {
+        R_BSP_IrqDisable(p_instance_ctrl->p_cfg->rxi_irq);
+    }
+
+#else
     R_BSP_IrqDisable(p_instance_ctrl->p_cfg->txi_irq);
     R_BSP_IrqDisable(p_instance_ctrl->p_cfg->rxi_irq);
+#endif
     R_BSP_IrqDisable(p_instance_ctrl->p_cfg->eri_irq);
     R_BSP_IrqDisable(p_instance_ctrl->p_cfg->tei_irq);
 
@@ -487,9 +507,9 @@ fsp_err_t R_SCI_SPI_CalculateBitrate (uint32_t                bitrate,
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -575,8 +595,7 @@ static void r_sci_spi_hw_config (sci_spi_instance_ctrl_t * const p_instance_ctrl
 
     /* Set TEIE, TIE, RIE, TE, and RE to 0. */
     p_instance_ctrl->p_reg->CCR0 = 0;
-    FSP_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->CCR0_b.RE, 0);
-    FSP_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->CCR0_b.TE, 0);
+    FSP_HARDWARE_REGISTER_WAIT((p_instance_ctrl->p_reg->CCR0 & (R_SCI0_CCR0_RE_Msk | R_SCI0_CCR0_TE_Msk)), 0);
 
     /* Clear status flags. */
     cfclr = R_SCI0_CFCLR_RDRFC_Msk | R_SCI0_CFCLR_FERC_Msk | R_SCI0_CFCLR_PERC_Msk | R_SCI0_CFCLR_MFFC_Msk |
@@ -630,6 +649,8 @@ static fsp_err_t r_sci_spi_transfer_config (sci_spi_instance_ctrl_t * const p_in
         /* Set the initial configuration for the rx transfer instance. */
         transfer_instance_t const * p_transfer = p_cfg->p_transfer_rx;
         p_transfer->p_cfg->p_info->mode           = TRANSFER_MODE_NORMAL;
+        p_transfer->p_cfg->p_info->src_size       = TRANSFER_SIZE_1_BYTE;
+        p_transfer->p_cfg->p_info->dest_size      = TRANSFER_SIZE_1_BYTE;
         p_transfer->p_cfg->p_info->src_addr_mode  = TRANSFER_ADDR_MODE_FIXED;
         p_transfer->p_cfg->p_info->dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED;
         p_transfer->p_cfg->p_info->p_src          = (void *) &p_instance_ctrl->p_reg->RDR;
@@ -644,6 +665,8 @@ static fsp_err_t r_sci_spi_transfer_config (sci_spi_instance_ctrl_t * const p_in
         /* Set the initial configuration for the tx transfer instance. */
         transfer_instance_t const * p_transfer = p_cfg->p_transfer_tx;
         p_transfer->p_cfg->p_info->mode           = TRANSFER_MODE_NORMAL;
+        p_transfer->p_cfg->p_info->src_size       = TRANSFER_SIZE_1_BYTE;
+        p_transfer->p_cfg->p_info->dest_size      = TRANSFER_SIZE_1_BYTE;
         p_transfer->p_cfg->p_info->src_addr_mode  = TRANSFER_ADDR_MODE_INCREMENTED;
         p_transfer->p_cfg->p_info->dest_addr_mode = TRANSFER_ADDR_MODE_FIXED;
         p_transfer->p_cfg->p_info->p_dest         = (void *) &p_instance_ctrl->p_reg->TDR;
@@ -729,12 +752,6 @@ static fsp_err_t r_sci_spi_write_read_common (sci_spi_instance_ctrl_t * const p_
             p_transfer->p_cfg->p_info->p_src         = p_src;
         }
 
-        p_transfer->p_cfg->p_info->src_size  = TRANSFER_SIZE_1_BYTE;
-        p_transfer->p_cfg->p_info->dest_size = TRANSFER_SIZE_1_BYTE;
-
-        /* Disable the corresponding IRQ when transferring using DMAC. */
-        R_BSP_IrqDisable(p_instance_ctrl->p_cfg->txi_irq);
-
         /* Enable the transfer instance. */
         fsp_err_t err = p_transfer->p_api->reconfigure(p_transfer->p_ctrl, p_transfer->p_cfg->p_info);
         FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
@@ -746,17 +763,23 @@ static fsp_err_t r_sci_spi_write_read_common (sci_spi_instance_ctrl_t * const p_
         /* Configure the rx transfer instance. */
         p_instance_ctrl->rx_count = length;
         transfer_instance_t const * p_transfer = p_instance_ctrl->p_cfg->p_transfer_rx;
-        p_transfer->p_cfg->p_info->length = length;
-        p_transfer->p_cfg->p_info->p_dest = p_dest;
-
-        p_transfer->p_cfg->p_info->src_size  = TRANSFER_SIZE_1_BYTE;
-        p_transfer->p_cfg->p_info->dest_size = TRANSFER_SIZE_1_BYTE;
-
-        /* Disable the corresponding IRQ when transferring using DMAC. */
-        R_BSP_IrqDisable(p_instance_ctrl->p_cfg->rxi_irq);
 
         /* Enable the transfer instance. */
-        fsp_err_t err = p_transfer->p_api->reconfigure(p_transfer->p_ctrl, p_transfer->p_cfg->p_info);
+        fsp_err_t err;
+        if (length <= UINT16_MAX)
+        {
+            err = p_transfer->p_api->reset(p_transfer->p_ctrl,
+                                           p_transfer->p_cfg->p_info->p_src,
+                                           p_dest,
+                                           (uint16_t) length);
+        }
+        else
+        {
+            p_transfer->p_cfg->p_info->length = length;
+            p_transfer->p_cfg->p_info->p_dest = p_dest;
+            err = p_transfer->p_api->reconfigure(p_transfer->p_ctrl, p_transfer->p_cfg->p_info);
+        }
+
         FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
     }
 #endif
@@ -796,10 +819,13 @@ static void r_sci_spi_start_transfer (sci_spi_instance_ctrl_t * const p_instance
     p_instance_ctrl->p_reg->CCR0 |= interrupt_settings;
     if (NULL != p_instance_ctrl->p_dest)
     {
-        FSP_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->CCR0_b.RE, 1);
+        FSP_HARDWARE_REGISTER_WAIT((p_instance_ctrl->p_reg->CCR0 & (R_SCI0_CCR0_RE_Msk | R_SCI0_CCR0_TE_Msk)),
+                                   (R_SCI0_CCR0_RE_Msk | R_SCI0_CCR0_TE_Msk));
     }
-
-    FSP_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->CCR0_b.TE, 1);
+    else
+    {
+        FSP_HARDWARE_REGISTER_WAIT((p_instance_ctrl->p_reg->CCR0 & R_SCI0_CCR0_TE_Msk), R_SCI0_CCR0_TE_Msk);
+    }
 
     /* Transmit from RXI interrupt. */
     if ((NULL == p_instance_ctrl->p_cfg->p_transfer_tx) && (NULL == p_instance_ctrl->p_cfg->p_transfer_rx) &&
@@ -945,9 +971,6 @@ void sci_spi_tx_dmac_callback (sci_spi_instance_ctrl_t * p_instance_ctrl)
 {
     SCI_SPI_CFG_MULTIPLEX_INTERRUPT_ENABLE;
 
-    /* Now that the transfer using DMAC is finished, enable the corresponding IRQ. */
-    R_BSP_IrqEnable(p_instance_ctrl->p_cfg->txi_irq);
-
     sci_spi_txi_common(p_instance_ctrl);
 
     SCI_SPI_CFG_MULTIPLEX_INTERRUPT_DISABLE;
@@ -1013,9 +1036,6 @@ void sci_spi_rxi_isr (void)
 void sci_spi_rx_dmac_callback (sci_spi_instance_ctrl_t * p_instance_ctrl)
 {
     SCI_SPI_CFG_MULTIPLEX_INTERRUPT_ENABLE;
-
-    /* Now that the transfer using DMAC is finished, enable the corresponding IRQ. */
-    R_BSP_IrqEnable(p_instance_ctrl->p_cfg->rxi_irq);
 
     sci_spi_rxi_common(p_instance_ctrl);
 

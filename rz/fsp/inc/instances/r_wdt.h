@@ -19,12 +19,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZV_WDT
@@ -62,6 +62,7 @@ struct st_wdt_extended_cfg
     bool      cold_reset_enable;          // Enable or disable cold reset.
     uint8_t   underflow_ipl;              // WDT Underflow interrupt priority.
     IRQn_Type underflow_irq;              // WDT Underflow interrupt ID.
+    void    * p_reg;                      // WDT register base address for specified channel
 };
 
 /** WDT configuration extension. This extension is required. Please refer to the struct st_wdt_extended_cfg. */
@@ -101,11 +102,11 @@ fsp_err_t R_WDT_CallbackSet(wdt_ctrl_t * const          p_ctrl,
  * @} (end addtogroup WDT)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

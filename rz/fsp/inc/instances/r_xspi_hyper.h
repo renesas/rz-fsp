@@ -151,6 +151,7 @@ struct st_xspi_hyper_extended_cfg
     uint8_t                              * p_autocalibration_preamble_pattern_addr; ///< HyperBus memory address holding the preamble pattern
     xspi_hyper_cs_timing_setting_t const * p_cs_timing_settings;                    ///< Chip select bus timing settings
     xspi_hyper_address_space_t const     * p_address_space;                         ///< Memory mapped address space settings
+    void * p_reg;                                                                   ///< Register base address for specified channel
 };
 
 /** Extended configuration Please refer to the struct st_xspi_hyper_extended_cfg. */
@@ -179,7 +180,6 @@ extern const hyperbus_api_t g_hyperbus_on_xspi_hyper;
 /** @endcond */
 
 fsp_err_t R_XSPI_HYPER_Open(hyperbus_ctrl_t * p_ctrl, hyperbus_cfg_t const * const p_cfg);
-fsp_err_t R_XSPI_HYPER_Close(hyperbus_ctrl_t * p_ctrl);
 fsp_err_t R_XSPI_HYPER_BurstTypeSet(hyperbus_ctrl_t * p_ctrl, hyperbus_burst_type_t burst_type);
 fsp_err_t R_XSPI_HYPER_AccessSpaceSet(hyperbus_ctrl_t * p_ctrl, hyperbus_space_select_t access_space);
 fsp_err_t R_XSPI_HYPER_DirectTransfer(hyperbus_ctrl_t * const p_ctrl, hyperbus_direct_transfer_t * const p_transfer);
@@ -190,6 +190,7 @@ fsp_err_t R_XSPI_HYPER_Write(hyperbus_ctrl_t     * p_ctrl,
 fsp_err_t R_XSPI_HYPER_Erase(hyperbus_ctrl_t * p_ctrl, uint8_t * const p_device_address, uint32_t byte_count);
 fsp_err_t R_XSPI_HYPER_StatusGet(hyperbus_ctrl_t * p_ctrl, hyperbus_status_t * const p_status);
 fsp_err_t R_XSPI_HYPER_AutoCalibrate(hyperbus_ctrl_t * p_ctrl);
+fsp_err_t R_XSPI_HYPER_Close(hyperbus_ctrl_t * p_ctrl);
 
 /*******************************************************************************************************************//**
  * @} (end addtogroup XSPI_HYPER)

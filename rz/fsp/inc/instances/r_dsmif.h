@@ -25,12 +25,12 @@ FSP_HEADER
 
  #define DSMIF_STOP_TIMEOUT        (0x000FFFFFU)
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_DSMIF
@@ -41,7 +41,7 @@ namespace RZT
  * Typedef definitions
  **********************************************************************************************************************/
 
-/* 39.2.1.2 DSSECSR : Overcurrent Sum Error Detect Channel Setting Register */
+/** Select the channel(s) for overcurrent sum error detection. */
 typedef enum e_dsmif_sum_err_detect_channel
 {
     DSMIF_SUM_ERR_DETECT_CHANNEL_0_2 = 0, ///< Detects error of sum value of overcurrent data of CH0, CH1, CH2
@@ -51,19 +51,21 @@ typedef enum e_dsmif_sum_err_detect_channel
     DSMIF_SUM_ERR_DETECT_CHANNEL_2   = 4, ///< Detects error of overcurrent data of CH2
 } dsmif_sum_err_detect_channel_t;
 
-/* 39.2.2.2 DSCMCCRCHn : Current Measurement Clock Control Register Channel n (n = 0 to 2) */
+/** Select if the DSMIF Measurement Clock Control is an input or output. */
 typedef enum e_dsmif_clock_ctrl
 {
     DSMIF_CLOCK_CTRL_SLAVE  = 0,       ///< MCLKn pin is input (slave operation)
     DSMIF_CLOCK_CTRL_MASTER = 1,       ///< MCLKn pin is output (master operation)
 } dsmif_clock_ctrl_t;
 
+/** Select the clock edge for sampling DSMIF data. */
 typedef enum e_dsmif_clock_edge
 {
     DSMIF_CLOCK_EDGE_NEGATIVE = 0,     ///< Capture MDATn at the negative edge of MCLKn
     DSMIF_CLOCK_EDGE_POSITIVE = 1,     ///< Capture MDATn at the positive edge of MCLKn
 } dsmif_clock_edge_t;
 
+/** Select the DSMIF master clock. */
 typedef enum e_dsmif_master_clock
 {
  #if 1U == BSP_FEATURE_DSMIF_MCLK_FREQ_TYPE
@@ -98,6 +100,8 @@ typedef enum e_dsmif_master_clock
 } dsmif_master_clock_t;
 
  #if 1U == BSP_FEATURE_DSMIF_CORE_CLOCK_SELECTABLE
+
+/** Select the DSMIF core clock. */
 typedef enum e_dsmif_core_clock_select
 {
     DSMIF_CORE_CLOCK_SELECT_250MHZ = 0, ///< Core Clock Selection 250MHz
@@ -105,8 +109,7 @@ typedef enum e_dsmif_core_clock_select
 } dsmif_core_clock_select_t;
  #endif
 
-/* 39.2.2.3 DSCMFCRCHn : Current Measurement Filter Control Register Channel n (n = 0 to 2) */
-/* 39.2.2.6 DSOCFCRCHn : Overcurrent Detect Filter Control Register Channel n (n = 0 to 2) */
+/** Select the DSMIF filter order. */
 typedef enum e_dsmif_filter_order
 {
     DSMIF_FILTER_ORDER_3RD = 0,        ///< Overcurrent detection filter order setting 3rd order
@@ -114,6 +117,7 @@ typedef enum e_dsmif_filter_order
     DSMIF_FILTER_ORDER_2ND = 2,        ///< Overcurrent detection filter order setting 2nd order
 } dsmif_filter_order_t;
 
+/** Select the [MSB,LSB] that are copied from the filter output into the data register.  */
 typedef enum e_dsmif_data_shift
 {
     DSMIF_DATA_SHIFT_23_8 = 0,         ///< Data shift setting for overcurrent detection [23:8]
@@ -138,7 +142,7 @@ typedef enum e_dsmif_data_shift
     DSMIF_DATA_SHIFT_4_0  = 19,        ///< Data shift setting for overcurrent detection [4:0]
 } dsmif_data_shift_t;
 
-/* 39.2.2.4 DSCMCTCRCHn : Current Measurement Capture Trigger Control Register Channel n (n = 0 to 2) */
+/** Select the current data capture trigger. */
 typedef enum e_dsmif_capture_trigger
 {
     DSMIF_CAPTURE_TRIGGER_NOT = 0,     ///< Do not capture
@@ -150,6 +154,7 @@ typedef enum e_dsmif_capture_trigger
     DSMIF_CAPTURE_TRIGGER_5   = 6,     ///< Select current data capture trigger 5
 } dsmif_capture_trigger_t;
 
+/** Select the counter initialization trigger. */
 typedef enum e_dsmif_counter_init_trigger
 {
     DSMIF_COUNTER_INIT_TRIGGER_NOT = 0, ///< Do not initialize
@@ -234,7 +239,8 @@ typedef enum e_dsmif_owwm3_mode
 } dsmif_owwm3_mode_t;
  #endif
 
-typedef struct st_dsmif_channel_cfg
+/** DSMIF channel configuration */
+struct st_dsmif_channel_cfg
 {
  #if (3 == BSP_FEATURE_DSMIF_OVERCURRENT_DETECT_ISR)
     bool ioel[3];                      ///< Overcurrent lower limit detection interrupt enable
@@ -275,7 +281,10 @@ typedef struct st_dsmif_channel_cfg
     bool odel;                         ///< Overcurrent lower limit detection enable bit
     bool odeh;                         ///< Overcurrent upper limit exceeded detection enable bit
  #endif
-} dsmif_channel_cfg_t;
+};
+
+/** DSMIF channel configuration. Please refer to the struct st_dsmif_channel_cfg. */
+typedef struct st_dsmif_channel_cfg dsmif_channel_cfg_t;
 
 /** DSMIF configuration extension. This extension is required and must be provided in dsmif_cfg_t::p_extend. */
 struct st_dsmif_extended_cfg
@@ -434,11 +443,11 @@ fsp_err_t R_DSMIF_CallbackSet(adc_ctrl_t * const          p_ctrl,
 /*******************************************************************************************************************//**
  * @} (end defgroup DSMIF)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

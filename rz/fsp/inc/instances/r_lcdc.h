@@ -48,15 +48,6 @@ struct st_lcdc_extended_cfg
 /** LCDC hardware specific configuration Please refer to the struct st_lcdc_extended_cfg. */
 typedef struct st_lcdc_extended_cfg lcdc_extended_cfg_t;
 
-/** CRU context struct for callback function */
-struct st_display_ctrl
-{
-    void * p_context;
-};
-
-/** CRU context struct for callback function Please refer to the struct st_display_ctrl. */
-typedef struct st_display_ctrl lcdc_ctrl_t;
-
 /** Display control block.  DO NOT INITIALIZE. */
 struct st_lcdc_instance_ctrl
 {

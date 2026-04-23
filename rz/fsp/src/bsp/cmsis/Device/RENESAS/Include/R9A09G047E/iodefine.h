@@ -39,5 +39,6 @@
 #include "iodefines/tzc_iodefine.h"
 #include "iodefines/wdt_iodefine.h"
 #include "iodefines/xspi_iodefine.h"
+#include "iodefines/r_ethosu_iodefine.h"
 
 #endif                                 /* __IODEFINE_HEADER__ */

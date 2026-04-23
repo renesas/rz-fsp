@@ -4,11 +4,10 @@
 * SPDX-License-Identifier: BSD-3-Clause
 */
 
-#include "bsp_api.h"
-
 /***********************************************************************************************************************
  * Includes
  **********************************************************************************************************************/
+#include "bsp_api.h"
 #include "r_xspi_ospi.h"
 
 #if XSPI_OSPI_CFG_DMAC_SUPPORT_ENABLE
@@ -171,10 +170,10 @@ static uint8_t src_data[XSPI_OSPI_PRV_MAX_COMBINE_SIZE] BSP_PLACE_IN_SECTION(".n
 #endif
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -217,7 +216,7 @@ const spi_flash_api_t g_spi_flash_on_xspi_ospi =
  * @retval FSP_ERR_ALREADY_OPEN     Driver has already been opened with the same p_ctrl.
  * @retval FSP_ERR_CALIBRATE_FAILED Failed to perform auto-calibrate.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_Open (spi_flash_ctrl_t * p_ctrl, spi_flash_cfg_t const * const p_cfg)
+fsp_err_t R_XSPI_OSPI_Open (spi_flash_ctrl_t * const p_ctrl, spi_flash_cfg_t const * const p_cfg)
 {
     xspi_ospi_instance_ctrl_t * p_instance_ctrl = (xspi_ospi_instance_ctrl_t *) p_ctrl;
 
@@ -231,6 +230,8 @@ fsp_err_t R_XSPI_OSPI_Open (spi_flash_ctrl_t * p_ctrl, spi_flash_cfg_t const * c
     xspi_ospi_extended_cfg_t * p_cfg_extend = (xspi_ospi_extended_cfg_t *) p_cfg->p_extend;
 
 #if XSPI_OSPI_CFG_PARAM_CHECKING_ENABLE
+    FSP_ASSERT(p_cfg_extend);
+    FSP_ASSERT(p_cfg_extend->p_reg);
     FSP_ERROR_RETURN(
         (g_xspi_ospi_channels_open_flags & (1U << ((p_cfg_extend->unit << 1U) + p_cfg_extend->chip_select))) == 0,
         FSP_ERR_ALREADY_OPEN);
@@ -300,8 +301,7 @@ fsp_err_t R_XSPI_OSPI_Open (spi_flash_ctrl_t * p_ctrl, spi_flash_cfg_t const * c
 #endif
 
     /* Set base address. */
-    uintptr_t base_address = (uintptr_t) R_XSPI0 + (p_cfg_extend->unit * ((uintptr_t) R_XSPI1 - (uintptr_t) R_XSPI0));
-    p_instance_ctrl->p_reg = (R_XSPI0_Type *) base_address;
+    p_instance_ctrl->p_reg = (R_XSPI0_Type *) p_cfg_extend->p_reg;
 
     /* Initialize control block. */
     p_instance_ctrl->p_cfg        = p_cfg;
@@ -470,10 +470,10 @@ fsp_err_t R_XSPI_OSPI_Open (spi_flash_ctrl_t * p_ctrl, spi_flash_cfg_t const * c
  *
  * @retval FSP_ERR_UNSUPPORTED         API not supported by OSPI.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_DirectWrite (spi_flash_ctrl_t    * p_ctrl,
-                                   uint8_t const * const p_src,
-                                   uint32_t const        bytes,
-                                   bool const            read_after_write)
+fsp_err_t R_XSPI_OSPI_DirectWrite (spi_flash_ctrl_t * const p_ctrl,
+                                   uint8_t const * const    p_src,
+                                   uint32_t const           bytes,
+                                   bool const               read_after_write)
 {
     FSP_PARAMETER_NOT_USED(p_ctrl);
     FSP_PARAMETER_NOT_USED(p_src);
@@ -490,7 +490,7 @@ fsp_err_t R_XSPI_OSPI_DirectWrite (spi_flash_ctrl_t    * p_ctrl,
  *
  * @retval FSP_ERR_UNSUPPORTED         API not supported by OSPI.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_DirectRead (spi_flash_ctrl_t * p_ctrl, uint8_t * const p_dest, uint32_t const bytes)
+fsp_err_t R_XSPI_OSPI_DirectRead (spi_flash_ctrl_t * const p_ctrl, uint8_t * const p_dest, uint32_t const bytes)
 {
     FSP_PARAMETER_NOT_USED(p_ctrl);
     FSP_PARAMETER_NOT_USED(p_dest);
@@ -508,7 +508,7 @@ fsp_err_t R_XSPI_OSPI_DirectRead (spi_flash_ctrl_t * p_ctrl, uint8_t * const p_d
  * @retval FSP_ERR_ASSERTION           A required pointer is NULL.
  * @retval FSP_ERR_NOT_OPEN            Driver is not opened.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_DirectTransfer (spi_flash_ctrl_t                  * p_ctrl,
+fsp_err_t R_XSPI_OSPI_DirectTransfer (spi_flash_ctrl_t * const            p_ctrl,
                                       spi_flash_direct_transfer_t * const p_transfer,
                                       spi_flash_direct_transfer_dir_t     direction)
 {
@@ -531,7 +531,7 @@ fsp_err_t R_XSPI_OSPI_DirectTransfer (spi_flash_ctrl_t                  * p_ctrl
  *
  * @retval FSP_ERR_UNSUPPORTED         API not supported by OSPI.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_XipEnter (spi_flash_ctrl_t * p_ctrl)
+fsp_err_t R_XSPI_OSPI_XipEnter (spi_flash_ctrl_t * const p_ctrl)
 {
     FSP_PARAMETER_NOT_USED(p_ctrl);
 
@@ -545,7 +545,7 @@ fsp_err_t R_XSPI_OSPI_XipEnter (spi_flash_ctrl_t * p_ctrl)
  *
  * @retval FSP_ERR_UNSUPPORTED         API not supported by OSPI.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_XipExit (spi_flash_ctrl_t * p_ctrl)
+fsp_err_t R_XSPI_OSPI_XipExit (spi_flash_ctrl_t * const p_ctrl)
 {
     FSP_PARAMETER_NOT_USED(p_ctrl);
 
@@ -570,10 +570,10 @@ fsp_err_t R_XSPI_OSPI_XipExit (spi_flash_ctrl_t * p_ctrl)
  * Please set the write address and write size according to the page size of your device.
  * @note In 8D-8D-8D(OPI) mode, written data must be even bytes in size.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_Write (spi_flash_ctrl_t    * p_ctrl,
-                             uint8_t const * const p_src,
-                             uint8_t * const       p_dest,
-                             uint32_t              byte_count)
+fsp_err_t R_XSPI_OSPI_Write (spi_flash_ctrl_t * const p_ctrl,
+                             uint8_t const * const    p_src,
+                             uint8_t * const          p_dest,
+                             uint32_t                 byte_count)
 {
     xspi_ospi_instance_ctrl_t * p_instance_ctrl = (xspi_ospi_instance_ctrl_t *) p_ctrl;
 #if XSPI_OSPI_CFG_PARAM_CHECKING_ENABLE
@@ -854,7 +854,7 @@ fsp_err_t R_XSPI_OSPI_Write (spi_flash_ctrl_t    * p_ctrl,
  * @retval FSP_ERR_DEVICE_BUSY         The device is busy.
  * @retval FSP_ERR_WRITE_FAILED        Write operation failed.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_Erase (spi_flash_ctrl_t * p_ctrl, uint8_t * const p_device_address, uint32_t byte_count)
+fsp_err_t R_XSPI_OSPI_Erase (spi_flash_ctrl_t * const p_ctrl, uint8_t * const p_device_address, uint32_t byte_count)
 {
     xspi_ospi_instance_ctrl_t * p_instance_ctrl = (xspi_ospi_instance_ctrl_t *) p_ctrl;
 
@@ -973,7 +973,7 @@ fsp_err_t R_XSPI_OSPI_Erase (spi_flash_ctrl_t * p_ctrl, uint8_t * const p_device
  * @retval FSP_ERR_ASSERTION           p_instance_ctrl or p_status is NULL.
  * @retval FSP_ERR_NOT_OPEN            Driver is not opened.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_StatusGet (spi_flash_ctrl_t * p_ctrl, spi_flash_status_t * const p_status)
+fsp_err_t R_XSPI_OSPI_StatusGet (spi_flash_ctrl_t * const p_ctrl, spi_flash_status_t * const p_status)
 {
     xspi_ospi_instance_ctrl_t * p_instance_ctrl = (xspi_ospi_instance_ctrl_t *) p_ctrl;
 
@@ -1010,7 +1010,7 @@ fsp_err_t R_XSPI_OSPI_StatusGet (spi_flash_ctrl_t * p_ctrl, spi_flash_status_t *
  *
  * @retval FSP_ERR_UNSUPPORTED         API not supported by OSPI.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_BankSet (spi_flash_ctrl_t * p_ctrl, uint32_t bank)
+fsp_err_t R_XSPI_OSPI_BankSet (spi_flash_ctrl_t * const p_ctrl, uint32_t bank)
 {
     FSP_PARAMETER_NOT_USED(p_ctrl);
     FSP_PARAMETER_NOT_USED(bank);
@@ -1028,7 +1028,7 @@ fsp_err_t R_XSPI_OSPI_BankSet (spi_flash_ctrl_t * p_ctrl, uint32_t bank)
  * @retval FSP_ERR_NOT_OPEN           Driver is not opened.
  * @retval FSP_ERR_CALIBRATE_FAILED   Failed to perform auto-calibrate.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_SpiProtocolSet (spi_flash_ctrl_t * p_ctrl, spi_flash_protocol_t spi_protocol)
+fsp_err_t R_XSPI_OSPI_SpiProtocolSet (spi_flash_ctrl_t * const p_ctrl, spi_flash_protocol_t spi_protocol)
 {
     xspi_ospi_instance_ctrl_t * p_instance_ctrl = (xspi_ospi_instance_ctrl_t *) p_ctrl;
 
@@ -1049,7 +1049,7 @@ fsp_err_t R_XSPI_OSPI_SpiProtocolSet (spi_flash_ctrl_t * p_ctrl, spi_flash_proto
  *
  * @retval FSP_ERR_UNSUPPORTED         API not supported by XSPI_OSPI
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_AutoCalibrate (spi_flash_ctrl_t * p_ctrl)
+fsp_err_t R_XSPI_OSPI_AutoCalibrate (spi_flash_ctrl_t * const p_ctrl)
 {
     FSP_PARAMETER_NOT_USED(p_ctrl);
 
@@ -1069,7 +1069,7 @@ fsp_err_t R_XSPI_OSPI_AutoCalibrate (spi_flash_ctrl_t * p_ctrl)
  * @note If another chip select of the same unit is used by other drivers,
  * the other chip select operation will also stop when this function is executed.
  **********************************************************************************************************************/
-fsp_err_t R_XSPI_OSPI_Close (spi_flash_ctrl_t * p_ctrl)
+fsp_err_t R_XSPI_OSPI_Close (spi_flash_ctrl_t * const p_ctrl)
 {
     xspi_ospi_instance_ctrl_t * p_instance_ctrl = (xspi_ospi_instance_ctrl_t *) p_ctrl;
 
@@ -1147,9 +1147,9 @@ fsp_err_t R_XSPI_OSPI_Close (spi_flash_ctrl_t * p_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

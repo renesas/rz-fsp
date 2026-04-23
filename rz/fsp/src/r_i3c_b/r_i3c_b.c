@@ -193,10 +193,10 @@ const i3c_api_t g_i3c_on_i3c =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -238,12 +238,15 @@ fsp_err_t R_I3C_B_Open (i3c_ctrl_t * const p_api_ctrl, i3c_cfg_t const * const p
     FSP_ASSERT(0 <= p_extend->terr_irq);
     FSP_ASSERT(0 <= p_extend->abort_irq);
     FSP_ASSERT(0 <= p_extend->tmo_irq);
+    FSP_ASSERT(NULL != p_extend->p_reg);
  #if 0U == I3C_B_CFG_MASTER_SUPPORT
     FSP_ERROR_RETURN(I3C_DEVICE_TYPE_MAIN_MASTER != p_cfg->device_type, FSP_ERR_UNSUPPORTED);
  #endif
  #if 0U == I3C_B_CFG_SLAVE_SUPPORT
     FSP_ERROR_RETURN(I3C_DEVICE_TYPE_SLAVE != p_cfg->device_type, FSP_ERR_UNSUPPORTED);
  #endif
+#else
+    i3c_b_extended_cfg_t const * p_extend = (i3c_b_extended_cfg_t const *) p_cfg->p_extend;
 #endif
 
     /* Initialize the internal state of the driver. */
@@ -256,12 +259,7 @@ fsp_err_t R_I3C_B_Open (i3c_ctrl_t * const p_api_ctrl, i3c_cfg_t const * const p
     R_BSP_MODULE_START(FSP_IP_I3C, p_cfg->channel);
 
     /* Get a pointer to the I3C registers for this channel. */
-#if BSP_FEATURE_I3C_B_NUM_CHANNELS > 1
-    p_ctrl->p_reg =
-        (R_I3C_B0_Type *) ((uint32_t) R_I3C_B0 + (p_cfg->channel * ((uint32_t) R_I3C_B1 - (uint32_t) R_I3C_B0)));
-#else
-    p_ctrl->p_reg = R_I3C_B0;
-#endif
+    p_ctrl->p_reg = (R_I3C_B0_Type *) p_extend->p_reg;
 
 #if BSP_FEATURE_CPG_HAS_I3CCLK
     p_ctrl->p_reg->CECTL = 1;
@@ -1399,9 +1397,9 @@ fsp_err_t R_I3C_B_Close (i3c_ctrl_t * const p_api_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

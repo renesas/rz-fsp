@@ -49,6 +49,15 @@ struct st_mhu_ns_swint_set_instance_ctrl
 /** Channel control block. DO NOT INITIALIZE. Initialization occurs when @ref mhu_ns_swint_set_api_t::open is called. Please refer to the struct st_mhu_ns_swint_set_instance_ctrl. */
 typedef struct st_mhu_ns_swint_set_instance_ctrl mhu_ns_swint_set_instance_ctrl_t;
 
+/** R_MHU_NS_SWINT_SET extended configuration */
+struct st_mhu_ns_swint_set_extended_cfg
+{
+    void * p_reg;                      ///< Register base address for specified channel
+};
+
+/** R_MHU_NS_SWINT_SET extended configuration. Please refer to the struct st_mhu_ns_swint_set_extended_cfg. */
+typedef struct st_mhu_ns_swint_set_extended_cfg mhu_ns_swint_set_extended_cfg_t;
+
 /**********************************************************************************************************************
  * Exported global variables
  **********************************************************************************************************************/

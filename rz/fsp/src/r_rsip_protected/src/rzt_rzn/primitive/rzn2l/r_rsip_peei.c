@@ -37,7 +37,8 @@
 
 RSIP_PRV_PRIMITIVE_FUNC
 
-rsip_ret_t r_rsip_peei (const uint32_t InData_KeyIndex[],
+rsip_ret_t r_rsip_peei (const uint32_t InData_CurveType[],
+                        const uint32_t InData_KeyIndex[],
                         const uint32_t InData_MsgDgst[],
                         const uint32_t InData_Signature[],
                         const uint32_t InData_DomainParam[])
@@ -62,7 +63,11 @@ rsip_ret_t r_rsip_peei (const uint32_t InData_KeyIndex[],
 
     WR1_PROG(REG_1B00H, 0x00ee0002U);
     WR1_PROG(REG_144CH, 0x00000000U);
-    WR1_PROG(REG_1600H, 0x00000b5aU);
+    WR1_PROG(REG_1444H, 0x000000c7U);
+    WR1_PROG(REG_1608H, 0x80010340U);
+    WR1_PROG(REG_1458H, 0x00000000U);
+    WAIT_STS(REG_1444H, 31U, 1U);
+    WR1_ADDR(REG_1420H, &InData_CurveType[0]);
     WR1_PROG(REG_1458H, 0x00000000U);
     WR1_PROG(REG_1600H, 0x00000b9cU);
     WR1_PROG(REG_1458H, 0x00000000U);
@@ -130,20 +135,17 @@ rsip_ret_t r_rsip_peei (const uint32_t InData_KeyIndex[],
     WR1_ADDR(REG_1420H, &InData_KeyIndex[3]);
     WR1_PROG(REG_1458H, 0x00000000U);
     r_rsip_subfunc009(bswap_32big(0x0000ee01U));
-    r_rsip_func101(bswap_32big(0x211e8584U),
-                   bswap_32big(0x54058628U),
-                   bswap_32big(0x31e9c1acU),
-                   bswap_32big(0xa046e76cU));
+    r_rsip_func101(bswap_32big(0xc4fbda28U),
+                   bswap_32big(0x8d31fbc8U),
+                   bswap_32big(0x1d3394a0U),
+                   bswap_32big(0xe9e37321U));
     r_rsip_func045();
-    WR1_PROG(REG_1600H, 0x0000b4e0U);
-    WR1_PROG(REG_1458H, 0x00000000U);
-    WR1_PROG(REG_1600H, 0x01d8c542U);
-    WR1_PROG(REG_1458H, 0x00000000U);
+    r_rsip_func023();
     r_rsip_subfunc009(bswap_32big(0x0000ee01U));
-    r_rsip_func101(bswap_32big(0xfe92bfefU),
-                   bswap_32big(0x42cc787dU),
-                   bswap_32big(0xc5a1c34cU),
-                   bswap_32big(0x716e586dU));
+    r_rsip_func101(bswap_32big(0xd99ab116U),
+                   bswap_32big(0x9f74ca4fU),
+                   bswap_32big(0x0d68e5e7U),
+                   bswap_32big(0x34b85f65U));
     r_rsip_func046();
     WR1_PROG(REG_1444H, 0x000000a2U);
     WR1_PROG(REG_1A24H, 0x08000044U);

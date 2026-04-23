@@ -80,10 +80,10 @@ const adc_api_t g_adc_on_adc_c =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -128,6 +128,11 @@ fsp_err_t R_ADC_C_Open (adc_ctrl_t * p_ctrl, adc_cfg_t const * const p_cfg)
     {
         FSP_ERROR_RETURN((p_cfg->scan_end_irq >= 0), FSP_ERR_IRQ_BSP_DISABLED);
     }
+
+    adc_c_extended_cfg_t const * p_cfg_extend = (adc_c_extended_cfg_t const *) p_cfg->p_extend;
+    FSP_ASSERT(NULL != p_cfg_extend->p_reg);
+#else
+    adc_c_extended_cfg_t const * p_cfg_extend = (adc_c_extended_cfg_t const *) p_cfg->p_extend;
 #endif
 
     /* Save configurations. */
@@ -137,7 +142,7 @@ fsp_err_t R_ADC_C_Open (adc_ctrl_t * p_ctrl, adc_cfg_t const * const p_cfg)
     p_instance_ctrl->p_callback_memory = NULL;
 
     /* Calculate the register base address. */
-    p_instance_ctrl->p_reg = R_ADC_C0;
+    p_instance_ctrl->p_reg = p_cfg_extend->p_reg;
 
     /* Initialize the hardware based on the configuration. */
     r_adc_c_open_sub(p_instance_ctrl, p_cfg);
@@ -545,7 +550,7 @@ fsp_err_t R_ADC_C_Close (adc_ctrl_t * p_ctrl)
     adsts |= (uint32_t) R_ADC_C0_ADSTS_INTST_Msk;
     p_instance_ctrl->p_reg->ADSTS = adsts;
 
-    R_BSP_MODULE_STOP(FSP_IP_ADC, p_cfg->unit);
+    R_BSP_MODULE_STOP(FSP_IP_ADC, p_instance_ctrl->p_cfg->unit);
 
     if (p_instance_ctrl->scan_mask & ADC_C_MASK_CHANNEL_8)
     {
@@ -597,9 +602,9 @@ fsp_err_t R_ADC_C_OffsetSet (adc_ctrl_t * const p_ctrl, adc_channel_t const reg_
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************
@@ -759,8 +764,15 @@ static void r_adc_c_scan_cfg (adc_c_instance_ctrl_t * const     p_instance_ctrl,
         /* Enable the temperature sensor. */
         R_TSU->TSU_SM |= R_TSU_TSU_SM_OE_Msk;
 
-        /* Wait 1000us. See the TSU "Operation" section of the RZ microprocessor manual. */
-        R_BSP_SoftwareDelay(BSP_FEATURE_ADC_C_TSU_START_STABILIZATION_TIME_MS, BSP_DELAY_UNITS_MILLISECONDS);
+        /* Wait for a while until the output level stabilizes. See the TSU "Operation" section of the the user's manual. */
+        R_BSP_SoftwareDelay(BSP_FEATURE_ADC_C_TSU_START_STABILIZATION_TIME_US, BSP_DELAY_UNITS_MICROSECONDS);
+
+ #if BSP_FEATURE_ADC_C_TSUMODE_TSUEN_SETTING
+
+        /* TSU conversion mode is enabled.
+         * This operation is performed for devices that only support setting this register as a TSU conversion method. */
+        p_instance_ctrl->p_reg->TSUMODE_b.TSUEN = 1;
+ #endif
 #endif
     }
 

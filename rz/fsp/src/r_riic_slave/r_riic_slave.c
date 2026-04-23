@@ -8,9 +8,6 @@
  * Includes
  *********************************************************************************************************************/
 #include "r_riic_slave.h"
-#if (RIIC_SLAVE_CFG_DMAC_ENABLE)
- #include "r_dmac_b.h"
-#endif
 
 /**********************************************************************************************************************
  * Macro definitions
@@ -153,36 +150,6 @@ static void iic_tmoi_slave(iic_slave_instance_ctrl_t * p_ctrl);
  * Private global variables
  *********************************************************************************************************************/
 
-/* IIC base address */
-static const uint32_t volatile * p_iic_base_address[BSP_FEATURE_IIC_MAX_CHANNEL] =
-{
-    (uint32_t *) R_RIIC0,
-#if BSP_FEATURE_IIC_MAX_CHANNEL > 1U
-    (uint32_t *) R_RIIC1,
- #if BSP_FEATURE_IIC_MAX_CHANNEL > 2U
-    (uint32_t *) R_RIIC2,
-  #if BSP_FEATURE_IIC_MAX_CHANNEL > 3U
-    (uint32_t *) R_RIIC3,
-   #if BSP_FEATURE_IIC_MAX_CHANNEL > 4U
-    (uint32_t *) R_RIIC4,
-    #if BSP_FEATURE_IIC_MAX_CHANNEL > 5U
-    (uint32_t *) R_RIIC5,
-     #if BSP_FEATURE_IIC_MAX_CHANNEL > 6U
-    (uint32_t *) R_RIIC6,
-      #if BSP_FEATURE_IIC_MAX_CHANNEL > 7U
-    (uint32_t *) R_RIIC7,
-       #if BSP_FEATURE_IIC_MAX_CHANNEL > 8U
-    (uint32_t *) R_RIIC8,
-       #endif
-      #endif
-     #endif
-    #endif
-   #endif
-  #endif
- #endif
-#endif
-};
-
 /**********************************************************************************************************************
  * Global variables
  *********************************************************************************************************************/
@@ -198,10 +165,10 @@ i2c_slave_api_t const g_i2c_slave_on_iic =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -231,13 +198,15 @@ namespace RZV
  *********************************************************************************************************************/
 fsp_err_t R_RIIC_SLAVE_Open (i2c_slave_ctrl_t * const p_api_ctrl, i2c_slave_cfg_t const * const p_cfg)
 {
-    iic_slave_instance_ctrl_t * p_ctrl   = (iic_slave_instance_ctrl_t *) p_api_ctrl;
-    riic_slave_extended_cfg_t * p_extend = (riic_slave_extended_cfg_t *) p_cfg->p_extend;
+    iic_slave_instance_ctrl_t * p_ctrl = (iic_slave_instance_ctrl_t *) p_api_ctrl;
 
 #if (RIIC_SLAVE_CFG_PARAM_CHECKING_ENABLE)
     FSP_ASSERT(p_ctrl != NULL);
     FSP_ASSERT(p_cfg != NULL);
-    FSP_ASSERT(p_cfg->p_extend != NULL);
+
+    riic_slave_extended_cfg_t * p_extend = (riic_slave_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(p_extend != NULL);
+    FSP_ASSERT(NULL != p_extend->p_reg);
     FSP_ASSERT(p_cfg->rxi_irq >= (IRQn_Type) 0);
     FSP_ASSERT(p_cfg->txi_irq >= (IRQn_Type) 0);
     FSP_ASSERT(p_cfg->tei_irq >= (IRQn_Type) 0);
@@ -251,6 +220,8 @@ fsp_err_t R_RIIC_SLAVE_Open (i2c_slave_ctrl_t * const p_api_ctrl, i2c_slave_cfg_
 
     FSP_ERROR_RETURN(IIC_SLAVE_OPEN != p_ctrl->open, FSP_ERR_ALREADY_OPEN);
     FSP_ERROR_RETURN(p_cfg->eri_ipl <= p_cfg->ipl, FSP_ERR_INVALID_ARGUMENT);
+#else
+    riic_slave_extended_cfg_t * p_extend = (riic_slave_extended_cfg_t *) p_cfg->p_extend;
 #endif
 
 #if (RIIC_SLAVE_CFG_DMAC_ENABLE)
@@ -258,7 +229,7 @@ fsp_err_t R_RIIC_SLAVE_Open (i2c_slave_ctrl_t * const p_api_ctrl, i2c_slave_cfg_
 #endif
 
     /* Save register base address. */
-    p_ctrl->p_reg = (R_RIIC0_Type *) p_iic_base_address[p_cfg->channel];
+    p_ctrl->p_reg = (R_RIIC0_Type *) p_extend->p_reg;
 
     /* Record the configuration on the device for use later */
     p_ctrl->p_cfg             = p_cfg;
@@ -473,9 +444,9 @@ fsp_err_t R_RIIC_SLAVE_Close (i2c_slave_ctrl_t * const p_api_ctrl)
  *********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /**********************************************************************************************************************

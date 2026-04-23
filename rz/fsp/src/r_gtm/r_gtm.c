@@ -46,33 +46,6 @@ void gtm_int_isr(void);
  * Private global variables
  **********************************************************************************************************************/
 
-/* GTM base address */
-static const uint32_t volatile * p_gtm_base_address[BSP_FEATURE_GTM_MAX_CHANNEL] =
-{
-    (uint32_t *) R_GTM0,
-#if BSP_FEATURE_GTM_MAX_CHANNEL > 1
-    (uint32_t *) R_GTM1,
- #if BSP_FEATURE_GTM_MAX_CHANNEL > 2
-    (uint32_t *) R_GTM2,
-  #if BSP_FEATURE_GTM_MAX_CHANNEL > 3
-    (uint32_t *) R_GTM3,
-   #if BSP_FEATURE_GTM_MAX_CHANNEL > 4
-    (uint32_t *) R_GTM4,
-    #if BSP_FEATURE_GTM_MAX_CHANNEL > 5
-    (uint32_t *) R_GTM5,
-     #if BSP_FEATURE_GTM_MAX_CHANNEL > 6
-    (uint32_t *) R_GTM6,
-      #if BSP_FEATURE_GTM_MAX_CHANNEL > 7
-    (uint32_t *) R_GTM7,
-      #endif
-     #endif
-    #endif
-   #endif
-  #endif
- #endif
-#endif
-};
-
 /***********************************************************************************************************************
  * Global Variables
  **********************************************************************************************************************/
@@ -96,10 +69,10 @@ const timer_api_t g_timer_on_gtm =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -137,8 +110,11 @@ fsp_err_t R_GTM_Open (timer_ctrl_t * const p_ctrl, timer_cfg_t const * const p_c
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 #endif
 
-    /* calculate base address for specified channel */
-    p_instance_ctrl->p_reg = (R_GTM0_Type *) p_gtm_base_address[p_cfg->channel];
+    /* Get extended configuration structure pointer. */
+    gtm_extended_cfg_t * p_extend = (gtm_extended_cfg_t *) p_cfg->p_extend;
+
+    /* Set the base address for specified channel. */
+    p_instance_ctrl->p_reg = (R_GTM0_Type *) p_extend->p_reg;
 
     p_instance_ctrl->p_cfg = p_cfg;
 
@@ -473,9 +449,9 @@ fsp_err_t R_GTM_Close (timer_ctrl_t * const p_ctrl)
 /** @} (end addtogroup GTM) */
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************
@@ -501,7 +477,10 @@ static fsp_err_t r_gtm_open_param_checking (gtm_instance_ctrl_t * p_instance_ctr
 {
     FSP_ASSERT(NULL != p_instance_ctrl);
     FSP_ASSERT(NULL != p_cfg);
-    FSP_ASSERT(NULL != p_cfg->p_extend);
+
+    gtm_extended_cfg_t * p_extend = (gtm_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(p_extend != NULL);
+    FSP_ASSERT(NULL != p_extend->p_reg);
     FSP_ERROR_RETURN(GTM_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
 
     /* Enable IRQ if user supplied a callback function,

@@ -154,9 +154,9 @@ typedef enum e_adc_e_compare_cfg
     ADC_E_COMPARE_CFG_EVENT_OUTPUT_OR  = 0,
     ADC_E_COMPARE_CFG_EVENT_OUTPUT_XOR = 1,
     ADC_E_COMPARE_CFG_EVENT_OUTPUT_AND = 2,
-    ADC_E_COMPARE_CFG_A_ENABLE         = R_ADC_E_ADCMPCR_CMPAE_Msk | R_ADC_E_ADCMPCR_CMPAIE_Msk,
-    ADC_E_COMPARE_CFG_B_ENABLE         = R_ADC_E_ADCMPCR_CMPBE_Msk | R_ADC_E_ADCMPCR_CMPBIE_Msk,
-    ADC_E_COMPARE_CFG_WINDOW_ENABLE    = R_ADC_E_ADCMPCR_WCMPE_Msk,
+    ADC_E_COMPARE_CFG_A_ENABLE         = R_ADC_E0_ADCMPCR_CMPAE_Msk | R_ADC_E0_ADCMPCR_CMPAIE_Msk,
+    ADC_E_COMPARE_CFG_B_ENABLE         = R_ADC_E0_ADCMPCR_CMPBE_Msk | R_ADC_E0_ADCMPCR_CMPBIE_Msk,
+    ADC_E_COMPARE_CFG_WINDOW_ENABLE    = R_ADC_E0_ADCMPCR_WCMPE_Msk,
 } adc_e_compare_cfg_t;
 
 /** ADC Window B channel */
@@ -177,7 +177,7 @@ typedef enum e_adc_e_window_b_channel
 typedef enum e_adc_e_window_b_mode
 {
     ADC_E_WINDOW_B_MODE_LESS_THAN_OR_OUTSIDE   = 0,
-    ADC_E_WINDOW_B_MODE_GREATER_THAN_OR_INSIDE = R_ADC_E_ADCMPBNSR_CMPLB_Msk,
+    ADC_E_WINDOW_B_MODE_GREATER_THAN_OR_INSIDE = R_ADC_E0_ADCMPBNSR_CMPLB_Msk,
 } adc_e_window_b_mode_t;
 
 /** AD event link control definitions. */
@@ -205,6 +205,7 @@ struct st_adc_e_extended_cfg
     IRQn_Type              window_b_irq;        ///< IRQ number for Window Compare B interrupts
     uint8_t                window_a_ipl;        ///< Priority for Window Compare A interrupts
     uint8_t                window_b_ipl;        ///< Priority for Window Compare B interrupts
+    void                 * p_reg;               ///< Register base address for specified channel
 };
 
 /** Extended configuration structure for ADC. Please refer to the struct st_adc_e_extended_cfg. */

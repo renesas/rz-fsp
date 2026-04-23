@@ -24,6 +24,11 @@
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_128                           NULL
 #endif
+#if RSIP_CFG_AES_192_ENABLE
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_192                           r_rsip_p84
+#else
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_192                           NULL
+#endif
 #if RSIP_CFG_AES_256_ENABLE
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_256                           r_rsip_p04
 #else
@@ -55,6 +60,13 @@
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PUBLIC              NULL
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PRIVATE             NULL
 #endif
+#if RSIP_CFG_ECC_SECP521R1_ENABLE
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PUBLIC              r_rsip_p3e
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PRIVATE             r_rsip_p3f
+#else
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PUBLIC              NULL
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PRIVATE             NULL
+#endif
 #if RSIP_CFG_ECC_BRAINPOOLP256R1_ENABLE
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PUBLIC        r_rsip_wrapper_pfa_brainpoolp256r1
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PRIVATE       r_rsip_wrapper_pf3_brainpoolp256r1
@@ -68,6 +80,13 @@
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PUBLIC        NULL
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PRIVATE       NULL
+#endif
+#if RSIP_CFG_ECC_BRAINPOOLP512R1_ENABLE
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PUBLIC        r_rsip_pfb
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PRIVATE       r_rsip_pfc
+#else
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PUBLIC        NULL
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PRIVATE       NULL
 #endif
 #if RSIP_CFG_ECC_EDWARDS25519_ENABLE
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_EDWARDS25519_PUBLIC           r_rsip_pb1
@@ -218,6 +237,7 @@ RSIP_PRV_STATIC_INLINE uint32_t         r_rsip_ceil(const uint32_t num, const ui
 static const rsip_func_initial_key_wrap_t gsp_func_initial_key_wrap_aes[RSIP_PRV_KEY_SUBTYPE_AES_NUM] =
 {
     [RSIP_PRV_KEY_SUBTYPE_AES_128] = RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_128,
+    [RSIP_PRV_KEY_SUBTYPE_AES_192] = RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_192,
     [RSIP_PRV_KEY_SUBTYPE_AES_256] = RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_256
 };
 
@@ -236,8 +256,10 @@ static const rsip_func_initial_key_wrap_t gsp_func_initial_key_wrap_ecc_pub[RSIP
 {
     [RSIP_PRV_KEY_SUBTYPE_ECC_SECP256R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256R1_PUBLIC,
     [RSIP_PRV_KEY_SUBTYPE_ECC_SECP384R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PUBLIC,
+    [RSIP_PRV_KEY_SUBTYPE_ECC_SECP521R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PUBLIC,
     [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP256R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PUBLIC,
     [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP384R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PUBLIC,
+    [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP512R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PUBLIC,
     [RSIP_PRV_KEY_SUBTYPE_ECC_EDWARDS25519]    = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_EDWARDS25519_PUBLIC
 };
 
@@ -245,8 +267,10 @@ static const rsip_func_initial_key_wrap_t gsp_func_initial_key_wrap_ecc_priv[RSI
 {
     [RSIP_PRV_KEY_SUBTYPE_ECC_SECP256R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256R1_PRIVATE,
     [RSIP_PRV_KEY_SUBTYPE_ECC_SECP384R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PRIVATE,
+    [RSIP_PRV_KEY_SUBTYPE_ECC_SECP521R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PRIVATE,
     [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP256R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PRIVATE,
     [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP384R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PRIVATE,
+    [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP512R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PRIVATE,
     [RSIP_PRV_KEY_SUBTYPE_ECC_EDWARDS25519]    = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_EDWARDS25519_PRIVATE
 };
 
@@ -321,10 +345,10 @@ static const rsip_func_tls12_rsa_premaster_secret_decrypt_t gsp_func_tls12_rsa_p
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -1424,9 +1448,9 @@ fsp_err_t R_RSIP_SB_ManifestVerify (rsip_ctrl_t * const   p_ctrl,
  * @}
  **********************************************************************************************************************/
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************

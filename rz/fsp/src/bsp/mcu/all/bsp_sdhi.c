@@ -75,7 +75,7 @@ extern void * __sdhi_flash_contents_virtual_address;
  */
   #define BSP_PRV_MAX_CLOCK_DIVISION_SHIFT                 (9U) /* 512 (2^9) is max clock division supported */
 
-  #define BSP_PRV_SD_CLK_CTRLEN_TIMEOUT                    (8U * 512U)
+  #define BSP_PRV_SCLKDIVEN_TIMEOUT                        (8U * 512U)
 
   #define BSP_PRV_BSP_PRV_SD_CLK_CTRL_CLKCTRLEN_MASK       (1U << 9)
   #define BSP_PRV_BSP_PRV_SD_CLK_CTRL_CLKEN_MASK           (1U << 8)
@@ -645,7 +645,7 @@ static void bsp_sdhi_max_clock_rate_set (uint32_t max_rate)
 
             /* The clock register is accessible 8 SD clock counts after the last command completes.  Each register access
              * requires at least one PCLK count, so check the register up to 8 times the maximum PCLK divisor value (512). */
-            uint32_t timeout = BSP_PRV_SD_CLK_CTRLEN_TIMEOUT;
+            uint32_t timeout = BSP_PRV_SCLKDIVEN_TIMEOUT;
 
             while (timeout > 0U)
             {

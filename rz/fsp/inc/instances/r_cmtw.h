@@ -131,6 +131,7 @@ struct st_cmtw_extended_cfg
     uint8_t   compare_oc1_ipl;                ///< OutputCompare 1 interrupt priority
     IRQn_Type compare_oc0_irq;                ///< OutputCompare 0 interrupt
     IRQn_Type compare_oc1_irq;                ///< OutputCompare 1 interrupt
+    void * p_reg;                             ///< Register base address for specified channel
 };
 
 /** Optional CMTW extension data structure. Please refer to the struct st_cmtw_extended_cfg. */

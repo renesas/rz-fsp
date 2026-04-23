@@ -5,32 +5,32 @@
 */
 
 #ifndef R_MIPI_DSI_B_H
-#define R_MIPI_DSI_B_H
+ #define R_MIPI_DSI_B_H
 
 /***********************************************************************************************************************
  * Includes
  **********************************************************************************************************************/
 
-#include "bsp_api.h"
-#include "r_mipi_dsi_api.h"
+ #include "bsp_api.h"
+ #include "r_mipi_dsi_api.h"
 
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
-namespace RZA
-{
-#endif
-#endif
-
-/*******************************************************************************************************************//**
- * @addtogroup RZA_MIPI_DSI_B
- * @{
- **********************************************************************************************************************/
-
 /***********************************************************************************************************************
  * Macro definitions
+ **********************************************************************************************************************/
+
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+namespace RZG
+{
+  #endif
+ #endif
+
+/*******************************************************************************************************************//**
+ * @addtogroup RZG_MIPI_DSI_B
+ * @{
  **********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -79,16 +79,16 @@ typedef struct st_mipi_dsi_b_extended_cfg mipi_dsi_b_extended_cfg_t;
 /** MIPI DSI instance control block. */
 struct st_mipi_dsi_b_instance_ctrl
 {
-    uint32_t               open;                     ///< Interface is open
-    bool                   data_ulps_active;         ///< Data lane ULPS status
-    bool                   clock_ulps_active;        ///< Data lane ULPS status
-    bool                   video_started;            ///< If video started or not
-    mipi_dsi_clock_state_t clock_state;              ///< Clock state
-    mipi_dsi_lane_t        ulps_status;              ///< Ultra-low Power State active status
-    mipi_dsi_cfg_t const * p_cfg;                    ///< Pointer to configuration structure used to open the interface
-    void (* p_callback)(mipi_dsi_callback_args_t *); ///< Pointer to callback that is called when an adc_event_t occurs.
-    void * p_context;                                ///< Pointer to context to be passed into callback function
-    mipi_dsi_callback_args_t * p_callback_memory;    ///< Pointer to non-secure memory that can be used to pass arguments to a callback in non-secure memory.
+    uint32_t                   open;                                       ///< Interface is open
+    bool                       data_ulps_active;                           ///< Data lane ULPS status
+    bool                       clock_ulps_active;                          ///< Data lane ULPS status
+    bool                       video_started;                              ///< If video started or not
+    mipi_dsi_clock_state_t     clock_state;                                ///< Clock state
+    mipi_dsi_lane_t            ulps_status;                                ///< Ultra-low Power State active status
+    mipi_dsi_cfg_t const     * p_cfg;                                      ///< Pointer to configuration structure used to open the interface
+    void                       (* p_callback)(mipi_dsi_callback_args_t *); ///< Pointer to callback that is called when an adc_event_t occurs.
+    void                     * p_context;                                  ///< Pointer to context to be passed into callback function
+    mipi_dsi_callback_args_t * p_callback_memory;                          ///< Pointer to non-secure memory that can be used to pass arguments to a callback in non-secure memory.
 };
 
 /** MIPI DSI instance control block. Please refer to the struct st_mipi_dsi_b_instance_ctrl. */
@@ -121,14 +121,13 @@ fsp_err_t R_MIPI_DSI_B_Command(mipi_dsi_ctrl_t * const p_api_ctrl, mipi_dsi_cmd_
 fsp_err_t R_MIPI_DSI_B_StatusGet(mipi_dsi_ctrl_t * const p_api_ctrl, mipi_dsi_status_t * p_status);
 
 /*******************************************************************************************************************//**
- * @} (end addtogroup MIPI_DSI_B)
+ * @} (end addtogroup RZG_MIPI_DSI_B)
  **********************************************************************************************************************/
-
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
-#endif
-#endif
+  #endif
+ #endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

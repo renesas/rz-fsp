@@ -128,10 +128,10 @@ const wdt_api_t g_wdt_on_wdt =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -167,12 +167,11 @@ fsp_err_t R_WDT_Open (wdt_ctrl_t * const p_ctrl, wdt_cfg_t const * const p_cfg)
     err = r_wdt_parameter_checking(p_instance_ctrl, p_cfg);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
+    /* Get extended configuration structure pointer. */
     wdt_extended_cfg_t * p_extend = (wdt_extended_cfg_t *) p_cfg->p_extend;
 
     /* Save register base address. */
-    p_instance_ctrl->p_reg = (R_WDT0_Type *) ((0U == p_extend->channel) ? R_WDT0_BASE : \
-                                              (1U == p_extend->channel) ? R_WDT1_BASE : \
-                                              (2U == p_extend->channel) ? R_WDT2_BASE : R_WDT3_BASE);
+    p_instance_ctrl->p_reg = (R_WDT0_Type *) p_extend->p_reg;
 
     p_instance_ctrl->p_cfg = p_cfg;
 
@@ -432,9 +431,9 @@ fsp_err_t R_WDT_CallbackSet (wdt_ctrl_t * const          p_ctrl,
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************
@@ -533,6 +532,8 @@ static fsp_err_t r_wdt_parameter_checking (wdt_instance_ctrl_t * const p_instanc
     FSP_ASSERT(NULL != p_instance_ctrl);
     FSP_ERROR_RETURN(WDT_OPEN != p_instance_ctrl->wdt_open, FSP_ERR_ALREADY_OPEN);
     FSP_ASSERT(NULL != p_cfg->p_extend);
+    wdt_extended_cfg_t * p_extend = (wdt_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(NULL != p_extend->p_reg);
 
     /* Check timeout parameter is supported by WDT. */
 

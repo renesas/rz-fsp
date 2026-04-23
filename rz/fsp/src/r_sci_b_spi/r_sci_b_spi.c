@@ -138,15 +138,19 @@ fsp_err_t R_SCI_B_SPI_Open (spi_ctrl_t * p_api_ctrl, spi_cfg_t const * const p_c
     FSP_ERROR_RETURN(SCI_B_SPI_OPEN != p_ctrl->open, FSP_ERR_ALREADY_OPEN);
     FSP_ASSERT(NULL != p_cfg);
     FSP_ASSERT(NULL != p_cfg->p_extend);
+    sci_b_spi_extended_cfg_t * p_extend = (sci_b_spi_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(NULL != p_extend->p_reg);
     FSP_ASSERT(NULL != p_cfg->p_callback);
     FSP_ERROR_RETURN(BSP_FEATURE_SCI_CHANNELS_MASK & (1U << p_cfg->channel), FSP_ERR_IP_CHANNEL_NOT_PRESENT);
     FSP_ASSERT(p_cfg->rxi_irq >= 0);
     FSP_ASSERT(p_cfg->txi_irq >= 0);
     FSP_ASSERT(p_cfg->tei_irq >= 0);
     FSP_ASSERT(p_cfg->eri_irq >= 0);
+#else
+    sci_b_spi_extended_cfg_t * p_extend = (sci_b_spi_extended_cfg_t *) p_cfg->p_extend;
 #endif
 
-    p_ctrl->p_reg = (R_SCI_B0_Type *) ((R_SCI1_BASE - R_SCI0_BASE) * p_cfg->channel + R_SCI0_BASE);
+    p_ctrl->p_reg = (R_SCI_B0_Type *) p_extend->p_reg;
     p_ctrl->p_cfg = p_cfg;
 
     p_ctrl->p_callback        = p_cfg->p_callback;

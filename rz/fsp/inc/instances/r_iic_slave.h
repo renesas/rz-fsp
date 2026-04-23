@@ -91,6 +91,7 @@ typedef struct st_iic_slave_instance_ctrl iic_slave_instance_ctrl_t;
 struct st_iic_slave_extended_cfg
 {
     iic_slave_clock_settings_t clock_settings; ///< I2C Clock settings
+    void * p_reg;                              ///< Register base address for specified channel
 };
 
 /** R_IIC_SLAVE extended configuration Please refer to the struct st_iic_slave_extended_cfg. */
@@ -113,11 +114,11 @@ extern i2c_slave_api_t const g_i2c_slave_on_iic;
 fsp_err_t R_IIC_SLAVE_Open(i2c_slave_ctrl_t * const p_ctrl, i2c_slave_cfg_t const * const p_cfg);
 fsp_err_t R_IIC_SLAVE_Read(i2c_slave_ctrl_t * const p_ctrl, uint8_t * const p_dest, uint32_t const bytes);
 fsp_err_t R_IIC_SLAVE_Write(i2c_slave_ctrl_t * const p_ctrl, uint8_t * const p_src, uint32_t const bytes);
-fsp_err_t R_IIC_SLAVE_Close(i2c_slave_ctrl_t * const p_ctrl);
 fsp_err_t R_IIC_SLAVE_CallbackSet(i2c_slave_ctrl_t * const          p_ctrl,
                                   void (                          * p_callback)(i2c_slave_callback_args_t *),
                                   void * const                      p_context,
                                   i2c_slave_callback_args_t * const p_callback_memory);
+fsp_err_t R_IIC_SLAVE_Close(i2c_slave_ctrl_t * const p_ctrl);
 
 /*******************************************************************************************************************//**
  * @} (end defgroup IIC_SLAVE)

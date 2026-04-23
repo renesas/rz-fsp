@@ -137,7 +137,7 @@
 /* Illegal PHY register read value  */
 #define ETHER_PHY_REGISTER_READ_ERROR                  (0xffff)
 
-#if defined(BSP_MCU_GROUP_RZT2H)
+#if (1 == BSP_FEATURE_ETHER_PHY_CONTROL_MDIO)
 
 /* Bit definen of MDIO Address Register */
  #define ETHER_PHY_MDIO_ADDRESS_PA_SHIFT               (21) /**< Physical Layer Address */
@@ -156,7 +156,7 @@
 
  #define ETHER_PHY_MDIO_ADDRESS_CR                     4 /* CSR clock/102 */
 
-#else // !BSP_MCU_GROUP_RZT2H
+#else // !BSP_FEATURE_ETHER_PHY_CONTROL_MDIO
 
 /* Bit definen of GMII_Address Register */
  #define ETHER_PHY_GMII_ADDRESS_PA_SHIFT               (11)     /**< Physical Layer Address */
@@ -167,7 +167,7 @@
  #define ETHER_PHY_GMII_ADDRESS_GW                     (1 << 1) /**< GMII Write */
  #define ETHER_PHY_GMII_ADDRESS_GB                     (1 << 0) /**< GMII Busy */
 
-#endif // !BSP_MCU_GROUP_RZT2H
+#endif // !BSP_FEATURE_ETHER_PHY_CONTROL_MDIO
 
 #define ETHER_PHY_ADDRESS_SIZE                         (0x1fU)
 #define ETHER_PHY_REGISTER_DATA_SIZE                   (0xffffU)
@@ -190,8 +190,11 @@ static fsp_err_t ether_phy_open_param_check(ether_phy_instance_ctrl_t   * p_inst
 
 #endif
 
+#if (BSP_FEATURE_ETHSS_SUPPORTED == 1)
 static ether_selector_speed_t  ether_phy_get_selector_speed(ether_phy_speed_t bps);
 static ether_selector_duplex_t ether_phy_get_selector_duplex(ether_phy_duplex_t duplex);
+
+#endif
 
 static fsp_err_t ether_phy_reset(ether_phy_instance_ctrl_t * p_instance_ctrl, ether_phy_cfg_t const * const p_cfg);
 
@@ -207,9 +210,12 @@ static fsp_err_t ether_phy_get_ability_auto_negotiate_off(ether_phy_instance_ctr
                                                           uint32_t * const            p_local_pause,
                                                           uint32_t * const            p_partner_pause);
 
+#if (BSP_FEATURE_ETHSS_SUPPORTED == 1)
 void ether_phy_convert_speed_duplex(uint32_t                  line_speed_duple,
                                     ether_selector_speed_t  * p_selector_speed,
                                     ether_selector_duplex_t * p_selector_duplex);
+
+#endif
 
 static void ether_phy_read_gmac(ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t reg_addr,
                                 uint32_t * const p_data);
@@ -220,7 +226,10 @@ static void ether_phy_read_ethsw(ether_phy_instance_ctrl_t * p_instance_ctrl, ui
 
 #endif
 
+#if (0 < BSP_FEATURE_ESC_MAX_PORTS)
 static void ether_phy_read_esc(ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t reg_add, uint32_t * const p_data);
+
+#endif
 
 static void ether_phy_write_gmac(ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t reg_addr, uint32_t data);
 
@@ -229,7 +238,10 @@ static void ether_phy_write_ethsw(ether_phy_instance_ctrl_t * p_instance_ctrl, u
 
 #endif
 
+#if (0 < BSP_FEATURE_ESC_MAX_PORTS)
 static void ether_phy_write_esc(ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t reg_addr, uint32_t data);
+
+#endif
 
 static void ether_phy_targets_initialize(ether_phy_instance_ctrl_t * p_instance_ctrl);
 
@@ -273,14 +285,14 @@ const ether_phy_api_t g_ether_phy_on_ether_phy =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
-namespace RZT
+ #ifdef __cplusplus
+namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
- * @addtogroup RZT_ETHER_PHY
+ * @addtogroup RZV_ETHER_PHY
  * @{
  **********************************************************************************************************************/
 
@@ -305,7 +317,9 @@ fsp_err_t R_ETHER_PHY_Open (ether_phy_ctrl_t * const p_ctrl, ether_phy_cfg_t con
     fsp_err_t err = FSP_SUCCESS;
     ether_phy_instance_ctrl_t * p_instance_ctrl = (ether_phy_instance_ctrl_t *) p_ctrl;
     ether_phy_extend_cfg_t    * p_extend;
+#if (BSP_FEATURE_ETHSS_SUPPORTED == 1)
     ether_selector_instance_t * p_selector_instance;
+#endif
 
 #if (ETHER_PHY_CFG_PARAM_CHECKING_ENABLE)
 
@@ -319,36 +333,35 @@ fsp_err_t R_ETHER_PHY_Open (ether_phy_ctrl_t * const p_ctrl, ether_phy_cfg_t con
     /* Initialize configuration of ethernet phy module. */
     p_instance_ctrl->p_ether_phy_cfg = p_cfg;
 
+    if (p_instance_ctrl->p_ether_phy_cfg->channel == 0)
+    {
+        R_GPIO->PFC_OEN_b.OEN0 = (p_instance_ctrl->p_ether_phy_cfg->mii_type != ETHER_PHY_MII_TYPE_RGMII);
+#if (BSP_FEATURE_GMAC_GRMII_SUPPORTED)
+        R_SYSC->SYS_GBETH0_CFG_b.PHY_INTF_TYPE =
+            (p_instance_ctrl->p_ether_phy_cfg->mii_type == ETHER_PHY_MII_TYPE_RGMII);
+#endif
+    }
+    else
+    {
+        R_GPIO->PFC_OEN_b.OEN1 = (p_instance_ctrl->p_ether_phy_cfg->mii_type != ETHER_PHY_MII_TYPE_RGMII);
+#if (BSP_FEATURE_GMAC_GRMII_SUPPORTED)
+        R_SYSC->SYS_GBETH1_CFG_b.PHY_INTF_TYPE =
+            (p_instance_ctrl->p_ether_phy_cfg->mii_type == ETHER_PHY_MII_TYPE_RGMII);
+#endif
+    }
+
     switch (p_extend->mdio_type)
     {
-#if defined(BSP_MCU_GROUP_RZT2H)
         case ETHER_PHY_MDIO_GMAC:
-        default:
-        {
-            p_instance_ctrl->p_reg_etherc = (uint32_t *) R_GMAC0_BASE;
-            break;
-        }
-
+#if (1 < BSP_FEATURE_ETHER_PHY_MAX_CHANNELS)
         case ETHER_PHY_MDIO_GMAC1:
-        {
-            p_instance_ctrl->p_reg_etherc = (uint32_t *) R_GMAC1_BASE;
-            break;
-        }
-
         case ETHER_PHY_MDIO_GMAC2:
-        {
-            p_instance_ctrl->p_reg_etherc = (uint32_t *) R_GMAC2_BASE;
-            break;
-        }
-
-#else                                  // !BSP_MCU_GROUP_RZT2H
-        case ETHER_PHY_MDIO_GMAC:
+#endif
         default:
         {
-            p_instance_ctrl->p_reg_etherc = (uint32_t *) R_GMAC_BASE;
+            /* Base address is already set. */
             break;
         }
-#endif                                 // !BSP_MCU_GROUP_RZT2H
 
 #if (BSP_FEATURE_ETHSW_SUPPORTED == 1)
         case ETHER_PHY_MDIO_ETHSW:
@@ -357,15 +370,18 @@ fsp_err_t R_ETHER_PHY_Open (ether_phy_ctrl_t * const p_ctrl, ether_phy_cfg_t con
             break;
         }
 #endif
+#if (0 < BSP_FEATURE_ESC_MAX_PORTS)
         case ETHER_PHY_MDIO_ESC:
         {
             p_instance_ctrl->p_reg_etherc = (uint32_t *) R_ESC_BASE;
             break;
         }
+#endif
     }
 
     p_instance_ctrl->local_advertise = 0;
 
+#if (BSP_FEATURE_ETHSS_SUPPORTED == 1)
     p_selector_instance = p_extend->p_selector_instance;
 
     err = p_selector_instance->p_api->open(p_selector_instance->p_ctrl, p_selector_instance->p_cfg);
@@ -377,6 +393,7 @@ fsp_err_t R_ETHER_PHY_Open (ether_phy_ctrl_t * const p_ctrl, ether_phy_cfg_t con
                                                      ether_phy_get_selector_speed(p_extend->bps),
                                                      ether_phy_get_selector_duplex(p_extend->duplex));
     }
+#endif
 
     if (FSP_SUCCESS == err)
     {
@@ -419,18 +436,22 @@ fsp_err_t R_ETHER_PHY_Open (ether_phy_ctrl_t * const p_ctrl, ether_phy_cfg_t con
 fsp_err_t R_ETHER_PHY_Close (ether_phy_ctrl_t * const p_ctrl)
 {
     ether_phy_instance_ctrl_t * p_instance_ctrl = (ether_phy_instance_ctrl_t *) p_ctrl;
+#if (BSP_FEATURE_ETHSS_SUPPORTED == 1)
     ether_phy_extend_cfg_t    * p_extend;
     ether_selector_instance_t * p_selector_instance;
+#endif
 
 #if (ETHER_PHY_CFG_PARAM_CHECKING_ENABLE)
     FSP_ASSERT(p_instance_ctrl);
     ETHER_PHY_ERROR_RETURN(ETHER_PHY_OPEN == p_instance_ctrl->open, FSP_ERR_NOT_OPEN);
 #endif
 
+#if (BSP_FEATURE_ETHSS_SUPPORTED == 1)
     p_extend            = (ether_phy_extend_cfg_t *) p_instance_ctrl->p_ether_phy_cfg->p_extend;
     p_selector_instance = p_extend->p_selector_instance;
 
     p_selector_instance->p_api->close(p_selector_instance->p_ctrl);
+#endif
 
     /** Clear configure block parameters. */
     p_instance_ctrl->p_ether_phy_cfg = NULL;
@@ -513,6 +534,7 @@ fsp_err_t R_ETHER_PHY_LinkPartnerAbilityGet (ether_phy_ctrl_t * const p_ctrl,
                                                       p_partner_pause);
         if (FSP_SUCCESS == err)
         {
+#if (BSP_FEATURE_ETHSS_SUPPORTED == 1)
             ether_selector_speed_t      selector_speed;
             ether_selector_duplex_t     selector_duplex;
             ether_selector_instance_t * p_selector_instance;
@@ -523,6 +545,7 @@ fsp_err_t R_ETHER_PHY_LinkPartnerAbilityGet (ether_phy_ctrl_t * const p_ctrl,
 
             err =
                 p_selector_instance->p_api->converterSet(p_selector_instance->p_ctrl, selector_speed, selector_duplex);
+#endif
         }
     }
     else
@@ -613,7 +636,7 @@ fsp_err_t R_ETHER_PHY_Read (ether_phy_ctrl_t * const p_ctrl, uint32_t reg_addr, 
     switch (p_extend->mdio_type)
     {
         case ETHER_PHY_MDIO_GMAC:
-#if defined(BSP_MCU_GROUP_RZT2H)
+#if (1 < BSP_FEATURE_ETHER_PHY_MAX_CHANNELS)
         case ETHER_PHY_MDIO_GMAC1:
         case ETHER_PHY_MDIO_GMAC2:
 #endif
@@ -630,11 +653,13 @@ fsp_err_t R_ETHER_PHY_Read (ether_phy_ctrl_t * const p_ctrl, uint32_t reg_addr, 
         }
 #endif
 
+#if (0 < BSP_FEATURE_ESC_MAX_PORTS)
         case ETHER_PHY_MDIO_ESC:
         {
             ether_phy_read_esc(p_instance_ctrl, reg_addr, p_data);
             break;
         }
+#endif
 
         default:
         {
@@ -668,7 +693,7 @@ fsp_err_t R_ETHER_PHY_Write (ether_phy_ctrl_t * const p_ctrl, uint32_t reg_addr,
     switch (p_extend->mdio_type)
     {
         case ETHER_PHY_MDIO_GMAC:
-#if defined(BSP_MCU_GROUP_RZT2H)
+#if (1 < BSP_FEATURE_ETHER_PHY_MAX_CHANNELS)
         case ETHER_PHY_MDIO_GMAC1:
         case ETHER_PHY_MDIO_GMAC2:
 #endif
@@ -685,12 +710,13 @@ fsp_err_t R_ETHER_PHY_Write (ether_phy_ctrl_t * const p_ctrl, uint32_t reg_addr,
         }
 #endif
 
+#if (0 < BSP_FEATURE_ESC_MAX_PORTS)
         case ETHER_PHY_MDIO_ESC:
         {
             ether_phy_write_esc(p_instance_ctrl, reg_addr, data);
             break;
         }
-
+#endif
         default:
         {
             break;
@@ -701,18 +727,14 @@ fsp_err_t R_ETHER_PHY_Write (ether_phy_ctrl_t * const p_ctrl, uint32_t reg_addr,
 }                                      /* End of function R_ETHER_PHY_Write() */
 
 /*******************************************************************************************************************//**
- * @} (end addtogroup ETHER_PHY)
+ * @} (end addtogroup RZV_ETHER_PHY)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
+ #endif
 #endif
-#endif
-
-/**
- * Private functions
- */
 
 #if (ETHER_PHY_CFG_PARAM_CHECKING_ENABLE)
 
@@ -747,7 +769,7 @@ static fsp_err_t ether_phy_open_param_check (ether_phy_instance_ctrl_t   * p_ins
  #if (BSP_FEATURE_ETHSW_SUPPORTED == 1)
                             (ETHER_PHY_MDIO_ETHSW == p_extend->mdio_type) ||
  #endif
- #if defined(BSP_MCU_GROUP_RZT2H)
+ #if (1 < BSP_FEATURE_ETHER_PHY_MAX_CHANNELS)
                             (ETHER_PHY_MDIO_GMAC1 == p_extend->mdio_type) ||
                             (ETHER_PHY_MDIO_GMAC2 == p_extend->mdio_type) ||
  #endif
@@ -769,6 +791,8 @@ static fsp_err_t ether_phy_open_param_check (ether_phy_instance_ctrl_t   * p_ins
 }
 
 #endif
+
+#if (BSP_FEATURE_ETHSS_SUPPORTED == 1)
 
 /*******************************************************************************************************************//**
  * Get link speed for selector deiver.
@@ -823,6 +847,10 @@ static ether_selector_speed_t ether_phy_get_selector_speed (ether_phy_speed_t bp
     return selector_speed;
 }
 
+#endif
+
+#if (BSP_FEATURE_ETHSS_SUPPORTED == 1)
+
 /*******************************************************************************************************************//**
  * Get duplex for selector deiver.
  *
@@ -855,6 +883,8 @@ static ether_selector_duplex_t ether_phy_get_selector_duplex (ether_phy_duplex_t
     return selector_duplex;
 }
 
+#endif
+
 /*******************************************************************************************************************//**
  * PHY reset
  *
@@ -869,11 +899,12 @@ static ether_selector_duplex_t ether_phy_get_selector_duplex (ether_phy_duplex_t
  **********************************************************************************************************************/
 fsp_err_t ether_phy_reset (ether_phy_instance_ctrl_t * p_instance_ctrl, ether_phy_cfg_t const * const p_cfg)
 {
+    fsp_err_t                err      = FSP_SUCCESS;
+    ether_phy_extend_cfg_t * p_extend = (ether_phy_extend_cfg_t *) p_cfg->p_extend;
+#if (1 == BSP_FEATURE_ETHER_PHY_RESET_BY_GPIO)
     bool phy_state_initialized;
     static bsp_io_port_pin_t g_phy_reset_pin_initialized[BSP_FEATURE_ETHER_PHY_MAX_CHANNELS] = {(bsp_io_port_pin_t) 0U};
     uint32_t                 index;
-    ether_phy_extend_cfg_t * p_extend = (ether_phy_extend_cfg_t *) p_cfg->p_extend;
-    fsp_err_t                err      = FSP_SUCCESS;
 
     phy_state_initialized = false;
 
@@ -896,13 +927,13 @@ fsp_err_t ether_phy_reset (ether_phy_instance_ctrl_t * p_instance_ctrl, ether_ph
         R_BSP_PinAccessEnable();
 
         /* Write Low-output to ESC_RESETOUT# as PHY reset */
-        R_BSP_PinClear(R_BSP_IoRegionGet(p_extend->phy_reset_pin), p_extend->phy_reset_pin);
+        R_BSP_PinWrite(p_extend->phy_reset_pin, BSP_IO_LEVEL_LOW);
 
         /* Assertion time for reset  */
         R_BSP_SoftwareDelay(p_extend->phy_reset_time, BSP_DELAY_UNITS_MICROSECONDS);
 
         /* Write High-output to ESC_RESETOUT# as release */
-        R_BSP_PinSet(R_BSP_IoRegionGet(p_extend->phy_reset_pin), p_extend->phy_reset_pin);
+        R_BSP_PinWrite(p_extend->phy_reset_pin, BSP_IO_LEVEL_HIGH);
 
         /* Delay after release */
         R_BSP_SoftwareDelay(p_extend->phy_reset_time, BSP_DELAY_UNITS_MICROSECONDS);
@@ -911,6 +942,7 @@ fsp_err_t ether_phy_reset (ether_phy_instance_ctrl_t * p_instance_ctrl, ether_ph
         R_BSP_PinAccessDisable();
     }
     else
+#endif
     {
         if (ETHER_PHY_AUTO_NEGOTIATION_ON == p_extend->auto_negotiation)
         {
@@ -1309,6 +1341,8 @@ fsp_err_t ether_phy_get_ability_auto_negotiate_on (ether_phy_instance_ctrl_t * p
     return FSP_SUCCESS;
 }                                      /* End of function ether_phy_get_ability_auto_negotiate_on() */
 
+#if (BSP_FEATURE_ETHSS_SUPPORTED == 1)
+
 /********************************************************************************************************************//**
  * Convert link speed and duplex for sector driver
  *
@@ -1369,6 +1403,8 @@ void ether_phy_convert_speed_duplex (uint32_t                  line_speed_duple,
     }
 }
 
+#endif
+
 /*******************************************************************************************************************//**
  * Reads a PHY register by GMAC control
  *
@@ -1378,12 +1414,12 @@ void ether_phy_convert_speed_duplex (uint32_t                  line_speed_duple,
  *
  * @retval      read value
  **********************************************************************************************************************/
-#if defined(BSP_MCU_GROUP_RZT2H)
+#if (1 == BSP_FEATURE_ETHER_PHY_CONTROL_MDIO)
 void ether_phy_read_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t reg_addr, uint32_t * const p_data)
 {
-    volatile R_GMAC_Type * p_reg_etherc = (R_GMAC_Type *) p_instance_ctrl->p_reg_etherc;
-    uint32_t               timeout;
-    uint32_t               val_tmp;
+    volatile R_GBETH_Type * p_reg_etherc = (R_GBETH_Type *) p_instance_ctrl->p_reg_etherc;
+    uint32_t                timeout;
+    uint32_t                val_tmp;
 
     val_tmp =
         ((p_instance_ctrl->p_ether_phy_cfg->phy_lsi_address << ETHER_PHY_MDIO_ADDRESS_PA_SHIFT) &
@@ -1393,7 +1429,7 @@ void ether_phy_read_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t 
         ETHER_PHY_MDIO_ADDRESS_READ |                                                                       /* mode read */
         ETHER_PHY_MDIO_ADDRESS_GB;                                                                          /* busy */
 
-    p_reg_etherc->MAC_MDIO_Address = val_tmp;
+    p_reg_etherc->MACMAR = val_tmp;
 
     /* calculate timeout based on current timestamp */
     timeout = ETHER_PHY_TIMEOUT_COUNT;
@@ -1401,9 +1437,9 @@ void ether_phy_read_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t 
     while (1)
     {
         /* Wait read complete */
-        if (!(p_reg_etherc->MAC_MDIO_Address_b.GB))
+        if (!(p_reg_etherc->MACMAR_b.GB))
         {
-            *p_data = p_reg_etherc->MAC_MDIO_Data_b.GD;
+            *p_data = p_reg_etherc->MACMDR;
             break;
         }
 
@@ -1418,22 +1454,22 @@ void ether_phy_read_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t 
     }
 }                                      /* End of function ether_phy_read_gmac() */
 
-#else                                  // !BSP_MCU_GROUP_RZT2H
+#else                                  // !BSP_FEATURE_ETHER_PHY_CONTROL_MDIO
 
 void ether_phy_read_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t reg_addr, uint32_t * const p_data)
 {
-    volatile R_GMAC_Type * p_reg_etherc = (R_GMAC_Type *) p_instance_ctrl->p_reg_etherc;
-    uint32_t               timeout;
-    uint32_t               val_tmp;
+    volatile R_GBETH_Type * p_reg_etherc = (R_GBETH_Type *) p_instance_ctrl->p_reg_etherc;
+    uint32_t                timeout;
+    uint32_t                val_tmp;
 
     val_tmp =
-        ((p_instance_ctrl->p_ether_phy_cfg->phy_lsi_address << ETHER_PHY_GMII_ADDRESS_PA_SHIFT) &
+        (((uint32_t) p_instance_ctrl->p_ether_phy_cfg->phy_lsi_address << ETHER_PHY_GMII_ADDRESS_PA_SHIFT) &
          ETHER_PHY_GMII_ADDRESS_PA_MASK) |
         ((reg_addr << ETHER_PHY_GMII_ADDRESS_GR_SHIFT) & ETHER_PHY_GMII_ADDRESS_GR_MASK) | ///< Phy reg address
         ETHER_PHY_GMII_ADDRESS_CR |                                                        ///< Speed
         ETHER_PHY_GMII_ADDRESS_GB;                                                         ///< Busy
 
-    p_reg_etherc->GMII_Address = val_tmp;
+    p_reg_etherc->MACMAR = val_tmp;
 
     /* calculate timeout based on current timestamp */
     timeout = ETHER_PHY_TIMEOUT_COUNT;
@@ -1441,9 +1477,9 @@ void ether_phy_read_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t 
     while (1)
     {
         /* Wait read complete */
-        if (!(p_reg_etherc->GMII_Address_b.GB))
+        if (!(p_reg_etherc->MACMAR_b.GB))
         {
-            *p_data = p_reg_etherc->GMII_Data & ETHER_PHY_16BIT_DATA_MASK;
+            *p_data = p_reg_etherc->MACMDR & ETHER_PHY_16BIT_DATA_MASK;
             break;
         }
 
@@ -1458,7 +1494,7 @@ void ether_phy_read_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t 
     }
 }                                      /* End of function ether_phy_read_gmac() */
 
-#endif                                 // !BSP_MCU_GROUP_RZT2H
+#endif                                 // !BSP_FEATURE_ETHER_PHY_CONTROL_MDIO
 
 #if (BSP_FEATURE_ETHSW_SUPPORTED == 1)
 
@@ -1519,6 +1555,8 @@ void ether_phy_read_ethsw (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t
 }                                      /* End of function ether_phy_read_ethsw() */
 
 #endif
+
+#if (0 < BSP_FEATURE_ESC_MAX_PORTS)
 
 /*******************************************************************************************************************//**
  * Reads a PHY register by ESC control
@@ -1618,6 +1656,8 @@ void ether_phy_read_esc (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t r
     }
 }                                      /* End of function ether_phy_read_esc() */
 
+#endif
+
 /***********************************************************************************************************************
  * Writes to a PHY register by GMAC control
  *
@@ -1627,13 +1667,12 @@ void ether_phy_read_esc (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t r
  *
  * @retval      none
  **********************************************************************************************************************/
-#if defined(BSP_MCU_GROUP_RZT2H)
-
+#if (1 == BSP_FEATURE_ETHER_PHY_CONTROL_MDIO)
 void ether_phy_write_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t reg_addr, uint32_t data)
 {
-    volatile R_GMAC_Type * p_reg_etherc = (R_GMAC_Type *) p_instance_ctrl->p_reg_etherc;
-    uint32_t               timeout;
-    uint32_t               val_tmp;
+    volatile R_GBETH_Type * p_reg_etherc = (R_GBETH_Type *) p_instance_ctrl->p_reg_etherc;
+    uint32_t                timeout;
+    uint32_t                val_tmp;
 
     val_tmp =
         ((p_instance_ctrl->p_ether_phy_cfg->phy_lsi_address << ETHER_PHY_MDIO_ADDRESS_PA_SHIFT) &
@@ -1643,8 +1682,8 @@ void ether_phy_write_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t
         ETHER_PHY_MDIO_ADDRESS_WRITE |                                                                      /* mode write */
         ETHER_PHY_MDIO_ADDRESS_GB;                                                                          /* busy */
 
-    p_reg_etherc->MAC_MDIO_Data_b.GD = (uint16_t) data;
-    p_reg_etherc->MAC_MDIO_Address   = val_tmp;
+    p_reg_etherc->MACMDR = (uint16_t) data;
+    p_reg_etherc->MACMAR = val_tmp;
 
     /* calculate timeout based on current timestamp */
     timeout = ETHER_PHY_TIMEOUT_COUNT;
@@ -1652,7 +1691,7 @@ void ether_phy_write_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t
     while (1)
     {
         /* wait write complete */
-        if (!(p_reg_etherc->MAC_MDIO_Address_b.GB))
+        if (!(p_reg_etherc->MACMAR_b.GB))
         {
             /* Sucess */
             break;
@@ -1668,13 +1707,13 @@ void ether_phy_write_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t
     }
 }                                      /* End of function ether_phy_write_gmac() */
 
-#else // !BSP_MCU_GROUP_RZT2H
+#else // !BSP_FEATURE_ETHER_PHY_CONTROL_MDIO
 
 void ether_phy_write_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t reg_addr, uint32_t data)
 {
-    volatile R_GMAC_Type * p_reg_etherc = (R_GMAC_Type *) p_instance_ctrl->p_reg_etherc;
-    uint32_t               timeout;
-    uint32_t               val_tmp;
+    volatile R_GBETH_Type * p_reg_etherc = (R_GBETH_Type *) p_instance_ctrl->p_reg_etherc;
+    uint32_t                timeout;
+    uint32_t                val_tmp;
 
     val_tmp =
         ((p_instance_ctrl->p_ether_phy_cfg->phy_lsi_address << ETHER_PHY_GMII_ADDRESS_PA_SHIFT) &
@@ -1684,8 +1723,8 @@ void ether_phy_write_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t
         ETHER_PHY_GMII_ADDRESS_GW |                                                        ///< Write
         ETHER_PHY_GMII_ADDRESS_GB;                                                         ///< Busy
 
-    p_reg_etherc->GMII_Data    = data;                                                     ///< Set write value
-    p_reg_etherc->GMII_Address = val_tmp;                                                  ///< Write phy register
+    p_reg_etherc->MACMDR = data;                                                           ///< Set write value
+    p_reg_etherc->MACMAR = val_tmp;                                                        ///< Write phy register
 
     /* calculate timeout based on current timestamp */
     timeout = ETHER_PHY_TIMEOUT_COUNT;
@@ -1693,7 +1732,7 @@ void ether_phy_write_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t
     while (1)
     {
         /* wait write complete */
-        if (!(p_reg_etherc->GMII_Address_b.GB))
+        if (!(p_reg_etherc->MACMAR_b.GB))
         {
             /* Sucess */
             break;
@@ -1709,7 +1748,7 @@ void ether_phy_write_gmac (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t
     }
 }                                      /* End of function ether_phy_write_gmac() */
 
-#endif // !BSP_MCU_GROUP_RZT2H
+#endif // !BSP_FEATURE_ETHER_PHY_CONTROL_MDIO
 
 #if (BSP_FEATURE_ETHSW_SUPPORTED == 1)
 
@@ -1760,6 +1799,8 @@ void ether_phy_write_ethsw (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_
 }                                      /* End of function ether_phy_write_ethsw() */
 
 #endif
+
+#if (0 < BSP_FEATURE_ESC_MAX_PORTS)
 
 /*******************************************************************************************************************//**
  * Writes to a PHY register by ESC control
@@ -1846,6 +1887,8 @@ void ether_phy_write_esc (ether_phy_instance_ctrl_t * p_instance_ctrl, uint32_t 
         p_Reg_Esc->MII_PDI_ACS_STAT_b.ACSMII = 0;
     }
 }                                      /* End of function ether_phy_write_esc() */
+
+#endif
 
 /*******************************************************************************************************************//**
  * PHY-LSI specific initialization processing

@@ -9,6 +9,10 @@
  **********************************************************************************************************************/
 #include "r_mhu_b_s.h"
 
+#ifdef BSP_CFG_OPENAMP                 // OpenAMP
+ #include "metal/irq_controller.h"
+#endif
+
 #if (BSP_CFG_RTOS == 2)                // FreeRTOS
  #include "FreeRTOS.h"
  #include "task.h"
@@ -104,10 +108,10 @@ const mhu_api_t g_mhu_b_s_on_mhu_b_s =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -135,11 +139,13 @@ fsp_err_t R_MHU_B_S_Open (mhu_ctrl_t * const p_ctrl, mhu_cfg_t const * const p_c
 #if MHU_B_S_CFG_PARAM_CHECKING_ENABLE
     fsp_err_t err = r_mhu_b_s_open_param_checking(p_instance_ctrl, p_cfg);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+    FSP_ASSERT(NULL != ((mhu_b_s_extended_cfg_t *) p_cfg->p_extend)->p_reg);
 #endif
 
-    p_instance_ctrl->p_regs = (R_MHU0_Type *) (R_MHU_S0_BASE +
-                                               (p_cfg->channel *
-                                                ((intptr_t) R_MHU_S1_BASE - (intptr_t) R_MHU_S0_BASE)));
+    /* Get extended configuration structure pointer. */
+    mhu_b_s_extended_cfg_t * p_extend = (mhu_b_s_extended_cfg_t *) p_cfg->p_extend;
+
+    p_instance_ctrl->p_regs    = (R_MHU0_Type *) p_extend->p_reg;
     p_instance_ctrl->p_cfg     = p_cfg;
     p_instance_ctrl->channel   = p_cfg->channel;
     p_instance_ctrl->send_type = MHU_SEND_TYPE_MSG;
@@ -346,9 +352,9 @@ fsp_err_t R_MHU_B_S_Close (mhu_ctrl_t * const p_ctrl)
 /** @} (end addtogroup MHU_B_S) */
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************
@@ -457,6 +463,8 @@ static void r_mhu_b_s_set_send_data (mhu_b_s_instance_ctrl_t * p_instance_ctrl, 
  * End of function r_mhu_b_s_set_send_data
  *********************************************************************************************************************/
 
+#ifdef BSP_CFG_OPENAMP
+
 /*********************************************************************************************************************
  * MHU_B_S receive interrupt (for OpenAMP)
  **********************************************************************************************************************/
@@ -467,7 +475,7 @@ void metal_irq_isr_wrapper_s (void)
 
     IRQn_Type irq = R_FSP_CurrentIrqGet();
 
-    metal_irq_isr(irq);
+    metal_irq_handle(&(struct metal_irq) { (void *) R_MHU_B_S_IsrSub, NULL}, irq);
 
     /* Restore context if RTOS is used */
     FSP_CONTEXT_RESTORE
@@ -476,6 +484,7 @@ void metal_irq_isr_wrapper_s (void)
 /**********************************************************************************************************************
  * End of function metal_irq_isr_wrapper_s
  *********************************************************************************************************************/
+#endif
 
 /*********************************************************************************************************************
  * MHU_B_S receive interrupt (for bere mhu_b_s application).

@@ -127,57 +127,6 @@ void gpt_dead_time_isr(void);
  * Private global variables
  **********************************************************************************************************************/
 
-/* GPT base address */
-static const uint32_t volatile * p_gpt_base_address[BSP_FEATURE_GPT_MAX_CHANNEL] =
-{
-    (uint32_t *) R_GPT0,
-#if BSP_FEATURE_GPT_MAX_CHANNEL > 1
-    (uint32_t *) R_GPT1,
- #if BSP_FEATURE_GPT_MAX_CHANNEL > 2
-    (uint32_t *) R_GPT2,
-  #if BSP_FEATURE_GPT_MAX_CHANNEL > 3
-    (uint32_t *) R_GPT3,
-   #if BSP_FEATURE_GPT_MAX_CHANNEL > 4
-    (uint32_t *) R_GPT4,
-    #if BSP_FEATURE_GPT_MAX_CHANNEL > 5
-    (uint32_t *) R_GPT5,
-     #if BSP_FEATURE_GPT_MAX_CHANNEL > 6
-    (uint32_t *) R_GPT6,
-      #if BSP_FEATURE_GPT_MAX_CHANNEL > 7
-    (uint32_t *) R_GPT7,
-       #if BSP_FEATURE_GPT_MAX_CHANNEL > 8
-    (uint32_t *) R_GPT10,
-        #if BSP_FEATURE_GPT_MAX_CHANNEL > 9
-    (uint32_t *) R_GPT11,
-         #if BSP_FEATURE_GPT_MAX_CHANNEL > 10
-    (uint32_t *) R_GPT12,
-          #if BSP_FEATURE_GPT_MAX_CHANNEL > 11
-    (uint32_t *) R_GPT13,
-           #if BSP_FEATURE_GPT_MAX_CHANNEL > 12
-    (uint32_t *) R_GPT14,
-            #if BSP_FEATURE_GPT_MAX_CHANNEL > 13
-    (uint32_t *) R_GPT15,
-             #if BSP_FEATURE_GPT_MAX_CHANNEL > 14
-    (uint32_t *) R_GPT16,
-              #if BSP_FEATURE_GPT_MAX_CHANNEL > 15
-    (uint32_t *) R_GPT17,
-              #endif
-             #endif
-            #endif
-           #endif
-          #endif
-         #endif
-        #endif
-       #endif
-      #endif
-     #endif
-    #endif
-   #endif
-  #endif
- #endif
-#endif
-};
-
 /***********************************************************************************************************************
  * Global Variables
  **********************************************************************************************************************/
@@ -299,6 +248,7 @@ fsp_err_t R_GPT_Open (timer_ctrl_t * const p_ctrl, timer_cfg_t const * const p_c
         }
     }
  #endif
+    FSP_ASSERT(NULL != p_extend->p_reg);
 #endif
 
     /* Initialize control structure based on configurations. */
@@ -1304,8 +1254,11 @@ static void gpt_common_open (gpt_instance_ctrl_t * const p_instance_ctrl, timer_
         p_instance_ctrl->variant = TIMER_VARIANT_32_BIT;
     }
 
+    /* Get extended configuration structure pointer. */
+    gpt_extended_cfg_t * p_extend = (gpt_extended_cfg_t *) p_cfg->p_extend;
+
     /* Save register base address. */
-    p_instance_ctrl->p_reg = (R_GPT0_Type *) p_gpt_base_address[p_cfg->channel];
+    p_instance_ctrl->p_reg = p_extend->p_reg;
 
     /* Set callback and context pointers, if configured */
     p_instance_ctrl->p_callback        = p_cfg->p_callback;
@@ -1557,8 +1510,8 @@ static void gpt_hardware_initialize (gpt_instance_ctrl_t * const p_instance_ctrl
     }
 #endif
 
-    /* Reset counter to 0. */
-    p_instance_ctrl->p_reg->GTCLR = p_instance_ctrl->channel_mask;
+    /* Set the I/O control register. */
+    p_instance_ctrl->p_reg->GTIOR = gtior;
 
     /* Configure duty cycle and force timer to count up. GTUDDTYC must be set, then cleared to force the count
      * direction to be reflected when counting starts. Reference section "General PWM Timer Count Direction
@@ -1566,8 +1519,8 @@ static void gpt_hardware_initialize (gpt_instance_ctrl_t * const p_instance_ctrl
     p_instance_ctrl->p_reg->GTUDDTYC = gtuddtyc | 3U;
     p_instance_ctrl->p_reg->GTUDDTYC = gtuddtyc | 1U;
 
-    /* Set the I/O control register. */
-    p_instance_ctrl->p_reg->GTIOR = gtior;
+    /* Reset counter to 0. */
+    p_instance_ctrl->p_reg->GTCLR = p_instance_ctrl->channel_mask;
 
     /* Enable CPU interrupts if callback is not null.  Also enable interrupts for one shot mode.
      *  @note The GPT hardware does not support one-shot mode natively. To support one-shot mode, the timer will be

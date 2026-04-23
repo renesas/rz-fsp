@@ -10,10 +10,6 @@
 #include "r_rspi.h"
 #include "r_rspi_cfg.h"
 
-#if RSPI_CFG_DMAC_ENABLE
- #include "r_dmac_b.h"
-#endif
-
 /***********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
@@ -113,10 +109,10 @@ const spi_api_t g_spi_on_rspi =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -154,6 +150,8 @@ fsp_err_t R_RSPI_Open (spi_ctrl_t * p_api_ctrl, spi_cfg_t const * const p_cfg)
     FSP_ERROR_RETURN(RSPI_OPEN != p_ctrl->open, FSP_ERR_ALREADY_OPEN);
     FSP_ASSERT(NULL != p_cfg);
     FSP_ASSERT(NULL != p_cfg->p_extend);
+    rspi_extended_cfg_t * p_extend = (rspi_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(NULL != p_extend->p_reg);
     FSP_ERROR_RETURN(BSP_FEATURE_RSPI_VALID_CHANNELS_MASK & (1 << p_cfg->channel), FSP_ERR_IP_CHANNEL_NOT_PRESENT);
     FSP_ASSERT(p_cfg->eri_irq >= 0);
 #endif
@@ -440,9 +438,9 @@ fsp_err_t R_RSPI_CalculateBitrate (uint32_t bitrate, rspi_rspck_div_setting_t * 
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -509,8 +507,8 @@ static void r_rspi_init_control_structure (rspi_instance_ctrl_t * p_ctrl, spi_cf
     p_ctrl->p_callback_memory = NULL;
 
     /* register base address */
-    ptrdiff_t size_of_regs = (ptrdiff_t) R_RSPI1 - (ptrdiff_t) R_RSPI0;
-    p_ctrl->p_regs = (R_RSPI0_Type *) ((ptrdiff_t) R_RSPI0 + (size_of_regs * p_ctrl->p_cfg->channel));
+    rspi_extended_cfg_t * p_extend = (rspi_extended_cfg_t *) p_cfg->p_extend;
+    p_ctrl->p_regs = (R_RSPI0_Type *) p_extend->p_reg;
 
     /* Clear flags */
     p_ctrl->transfer_is_pending = false;

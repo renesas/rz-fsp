@@ -287,10 +287,10 @@ static gether_basic_descriptor_t g_gether_basic_descriptors[
 static uint32_t tag_counter = 0;
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -332,17 +332,21 @@ fsp_err_t R_GETHER_Open (ether_ctrl_t * const p_ctrl, ether_cfg_t const * const 
     err = gether_open_param_check(p_instance_ctrl, p_cfg); /** check arguments */
     GETHER_ERROR_RETURN((FSP_SUCCESS == err), err);
 #endif
+    ether_instance_extend_t * p_ether_instance_extend = (ether_instance_extend_t *) p_cfg->p_extend;
+#if (GETHER_CFG_PARAM_CHECKING_ENABLE)
+    GETHER_ERROR_RETURN((NULL != p_ether_instance_extend->p_reg_emac), FSP_ERR_INVALID_POINTER);
+    GETHER_ERROR_RETURN((NULL != p_ether_instance_extend->p_reg_ether), FSP_ERR_INVALID_POINTER);
+    GETHER_ERROR_RETURN((NULL != p_ether_instance_extend->p_reg_toe), FSP_ERR_INVALID_POINTER);
+#endif
 
     /* Prevent ether from resetting the linking process if it has already opened, even if the parameter-checking
      * function is disabled. */
     GETHER_ERROR_RETURN((GETHER_OPEN != p_instance_ctrl->open), FSP_ERR_ALREADY_OPEN);
 
     /** Make sure this channel exists. */
-    p_instance_ctrl->p_reg_emac  = ((R_EMAC0_Type *) (R_EMAC0_BASE + (GETHER_ETHERC_REG_SIZE * p_cfg->channel)));
-    p_instance_ctrl->p_reg_ether =
-        ((R_ETHER0_Type *) (R_ETHER0_BASE + (GETHER_ETHERC_REG_SIZE * p_cfg->channel)));
-    p_instance_ctrl->p_reg_toe =
-        ((R_TOE0_Type *) (R_TOE0_BASE + (GETHER_ETHERC_REG_SIZE * p_cfg->channel)));
+    p_instance_ctrl->p_reg_emac  = (R_EMAC0_Type *) p_ether_instance_extend->p_reg_emac;
+    p_instance_ctrl->p_reg_ether = (R_ETHER0_Type *) p_ether_instance_extend->p_reg_ether;
+    p_instance_ctrl->p_reg_toe   = (R_TOE0_Type *) p_ether_instance_extend->p_reg_toe;
 
     p_reg_emac = p_instance_ctrl->p_reg_emac;
 
@@ -1418,9 +1422,9 @@ fsp_err_t R_GETHER_TxStatusGet (__attribute__((unused)) ether_ctrl_t * const p_c
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

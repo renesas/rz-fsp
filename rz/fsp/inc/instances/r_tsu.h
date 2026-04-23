@@ -17,12 +17,12 @@
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_TSU
@@ -60,30 +60,30 @@ extern const adc_api_t g_adc_on_tsu;
  * Public APIs
  **********************************************************************************************************************/
 fsp_err_t R_TSU_Open(adc_ctrl_t * p_ctrl, adc_cfg_t const * const p_cfg);
-fsp_err_t R_TSU_ScanCfg(adc_ctrl_t * p_ctrl, void const * const p_extend);
 fsp_err_t R_TSU_ScanStart(adc_ctrl_t * p_ctrl);
-fsp_err_t R_TSU_ScanGroupStart(adc_ctrl_t * p_ctrl, adc_group_mask_t group_mask);
 fsp_err_t R_TSU_ScanStop(adc_ctrl_t * p_ctrl);
 fsp_err_t R_TSU_StatusGet(adc_ctrl_t * p_ctrl, adc_status_t * p_status);
 fsp_err_t R_TSU_Read(adc_ctrl_t * p_ctrl, adc_channel_t const reg_id, uint16_t * const p_data);
-fsp_err_t R_TSU_Read32(adc_ctrl_t * p_ctrl, adc_channel_t const reg_id, uint32_t * const p_data);
 fsp_err_t R_TSU_Close(adc_ctrl_t * p_ctrl);
-fsp_err_t R_TSU_InfoGet(adc_ctrl_t * p_ctrl, adc_info_t * p_adc_info);
+fsp_err_t R_TSU_ScanCfg(adc_ctrl_t * p_ctrl, void const * const p_extend);
+fsp_err_t R_TSU_ScanGroupStart(adc_ctrl_t * p_ctrl, adc_group_mask_t group_mask);
+fsp_err_t R_TSU_Read32(adc_ctrl_t * p_ctrl, adc_channel_t const reg_id, uint32_t * const p_data);
 fsp_err_t R_TSU_Calibrate(adc_ctrl_t * const p_ctrl, void const * p_extend);
 fsp_err_t R_TSU_OffsetSet(adc_ctrl_t * const p_ctrl, adc_channel_t const reg_id, int32_t offset);
 fsp_err_t R_TSU_CallbackSet(adc_ctrl_t * const          p_ctrl,
                             void (                    * p_callback)(adc_callback_args_t *),
                             void * const                p_context,
                             adc_callback_args_t * const p_callback_memory);
+fsp_err_t R_TSU_InfoGet(adc_ctrl_t * p_ctrl, adc_info_t * p_adc_info);
 
 /*******************************************************************************************************************//**
  * @} (end defgroup TSU)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

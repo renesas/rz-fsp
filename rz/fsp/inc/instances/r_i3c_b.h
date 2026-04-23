@@ -197,7 +197,7 @@ struct s_i3c_b_read_buffer_descriptor
     uint32_t  count;                   ///< Number of bytes that have been read.
     uint32_t  buffer_size;             ///< Total size of the buffer.
 
-    /** Flag for keeping track of whether the I3C_EVENT_READ_BUFFER_FULL callback has been issued. */
+    /** Flag for keeping track of whether the @ref I3C_EVENT_READ_BUFFER_FULL callback has been issued. */
     bool read_request_issued;
 };
 
@@ -282,6 +282,7 @@ struct s_i3c_b_extended_cfg
     IRQn_Type wu_irq;                  ///< Wake-up IRQ Number
     uint8_t   ipl;                     ///< Interrupt Priority for Resp, Rx, Tx, and RCV IRQs.
     uint8_t   eei_ipl;                 ///< Error and Event Interrupt Priority.
+    void    * p_reg;                   ///< Register base address for specified channel
 };
 
 /** Extended configuration for r_i3c_b. Please refer to the struct s_i3c_b_extended_cfg. */

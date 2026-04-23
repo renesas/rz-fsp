@@ -1603,7 +1603,7 @@ static uint16_t usb_hmsc_send_cbw (usb_utr_t * ptr, uint16_t side)
         case USB_DATA_TMO:             /* Timeout */
         {
             USB_PRINTF1("### CBW Transfer timeout ERROR(drive:%d) !\n", side);
-            usb_hstd_transfer_end(ptr, g_usb_hmsc_out_pipe[ptr->ip][side], hmsc_retval);
+            usb_hstd_transfer_end(ptr, g_usb_hmsc_out_pipe[ptr->ip][side]);
             break;
         }
 
@@ -1785,7 +1785,7 @@ static uint16_t usb_hmsc_get_data (usb_utr_t * ptr, uint16_t side, uint8_t * buf
         case USB_DATA_TMO:             /* Timeout */
         {
             USB_PRINTF1("### GetData time-out ERROR(drive:%d) !\n", side);
-            usb_hstd_transfer_end(ptr, g_usb_hmsc_in_pipe[ptr->ip][side], (uint16_t) USB_DATA_TMO);
+            usb_hstd_transfer_end(ptr, g_usb_hmsc_in_pipe[ptr->ip][side]);
             break;
         }
 
@@ -1987,7 +1987,7 @@ static uint16_t usb_hmsc_send_data (usb_utr_t * ptr, uint16_t side, uint8_t * bu
         case USB_DATA_TMO:             /* Timeout */
         {
             USB_PRINTF1("### SendData time-out ERROR(drive:%d) !\n", side);
-            usb_hstd_transfer_end(ptr, g_usb_hmsc_out_pipe[ptr->ip][side], (uint16_t) USB_DATA_TMO);
+            usb_hstd_transfer_end(ptr, g_usb_hmsc_out_pipe[ptr->ip][side]);
             break;
         }
 
@@ -2230,7 +2230,7 @@ static uint16_t usb_hmsc_get_csw (usb_utr_t * ptr, uint16_t side)
         case USB_DATA_TMO:
         {
             USB_PRINTF1("### GetCSW Transfer error(drive:%d) !\n", side);
-            usb_hstd_transfer_end(ptr, g_usb_hmsc_in_pipe[ptr->ip][side], (uint16_t) USB_DATA_TMO);
+            usb_hstd_transfer_end(ptr, g_usb_hmsc_in_pipe[ptr->ip][side]);
             break;
         }
 
@@ -3716,7 +3716,7 @@ usb_er_t usb_hmsc_get_max_unit (usb_utr_t * ptr, uint16_t addr, uint8_t * buff, 
     else if (USB_DATA_TMO == hmsc_retval)
     {
         USB_PRINTF0("### GetMaxUnit not support(time out) !\n");
-        usb_hstd_transfer_end(ptr, USB_PIPE0, hmsc_retval);
+        usb_hstd_transfer_end(ptr, USB_PIPE0);
         err = USB_ERROR;
     }
     else if (USB_CTRL_END != hmsc_retval)
@@ -3796,7 +3796,7 @@ usb_er_t usb_hmsc_mass_storage_reset (usb_utr_t * ptr, uint16_t addr, usb_cb_t c
     else if (USB_DATA_TMO == hmsc_retval)
     {
         USB_PRINTF0("*** MassStorageReset not support(time out) !\n");
-        usb_hstd_transfer_end(ptr, USB_PIPE0, hmsc_retval);
+        usb_hstd_transfer_end(ptr, USB_PIPE0);
         err = USB_ERROR;
     }
     else if (USB_CTRL_END != hmsc_retval)

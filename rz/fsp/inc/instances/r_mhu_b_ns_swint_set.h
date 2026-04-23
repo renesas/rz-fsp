@@ -20,12 +20,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZV_MHU_B_NS_SWINT_SET
@@ -48,6 +48,15 @@ struct st_mhu_b_ns_swint_set_instance_ctrl
 
 /** Channel control block. DO NOT INITIALIZE.  Initialization occurs when @ref mhu_ns_swint_set_api_t::open is called. Please refer to the struct st_mhu_b_ns_swint_set_instance_ctrl. */
 typedef struct st_mhu_b_ns_swint_set_instance_ctrl mhu_b_ns_swint_set_instance_ctrl_t;
+
+/** R_MHU_B_NS_SWINT_SET extended configuration */
+struct st_mhu_b_ns_swint_set_extended_cfg
+{
+    void * p_reg;                      ///< Register base address for specified channel
+};
+
+/** R_MHU_B_NS_SWINT_SET extended configuration. Please refer to the struct st_mhu_b_ns_swint_set_extended_cfg. */
+typedef struct st_mhu_b_ns_swint_set_extended_cfg mhu_b_ns_swint_set_extended_cfg_t;
 
 /**********************************************************************************************************************
  * Exported global variables
@@ -72,11 +81,11 @@ fsp_err_t R_MHU_B_NS_SWINT_SET_Close(mhu_ns_swint_set_ctrl_t * const p_ctrl);
  * @} (end ingroup MHU_B_NS_SWINT_SET)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

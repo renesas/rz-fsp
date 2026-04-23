@@ -78,7 +78,7 @@
 #define BSP_FEATURE_CANFD_TXMB_OFFSET                         (32U)
 #define BSP_FEATURE_CANFD_TXMB_CHANNEL_OFFSET                 (64U)
 #define BSP_FEATURE_CANFD_RXMB_MAX                            (96U)
-#define BSP_FEATURE_CANFD_ERROR_GLOBAL_CH0_ECC_REG_POS        (26U)
+#define BSP_FEATURE_CANFD_ERROR_GLOBAL_CH0_ECC_REG_POS        (28U)
 #define BSP_FEATURE_CANFD_NUM_COMMON_FIFOS                    (18U)
 
 /* CPG-Related Definitions */
@@ -133,11 +133,14 @@
 /* DMAC-Related Definitions */
 #define BSP_FEATURE_DMAC_MAX_CHANNEL                          (16U)
 #define BSP_FEATURE_DMAC_MAX_UNIT                             (5U)
+#define BSP_FEATURE_DMAC_B_64BIT_SYSTEM                       (0U)
 
 /* GBETH-Related Definitions */
 #define BSP_FEATURE_ESC_MAX_PORTS                             (0U)
 #define BSP_FEATURE_ETHER_FIFO_DEPTH                          (0x0000070FU)
 #define BSP_FEATURE_ETHER_PHY_MAX_CHANNELS                    (1U)
+#define BSP_FEATURE_ETHER_PHY_RESET_BY_GPIO                   (0U)
+#define BSP_FEATURE_ETHER_PHY_CONTROL_MDIO                    (1U)
 #define BSP_FEATURE_ETHSS_MAX_PORTS                           (0U)
 #define BSP_FEATURE_ETHSS_SUPPORTED                           (0U)
 #define BSP_FEATURE_ETHSS_SWITCH_MODE_BIT_MASK                (0U)
@@ -147,6 +150,8 @@
 #define BSP_FEATURE_GMAC_MAX_CHANNELS                         (2U)
 #define BSP_FEATURE_GMAC_MAX_PORTS                            (2U)
 #define BSP_FEATURE_GMAC_UNIT                                 (2U)
+#define BSP_FEATURE_GMAC_HAS_PROTECTED_REGISTER               (0U)
+#define BSP_FEATURE_GMAC_GRMII_SUPPORTED                      (1U)
 
 /* GPT-Related Definitions */
 #define BSP_FEATURE_GPT_VALID_CHANNEL_MASK                    (0xFFFFU)

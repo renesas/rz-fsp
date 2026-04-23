@@ -190,14 +190,15 @@ void usb_hstd_mgr_snd_mbx (uint16_t msginfo, uint16_t dat, uint16_t res)
         USB_PRINTF1("### hMgrSndMbx pget_blk error (%ld)\n", err);
     }
 }                                      /* End of function usb_hstd_mgr_snd_mbx() */
-
+#endif // 0
+#if (USB_UT_MODE == 0)
 /***********************************************************************************************************************
  * Function Name   : void usb_hstd_transfer_end
  * Description     : End of data transfer (IN/OUT)
  * Arguments       : uint16_t pipe_id         ; pipe Number
  * Return value    : usb_er_t  error code  : USB_OK/USB_ERROR.
  ***********************************************************************************************************************/
-usb_er_t usb_hstd_transfer_end (uint16_t pipe_id)
+usb_er_t usb_hstd_transfer_end (usb_utr_t *ptr, uint16_t pipe_id)
 {
     uint16_t dev_addr;
     uint16_t ep_num;
@@ -228,14 +229,12 @@ usb_er_t usb_hstd_transfer_end (uint16_t pipe_id)
     }
     else
     {
-        r_usb_hstd_hci_cancel_transfer_request(dev_addr, ep_num, pipe_type, pipe_dir);
+        r_usb_hstd_hci_cancel_transfer_request(ptr, dev_addr, ep_num, pipe_type, pipe_dir);
     }
 
     return USB_OK;
 }                                      /* End of function usb_hstd_transfer_end() */
 
- #endif
- #if (USB_UT_MODE == 0)
   #if USB_IP_EHCI_OHCI == 1
 
 /***********************************************************************************************************************

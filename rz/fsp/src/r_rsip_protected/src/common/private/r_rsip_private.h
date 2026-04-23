@@ -234,7 +234,7 @@ typedef struct st_rsip_func_subset_hmac
 {
     rsip_ret_t (* p_init)(const uint32_t InData_KeyIndex[]);
     rsip_ret_t (* p_resume)(const uint32_t InData_KeyIndex[], const uint32_t InData_State[]);
-    rsip_ret_t (* p_update)(const uint32_t InData_PaddedMsg[], uint32_t MAX_CNT);
+    void (* p_update)(const uint32_t InData_PaddedMsg[], uint32_t MAX_CNT);
     rsip_ret_t (* p_suspend)(uint32_t OutData_State[]);
     rsip_ret_t (* p_final)(const uint32_t InData_Cmd[], const uint32_t InData_MAC[], const uint32_t InData_length[],
                            uint32_t OutData_MAC[]);
@@ -255,10 +255,12 @@ typedef struct st_rsip_func_subset_hmac
 
 /* KDF SHA */
 #if 1U == RSIP_PRV_HASH_IP_TYPE
-typedef rsip_ret_t (* rsip_func_subset_kdf_sha_t)(const uint32_t InData_Msg1[], const uint32_t InData_Msg1Length[],
-                                                  const uint32_t InData_EncMsg[], const uint32_t InData_EncMsgLength[],
-                                                  const uint32_t InData_Msg2[],
-                                                  const uint32_t InData_Msg2Length[], uint32_t OutData_KDFInfo[]);
+typedef rsip_ret_t (* rsip_func_subset_kdf_sha_t)(const uint32_t InData_InitVal[], const uint32_t InData_Msg1[],
+                                                  const uint32_t InData_Msg1Length[], const uint32_t InData_EncMsg[],
+                                                  const uint32_t InData_EncMsgLength[],
+                                                  const uint32_t InData_Msg2[], const uint32_t InData_Msg2Length[],
+                                                  const uint32_t InData_OutDataType[],
+                                                  uint32_t OutData_MsgDigest[], uint32_t OutData_KDFInfo[]);
 #elif (3U == RSIP_PRV_HASH_IP_TYPE) || (5U == RSIP_PRV_HASH_IP_TYPE)
 typedef struct st_rsip_func_subset_kdf_sha
 {
@@ -277,6 +279,19 @@ typedef struct st_rsip_func_subset_kdf_sha
 #endif
 
 /* KDF HMAC */
+#if 1U == RSIP_PRV_HASH_IP_TYPE
+typedef struct st_rsip_func_subset_kdf_hmac
+{
+    rsip_ret_t (* p_init)(const uint32_t InData_KeyType[], const uint32_t InData_KeyIndex[]);
+    rsip_ret_t (* p_resume)(const uint32_t InData_KeyType[], const uint32_t InData_KeyIndex[],
+                            const uint32_t InData_State[]);
+    rsip_ret_t (* p_enc_update)(const uint32_t InData_EncMsg[], const uint32_t InData_EncMsgLength[]);
+    rsip_ret_t (* p_update)(const uint32_t InData_Msg[], uint32_t MAX_CNT);
+    rsip_ret_t (* p_suspend)(uint32_t OutData_State[]);
+    rsip_ret_t (* p_final)(const uint32_t InData_Msg[], const uint32_t InData_EncMsg[],
+                           const uint32_t InData_EncMsgLength[], uint32_t OutData_KDFInfo[], uint32_t MAX_CNT);
+} rsip_func_subset_kdf_hmac_t;
+#elif (3U == RSIP_PRV_HASH_IP_TYPE) || (5U == RSIP_PRV_HASH_IP_TYPE)
 typedef struct st_rsip_func_subset_kdf_hmac
 {
     rsip_ret_t (* p_init)(const uint32_t InData_KeyType[], const uint32_t InData_KeyIndex[],
@@ -289,6 +304,7 @@ typedef struct st_rsip_func_subset_kdf_hmac
     rsip_ret_t (* p_final)(const uint32_t InData_Msg[], const uint32_t InData_EncMsg[], uint32_t OutData_KDFInfo[],
                            uint32_t MAX_CNT, uint32_t MAX_CNT2);
 } rsip_func_subset_kdf_hmac_t;
+#endif
 
 /* PKI */
 typedef struct st_rsip_func_subset_pki_ecdsa_verify
@@ -384,7 +400,8 @@ extern const rsip_func_pki_cert_key_import_t     gp_func_pki_cert_key_import_rsa
 extern const rsip_func_rng_t   gp_func_rng;
 extern const rsip_func_ghash_t gp_func_ghash_compute;
 
-extern const rsip_func_kdf_ecdh_secret_msg_wrap_t gp_func_kdf_sha_ecdh_secret_msg_wrap[RSIP_PRV_DKM_SUBTYPE_SHA_NUM];
+extern const rsip_func_kdf_ecdh_secret_msg_wrap_t gp_func_kdf_sha_ecdh_secret_msg_wrap[RSIP_PRV_DKM_SUBTYPE_SHA_NUM][
+    RSIP_PRV_KEY_SUBTYPE_ECC_NUM];
 
 extern const rsip_func_kdf_derived_key_import_t gp_func_kdf_sha_derived_key_import_aes
 [RSIP_PRV_DKM_SUBTYPE_SHA_NUM][RSIP_PRV_KEY_SUBTYPE_AES_NUM];
@@ -392,9 +409,10 @@ extern const rsip_func_kdf_derived_iv_wrap_t gp_func_kdf_sha_derived_iv_wrap[RSI
 
 extern const rsip_func_kdf_ecdh_secret_key_import_t gp_func_kdf_hmac_ecdh_secret_key_import[
     RSIP_PRV_KEY_SUBTYPE_HMAC_NUM
-];
-extern const rsip_func_kdf_ecdh_secret_msg_wrap_t gp_func_kdf_hmac_ecdh_secret_msg_wrap[RSIP_PRV_KEY_SUBTYPE_HMAC_NUM];
-extern const rsip_func_kdf_dkm_key_import_t       gp_func_kdf_hmac_dkm_key_import[RSIP_PRV_KEY_SUBTYPE_HMAC_NUM];
+][RSIP_PRV_KEY_SUBTYPE_ECC_NUM];
+extern const rsip_func_kdf_ecdh_secret_msg_wrap_t gp_func_kdf_hmac_ecdh_secret_msg_wrap[RSIP_PRV_KEY_SUBTYPE_HMAC_NUM][
+    RSIP_PRV_KEY_SUBTYPE_ECC_NUM];
+extern const rsip_func_kdf_dkm_key_import_t gp_func_kdf_hmac_dkm_key_import[RSIP_PRV_KEY_SUBTYPE_HMAC_NUM];
 
 extern const rsip_func_kdf_derived_key_import_t gp_func_kdf_hmac_derived_key_import_aes
 [RSIP_PRV_DKM_SUBTYPE_HMAC_NUM][RSIP_PRV_KEY_SUBTYPE_AES_NUM];

@@ -60,10 +60,10 @@ const mhu_ns_swint_set_api_t g_mhu_ns_swint_set_on_mhu_ns_swint_set =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -90,11 +90,13 @@ fsp_err_t R_MHU_NS_SWINT_SET_Open (mhu_ns_swint_set_ctrl_t * const p_ctrl, mhu_n
 #if MHU_NS_SWINT_SET_CFG_PARAM_CHECKING_ENABLE
     fsp_err_t err = r_mhu_ns_swint_set_open_param_checking(p_instance_ctrl, p_cfg);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+    FSP_ASSERT(NULL != ((mhu_ns_swint_set_extended_cfg_t *) p_cfg->p_extend)->p_reg);
 #endif
 
-    p_instance_ctrl->p_regs = (R_MHU_SWINT0_Type *) (R_MHU_SWINT0_BASE +
-                                                     (p_cfg->channel *
-                                                      ((intptr_t) R_MHU_SWINT1_BASE - (intptr_t) R_MHU_SWINT0_BASE)));
+    /* Get extended configuration structure pointer. */
+    mhu_ns_swint_set_extended_cfg_t * p_extend = (mhu_ns_swint_set_extended_cfg_t *) p_cfg->p_extend;
+
+    p_instance_ctrl->p_regs  = (R_MHU_SWINT0_Type *) p_extend->p_reg;
     p_instance_ctrl->p_cfg   = p_cfg;
     p_instance_ctrl->channel = p_cfg->channel;
 
@@ -167,9 +169,9 @@ fsp_err_t R_MHU_NS_SWINT_SET_Close (mhu_ns_swint_set_ctrl_t * const p_ctrl)
 /** @} (end addtogroup MHU_NS_SWINT_SET) */
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************

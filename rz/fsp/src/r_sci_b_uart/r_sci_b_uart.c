@@ -76,9 +76,6 @@
 /* SCI FFCLR register bit masks */
 #define SCI_B_UART_FFCLR_CLEAR_ALL_MASK        (0x00000001U)
 
-/* SCI chanel size */
-#define SCI_B_REG_SIZE                         (R_SCI1_BASE - R_SCI0_BASE)
-
 #define SCI_B_UART_INVALID_16BIT_PARAM         (0xFFFFU)
 #define SCI_B_UART_DTC_MAX_TRANSFER            (0x10000U)
 
@@ -306,6 +303,8 @@ fsp_err_t R_SCI_B_UART_Open (uart_ctrl_t * const p_api_ctrl, uart_cfg_t const * 
 
     FSP_ASSERT(p_cfg->p_extend);
     FSP_ASSERT(((sci_b_uart_extended_cfg_t *) p_cfg->p_extend)->p_baud_setting);
+    sci_b_uart_extended_cfg_t * p_extend = (sci_b_uart_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(NULL != p_extend->p_reg);
     FSP_ERROR_RETURN(SCI_B_UART_OPEN != p_ctrl->open, FSP_ERR_ALREADY_OPEN);
 
     /* Make sure this channel exists. */
@@ -332,9 +331,11 @@ fsp_err_t R_SCI_B_UART_Open (uart_ctrl_t * const p_api_ctrl, uart_cfg_t const * 
     FSP_ASSERT(p_cfg->txi_irq >= 0);
     FSP_ASSERT(p_cfg->tei_irq >= 0);
     FSP_ASSERT(p_cfg->eri_irq >= 0);
+#else
+    sci_b_uart_extended_cfg_t * p_extend = (sci_b_uart_extended_cfg_t *) p_cfg->p_extend;
 #endif
 
-    p_ctrl->p_reg = (R_SCI_B0_Type *) (R_SCI0_BASE + (SCI_B_REG_SIZE * p_cfg->channel));
+    p_ctrl->p_reg = (R_SCI_B0_Type *) p_extend->p_reg;
 
     p_ctrl->fifo_depth = 0U;
 #if SCI_B_UART_CFG_FIFO_SUPPORT
@@ -352,7 +353,6 @@ fsp_err_t R_SCI_B_UART_Open (uart_ctrl_t * const p_api_ctrl, uart_cfg_t const * 
     p_ctrl->p_callback        = p_cfg->p_callback;
     p_ctrl->p_context         = p_cfg->p_context;
     p_ctrl->p_callback_memory = NULL;
-    sci_b_uart_extended_cfg_t * p_extend = (sci_b_uart_extended_cfg_t *) p_cfg->p_extend;
 
     p_ctrl->data_bytes = 1U;
     if (UART_DATA_BITS_9 == p_cfg->data_bits)

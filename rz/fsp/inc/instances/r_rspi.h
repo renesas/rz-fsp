@@ -114,6 +114,7 @@ struct st_rspi_extended_cfg
     rspi_ssl_level_keep_t         ssl_level_keep;     ///< Select SSL signal level keep mode
     rspi_rx_trigger_level_t       rx_trigger_level;   ///< Receiver FIFO trigger level
     rspi_tx_trigger_level_t       tx_trigger_level;   ///< Transmitter FIFO trigger level
+    void                        * p_reg;              ///< Register base address for specified channel
 };
 
 /** Extended RSPI interface configuration. Please refer to the struct st_rspi_extended_cfg. */

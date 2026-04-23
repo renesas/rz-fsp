@@ -17,12 +17,12 @@
  * Macro definitions
  *********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZG
 {
+  #endif
  #endif
-#endif
 
 /**********************************************************************************************************************
  * @addtogroup RZG_BSP_MPU_RZG3S
@@ -69,6 +69,10 @@ namespace RZG
  #define R_BSP_DMAC_TEND_OUTPUT_PIN_SET(unit, channel, dtend_pin) \
     { /* No clearing required for this device. */;                \
     }                                                             \
+
+ #define R_BSP_DMAC_EXTERNAL_OUTPUT_ACTIVE_LEVEL_SET(unit, channel, ack_active_level, tend_active_level) \
+    { /* No clearing required for this device. */;                                                       \
+    }                                                                                                    \
 
 typedef enum e_dmac_trigger_event
 {
@@ -258,9 +262,9 @@ typedef enum e_dmac_trigger_event
     DMAC_TRIGGER_EVENT_CANFD_COM_DMA1     = 787 | ACK_MODE_LEVEL_MODE | DETECTION_RISING_EDGE,
     DMAC_TRIGGER_EVENT_SPDIF_RBDMAREQN_TX = 633 | ACK_MODE_LEVEL_MODE | DETECTION_HIGH_LEVEL,
     DMAC_TRIGGER_EVENT_SPDIF_RBDMAREQN_RX = 634 | ACK_MODE_LEVEL_MODE | DETECTION_HIGH_LEVEL,
-    DMAC_TRIGGER_EVENT_PDM_INT_PDM_DAT0   = 639 | ACK_MODE_MASK_DACK_OUTPUT | DETECTION_HIGH_LEVEL,
-    DMAC_TRIGGER_EVENT_PDM_INT_PDM_DAT1   = 643 | ACK_MODE_MASK_DACK_OUTPUT | DETECTION_HIGH_LEVEL,
-    DMAC_TRIGGER_EVENT_PDM_INT_PDM_DAT2   = 647 | ACK_MODE_MASK_DACK_OUTPUT | DETECTION_HIGH_LEVEL,
+    DMAC_TRIGGER_EVENT_PDM0_INT_PDM_DAT0  = 639 | ACK_MODE_MASK_DACK_OUTPUT | DETECTION_HIGH_LEVEL,
+    DMAC_TRIGGER_EVENT_PDM0_INT_PDM_DAT1  = 643 | ACK_MODE_MASK_DACK_OUTPUT | DETECTION_HIGH_LEVEL,
+    DMAC_TRIGGER_EVENT_PDM0_INT_PDM_DAT2  = 647 | ACK_MODE_MASK_DACK_OUTPUT | DETECTION_HIGH_LEVEL,
 } dmac_trigger_event_t;
 
 typedef enum e_dmac_b_external_input_pin
@@ -333,10 +337,10 @@ typedef enum e_dmac_b_external_output_pin
 
 /** @} (end addtogroup BSP_MPU_RZG3S) */
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 #endif                                 /* BSP_DMAC_H */

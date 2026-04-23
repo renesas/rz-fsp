@@ -40,6 +40,7 @@
  #define BSP_OVERRIDE_TRANSFER_CHAIN_MODE_T
  #define BSP_OVERRIDE_TRANSFER_SIZE_T
  #define BSP_OVERRIDE_TRANSFER_MODE_T
+ #define BSP_OVERRIDE_DMAC_EXTETNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_T
  #define BSP_OVERRIDE_DISPLAY_IN_FORMAT_T
  #define BSP_OVERRIDE_DISPLAY_INPUT_CFG_T
  #define BSP_OVERRIDE_DISPLAY_DATA_SWAP_T
@@ -359,6 +360,16 @@ struct st_transfer_info
 
 /** This structure specifies the properties of the transfer. Please refer to the struct st_transfer_info. */
 typedef struct st_transfer_info transfer_info_t;
+
+/*==============================================
+ * DMAC Overrides
+ *==============================================*/
+
+/** Active level of the external DMA ACK signal. */
+typedef enum e_dmac_external_output_signal_active_level
+{
+    DMAC_EXTERNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_NO_OUTPUT = 0, ///< Not using external output.
+} dmac_external_output_signal_active_level_t;
 
 typedef enum e_display_in_format
 {

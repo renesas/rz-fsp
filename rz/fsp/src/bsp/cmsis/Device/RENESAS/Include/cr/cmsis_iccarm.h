@@ -79,7 +79,7 @@
 #undef __WEAK                          /* undo the definition from DLib_Defaults.h */
 #ifndef   __WEAK
  #if __ICCARM_V8
-  #define __WEAK    __weak
+  #define __WEAK    __attribute__((weak))
  #else
   #define __WEAK    _Pragma("__weak")
  #endif

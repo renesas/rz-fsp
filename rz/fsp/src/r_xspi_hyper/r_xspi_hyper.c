@@ -160,10 +160,10 @@
 static uint32_t g_xspi_hyper_channels_open_flags = 0;
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -215,6 +215,7 @@ fsp_err_t R_XSPI_HYPER_Open (hyperbus_ctrl_t * p_ctrl, hyperbus_cfg_t const * co
     xspi_hyper_extended_cfg_t * p_cfg_extend = (xspi_hyper_extended_cfg_t *) p_cfg->p_extend;
 
 #if XSPI_HYPER_CFG_PARAM_CHECKING_ENABLE
+    FSP_ASSERT(p_cfg_extend->p_reg);
     FSP_ERROR_RETURN((g_xspi_hyper_channels_open_flags &
                       (1U << ((p_cfg_extend->unit << 1U) + p_cfg_extend->chip_select))) == 0,
                      FSP_ERR_ALREADY_OPEN);
@@ -269,8 +270,7 @@ fsp_err_t R_XSPI_HYPER_Open (hyperbus_ctrl_t * p_ctrl, hyperbus_cfg_t const * co
     R_BSP_RegisterProtectEnable(BSP_REG_PROTECT_SYSTEM);
 
     /* Set base address. */
-    uintptr_t base_address = (uintptr_t) R_XSPI0 + (p_cfg_extend->unit * ((uintptr_t) R_XSPI1 - (uintptr_t) R_XSPI0));
-    p_instance_ctrl->p_reg = (R_XSPI0_Type *) base_address;
+    p_instance_ctrl->p_reg = (R_XSPI0_Type *) p_cfg_extend->p_reg;
 
     /* Initialize control block. */
     p_instance_ctrl->p_cfg = p_cfg;
@@ -746,7 +746,7 @@ fsp_err_t R_XSPI_HYPER_Close (hyperbus_ctrl_t * p_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif

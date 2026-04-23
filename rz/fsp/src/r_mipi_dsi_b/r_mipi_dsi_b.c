@@ -31,6 +31,19 @@
 #define DSI_PACKET_FORMAT_IS_SHORT(cmd_id)    ((cmd_id & 0x0F) <= 0x08)
 #define DSI_PACKET_FORMAT_IS_LONG(cmd_id)     ((cmd_id & 0x0F) > 0x08)
 
+#ifdef __FOR_FSP_DOCUMENT__
+ #ifdef __cplusplus
+namespace RZG
+{
+ #endif
+#endif
+
+/*******************************************************************************************************************//**
+ *
+ * @addtogroup RZG_MIPI_DSI_B
+ * @{
+ **********************************************************************************************************************/
+
 /***********************************************************************************************************************
  * Typedef definitions
  **********************************************************************************************************************/
@@ -60,12 +73,12 @@ const mipi_dsi_api_t g_mipi_dsi =
 /***********************************************************************************************************************
  * Private function prototypes
  **********************************************************************************************************************/
-void mipi_dsi_seq0(IRQn_Type const irq);
-void mipi_dsi_seq1(IRQn_Type const irq);
-void mipi_dsi_vin1(IRQn_Type const irq);
-void mipi_dsi_rcv(IRQn_Type const irq);
-void mipi_dsi_ferr(IRQn_Type const irq);
-void mipi_dsi_ppi(IRQn_Type const irq);
+void mipi_dsi_seq0(void);
+void mipi_dsi_seq1(void);
+void mipi_dsi_vin1(void);
+void mipi_dsi_rcv(void);
+void mipi_dsi_ferr(void);
+void mipi_dsi_ppi(void);
 
 static void dsi_isr_enable(mipi_dsi_b_irq_cfg_t const * irq_cfg, mipi_dsi_b_instance_ctrl_t * p_ctrl);
 static void dsi_isr_disable(mipi_dsi_b_irq_cfg_t const * irq_cfg);
@@ -86,18 +99,6 @@ static uint32_t  dsi_cmd_sequence_register_a(mipi_dsi_cmd_t * p_cmd);
 static uint32_t  dsi_cmd_sequence_register_b(mipi_dsi_cmd_t * p_cmd);
 static uint32_t  dsi_cmd_sequence_register_c(mipi_dsi_cmd_t * p_cmd);
 static uint32_t  dsi_cmd_sequence_register_d(mipi_dsi_cmd_t * p_cmd);
-
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
-namespace RZA
-{
-#endif
-#endif
-
-/*******************************************************************************************************************//**
- * @addtogroup RZA_MIPI_DSI_B
- * @{
- **********************************************************************************************************************/
 
 /***********************************************************************************************************************
  * Functions
@@ -569,13 +570,12 @@ fsp_err_t R_MIPI_DSI_B_StatusGet (mipi_dsi_ctrl_t * const p_api_ctrl, mipi_dsi_s
 }
 
 /*******************************************************************************************************************//**
- * @} (end addtogroup MIPI_DSI_B)
+ * @} (end addtogroup RZG_MIPI_DSI_B)
  **********************************************************************************************************************/
-
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -1004,9 +1004,12 @@ static void dsi_isr_disable (mipi_dsi_b_irq_cfg_t const * irq_cfg)
  * Sequence 0 ISR
  *  - Process LP sequence command events and forward them to the user callback
  **********************************************************************************************************************/
-void mipi_dsi_seq0 (IRQn_Type const irq) {
+void mipi_dsi_seq0 (void)
+{
     /* Save context if RTOS is used */
     FSP_CONTEXT_SAVE;
+
+    IRQn_Type irq = R_FSP_CurrentIrqGet();
 
     /* Clear sequence channel 0 status register bits */
     uint32_t sqch0sr_bits = R_MIPI_DSI->SQCH0SR;
@@ -1030,9 +1033,12 @@ void mipi_dsi_seq0 (IRQn_Type const irq) {
  * Sequence 1 ISR
  *  - Process HS sequence command events and forward them to the user callback
  **********************************************************************************************************************/
-void mipi_dsi_seq1 (IRQn_Type const irq) {
+void mipi_dsi_seq1 (void)
+{
     /* Save context if RTOS is used */
     FSP_CONTEXT_SAVE;
+
+    IRQn_Type irq = R_FSP_CurrentIrqGet();
 
     /* Clear sequence channel 1 status register bits */
     uint32_t sqch1sr_bits = R_MIPI_DSI->SQCH1SR;
@@ -1056,9 +1062,12 @@ void mipi_dsi_seq1 (IRQn_Type const irq) {
  * Video Input ISR
  *  - Process DSI Video Input Events and forward them to the user callback
  **********************************************************************************************************************/
-void mipi_dsi_vin1 (IRQn_Type const irq) {
+void mipi_dsi_vin1 (void)
+{
     /* Save context if RTOS is used */
     FSP_CONTEXT_SAVE;
+
+    IRQn_Type irq = R_FSP_CurrentIrqGet();
 
     /* Clear video mode status register bits */
     uint32_t vmsr_bits = R_MIPI_DSI->VICH1SR;
@@ -1089,7 +1098,7 @@ void mipi_dsi_vin1 (IRQn_Type const irq) {
     args.p_context    = p_ctrl->p_context;
     dsi_call_callback(p_ctrl, &args);
 
-     /* Perform reset according to "Reset" in the MIPI DSI section of the relevant hardware manual. */
+    /* Perform reset according to "Reset" in the MIPI DSI section of the relevant hardware manual. */
     if (vmsr_bits & (R_MIPI_DSI_VICH1SR_VBUFUDF_Msk | R_MIPI_DSI_VICH1SR_VBUFOVF_Msk | R_MIPI_DSI_VICH1SR_TIMERR_Msk))
     {
         dsi_enter_reset();
@@ -1104,9 +1113,12 @@ void mipi_dsi_vin1 (IRQn_Type const irq) {
  * Receive ISR
  *  - Process Receive Events and forward them to the user callback
  **********************************************************************************************************************/
-void mipi_dsi_rcv (IRQn_Type const irq) {
+void mipi_dsi_rcv (void)
+{
     /* Save context if RTOS is used */
     FSP_CONTEXT_SAVE;
+
+    IRQn_Type irq = R_FSP_CurrentIrqGet();
 
     /* Clear receive status register bits */
     uint32_t rxsr_bits = R_MIPI_DSI->RXSR;
@@ -1133,9 +1145,12 @@ void mipi_dsi_rcv (IRQn_Type const irq) {
  * Fatal Error ISR
  *  - Process Fatal Error Events and forward them to the user callback
  **********************************************************************************************************************/
-void mipi_dsi_ferr (IRQn_Type const irq) {
+void mipi_dsi_ferr (void)
+{
     /* Save context if RTOS is used */
     FSP_CONTEXT_SAVE;
+
+    IRQn_Type irq = R_FSP_CurrentIrqGet();
 
     /* Clear receive status register bits */
     uint32_t ferrsr_bits = R_MIPI_DSI->FERRSR;
@@ -1159,9 +1174,12 @@ void mipi_dsi_ferr (IRQn_Type const irq) {
  * PHY-Protocol Interface ISR
  *  - Process Phy-Protocol Events and forward them to the user callback
  **********************************************************************************************************************/
-void mipi_dsi_ppi (IRQn_Type const irq) {
+void mipi_dsi_ppi (void)
+{
     /* Save context if RTOS is used */
     FSP_CONTEXT_SAVE;
+
+    IRQn_Type irq = R_FSP_CurrentIrqGet();
 
     /* Clear PLSR */
     uint32_t plsr_bits = R_MIPI_DSI->PLSR;

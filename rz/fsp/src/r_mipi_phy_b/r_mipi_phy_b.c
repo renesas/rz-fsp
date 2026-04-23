@@ -56,7 +56,7 @@ fsp_err_t r_mipi_phy_b_open (mipi_phy_b_ctrl_t * const p_api_ctrl, mipi_phy_b_cf
     R_MIPI_DSI->DSIDPHYCTRL0_b.EN_BGR = 0b1;
 
     R_BSP_SoftwareDelay(20, BSP_DELAY_UNITS_MICROSECONDS);
-    R_MIPI_DSI->DSIDPHYCTRL0_b.EN_LDO1200 = 0b1;
+    R_MIPI_DSI->DSIDPHYCTRL0_b.EN_COM_LDO = 0b1;
 
     R_BSP_SoftwareDelay(10, BSP_DELAY_UNITS_MICROSECONDS);
 
@@ -114,7 +114,7 @@ fsp_err_t r_mipi_phy_b_close (mipi_phy_b_ctrl_t * const p_api_ctrl)
 
     R_MIPI_DSI->DSIDPHYCTRL0_b.EN_BGR = 0U;
 
-    R_MIPI_DSI->DSIDPHYCTRL0_b.EN_LDO1200 = 0U;
+    R_MIPI_DSI->DSIDPHYCTRL0_b.EN_COM_LDO = 0U;
 
     /* Set control block to closed */
     p_ctrl->open = 0U;

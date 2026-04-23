@@ -49,7 +49,7 @@ typedef struct
             uint32_t             : 7;
             __IOM uint32_t EGA   : 2;
             uint32_t             : 2;
-            __IM uint32_t TRGEN  : 6;
+            __IOM uint32_t TRGEN : 6;
             uint32_t             : 10;
         } ADM1_b;
     };

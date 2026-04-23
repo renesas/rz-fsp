@@ -48,9 +48,7 @@
  ******************************************************************************/
 uint16_t usb_hstd_chk_dev_addr (usb_utr_t * ptr, uint16_t addr)
 {
-    FSP_PARAMETER_NOT_USED(ptr);
-    FSP_PARAMETER_NOT_USED(addr);
-    return USB_NOCONNECT;
+    return     g_usb_hstd_device_info[ptr->ip][addr][4];
 }
 
 /******************************************************************************
@@ -301,7 +299,7 @@ uint8_t usb_hstd_get_pipe_no (uint16_t ip_no, uint16_t address, uint16_t usb_cla
                     if (USB_FALSE == g_usb_pipe_table[ip_no][pipe].use_flag)
                     {
                         /* Check Free pipe */
-                        pipe_no = pipe; /* Set Free pipe */
+                        pipe_no = (uint8_t)pipe; /* Set Free pipe */
                         break;
                     }
                 }
@@ -316,7 +314,7 @@ uint8_t usb_hstd_get_pipe_no (uint16_t ip_no, uint16_t address, uint16_t usb_cla
                     if (USB_FALSE == g_usb_pipe_table[ip_no][pipe].use_flag)
                     {
                         /* Check Free pipe */
-                        pipe_no = pipe; /* Set Free pipe */
+                        pipe_no = (uint8_t)pipe; /* Set Free pipe */
                         break;
                     }
                 }

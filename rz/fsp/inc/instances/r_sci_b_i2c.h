@@ -104,6 +104,7 @@ typedef struct st_sci_b_i2c_instance_ctrl sci_b_i2c_instance_ctrl_t;
 struct st_sci_b_i2c_extended_cfg
 {
     sci_b_i2c_clock_settings_t clock_settings; ///< I2C Clock settings
+    void                     * p_reg;          ///< Base register address for specified channel
 };
 
 /** SCI I2C extended configuration. Please refer to the struct st_sci_b_i2c_extended_cfg. */

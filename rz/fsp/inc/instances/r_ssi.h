@@ -5,12 +5,12 @@
 */
 
 #ifndef R_SSI_H
-#define R_SSI_H
+ #define R_SSI_H
 
 /***********************************************************************************************************************
  * Includes
  **********************************************************************************************************************/
-#include "r_i2s_api.h"
+ #include "r_i2s_api.h"
 
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
@@ -19,12 +19,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZA
 {
-#endif
-#endif
+  #endif
+ #endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZA_SSI
@@ -83,7 +83,7 @@ struct st_ssi_instance_ctrl
     /* Pointer to callback and optional working memory */
     void (* p_callback)(i2s_callback_args_t *);
     i2s_callback_args_t * p_callback_memory;
-    void * p_context;                  // < User defined context passed into callback function
+    void                * p_context;   // < User defined context passed into callback function
 };
 
 /** Channel instance control block. DO NOT INITIALIZE.  Initialization occurs when @ref RZA::i2s_api_t::open is called. Please refer to the struct st_ssi_instance_ctrl. */
@@ -94,6 +94,7 @@ struct st_ssi_extended_cfg
 {
     ssi_audio_clock_t audio_clock;     ///< Audio clock source, default is SSI_AUDIO_CLOCK_EXTERNAL
     ssi_clock_div_t   bit_clock_div;   ///< Select bit clock division ratio
+    void            * p_reg;           ///< Register base address for specified channel
 };
 
 /** SSI configuration extension. This extension is optional. Please refer to the struct st_ssi_extended_cfg. */
@@ -130,14 +131,13 @@ fsp_err_t R_SSI_CallbackSet(i2s_ctrl_t * const          p_api_ctrl,
  * @} (end addtogroup SSI)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
-#endif
-#endif
+  #endif
+ #endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER
 
 #endif                                 // R_SSI_H
-

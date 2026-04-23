@@ -21,12 +21,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_CMT
@@ -74,6 +74,9 @@ fsp_err_t R_CMT_Enable(timer_ctrl_t * const p_ctrl);
 fsp_err_t R_CMT_Disable(timer_ctrl_t * const p_ctrl);
 fsp_err_t R_CMT_PeriodSet(timer_ctrl_t * const p_ctrl, uint32_t const period_counts);
 fsp_err_t R_CMT_DutyCycleSet(timer_ctrl_t * const p_ctrl, uint32_t const duty_cycle_counts, uint32_t const pin);
+fsp_err_t R_CMT_CompareMatchSet(timer_ctrl_t * const        p_ctrl,
+                                uint32_t const              compare_match_value,
+                                timer_compare_match_t const match_channel);
 fsp_err_t R_CMT_InfoGet(timer_ctrl_t * const p_ctrl, timer_info_t * const p_info);
 fsp_err_t R_CMT_StatusGet(timer_ctrl_t * const p_ctrl, timer_status_t * const p_status);
 fsp_err_t R_CMT_CounterSet(timer_ctrl_t * const p_ctrl, uint32_t counter);
@@ -81,19 +84,16 @@ fsp_err_t R_CMT_CallbackSet(timer_ctrl_t * const          p_ctrl,
                             void (                      * p_callback)(timer_callback_args_t *),
                             void * const                  p_context,
                             timer_callback_args_t * const p_callback_memory);
-fsp_err_t R_CMT_CompareMatchSet(timer_ctrl_t * const        p_ctrl,
-                                uint32_t const              compare_match_value,
-                                timer_compare_match_t const match_channel);
 fsp_err_t R_CMT_Close(timer_ctrl_t * const p_ctrl);
 
 /*******************************************************************************************************************//**
  * @} (end defgroup CMT)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

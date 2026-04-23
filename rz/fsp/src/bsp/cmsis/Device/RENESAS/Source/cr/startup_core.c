@@ -100,8 +100,8 @@ BSP_TARGET_ARM void                         fpu_slavetcm_init(void);
 
 BSP_TARGET_ARM BSP_ATTRIBUTE_STACKLESS void __Vectors(void) BSP_PLACE_IN_SECTION(".intvec");
 
-__WEAK BSP_TARGET_ARM BSP_ATTRIBUTE_STACKLESS void IRQ_Handler(void);
-__WEAK BSP_TARGET_ARM BSP_ATTRIBUTE_STACKLESS void Reset_Handler(void) BSP_PLACE_IN_SECTION(".reset_handler");
+BSP_TARGET_ARM BSP_ATTRIBUTE_STACKLESS void IRQ_Handler(void);
+BSP_TARGET_ARM BSP_ATTRIBUTE_STACKLESS void Reset_Handler(void) BSP_PLACE_IN_SECTION(".reset_handler");
 
 void Default_Handler(void);
 
@@ -152,10 +152,10 @@ BSP_TARGET_ARM BSP_ATTRIBUTE_STACKLESS void __Vectors (void)
 }
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -257,9 +257,9 @@ BSP_TARGET_ARM BSP_ATTRIBUTE_STACKLESS void bsp_register_initialization (void)
 
 /** @} (end addtogroup BSP_MCU) */
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 #if defined(__ICCARM__)
@@ -268,12 +268,12 @@ BSP_TARGET_ARM BSP_ATTRIBUTE_STACKLESS void bsp_register_initialization (void)
  #define BSP_SYSTEMINIT_B_INSTRUCTION    __asm volatile ("B SystemInit");
 #endif
 
-__WEAK void Undefined_Handler(void);
-__WEAK void SVC_Handler(void);
-__WEAK void Prefetch_Handler(void);
-__WEAK void Abort_Handler(void);
-__WEAK void Reserved_Handler(void);
-__WEAK void FIQ_Handler(void);
+void Undefined_Handler(void);
+void SVC_Handler(void);
+void Prefetch_Handler(void);
+void Abort_Handler(void);
+void Reserved_Handler(void);
+void FIQ_Handler(void);
 
 /*******************************************************************************************************************//**
  * Exception handlers

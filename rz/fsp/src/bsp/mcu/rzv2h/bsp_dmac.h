@@ -29,12 +29,12 @@
  * Exported global functions (to be accessed by other files)
  *********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /**********************************************************************************************************************
  * @addtogroup RZV_BSP_MPU_RZV2H
@@ -249,9 +249,13 @@ namespace RZV
         }                                                                              \
     } while (0)
 
+ #define R_BSP_DMAC_EXTERNAL_OUTPUT_ACTIVE_LEVEL_SET(unit, channel, ack_active_level, tend_active_level) \
+    { /* No clearing required for this device. */;                                                       \
+    }                                                                                                    \
+
 typedef enum e_dmac_trigger_event
 {
-    DMAC_TRIGGER_EVENT_SOFTWARE_TRIGGER      = 0x3FF | ACK_MODE_MASK_DACK_OUTPUT,
+    DMAC_TRIGGER_EVENT_SOFTWARE_TRIGGER      = 0x3FF,
     DMAC_TRIGGER_EVENT_PFC_DREQ0             = 0 | ACK_MODE_LEVEL_MODE,
     DMAC_TRIGGER_EVENT_PFC_DREQ1             = 1 | ACK_MODE_LEVEL_MODE,
     DMAC_TRIGGER_EVENT_PFC_DREQ2             = 2 | ACK_MODE_LEVEL_MODE,
@@ -760,10 +764,10 @@ typedef enum e_dmac_b_external_output_pin
 
 /** @} (end addtogroup RZV_BSP_MPU_RZV2H) */
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 #endif                                 /* BSP_DMAC_H */

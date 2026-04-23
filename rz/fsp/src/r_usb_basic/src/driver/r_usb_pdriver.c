@@ -119,7 +119,7 @@ static void usb_pstd_interrupt (uint16_t type, uint16_t status, usb_cfg_t * p_cf
             USB_PRINTF0("RESUME int peri\n");
 
             /* Callback */
-            if (USB_NULL != g_usb_pstd_driver.devresume)
+            if (NULL != g_usb_pstd_driver.devresume)
             {
                 (*g_usb_pstd_driver.devresume)(&utr, USB_NO_ARG, USB_NULL);
             }
@@ -310,7 +310,7 @@ static void usb_pstd_interrupt (uint16_t type, uint16_t status, usb_cfg_t * p_cf
                 g_usb_pstd_req_reg.request_length = g_usb_pstd_req_length;
 
                 /* Callback */
-                if (USB_NULL != g_usb_pstd_driver.ctrltrans)
+                if (NULL != g_usb_pstd_driver.ctrltrans)
                 {
                     (*g_usb_pstd_driver.ctrltrans)(&g_usb_pstd_req_reg, stginfo, &utr);
                 }
@@ -389,7 +389,7 @@ static void usb_pstd_interrupt (usb_utr_t * p_mess)
             USB_PRINTF0("RESUME int peri\n");
 
             /* Callback */
-            if (USB_NULL != g_usb_pstd_driver.devresume)
+            if (NULL != g_usb_pstd_driver.devresume)
             {
                 (*g_usb_pstd_driver.devresume)(p_mess, USB_NO_ARG, USB_NULL);
             }
@@ -578,7 +578,7 @@ static void usb_pstd_interrupt (usb_utr_t * p_mess)
                 g_usb_pstd_req_reg.request_length = g_usb_pstd_req_length;
 
                 /* Callback */
-                if (USB_NULL != g_usb_pstd_driver.ctrltrans)
+                if (NULL != g_usb_pstd_driver.ctrltrans)
                 {
                     (*g_usb_pstd_driver.ctrltrans)(&g_usb_pstd_req_reg, stginfo, p_mess);
                 }
@@ -711,7 +711,7 @@ usb_er_t usb_pstd_set_submitutr (usb_utr_t * utrmsg)
     if (USB_TRUE == usb_pstd_chk_configured(utrmsg))
     {
  #if (BSP_CFG_RTOS == 2)
-        if (USB_NULL != g_p_usb_pstd_pipe[pipenum])
+        if (NULL != g_p_usb_pstd_pipe[pipenum])
         {
             usb_cstd_pipe_msg_forward(utrmsg, pipenum);
 
@@ -1880,10 +1880,13 @@ void usb_pvnd_read_complete (usb_utr_t * mess, uint16_t data1, uint16_t data2)
 {
     usb_instance_ctrl_t ctrl;
 
+    FSP_PARAMETER_NOT_USED(data1);
+    FSP_PARAMETER_NOT_USED(data2);
+
     /* Set Receive data length */
     ctrl.data_size = mess->read_req_len - mess->tranlen;
-    ctrl.pipe = mess->keyword;         /* Pipe number setting */
-    ctrl.type = USB_CLASS_INTERNAL_PVND;              /* Device class setting  */
+    ctrl.pipe = (uint8_t)mess->keyword;         /* Pipe number setting */
+    ctrl.type = (usb_class_t)USB_CLASS_INTERNAL_PVND;              /* Device class setting  */
   #if (BSP_CFG_RTOS == 2)
     ctrl.p_data = (void *) mess->cur_task_hdl;
   #endif /* (BSP_CFG_RTOS == 2) */
@@ -1929,8 +1932,11 @@ void usb_pvnd_write_complete (usb_utr_t * mess, uint16_t data1, uint16_t data2)
 {
     usb_instance_ctrl_t ctrl;
 
-    ctrl.pipe = mess->keyword;         /* Pipe number setting */
-    ctrl.type = USB_CLASS_INTERNAL_PVND;              /* CDC Control class  */
+    FSP_PARAMETER_NOT_USED(data1);
+    FSP_PARAMETER_NOT_USED(data2);
+
+    ctrl.pipe = (uint8_t)mess->keyword;         /* Pipe number setting */
+    ctrl.type = (usb_class_t)USB_CLASS_INTERNAL_PVND;              /* CDC Control class  */
     if (USB_DATA_NONE == mess->status)
     {
         ctrl.status = FSP_SUCCESS;

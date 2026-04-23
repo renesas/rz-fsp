@@ -21,11 +21,6 @@
 /** "SPI" in ASCII, used to determine if channel is open. */
 #define SPI_OPEN                        (0x52535049ULL)
 
-/** SPI base register access macro.  */
-#define SPI_REG(channel)    ((R_SPI0_Type *) ((uintptr_t) R_SPI0 +                        \
-                                              ((uintptr_t) R_SPI1 - (uintptr_t) R_SPI0) * \
-                                              (channel)))
-
 #define SPI_CLK_N_DIV_MULTIPLIER        (512U)  ///< Maximum divider for N=0
 #define SPI_CLK_MAX_DIV                 (4096U) ///< Maximum SPI CLK divider
 #define SPI_CLK_MIN_DIV                 (2U)    ///< Minimum SPI CLK divider
@@ -116,10 +111,10 @@ const spi_api_t g_spi_on_spi =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -172,10 +167,13 @@ fsp_err_t R_SPI_Open (spi_ctrl_t * p_ctrl, spi_cfg_t const * const p_cfg)
     {
         FSP_ERROR_RETURN(SPI_CLK_PHASE_EDGE_EVEN == p_cfg->clk_phase, FSP_ERR_UNSUPPORTED);
     }
+#endif
 
- #if BSP_FEATURE_SPI_HAS_SSL_LEVEL_KEEP == 0 || SPI_TRANSMIT_FROM_RXI_ISR == 1 || SPI_DMA_SUPPORT_ENABLE == 1
     spi_extended_cfg_t * p_extend = (spi_extended_cfg_t *) p_cfg->p_extend;
- #endif
+
+#if SPI_CFG_PARAM_CHECKING_ENABLE
+    FSP_ASSERT(NULL != p_extend->p_reg);
+
  #if SPI_TRANSMIT_FROM_RXI_ISR == 1
 
     /* Half Duplex - Transmit Only mode is not supported when transmit interrupt is handled in the RXI ISR. */
@@ -220,16 +218,7 @@ fsp_err_t R_SPI_Open (spi_ctrl_t * p_ctrl, spi_cfg_t const * const p_cfg)
     p_instance_ctrl->p_context         = p_cfg->p_context;
     p_instance_ctrl->p_callback_memory = NULL;
 
-    if (p_cfg->channel != BSP_FEATURE_SPI_SAFETY_CHANNEL)
-    {
-        /* Non-Safety Peripheral */
-        p_instance_ctrl->p_regs = SPI_REG(p_instance_ctrl->p_cfg->channel);
-    }
-    else
-    {
-        /* Safety Peripheral */
-        p_instance_ctrl->p_regs = (R_SPI0_Type *) BSP_FEATURE_SPI_SAFETY_CHANNEL_BASE_ADDRESS;
-    }
+    p_instance_ctrl->p_regs = (R_SPI0_Type *) p_extend->p_reg;
 
     /* Configure hardware registers according to the r_spi_api configuration structure. */
     r_spi_hw_config(p_instance_ctrl);
@@ -492,6 +481,11 @@ fsp_err_t R_SPI_CalculateBitrate (uint32_t bitrate, spi_clock_source_t clock_sou
 /*******************************************************************************************************************//**
  * @} (end addtogroup SPI)
  **********************************************************************************************************************/
+#ifdef __FOR_FSP_DOCUMENT__
+ #ifdef __cplusplus
+}
+ #endif
+#endif
 
 /*******************************************************************************************************************//**
  * Private Functions
@@ -504,7 +498,7 @@ fsp_err_t R_SPI_CalculateBitrate (uint32_t bitrate, spi_clock_source_t clock_sou
  *
  * @retval     FSP_SUCCESS     The given transfer instances were configured successfully.
  * @return                     See @ref RZT_RENESAS_ERROR_CODES for other possible return codes. This function internally
- *                             calls @ref transfer_api_t::open.
+ *                             calls @ref RZT::transfer_api_t::open.
  **********************************************************************************************************************/
 static fsp_err_t r_spi_transfer_config (spi_cfg_t const * const p_cfg)
 {
@@ -512,7 +506,9 @@ static fsp_err_t r_spi_transfer_config (spi_cfg_t const * const p_cfg)
 
 #if SPI_DMA_SUPPORT_ENABLE == 1
     const transfer_instance_t * p_transfer_tx = p_cfg->p_transfer_tx;
-    void * p_spdr = (void *) &(SPI_REG(p_cfg->channel)->SPDR);
+    spi_extended_cfg_t        * p_extend      = (spi_extended_cfg_t *) p_cfg->p_extend;
+    R_SPI0_Type               * p_reg         = (R_SPI0_Type *) p_extend->p_reg;
+    void * p_spdr = (void *) &(p_reg->SPDR);
     if (p_transfer_tx)
     {
         p_transfer_tx->p_cfg->p_info->mode           = TRANSFER_MODE_NORMAL;
@@ -865,7 +861,7 @@ static void r_spi_start_transfer (spi_instance_ctrl_t * p_instance_ctrl)
  * @retval     FSP_ERR_NOT_OPEN  The instance has not been initialized.
  * @retval     FSP_ERR_IN_USE    A transfer is already in progress.
  * @return                       See @ref RZT_RENESAS_ERROR_CODES for other possible return codes. This function internally
- *                               calls @ref transfer_api_t::reconfigure.
+ *                               calls @ref RZT::transfer_api_t::reconfigure.
  **********************************************************************************************************************/
 static fsp_err_t r_spi_write_read_common (spi_ctrl_t * const    p_ctrl,
                                           void const          * p_src,
@@ -1401,11 +1397,5 @@ void spi_eri_isr (void)
 
     SPI_CFG_MULTIPLEX_INTERRUPT_DISABLE;
 }
-
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
-}
-#endif
-#endif
 
 /* End of file R_SPI. */

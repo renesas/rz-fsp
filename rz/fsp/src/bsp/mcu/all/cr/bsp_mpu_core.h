@@ -79,12 +79,12 @@ typedef struct st_bsp_mpu_config
     uint32_t limit;
 } bsp_mpu_config_t;
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZT
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZT_BSP_MCU
@@ -104,11 +104,11 @@ fsp_err_t R_BSP_MpuRegionDynamicConfig(bsp_mpu_dynamic_cfg_t * p_dynamic_region_
 fsp_err_t R_BSP_MpuRegionRestoreConfig(void);
 
 /** @} (end addtogroup BSP_MCU) */
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /***********************************************************************************************************************
  * Inline Functions
@@ -255,4 +255,4 @@ __STATIC_INLINE uint32_t bsp_mpu_size_calculate (uint32_t limit_address, uint32_
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER
 
-#endif                                 /* BSP_MPU_CORE_H */
+#endif
