@@ -5,10 +5,8 @@ var group___r_z_n___l_c_d_c =
       [ "frame_end_irq", "group___r_z_n___l_c_d_c.html#aff74af7a27dc12ccd778041b3bdf0795", null ],
       [ "p_ckey_cfg", "group___r_z_n___l_c_d_c.html#ac57716ab2d5b83adb7abbd80a054fc99", null ]
     ] ],
-    [ "st_display_ctrl", "group___r_z_n___l_c_d_c.html#struct_r_z_n_1_1st__display__ctrl", null ],
     [ "st_lcdc_instance_ctrl", "group___r_z_n___l_c_d_c.html#struct_r_z_n_1_1st__lcdc__instance__ctrl", null ],
     [ "lcdc_extended_cfg_t", "group___r_z_n___l_c_d_c.html#ga5db7a45887071423284f25505ded5f38", null ],
-    [ "lcdc_ctrl_t", "group___r_z_n___l_c_d_c.html#gafe39907a0ea71c9ab58b1144496e9e72", null ],
     [ "lcdc_instance_ctrl_t", "group___r_z_n___l_c_d_c.html#ga4f3ed7858410c9286b743115ce85ac49", null ],
     [ "R_LCDC_Open", "group___r_z_n___l_c_d_c.html#gaf009b813646f33a37898b5c147fe245e", null ],
     [ "R_LCDC_Close", "group___r_z_n___l_c_d_c.html#gac912c4bd861925e762c71543d2227c9a", null ],

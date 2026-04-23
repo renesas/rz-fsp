@@ -3,6 +3,7 @@ var group___r_z_v___p_d_m =
     [ "st_pdm_instance_ctrl", "group___r_z_v___p_d_m.html#struct_r_z_v_1_1st__pdm__instance__ctrl", null ],
     [ "st_pdm_extended_cfg", "group___r_z_v___p_d_m.html#struct_r_z_v_1_1st__pdm__extended__cfg", [
       [ "clock_div", "group___r_z_v___p_d_m.html#a1d06fbc9691b6d2d5432d1f124252971", null ],
+      [ "p_reg", "group___r_z_v___p_d_m.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ],
       [ "sound_detection_enable", "group___r_z_v___p_d_m.html#a98f0330ae41daae7066ce131c94b1d63", null ],
       [ "short_circuit_detection_enable", "group___r_z_v___p_d_m.html#a6465f4cce150c1fded4e7ecef082bd22", null ],
       [ "over_voltage_lower_limit_detection_enable", "group___r_z_v___p_d_m.html#a937316c517e9df8608f13683336b7eba", null ],

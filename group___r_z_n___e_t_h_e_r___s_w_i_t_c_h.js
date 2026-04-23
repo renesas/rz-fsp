@@ -220,6 +220,17 @@ var group___r_z_n___e_t_h_e_r___s_w_i_t_c_h =
       [ "type_enable", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#acf90e35dddac06b9ad58216e49412a09", null ],
       [ "default_pri", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a95c279dddec506a5c67c2b10237122e2", null ]
     ] ],
+    [ "st_ethsw_qos_prio_vlan", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__qos__prio__vlan", [
+      [ "priority0", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#aba63b5c4db280392d451a95d9e43f2eb", null ],
+      [ "priority1", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a0617a9412d582bdbf8888d31e1e9952b", null ],
+      [ "priority2", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#aa59a49227c2a1771e3f122925e35382a", null ],
+      [ "priority3", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a155264f5c1bf8a344851625298a798aa", null ],
+      [ "priority4", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ade053f5a9bbb7feaead4bf7dc5e6e687", null ],
+      [ "priority5", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#aae11830e6b49e6010b7d8b7c12a716c0", null ],
+      [ "priority6", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a2ac4745016a28fad37afb1b97484a5c4", null ],
+      [ "priority7", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a697ab0b0c71dba7c941e6826377ff132", null ],
+      [ "__pad0__", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a3e57c2ef1c3ffb36722f000cc1156824", null ]
+    ] ],
     [ "st_ethsw_qos_prio_ip", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__qos__prio__ip", [
       [ "diffserv", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a16801accb8b9111c17e95de869df6d06", null ],
       [ "priority", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a0ad043071ccc7a261d79a759dc9c6f0c", null ]
@@ -341,6 +352,7 @@ var group___r_z_n___e_t_h_e_r___s_w_i_t_c_h =
     [ "ethsw_snoop_arith_config_t", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga0d7fb496320a764ecfc1d1ea6afe13eb", null ],
     [ "ethsw_eee_t", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga5162ed29ffb3d741e11c91b26105a554", null ],
     [ "ethsw_qos_mode_t", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga93d2f922993fa076fa0ec33ddedd7058", null ],
+    [ "ethsw_qos_prio_vlan_t", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga9ac48687cacaeebcd960f194fc10f39f", null ],
     [ "ethsw_qos_prio_ip_t", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#gad4058761e4a1970fb9fc569af5b7c350", null ],
     [ "ethsw_qos_prio_type_t", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#gaa7e04402441ce1d26339995ad1f5342d", null ],
     [ "ethsw_mirror_conf_t", "group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga89d41023ffeb1b6df5846a60b5962dfc", null ],

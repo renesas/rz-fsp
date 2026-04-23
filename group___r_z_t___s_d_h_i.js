@@ -5,7 +5,8 @@ var group___r_z_t___s_d_h_i =
       [ "oxmnirq_irq", "group___r_z_t___s_d_h_i.html#aa9ca962d3636aa0cd8bf8a33d5ca6ca4", null ],
       [ "oxmnirq_ipl", "group___r_z_t___s_d_h_i.html#a29efd24fb1264ca9ca5a0f28602e8299", null ],
       [ "sd_pwen_output", "group___r_z_t___s_d_h_i.html#aa1aad0c7b54b711d6626de2dc857812b", null ],
-      [ "sd_iovs_output", "group___r_z_t___s_d_h_i.html#a13c51746baa7a528ae3602aa572b4a42", null ]
+      [ "sd_iovs_output", "group___r_z_t___s_d_h_i.html#a13c51746baa7a528ae3602aa572b4a42", null ],
+      [ "p_reg", "group___r_z_t___s_d_h_i.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "sdhi_instance_ctrl_t", "group___r_z_t___s_d_h_i.html#gaf8bc75d653f0423110946174f9d8b5a0", null ],
     [ "sdhi_extended_cfg_t", "group___r_z_t___s_d_h_i.html#ga2ed3d98a42306ab1987ea14beabda875", null ],

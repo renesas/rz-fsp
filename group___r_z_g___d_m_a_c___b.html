@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -230,6 +230,26 @@ The following build time configurations are defined in fsp_cfg/r_dmac_b_cfg.h:<b
 </p><table class="doxtable">
 <tr>
 <th>Configuration</th><th>Options</th><th>Default</th><th>Description </th></tr>
+<tr>
+<td>External Output Signal Active Level &gt; DACK 0 Active Level</td><td>MCU Specific Options</td><td></td><td>Select external DACK0 output signal active level. </td></tr>
+<tr>
+<td>External Output Signal Active Level &gt; DACK 1 Active Level</td><td>MCU Specific Options</td><td></td><td>Select external DACK1 output signal active level. </td></tr>
+<tr>
+<td>External Output Signal Active Level &gt; DACK 2 Active Level</td><td>MCU Specific Options</td><td></td><td>Select external DACK2 output signal active level. </td></tr>
+<tr>
+<td>External Output Signal Active Level &gt; DACK 3 Active Level</td><td>MCU Specific Options</td><td></td><td>Select external DACK3 output signal active level. </td></tr>
+<tr>
+<td>External Output Signal Active Level &gt; DACK 4 Active Level</td><td>MCU Specific Options</td><td></td><td>Select external DACK4 output signal active level. </td></tr>
+<tr>
+<td>External Output Signal Active Level &gt; TEND 0 Active Level</td><td>MCU Specific Options</td><td></td><td>Select external TEND0 output signal active level. </td></tr>
+<tr>
+<td>External Output Signal Active Level &gt; TEND 1 Active Level</td><td>MCU Specific Options</td><td></td><td>Select external TEND1 output signal active level. </td></tr>
+<tr>
+<td>External Output Signal Active Level &gt; TEND 2 Active Level</td><td>MCU Specific Options</td><td></td><td>Select external TEND2 output signal active level. </td></tr>
+<tr>
+<td>External Output Signal Active Level &gt; TEND 3 Active Level</td><td>MCU Specific Options</td><td></td><td>Select external TEND3 output signal active level. </td></tr>
+<tr>
+<td>External Output Signal Active Level &gt; TEND 4 Active Level</td><td>MCU Specific Options</td><td></td><td>Select external TEND4 output signal active level. </td></tr>
 <tr>
 <td>Parameter Checking</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -475,6 +495,8 @@ Enumerations</h2></td></tr>
 <tr class="separator:ga77c350dbc52956dc8b1ce4987e721e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga46c5c66fc820831bb56b5f6554f2890e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___d_m_a_c___b.html#ga46c5c66fc820831bb56b5f6554f2890e">dmac_b_ack_mode_t</a> </td></tr>
 <tr class="separator:ga46c5c66fc820831bb56b5f6554f2890e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga331bca4df8501deef9b7dcb435e192a6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___d_m_a_c___b.html#ga331bca4df8501deef9b7dcb435e192a6">dmac_b_external_output_signal_active_level_t</a> </td></tr>
+<tr class="separator:ga331bca4df8501deef9b7dcb435e192a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga14518809e8fbb9e21fdef462b5a6355b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355b">dmac_b_external_detection_t</a> </td></tr>
 <tr class="separator:ga14518809e8fbb9e21fdef462b5a6355b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa15ccc56c79f1686821605ef2b8f36b9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___d_m_a_c___b.html#gaa15ccc56c79f1686821605ef2b8f36b9">dmac_b_internal_detection_t</a> </td></tr>
@@ -548,7 +570,7 @@ Transfer byte. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="af4a14a9d8091b1e69ccca6d02214ef1c"></a>union <a class="el" href="group___r_z_g___d_m_a_c___b.html#union_r_z_g_1_1st__dmac__b__link__cfg_8____unnamed____">st_dmac_b_link_cfg</a></td>
+<a id="a1ad364ae80d1c8b107e2ceeca64562a5"></a>union <a class="el" href="group___r_z_g___d_m_a_c___b.html#union_r_z_g_1_1st__dmac__b__link__cfg_8____unnamed____">st_dmac_b_link_cfg</a></td>
 <td class="fieldname">
 __unnamed__</td>
 <td class="fielddoc">
@@ -662,6 +684,14 @@ dmac_b_external_output_pin_t&#160;</td><td class="memItemRight" valign="bottom">
 dmac_b_external_output_pin_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___d_m_a_c___b.html#ab47ee39a127dedbc6725801b6d1f0794">tend_output_pin</a></td></tr>
 <tr class="memdesc:ab47ee39a127dedbc6725801b6d1f0794"><td class="mdescLeft">&#160;</td><td class="mdescRight">TEND output pin name. <br /></td></tr>
 <tr class="separator:ab47ee39a127dedbc6725801b6d1f0794"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a778308337870e8046d5b772b81c3c1c5"><td class="memItemLeft" align="right" valign="top"><a id="a778308337870e8046d5b772b81c3c1c5"></a>
+<a class="el" href="group___r_z_g___d_m_a_c___b.html#ga331bca4df8501deef9b7dcb435e192a6">dmac_b_external_output_signal_active_level_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___d_m_a_c___b.html#a778308337870e8046d5b772b81c3c1c5">ack_output_signal_active_level</a></td></tr>
+<tr class="memdesc:a778308337870e8046d5b772b81c3c1c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">DACK output signal active level. <br /></td></tr>
+<tr class="separator:a778308337870e8046d5b772b81c3c1c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcb51fc4557e3bd6fa44b92d704aabc0"><td class="memItemLeft" align="right" valign="top"><a id="adcb51fc4557e3bd6fa44b92d704aabc0"></a>
+<a class="el" href="group___r_z_g___d_m_a_c___b.html#ga331bca4df8501deef9b7dcb435e192a6">dmac_b_external_output_signal_active_level_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___d_m_a_c___b.html#adcb51fc4557e3bd6fa44b92d704aabc0">tend_output_signal_active_level</a></td></tr>
+<tr class="memdesc:adcb51fc4557e3bd6fa44b92d704aabc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">TEND output signal active level. <br /></td></tr>
+<tr class="separator:adcb51fc4557e3bd6fa44b92d704aabc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17973a7517444f09cad5bd2c57ff3948"><td class="memItemLeft" align="right" valign="top"><a id="a17973a7517444f09cad5bd2c57ff3948"></a>
 <a class="el" href="group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355b">dmac_b_external_detection_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___d_m_a_c___b.html#a17973a7517444f09cad5bd2c57ff3948">external_detection_mode</a></td></tr>
 <tr class="memdesc:a17973a7517444f09cad5bd2c57ff3948"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMAC request detection method for external pin. <br /></td></tr>
@@ -924,6 +954,29 @@ p_next1_register_setting</td>
 
 </div>
 </div>
+<a id="ga331bca4df8501deef9b7dcb435e192a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga331bca4df8501deef9b7dcb435e192a6">&#9670;&nbsp;</a></span>dmac_b_external_output_signal_active_level_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_g___d_m_a_c___b.html#ga331bca4df8501deef9b7dcb435e192a6">dmac_b_external_output_signal_active_level_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Active level of the external DMA ACK signal. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ga331bca4df8501deef9b7dcb435e192a6a1e8d739ffa7055141a18d9fa59939b00"></a>DMAC_B_EXTERNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_NO_OUTPUT&#160;</td><td class="fielddoc"><p>Not using external output. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga331bca4df8501deef9b7dcb435e192a6a1e8d739ffa7055141a18d9fa59939b00"></a>DMAC_B_EXTERNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_NO_OUTPUT&#160;</td><td class="fielddoc"><p>Not using external output. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga331bca4df8501deef9b7dcb435e192a6a1e8d739ffa7055141a18d9fa59939b00"></a>DMAC_B_EXTERNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_NO_OUTPUT&#160;</td><td class="fielddoc"><p>Not using external output. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="ga14518809e8fbb9e21fdef462b5a6355b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga14518809e8fbb9e21fdef462b5a6355b">&#9670;&nbsp;</a></span>dmac_b_external_detection_t</h2>
 
@@ -937,17 +990,25 @@ p_next1_register_setting</td>
 </div><div class="memdoc">
 <p>Detection method of the external DMA request signal. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba9b733b38f6216a7bafaa62855dcdea06"></a>DMAC_B_EXTERNAL_DETECTION_LOW_LEVEL&#160;</td><td class="fielddoc"><p>Low level detection. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba4cf7ad66de58bf12961770bdfa97affb"></a>DMAC_B_EXTERNAL_DETECTION_LOW_LEVEL&#160;</td><td class="fielddoc"><p>Low level detection. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba1e4a1303234cd1b4bd879da0a5497c81"></a>DMAC_B_EXTERNAL_DETECTION_FALLING_EDGE&#160;</td><td class="fielddoc"><p>Falling edge detection. </p>
+<tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba08870bfe6f594c3aca644790227726f4"></a>DMAC_B_EXTERNAL_DETECTION_FALLING_EDGE&#160;</td><td class="fielddoc"><p>Falling edge detection. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba71d49967fcb329386f7ad75c057af39f"></a>DMAC_B_EXTERNAL_DETECTION_RISING_EDGE&#160;</td><td class="fielddoc"><p>Rising edge detection. </p>
+<tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba838108b6df0d8d7be4f1d890591efc11"></a>DMAC_B_EXTERNAL_DETECTION_RISING_EDGE&#160;</td><td class="fielddoc"><p>Rising edge detection. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355babdf24e175dde86c8a869f358d5bb30b1"></a>DMAC_B_EXTERNAL_DETECTION_FALLING_RISING_EDGE&#160;</td><td class="fielddoc"><p>Falling/Rising edge detection. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba0e3f7d0aefbaed1687bb57946b832d9a"></a>DMAC_B_EXTERNAL_DETECTION_NO_DETECTION&#160;</td><td class="fielddoc"><p>Not using hardware detection. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba0e3f7d0aefbaed1687bb57946b832d9a"></a>DMAC_B_EXTERNAL_DETECTION_NO_DETECTION&#160;</td><td class="fielddoc"><p>Not using hardware detection. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba08870bfe6f594c3aca644790227726f4"></a>DMAC_B_EXTERNAL_DETECTION_FALLING_EDGE&#160;</td><td class="fielddoc"><p>Falling edge detection. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba838108b6df0d8d7be4f1d890591efc11"></a>DMAC_B_EXTERNAL_DETECTION_RISING_EDGE&#160;</td><td class="fielddoc"><p>Rising edge detection. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba4cf7ad66de58bf12961770bdfa97affb"></a>DMAC_B_EXTERNAL_DETECTION_LOW_LEVEL&#160;</td><td class="fielddoc"><p>Low level detection. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355bafe194ff36358bdad2115c9d851971edb"></a>DMAC_B_EXTERNAL_DETECTION_HIGH_LEVEL&#160;</td><td class="fielddoc"><p>High level detection. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ga14518809e8fbb9e21fdef462b5a6355ba0e3f7d0aefbaed1687bb57946b832d9a"></a>DMAC_B_EXTERNAL_DETECTION_NO_DETECTION&#160;</td><td class="fielddoc"><p>Not using hardware detection. </p>
 </td></tr>
@@ -1359,6 +1420,7 @@ p_next1_register_setting</td>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Counter value written successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>An input parameter is invalid. </td></tr>
+    <tr><td class="paramname">FSP_ERR_INVALID_ADDRESS</td><td>Descriptor address is invalid. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>Handle is not initialized. Call R_DMAC_Open to initialize the control block. </td></tr>
   </table>
   </dd>
@@ -1601,7 +1663,7 @@ p_next1_register_setting</td>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
-<title>RZ Flexible Software Package Documentation: LCD Controller (r_lcdc)</title>
+<title>RZ Flexible Software Package Documentation: LCD (r_lcdc)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -163,7 +163,7 @@ $(document).ready(function(){initNavTree('group___r_z_t___l_c_d_c.html','');});
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
-<div class="title">LCD Controller (r_lcdc)<div class="ingroups"><a class="el" href="group___r_z_t.html">RZT</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___g_r_a_p_h_i_c_s___m_o_d_u_l_e_s.html">Graphics</a></div></div>  </div>
+<div class="title">LCD (r_lcdc)<div class="ingroups"><a class="el" href="group___r_z_t.html">RZT</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___g_r_a_p_h_i_c_s___m_o_d_u_l_e_s.html">Graphics</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -234,16 +234,16 @@ Disabled</li>
 </ul>
 </td><td>Default (BSP) </td><td>If selected, code for parameter checking is included in the build. </td></tr>
 <tr>
-<td>Multiplex Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Nested Interrupt (Multiplex Interrupt)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable multiplex interrupt for a single driver. </td></tr>
+</td><td>Disabled </td><td>Enable nested interrupt for a single driver. </td></tr>
 </table>
- <h2>Configurations for Graphics &gt; Display (r_lcdc)</h2>
-This module can be added to the Stacks tab via New Stack &gt; Graphics &gt; Display (r_lcdc).<br />
+ <h2>Configurations for Graphics &gt; LCD (r_lcdc)</h2>
+This module can be added to the Stacks tab via New Stack &gt; Graphics &gt; LCD (r_lcdc).<br />
 </p><table class="doxtable">
 <tr>
 <th>Configuration</th><th>Options</th><th>Default</th><th>Description </th></tr>
@@ -270,7 +270,7 @@ No</li>
 <tr>
 <td>Input &gt; Graphics Layer 1 &gt; General &gt; Vertical position</td><td>Value must be an integer from -1079 to 1079</td><td>0 </td><td>Specify the vertical offset in pixels of the graphics layer from the background layer. </td></tr>
 <tr>
-<td>Input &gt; Graphics Layer 1 &gt; General &gt; Color format</td><td>Refer to the <a class="el" href="namespace_r_z_t.html" title="Default initialization function. ">RZT</a> Configuration tool for available options.</td><td>YCbCr422 interleaved YUYV (16-bit) </td><td>Specify the graphics layer Input format. </td></tr>
+<td>Input &gt; Graphics Layer 1 &gt; General &gt; Color format</td><td>Refer to the <a class="el" href="namespace_r_z_t.html">RZT</a> Configuration tool for available options.</td><td>YCbCr422 interleaved YUYV (16-bit) </td><td>Specify the graphics layer Input format. </td></tr>
 <tr>
 <td>Input &gt; Graphics Layer 1 &gt; General &gt; 64bit swap</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -330,7 +330,7 @@ No</li>
 <tr>
 <td>Input &gt; Graphics Layer 2 &gt; General &gt; Vertical position</td><td>Value must be an integer from -1079 to 1079</td><td>0 </td><td>Specify the vertical offset in pixels of the graphics layer from the background layer. </td></tr>
 <tr>
-<td>Input &gt; Graphics Layer 2 &gt; General &gt; Color format</td><td>Refer to the <a class="el" href="namespace_r_z_t.html" title="Default initialization function. ">RZT</a> Configuration tool for available options.</td><td>YCbCr422 interleaved YUYV (16-bit) </td><td>Specify the graphics layer Input format. </td></tr>
+<td>Input &gt; Graphics Layer 2 &gt; General &gt; Color format</td><td>Refer to the <a class="el" href="namespace_r_z_t.html">RZT</a> Configuration tool for available options.</td><td>YCbCr422 interleaved YUYV (16-bit) </td><td>Specify the graphics layer Input format. </td></tr>
 <tr>
 <td>Input &gt; Graphics Layer 2 &gt; General &gt; 64bit swap</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -520,8 +520,6 @@ Examples</h1>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_t_1_1st__lcdc__extended__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___l_c_d_c.html#struct_r_z_t_1_1st__lcdc__extended__cfg">st_lcdc_extended_cfg</a></td></tr>
 <tr class="separator:struct_r_z_t_1_1st__lcdc__extended__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_t_1_1st__display__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___l_c_d_c.html#struct_r_z_t_1_1st__display__ctrl">st_display_ctrl</a></td></tr>
-<tr class="separator:struct_r_z_t_1_1st__display__ctrl"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_t_1_1st__lcdc__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___l_c_d_c.html#struct_r_z_t_1_1st__lcdc__instance__ctrl">st_lcdc_instance_ctrl</a></td></tr>
 <tr class="separator:struct_r_z_t_1_1st__lcdc__instance__ctrl"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -529,8 +527,6 @@ Classes</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:ga5db7a45887071423284f25505ded5f38"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_t___l_c_d_c.html#struct_r_z_t_1_1st__lcdc__extended__cfg">st_lcdc_extended_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___l_c_d_c.html#ga5db7a45887071423284f25505ded5f38">lcdc_extended_cfg_t</a></td></tr>
 <tr class="separator:ga5db7a45887071423284f25505ded5f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafe39907a0ea71c9ab58b1144496e9e72"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_t___l_c_d_c.html#struct_r_z_t_1_1st__display__ctrl">st_display_ctrl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___l_c_d_c.html#gafe39907a0ea71c9ab58b1144496e9e72">lcdc_ctrl_t</a></td></tr>
-<tr class="separator:gafe39907a0ea71c9ab58b1144496e9e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4f3ed7858410c9286b743115ce85ac49"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_t___l_c_d_c.html#struct_r_z_t_1_1st__lcdc__instance__ctrl">st_lcdc_instance_ctrl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___l_c_d_c.html#ga4f3ed7858410c9286b743115ce85ac49">lcdc_instance_ctrl_t</a></td></tr>
 <tr class="separator:ga4f3ed7858410c9286b743115ce85ac49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -571,21 +567,6 @@ Color keying configuration. </td></tr>
 
 </div>
 </div>
-<a name="struct_r_z_t_1_1st__display__ctrl" id="struct_r_z_t_1_1st__display__ctrl"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_t_1_1st__display__ctrl">&#9670;&nbsp;</a></span>RZT::st_display_ctrl</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct RZT::st_display_ctrl</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>CRU context struct for callback function </p>
-</div>
-</div>
-</div>
 <a name="struct_r_z_t_1_1st__lcdc__instance__ctrl" id="struct_r_z_t_1_1st__lcdc__instance__ctrl"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_t_1_1st__lcdc__instance__ctrl">&#9670;&nbsp;</a></span>RZT::st_lcdc_instance_ctrl</h2>
 
@@ -614,21 +595,6 @@ Color keying configuration. </td></tr>
       </table>
 </div><div class="memdoc">
 <p>LCDC hardware specific configuration Please refer to the struct <a class="el" href="group___r_z_t___l_c_d_c.html#struct_r_z_t_1_1st__lcdc__extended__cfg">st_lcdc_extended_cfg</a>. </p>
-
-</div>
-</div>
-<a id="gafe39907a0ea71c9ab58b1144496e9e72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gafe39907a0ea71c9ab58b1144496e9e72">&#9670;&nbsp;</a></span>lcdc_ctrl_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_t___l_c_d_c.html#struct_r_z_t_1_1st__display__ctrl">st_display_ctrl</a> <a class="el" href="group___r_z_t___l_c_d_c.html#gafe39907a0ea71c9ab58b1144496e9e72">lcdc_ctrl_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>CRU context struct for callback function Please refer to the struct <a class="el" href="group___r_z_t___l_c_d_c.html#struct_r_z_t_1_1st__display__ctrl">st_display_ctrl</a>. </p>
 
 </div>
 </div>
@@ -1065,7 +1031,7 @@ Color keying configuration. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

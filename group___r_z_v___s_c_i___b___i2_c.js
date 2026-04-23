@@ -11,7 +11,8 @@ var group___r_z_v___s_c_i___b___i2_c =
     ] ],
     [ "st_sci_b_i2c_instance_ctrl", "group___r_z_v___s_c_i___b___i2_c.html#struct_r_z_v_1_1st__sci__b__i2c__instance__ctrl", null ],
     [ "st_sci_b_i2c_extended_cfg", "group___r_z_v___s_c_i___b___i2_c.html#struct_r_z_v_1_1st__sci__b__i2c__extended__cfg", [
-      [ "clock_settings", "group___r_z_v___s_c_i___b___i2_c.html#a0c2954a70bdacf63bc0eeafff90880bc", null ]
+      [ "clock_settings", "group___r_z_v___s_c_i___b___i2_c.html#a0c2954a70bdacf63bc0eeafff90880bc", null ],
+      [ "p_reg", "group___r_z_v___s_c_i___b___i2_c.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "sci_b_i2c_clock_settings_t", "group___r_z_v___s_c_i___b___i2_c.html#ga202b835a604ea68efbbaef4369762419", null ],
     [ "sci_b_i2c_instance_ctrl_t", "group___r_z_v___s_c_i___b___i2_c.html#gaff8ff3755c1068ef7b007367e843e14d", null ],

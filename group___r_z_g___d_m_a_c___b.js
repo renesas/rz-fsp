@@ -25,6 +25,8 @@ var group___r_z_g___d_m_a_c___b =
       [ "dreq_input_pin", "group___r_z_g___d_m_a_c___b.html#a5ca8cac54f81ef4ef8c4f0f9d5301ac5", null ],
       [ "ack_output_pin", "group___r_z_g___d_m_a_c___b.html#a6d145eb23814b550c8683181e9066767", null ],
       [ "tend_output_pin", "group___r_z_g___d_m_a_c___b.html#ab47ee39a127dedbc6725801b6d1f0794", null ],
+      [ "ack_output_signal_active_level", "group___r_z_g___d_m_a_c___b.html#a778308337870e8046d5b772b81c3c1c5", null ],
+      [ "tend_output_signal_active_level", "group___r_z_g___d_m_a_c___b.html#adcb51fc4557e3bd6fa44b92d704aabc0", null ],
       [ "external_detection_mode", "group___r_z_g___d_m_a_c___b.html#a17973a7517444f09cad5bd2c57ff3948", null ],
       [ "internal_detection_mode", "group___r_z_g___d_m_a_c___b.html#abc1efc43d377c0284b768e56d9f54241", null ],
       [ "activation_request_source_select", "group___r_z_g___d_m_a_c___b.html#adfcf0b0fa741730402770367b1a815fc", null ],
@@ -62,13 +64,22 @@ var group___r_z_g___d_m_a_c___b =
       [ "DMAC_B_ACK_MODE_BUS_CYCLE_MODE", "group___r_z_g___d_m_a_c___b.html#gga46c5c66fc820831bb56b5f6554f2890eaf0702197abc49f459a920cfd07e079b9", null ],
       [ "DMAC_B_ACK_MODE_MASK_DACK_OUTPUT", "group___r_z_g___d_m_a_c___b.html#gga46c5c66fc820831bb56b5f6554f2890ea2c0a3fc39b5304639b9b27528b37d368", null ]
     ] ],
+    [ "dmac_b_external_output_signal_active_level_t", "group___r_z_g___d_m_a_c___b.html#ga331bca4df8501deef9b7dcb435e192a6", [
+      [ "DMAC_B_EXTERNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_NO_OUTPUT", "group___r_z_g___d_m_a_c___b.html#ga331bca4df8501deef9b7dcb435e192a6a1e8d739ffa7055141a18d9fa59939b00", null ],
+      [ "DMAC_B_EXTERNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_NO_OUTPUT", "group___r_z_g___d_m_a_c___b.html#ga331bca4df8501deef9b7dcb435e192a6a1e8d739ffa7055141a18d9fa59939b00", null ],
+      [ "DMAC_B_EXTERNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_NO_OUTPUT", "group___r_z_g___d_m_a_c___b.html#ga331bca4df8501deef9b7dcb435e192a6a1e8d739ffa7055141a18d9fa59939b00", null ]
+    ] ],
     [ "dmac_b_external_detection_t", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355b", [
-      [ "DMAC_B_EXTERNAL_DETECTION_LOW_LEVEL", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba9b733b38f6216a7bafaa62855dcdea06", null ],
-      [ "DMAC_B_EXTERNAL_DETECTION_FALLING_EDGE", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba1e4a1303234cd1b4bd879da0a5497c81", null ],
-      [ "DMAC_B_EXTERNAL_DETECTION_RISING_EDGE", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba71d49967fcb329386f7ad75c057af39f", null ],
+      [ "DMAC_B_EXTERNAL_DETECTION_LOW_LEVEL", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba4cf7ad66de58bf12961770bdfa97affb", null ],
+      [ "DMAC_B_EXTERNAL_DETECTION_FALLING_EDGE", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba08870bfe6f594c3aca644790227726f4", null ],
+      [ "DMAC_B_EXTERNAL_DETECTION_RISING_EDGE", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba838108b6df0d8d7be4f1d890591efc11", null ],
       [ "DMAC_B_EXTERNAL_DETECTION_FALLING_RISING_EDGE", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355babdf24e175dde86c8a869f358d5bb30b1", null ],
       [ "DMAC_B_EXTERNAL_DETECTION_NO_DETECTION", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba0e3f7d0aefbaed1687bb57946b832d9a", null ],
       [ "DMAC_B_EXTERNAL_DETECTION_NO_DETECTION", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba0e3f7d0aefbaed1687bb57946b832d9a", null ],
+      [ "DMAC_B_EXTERNAL_DETECTION_FALLING_EDGE", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba08870bfe6f594c3aca644790227726f4", null ],
+      [ "DMAC_B_EXTERNAL_DETECTION_RISING_EDGE", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba838108b6df0d8d7be4f1d890591efc11", null ],
+      [ "DMAC_B_EXTERNAL_DETECTION_LOW_LEVEL", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba4cf7ad66de58bf12961770bdfa97affb", null ],
+      [ "DMAC_B_EXTERNAL_DETECTION_HIGH_LEVEL", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355bafe194ff36358bdad2115c9d851971edb", null ],
       [ "DMAC_B_EXTERNAL_DETECTION_NO_DETECTION", "group___r_z_g___d_m_a_c___b.html#ga14518809e8fbb9e21fdef462b5a6355ba0e3f7d0aefbaed1687bb57946b832d9a", null ]
     ] ],
     [ "dmac_b_internal_detection_t", "group___r_z_g___d_m_a_c___b.html#gaa15ccc56c79f1686821605ef2b8f36b9", [

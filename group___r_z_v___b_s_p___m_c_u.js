@@ -125,7 +125,6 @@ var group___r_z_v___b_s_p___m_c_u =
     [ "SecureFault_Handler", "group___r_z_v___b_s_p___m_c_u.html#gacafcf7aae8e82ba63c6d74db1f574aad", null ],
     [ "SystemInit", "group___r_z_v___b_s_p___m_c_u.html#ga93f514700ccf00d08dbdcff7f1224eb2", null ],
     [ "R_BSP_WarmStart", "group___r_z_v___b_s_p___m_c_u.html#ga662624feaff3850ffbe7fb118ab140d7", null ],
-    [ "R_BSP_SecurityInit", "group___r_z_v___b_s_p___m_c_u.html#ga3b935e0215b362d397cc0546928df270", null ],
     [ "SystemInit_S", "group___r_z_v___b_s_p___m_c_u.html#ga7e4470a8cc5faaaff1d16b44466abc9b", null ],
     [ "Warm_Reset_S", "group___r_z_v___b_s_p___m_c_u.html#ga215316af2d678355220f2def97172165", null ],
     [ "Entry_Function_S", "group___r_z_v___b_s_p___m_c_u.html#ga156dc1f4245c873062db65a3b94306b3", null ],

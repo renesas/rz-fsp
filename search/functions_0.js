@@ -1,15 +1,9 @@
 var searchData=
 [
-  ['_5f_5fatan2f',['__atan2f',['../group___r_z_a___b_s_p___m_c_u.html#ga0a23760be78603bdcc9261d34c93e323',1,'RZA::__atan2f()'],['../group___r_z_t___b_s_p___m_c_u.html#gab94a75b866e9bc6186c34524f48d4ce3',1,'RZT::__atan2f()'],['../group___r_z_n___b_s_p___m_c_u.html#ga0da52aa872878bee2598b2086065047a',1,'RZN::__atan2f()']]],
-  ['_5f_5fatan2fx',['__atan2fx',['../group___r_z_t___b_s_p___m_c_u.html#ga8f714c328535b65871c7f14141825bf8',1,'RZT::__atan2fx()'],['../group___r_z_n___b_s_p___m_c_u.html#ga8fbe6b573f28968782bf1bb813004401',1,'RZN::__atan2fx()']]],
-  ['_5f_5fatan2hypotf',['__atan2hypotf',['../group___r_z_a___b_s_p___m_c_u.html#gabb8b82698b48a16788a6d5656f32152c',1,'RZA::__atan2hypotf()'],['../group___r_z_t___b_s_p___m_c_u.html#ga193f727ab271b3254fc2ada2edd1ca39',1,'RZT::__atan2hypotf()'],['../group___r_z_n___b_s_p___m_c_u.html#gaaf7c70b8afcc2f8b5edc40ae29db71a4',1,'RZN::__atan2hypotf()']]],
-  ['_5f_5fatan2hypotfx',['__atan2hypotfx',['../group___r_z_t___b_s_p___m_c_u.html#ga17a467073a5778e3e64e3bedcec9b744',1,'RZT::__atan2hypotfx()'],['../group___r_z_n___b_s_p___m_c_u.html#ga3639d0abffca236b9286ef5a5f3578c7',1,'RZN::__atan2hypotfx()']]],
-  ['_5f_5fcosf',['__cosf',['../group___r_z_a___b_s_p___m_c_u.html#ga067761078b1a0edf563ce3a21d3f92ac',1,'RZA::__cosf()'],['../group___r_z_t___b_s_p___m_c_u.html#gaaf3e2b82fc6d95390b3dca26df236b0f',1,'RZT::__cosf()'],['../group___r_z_n___b_s_p___m_c_u.html#ga1ef96b9a452d071740a475d3955bfbf9',1,'RZN::__cosf()']]],
-  ['_5f_5fcosfx',['__cosfx',['../group___r_z_t___b_s_p___m_c_u.html#ga9581764784156155d4212339f0bdd705',1,'RZT::__cosfx()'],['../group___r_z_n___b_s_p___m_c_u.html#ga24f4dfaffef18fc9221e28e56db97aa9',1,'RZN::__cosfx()']]],
-  ['_5f_5fhypotf',['__hypotf',['../group___r_z_a___b_s_p___m_c_u.html#ga7574edb38768981c29c18be36370ef42',1,'RZA::__hypotf()'],['../group___r_z_t___b_s_p___m_c_u.html#ga61a831dff1b08fdd25ecfff46677872c',1,'RZT::__hypotf()'],['../group___r_z_n___b_s_p___m_c_u.html#ga2dc11db2bc880377f67c86291a3092bf',1,'RZN::__hypotf()']]],
-  ['_5f_5fhypotfx',['__hypotfx',['../group___r_z_t___b_s_p___m_c_u.html#ga25fe612ac106cf4c2cdc77e3ac400bc7',1,'RZT::__hypotfx()'],['../group___r_z_n___b_s_p___m_c_u.html#ga8a0a06e6980df6209e9dac21efef7d08',1,'RZN::__hypotfx()']]],
-  ['_5f_5fsincosf',['__sincosf',['../group___r_z_a___b_s_p___m_c_u.html#gaf458675e3e1e8a700f3be1eed98002c9',1,'RZA::__sincosf()'],['../group___r_z_t___b_s_p___m_c_u.html#ga7846a0d60cab6c765b1091497a414721',1,'RZT::__sincosf()'],['../group___r_z_n___b_s_p___m_c_u.html#ga5a50a309863550a94984028b6f9c057f',1,'RZN::__sincosf()']]],
-  ['_5f_5fsincosfx',['__sincosfx',['../group___r_z_t___b_s_p___m_c_u.html#ga573301434629b1de1007f44acc49d494',1,'RZT::__sincosfx()'],['../group___r_z_n___b_s_p___m_c_u.html#gaa788d29fefbd5c270e63214cb34a225e',1,'RZN::__sincosfx()']]],
-  ['_5f_5fsinf',['__sinf',['../group___r_z_a___b_s_p___m_c_u.html#ga69cecef0d58469f383f65eb9fb1160d1',1,'RZA::__sinf()'],['../group___r_z_t___b_s_p___m_c_u.html#ga55e472b15b2e6b70ed199401a1bf3b6b',1,'RZT::__sinf()'],['../group___r_z_n___b_s_p___m_c_u.html#ga1cc461aed581ee992de01d4732b20ae2',1,'RZN::__sinf()']]],
-  ['_5f_5fsinfx',['__sinfx',['../group___r_z_t___b_s_p___m_c_u.html#ga0274acb3a679e2c00526b73d187fdae6',1,'RZT::__sinfx()'],['../group___r_z_n___b_s_p___m_c_u.html#ga00775131e72222acdba1bd5b83d6214b',1,'RZN::__sinfx()']]]
+  ['_5f_5fatan2f',['__atan2f',['../group___r_z_a___b_s_p___m_c_u.html#ga0a23760be78603bdcc9261d34c93e323',1,'RZA']]],
+  ['_5f_5fatan2hypotf',['__atan2hypotf',['../group___r_z_a___b_s_p___m_c_u.html#gabb8b82698b48a16788a6d5656f32152c',1,'RZA']]],
+  ['_5f_5fcosf',['__cosf',['../group___r_z_a___b_s_p___m_c_u.html#ga067761078b1a0edf563ce3a21d3f92ac',1,'RZA']]],
+  ['_5f_5fhypotf',['__hypotf',['../group___r_z_a___b_s_p___m_c_u.html#ga7574edb38768981c29c18be36370ef42',1,'RZA']]],
+  ['_5f_5fsincosf',['__sincosf',['../group___r_z_a___b_s_p___m_c_u.html#gaf458675e3e1e8a700f3be1eed98002c9',1,'RZA']]],
+  ['_5f_5fsinf',['__sinf',['../group___r_z_a___b_s_p___m_c_u.html#ga69cecef0d58469f383f65eb9fb1160d1',1,'RZA']]]
 ];

@@ -41,7 +41,8 @@ var group___r_z_v___g_p_t =
       [ "compare_match_value", "group___r_z_v___g_p_t.html#a0980a7104f365d9b541dba029a74c666", null ],
       [ "compare_match_status", "group___r_z_v___g_p_t.html#ad7297058f0324dbf00658ca2396c70a2", null ],
       [ "p_pwm_cfg", "group___r_z_v___g_p_t.html#a254743a7ae3cec711006b4cfc0010959", null ],
-      [ "gtior_setting", "group___r_z_v___g_p_t.html#a9f30539c4c848e41e17c86909e31c57d", null ]
+      [ "gtior_setting", "group___r_z_v___g_p_t.html#a9f30539c4c848e41e17c86909e31c57d", null ],
+      [ "p_reg", "group___r_z_v___g_p_t.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "gpt_output_pin_t", "group___r_z_v___g_p_t.html#gac691cd9064242d113319fc7fddb9aed1", null ],
     [ "gpt_gtior_setting_t", "group___r_z_v___g_p_t.html#ga4a1bf9f0875385e02964627ea70b33b5", null ],

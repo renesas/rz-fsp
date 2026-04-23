@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
-<title>RZ Flexible Software Package Documentation: FreeRTOS+TCP Wrapper to r_ether (rm_freertos_plus_tcp)</title>
+<title>RZ Flexible Software Package Documentation: FreeRTOS+TCP Wrapper to ethernet driver (rm_freertos_plus_tcp)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -159,7 +159,7 @@ $(document).ready(function(){initNavTree('group___r_z_n___f_r_e_e_r_t_o_s___p_l_
 </div>
 <div class="header">
   <div class="headertitle">
-<div class="title">FreeRTOS+TCP Wrapper to r_ether (rm_freertos_plus_tcp)<div class="ingroups"><a class="el" href="group___r_z_n.html">RZN</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___n_e_t_w_o_r_k_i_n_g___m_o_d_u_l_e_s.html">Networking</a></div></div>  </div>
+<div class="title">FreeRTOS+TCP Wrapper to ethernet driver (rm_freertos_plus_tcp)<div class="ingroups"><a class="el" href="group___r_z_n.html">RZN</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___n_e_t_w_o_r_k_i_n_g___m_o_d_u_l_e_s.html">Networking</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <p>Middleware for using TCP on RZ microprocessor. </p>
@@ -459,6 +459,8 @@ Disable</li>
 Enable </li>
 </ul>
 </td><td>Disable </td><td>Possible optimisation for expert users - requires network driver support. It is is useful when there is high network traffic. If non-zero value then instead of passing received packets into the IP task one at a time the network interface can chain received packets together and pass them into the IP task in one go. If set to 0 then only one buffer will be sent at a time. </td></tr>
+<tr>
+<td>Ethernet minimum packet bytes</td><td>Value must be an integer</td><td>60 </td><td>Defines the minimum size of an Ethernet frame. If the Ethernet frame is less than the minimum size, it will be padded. </td></tr>
 </table>
 </p>
 <h1><a class="anchor" id="RZN_rm-freertos-plus-tcp-usage-notes"></a>
@@ -491,7 +493,7 @@ Limitations</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

@@ -64,6 +64,8 @@ var group___r_z_g___t_r_a_n_s_f_e_r___a_p_i =
       [ "TRANSFER_MODE_NORMAL", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadfb7c2a6a73bfdf993e50505aa92992fab411e1efab8a8bb78c5fe7d5351a67d5", null ],
       [ "TRANSFER_MODE_BLOCK", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadfb7c2a6a73bfdf993e50505aa92992fac75d63bfc4ec0207886e6bedcc71f154", null ],
       [ "TRANSFER_MODE_NORMAL", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadfb7c2a6a73bfdf993e50505aa92992fab411e1efab8a8bb78c5fe7d5351a67d5", null ],
+      [ "TRANSFER_MODE_BLOCK", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadfb7c2a6a73bfdf993e50505aa92992fac75d63bfc4ec0207886e6bedcc71f154", null ],
+      [ "TRANSFER_MODE_NORMAL", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadfb7c2a6a73bfdf993e50505aa92992fab411e1efab8a8bb78c5fe7d5351a67d5", null ],
       [ "TRANSFER_MODE_BLOCK", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadfb7c2a6a73bfdf993e50505aa92992fac75d63bfc4ec0207886e6bedcc71f154", null ]
     ] ],
     [ "transfer_size_t", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12", [
@@ -102,6 +104,14 @@ var group___r_z_g___t_r_a_n_s_f_e_r___a_p_i =
       [ "TRANSFER_SIZE_16_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12a75a3111b0531dcd015986e5478f8d2fc", null ],
       [ "TRANSFER_SIZE_32_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12a6d39aae034896c279d76c27f347a157f", null ],
       [ "TRANSFER_SIZE_64_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12ab65781594f343d617444f637ad2736d9", null ],
+      [ "TRANSFER_SIZE_128_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12abc89960b84d28e23e2bf7422ad1b86b0", null ],
+      [ "TRANSFER_SIZE_1_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12a1dc4fc28dc0641fadd05abb1540a7080", null ],
+      [ "TRANSFER_SIZE_2_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12a9a74fb76d53d4760f0e95e2ee7dcc110", null ],
+      [ "TRANSFER_SIZE_4_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12a15861d64b0f91214e25d98544fb2e317", null ],
+      [ "TRANSFER_SIZE_8_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12ae04695b1d336bfe64e70d89d9026c370", null ],
+      [ "TRANSFER_SIZE_16_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12a75a3111b0531dcd015986e5478f8d2fc", null ],
+      [ "TRANSFER_SIZE_32_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12a6d39aae034896c279d76c27f347a157f", null ],
+      [ "TRANSFER_SIZE_64_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12ab65781594f343d617444f637ad2736d9", null ],
       [ "TRANSFER_SIZE_128_BYTE", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12abc89960b84d28e23e2bf7422ad1b86b0", null ]
     ] ],
     [ "transfer_addr_mode_t", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51", [
@@ -109,6 +119,8 @@ var group___r_z_g___t_r_a_n_s_f_e_r___a_p_i =
       [ "TRANSFER_ADDR_MODE_OFFSET", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51ab8b3f8ce28fb6f7a57a1b87db0d612c2", null ],
       [ "TRANSFER_ADDR_MODE_INCREMENTED", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51a6535db9d955842922eef45031838bdfd", null ],
       [ "TRANSFER_ADDR_MODE_DECREMENTED", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51a56a87e1587844119831414f3d5e6d761", null ],
+      [ "TRANSFER_ADDR_MODE_INCREMENTED", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51a6535db9d955842922eef45031838bdfd", null ],
+      [ "TRANSFER_ADDR_MODE_FIXED", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51ac48df89a1b8069a028b1cc01ee860a15", null ],
       [ "TRANSFER_ADDR_MODE_INCREMENTED", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51a6535db9d955842922eef45031838bdfd", null ],
       [ "TRANSFER_ADDR_MODE_FIXED", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51ac48df89a1b8069a028b1cc01ee860a15", null ],
       [ "TRANSFER_ADDR_MODE_INCREMENTED", "group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51a6535db9d955842922eef45031838bdfd", null ],

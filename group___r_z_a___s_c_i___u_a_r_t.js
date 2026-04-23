@@ -19,7 +19,8 @@ var group___r_z_a___s_c_i___u_a_r_t =
       [ "rx_fifo_trigger", "group___r_z_a___s_c_i___u_a_r_t.html#ae9eb0d8b788c51176ddea26cbdc2cd91", null ],
       [ "flow_control_pin", "group___r_z_a___s_c_i___u_a_r_t.html#a17546a8e0f2c1d25bca24a9e70729f49", null ],
       [ "flow_control", "group___r_z_a___s_c_i___u_a_r_t.html#adbfb2a4f1a4bcb2726db44c8e1135331", null ],
-      [ "rs485_setting", "group___r_z_a___s_c_i___u_a_r_t.html#a05879f7553ad0eeabb7a2b870900e537", null ]
+      [ "rs485_setting", "group___r_z_a___s_c_i___u_a_r_t.html#a05879f7553ad0eeabb7a2b870900e537", null ],
+      [ "p_reg", "group___r_z_a___s_c_i___u_a_r_t.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "sci_uart_instance_ctrl_t", "group___r_z_a___s_c_i___u_a_r_t.html#gafc65fd64db25db3cb87229e34d86b062", null ],
     [ "baud_setting_t", "group___r_z_a___s_c_i___u_a_r_t.html#gaee8c02b47f838295ce625e438c4f4a2e", null ],

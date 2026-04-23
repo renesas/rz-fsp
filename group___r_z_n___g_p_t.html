@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
-<title>RZ Flexible Software Package Documentation: General PWM Timer (r_gpt)</title>
+<title>RZ Flexible Software Package Documentation: Timer, General PWM (r_gpt)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('group___r_z_n___g_p_t.html','');});
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
-<div class="title">General PWM Timer (r_gpt)<div class="ingroups"><a class="el" href="group___r_z_n.html">RZN</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___t_i_m_e_r_s___m_o_d_u_l_e_s.html">Timers</a></div></div>  </div>
+<div class="title">Timer, General PWM (r_gpt)<div class="ingroups"><a class="el" href="group___r_z_n.html">RZN</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___t_i_m_e_r_s___m_o_d_u_l_e_s.html">Timers</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -232,7 +232,7 @@ Features</h2>
 <li>Supports One shot synchronous pulse waveform generation.<a class="anchor" id="RZN_um_gpt_one_shot_pulse_mode"></a></li>
 <li>Supports automatic addition of dead time.<a class="anchor" id="RZN_um_gpt_pwm_dead_time"></a></li>
 <li>Supports generating ELC events to start an ADC scan at a compare match value (see <a class="el" href="group___r_z_n___e_l_c.html">Event Link Controller (r_elc)</a>) and updating the compare match value.<a class="anchor" id="RZN_um_gpt_adc_trigger"></a><a class="anchor" id="RZN_um_gpt_adc_trigger_update"></a></li>
-<li>Supports linking with a POEG channel to automatically disable GPT output when an error condition is detected.<a class="anchor" id="RZN_um_gpt_poeg_link"></a></li>
+<li>Supports linking with a POEG group to automatically disable GPT output when an error condition is detected.<a class="anchor" id="RZN_um_gpt_poeg_link"></a></li>
 <li>Supports setting the counter value while the timer is stopped.<a class="anchor" id="RZN_um_gpt_counter_set"></a></li>
 <li>Supports enabling and disabling output pins.<a class="anchor" id="RZN_um_gpt_output_disable"></a><a class="anchor" id="RZN_um_gpt_output_enable"></a></li>
 <li>Supports skipping up to 18ch overflow/underflow (crest/trough) interrupts at a time<a class="anchor" id="RZN_um_gpt_interrupt_skip"></a><a class="anchor" id="RZN_um_gpt_interrupt_skip_ext"></a></li>
@@ -291,13 +291,13 @@ Disabled</li>
 </ul>
 </td><td>Disabled </td><td>If selected write protection is applied to all GPT channels. </td></tr>
 <tr>
-<td>Multiplex Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Nested Interrupt (Multiplex Interrupt)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable multiplex interrupt for a single driver. </td></tr>
+</td><td>Disabled </td><td>Enable nested interrupt for a single driver. </td></tr>
 </table>
  <h2>Configurations for Timers &gt; Timer, General PWM (r_gpt)</h2>
 This module can be added to the Stacks tab via New Stack &gt; Timers &gt; Timer, General PWM (r_gpt).<br />
@@ -729,7 +729,7 @@ Crest and Trough (triangle)</li>
 </ul>
 </td><td>None </td><td>Interrupt source to count for interrupt skipping(GTEITC.EIVTC1) </td></tr>
 <tr>
-<td>Extra Features &gt; Extended Interrupt Skipping 1 &gt; Interrupt Skip Count</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td>0 </td><td>Number of interrupts to skip between events(GTEITC.EIVTT1) </td></tr>
+<td>Extra Features &gt; Extended Interrupt Skipping 1 &gt; Interrupt Skip Count</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td>0 </td><td>Number of interrupts to skip between events(GTEITC.EIVTT1) </td></tr>
 <tr>
 <td>Extra Features &gt; Extended Interrupt Skipping 2 &gt; Interrupt to Count</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -743,7 +743,7 @@ Crest and Trough (triangle)</li>
 </ul>
 </td><td>None </td><td>Interrupt source to count for interrupt skipping(GTEITC.EIVTC2) </td></tr>
 <tr>
-<td>Extra Features &gt; Extended Interrupt Skipping 2 &gt; Interrupt Skip Count</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td>0 </td><td>Number of interrupts to skip between events(GTEITC.EIVTT2) </td></tr>
+<td>Extra Features &gt; Extended Interrupt Skipping 2 &gt; Interrupt Skip Count</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td>0 </td><td>Number of interrupts to skip between events(GTEITC.EIVTT2) </td></tr>
 <tr>
 <td>Extra Features &gt; Input Capture Interrupt Extended Skipping Function &gt; Overflow Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -2616,7 +2616,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

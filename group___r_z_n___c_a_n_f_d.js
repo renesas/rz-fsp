@@ -17,7 +17,8 @@ var group___r_z_n___c_a_n_f_d =
       [ "error_interrupts", "group___r_z_n___c_a_n_f_d.html#a5b61dd24cb412c543fd61717003e51fe", null ],
       [ "p_data_timing", "group___r_z_n___c_a_n_f_d.html#acff413ca52de2b2c2a7e3220061fd460", null ],
       [ "delay_compensation", "group___r_z_n___c_a_n_f_d.html#a6f73f6b0c5fe7aaa0881e1c08c78429f", null ],
-      [ "p_global_cfg", "group___r_z_n___c_a_n_f_d.html#adb3e874b2f1c94985f4a6b0ed7611293", null ]
+      [ "p_global_cfg", "group___r_z_n___c_a_n_f_d.html#adb3e874b2f1c94985f4a6b0ed7611293", null ],
+      [ "p_reg", "group___r_z_n___c_a_n_f_d.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "canfd_instance_ctrl_t", "group___r_z_n___c_a_n_f_d.html#ga3a1d29e62ed64a7b7001d61cd8775b2b", null ],
     [ "canfd_afl_entry_t", "group___r_z_n___c_a_n_f_d.html#ga820e3a10772edcec018cff90b49a1097", null ],

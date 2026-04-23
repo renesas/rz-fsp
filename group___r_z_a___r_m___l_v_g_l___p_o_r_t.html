@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -203,7 +203,7 @@ The following build time configurations are defined in fsp_cfg/lvgl/lvgl/lv_conf
 <tr>
 <td>LVGL &gt; Display &gt; LV_COLOR_DEPTH</td><td>Value must equal 16 or 32.</td><td>16 </td><td>Color depth. 16 or 32 supported. </td></tr>
 <tr>
-<td>LVGL &gt; Memory &gt; LV_MEM_SIZE</td><td>Value must be an integer multiple of 1024 between 0x800 and 0xFFFFFFFF.</td><td>0x10000 </td><td>Size of the memory available for `lv_malloc()` in bytes. </td></tr>
+<td>LVGL &gt; Memory &gt; LV_MEM_SIZE</td><td>Value must be an integer multiple of 1024 between 0x800 and 0xFFFFFFFF.</td><td>0x400000 </td><td>Size of the memory available for `lv_malloc()` in bytes. </td></tr>
 <tr>
 <td>LVGL &gt; Memory &gt; LV_DRAW_LAYER_SIMPLE_BUF_SIZE</td><td>Value must be an integer multiple of 1024 between 0x400 and 0xFFFFFFFF.</td><td>0x6000 </td><td>Buffer size for simple layer chunks. </td></tr>
 <tr>
@@ -715,7 +715,7 @@ Full Mode</li>
 </p>
 <h2><a class="anchor" id="RZA_rm-lvgl-port-hw-config"></a>
 Hardware Configuration</h2>
-<p>No clocks or pins are directly required by this module. Please consult the LCDC Usage Guide for its requirements here: <a class="el" href="group___r_z_a___l_c_d_c.html">LCD Controller (r_lcdc)</a></p>
+<p>No clocks or pins are directly required by this module. Please consult the LCDC Usage Guide for its requirements here: <a class="el" href="group___r_z_a___l_c_d_c.html">LCD (r_lcdc)</a></p>
 <h2><a class="anchor" id="RZA_rm-lvgl-port-lib-config"></a>
 LVGL Configuration</h2>
 <p>LVGL is configured via the use of a configuration header. The port layer provides configuration options within e<sup>2</sup> studio for commonly changed LVGL settings and autogenerates the required header files. It is also possible to provide a custom LVGL configuration header which overrides the LVGL configuration options set in e<sup>2</sup> studio, or configures options that are not exposed in the port layer in e<sup>2</sup> studio. </p><hr/>
@@ -781,7 +781,8 @@ Limitations</h2>
 <p>Developers should be aware of the following limitations when using LVGL with FSP:</p>
 <ul>
 <li>Compilers may produce different results at this time (v9.4.0). AC6 is known to produce different software rendering output when blending certain image formats with a 32-bit color depth. LLVM is known to create artifacts with LVGL image decoding and blending.</li>
-<li>The DRW upstream driver does not support all LVGL rendering features. Some unsupported features are horizontal gradients, dashed lines, and blitting of certain image formats. In some cases, the LVGL software renderer will act as a fallback renderer, such as when an unsupported image format is used. <hr/>
+<li>The DRW upstream driver does not support all LVGL rendering features. Some unsupported features are horizontal gradients, dashed lines, and blitting of certain image formats. In some cases, the LVGL software renderer will act as a fallback renderer, such as when an unsupported image format is used.</li>
+<li>Since the work memory size is large, the work memory configured by <code>LV_MEM_SIZE</code> should be allocated to SDRAM. <hr/>
 </li>
 </ul>
 <h1><a class="anchor" id="RZA_rm-lvgl-port-examples"></a>
@@ -1018,7 +1019,7 @@ Error code if RM_LVGL_PORT_EVENT_ERROR. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

@@ -23,7 +23,8 @@ var group___r_z_t___x_s_p_i___h_y_p_e_r =
       [ "data_latching_delay_clock", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#a3dd9250906329d05c0d02fafbe13bef1", null ],
       [ "p_autocalibration_preamble_pattern_addr", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#a3c463c3e0f3ae244d541bb70385a3454", null ],
       [ "p_cs_timing_settings", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#a7ecff3c47688724c0b282dd14cc7141a", null ],
-      [ "p_address_space", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#a5822a5fd5ea296e966cb4a527e672ebd", null ]
+      [ "p_address_space", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#a5822a5fd5ea296e966cb4a527e672ebd", null ],
+      [ "p_reg", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_xspi_hyper_instance_ctrl", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#struct_r_z_t_1_1st__xspi__hyper__instance__ctrl", null ],
     [ "xspi_hyper_cs_timing_setting_t", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#ga1b6f805dfb80b4348797bf8d2ed0937d", null ],
@@ -82,12 +83,12 @@ var group___r_z_t___x_s_p_i___h_y_p_e_r =
       [ "XSPI_HYPER_IO_VOLTAGE_3_3V", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga74610755ec73d9392b07945cb01ce0ecac5024b764881836a70a06ca2463ad697", null ]
     ] ],
     [ "R_XSPI_HYPER_Open", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gaf8a2c741ebcc619ec85b896fedac688b", null ],
-    [ "R_XSPI_HYPER_Close", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#ga18f866b0d9e5e876018f448642fe9024", null ],
     [ "R_XSPI_HYPER_BurstTypeSet", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#ga0dd1bd1a499b711b67881920d5e00a47", null ],
     [ "R_XSPI_HYPER_AccessSpaceSet", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gaaeb7cbd1abbb6230d65f5c80741bd23c", null ],
     [ "R_XSPI_HYPER_DirectTransfer", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#ga1bd6bcab769c986f4f7d96b135faed66", null ],
     [ "R_XSPI_HYPER_Write", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#ga41d34dd155d2dea4439cb196c0f97271", null ],
     [ "R_XSPI_HYPER_Erase", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#ga948d860aae9cf93a67762635067b8ddf", null ],
     [ "R_XSPI_HYPER_StatusGet", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gacda208d0dc55871cab5c696388a24bc1", null ],
-    [ "R_XSPI_HYPER_AutoCalibrate", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gad9f780852e6c6242ed3dc2df2de6a059", null ]
+    [ "R_XSPI_HYPER_AutoCalibrate", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gad9f780852e6c6242ed3dc2df2de6a059", null ],
+    [ "R_XSPI_HYPER_Close", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#ga18f866b0d9e5e876018f448642fe9024", null ]
 ];

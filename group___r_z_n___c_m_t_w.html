@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
-<title>RZ Flexible Software Package Documentation: Compare Match Timer W (r_cmtw)</title>
+<title>RZ Flexible Software Package Documentation: Timer, Compare Match W (r_cmtw)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('group___r_z_n___c_m_t_w.html','');});
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
-<div class="title">Compare Match Timer W (r_cmtw)<div class="ingroups"><a class="el" href="group___r_z_n.html">RZN</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___t_i_m_e_r_s___m_o_d_u_l_e_s.html">Timers</a></div></div>  </div>
+<div class="title">Timer, Compare Match W (r_cmtw)<div class="ingroups"><a class="el" href="group___r_z_n.html">RZN</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___t_i_m_e_r_s___m_o_d_u_l_e_s.html">Timers</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -236,13 +236,13 @@ Disabled</li>
 </ul>
 </td><td>Default (BSP) </td><td>If selected code for parameter checking is included in the build. </td></tr>
 <tr>
-<td>Multiplex Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Nested Interrupt (Multiplex Interrupt)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable multiplex interrupt for a single driver. </td></tr>
+</td><td>Disabled </td><td>Enable nested interrupt for a single driver. </td></tr>
 </table>
  <h2>Configurations for Timers &gt; Timer, Compare Match W (r_cmtw)</h2>
 This module can be added to the Stacks tab via New Stack &gt; Timers &gt; Timer, Compare Match W (r_cmtw).<br />
@@ -613,6 +613,12 @@ OutputCompare 0 interrupt. </td></tr>
 compare_oc1_irq</td>
 <td class="fielddoc">
 OutputCompare 1 interrupt. </td></tr>
+<tr><td class="fieldtype">
+<a id="afe62c2bbb07bedc4bd4dad60b8c3c69c"></a>void *</td>
+<td class="fieldname">
+p_reg</td>
+<td class="fielddoc">
+Register base address for specified channel. </td></tr>
 </table>
 
 </div>
@@ -1315,7 +1321,7 @@ OutputCompare 1 interrupt. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

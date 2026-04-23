@@ -22,6 +22,7 @@ var group___r_z_t___s_c_i___u_a_r_t =
       [ "flow_control_pin", "group___r_z_t___s_c_i___u_a_r_t.html#a17546a8e0f2c1d25bca24a9e70729f49", null ],
       [ "flow_control", "group___r_z_t___s_c_i___u_a_r_t.html#adbfb2a4f1a4bcb2726db44c8e1135331", null ],
       [ "rs485_setting", "group___r_z_t___s_c_i___u_a_r_t.html#a05879f7553ad0eeabb7a2b870900e537", null ],
+      [ "p_reg", "group___r_z_t___s_c_i___u_a_r_t.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ],
       [ "clock_source", "group___r_z_t___s_c_i___u_a_r_t.html#ade79f538b210444a89020a93931a58bb", null ]
     ] ],
     [ "sci_uart_instance_ctrl_t", "group___r_z_t___s_c_i___u_a_r_t.html#gafc65fd64db25db3cb87229e34d86b062", null ],
@@ -80,15 +81,15 @@ var group___r_z_t___s_c_i___u_a_r_t =
     ] ],
     [ "sci_uart_clock_source_t", "group___r_z_t___s_c_i___u_a_r_t.html#ga62708954aea3d9755a464318c83055fb", null ],
     [ "R_SCI_UART_Open", "group___r_z_t___s_c_i___u_a_r_t.html#ga85439598e3e74e6405cf179a6761fd6a", null ],
+    [ "R_SCI_UART_Close", "group___r_z_t___s_c_i___u_a_r_t.html#ga8ea2149c33a76211811d7cdbde7ec675", null ],
     [ "R_SCI_UART_Read", "group___r_z_t___s_c_i___u_a_r_t.html#gab5009c3a48af2cd2c9b424b16115470a", null ],
     [ "R_SCI_UART_Write", "group___r_z_t___s_c_i___u_a_r_t.html#ga8b2cc0e8c4995a3951c282778b3c8c39", null ],
+    [ "R_SCI_UART_CallbackSet", "group___r_z_t___s_c_i___u_a_r_t.html#ga6358fff2cb71f49ef0e6b017b6e93386", null ],
     [ "R_SCI_UART_BaudSet", "group___r_z_t___s_c_i___u_a_r_t.html#ga37b66dd990adbfaa3ed85d041fc0f6cf", null ],
     [ "R_SCI_UART_InfoGet", "group___r_z_t___s_c_i___u_a_r_t.html#gae8be5b378d27c6b6609d53d8a86edcaf", null ],
-    [ "R_SCI_UART_Close", "group___r_z_t___s_c_i___u_a_r_t.html#ga8ea2149c33a76211811d7cdbde7ec675", null ],
     [ "R_SCI_UART_Abort", "group___r_z_t___s_c_i___u_a_r_t.html#ga9010b84e11679e3de8cd78e026265d82", null ],
-    [ "R_SCI_UART_BaudCalculate", "group___r_z_t___s_c_i___u_a_r_t.html#gabc600810e61f82a9cbc79ba89cdd8e1f", null ],
-    [ "R_SCI_UART_CallbackSet", "group___r_z_t___s_c_i___u_a_r_t.html#ga6358fff2cb71f49ef0e6b017b6e93386", null ],
     [ "R_SCI_UART_ReadStop", "group___r_z_t___s_c_i___u_a_r_t.html#gaaac6295c7db91ad2535e23350d7a2b9b", null ],
+    [ "R_SCI_UART_BaudCalculate", "group___r_z_t___s_c_i___u_a_r_t.html#gabc600810e61f82a9cbc79ba89cdd8e1f", null ],
     [ "R_SCI_UART_ReceiveSuspend", "group___r_z_t___s_c_i___u_a_r_t.html#gaa0482711f16a1b1246bedb7d78c29dc0", null ],
     [ "R_SCI_UART_ReceiveResume", "group___r_z_t___s_c_i___u_a_r_t.html#ga47c30422670f7627bd952cc5e5b8c2a7", null ]
 ];

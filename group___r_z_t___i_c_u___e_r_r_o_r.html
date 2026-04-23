@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
-<title>RZ Flexible Software Package Documentation: Interrupt Controller Unit (ICU) ERROR (r_icu_error)</title>
+<title>RZ Flexible Software Package Documentation: ICU ERROR (r_icu_error)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -161,7 +161,7 @@ $(document).ready(function(){initNavTree('group___r_z_t___i_c_u___e_r_r_o_r.html
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Interrupt Controller Unit (ICU) ERROR (r_icu_error)<div class="ingroups"><a class="el" href="group___r_z_t.html">RZT</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___s_y_s_t_e_m___m_o_d_u_l_e_s.html">System</a></div></div>  </div>
+<div class="title">ICU ERROR (r_icu_error)<div class="ingroups"><a class="el" href="group___r_z_t.html">RZT</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___s_y_s_t_e_m___m_o_d_u_l_e_s.html">System</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -225,16 +225,16 @@ Disabled</li>
 </ul>
 </td><td>Default (BSP) </td><td>If selected code for parameter checking is included in the build. </td></tr>
 <tr>
-<td>Multiplex Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Nested Interrupt (Multiplex Interrupt)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable multiplex interrupt for a single driver. </td></tr>
+</td><td>Disabled </td><td>Enable nested interrupt for a single driver. </td></tr>
 </table>
- <h2>Configurations for System &gt; ERROR (r_icu_error)</h2>
-This module can be added to the Stacks tab via New Stack &gt; System &gt; ERROR (r_icu_error).<br />
+ <h2>Configurations for System &gt; ICU ERROR (r_icu_error)</h2>
+This module can be added to the Stacks tab via New Stack &gt; System &gt; ICU ERROR (r_icu_error).<br />
 </p><table class="doxtable">
 <tr>
 <th>Configuration</th><th>Options</th><th>Default</th><th>Description </th></tr>
@@ -1663,15 +1663,15 @@ Usage Notes</h1>
 <li>Use R_ICU_ERROR_StatusGet to get the error status currently occurring.</li>
 <li>Use R_ICU_ERROR_StatusClear to clear the desired error status flag.</li>
 </ol>
-<h2>Multiplex Interrupt</h2>
-<p>Since the ICU_ERROR controls the interrupt processing of the related peripheral module when an error event occurs, the PERI_ERRn interrupt calls the interrupt on each peripheral side in the error handler. Therefore, the relation between the multiplex interrupts settings on each side and the actual operation is as follows. For example, if multiplex interrupt setting (ICU_ERROR side) is enabled, multiple interrupts are always enabled for the related peripheral's interrupts, regardless of the multiplex interrupt setting (Each peripheral side). Conversely, if the multiplex interrupt setting (ICU_ERROR side) is disabled, it is depended on the multiplex interrupt setting (Each peripheral side) whether it is possible to permit multiplex interrupts.</p>
+<h2>Nested Interrupt</h2>
+<p>Since the ICU_ERROR controls the interrupt processing of the related peripheral module when an error event occurs, the PERI_ERRn interrupt calls the interrupt on each peripheral side in the error handler. Therefore, the relation between the nested interrupts settings on each side and the actual operation is as follows. For example, if nested interrupt setting (ICU_ERROR side) is enabled, nested interrupts are always enabled for the related peripheral's interrupts, regardless of the nested interrupt setting (Each peripheral side). Conversely, if the nested interrupt setting (ICU_ERROR side) is disabled, it is depended on the nested interrupt setting (Each peripheral side) whether it is possible to permit nested interrupts.</p>
 <table class="doxtable">
 <tr>
-<th></th><th>Multiplex Interrupt Enable setting (ICU_ERROR side) </th><th>Multiplex Interrupt Disable setting (ICU_ERROR side)  </th></tr>
+<th></th><th>Nested Interrupt Enable setting (ICU_ERROR side) </th><th>Nested Interrupt Disable setting (ICU_ERROR side)  </th></tr>
 <tr>
-<td>Multiplex Interrupt Enable setting (Each peripheral side) </td><td>Multiplex interrupt operation is enabled </td><td>Multiplex interrupt operation follow the settings of each peripheral side </td></tr>
+<td>Nested Interrupt Enable setting (Each peripheral side) </td><td>Nested interrupt operation is enabled </td><td>Nested interrupt operation follow the settings of each peripheral side </td></tr>
 <tr>
-<td>Multiplex Interrupt Disable setting (Each peripheral side) </td><td>Multiplex interrupt operation is enabled </td><td>Multiplex interrupt operation is disabled </td></tr>
+<td>Nested Interrupt Disable setting (Each peripheral side) </td><td>Nested interrupt operation is enabled </td><td>Nested interrupt operation is disabled </td></tr>
 </table>
 <h2>Error Events</h2>
 <p>Error sources and events of the source is as follows:</p>
@@ -3150,7 +3150,7 @@ Usage Notes</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

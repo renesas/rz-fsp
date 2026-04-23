@@ -6,6 +6,14 @@ var group___r_z_t___e_t_h_e_r___b =
       [ "des2", "group___r_z_t___e_t_h_e_r___b.html#add829c6161aaea38a87efe8524e7c044", null ],
       [ "des3", "group___r_z_t___e_t_h_e_r___b.html#acfa980823f7205141925661794c6396b", null ]
     ] ],
+    [ "st_gmac_b_extend_cfg", "group___r_z_t___e_t_h_e_r___b.html#struct_r_z_t_1_1st__gmac__b__extend__cfg", [
+      [ "p_rx_descriptors", "group___r_z_t___e_t_h_e_r___b.html#acd6f4226ad30f61f1dfd73b8c91b5a82", null ],
+      [ "p_tx_descriptors", "group___r_z_t___e_t_h_e_r___b.html#a989d5cf31c073504c2b1005c811c7b86", null ],
+      [ "phylink", "group___r_z_t___e_t_h_e_r___b.html#ac479bcf7fa99011fab55480e31ce73b1", null ],
+      [ "pp_phy_instance", "group___r_z_t___e_t_h_e_r___b.html#ab0dd862d3fe7cce9a1ce831a0a07ee88", null ],
+      [ "p_mac_address1", "group___r_z_t___e_t_h_e_r___b.html#ae7ea49ece90cb026e580713ff7c44e4d", null ],
+      [ "p_mac_address2", "group___r_z_t___e_t_h_e_r___b.html#a1ab4cb3ecf932f8c5ed4988c1237faa4", null ]
+    ] ],
     [ "st_gmac_b_instance_ctrl", "group___r_z_t___e_t_h_e_r___b.html#struct_r_z_t_1_1st__gmac__b__instance__ctrl", [
       [ "open", "group___r_z_t___e_t_h_e_r___b.html#a46c9af2fb0c51a3bc152b006beefc554", null ],
       [ "p_gmac_cfg", "group___r_z_t___e_t_h_e_r___b.html#a3c18f368290f810402d56345cfd9000f", null ],
@@ -27,6 +35,7 @@ var group___r_z_t___e_t_h_e_r___b =
       [ "receive", "group___r_z_t___e_t_h_e_r___b.html#ad7485ec3ed9842324a230e781abab305", null ]
     ] ],
     [ "gmac_b_instance_descriptor_t", "group___r_z_t___e_t_h_e_r___b.html#gab66e9385295e8a1a3e93f31f0ea2281a", null ],
+    [ "gmac_b_extend_cfg_t", "group___r_z_t___e_t_h_e_r___b.html#ga96bee7536aedf2765177d911816dc377", null ],
     [ "gmac_b_instance_ctrl_t", "group___r_z_t___e_t_h_e_r___b.html#ga5a9d4da33ea42954649bff9cf86b140d", null ],
     [ "gmac_b_pause_resolution_t", "group___r_z_t___e_t_h_e_r___b.html#ga02e0a0f529dd86cd9368cf102ee7600e", null ],
     [ "gmac_b_port_mask_t", "group___r_z_t___e_t_h_e_r___b.html#ga9333565ca2c7dcf4f0f0e59a75918874", [
@@ -93,13 +102,13 @@ var group___r_z_t___e_t_h_e_r___b =
     ] ],
     [ "R_GMAC_B_Open", "group___r_z_t___e_t_h_e_r___b.html#gae995ad5d137f9621ea4738f18a544cec", null ],
     [ "R_GMAC_B_Close", "group___r_z_t___e_t_h_e_r___b.html#ga7fc7db44ead9c067cb406d36e8c4c151", null ],
-    [ "R_GMAC_B_Read", "group___r_z_t___e_t_h_e_r___b.html#gae556be0fda194cc5a655255bef0099e1", null ],
     [ "R_GMAC_B_BufferRelease", "group___r_z_t___e_t_h_e_r___b.html#gaddfa1606b7de73913e1b9d3906f22c1b", null ],
     [ "R_GMAC_B_RxBufferUpdate", "group___r_z_t___e_t_h_e_r___b.html#gad57bbc0d7294af552c012d052936b51e", null ],
-    [ "R_GMAC_B_Write", "group___r_z_t___e_t_h_e_r___b.html#ga711c996f065576deb09ee3d3fef19c3b", null ],
     [ "R_GMAC_B_LinkProcess", "group___r_z_t___e_t_h_e_r___b.html#ga5770c7b79311c34412bfe2a4806f49fa", null ],
     [ "R_GMAC_B_GetLinkStatus", "group___r_z_t___e_t_h_e_r___b.html#ga52f74b8c5f306c23ff5d1cd10d39192e", null ],
     [ "R_GMAC_B_WakeOnLANEnable", "group___r_z_t___e_t_h_e_r___b.html#ga1b6ca58ddd8a3531f805a56cd33e6d75", null ],
+    [ "R_GMAC_B_Read", "group___r_z_t___e_t_h_e_r___b.html#gae556be0fda194cc5a655255bef0099e1", null ],
+    [ "R_GMAC_B_Write", "group___r_z_t___e_t_h_e_r___b.html#ga711c996f065576deb09ee3d3fef19c3b", null ],
     [ "R_GMAC_B_TxStatusGet", "group___r_z_t___e_t_h_e_r___b.html#ga660f246798cbda84be7d454a96f391e3", null ],
     [ "R_GMAC_B_CallbackSet", "group___r_z_t___e_t_h_e_r___b.html#ga9eb472ed5ea9a8357d11f9736b30ab02", null ]
 ];

@@ -14,7 +14,8 @@ var group___r_z_v___x_s_p_i___q_s_p_i =
       [ "prefetch_en", "group___r_z_v___x_s_p_i___q_s_p_i.html#a51cf2c4c92844f4962e2fed771e2016f", null ],
       [ "pre_init", "group___r_z_v___x_s_p_i___q_s_p_i.html#aee9124555c49e97506bbdad7017b07da", null ],
       [ "post_init", "group___r_z_v___x_s_p_i___q_s_p_i.html#a1868f172d578c335005883eaf936a9c0", null ],
-      [ "stop_on_close", "group___r_z_v___x_s_p_i___q_s_p_i.html#ab4275cd8cb04d35910d96d841a0fc868", null ]
+      [ "stop_on_close", "group___r_z_v___x_s_p_i___q_s_p_i.html#ab4275cd8cb04d35910d96d841a0fc868", null ],
+      [ "p_reg", "group___r_z_v___x_s_p_i___q_s_p_i.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "xspi_qspi_timing_setting_t", "group___r_z_v___x_s_p_i___q_s_p_i.html#ga5510fac1d9460730de50fd96fc58c54b", null ],
     [ "xspi_qspi_instance_ctrl_t", "group___r_z_v___x_s_p_i___q_s_p_i.html#ga1ac7d7b7191144da73504a3247283371", null ],

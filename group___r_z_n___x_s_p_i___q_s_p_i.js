@@ -20,7 +20,8 @@ var group___r_z_n___x_s_p_i___q_s_p_i =
       [ "p_timing_settings", "group___r_z_n___x_s_p_i___q_s_p_i.html#a2cc0c9dd0dd908322adf0ba0130296d1", null ],
       [ "prefetch_en", "group___r_z_n___x_s_p_i___q_s_p_i.html#a51cf2c4c92844f4962e2fed771e2016f", null ],
       [ "io_voltage", "group___r_z_n___x_s_p_i___q_s_p_i.html#a76a6205306bafd351c3f0f60855fc56c", null ],
-      [ "p_address_space", "group___r_z_n___x_s_p_i___q_s_p_i.html#ad6d609a94caf08b7c4e149f4e172721c", null ]
+      [ "p_address_space", "group___r_z_n___x_s_p_i___q_s_p_i.html#ad6d609a94caf08b7c4e149f4e172721c", null ],
+      [ "p_reg", "group___r_z_n___x_s_p_i___q_s_p_i.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_xspi_qspi_instance_ctrl", "group___r_z_n___x_s_p_i___q_s_p_i.html#struct_r_z_n_1_1st__xspi__qspi__instance__ctrl", null ],
     [ "xspi_qspi_timing_setting_t", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga5510fac1d9460730de50fd96fc58c54b", null ],
@@ -75,16 +76,16 @@ var group___r_z_n___x_s_p_i___q_s_p_i =
       [ "XSPI_QSPI_IO_VOLTAGE_3_3V", "group___r_z_n___x_s_p_i___q_s_p_i.html#gga34a821834b382e17bb2910206cbc3632afc8189c0c56d008ce278bc36c75c8026", null ]
     ] ],
     [ "R_XSPI_QSPI_Open", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga6e1ddbaec6b1d04c6425b3a271d9093a", null ],
-    [ "R_XSPI_QSPI_Close", "group___r_z_n___x_s_p_i___q_s_p_i.html#gaad19b3c8e517b9e614ee8697f8cef4e7", null ],
     [ "R_XSPI_QSPI_DirectWrite", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga1bfceb0eafe5923f05b90899c095bd2d", null ],
     [ "R_XSPI_QSPI_DirectRead", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga2f5bbf5d76d76c31840f4ce82d3393d2", null ],
-    [ "R_XSPI_QSPI_SpiProtocolSet", "group___r_z_n___x_s_p_i___q_s_p_i.html#gac03a7edb53183d589372bd8be1ecf870", null ],
+    [ "R_XSPI_QSPI_DirectTransfer", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga5e5bf2c3854fb149c7ac6f96fce9ee98", null ],
     [ "R_XSPI_QSPI_XipEnter", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga373731d45a2fdd625ee69b602ebc4d86", null ],
     [ "R_XSPI_QSPI_XipExit", "group___r_z_n___x_s_p_i___q_s_p_i.html#gaedf789bc1d1335f9b2356eaaaa58694e", null ],
     [ "R_XSPI_QSPI_Write", "group___r_z_n___x_s_p_i___q_s_p_i.html#gaf2619573525414afefc46ebc2fd53bec", null ],
     [ "R_XSPI_QSPI_Erase", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga35a0c5d80a5ae30d48b46b37153f7e76", null ],
     [ "R_XSPI_QSPI_StatusGet", "group___r_z_n___x_s_p_i___q_s_p_i.html#gaad73cce9b2ac857fbd0423223ae3388e", null ],
     [ "R_XSPI_QSPI_BankSet", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga384be6c60819abe2478a7b35c9a7a98e", null ],
-    [ "R_XSPI_QSPI_DirectTransfer", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga5e5bf2c3854fb149c7ac6f96fce9ee98", null ],
-    [ "R_XSPI_QSPI_AutoCalibrate", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga6fceaa55b924ce5ecf7a00a962b5d529", null ]
+    [ "R_XSPI_QSPI_SpiProtocolSet", "group___r_z_n___x_s_p_i___q_s_p_i.html#gac03a7edb53183d589372bd8be1ecf870", null ],
+    [ "R_XSPI_QSPI_AutoCalibrate", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga6fceaa55b924ce5ecf7a00a962b5d529", null ],
+    [ "R_XSPI_QSPI_Close", "group___r_z_n___x_s_p_i___q_s_p_i.html#gaad19b3c8e517b9e614ee8697f8cef4e7", null ]
 ];

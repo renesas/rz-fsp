@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
-<title>RZ Flexible Software Package Documentation: Delta-Sigma Interface (r_dsmif)</title>
+<title>RZ Flexible Software Package Documentation: Delta-Sigma Modulator Interface (r_dsmif)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('group___r_z_n___d_s_m_i_f.html','');})
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
-<div class="title">Delta-Sigma Interface (r_dsmif)<div class="ingroups"><a class="el" href="group___r_z_n.html">RZN</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___a_n_a_l_o_g___m_o_d_u_l_e_s.html">Analog</a></div></div>  </div>
+<div class="title">Delta-Sigma Modulator Interface (r_dsmif)<div class="ingroups"><a class="el" href="group___r_z_n.html">RZN</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___a_n_a_l_o_g___m_o_d_u_l_e_s.html">Analog</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -236,16 +236,16 @@ Disabled</li>
 </ul>
 </td><td>Default (BSP) </td><td>If selected code for parameter checking is included in the build. </td></tr>
 <tr>
-<td>Multiplex Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Nested Interrupt (Multiplex Interrupt)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable multiplex interrupt for a single driver. </td></tr>
+</td><td>Disabled </td><td>Enable nested interrupt for a single driver. </td></tr>
 </table>
- <h2>Configurations for Analog &gt; ADC Driver (r_dsmif)</h2>
-This module can be added to the Stacks tab via New Stack &gt; Analog &gt; ADC Driver (r_dsmif).<br />
+ <h2>Configurations for Analog &gt; DSMIF (r_dsmif)</h2>
+This module can be added to the Stacks tab via New Stack &gt; Analog &gt; DSMIF (r_dsmif).<br />
 </p><table class="doxtable">
 <tr>
 <th>Configuration</th><th>Options</th><th>Default</th><th>Description </th></tr>
@@ -643,7 +643,7 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>Overcurrent detection window notification 3 function enable. </td></tr>
 <tr>
-<td>Extra &gt; Overcurrent &gt; Window Notification &gt; Notification 3 &gt; Mode</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td>Notification 0 </td><td>Channel n overcurrent detection window notification 3 mode select. </td></tr>
+<td>Extra &gt; Overcurrent &gt; Window Notification &gt; Notification 3 &gt; Mode</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td>Notification 0 </td><td>Channel n overcurrent detection window notification 3 mode select. </td></tr>
 <tr>
 <td>Extra &gt; Short Circuit &gt; Interrupts &gt; Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -739,6 +739,8 @@ Examples</h1>
 <div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> dsmif_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_n___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___d_s_m_i_f.html#ga74d4453017c0f52214f7624872dbb9b4">R_DSMIF_Open</a>(&amp;g_dsmif0_ctrl, &amp;g_dsmif0_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line"></div><div class="line">    dsmif_status_t status;</div><div class="line">    status.state = DSMIF_STATE_IN_OPERATION;</div><div class="line">    <span class="keywordflow">while</span> (DSMIF_STATE_IN_OPERATION == status.state)</div><div class="line">    {</div><div class="line">        <a class="code" href="group___r_z_n___d_s_m_i_f.html#ga6129f999b52c99e8d6a57835b6332fbc">R_DSMIF_StatusGet</a>(&amp;g_dsmif0_ctrl, &amp;status);</div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Calculate the stable output time of the filter result. */</span></div><div class="line">    set_time_unit0 = r_dsmif_setting_time_calc(&amp;g_dsmif0_ctrl);</div><div class="line"></div><div class="line">    <span class="comment">/* In software trigger mode, start a scan by calling R_DSMIF_ScanStart(). In other modes, enable external</span></div><div class="line"><span class="comment">     * triggers by calling R_DSMIF_ScanStart(). */</span></div><div class="line">    (void) <a class="code" href="group___r_z_n___d_s_m_i_f.html#ga1103d4ad1679f689179bafdda2aada04">R_DSMIF_ScanStart</a>(&amp;g_dsmif0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Wait for the time from the start of the channel to the stable output of the filter result. */</span></div><div class="line">    <a class="code" href="group___r_z_n___b_s_p___m_c_u.html#gaf870796c844b9011e3bcf947c2c0da50">R_BSP_SoftwareDelay</a>(set_time_unit0, <a class="code" href="group___r_z_n___b_s_p___m_c_u.html#ggafd98e2a6f080d6a52a3ef72e3d731b2baa0312618f2508347a9a815b5887c12ae">BSP_DELAY_UNITS_MICROSECONDS</a>);</div><div class="line"></div><div class="line">    <a class="code" href="group___r_z_n___d_s_m_i_f.html#ga770d2b01f8a236171bc47c76cba8739f">R_DSMIF_CfgSet</a>(&amp;g_dsmif0_ctrl, &amp;g_dsmif0_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Wait for conversion to complete. */</span></div><div class="line">    status.state = DSMIF_STATE_IN_OPERATION;</div><div class="line">    <span class="keywordflow">while</span> (DSMIF_STATE_IN_OPERATION == status.state)</div><div class="line">    {</div><div class="line">        <a class="code" href="group___r_z_n___d_s_m_i_f.html#ga6129f999b52c99e8d6a57835b6332fbc">R_DSMIF_StatusGet</a>(&amp;g_dsmif0_ctrl, &amp;status);</div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Read converted data. */</span></div><div class="line">    uint32_t      data32;</div><div class="line">    <a class="code" href="group___r_z_n___a_d_c___a_p_i.html#gaafc4060027875f8fe46242b0656d7814">adc_channel_t</a> dsmif_ch = <a class="code" href="group___r_z_n___a_d_c___a_p_i.html#gaafc4060027875f8fe46242b0656d7814acb0aee94f2dc529c0e725ecf28afe777">ADC_CHANNEL_0</a>;</div><div class="line">    <a class="code" href="group___r_z_n___d_s_m_i_f.html#ga4ed64820dfdcecfd65e2571b2888f210">R_DSMIF_Read</a>(&amp;g_dsmif0_ctrl, dsmif_ch, &amp;data32);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:struct_r_z_n_1_1st__dsmif__channel__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___d_s_m_i_f.html#struct_r_z_n_1_1st__dsmif__channel__cfg">st_dsmif_channel_cfg</a></td></tr>
+<tr class="separator:struct_r_z_n_1_1st__dsmif__channel__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_n_1_1st__dsmif__extended__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___d_s_m_i_f.html#struct_r_z_n_1_1st__dsmif__extended__cfg">st_dsmif_extended_cfg</a></td></tr>
 <tr class="separator:struct_r_z_n_1_1st__dsmif__extended__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_n_1_1st__dsmif__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___d_s_m_i_f.html#struct_r_z_n_1_1st__dsmif__instance__ctrl">st_dsmif_instance_ctrl</a></td></tr>
@@ -748,6 +750,8 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:ga4d5bd1464f65068f985887ec9c71ae54"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_n___d_s_m_i_f.html#struct_r_z_n_1_1st__dsmif__channel__cfg">st_dsmif_channel_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___d_s_m_i_f.html#ga4d5bd1464f65068f985887ec9c71ae54">dsmif_channel_cfg_t</a></td></tr>
+<tr class="separator:ga4d5bd1464f65068f985887ec9c71ae54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga821bf2872b47f74c94e709c0095e3238"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_n___d_s_m_i_f.html#struct_r_z_n_1_1st__dsmif__extended__cfg">st_dsmif_extended_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___d_s_m_i_f.html#ga821bf2872b47f74c94e709c0095e3238">dsmif_extended_cfg_t</a></td></tr>
 <tr class="separator:ga821bf2872b47f74c94e709c0095e3238"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga022b60b73ebc4aa8acb20881850a3c49"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_n___d_s_m_i_f.html#struct_r_z_n_1_1st__dsmif__instance__ctrl">st_dsmif_instance_ctrl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___d_s_m_i_f.html#ga022b60b73ebc4aa8acb20881850a3c49">dsmif_instance_ctrl_t</a></td></tr>
@@ -763,6 +767,8 @@ Enumerations</h2></td></tr>
 <tr class="separator:ga83c643662052c66fb1b8cb6d77646bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad2aff173b01c7b1f26fa329bc95f2684"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___d_s_m_i_f.html#gad2aff173b01c7b1f26fa329bc95f2684">dsmif_clock_edge_t</a> </td></tr>
 <tr class="separator:gad2aff173b01c7b1f26fa329bc95f2684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a3ab9c28912b26c690234238279a537"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___d_s_m_i_f.html#ga5a3ab9c28912b26c690234238279a537">dsmif_master_clock_t</a> </td></tr>
+<tr class="separator:ga5a3ab9c28912b26c690234238279a537"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf4ba6e2cd34edf3e6623d313c381628a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___d_s_m_i_f.html#gaf4ba6e2cd34edf3e6623d313c381628a">dsmif_filter_order_t</a> </td></tr>
 <tr class="separator:gaf4ba6e2cd34edf3e6623d313c381628a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2d483fc22c3c6b91de847dc78afcfd19"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___d_s_m_i_f.html#ga2d483fc22c3c6b91de847dc78afcfd19">dsmif_data_shift_t</a> </td></tr>
@@ -783,6 +789,144 @@ Enumerations</h2></td></tr>
 <tr class="separator:ga8308422b91fbd62d0c348c194db083ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="struct_r_z_n_1_1st__dsmif__channel__cfg" id="struct_r_z_n_1_1st__dsmif__channel__cfg"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_n_1_1st__dsmif__channel__cfg">&#9670;&nbsp;</a></span>RZN::st_dsmif_channel_cfg</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct RZN::st_dsmif_channel_cfg</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>DSMIF channel configuration </p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a id="aaaa9b8cf028eb73a2d3c22faf947c88c"></a>bool</td>
+<td class="fieldname">
+ioel</td>
+<td class="fielddoc">
+Overcurrent lower limit detection interrupt enable. </td></tr>
+<tr><td class="fieldtype">
+<a id="ad5c08db11ee1ca9a2fd7334c3c6a5584"></a>bool</td>
+<td class="fieldname">
+ioeh</td>
+<td class="fielddoc">
+Overcurrent upper limit exceeded output interrupt enable. </td></tr>
+<tr><td class="fieldtype">
+<a id="a03ff88be587ad13c100900e9dbfe739b"></a>bool</td>
+<td class="fieldname">
+ise</td>
+<td class="fielddoc">
+Short circuit detection error interrupt enable bit. </td></tr>
+<tr><td class="fieldtype">
+<a id="aedc1b2a7bab5bbf9d102fa27bc69392f"></a>bool</td>
+<td class="fieldname">
+iue</td>
+<td class="fielddoc">
+Current data register update interrupt enable. </td></tr>
+<tr><td class="fieldtype">
+<a id="a42b6bb879fb87eba9ed531207df48f43"></a><a class="el" href="group___r_z_n___d_s_m_i_f.html#ga83c643662052c66fb1b8cb6d77646bb0">dsmif_clock_ctrl_t</a></td>
+<td class="fieldname">
+ckdir</td>
+<td class="fielddoc">
+A/D conversion clock master/slave switching. </td></tr>
+<tr><td class="fieldtype">
+<a id="a688032c91a89dd90e3ee0beb559f4643"></a><a class="el" href="group___r_z_n___d_s_m_i_f.html#gad2aff173b01c7b1f26fa329bc95f2684">dsmif_clock_edge_t</a></td>
+<td class="fieldname">
+sedge</td>
+<td class="fielddoc">
+Sampling edge selection. </td></tr>
+<tr><td class="fieldtype">
+<a id="a9ec8f2ce6fd19c0d5054a67fae65259a"></a><a class="el" href="group___r_z_n___d_s_m_i_f.html#ga5a3ab9c28912b26c690234238279a537">dsmif_master_clock_t</a></td>
+<td class="fieldname">
+ckdiv</td>
+<td class="fielddoc">
+A/D conversion clock division ratio. </td></tr>
+<tr><td class="fieldtype">
+<a id="a01777550b82b31d8166727c3a363774a"></a><a class="el" href="group___r_z_n___d_s_m_i_f.html#gaf4ba6e2cd34edf3e6623d313c381628a">dsmif_filter_order_t</a></td>
+<td class="fieldname">
+cmsinc</td>
+<td class="fielddoc">
+Current measurement filter order setting. </td></tr>
+<tr><td class="fieldtype">
+<a id="ab4805e93291dd85a2fc266c66b15188d"></a>uint32_t</td>
+<td class="fieldname">
+cmdec</td>
+<td class="fielddoc">
+Decimation ratio selection for current measurement. </td></tr>
+<tr><td class="fieldtype">
+<a id="a59241fa8a932fe760f69a03dff771d40"></a><a class="el" href="group___r_z_n___d_s_m_i_f.html#ga2d483fc22c3c6b91de847dc78afcfd19">dsmif_data_shift_t</a></td>
+<td class="fieldname">
+cmsh</td>
+<td class="fielddoc">
+Data shift setting for current measurement. </td></tr>
+<tr><td class="fieldtype">
+<a id="a62d5399c217d42aa225b1a70edc50c6c"></a>bool</td>
+<td class="fieldname">
+sde</td>
+<td class="fielddoc">
+Short circuit detection enable bit. </td></tr>
+<tr><td class="fieldtype">
+<a id="a585992a2865da6d890f1ac005ab7c89e"></a><a class="el" href="group___r_z_n___d_s_m_i_f.html#gaf4ba6e2cd34edf3e6623d313c381628a">dsmif_filter_order_t</a></td>
+<td class="fieldname">
+ocsinc</td>
+<td class="fielddoc">
+Overcurrent detection filter order setting. </td></tr>
+<tr><td class="fieldtype">
+<a id="acf4c1bfdb8cdc944b2021b14a7e926d2"></a>uint32_t</td>
+<td class="fieldname">
+ocdec</td>
+<td class="fielddoc">
+Decimation ratio selection for overcurrent detection. </td></tr>
+<tr><td class="fieldtype">
+<a id="aa5235543018fc276995ddee2d0f0ace2"></a><a class="el" href="group___r_z_n___d_s_m_i_f.html#ga2d483fc22c3c6b91de847dc78afcfd19">dsmif_data_shift_t</a></td>
+<td class="fieldname">
+ocsh</td>
+<td class="fielddoc">
+Data shift setting for overcurrent detection. </td></tr>
+<tr><td class="fieldtype">
+<a id="aecdab548447e39960b17c0410c67a38b"></a>uint32_t</td>
+<td class="fieldname">
+ocmptbl</td>
+<td class="fielddoc">
+Overcurrent detection lower limit. </td></tr>
+<tr><td class="fieldtype">
+<a id="a3a74a26e44b8bbcd77bce844db211166"></a>uint32_t</td>
+<td class="fieldname">
+ocmptbh</td>
+<td class="fielddoc">
+Overcurrent detection upper limit. </td></tr>
+<tr><td class="fieldtype">
+<a id="aaaa7aa6253dd69c0ddaf1075293bbd3d"></a>uint32_t</td>
+<td class="fieldname">
+scntl</td>
+<td class="fielddoc">
+Short circuit detection low continuous detection count. </td></tr>
+<tr><td class="fieldtype">
+<a id="ad6382ad4ffb1837440c7b25da2faf637"></a>uint32_t</td>
+<td class="fieldname">
+scnth</td>
+<td class="fielddoc">
+Short circuit detection high continuous detection count. </td></tr>
+<tr><td class="fieldtype">
+<a id="ae0b36d7441fb4aafaf52230c891b0591"></a>bool</td>
+<td class="fieldname">
+odel</td>
+<td class="fielddoc">
+Overcurrent lower limit detection enable bit. </td></tr>
+<tr><td class="fieldtype">
+<a id="af46fca4e71ba63953e0643a254c6c0c7"></a>bool</td>
+<td class="fieldname">
+odeh</td>
+<td class="fielddoc">
+Overcurrent upper limit exceeded detection enable bit. </td></tr>
+</table>
+
+</div>
+</div>
 <a name="struct_r_z_n_1_1st__dsmif__extended__cfg" id="struct_r_z_n_1_1st__dsmif__extended__cfg"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_n_1_1st__dsmif__extended__cfg">&#9670;&nbsp;</a></span>RZN::st_dsmif_extended_cfg</h2>
 
@@ -864,7 +1008,7 @@ edge</td>
 <td class="fielddoc">
 DSCMCTCRCHn.DEDGE[2:0] : Current measurement filter initialization trigger for division counter for decimation edge. </td></tr>
 <tr><td class="fieldtype">
-<a id="aaf3427acbfe6f6dfc95b21a9d7b8883a"></a>dsmif_channel_cfg_t *</td>
+<a id="aaf3427acbfe6f6dfc95b21a9d7b8883a"></a><a class="el" href="group___r_z_n___d_s_m_i_f.html#ga4d5bd1464f65068f985887ec9c71ae54">dsmif_channel_cfg_t</a> *</td>
 <td class="fieldname">
 p_channel_cfgs[DSMIF_MAX_NUM_CHANNELS]</td>
 <td class="fielddoc">
@@ -937,6 +1081,21 @@ Overcurrent Sum state. </td></tr>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
+<a id="ga4d5bd1464f65068f985887ec9c71ae54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4d5bd1464f65068f985887ec9c71ae54">&#9670;&nbsp;</a></span>dsmif_channel_cfg_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_n___d_s_m_i_f.html#struct_r_z_n_1_1st__dsmif__channel__cfg">st_dsmif_channel_cfg</a> <a class="el" href="group___r_z_n___d_s_m_i_f.html#ga4d5bd1464f65068f985887ec9c71ae54">dsmif_channel_cfg_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>DSMIF channel configuration. Please refer to the struct <a class="el" href="group___r_z_n___d_s_m_i_f.html#struct_r_z_n_1_1st__dsmif__channel__cfg">st_dsmif_channel_cfg</a>. </p>
+
+</div>
+</div>
 <a id="ga821bf2872b47f74c94e709c0095e3238"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga821bf2872b47f74c94e709c0095e3238">&#9670;&nbsp;</a></span>dsmif_extended_cfg_t</h2>
 
@@ -994,6 +1153,7 @@ Overcurrent Sum state. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Select the channel(s) for overcurrent sum error detection. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga0bf3fc84c2662c097b0145e5a91ffe3cab6200c0486be328efac4869e059cb1a1"></a>DSMIF_SUM_ERR_DETECT_CHANNEL_0_2&#160;</td><td class="fielddoc"><p>Detects error of sum value of overcurrent data of CH0, CH1, CH2. </p>
 </td></tr>
@@ -1020,6 +1180,7 @@ Overcurrent Sum state. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Select if the DSMIF Measurement Clock Control is an input or output. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga83c643662052c66fb1b8cb6d77646bb0a7fbf5f7ae5728df4d3b385b424fc7225"></a>DSMIF_CLOCK_CTRL_SLAVE&#160;</td><td class="fielddoc"><p>MCLKn pin is input (slave operation) </p>
 </td></tr>
@@ -1040,12 +1201,28 @@ Overcurrent Sum state. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Select the clock edge for sampling DSMIF data. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggad2aff173b01c7b1f26fa329bc95f2684a146df8aeb64b02dac1402e88d440cd40"></a>DSMIF_CLOCK_EDGE_NEGATIVE&#160;</td><td class="fielddoc"><p>Capture MDATn at the negative edge of MCLKn. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggad2aff173b01c7b1f26fa329bc95f2684a7716ddb133a052e23154780b595e764b"></a>DSMIF_CLOCK_EDGE_POSITIVE&#160;</td><td class="fielddoc"><p>Capture MDATn at the positive edge of MCLKn. </p>
 </td></tr>
 </table>
+
+</div>
+</div>
+<a id="ga5a3ab9c28912b26c690234238279a537"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5a3ab9c28912b26c690234238279a537">&#9670;&nbsp;</a></span>dsmif_master_clock_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_n___d_s_m_i_f.html#ga5a3ab9c28912b26c690234238279a537">dsmif_master_clock_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Select the DSMIF master clock. </p>
 
 </div>
 </div>
@@ -1060,6 +1237,7 @@ Overcurrent Sum state. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Select the DSMIF filter order. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaf4ba6e2cd34edf3e6623d313c381628aa09e42a6299cb69c97bd693fab40a5fa7"></a>DSMIF_FILTER_ORDER_3RD&#160;</td><td class="fielddoc"><p>Overcurrent detection filter order setting 3rd order. </p>
 </td></tr>
@@ -1082,6 +1260,7 @@ Overcurrent Sum state. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Select the [MSB,LSB] that are copied from the filter output into the data register. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga2d483fc22c3c6b91de847dc78afcfd19a72ada7f1017cd206f1a328e8e7cfd1f9"></a>DSMIF_DATA_SHIFT_23_8&#160;</td><td class="fielddoc"><p>Data shift setting for overcurrent detection [23:8]. </p>
 </td></tr>
@@ -1138,6 +1317,7 @@ Overcurrent Sum state. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Select the current data capture trigger. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga619eba897ca0f8f822e4a17883f36875a4ba044abe4c349f02dbc22ce6db2f447"></a>DSMIF_CAPTURE_TRIGGER_NOT&#160;</td><td class="fielddoc"><p>Do not capture. </p>
 </td></tr>
@@ -1168,6 +1348,7 @@ Overcurrent Sum state. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Select the counter initialization trigger. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga21eb5b67cf22ec392a5a1110d11e238cace21a2f5b1b1d870cf7fcb82103232d0"></a>DSMIF_COUNTER_INIT_TRIGGER_NOT&#160;</td><td class="fielddoc"><p>Do not initialize. </p>
 </td></tr>
@@ -1642,7 +1823,7 @@ Overcurrent Sum state. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

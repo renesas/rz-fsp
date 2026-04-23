@@ -13,7 +13,8 @@ var group___r_z_v___r_s_p_i =
       [ "next_access_delay", "group___r_z_v___r_s_p_i.html#ab9374a9d6b0a8fe1efdc64539f8f28d8", null ],
       [ "ssl_level_keep", "group___r_z_v___r_s_p_i.html#ae4bc6ef5ac23574898c9c7a0451c47e8", null ],
       [ "rx_trigger_level", "group___r_z_v___r_s_p_i.html#a6a00086ecc170b4aa5ec515ec3da5aea", null ],
-      [ "tx_trigger_level", "group___r_z_v___r_s_p_i.html#ab49f45816914f7b3c8c950db023fcd15", null ]
+      [ "tx_trigger_level", "group___r_z_v___r_s_p_i.html#ab49f45816914f7b3c8c950db023fcd15", null ],
+      [ "p_reg", "group___r_z_v___r_s_p_i.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_rspi_instance_ctrl", "group___r_z_v___r_s_p_i.html#struct_r_z_v_1_1st__rspi__instance__ctrl", [
       [ "open", "group___r_z_v___r_s_p_i.html#a46c9af2fb0c51a3bc152b006beefc554", null ],

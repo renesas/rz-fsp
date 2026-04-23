@@ -1,5 +1,27 @@
 var group___r_z_n___d_s_m_i_f =
 [
+    [ "st_dsmif_channel_cfg", "group___r_z_n___d_s_m_i_f.html#struct_r_z_n_1_1st__dsmif__channel__cfg", [
+      [ "ioel", "group___r_z_n___d_s_m_i_f.html#aaaa9b8cf028eb73a2d3c22faf947c88c", null ],
+      [ "ioeh", "group___r_z_n___d_s_m_i_f.html#ad5c08db11ee1ca9a2fd7334c3c6a5584", null ],
+      [ "ise", "group___r_z_n___d_s_m_i_f.html#a03ff88be587ad13c100900e9dbfe739b", null ],
+      [ "iue", "group___r_z_n___d_s_m_i_f.html#aedc1b2a7bab5bbf9d102fa27bc69392f", null ],
+      [ "ckdir", "group___r_z_n___d_s_m_i_f.html#a42b6bb879fb87eba9ed531207df48f43", null ],
+      [ "sedge", "group___r_z_n___d_s_m_i_f.html#a688032c91a89dd90e3ee0beb559f4643", null ],
+      [ "ckdiv", "group___r_z_n___d_s_m_i_f.html#a9ec8f2ce6fd19c0d5054a67fae65259a", null ],
+      [ "cmsinc", "group___r_z_n___d_s_m_i_f.html#a01777550b82b31d8166727c3a363774a", null ],
+      [ "cmdec", "group___r_z_n___d_s_m_i_f.html#ab4805e93291dd85a2fc266c66b15188d", null ],
+      [ "cmsh", "group___r_z_n___d_s_m_i_f.html#a59241fa8a932fe760f69a03dff771d40", null ],
+      [ "sde", "group___r_z_n___d_s_m_i_f.html#a62d5399c217d42aa225b1a70edc50c6c", null ],
+      [ "ocsinc", "group___r_z_n___d_s_m_i_f.html#a585992a2865da6d890f1ac005ab7c89e", null ],
+      [ "ocdec", "group___r_z_n___d_s_m_i_f.html#acf4c1bfdb8cdc944b2021b14a7e926d2", null ],
+      [ "ocsh", "group___r_z_n___d_s_m_i_f.html#aa5235543018fc276995ddee2d0f0ace2", null ],
+      [ "ocmptbl", "group___r_z_n___d_s_m_i_f.html#aecdab548447e39960b17c0410c67a38b", null ],
+      [ "ocmptbh", "group___r_z_n___d_s_m_i_f.html#a3a74a26e44b8bbcd77bce844db211166", null ],
+      [ "scntl", "group___r_z_n___d_s_m_i_f.html#aaaa7aa6253dd69c0ddaf1075293bbd3d", null ],
+      [ "scnth", "group___r_z_n___d_s_m_i_f.html#ad6382ad4ffb1837440c7b25da2faf637", null ],
+      [ "odel", "group___r_z_n___d_s_m_i_f.html#ae0b36d7441fb4aafaf52230c891b0591", null ],
+      [ "odeh", "group___r_z_n___d_s_m_i_f.html#af46fca4e71ba63953e0643a254c6c0c7", null ]
+    ] ],
     [ "st_dsmif_extended_cfg", "group___r_z_n___d_s_m_i_f.html#struct_r_z_n_1_1st__dsmif__extended__cfg", [
       [ "isel", "group___r_z_n___d_s_m_i_f.html#a7fc555c81c733e571720aeff1f2129f5", null ],
       [ "iseh", "group___r_z_n___d_s_m_i_f.html#a17000f314e8fcb1d38e4926b9bfadc3e", null ],
@@ -22,6 +44,7 @@ var group___r_z_n___d_s_m_i_f =
       [ "channel_short_circuit_status", "group___r_z_n___d_s_m_i_f.html#a937dd9c41b201a725385a6d175d74ea0", null ],
       [ "overcurrent_sum_status", "group___r_z_n___d_s_m_i_f.html#a33353accc0886321ea8f880893718ee5", null ]
     ] ],
+    [ "dsmif_channel_cfg_t", "group___r_z_n___d_s_m_i_f.html#ga4d5bd1464f65068f985887ec9c71ae54", null ],
     [ "dsmif_extended_cfg_t", "group___r_z_n___d_s_m_i_f.html#ga821bf2872b47f74c94e709c0095e3238", null ],
     [ "dsmif_instance_ctrl_t", "group___r_z_n___d_s_m_i_f.html#ga022b60b73ebc4aa8acb20881850a3c49", null ],
     [ "dsmif_error_status_t", "group___r_z_n___d_s_m_i_f.html#ga205df973279d388f415480258cb5a340", null ],
@@ -40,6 +63,7 @@ var group___r_z_n___d_s_m_i_f =
       [ "DSMIF_CLOCK_EDGE_NEGATIVE", "group___r_z_n___d_s_m_i_f.html#ggad2aff173b01c7b1f26fa329bc95f2684a146df8aeb64b02dac1402e88d440cd40", null ],
       [ "DSMIF_CLOCK_EDGE_POSITIVE", "group___r_z_n___d_s_m_i_f.html#ggad2aff173b01c7b1f26fa329bc95f2684a7716ddb133a052e23154780b595e764b", null ]
     ] ],
+    [ "dsmif_master_clock_t", "group___r_z_n___d_s_m_i_f.html#ga5a3ab9c28912b26c690234238279a537", null ],
     [ "dsmif_filter_order_t", "group___r_z_n___d_s_m_i_f.html#gaf4ba6e2cd34edf3e6623d313c381628a", [
       [ "DSMIF_FILTER_ORDER_3RD", "group___r_z_n___d_s_m_i_f.html#ggaf4ba6e2cd34edf3e6623d313c381628aa09e42a6299cb69c97bd693fab40a5fa7", null ],
       [ "DSMIF_FILTER_ORDER_1ST", "group___r_z_n___d_s_m_i_f.html#ggaf4ba6e2cd34edf3e6623d313c381628aad259c890b8887d2f816ba82e3973df26", null ],

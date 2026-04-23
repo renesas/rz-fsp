@@ -16,6 +16,7 @@ var group___r_z_a___d_m_a_c =
     ] ],
     [ "st_dmac_instance_ctrl", "group___r_z_a___d_m_a_c.html#struct_r_z_a_1_1st__dmac__instance__ctrl", null ],
     [ "st_dmac_extended_cfg", "group___r_z_a___d_m_a_c.html#struct_r_z_a_1_1st__dmac__extended__cfg", [
+      [ "unit", "group___r_z_a___d_m_a_c.html#a09d6c95f1069687d2d2dd559bda5a3a3", null ],
       [ "channel", "group___r_z_a___d_m_a_c.html#a715f5cb061d11eb75981741eda4dafcd", null ],
       [ "dmac_int_irq", "group___r_z_a___d_m_a_c.html#a55ccfad392f17f06a355440872e9c23f", null ],
       [ "dmac_int_ipl", "group___r_z_a___d_m_a_c.html#aa98c4adae231e6f5390e745ef66e05ee", null ],
@@ -23,6 +24,11 @@ var group___r_z_a___d_m_a_c =
       [ "activation_source", "group___r_z_a___d_m_a_c.html#a1c65da4cf6f71106838eb40113d7c8f8", null ],
       [ "activation_irq_number", "group___r_z_a___d_m_a_c.html#a0cfedfc85d7bd5d71e915a757950e7f4", null ],
       [ "ack_mode", "group___r_z_a___d_m_a_c.html#af9f5944b946c2060bdf57ac4e960faf1", null ],
+      [ "dreq_input_pin", "group___r_z_a___d_m_a_c.html#a18d5bfdddf2298a6174470d06d7c1b1a", null ],
+      [ "ack_output_pin", "group___r_z_a___d_m_a_c.html#ab0bca97c88fff4eb0602bd6e0c4f07fa", null ],
+      [ "tend_output_pin", "group___r_z_a___d_m_a_c.html#a3d213a24ca9e6bbb97359612ed60b4a8", null ],
+      [ "ack_output_signal_active_level", "group___r_z_a___d_m_a_c.html#a8ce870d5c6dbb149e48bad6a1a491020", null ],
+      [ "tend_output_signal_active_level", "group___r_z_a___d_m_a_c.html#a5004b6458b100b78364cc661fef006be", null ],
       [ "detection_mode", "group___r_z_a___d_m_a_c.html#a7002c0230f1f1b861f4a2ddf7d76b114", null ],
       [ "activation_request_source_select", "group___r_z_a___d_m_a_c.html#a226943bf6a7260812d52841f76a6902f", null ],
       [ "dmac_mode", "group___r_z_a___d_m_a_c.html#ae0128621dfd127cdff12d520ff7d2077", null ],
@@ -31,7 +37,8 @@ var group___r_z_a___d_m_a_c =
       [ "transfer_interval", "group___r_z_a___d_m_a_c.html#ab3b46dbf93bd4fb06a0eb9899301d446", null ],
       [ "channel_scheduling", "group___r_z_a___d_m_a_c.html#a03fe2ec334903343237f78a07e4ced9f", null ],
       [ "p_callback", "group___r_z_a___d_m_a_c.html#aec7adadb480e53f8f0357c7d00dcc303", null ],
-      [ "p_context", "group___r_z_a___d_m_a_c.html#aa207a6ef4d9f49f00f01a37810ac301d", null ]
+      [ "p_context", "group___r_z_a___d_m_a_c.html#aa207a6ef4d9f49f00f01a37810ac301d", null ],
+      [ "p_reg", "group___r_z_a___d_m_a_c.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_dmac_extended_info", "group___r_z_a___d_m_a_c.html#struct_r_z_a_1_1st__dmac__extended__info", [
       [ "src_size", "group___r_z_a___d_m_a_c.html#a2506ae244d0169148f42b3d11815a7c9", null ],
@@ -63,6 +70,10 @@ var group___r_z_a___d_m_a_c =
       [ "DMAC_ACK_MODE_LEVEL_MODE", "group___r_z_a___d_m_a_c.html#gga2fb65e50e49c0ffc2943c8c5085c0c0faaa27e4cc5082830bb252a783af5fb46c", null ],
       [ "DMAC_ACK_MODE_BUS_CYCLE_MODE", "group___r_z_a___d_m_a_c.html#gga2fb65e50e49c0ffc2943c8c5085c0c0fa34c30d7a79f908ad460ff1f5fadddb50", null ],
       [ "DMAC_ACK_MODE_MASK_DACK_OUTPUT", "group___r_z_a___d_m_a_c.html#gga2fb65e50e49c0ffc2943c8c5085c0c0fa98337a8182cf1c03269909aca9113fb0", null ]
+    ] ],
+    [ "dmac_external_output_signal_active_level_t", "group___r_z_a___d_m_a_c.html#gada6bb48a32a3f738999cd142ccbe9958", [
+      [ "DMAC_EXTERNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_NO_OUTPUT", "group___r_z_a___d_m_a_c.html#gada6bb48a32a3f738999cd142ccbe9958a8c6b3d8b39f0aaa8f47899b143cf4c41", null ],
+      [ "DMAC_EXTERNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_NO_OUTPUT", "group___r_z_a___d_m_a_c.html#gada6bb48a32a3f738999cd142ccbe9958a8c6b3d8b39f0aaa8f47899b143cf4c41", null ]
     ] ],
     [ "dmac_detection_t", "group___r_z_a___d_m_a_c.html#ga3527028a6bd65a3b22f4a14be6b9829e", [
       [ "DMAC_DETECTION_FALLING_EDGE", "group___r_z_a___d_m_a_c.html#gga3527028a6bd65a3b22f4a14be6b9829ea1f49e45fb93bbc8ce56a75de3a11affb", null ],

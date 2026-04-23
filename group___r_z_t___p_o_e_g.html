@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -191,7 +191,7 @@ Overview</h1>
 Features</h2>
 <p>The POEG module has the following features:</p><ul>
 <li>Supports disabling GPT output pins based on GTETRG input pin level.<a class="anchor" id="RZT_um_poeg_gtetrg_output_disable"></a></li>
-<li>Supports disabling GPT output pins when GTIOC pins are the same level (configurable in the <a class="el" href="group___r_z_t___g_p_t.html">General PWM Timer (r_gpt)</a> driver).<a class="anchor" id="RZT_um_poeg_gpt_output_level_disable"></a></li>
+<li>Supports disabling GPT output pins when GTIOC pins are the same level (configurable in the <a class="el" href="group___r_z_t___g_p_t.html">Timer, General PWM (r_gpt)</a> driver).<a class="anchor" id="RZT_um_poeg_gpt_output_level_disable"></a></li>
 <li>Supports disabling GPT output pins when main oscillator stop is detected.<a class="anchor" id="RZT_um_poeg_oscillation_stop_disable"></a></li>
 <li>Supports disabling GPT output pins by software API.<a class="anchor" id="RZT_um_poeg_software_disable"></a></li>
 <li>Supports notifying the application when GPT output pins are disabled by POEG.<a class="anchor" id="RZT_um_poeg_callback"></a></li>
@@ -215,13 +215,13 @@ Disabled</li>
 </ul>
 </td><td>Default (BSP) </td><td>If selected code for parameter checking is included in the build. </td></tr>
 <tr>
-<td>Multiplex Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Nested Interrupt (Multiplex Interrupt)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable multiplex interrupt for a single driver. </td></tr>
+</td><td>Disabled </td><td>Enable nested interrupt for a single driver. </td></tr>
 </table>
  <h2>Configurations for Timers &gt; Port Output Enable for GPT (r_poeg)</h2>
 This module can be added to the Stacks tab via New Stack &gt; Timers &gt; Port Output Enable for GPT (r_poeg).<br />
@@ -591,7 +591,7 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

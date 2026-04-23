@@ -45,10 +45,10 @@ var group___r_z_t___e_t_h_e_r___p_h_y =
     ] ],
     [ "R_ETHER_PHY_Open", "group___r_z_t___e_t_h_e_r___p_h_y.html#gac54aa95e5976561c6d810eb1c868048c", null ],
     [ "R_ETHER_PHY_Close", "group___r_z_t___e_t_h_e_r___p_h_y.html#ga6a4f3bdcd321faef43008379b2065c4b", null ],
-    [ "R_ETHER_PHY_ChipInit", "group___r_z_t___e_t_h_e_r___p_h_y.html#gad51162aba9bf2d8d2211923038dca099", null ],
-    [ "R_ETHER_PHY_Read", "group___r_z_t___e_t_h_e_r___p_h_y.html#gaf53fcc6bc22a4831299c2d54c9952c60", null ],
-    [ "R_ETHER_PHY_Write", "group___r_z_t___e_t_h_e_r___p_h_y.html#ga6d38d3dd481943e64e45a8d24431bb49", null ],
     [ "R_ETHER_PHY_StartAutoNegotiate", "group___r_z_t___e_t_h_e_r___p_h_y.html#gaca73174d76fd87100066407a8ff13147", null ],
     [ "R_ETHER_PHY_LinkPartnerAbilityGet", "group___r_z_t___e_t_h_e_r___p_h_y.html#ga02b4fcbbb5e863cb759b610a7dc992bd", null ],
-    [ "R_ETHER_PHY_LinkStatusGet", "group___r_z_t___e_t_h_e_r___p_h_y.html#ga13e3a39ef86ed3f62805963c55442e03", null ]
+    [ "R_ETHER_PHY_LinkStatusGet", "group___r_z_t___e_t_h_e_r___p_h_y.html#ga13e3a39ef86ed3f62805963c55442e03", null ],
+    [ "R_ETHER_PHY_ChipInit", "group___r_z_t___e_t_h_e_r___p_h_y.html#gad51162aba9bf2d8d2211923038dca099", null ],
+    [ "R_ETHER_PHY_Read", "group___r_z_t___e_t_h_e_r___p_h_y.html#gaf53fcc6bc22a4831299c2d54c9952c60", null ],
+    [ "R_ETHER_PHY_Write", "group___r_z_t___e_t_h_e_r___p_h_y.html#ga6d38d3dd481943e64e45a8d24431bb49", null ]
 ];

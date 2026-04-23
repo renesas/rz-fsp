@@ -1,6 +1,10 @@
 var group___r_z_n___u_s_b =
 [
+    [ "st_usb_extended_cfg", "group___r_z_n___u_s_b.html#struct_r_z_n_1_1st__usb__extended__cfg", [
+      [ "p_reg", "group___r_z_n___u_s_b.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
+    ] ],
     [ "usb_instance_ctrl_t", "group___r_z_n___u_s_b.html#gad5c104adfb44c721d9c664bf7fabddfb", null ],
+    [ "usb_extended_cfg_t", "group___r_z_n___u_s_b.html#gafcf8b41f9e7c447160050b19857d667b", null ],
     [ "R_USB_Open", "group___r_z_n___u_s_b.html#ga0c4cdd6c59f40b485ffcdde5115bd046", null ],
     [ "R_USB_Close", "group___r_z_n___u_s_b.html#ga4a71b22020d69289bdc6367dec3f1c04", null ],
     [ "R_USB_Read", "group___r_z_n___u_s_b.html#ga75c716d3914ea785be6ac2b4ddd1cd72", null ],

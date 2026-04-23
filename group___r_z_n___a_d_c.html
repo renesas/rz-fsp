@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -247,13 +247,13 @@ Disabled</li>
 </ul>
 </td><td>Default (BSP) </td><td>If selected code for parameter checking is included in the build. </td></tr>
 <tr>
-<td>Multiplex Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Nested Interrupt (Multiplex Interrupt)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable multiplex interrupt system-wide. </td></tr>
+</td><td>Disabled </td><td>Enable nested interrupt system-wide. </td></tr>
 </table>
  <h2>Configurations for Analog &gt; ADC (r_adc)</h2>
 This module can be added to the Stacks tab via New Stack &gt; Analog &gt; ADC (r_adc).<br />
@@ -311,9 +311,9 @@ Channel 2</li>
 <tr>
 <td>Input &gt; Window Compare &gt; Window A &gt; Enable</td><td>MCU Specific Options</td><td></td><td>Enable or disable comparison with Window A. </td></tr>
 <tr>
-<td>Input &gt; Window Compare &gt; Window A &gt; Channels to compare (channel availability varies by MPU and unit)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td></td><td>Select channels to be compared to Window A. </td></tr>
+<td>Input &gt; Window Compare &gt; Window A &gt; Channels to compare (channel availability varies by MPU and unit)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td></td><td>Select channels to be compared to Window A. </td></tr>
 <tr>
-<td>Input &gt; Window Compare &gt; Window A &gt; Channel comparison mode (channel availability varies by MPU and unit)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td></td><td>Checking a box sets the comparison mode for that channel to Greater Than or Inside Window depending on whether Window Mode is disabled or enabled (respectively). If left unchecked the comparison mode will likewise be Less Than or Outside Window (respectively). </td></tr>
+<td>Input &gt; Window Compare &gt; Window A &gt; Channel comparison mode (channel availability varies by MPU and unit)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td></td><td>Checking a box sets the comparison mode for that channel to Greater Than or Inside Window depending on whether Window Mode is disabled or enabled (respectively). If left unchecked the comparison mode will likewise be Less Than or Outside Window (respectively). </td></tr>
 <tr>
 <td>Input &gt; Window Compare &gt; Window A &gt; Lower Reference</td><td>Must be a positive 16-bit integer.</td><td>0 </td><td>Set the lower comparison value. </td></tr>
 <tr>
@@ -353,9 +353,9 @@ AND</li>
 </ul>
 </td><td>OR </td><td>Select how comparison results should be composited for event output. </td></tr>
 <tr>
-<td>Input &gt; Start Trigger &gt; Group A</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td>Disabled </td><td>A/D Conversion Start Trigger Select for Group A. </td></tr>
+<td>Input &gt; Start Trigger &gt; Group A</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td>Disabled </td><td>A/D Conversion Start Trigger Select for Group A. </td></tr>
 <tr>
-<td>Input &gt; Start Trigger &gt; Group B</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td>Disabled </td><td>A/D Conversion Start Trigger Select for Group B. </td></tr>
+<td>Input &gt; Start Trigger &gt; Group B</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td>Disabled </td><td>A/D Conversion Start Trigger Select for Group B. </td></tr>
 <tr>
 <td>Input &gt; Start Trigger &gt; Group C Enabled</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -365,11 +365,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>Set to true to enable Group C, false to disable Group C. </td></tr>
 <tr>
-<td>Input &gt; Start Trigger &gt; Group C</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td>Disabled </td><td>A/D Conversion Start Trigger Select for Group C. </td></tr>
+<td>Input &gt; Start Trigger &gt; Group C</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td>Disabled </td><td>A/D Conversion Start Trigger Select for Group C. </td></tr>
 <tr>
-<td>Input &gt; Channel Scan Mask (channel availability varies by MPU)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td></td><td>In Normal mode of operation, this bitmask field specifies the channels that are enabled in that ADC unit. In group mode, this field specifies which channels belong to group A. </td></tr>
+<td>Input &gt; Channel Scan Mask (channel availability varies by MPU)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td></td><td>In Normal mode of operation, this bitmask field specifies the channels that are enabled in that ADC unit. In group mode, this field specifies which channels belong to group A. </td></tr>
 <tr>
-<td>Input &gt; Group B Scan Mask (channel availability varies by MPU)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td></td><td>In group mode, this field specifies which channels belong to group B. </td></tr>
+<td>Input &gt; Group B Scan Mask (channel availability varies by MPU)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td></td><td>In group mode, this field specifies which channels belong to group B. </td></tr>
 <tr>
 <td>Input &gt; Add/Average Count</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -389,15 +389,15 @@ Average four samples</li>
 </ul>
 </td><td>Disabled </td><td>Specifies if addition or averaging needs to be done for any of the channels in this unit. </td></tr>
 <tr>
-<td>Input &gt; Addition/Averaging Mask (channel availability varies by MPU and unit)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td></td><td>Select channels to include in the Addition/Averaging Mask </td></tr>
+<td>Input &gt; Addition/Averaging Mask (channel availability varies by MPU and unit)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td></td><td>Select channels to include in the Addition/Averaging Mask </td></tr>
 <tr>
-<td>Input &gt; Group C Scan Mask (channel availability varies by MPU)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td></td><td>In group mode, this field specifies which channels belong to group C. </td></tr>
+<td>Input &gt; Group C Scan Mask (channel availability varies by MPU)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td></td><td>In group mode, this field specifies which channels belong to group C. </td></tr>
 <tr>
-<td>Interrupts &gt; Normal/Group A Trigger</td><td>MCU Specific Options</td><td></td><td>Specifies the trigger type to be used for this unit. Triggers that specify ADC Unit must be selected for correct ADC unit to operate correctly. </td></tr>
+<td>Interrupts &gt; Normal/Group A Trigger (DEPRECATED)</td><td>MCU Specific Options</td><td></td><td>Normal/Group A Trigger is deprecated. Specifies the trigger type to be used for this unit. Triggers that specify ADC Unit must be selected for correct ADC unit to operate correctly. </td></tr>
 <tr>
-<td>Interrupts &gt; Group B Trigger</td><td>MCU Specific Options</td><td></td><td>Specifies the trigger for Group B scanning in group scanning mode. This event is also used to trigger Group A in extended double-trigger mode. Triggers that specify ADC Unit must be selected for correct ADC unit to operate correctly. </td></tr>
+<td>Interrupts &gt; Group B Trigger (DEPRECATED)</td><td>MCU Specific Options</td><td></td><td>Group B Trigger is deprecated. Specifies the trigger for Group B scanning in group scanning mode. This event is also used to trigger Group A in extended double-trigger mode. Triggers that specify ADC Unit must be selected for correct ADC unit to operate correctly. </td></tr>
 <tr>
-<td>Interrupts &gt; Group Priority (Valid only in Group Scan Mode)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html" title="Default initialization function. ">RZN</a> Configuration tool for available options.</td><td>Group A ignored and does not interrupt Group B and Group C </td><td>Determines whether an ongoing group B and group C scan can be interrupted by a group A trigger, whether it should abort on a group A trigger, or if it should pause to allow group A scan and restart immediately after group A scan is complete. </td></tr>
+<td>Interrupts &gt; Group Priority (Valid only in Group Scan Mode)</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td>Group A ignored and does not interrupt Group B and Group C </td><td>Determines whether an ongoing group B and group C scan can be interrupted by a group A trigger, whether it should abort on a group A trigger, or if it should pause to allow group A scan and restart immediately after group A scan is complete. </td></tr>
 <tr>
 <td>Interrupts &gt; Callback</td><td>Name must be a valid C symbol</td><td>NULL </td><td>A user callback function. If this callback function is provided, it is called from the interrupt service routine (ISR) each time the ADC scan completes. </td></tr>
 <tr>
@@ -518,6 +518,37 @@ ADC Operational Modes</h2>
 <li>When using the Window Compare function:<ul>
 <li>Only Single Scan mode may be configured when match or mismatch ELC events are used.</li>
 <li>Both windows cannot reference the same channel.</li>
+</ul>
+</li>
+<li>When selecting the start trigger source for Group A, Group B, and Group C in group mode:<ul>
+<li>"Interrupts|Normal/Group A Trigger" and "Interrupts|Group B Trigger" properties are marked as "DEPRECATED" because the configuration method will change in an upcoming major version update.</li>
+<li>The ADC(unit)_A ELC peripheral cannot be used as a trigger for Group B, and the ADC(unit)_B ELC peripheral cannot be used as a trigger for Group A under the following settings.<ul>
+<li>Setting 1:<ul>
+<li>Inputs|Start trigger|Group A: ELC Trigger Group B</li>
+<li>Interrupts|Normal/Group A Trigger: select ELC event</li>
+</ul>
+</li>
+<li>Setting 2:<ul>
+<li>Inputs|Start trigger|Group B: select ELC Trigger Group A</li>
+<li>Interrupts|Group B Trigger: select ELC event</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>A workaround is available to allow ADC(unit)_A ELC peripheral to trigger Group B and ADC(unit)_B ELC peripheral to trigger Group A, as shown below.<ul>
+<li>Setting 1:<ul>
+<li>Inputs|Start trigger|Group A: ELC Trigger Group B</li>
+<li>Interrupts|Group B Trigger: select ELC event</li>
+</ul>
+</li>
+<li>Setting 2:<ul>
+<li>Inputs|Start trigger|Group B: select ELC Trigger Group A</li>
+<li>Interrupts|Normal/Group A Trigger: select ELC event</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If Group C is set to "ELC Trigger Group A/B", the ELC peripheral can be configured in "Interrupts|Normal/Group A Trigger" or "Interrupts|Group B Trigger."</li>
 </ul>
 </li>
 </ul>
@@ -1104,7 +1135,7 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

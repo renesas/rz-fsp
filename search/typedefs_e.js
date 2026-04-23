@@ -83,6 +83,6 @@ var searchData=
   ['spibsc_5finstance_5fctrl_5ft',['spibsc_instance_ctrl_t',['../group___r_z_a___s_p_i_b_s_c.html#gaf643d749d46421eadcdfd4cae8ca9667',1,'RZA']]],
   ['ssi_5fextended_5fcfg_5ft',['ssi_extended_cfg_t',['../group___r_z_a___s_s_i.html#ga12cb58951d80e7eb5bcb49eb8ce05ba0',1,'RZA']]],
   ['ssi_5finstance_5fctrl_5ft',['ssi_instance_ctrl_t',['../group___r_z_a___s_s_i.html#gaf45794e9d9e71a0a62321e9ab03c2a9e',1,'RZA']]],
-  ['st_5fmipi_5fdsi_5fresult',['st_mipi_dsi_result',['../group___r_z_a___m_i_p_i___d_s_i___a_p_i.html#ga00e2dbf62836d3baa956ee7470838eeb',1,'RZA']]],
+  ['st_5fmipi_5fdsi_5fresult',['st_mipi_dsi_result',['../group___r_z_a___m_i_p_i___d_s_i___a_p_i.html#ga00e2dbf62836d3baa956ee7470838eeb',1,'RZA::st_mipi_dsi_result()'],['../group___r_z_g___m_i_p_i___d_s_i___a_p_i.html#ga00e2dbf62836d3baa956ee7470838eeb',1,'RZG::st_mipi_dsi_result()']]],
   ['statistics_5fcfg_5ft',['statistics_cfg_t',['../group___r_z_a___c_r_u.html#ga5cd1dfd950cfd6cf622125f553bbaa3a',1,'RZA']]]
 ];

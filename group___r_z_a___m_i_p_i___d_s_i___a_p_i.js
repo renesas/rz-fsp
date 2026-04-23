@@ -8,10 +8,7 @@ var group___r_z_a___m_i_p_i___d_s_i___a_p_i =
       [ "p_tx_buffer", "group___r_z_a___m_i_p_i___d_s_i___a_p_i.html#aaeb0d748e2e9d59c08fb2d2b787be110", null ],
       [ "p_rx_buffer", "group___r_z_a___m_i_p_i___d_s_i___a_p_i.html#a32ec81e60b77e0327f2d0f83a7f4a4af", null ]
     ] ],
-    [ "mipi_dsi_ack_err_status_t", "group___r_z_a___m_i_p_i___d_s_i___a_p_i.html#unionmipi__dsi__ack__err__status__t", [
-      [ "__PACKED_STRUCT", "group___r_z_a___m_i_p_i___d_s_i___a_p_i.html#a108bbc27011d38d13b138dfd6925c2cc", null ],
-      [ "virtual_channel", "group___r_z_a___m_i_p_i___d_s_i___a_p_i.html#aa5bdb90055c1c5c3c11587414154f5b9", null ]
-    ] ],
+    [ "mipi_dsi_ack_err_status_t", "group___r_z_a___m_i_p_i___d_s_i___a_p_i.html#unionmipi__dsi__ack__err__status__t", null ],
     [ "st_mipi_dsi_status_t", "group___r_z_a___m_i_p_i___d_s_i___a_p_i.html#struct_r_z_a_1_1st__mipi__dsi__status__t", [
       [ "link_status", "group___r_z_a___m_i_p_i___d_s_i___a_p_i.html#ababfb7334ea03df263c74233d36f1fa8", null ],
       [ "ack_err_latest", "group___r_z_a___m_i_p_i___d_s_i___a_p_i.html#a90dba3162f5deb83b69aede9254fcf83", null ],

@@ -6,7 +6,8 @@ var group___r_z_v___t_s_u___b =
       [ "compare_ref_low", "group___r_z_v___t_s_u___b.html#ab5d90714aa7d1fc590473ba1ddb6f9c8", null ],
       [ "compare_ref_high", "group___r_z_v___t_s_u___b.html#a06216e4e6ba4b364d8e8184b10220fc1", null ],
       [ "compare_irq", "group___r_z_v___t_s_u___b.html#ae59c9ac3e82e35bfa65d9b467bbcc537", null ],
-      [ "compare_ipl", "group___r_z_v___t_s_u___b.html#a95597cce8e488de5d066529c985adf0c", null ]
+      [ "compare_ipl", "group___r_z_v___t_s_u___b.html#a95597cce8e488de5d066529c985adf0c", null ],
+      [ "p_reg", "group___r_z_v___t_s_u___b.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_tsu_b_instance_ctrl", "group___r_z_v___t_s_u___b.html#struct_r_z_v_1_1st__tsu__b__instance__ctrl", null ],
     [ "tsu_b_extended_cfg_t", "group___r_z_v___t_s_u___b.html#gaf988e12d645ec754a6d8c8db8916ccc3", null ],

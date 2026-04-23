@@ -19,7 +19,8 @@ var group___r_z_t___c_m_t_w =
       [ "compare_oc0_ipl", "group___r_z_t___c_m_t_w.html#adea371ca80c5435b6b42887eb2a1093c", null ],
       [ "compare_oc1_ipl", "group___r_z_t___c_m_t_w.html#ad112311a4042cb19a354013d27127221", null ],
       [ "compare_oc0_irq", "group___r_z_t___c_m_t_w.html#a09bb5581cd8009ea9c81713d1d236c40", null ],
-      [ "compare_oc1_irq", "group___r_z_t___c_m_t_w.html#a112f1bcb2910bef8f1d7a71847b07768", null ]
+      [ "compare_oc1_irq", "group___r_z_t___c_m_t_w.html#a112f1bcb2910bef8f1d7a71847b07768", null ],
+      [ "p_reg", "group___r_z_t___c_m_t_w.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "cmtw_instance_ctrl_t", "group___r_z_t___c_m_t_w.html#gaf00b29b8e7dbbb2a11ed75e4b100a417", null ],
     [ "cmtw_extended_cfg_t", "group___r_z_t___c_m_t_w.html#gadbe4a4066540fd0d4254c1fd93fb6371", null ],
@@ -54,19 +55,19 @@ var group___r_z_t___c_m_t_w =
       [ "CMTW_INPUT_CONTROL_DISABLED", "group___r_z_t___c_m_t_w.html#ggaa69aac2c20f895bd57f0d4dfa9da9c84aef9e4feabd4045f976f8b85a535a1e6e", null ],
       [ "CMTW_INPUT_CONTROL_ENABLED", "group___r_z_t___c_m_t_w.html#ggaa69aac2c20f895bd57f0d4dfa9da9c84a47a43fe08c66afb2854454bde1e0a235", null ]
     ] ],
-    [ "R_CMTW_Close", "group___r_z_t___c_m_t_w.html#gac59c2dfa9436df60eb01971c996875aa", null ],
-    [ "R_CMTW_PeriodSet", "group___r_z_t___c_m_t_w.html#gaa50bb9ff96b3f0e38459a7e3e65c0a18", null ],
-    [ "R_CMTW_DutyCycleSet", "group___r_z_t___c_m_t_w.html#ga928fd6d8249fe9c66e870849a6975ca9", null ],
-    [ "R_CMTW_Reset", "group___r_z_t___c_m_t_w.html#ga10851764cdad9c5c580e146501bc4352", null ],
+    [ "R_CMTW_Open", "group___r_z_t___c_m_t_w.html#ga7b086a5e535460e7855000cc6141b22e", null ],
     [ "R_CMTW_Start", "group___r_z_t___c_m_t_w.html#ga874d0098275f48ec3c84e8587d262fce", null ],
+    [ "R_CMTW_Stop", "group___r_z_t___c_m_t_w.html#ga842bb3b9c5c12cdfff41dd8595defc70", null ],
+    [ "R_CMTW_Reset", "group___r_z_t___c_m_t_w.html#ga10851764cdad9c5c580e146501bc4352", null ],
     [ "R_CMTW_Enable", "group___r_z_t___c_m_t_w.html#gadba23fc3303d81ce926ba6ebe9245e6a", null ],
     [ "R_CMTW_Disable", "group___r_z_t___c_m_t_w.html#ga414c89c292c18a33619337489cd43787", null ],
+    [ "R_CMTW_PeriodSet", "group___r_z_t___c_m_t_w.html#gaa50bb9ff96b3f0e38459a7e3e65c0a18", null ],
+    [ "R_CMTW_DutyCycleSet", "group___r_z_t___c_m_t_w.html#ga928fd6d8249fe9c66e870849a6975ca9", null ],
+    [ "R_CMTW_CompareMatchSet", "group___r_z_t___c_m_t_w.html#ga8993bf4cbf0ede99b610b3b2f1a3246c", null ],
     [ "R_CMTW_InfoGet", "group___r_z_t___c_m_t_w.html#gae56c5935864ef5ef23eeae25a95ab079", null ],
     [ "R_CMTW_StatusGet", "group___r_z_t___c_m_t_w.html#gacbdfc3716f8d5bd47edaa801eb50d1b7", null ],
-    [ "R_CMTW_Stop", "group___r_z_t___c_m_t_w.html#ga842bb3b9c5c12cdfff41dd8595defc70", null ],
-    [ "R_CMTW_Open", "group___r_z_t___c_m_t_w.html#ga7b086a5e535460e7855000cc6141b22e", null ],
     [ "R_CMTW_OutputEnable", "group___r_z_t___c_m_t_w.html#ga78987d5578215cbf098221602bbbc193", null ],
     [ "R_CMTW_OutputDisable", "group___r_z_t___c_m_t_w.html#gadd9a734062792a507971568dac4c3013", null ],
     [ "R_CMTW_CallbackSet", "group___r_z_t___c_m_t_w.html#gab9194e783ec9425b033ddb27817a2ee7", null ],
-    [ "R_CMTW_CompareMatchSet", "group___r_z_t___c_m_t_w.html#ga8993bf4cbf0ede99b610b3b2f1a3246c", null ]
+    [ "R_CMTW_Close", "group___r_z_t___c_m_t_w.html#gac59c2dfa9436df60eb01971c996875aa", null ]
 ];

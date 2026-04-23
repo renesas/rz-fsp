@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -208,7 +208,9 @@ Features</h2>
 <li>RTC time and date get and set.</li>
 <li>RTC time and date alarm get and set.</li>
 <li>RTC alarm and periodic event notification.</li>
+<li>RTC time capture.<sup>1</sup></li>
 </ul>
+<dl class="section note"><dt>Note</dt><dd>1. Support for the RTC time capture function varies depending on the device.</dd></dl>
 <p><a class="anchor" id="RZG_um_rtc_set_the_calendar_time"></a><a class="anchor" id="RZG_um_rtc_get_the_calendar_time"></a><a class="anchor" id="RZG_um_rtc_set_the_calendar_alarm"></a><a class="anchor" id="RZG_um_rtc_get_the_calendar_alarm"></a><a class="anchor" id="RZG_um_rtc_date_and_time_value_standard"></a><a class="anchor" id="RZG_um_rtc_get_rtc_information"></a><a class="anchor" id="RZG_um_rtc_set_the_periodic_rate"></a>The RTC HAL module supports three different interrupt types:</p>
 <ul>
 <li>An alarm interrupt generated on a match of any combination of year, month, day, day of the week, hour, minute or second</li>
@@ -227,11 +229,12 @@ A user-defined callback function can be registered (in the <a class="el" href="g
 <p><a class="anchor" id="RZG_um_rtc_set_time_error_adjustment"></a> The error adjustment is reset every time RTC is reconfigured or time is set.</p>
 <dl class="section note"><dt>Note</dt><dd>RTC driver configurations do not do error adjustment internally while initiliazing the driver. Application must make calls to the error adjustment api's for desired adjustment. See section "Time Error Adjustment
        Function" of the user's manual for more details on this feature</dd></dl>
-<h2>External Clock Bypass Mode</h2>
-<p>This MPU supports bypassing the RTC's oscillator circuit, which typically requires an AC clock signal from a crystal oscillator. However, a DC clock signal can be directly input via the RTXIN pin. Therefore the clock mode for the RTC can be changed as the follows:</p><ul>
-<li>Crystal Oscillator Mode</li>
-<li>External Clock Bypass Mode</li>
+<h2>Clock Input Mode (External Clock Bypass Mode)</h2>
+<p>This MPU supports bypassing the RTC's oscillator circuit. The RTC can operate in the following clock input modes:</p><ul>
+<li>Crystal Oscillator Mode: The RTC operates using a crystal oscillator connected to the RTC oscillator circuit.</li>
+<li>External Clock Bypass Mode: The RTC oscillator circuit is bypassed and an external clock signal is supplied to the RTC clock input pin.</li>
 </ul>
+<p>The clock input pin and configuration depend on the device.</p>
 <h1><a class="anchor" id="RZG_r-rtc-configuration"></a>
 Configuration</h1>
 <p><h2>Build Time Configurations for r_rtc</h2>
@@ -249,6 +252,14 @@ Enabled</li>
 Disabled</li>
 </ul>
 </td><td>Default (BSP) </td><td>If selected code for parameter checking is included in the build. </td></tr>
+<tr>
+<td>Set Source Clock in Open</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Enabled</li>
+<li>
+Disabled</li>
+</ul>
+</td><td>Enabled </td><td>If enabled RTC source clock is initialized in R_RTC_Open. If disabled, R_RTC_ClockSourceSet must be called to set the RTC source clock. Disable if user wants to control the setting of RTC source clock after warm start. </td></tr>
 </table>
  <h2>Configurations for Timers &gt; Realtime Clock (r_rtc)</h2>
 This module can be added to the Stacks tab via New Stack &gt; Timers &gt; Realtime Clock (r_rtc). Non-secure callable guard functions can be generated for this module by right clicking the module in the RA Configuration tool and checking the "Non-secure Callable" box.<br />
@@ -258,13 +269,13 @@ This module can be added to the Stacks tab via New Stack &gt; Timers &gt; Realti
 <tr>
 <td>Name</td><td>Name must be a valid C symbol</td><td>g_rtc0 </td><td>Module name. </td></tr>
 <tr>
-<td>External Clock Bypass Mode</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Clock Input Mode</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
-Crystal Oscillator</li>
+External Clock Mode</li>
 <li>
-External Clock Bypass</li>
+Crystal Oscillation Mode</li>
 </ul>
-</td><td>Crystal Oscillator </td><td>Receive the clock from either a crystal oscillator or directly from a clock source by inputting it to the RTXIN pin only. </td></tr>
+</td><td>External Clock Mode </td><td>Select the RTC clock input mode. The clock can be supplied either from a crystal oscillator or from an external clock source. This setting may be overridden by the board configuration depending on the board template. </td></tr>
 <tr>
 <td>Automatic Adjustment Mode</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -316,17 +327,20 @@ Interrupt Configuration</h2>
 <p>To activate interrupts for the RTC module, the desired interrupts must be enabled, The underlying implementation will be expected to handle any interrupts it can support and notify higher layers via callback.</p>
 <h2><a class="anchor" id="RZG_r-rtc-pin-configuration"></a>
 Pin Configuration</h2>
-<p>This module does not use I/O pins.</p>
+<p>This module uses pins as RTC time capture pins.<sup>1</sup></p>
+<dl class="section note"><dt>Note</dt><dd>1. Support for RTC time capture feature varies depending on the device.</dd></dl>
 <h1><a class="anchor" id="RZG_r-rtc-usage_notes"></a>
 Usage Notes</h1>
 <h2>System Initialization</h2>
 <ul>
-<li>RTC driver does not start the clock. The application is responsible for ensuring required clocks are started and stable before accessing MPU peripheral registers.</li>
+<li>The RTC driver does not ensure that the RTC clock oscillator is started or stabilized. The application is responsible for starting the clock source and ensuring it is stable before using the RTC.</li>
 </ul>
-<dl class="section warning"><dt>Warning</dt><dd>The 32,768Hz clock oscillator can take seconds to stabilize. The RZ startup code does not wait for the clock oscillator stabilization unless it is the main clock source. The application must ensure the clock oscillator is stable before starting operation.</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>The RTC clock source can take several seconds to stabilize. The application must ensure the oscillator is stable before starting RTC operation.</dd></dl>
 <ul>
 <li>Carry interrupt priority must be set to avoid incorrect time returned from calendarTimeGet API during roll-over.</li>
 <li>Even when only running in Periodic Interrupt mode <a class="el" href="group___r_z_g___r_t_c.html#ga3bf6329a0ea01943e385499fcac01e1e">R_RTC_CalendarTimeSet</a> must be called successfully to start the RTC.</li>
+<li>In case of warm start or a hard reset (when VBATT powers RTC in case of power loss), user might not want to reinitialize the clock source after reset. In this case, disable the <code>Set Source Clock in Open</code> property for RTC and call <a class="el" href="group___r_z_g___r_t_c.html#gaa08e35bcfca849283de15698beb6b150">R_RTC_ClockSourceSet()</a> only when RTC clock source needs to be set. Application should check for the reset type and should accordingly call the <a class="el" href="group___r_z_g___r_t_c.html#gaa08e35bcfca849283de15698beb6b150">R_RTC_ClockSourceSet()</a>.</li>
+<li>System initialization procedures vary depending on the device. In RZ devices, some RTC and VBATT domain registers are not reset by a normal system reset. These registers are initialized only when a VBATT reset occurs.</li>
 </ul>
 <h2><a class="anchor" id="RZG_r-rtc-limitations"></a>
 Limitations</h2>
@@ -560,14 +574,13 @@ volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Implements <a class="el" href="group___r_z_g___r_t_c___a_p_i.html#ad98a5c670d7c51304515ade6a6c4cfd5">rtc_api_t::clockSourceSet</a>. Unsupported.</p>
+<p>Implements <a class="el" href="group___r_z_g___r_t_c___a_p_i.html#ad98a5c670d7c51304515ade6a6c4cfd5">rtc_api_t::clockSourceSet</a>.</p>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Initialization was successful and RTC has started. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Invalid p_ctrl or p_cfg pointer. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>Driver is not opened. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ARGUMENT</td><td>Invalid clock source. </td></tr>
-    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>Function not supported in this implementation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -932,6 +945,7 @@ volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
     <tr><td class="paramname">FSP_SUCCESS</td><td>Setting for Time capture was successful. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Invalid input argument. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>Driver not open already for operation. </td></tr>
+    <tr><td class="paramname">FSP_ERR_INVALID_ARGUMENT</td><td>Inappropriate noise filter configuration. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_CHANNEL</td><td>Invalid input channel set. </td></tr>
     <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>Hardware not support this feature. </td></tr>
   </table>
@@ -987,7 +1001,7 @@ volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

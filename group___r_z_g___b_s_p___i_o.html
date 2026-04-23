@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -196,6 +196,8 @@ Functions</h2></td></tr>
 <tr class="separator:gafa5ce4fc957ee454c08df6b744dbc701"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaebc45cfb838f9aeb98716e614c9975a8"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___b_s_p___i_o.html#gaebc45cfb838f9aeb98716e614c9975a8">R_BSP_XSPIOutputEnableCfg</a> (void)</td></tr>
 <tr class="separator:gaebc45cfb838f9aeb98716e614c9975a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab8af9eb0f1407b8ba9fbd71510b93e2c"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___b_s_p___i_o.html#gab8af9eb0f1407b8ba9fbd71510b93e2c">R_BSP_OtherPocVoltageModeCfg</a> (<a class="el" href="group___r_z_g___b_s_p___i_o.html#ga210f1c2b712e45458fb31c5c43a16633">bsp_other_poc_support_t</a> support, <a class="el" href="group___r_z_g___b_s_p___i_o.html#gae12386af95b26775199301efae04b389">bsp_other_poc_voltage_t</a> voltage)</td></tr>
+<tr class="separator:gab8af9eb0f1407b8ba9fbd71510b93e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This module provides basic read/write access to port pins. </p>
@@ -234,6 +236,10 @@ Enumerations</h2></td></tr>
 <tr class="separator:ga65987c1da1d49f85463de102d5d24c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabb6374b9eb754bff909bb9b0d25a04fb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___b_s_p___i_o.html#gabb6374b9eb754bff909bb9b0d25a04fb">bsp_bypass_freq_range_t</a> </td></tr>
 <tr class="separator:gabb6374b9eb754bff909bb9b0d25a04fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae12386af95b26775199301efae04b389"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___b_s_p___i_o.html#gae12386af95b26775199301efae04b389">bsp_other_poc_voltage_t</a> </td></tr>
+<tr class="separator:gae12386af95b26775199301efae04b389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga210f1c2b712e45458fb31c5c43a16633"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___b_s_p___i_o.html#ga210f1c2b712e45458fb31c5c43a16633">bsp_other_poc_support_t</a> </td></tr>
+<tr class="separator:ga210f1c2b712e45458fb31c5c43a16633"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="gab4ef0cc3fce421d48310f23c614aadc0"></a>
@@ -440,6 +446,44 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46eae538876665e47e1f3384659c27061a64"></a>BSP_IO_PORT_03&#160;</td><td class="fielddoc"><p>IO port 3. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea2cd336664f9ef49c4dd0eced3fb41d87"></a>BSP_IO_PORT_04&#160;</td><td class="fielddoc"><p>IO port 4. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea9402ad79a490130d66272562824131da"></a>BSP_IO_PORT_05&#160;</td><td class="fielddoc"><p>IO port 5. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea9dcd01a8a1c992db140f835bbd51486e"></a>BSP_IO_PORT_06&#160;</td><td class="fielddoc"><p>IO port 6. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46eaab15d39e20995ff1bc2f8f2b340dd0c0"></a>BSP_IO_PORT_07&#160;</td><td class="fielddoc"><p>IO port 7. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46eaaca6629478e80e84da1ab699e5821da4"></a>BSP_IO_PORT_08&#160;</td><td class="fielddoc"><p>IO port 8. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea0f2d58f2dc2a429b7a8ba34a7cfaa5f4"></a>BSP_IO_PORT_10&#160;</td><td class="fielddoc"><p>IO port 10. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea581c7b3a6e1168f6b1d24296b57260fd"></a>BSP_IO_PORT_11&#160;</td><td class="fielddoc"><p>IO port 11. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea8f57d410568231dd262c220116c3230a"></a>BSP_IO_PORT_12&#160;</td><td class="fielddoc"><p>IO port 12. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea6690a01be30a39e8f95cc52df3baa1f0"></a>BSP_IO_PORT_13&#160;</td><td class="fielddoc"><p>IO port 13. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46eaf024fc902de2e1913b06012a482511bf"></a>BSP_IO_PORT_14&#160;</td><td class="fielddoc"><p>IO port 14. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea37760700c482165fe4b05f2ca15cb39e"></a>BSP_IO_PORT_15&#160;</td><td class="fielddoc"><p>IO port 15. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea26e13d037c5eb53239a113e8254efc60"></a>BSP_IO_PORT_16&#160;</td><td class="fielddoc"><p>IO port 16. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46eac2a6d3914598a480457d2c47947e731a"></a>BSP_IO_PORT_17&#160;</td><td class="fielddoc"><p>IO port 17. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea413a21a9dd2aaca0e88c67dce95de644"></a>BSP_IO_PORT_19&#160;</td><td class="fielddoc"><p>IO port 19. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46eaf3096c5df2d8077159887b039fdb164b"></a>BSP_IO_PORT_20&#160;</td><td class="fielddoc"><p>IO port 20. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea1ca5f8a06803ff26d32eeb0c0bb5ddd6"></a>BSP_IO_PORT_21&#160;</td><td class="fielddoc"><p>IO port 21. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea81942f549a7729a7b3063d531ba12f07"></a>BSP_IO_PORT_22&#160;</td><td class="fielddoc"><p>IO port 22. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46eacbadd6be1c581e4299d8350c71c3569e"></a>BSP_IO_PORT_28&#160;</td><td class="fielddoc"><p>IO port 28. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46eaff9102688305d1d76338bc2376815d17"></a>BSP_IO_PORT_02&#160;</td><td class="fielddoc"><p>IO port 2. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46eae538876665e47e1f3384659c27061a64"></a>BSP_IO_PORT_03&#160;</td><td class="fielddoc"><p>IO port 3. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ga33a147902fb258f531c0bae40166f46ea9402ad79a490130d66272562824131da"></a>BSP_IO_PORT_05&#160;</td><td class="fielddoc"><p>IO port 5. </p>
 </td></tr>
@@ -1114,6 +1158,98 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa3be568da2a3c2f904014c938ef7dcb11"></a>BSP_IO_PORT_28_PIN_01&#160;</td><td class="fielddoc"><p>IO port 28 pin 1. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa153ebd030cd4c5268b8c9d24f448035c"></a>BSP_IO_PORT_02_PIN_00&#160;</td><td class="fielddoc"><p>IO port 2 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa6b82b44faf9f8faee121015a3b2b814e"></a>BSP_IO_PORT_02_PIN_01&#160;</td><td class="fielddoc"><p>IO port 2 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa849618568e1e8779ad836ded6148a6f2"></a>BSP_IO_PORT_03_PIN_00&#160;</td><td class="fielddoc"><p>IO port 3 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aaf148127de6e857cf2c6f2aa10a24b208"></a>BSP_IO_PORT_03_PIN_01&#160;</td><td class="fielddoc"><p>IO port 3 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa2d4a7f39f42194c4d00f014eb2ea9bf7"></a>BSP_IO_PORT_05_PIN_00&#160;</td><td class="fielddoc"><p>IO port 5 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa5df8adabe1de680c5e3ffe905c19af12"></a>BSP_IO_PORT_05_PIN_01&#160;</td><td class="fielddoc"><p>IO port 5 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aae8b56f9a05e0b132bfbc5b720db42f78"></a>BSP_IO_PORT_05_PIN_02&#160;</td><td class="fielddoc"><p>IO port 5 pin 2. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aae2fb0e12c8c7771a7859bf5a56ee89a9"></a>BSP_IO_PORT_06_PIN_00&#160;</td><td class="fielddoc"><p>IO port 6 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aacef9b285d72fdcb84252c834be955d4c"></a>BSP_IO_PORT_06_PIN_01&#160;</td><td class="fielddoc"><p>IO port 6 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa8dcc27c6290c2b8f4c6cd56794adb62b"></a>BSP_IO_PORT_07_PIN_00&#160;</td><td class="fielddoc"><p>IO port 7 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa7091207d527a5029c6b438405d0376c9"></a>BSP_IO_PORT_07_PIN_01&#160;</td><td class="fielddoc"><p>IO port 7 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa943f7d2401c67d5da645dfb28ce8762f"></a>BSP_IO_PORT_07_PIN_02&#160;</td><td class="fielddoc"><p>IO port 7 pin 2. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa6647fce71f58f48b90fef41c698c763f"></a>BSP_IO_PORT_08_PIN_00&#160;</td><td class="fielddoc"><p>IO port 8 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa717b3500e9edc9843396743d53c6de85"></a>BSP_IO_PORT_08_PIN_01&#160;</td><td class="fielddoc"><p>IO port 8 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa2fb3a521b21afc6bc895f63c9e45892f"></a>BSP_IO_PORT_08_PIN_02&#160;</td><td class="fielddoc"><p>IO port 8 pin 2. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa7172ea4f8ba0994d883c767179d2cf1e"></a>BSP_IO_PORT_10_PIN_00&#160;</td><td class="fielddoc"><p>IO port 10 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa761cea379157e334fb1c04206a501c66"></a>BSP_IO_PORT_10_PIN_01&#160;</td><td class="fielddoc"><p>IO port 10 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aaa16ecd313ef1f09acdc7495719afddc4"></a>BSP_IO_PORT_11_PIN_00&#160;</td><td class="fielddoc"><p>IO port 11 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aae5846415536838e5fa68d68577130ac8"></a>BSP_IO_PORT_11_PIN_01&#160;</td><td class="fielddoc"><p>IO port 11 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aac02662f7771f9971ad73fd337b6f2f17"></a>BSP_IO_PORT_12_PIN_00&#160;</td><td class="fielddoc"><p>IO port 12 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aab37db77562098f24448c6a3fc712ba1f"></a>BSP_IO_PORT_12_PIN_01&#160;</td><td class="fielddoc"><p>IO port 12 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aaa490f744ad35f1b276e301aa6aba2178"></a>BSP_IO_PORT_13_PIN_00&#160;</td><td class="fielddoc"><p>IO port 13 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa7583868655c00e245ba9a5c19dc2a2e0"></a>BSP_IO_PORT_13_PIN_01&#160;</td><td class="fielddoc"><p>IO port 13 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa5176c329e4fba4094917404ae860a1d2"></a>BSP_IO_PORT_13_PIN_02&#160;</td><td class="fielddoc"><p>IO port 13 pin 2. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aaacd7361a73c72f98a7fdcd40829a6d2b"></a>BSP_IO_PORT_14_PIN_00&#160;</td><td class="fielddoc"><p>IO port 14 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aaac5c6fcd6379f737040001d614e4bdcf"></a>BSP_IO_PORT_14_PIN_01&#160;</td><td class="fielddoc"><p>IO port 14 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa2b9126a1faf9071b430ecdd229b279ab"></a>BSP_IO_PORT_15_PIN_00&#160;</td><td class="fielddoc"><p>IO port 15 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa63f2200f3db67198a8db4ed2c4d0676e"></a>BSP_IO_PORT_15_PIN_01&#160;</td><td class="fielddoc"><p>IO port 15 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aaf83965268c83757b5f1e13f45ea8ee91"></a>BSP_IO_PORT_16_PIN_00&#160;</td><td class="fielddoc"><p>IO port 16 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa79732b9721ca3935cd6a14c4186bcea5"></a>BSP_IO_PORT_16_PIN_01&#160;</td><td class="fielddoc"><p>IO port 16 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa70a0c542b44e9298eb0310474a225bb9"></a>BSP_IO_PORT_17_PIN_00&#160;</td><td class="fielddoc"><p>IO port 17 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa51d80bb003981b081b81cee49ba359a5"></a>BSP_IO_PORT_17_PIN_01&#160;</td><td class="fielddoc"><p>IO port 17 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa4f810c13663fe5df5124b488f9f2682f"></a>BSP_IO_PORT_17_PIN_02&#160;</td><td class="fielddoc"><p>IO port 17 pin 2. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa87acbb3f5affabb510685141eccd4b50"></a>BSP_IO_PORT_19_PIN_00&#160;</td><td class="fielddoc"><p>IO port 19 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa19b823bce7a4342650f4c27a7d6e0df1"></a>BSP_IO_PORT_19_PIN_01&#160;</td><td class="fielddoc"><p>IO port 19 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa33a151892dec0b798acc264b99d6dc0f"></a>BSP_IO_PORT_20_PIN_00&#160;</td><td class="fielddoc"><p>IO port 20 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aaba0645a76d770eb0e1b82d3572feba3e"></a>BSP_IO_PORT_20_PIN_01&#160;</td><td class="fielddoc"><p>IO port 20 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa2227a83ff59c95f668e1d0a0783534a4"></a>BSP_IO_PORT_20_PIN_02&#160;</td><td class="fielddoc"><p>IO port 20 pin 2. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa9df7edd33c6ec67e557900d07594761a"></a>BSP_IO_PORT_21_PIN_00&#160;</td><td class="fielddoc"><p>IO port 21 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aae902b51cd5fdb44e622e1f6a583966f6"></a>BSP_IO_PORT_21_PIN_01&#160;</td><td class="fielddoc"><p>IO port 21 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa34f90770ca98a2db1f46cc80789faab4"></a>BSP_IO_PORT_22_PIN_00&#160;</td><td class="fielddoc"><p>IO port 22 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa8db523c0dddda93764902cd7d47abe85"></a>BSP_IO_PORT_22_PIN_01&#160;</td><td class="fielddoc"><p>IO port 22 pin 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa8a591b1fa36de702d907a16fa3f20957"></a>BSP_IO_PORT_28_PIN_00&#160;</td><td class="fielddoc"><p>IO port 28 pin 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa1380442284017edb4020dde099f0005f"></a>BSP_IO_SD0_CLK&#160;</td><td class="fielddoc"><p>CD0_CLK. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa07ea453d9c875a0d373abeaa2ddb7c1a"></a>BSP_IO_SD0_CMD&#160;</td><td class="fielddoc"><p>CD0_CMD. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aa82eabc0a8d7e0dc4e3e5f28fcc0911cb"></a>BSP_IO_SD0_RST_N&#160;</td><td class="fielddoc"><p>CD0_RST_N. </p>
+</td></tr>
 <tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aab2a3a8e5a60d07428e9e5ba13c9d7e67"></a>BSP_IO_PORT_00_PIN_00&#160;</td><td class="fielddoc"><p>IO port 0 pin 0. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ga0adbfd4b7db319886d667acb4804d80aada13ac8c1f25afa0d306a98c3e432e61"></a>BSP_IO_PORT_00_PIN_01&#160;</td><td class="fielddoc"><p>IO port 0 pin 1. </p>
@@ -1264,6 +1400,8 @@ Enumerations</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggad0c359892ab6323f72558fb6f0efbb39a78721ea751aeb12179ca343858f91c7b"></a>BSP_SD_CHANNEL_0&#160;</td><td class="fielddoc"><p>Used to select SD channel 0. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggad0c359892ab6323f72558fb6f0efbb39a982209b33546c7b97b98e0e182fee582"></a>BSP_SD_CHANNEL_1&#160;</td><td class="fielddoc"><p>Used to select SD channel 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggad0c359892ab6323f72558fb6f0efbb39a502b509743ab6b181fd9e66ef9fce7b7"></a>BSP_SD_CHANNEL_2&#160;</td><td class="fielddoc"><p>Used to select SD channel 2. </p>
 </td></tr>
 </table>
 
@@ -1505,6 +1643,50 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="ggabb6374b9eb754bff909bb9b0d25a04fba0b0d404e8b95a60f5f6f8ce3f3b71ff4"></a>BSP_BYPASS_FREQ_RANGE_24MHZ&#160;</td><td class="fielddoc"><p>Frequency range set to 12.1MHz to 24MHz. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggabb6374b9eb754bff909bb9b0d25a04fba13b74446c67d06c3feffa96cd34a6dc3"></a>BSP_BYPASS_FREQ_RANGE_48MHZ&#160;</td><td class="fielddoc"><p>Frequency range set to 24.1MHz to 48MHz. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gae12386af95b26775199301efae04b389"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae12386af95b26775199301efae04b389">&#9670;&nbsp;</a></span>bsp_other_poc_voltage_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_g___b_s_p___i_o.html#gae12386af95b26775199301efae04b389">bsp_other_poc_voltage_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Superset of Other POC voltages. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggae12386af95b26775199301efae04b389aa7a4d21b1a89264d16755d88ac722506"></a>BSP_OTHER_IO_VOLTAGE_33&#160;</td><td class="fielddoc"><p>Other Poc voltage set to 3.3V. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae12386af95b26775199301efae04b389a4d0d228e9e8b1a5f212c659221ebebc0"></a>BSP_OTHER_IO_VOLTAGE_18&#160;</td><td class="fielddoc"><p>Other Poc voltage set to 1.8V. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga210f1c2b712e45458fb31c5c43a16633"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga210f1c2b712e45458fb31c5c43a16633">&#9670;&nbsp;</a></span>bsp_other_poc_support_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_g___b_s_p___i_o.html#ga210f1c2b712e45458fb31c5c43a16633">bsp_other_poc_support_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Superset of Other POC support. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga210f1c2b712e45458fb31c5c43a16633a15993d3caa59e2325ab25de7032643ba"></a>BSP_OTHER_IO_PVDD1833_OTH_AWO_POC&#160;</td><td class="fielddoc"><p>PVDD1833_OTH_AWO_POC. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga210f1c2b712e45458fb31c5c43a16633a93f32c1f0644ea3898346adfa886100e"></a>BSP_OTHER_IO_PVDD1833_OTH_ISO_POC&#160;</td><td class="fielddoc"><p>PVDD1833_OTH_ISO_POC. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga210f1c2b712e45458fb31c5c43a16633aa4c04b3675cb94c3f10067efd7d51c3d"></a>BSP_OTHER_IO_WDTOVF_N_POC&#160;</td><td class="fielddoc"><p>WDTOVF_N_POC. </p>
 </td></tr>
 </table>
 
@@ -1862,13 +2044,42 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
+<a id="gab8af9eb0f1407b8ba9fbd71510b93e2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab8af9eb0f1407b8ba9fbd71510b93e2c">&#9670;&nbsp;</a></span>R_BSP_OtherPocVoltageModeCfg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE void RZG::R_BSP_OtherPocVoltageModeCfg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___r_z_g___b_s_p___i_o.html#ga210f1c2b712e45458fb31c5c43a16633">bsp_other_poc_support_t</a>&#160;</td>
+          <td class="paramname"><em>support</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group___r_z_g___b_s_p___i_o.html#gae12386af95b26775199301efae04b389">bsp_other_poc_voltage_t</a>&#160;</td>
+          <td class="paramname"><em>voltage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Configures Other POC voltage mode. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.7-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

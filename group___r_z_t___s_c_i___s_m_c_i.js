@@ -15,10 +15,10 @@ var group___r_z_t___s_c_i___s_m_c_i =
     [ "R_SCI_SMCI_Write", "group___r_z_t___s_c_i___s_m_c_i.html#ga25020abe38bb862bb368e0f895e7f550", null ],
     [ "R_SCI_SMCI_Read", "group___r_z_t___s_c_i___s_m_c_i.html#ga85cea58f6a19e271547a68f1f89f5983", null ],
     [ "R_SCI_SMCI_TransferModeSet", "group___r_z_t___s_c_i___s_m_c_i.html#ga9e6ff4cf4e5090ac5b85b5bc3711300a", null ],
-    [ "R_SCI_SMCI_BaudCalculate", "group___r_z_t___s_c_i___s_m_c_i.html#ga0e2de3290fa3a71569c466344d693cab", null ],
     [ "R_SCI_SMCI_BaudSet", "group___r_z_t___s_c_i___s_m_c_i.html#ga82927bda129089832e210fac99d96f70", null ],
     [ "R_SCI_SMCI_StatusGet", "group___r_z_t___s_c_i___s_m_c_i.html#ga41dfa7364c69150a90ab8cf278887134", null ],
     [ "R_SCI_SMCI_ClockControl", "group___r_z_t___s_c_i___s_m_c_i.html#gab8ab886b2c136e001ecb2d82b97aa4bc", null ],
     [ "R_SCI_SMCI_CallbackSet", "group___r_z_t___s_c_i___s_m_c_i.html#ga530f32b6eda60a9aae83f937c9bab699", null ],
-    [ "R_SCI_SMCI_Close", "group___r_z_t___s_c_i___s_m_c_i.html#ga481efc6086224aa14d4a2521fa306506", null ]
+    [ "R_SCI_SMCI_Close", "group___r_z_t___s_c_i___s_m_c_i.html#ga481efc6086224aa14d4a2521fa306506", null ],
+    [ "R_SCI_SMCI_BaudCalculate", "group___r_z_t___s_c_i___s_m_c_i.html#ga0e2de3290fa3a71569c466344d693cab", null ]
 ];

@@ -83,7 +83,8 @@ var group___r_z_v___i3_c___b =
       [ "abort_irq", "group___r_z_v___i3_c___b.html#ab191c0d886336a4422851b434f2e7f61", null ],
       [ "wu_irq", "group___r_z_v___i3_c___b.html#a6bbb2128ff5866fd42b1eeec3e17d88c", null ],
       [ "ipl", "group___r_z_v___i3_c___b.html#ad0ceb75a6f1ed97fa3e8829eb645d655", null ],
-      [ "eei_ipl", "group___r_z_v___i3_c___b.html#a82045d48ad198cbb387110abedea3236", null ]
+      [ "eei_ipl", "group___r_z_v___i3_c___b.html#a82045d48ad198cbb387110abedea3236", null ],
+      [ "p_reg", "group___r_z_v___i3_c___b.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "I3C_B_EVENT_STATUS_SUCCESS", "group___r_z_v___i3_c___b.html#ga66e705cb2af31c57eacd0492b2417145", null ],
     [ "I3C_B_EVENT_STATUS_PARITY", "group___r_z_v___i3_c___b.html#ga20332b13e43cafe1a0ee0dbc195d7467", null ],

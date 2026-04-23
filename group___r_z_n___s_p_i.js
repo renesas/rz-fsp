@@ -22,7 +22,8 @@ var group___r_z_n___s_p_i =
       [ "receive_data_ready_detect_adjustment", "group___r_z_n___s_p_i.html#ad48b54017bc3a4d98ec57b7f7bf749f0", null ],
       [ "master_receive_clock", "group___r_z_n___s_p_i.html#aa061f3fb9c648ced57f2fd051cbb3dcf", null ],
       [ "mrioclk_analog_delay", "group___r_z_n___s_p_i.html#a730aa92727376e1a881c506ae054e1e2", null ],
-      [ "mrclk_digital_delay", "group___r_z_n___s_p_i.html#a5eb62bb2e027a4915d8cc00ad88bdcf2", null ]
+      [ "mrclk_digital_delay", "group___r_z_n___s_p_i.html#a5eb62bb2e027a4915d8cc00ad88bdcf2", null ],
+      [ "p_reg", "group___r_z_n___s_p_i.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_spi_instance_ctrl", "group___r_z_n___s_p_i.html#struct_r_z_n_1_1st__spi__instance__ctrl", [
       [ "open", "group___r_z_n___s_p_i.html#a46c9af2fb0c51a3bc152b006beefc554", null ],
@@ -109,7 +110,7 @@ var group___r_z_n___s_p_i =
     [ "R_SPI_Read", "group___r_z_n___s_p_i.html#gaa2b6bd08f9b6e3247466a59f33058982", null ],
     [ "R_SPI_Write", "group___r_z_n___s_p_i.html#ga3d063e7bf1d84a1d519d4836652b728f", null ],
     [ "R_SPI_WriteRead", "group___r_z_n___s_p_i.html#gaecf92732364a285def798dfb6558c0f6", null ],
+    [ "R_SPI_CallbackSet", "group___r_z_n___s_p_i.html#gafb37f4f1b278c93820c6a2b00f2f3f5e", null ],
     [ "R_SPI_Close", "group___r_z_n___s_p_i.html#ga5338c46a9d09b911dd65220273f81112", null ],
-    [ "R_SPI_CalculateBitrate", "group___r_z_n___s_p_i.html#ga668f3627ecd426d510b732ff71dd71fc", null ],
-    [ "R_SPI_CallbackSet", "group___r_z_n___s_p_i.html#gafb37f4f1b278c93820c6a2b00f2f3f5e", null ]
+    [ "R_SPI_CalculateBitrate", "group___r_z_n___s_p_i.html#ga668f3627ecd426d510b732ff71dd71fc", null ]
 ];

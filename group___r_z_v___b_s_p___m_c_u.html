@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -191,8 +191,6 @@ Functions</h2></td></tr>
 <tr class="separator:ga93f514700ccf00d08dbdcff7f1224eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga662624feaff3850ffbe7fb118ab140d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___b_s_p___m_c_u.html#ga662624feaff3850ffbe7fb118ab140d7">R_BSP_WarmStart</a> (<a class="el" href="group___r_z_v___b_s_p___m_c_u.html#ga6fe6dc3c0813eeae8665430a31c005b4">bsp_warm_start_event_t</a> event)</td></tr>
 <tr class="separator:ga662624feaff3850ffbe7fb118ab140d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3b935e0215b362d397cc0546928df270"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___b_s_p___m_c_u.html#ga3b935e0215b362d397cc0546928df270">R_BSP_SecurityInit</a> (void)</td></tr>
-<tr class="separator:ga3b935e0215b362d397cc0546928df270"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7e4470a8cc5faaaff1d16b44466abc9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___b_s_p___m_c_u.html#ga7e4470a8cc5faaaff1d16b44466abc9b">SystemInit_S</a> (void)</td></tr>
 <tr class="separator:ga7e4470a8cc5faaaff1d16b44466abc9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga215316af2d678355220f2def97172165"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___b_s_p___m_c_u.html#ga215316af2d678355220f2def97172165">Warm_Reset_S</a> (void)</td></tr>
@@ -1938,29 +1936,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ga3b935e0215b362d397cc0546928df270"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3b935e0215b362d397cc0546928df270">&#9670;&nbsp;</a></span>R_BSP_SecurityInit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void RZV::R_BSP_SecurityInit </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Initialize security features for TrustZone.</p>
-<p>This function initializes ARM security register for secure projects.</p>
-<dl class="section note"><dt>Note</dt><dd>IDAU settings must be configured to match project settings.</dd></dl>
-<p>Initialize security features for TrustZone.</p>
-<p>This function initializes security register for secure projects. </p>
-
-</div>
-</div>
 <a id="ga7e4470a8cc5faaaff1d16b44466abc9b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga7e4470a8cc5faaaff1d16b44466abc9b">&#9670;&nbsp;</a></span>SystemInit_S()</h2>
 
@@ -1995,7 +1970,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>DOXYGEN_IGNORE_ATTRIBUTE In the Cortex-M33 CPU core of this device, the secure vector address must be set to SYS_CM33_CFG2 before WarmReset is executed. Also, the non-secure vector address must be set to SYS_CM33_CFG3 before WarmReset is executed. The Cortex-M33's program works on the assumption that the appropriate vector address values have been set in SYS_CM33_CFG2 and SYS_CM33_CFG3 in the Cortex-A55 program. </p>
+<p>In the Cortex-M33 CPU core of this device, the secure vector address must be set to SYS_CM33_CFG2 before WarmReset is executed. Also, the non-secure vector address must be set to SYS_CM33_CFG3 before WarmReset is executed. The Cortex-M33's program works on the assumption that the appropriate vector address values have been set in SYS_CM33_CFG2 and SYS_CM33_CFG3 in the Cortex-A55 program. </p>
 
 </div>
 </div>
@@ -2014,7 +1989,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>DOXYGEN_IGNORE_ATTRIBUTE Entry function when debugging RAM load using a debugger </p>
+<p>Entry function when debugging RAM load using a debugger </p>
 
 </div>
 </div>
@@ -2923,7 +2898,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

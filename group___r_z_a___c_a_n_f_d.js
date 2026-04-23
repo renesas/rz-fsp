@@ -18,7 +18,8 @@ var group___r_z_a___c_a_n_f_d =
       [ "p_data_timing", "group___r_z_a___c_a_n_f_d.html#acff413ca52de2b2c2a7e3220061fd460", null ],
       [ "delay_compensation", "group___r_z_a___c_a_n_f_d.html#a6f73f6b0c5fe7aaa0881e1c08c78429f", null ],
       [ "p_global_cfg", "group___r_z_a___c_a_n_f_d.html#adb3e874b2f1c94985f4a6b0ed7611293", null ],
-      [ "txmb_merge_mode_enable", "group___r_z_a___c_a_n_f_d.html#a72f2c882427d042667de8258d66c9189", null ]
+      [ "txmb_merge_mode_enable", "group___r_z_a___c_a_n_f_d.html#a72f2c882427d042667de8258d66c9189", null ],
+      [ "p_reg", "group___r_z_a___c_a_n_f_d.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "canfd_instance_ctrl_t", "group___r_z_a___c_a_n_f_d.html#ga3a1d29e62ed64a7b7001d61cd8775b2b", null ],
     [ "canfd_afl_entry_t", "group___r_z_a___c_a_n_f_d.html#ga78c3b715701e6af30e8502d984acfc79", null ],

@@ -32,7 +32,8 @@ var group___r_z_t___x_s_p_i___o_s_p_i =
       [ "prefetch_en", "group___r_z_t___x_s_p_i___o_s_p_i.html#a17f1459b71b1d3bd49634a15cab02131", null ],
       [ "io_voltage", "group___r_z_t___x_s_p_i___o_s_p_i.html#a98d32055cfa53a54c4167376c586f40b", null ],
       [ "byte_order", "group___r_z_t___x_s_p_i___o_s_p_i.html#afe787233e3b39e6374bda7f5cd90004f", null ],
-      [ "p_address_space", "group___r_z_t___x_s_p_i___o_s_p_i.html#a4fc2395a82f21d018cec56998c97b0c7", null ]
+      [ "p_address_space", "group___r_z_t___x_s_p_i___o_s_p_i.html#a4fc2395a82f21d018cec56998c97b0c7", null ],
+      [ "p_reg", "group___r_z_t___x_s_p_i___o_s_p_i.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_xspi_ospi_instance_ctrl", "group___r_z_t___x_s_p_i___o_s_p_i.html#struct_r_z_t_1_1st__xspi__ospi__instance__ctrl", null ],
     [ "xspi_ospi_timing_setting_t", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga7b014226faf19d9f865c5114920b76c3", null ],
@@ -91,17 +92,17 @@ var group___r_z_t___x_s_p_i___o_s_p_i =
       [ "XSPI_OSPI_BYTE_ORDER_0123", "group___r_z_t___x_s_p_i___o_s_p_i.html#ggae4ac87a62886f5558cb5d21cd5f2357fa7d7f5251e544d4e038e7714eb521bcc7", null ],
       [ "XSPI_OSPI_BYTE_ORDER_1032", "group___r_z_t___x_s_p_i___o_s_p_i.html#ggae4ac87a62886f5558cb5d21cd5f2357fae1c39de0296598d4c18f1fdcc8025ad6", null ]
     ] ],
-    [ "R_XSPI_OSPI_Open", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga67d8a86dcc3370f47dd8f113f604e1b2", null ],
-    [ "R_XSPI_OSPI_Close", "group___r_z_t___x_s_p_i___o_s_p_i.html#gac4a104b286e181e85aa9f49cfd415743", null ],
-    [ "R_XSPI_OSPI_DirectWrite", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga6a078843078f56dc586961e73361d455", null ],
-    [ "R_XSPI_OSPI_DirectRead", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga1c4014dc52de5e1ea57c0ba881b85a27", null ],
-    [ "R_XSPI_OSPI_SpiProtocolSet", "group___r_z_t___x_s_p_i___o_s_p_i.html#gaf5076d7e3ab6762afb16eb83f95ae369", null ],
-    [ "R_XSPI_OSPI_XipEnter", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga9b4f69f9341ecb8f50b524eb389220a1", null ],
-    [ "R_XSPI_OSPI_XipExit", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga4abd514e01d09706ca12dcea9638a015", null ],
-    [ "R_XSPI_OSPI_Write", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga7bfd6bb973ae7b50d6e4dd61f2f63db5", null ],
-    [ "R_XSPI_OSPI_Erase", "group___r_z_t___x_s_p_i___o_s_p_i.html#gaa611e3a9c739cfe40fde1ea4a416f21a", null ],
-    [ "R_XSPI_OSPI_StatusGet", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga05ba32343ad208b17d950b55b33dc73b", null ],
-    [ "R_XSPI_OSPI_BankSet", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga5ccb97618f1ab68e8ab75bcb254824c5", null ],
-    [ "R_XSPI_OSPI_DirectTransfer", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga33cbe6104492f4c691f5803fe345ecca", null ],
-    [ "R_XSPI_OSPI_AutoCalibrate", "group___r_z_t___x_s_p_i___o_s_p_i.html#gad2b24047e009a0c99a0e9ba116304938", null ]
+    [ "R_XSPI_OSPI_Open", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga243eb18e1bc38cd88f5b9f35c78485ea", null ],
+    [ "R_XSPI_OSPI_DirectWrite", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga938f153b20661d4ad4b9916319e11d96", null ],
+    [ "R_XSPI_OSPI_DirectRead", "group___r_z_t___x_s_p_i___o_s_p_i.html#gaf7d66384a25e04f77e5f7135a76749bd", null ],
+    [ "R_XSPI_OSPI_DirectTransfer", "group___r_z_t___x_s_p_i___o_s_p_i.html#gaaa7112f1698a5ecce2a77ca25a1a865b", null ],
+    [ "R_XSPI_OSPI_XipEnter", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga7b49ce9f4db9c7210c2575866864daf3", null ],
+    [ "R_XSPI_OSPI_XipExit", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga8ecae16a0b5e18be1f041ea084aa465c", null ],
+    [ "R_XSPI_OSPI_Write", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga5babffaa7aabbe852b2852b3855a02eb", null ],
+    [ "R_XSPI_OSPI_Erase", "group___r_z_t___x_s_p_i___o_s_p_i.html#gaa0d9bd069d30094f2272a3668b71e199", null ],
+    [ "R_XSPI_OSPI_StatusGet", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga8c88a6459bf65146e7119c31010d9aad", null ],
+    [ "R_XSPI_OSPI_BankSet", "group___r_z_t___x_s_p_i___o_s_p_i.html#gae75884301f33948fa34891183ad94f5f", null ],
+    [ "R_XSPI_OSPI_SpiProtocolSet", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga9f9214f98b17904c07ddbc83071ac739", null ],
+    [ "R_XSPI_OSPI_AutoCalibrate", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga62f886d55fa11aa50cba584854bfc4a2", null ],
+    [ "R_XSPI_OSPI_Close", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga5fe719bc4abe8f7a126dc3d1e28e65ad", null ]
 ];

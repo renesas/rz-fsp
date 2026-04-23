@@ -647,18 +647,6 @@ var group___r_z_n___b_s_p___m_c_u =
     [ "R_BSP_CpuResetRelease", "group___r_z_n___b_s_p___m_c_u.html#gaebea4d08f9ea930a2413976c3da4db5e", null ],
     [ "R_BSP_ModuleResetEnable", "group___r_z_n___b_s_p___m_c_u.html#gad32f458624e426d23a0ab3eed625c956", null ],
     [ "R_BSP_ModuleResetDisable", "group___r_z_n___b_s_p___m_c_u.html#ga433242210dc7c1730353c834c013bc80", null ],
-    [ "__sinf", "group___r_z_n___b_s_p___m_c_u.html#ga1cc461aed581ee992de01d4732b20ae2", null ],
-    [ "__cosf", "group___r_z_n___b_s_p___m_c_u.html#ga1ef96b9a452d071740a475d3955bfbf9", null ],
-    [ "__sincosf", "group___r_z_n___b_s_p___m_c_u.html#ga5a50a309863550a94984028b6f9c057f", null ],
-    [ "__atan2f", "group___r_z_n___b_s_p___m_c_u.html#ga0da52aa872878bee2598b2086065047a", null ],
-    [ "__hypotf", "group___r_z_n___b_s_p___m_c_u.html#ga2dc11db2bc880377f67c86291a3092bf", null ],
-    [ "__atan2hypotf", "group___r_z_n___b_s_p___m_c_u.html#gaaf7c70b8afcc2f8b5edc40ae29db71a4", null ],
-    [ "__sinfx", "group___r_z_n___b_s_p___m_c_u.html#ga00775131e72222acdba1bd5b83d6214b", null ],
-    [ "__cosfx", "group___r_z_n___b_s_p___m_c_u.html#ga24f4dfaffef18fc9221e28e56db97aa9", null ],
-    [ "__sincosfx", "group___r_z_n___b_s_p___m_c_u.html#gaa788d29fefbd5c270e63214cb34a225e", null ],
-    [ "__atan2fx", "group___r_z_n___b_s_p___m_c_u.html#ga8fbe6b573f28968782bf1bb813004401", null ],
-    [ "__hypotfx", "group___r_z_n___b_s_p___m_c_u.html#ga8a0a06e6980df6209e9dac21efef7d08", null ],
-    [ "__atan2hypotfx", "group___r_z_n___b_s_p___m_c_u.html#ga3639d0abffca236b9286ef5a5f3578c7", null ],
     [ "r_bsp_software_delay_loop", "group___r_z_n___b_s_p___m_c_u.html#ga02e4a0b2d90257c1500285a8d35a7957", null ],
     [ "R_BSP_GroupIrqWrite", "group___r_z_n___b_s_p___m_c_u.html#gae396c90f7c1651d6fa0b1b9b0f6207e4", null ],
     [ "R_BSP_GICD_SetCtlr", "group___r_z_n___b_s_p___m_c_u.html#ga6776a3e7e25ccbe506613fefe8cb9d76", null ],
@@ -709,5 +697,6 @@ var group___r_z_n___b_s_p___m_c_u =
     [ "R_BSP_MemoryUnMap", "group___r_z_n___b_s_p___m_c_u.html#ga60b828c5008c490184009ac21a412eaa", null ],
     [ "R_BSP_MpuRegionDynamicConfig", "group___r_z_n___b_s_p___m_c_u.html#ga492c5252e65b9d5928f559e802567398", null ],
     [ "R_BSP_MpuRegionRestoreConfig", "group___r_z_n___b_s_p___m_c_u.html#gad19cad98d346a6b4815cb2b3fbfd65ac", null ],
-    [ "SystemCoreClock", "group___r_z_n___b_s_p___m_c_u.html#gaa3cd3e43291e81e795d642b79b6088e6", null ]
+    [ "SystemCoreClock", "group___r_z_n___b_s_p___m_c_u.html#gaa3cd3e43291e81e795d642b79b6088e6", null ],
+    [ "g_bsp_system_clock_select_xspi_clk", "group___r_z_n___b_s_p___m_c_u.html#gab57e4db79d93cfa90e0c0070fa979a45", null ]
 ];

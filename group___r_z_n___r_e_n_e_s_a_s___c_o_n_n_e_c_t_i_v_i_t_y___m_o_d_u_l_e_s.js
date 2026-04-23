@@ -14,8 +14,9 @@ var group___r_z_n___r_e_n_e_s_a_s___c_o_n_n_e_c_t_i_v_i_t_y___m_o_d_u_l_e_s =
     [ "USB HCDC (r_usb_hcdc)", "group___r_z_n___u_s_b___h_c_d_c.html", "group___r_z_n___u_s_b___h_c_d_c" ],
     [ "USB HHID (r_usb_hhid)", "group___r_z_n___u_s_b___h_h_i_d.html", "group___r_z_n___u_s_b___h_h_i_d" ],
     [ "USB HMSC (r_usb_hmsc)", "group___r_z_n___u_s_b___h_m_s_c.html", "group___r_z_n___u_s_b___h_m_s_c" ],
-    [ "USB HVND (r_usb_hvnd)", "group___r_z_n___u_s_b___h_v_n_d.html", null ],
+    [ "USB Host Vendor class (r_usb_hvnd)", "group___r_z_n___u_s_b___h_v_n_d.html", null ],
     [ "USB PCDC (r_usb_pcdc)", "group___r_z_n___u_s_b___p_c_d_c.html", null ],
+    [ "USB PHID (r_usb_phid)", "group___r_z_n___u_s_b___p_h_i_d.html", null ],
     [ "USB PMSC (r_usb_pmsc)", "group___r_z_n___u_s_b___p_m_s_c.html", null ],
     [ "USB PVND (r_usb_pvnd)", "group___r_z_n___u_s_b___p_v_n_d.html", null ]
 ];

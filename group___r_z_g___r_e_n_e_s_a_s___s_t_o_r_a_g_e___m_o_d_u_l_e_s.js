@@ -1,4 +1,4 @@
 var group___r_z_g___r_e_n_e_s_a_s___s_t_o_r_a_g_e___m_o_d_u_l_e_s =
 [
-    [ "QSPI Flash (r_xspi_qspi)", "group___r_z_g___x_s_p_i___q_s_p_i.html", "group___r_z_g___x_s_p_i___q_s_p_i" ]
+    [ "QSPI (r_xspi_qspi)", "group___r_z_g___x_s_p_i___q_s_p_i.html", "group___r_z_g___x_s_p_i___q_s_p_i" ]
 ];

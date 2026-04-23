@@ -9,7 +9,11 @@ var group___r_z_v___m_h_u___s =
       [ "p_shared_memory_tx", "group___r_z_v___m_h_u___s.html#a2e5e62a58ca2f8378ad20d2b4b1b70e6", null ],
       [ "p_shared_memory_rx", "group___r_z_v___m_h_u___s.html#afe794b23a3abd783cdf531b4bc442f1f", null ]
     ] ],
+    [ "st_mhu_s_extended_cfg", "group___r_z_v___m_h_u___s.html#struct_r_z_v_1_1st__mhu__s__extended__cfg", [
+      [ "p_reg", "group___r_z_v___m_h_u___s.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
+    ] ],
     [ "mhu_s_instance_ctrl_t", "group___r_z_v___m_h_u___s.html#ga353f561873d5807f78505193a05f6243", null ],
+    [ "mhu_s_extended_cfg_t", "group___r_z_v___m_h_u___s.html#gaa224a9a8258dd2284d2bd0d2a35d7e9f", null ],
     [ "R_MHU_S_Open", "group___r_z_v___m_h_u___s.html#gad777d9161d5147e0eb546d107cf64259", null ],
     [ "R_MHU_S_MsgSend", "group___r_z_v___m_h_u___s.html#gace961f8d144fe82cf739f96762a681a3", null ],
     [ "R_MHU_S_Close", "group___r_z_v___m_h_u___s.html#gaaaee4d1fe5df68815f36021a1daefe46", null ],

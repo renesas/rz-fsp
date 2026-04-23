@@ -3,7 +3,8 @@ var group___r_z_v___s_c_i___b___s_p_i =
     [ "st_sci_b_spi_div_setting", "group___r_z_v___s_c_i___b___s_p_i.html#struct_r_z_v_1_1st__sci__b__spi__div__setting", null ],
     [ "st_sci_b_spi_extended_cfg", "group___r_z_v___s_c_i___b___s_p_i.html#struct_r_z_v_1_1st__sci__b__spi__extended__cfg", [
       [ "clock_source", "group___r_z_v___s_c_i___b___s_p_i.html#af3da46c5fbe215244c995e5748571938", null ],
-      [ "rx_sampling_delay", "group___r_z_v___s_c_i___b___s_p_i.html#ade6a6a6fb41369db9f6a0337ae810a41", null ]
+      [ "rx_sampling_delay", "group___r_z_v___s_c_i___b___s_p_i.html#ade6a6a6fb41369db9f6a0337ae810a41", null ],
+      [ "p_reg", "group___r_z_v___s_c_i___b___s_p_i.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_sci_b_spi_instance_ctrl", "group___r_z_v___s_c_i___b___s_p_i.html#struct_r_z_v_1_1st__sci__b__spi__instance__ctrl", null ],
     [ "sci_b_spi_div_setting_t", "group___r_z_v___s_c_i___b___s_p_i.html#ga467d2fef1967a66dacad434d260f9aa2", null ],

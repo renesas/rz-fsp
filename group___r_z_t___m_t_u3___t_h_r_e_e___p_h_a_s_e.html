@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
-<title>RZ Flexible Software Package Documentation: Multi-Function Timer Pulse Unit 3 Three-Phase Motor Control Driver (r_mtu3_three_phase)</title>
+<title>RZ Flexible Software Package Documentation: Three-Phase PWM (r_mtu3_three_phase)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('group___r_z_t___m_t_u3___t_h_r_e_e___p
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
-<div class="title">Multi-Function Timer Pulse Unit 3 Three-Phase Motor Control Driver (r_mtu3_three_phase)<div class="ingroups"><a class="el" href="group___r_z_t.html">RZT</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___t_i_m_e_r_s___m_o_d_u_l_e_s.html">Timers</a></div></div>  </div>
+<div class="title">Three-Phase PWM (r_mtu3_three_phase)<div class="ingroups"><a class="el" href="group___r_z_t.html">RZT</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___t_i_m_e_r_s___m_o_d_u_l_e_s.html">Timers</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -270,7 +270,7 @@ Double Buffer</li>
 </ul>
 </td><td>Single Buffer </td><td>When Double Buffer is selected the 'duty_buffer' array in three_phase_duty_cycle_t is used as a buffer for the 'duty' array. This allows setting the duty cycle for the next two crest/trough events in asymmetric mode with only one call to R_MTU3_THREE_PHASE_DutyCycleSet.. </td></tr>
 <tr>
-<td>General &gt; Time Prescaler</td><td>Refer to the <a class="el" href="namespace_r_z_t.html" title="Default initialization function. ">RZT</a> Configuration tool for available options.</td><td>PCLKH divided by 1 (common ch) </td><td>Select time prescaler. </td></tr>
+<td>General &gt; Time Prescaler</td><td>Refer to the <a class="el" href="namespace_r_z_t.html">RZT</a> Configuration tool for available options.</td><td>PCLKH divided by 1 (common ch) </td><td>Select time prescaler. </td></tr>
 <tr>
 <td>General &gt; Clock Edge</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -321,10 +321,10 @@ MTU7</li>
 </p>
 <h2><a class="anchor" id="RZT_r-mtu3-three_phase-clock-configuration"></a>
 Clock Configuration</h2>
-<p>Please refer to the <a class="el" href="group___r_z_t___m_t_u3.html">Multi-Function Timer Pulse Unit 3 (r_mtu3)</a> section for more information.</p>
+<p>Please refer to the <a class="el" href="group___r_z_t___m_t_u3.html">Timer, Multi-Function (r_mtu3)</a> section for more information.</p>
 <h2><a class="anchor" id="RZT_r-mtu3-three_phase-pin-configuration"></a>
 Pin Configuration</h2>
-<p>Please refer to the <a class="el" href="group___r_z_t___m_t_u3.html">Multi-Function Timer Pulse Unit 3 (r_mtu3)</a> section for more information.</p>
+<p>Please refer to the <a class="el" href="group___r_z_t___m_t_u3.html">Timer, Multi-Function (r_mtu3)</a> section for more information.</p>
 <h1><a class="anchor" id="RZT_r-mtu3-three_phase-usage_notes"></a>
 Usage Notes</h1>
 <dl class="section warning"><dt>Warning</dt><dd>Be sure the MTIOC3(6)B/D,MTIOC4(7)A/C,B/D stop level and dead time values are set appropriately for your application before attempting to drive a motor. Failure to do so may result in damage to the motor drive circuitry and/or the motor itself if the timer is stopped by software.</dd></dl>
@@ -865,7 +865,7 @@ Pointer to initial configurations. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

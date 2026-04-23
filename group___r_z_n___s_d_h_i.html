@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -233,13 +233,13 @@ Disabled</li>
 </ul>
 </td><td>Default (BSP) </td><td>If selected code for parameter checking is included in the build. </td></tr>
 <tr>
-<td>Multiplex Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Nested Interrupt (Multiplex Interrupt)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable multiplex interrupt for a single driver. </td></tr>
+</td><td>Disabled </td><td>Enable nested interrupt for a single driver. </td></tr>
 <tr>
 <td>Unaligned Access Support</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -332,7 +332,7 @@ Low</li>
 <p>The Access Interrupt, Internal DMAC Interrupt and the Card interrupt are treated as OXMN interrupt signal.</p>
 <h2><a class="anchor" id="RZN_r-sdhi-clock-configuration"></a>
 Clock Configuration</h2>
-<p>The SDMMC MPU peripheral (SDHI) uses the SDHI_clkhs (the operating clock for SDHI module) and PCLKAM (the clock source for SD clock (SD_CLK) frequency) for its clock source. The SDMMC driver selects the optimal built-in divider based on the PCLKAM frequency and the maximum clock rate allowed by the device obtained at media initialization.</p>
+<p>The SDMMC MPU peripheral (SDHI) uses the SDHI_clkhs (the operating clock for SDHI module) and SDHI_IMCLK (the clock source for SD clock (SD_CLK) frequency) for its clock source. The SDMMC driver selects the optimal built-in divider based on the SDHI_IMCLK frequency and the maximum clock rate allowed by the device obtained at media initialization.</p>
 <h2><a class="anchor" id="RZN_r-sdhi-pin-configuration"></a>
 Pin Configuration</h2>
 <p>The SDMMC driver supports the following pins (n = channel number):</p><ul>
@@ -456,6 +456,12 @@ SD_PWEN output signal. </td></tr>
 sd_iovs_output</td>
 <td class="fielddoc">
 SD_IOVS output signal. </td></tr>
+<tr><td class="fieldtype">
+<a id="afe62c2bbb07bedc4bd4dad60b8c3c69c"></a>void *</td>
+<td class="fieldname">
+p_reg</td>
+<td class="fielddoc">
+Register base address for specified channel. </td></tr>
 </table>
 
 </div>
@@ -517,7 +523,7 @@ SD_IOVS output signal. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Opens the driver. Resets SDHI, and enables card detection interrupts if card detection is enabled. R_SDHI_MediaInit must be called after this function before any other functions can be used.</p>
+<p>Opens the driver. Resets SDHI, and enables card detection interrupts if card detection is enabled. <a class="el" href="group___r_z_n___s_d_h_i.html#gabacaaf35153339d0931c6c0932eca4e3">R_SDHI_MediaInit</a> must be called after this function before any other functions can be used.</p>
 <p>Implements <a class="el" href="group___r_z_n___s_d_m_m_c___a_p_i.html#a76f79889c053ad11dfaedd6df8ee2a19">sdmmc_api_t::open()</a>.</p>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
@@ -1120,7 +1126,7 @@ SD_IOVS output signal. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

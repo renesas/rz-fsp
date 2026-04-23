@@ -2,7 +2,13 @@ var group___r_z_v___m_t_u3 =
 [
     [ "st_mtu3_output_pin", "group___r_z_v___m_t_u3.html#struct_r_z_v_1_1st__mtu3__output__pin", [
       [ "output_pin_level_a", "group___r_z_v___m_t_u3.html#a443d7ffcfd21ce6c650cdb9d522b3240", null ],
-      [ "output_pin_level_b", "group___r_z_v___m_t_u3.html#a872a8a886918e649972a40add235e5d7", null ]
+      [ "output_pin_level_b", "group___r_z_v___m_t_u3.html#a872a8a886918e649972a40add235e5d7", null ],
+      [ "output_enabled_a", "group___r_z_v___m_t_u3.html#a60940bcd60c62fcfd50f82a5ff503554", null ],
+      [ "stop_level_a", "group___r_z_v___m_t_u3.html#aa3df3751ddbe0ec074fb380d181b8752", null ],
+      [ "initial_level", "group___r_z_v___m_t_u3.html#a5504470c762b13ab1a4221367eff9163", null ],
+      [ "output_enabled_b", "group___r_z_v___m_t_u3.html#a1d5471dd061e83546b4e546d48535c36", null ],
+      [ "stop_level_b", "group___r_z_v___m_t_u3.html#a2de2bd93ce75d1180b3b57548474a467", null ],
+      [ "retain_level", "group___r_z_v___m_t_u3.html#aedc531f83f1ddbf5962ea252958edcc2", null ]
     ] ],
     [ "st_mtu3_instance_ctrl", "group___r_z_v___m_t_u3.html#struct_r_z_v_1_1st__mtu3__instance__ctrl", [
       [ "open", "group___r_z_v___m_t_u3.html#a46c9af2fb0c51a3bc152b006beefc554", null ],
@@ -11,6 +17,9 @@ var group___r_z_v___m_t_u3 =
       [ "p_reg_com", "group___r_z_v___m_t_u3.html#a75b03ba5448a51b8672bcbefb46cdde3", null ],
       [ "p_reg_nf", "group___r_z_v___m_t_u3.html#a27d3b7994cd6b328a989b35c7de431fa", null ],
       [ "channel_mask", "group___r_z_v___m_t_u3.html#a4e2708bc7022dbf8177e7ef6698ad7d7", null ],
+      [ "oneshot_interrupt_flag", "group___r_z_v___m_t_u3.html#a5d8f9f2f17a7ddd5e9f59d2c4392d5e2", null ],
+      [ "tior_ioa", "group___r_z_v___m_t_u3.html#abffa0ebb2aafb3fec3c400436d05a084", null ],
+      [ "tior_iob", "group___r_z_v___m_t_u3.html#a7fd5042c9ed72026d61cd5222b3f0857", null ],
       [ "p_callback", "group___r_z_v___m_t_u3.html#a5e3b7a11c599471c2cc9c1d20bf8fe6f", null ],
       [ "p_callback_memory", "group___r_z_v___m_t_u3.html#a7b154bdd8a6a4d585f7ce182a5e0a248", null ],
       [ "p_context", "group___r_z_v___m_t_u3.html#aa207a6ef4d9f49f00f01a37810ac301d", null ]
@@ -41,6 +50,12 @@ var group___r_z_v___m_t_u3 =
       [ "capture_a_irq", "group___r_z_v___m_t_u3.html#a6174eee451683e2cdf67129dfa340c12", null ],
       [ "capture_b_irq", "group___r_z_v___m_t_u3.html#a7228c107c19de18ffaef5ae3c6e5f343", null ],
       [ "p_pwm_cfg", "group___r_z_v___m_t_u3.html#a64e0d62cd1d274c6041cb4d950596491", null ],
+      [ "p_reg", "group___r_z_v___m_t_u3.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ],
+      [ "compare_match_value", "group___r_z_v___m_t_u3.html#adb68fc4f3a299dc144847b9dec5d0697", null ],
+      [ "compare_match_status", "group___r_z_v___m_t_u3.html#ad7297058f0324dbf00658ca2396c70a2", null ],
+      [ "counting_mode", "group___r_z_v___m_t_u3.html#ab85a83ac061b6dfb0e1f5e831cd237ed", null ],
+      [ "bit_mode", "group___r_z_v___m_t_u3.html#aa14add8f5815b3a1b6e85ff4f52a0dd0", null ],
+      [ "external_clock", "group___r_z_v___m_t_u3.html#a18f90f0498b6064f893edddb9ab70925", null ],
       [ "buffer_mode", "group___r_z_v___m_t_u3.html#aa388005ca2895fdd4b61d90031b40846", null ]
     ] ],
     [ "mtu3_output_pin_t", "group___r_z_v___m_t_u3.html#ga8179fd892107e798461af1cadaaa4e1d", null ],
@@ -104,6 +119,10 @@ var group___r_z_v___m_t_u3 =
       [ "MTU3_IO_PIN_MTIOCB", "group___r_z_v___m_t_u3.html#gga8a74b8a0003ccd7602df801eb863a4ceacd3adaab6bac29b0b63bd9c6a156c028", null ],
       [ "MTU3_IO_PIN_MTIOCA_AND_MTIOCB", "group___r_z_v___m_t_u3.html#gga8a74b8a0003ccd7602df801eb863a4cea6579c2e2017ea2d1a473d06d6554d528", null ]
     ] ],
+    [ "mtu3_pin_level_t", "group___r_z_v___m_t_u3.html#gabd8de4974f621e5339527a4da1006839", [
+      [ "MTU3_PIN_LEVEL_LOW", "group___r_z_v___m_t_u3.html#ggabd8de4974f621e5339527a4da1006839aee475f95f8ab5e1de486bdc136df90c7", null ],
+      [ "MTU3_PIN_LEVEL_HIGH", "group___r_z_v___m_t_u3.html#ggabd8de4974f621e5339527a4da1006839a3ee0c73583a073aa99b4d6e9568b20f9", null ]
+    ] ],
     [ "mtu3_noise_filter_t", "group___r_z_v___m_t_u3.html#ga6ce62ddb141bf440c0539fc47512c586", [
       [ "MTU3_NOISE_FILTER_DISABLE", "group___r_z_v___m_t_u3.html#gga6ce62ddb141bf440c0539fc47512c586aef6de8ca9710e328d82501ba5ffcbf9d", null ],
       [ "MTU3_NOISE_FILTER_A_ENABLE", "group___r_z_v___m_t_u3.html#gga6ce62ddb141bf440c0539fc47512c586a99ecb4bf189434da6ef15bf58a73e665", null ],
@@ -153,6 +172,27 @@ var group___r_z_v___m_t_u3 =
     [ "mtu3_buffer_mode_t", "group___r_z_v___m_t_u3.html#gab16f2e885e2b2f828377b8dc89ed62e9", [
       [ "MTU3_BUFFER_MODE_ENABLE", "group___r_z_v___m_t_u3.html#ggab16f2e885e2b2f828377b8dc89ed62e9a8030f122cd60ecf8c7f1c5019cd1bd3e", null ],
       [ "MTU3_BUFFER_MODE_DISABLE", "group___r_z_v___m_t_u3.html#ggab16f2e885e2b2f828377b8dc89ed62e9aed858894e41bbe1225050bb97b3ee1c0", null ]
+    ] ],
+    [ "mtu3_phase_counting_mode_t", "group___r_z_v___m_t_u3.html#ga483bdeddeef548cad6607a6882d01dff", [
+      [ "MTU3_PHASE_COUNTING_MODE_NONE", "group___r_z_v___m_t_u3.html#gga483bdeddeef548cad6607a6882d01dffa2dd91c675ba13dad32c7db349453b02a", null ],
+      [ "MTU3_PHASE_COUNTING_MODE_1", "group___r_z_v___m_t_u3.html#gga483bdeddeef548cad6607a6882d01dffaacc019ea683cd47f446894ab49bcc5df", null ],
+      [ "MTU3_PHASE_COUNTING_MODE_200", "group___r_z_v___m_t_u3.html#gga483bdeddeef548cad6607a6882d01dffab7129c87b3b520ebc12fb8b8d41d01b9", null ],
+      [ "MTU3_PHASE_COUNTING_MODE_201", "group___r_z_v___m_t_u3.html#gga483bdeddeef548cad6607a6882d01dffa520ad5d440a51c74834cb08042f37447", null ],
+      [ "MTU3_PHASE_COUNTING_MODE_210", "group___r_z_v___m_t_u3.html#gga483bdeddeef548cad6607a6882d01dffa36bcb5dbca0140e35534e53dd889a389", null ],
+      [ "MTU3_PHASE_COUNTING_MODE_300", "group___r_z_v___m_t_u3.html#gga483bdeddeef548cad6607a6882d01dffa598a0600cf17f8d6a5e9e9b2406492e7", null ],
+      [ "MTU3_PHASE_COUNTING_MODE_301", "group___r_z_v___m_t_u3.html#gga483bdeddeef548cad6607a6882d01dffafc0d9e62a626074a59774f62710204b8", null ],
+      [ "MTU3_PHASE_COUNTING_MODE_310", "group___r_z_v___m_t_u3.html#gga483bdeddeef548cad6607a6882d01dffa078f2e46633c57fee94b508c303f36bd", null ],
+      [ "MTU3_PHASE_COUNTING_MODE_4", "group___r_z_v___m_t_u3.html#gga483bdeddeef548cad6607a6882d01dffab5d4ac1c1bdc75ca409e1bc38bf8c175", null ],
+      [ "MTU3_PHASE_COUNTING_MODE_50", "group___r_z_v___m_t_u3.html#gga483bdeddeef548cad6607a6882d01dffac2fe0e2d753d2e99d632d6443c4daca2", null ],
+      [ "MTU3_PHASE_COUNTING_MODE_51", "group___r_z_v___m_t_u3.html#gga483bdeddeef548cad6607a6882d01dffa6e747b8626a8f0b519cecf3a5877b1f0", null ]
+    ] ],
+    [ "mtu3_bit_mode_t", "group___r_z_v___m_t_u3.html#ga4a713782493bd1d5b6f558971a98b074", [
+      [ "MTU3_BIT_MODE_NORMAL_16BIT", "group___r_z_v___m_t_u3.html#gga4a713782493bd1d5b6f558971a98b074a015d32d53714a417d11ebb6a201aab0e", null ],
+      [ "MTU3_BIT_MODE_NORMAL_32BIT", "group___r_z_v___m_t_u3.html#gga4a713782493bd1d5b6f558971a98b074ad172b0f030792216d076ca06aa7c3286", null ]
+    ] ],
+    [ "mtu3_external_clock_t", "group___r_z_v___m_t_u3.html#ga336bc75269af69ae11afe375c8b627b2", [
+      [ "MTU3_EXTERNAL_CLOCK_MTCLKA_B", "group___r_z_v___m_t_u3.html#gga336bc75269af69ae11afe375c8b627b2addecf6d6a261b67a509b0f83e1eabbc0", null ],
+      [ "MTU3_EXTERNAL_CLOCK_MTCLKC_D", "group___r_z_v___m_t_u3.html#gga336bc75269af69ae11afe375c8b627b2a9d293aa2b9be19cc5fade4c78f1089a1", null ]
     ] ],
     [ "R_MTU3_Open", "group___r_z_v___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b", null ],
     [ "R_MTU3_Stop", "group___r_z_v___m_t_u3.html#ga396b95f942eed8fd222c67e5bfd22800", null ],

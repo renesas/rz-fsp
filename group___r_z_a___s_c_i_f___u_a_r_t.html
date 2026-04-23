@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
-<title>RZ Flexible Software Package Documentation: Serial Communications Interface (SCIF) UART (r_scif_uart)</title>
+<title>RZ Flexible Software Package Documentation: UART (r_scif_uart)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('group___r_z_a___s_c_i_f___u_a_r_t.html
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
-<div class="title">Serial Communications Interface (SCIF) UART (r_scif_uart)<div class="ingroups"><a class="el" href="group___r_z_a.html">RZA</a> &raquo; <a class="el" href="group___r_z_a___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_a___r_e_n_e_s_a_s___c_o_n_n_e_c_t_i_v_i_t_y___m_o_d_u_l_e_s.html">Connectivity</a></div></div>  </div>
+<div class="title">UART (r_scif_uart)<div class="ingroups"><a class="el" href="group___r_z_a.html">RZA</a> &raquo; <a class="el" href="group___r_z_a___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_a___r_e_n_e_s_a_s___c_o_n_n_e_c_t_i_v_i_t_y___m_o_d_u_l_e_s.html">Connectivity</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -249,8 +249,8 @@ Disable</li>
 </ul>
 </td><td>Disable </td><td>Enable RS485 flow (driver enable) control support using a user provided pin. </td></tr>
 </table>
- <h2>Configurations for Connectivity &gt; UART Driver on r_scif_uart</h2>
-This module can be added to the Stacks tab via New Stack &gt; Connectivity &gt; UART Driver on r_scif_uart.<br />
+ <h2>Configurations for Connectivity &gt; UART (r_scif_uart)</h2>
+This module can be added to the Stacks tab via New Stack &gt; Connectivity &gt; UART (r_scif_uart).<br />
 </p><table class="doxtable">
 <tr>
 <th>Configuration</th><th>Options</th><th>Default</th><th>Description </th></tr>
@@ -613,6 +613,12 @@ CTS/RTS function. </td></tr>
 rs485_setting</td>
 <td class="fielddoc">
 RS-485 settings. </td></tr>
+<tr><td class="fieldtype">
+<a id="afe62c2bbb07bedc4bd4dad60b8c3c69c"></a>void *</td>
+<td class="fieldname">
+p_reg</td>
+<td class="fielddoc">
+Register base address for specified channel. </td></tr>
 </table>
 
 </div>
@@ -1383,7 +1389,7 @@ RS-485 settings. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

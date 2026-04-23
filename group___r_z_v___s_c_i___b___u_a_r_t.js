@@ -20,7 +20,8 @@ var group___r_z_v___s_c_i___b___u_a_r_t =
       [ "flow_control_pin", "group___r_z_v___s_c_i___b___u_a_r_t.html#a17546a8e0f2c1d25bca24a9e70729f49", null ],
       [ "flow_control", "group___r_z_v___s_c_i___b___u_a_r_t.html#a9ddc2bf788519a1c5e385839d660c41d", null ],
       [ "rs485_setting", "group___r_z_v___s_c_i___b___u_a_r_t.html#a09e279ddb45933fad8db146ca44886de", null ],
-      [ "half_data_setting", "group___r_z_v___s_c_i___b___u_a_r_t.html#a97498e86a04a43345a1b08ce036af855", null ]
+      [ "half_data_setting", "group___r_z_v___s_c_i___b___u_a_r_t.html#a97498e86a04a43345a1b08ce036af855", null ],
+      [ "p_reg", "group___r_z_v___s_c_i___b___u_a_r_t.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "sci_b_uart_instance_ctrl_t", "group___r_z_v___s_c_i___b___u_a_r_t.html#gae0d6193a07d140fcba221ae77e6970c5", null ],
     [ "sci_b_baud_setting_t", "group___r_z_v___s_c_i___b___u_a_r_t.html#gaf6547baf4deaa1050785ce5a9aabd629", null ],

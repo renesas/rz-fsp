@@ -3,7 +3,8 @@ var group___r_z_a___s_s_i =
     [ "st_ssi_instance_ctrl", "group___r_z_a___s_s_i.html#struct_r_z_a_1_1st__ssi__instance__ctrl", null ],
     [ "st_ssi_extended_cfg", "group___r_z_a___s_s_i.html#struct_r_z_a_1_1st__ssi__extended__cfg", [
       [ "audio_clock", "group___r_z_a___s_s_i.html#a8e8cf52062ddc849775697b2096f250b", null ],
-      [ "bit_clock_div", "group___r_z_a___s_s_i.html#ab99a3c4dcdeb622488b6425388d4ca9e", null ]
+      [ "bit_clock_div", "group___r_z_a___s_s_i.html#ab99a3c4dcdeb622488b6425388d4ca9e", null ],
+      [ "p_reg", "group___r_z_a___s_s_i.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "ssi_instance_ctrl_t", "group___r_z_a___s_s_i.html#gaf45794e9d9e71a0a62321e9ab03c2a9e", null ],
     [ "ssi_extended_cfg_t", "group___r_z_a___s_s_i.html#ga12cb58951d80e7eb5bcb49eb8ce05ba0", null ],

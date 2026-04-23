@@ -19,7 +19,8 @@ var group___r_z_g___c_m_t_w =
       [ "compare_oc0_ipl", "group___r_z_g___c_m_t_w.html#adea371ca80c5435b6b42887eb2a1093c", null ],
       [ "compare_oc1_ipl", "group___r_z_g___c_m_t_w.html#ad112311a4042cb19a354013d27127221", null ],
       [ "compare_oc0_irq", "group___r_z_g___c_m_t_w.html#a09bb5581cd8009ea9c81713d1d236c40", null ],
-      [ "compare_oc1_irq", "group___r_z_g___c_m_t_w.html#a112f1bcb2910bef8f1d7a71847b07768", null ]
+      [ "compare_oc1_irq", "group___r_z_g___c_m_t_w.html#a112f1bcb2910bef8f1d7a71847b07768", null ],
+      [ "p_reg", "group___r_z_g___c_m_t_w.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "cmtw_instance_ctrl_t", "group___r_z_g___c_m_t_w.html#gaf00b29b8e7dbbb2a11ed75e4b100a417", null ],
     [ "cmtw_extended_cfg_t", "group___r_z_g___c_m_t_w.html#gadbe4a4066540fd0d4254c1fd93fb6371", null ],

@@ -13,7 +13,8 @@ var group___r_z_v___a_d_c___e =
       [ "window_a_irq", "group___r_z_v___a_d_c___e.html#aedf45137e4157954f3289eb03e85efb9", null ],
       [ "window_b_irq", "group___r_z_v___a_d_c___e.html#a5238f91edd791d6ddf048b631fe0d91b", null ],
       [ "window_a_ipl", "group___r_z_v___a_d_c___e.html#a5bce60d561075976539bafbc57cf63a2", null ],
-      [ "window_b_ipl", "group___r_z_v___a_d_c___e.html#ab3fe23f2dda5076abf0e82c73c0379f5", null ]
+      [ "window_b_ipl", "group___r_z_v___a_d_c___e.html#ab3fe23f2dda5076abf0e82c73c0379f5", null ],
+      [ "p_reg", "group___r_z_v___a_d_c___e.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_adc_e_window_cfg", "group___r_z_v___a_d_c___e.html#struct_r_z_v_1_1st__adc__e__window__cfg", [
       [ "compare_mask", "group___r_z_v___a_d_c___e.html#a0e8fd2df43f767dac9e1c83c718ca146", null ],

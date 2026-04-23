@@ -7,6 +7,6 @@ var group___r_z_t___e_t_h_e_r___s_e_l_e_c_t_o_r =
     ] ],
     [ "ether_selector_instance_ctrl_t", "group___r_z_t___e_t_h_e_r___s_e_l_e_c_t_o_r.html#gab8065a07e36ba3e10cf5bf9616395ac3", null ],
     [ "R_ETHER_SELECTOR_Open", "group___r_z_t___e_t_h_e_r___s_e_l_e_c_t_o_r.html#ga9a636deebaf0784ff440dffd4d19d3da", null ],
-    [ "R_ETHER_SELECTOR_Close", "group___r_z_t___e_t_h_e_r___s_e_l_e_c_t_o_r.html#ga5a90b850ccd7d2bf851f4c19f4935092", null ],
-    [ "R_ETHER_SELECTOR_ConverterSet", "group___r_z_t___e_t_h_e_r___s_e_l_e_c_t_o_r.html#ga2cbff318748046e96f1b1b72bfaba195", null ]
+    [ "R_ETHER_SELECTOR_ConverterSet", "group___r_z_t___e_t_h_e_r___s_e_l_e_c_t_o_r.html#ga2cbff318748046e96f1b1b72bfaba195", null ],
+    [ "R_ETHER_SELECTOR_Close", "group___r_z_t___e_t_h_e_r___s_e_l_e_c_t_o_r.html#ga5a90b850ccd7d2bf851f4c19f4935092", null ]
 ];

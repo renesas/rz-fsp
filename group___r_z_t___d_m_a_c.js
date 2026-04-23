@@ -1,6 +1,6 @@
 var group___r_z_t___d_m_a_c =
 [
-    [ "dmac_link_cfg_t", "group___r_z_t___d_m_a_c.html#structdmac__link__cfg__t", [
+    [ "st_dmac_link_cfg", "group___r_z_t___d_m_a_c.html#struct_r_z_t_1_1st__dmac__link__cfg", [
       [ "p_src", "group___r_z_t___d_m_a_c.html#a381a302f66d871b05dc4a32485744166", null ],
       [ "p_dest", "group___r_z_t___d_m_a_c.html#a156152c375c6e591b91fe46c07deb56b", null ],
       [ "transaction_byte", "group___r_z_t___d_m_a_c.html#ace415d6166b0c84c29746ce9b38897be", null ],
@@ -28,8 +28,10 @@ var group___r_z_t___d_m_a_c =
       [ "dack_active_level", "group___r_z_t___d_m_a_c.html#aaa6980fb884d135b3a6283ae43fb7354", null ],
       [ "tend_active_level", "group___r_z_t___d_m_a_c.html#a1dc557fab693d660691248f2c6abfba3", null ],
       [ "p_callback", "group___r_z_t___d_m_a_c.html#a84f5095f75dee483230e491a18cfa4c3", null ],
-      [ "p_context", "group___r_z_t___d_m_a_c.html#aa207a6ef4d9f49f00f01a37810ac301d", null ]
+      [ "p_context", "group___r_z_t___d_m_a_c.html#aa207a6ef4d9f49f00f01a37810ac301d", null ],
+      [ "p_reg", "group___r_z_t___d_m_a_c.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
+    [ "dmac_link_cfg_t", "group___r_z_t___d_m_a_c.html#gaf7e3a540f95ba28a4713c99b5581865c", null ],
     [ "dmac_instance_ctrl_t", "group___r_z_t___d_m_a_c.html#ga29a22f8da9be08cabf6dbf9fb22c2abd", null ],
     [ "dmac_extended_cfg_t", "group___r_z_t___d_m_a_c.html#ga7ccb186ca493a111a33db67d41d9e01b", null ],
     [ "dmac_link_valid_t", "group___r_z_t___d_m_a_c.html#gac0f8e5b884076714f7b2780fed1fee68", [
@@ -82,6 +84,7 @@ var group___r_z_t___d_m_a_c =
       [ "DMAC_EXTERNAL_OUTPUT_SIGNAL_ACTIVE_LEVEL_HIGH_ACTIVE", "group___r_z_t___d_m_a_c.html#ggada6bb48a32a3f738999cd142ccbe9958afecc84f533d3129eaf527b7488bacea8", null ]
     ] ],
     [ "R_DMAC_Open", "group___r_z_t___d_m_a_c.html#ga7e5fda31237adb83fee8cf5a42daed48", null ],
+    [ "R_DMAC_LinkDescriptorSet", "group___r_z_t___d_m_a_c.html#gab37103a34f8b4bfb41d5adcd30ea8e95", null ],
     [ "R_DMAC_Reconfigure", "group___r_z_t___d_m_a_c.html#ga6e932ab91dd283665438d06813d162bf", null ],
     [ "R_DMAC_Reset", "group___r_z_t___d_m_a_c.html#gaca5dc2be3a25f6b4c9582915ec6445c0", null ],
     [ "R_DMAC_SoftwareStart", "group___r_z_t___d_m_a_c.html#ga047024929094fd5306c6cd2aeb17ecb1", null ],
@@ -89,8 +92,7 @@ var group___r_z_t___d_m_a_c =
     [ "R_DMAC_Enable", "group___r_z_t___d_m_a_c.html#ga8d860f51f5aa6e25d3820dc2262aa15a", null ],
     [ "R_DMAC_Disable", "group___r_z_t___d_m_a_c.html#ga14a3958fdb85b53cae9b11e8735b578d", null ],
     [ "R_DMAC_InfoGet", "group___r_z_t___d_m_a_c.html#ga45893222e0710e310ae398c14ef47174", null ],
-    [ "R_DMAC_Close", "group___r_z_t___d_m_a_c.html#gabc5aef880361cff7f61b88ecf418c1de", null ],
     [ "R_DMAC_Reload", "group___r_z_t___d_m_a_c.html#gae415cc72455bc260ad1c5289e3308240", null ],
     [ "R_DMAC_CallbackSet", "group___r_z_t___d_m_a_c.html#ga23c4d66aab992221c95ca08bb1daee7b", null ],
-    [ "R_DMAC_LinkDescriptorSet", "group___r_z_t___d_m_a_c.html#gab37103a34f8b4bfb41d5adcd30ea8e95", null ]
+    [ "R_DMAC_Close", "group___r_z_t___d_m_a_c.html#gabc5aef880361cff7f61b88ecf418c1de", null ]
 ];

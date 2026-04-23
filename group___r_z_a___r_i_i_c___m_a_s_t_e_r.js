@@ -15,7 +15,8 @@ var group___r_z_a___r_i_i_c___m_a_s_t_e_r =
       [ "sti_irq", "group___r_z_a___r_i_i_c___m_a_s_t_e_r.html#ae188212f0ebd616d45f1dfc4eeae34d5", null ],
       [ "spi_irq", "group___r_z_a___r_i_i_c___m_a_s_t_e_r.html#a3ebd0eb67b66d2437b6e48f036c42aa8", null ],
       [ "ali_irq", "group___r_z_a___r_i_i_c___m_a_s_t_e_r.html#a9e4268a154fbf8252a8f222717b45f12", null ],
-      [ "tmoi_irq", "group___r_z_a___r_i_i_c___m_a_s_t_e_r.html#ab5a22cc43edc3b0c0d62260d66df8069", null ]
+      [ "tmoi_irq", "group___r_z_a___r_i_i_c___m_a_s_t_e_r.html#ab5a22cc43edc3b0c0d62260d66df8069", null ],
+      [ "p_reg", "group___r_z_a___r_i_i_c___m_a_s_t_e_r.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "iic_master_clock_settings_t", "group___r_z_a___r_i_i_c___m_a_s_t_e_r.html#ga7c0d3e4c70069c1b7021f760b48da2d7", null ],
     [ "iic_master_instance_ctrl_t", "group___r_z_a___r_i_i_c___m_a_s_t_e_r.html#gade358a8ebc2f901c88bd4b08459a79d9", null ],

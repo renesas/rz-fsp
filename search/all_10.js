@@ -4,8 +4,9 @@ var searchData=
   ['queue_5fmask',['queue_mask',['../group___r_z_t___e_t_h_e_r___s_w_i_t_c_h.html#a99373ed17c34ce0d6301b57606da5e85',1,'RZT::st_ethsw_queue_flush_event::queue_mask()'],['../group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a99373ed17c34ce0d6301b57606da5e85',1,'RZN::st_ethsw_queue_flush_event::queue_mask()']]],
   ['queue_5fnum',['queue_num',['../group___r_z_t___e_t_h_e_r___s_w_i_t_c_h.html#a80cf3d4e7dfb3c2d3e2fac1cc8880e82',1,'RZT::st_ethsw_mmctl_queue_assign::queue_num()'],['../group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a80cf3d4e7dfb3c2d3e2fac1cc8880e82',1,'RZN::st_ethsw_mmctl_queue_assign::queue_num()']]],
   ['queue_5fsel',['queue_sel',['../group___r_z_t___e_t_h_e_r___s_w_i_t_c_h.html#a42a71493b8e3eaf40a4e601fb5b1b64b',1,'RZT::st_ethsw_rx_pattern_ctrl::queue_sel()'],['../group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a42a71493b8e3eaf40a4e601fb5b1b64b',1,'RZN::st_ethsw_rx_pattern_ctrl::queue_sel()']]],
-  ['quad_20serial_20peripheral_20interface_20flash_20_28r_5fspibsc_29',['Quad Serial Peripheral Interface Flash (r_spibsc)',['../group___r_z_a___s_p_i_b_s_c.html',1,'']]],
-  ['qspi_20flash_20_28r_5fxspi_5fqspi_29',['QSPI Flash (r_xspi_qspi)',['../group___r_z_g___x_s_p_i___q_s_p_i.html',1,'']]],
-  ['qspi_20flash_20_28r_5fxspi_5fqspi_29',['QSPI Flash (r_xspi_qspi)',['../group___r_z_n___x_s_p_i___q_s_p_i.html',1,'']]],
-  ['qspi_20flash_20_28r_5fxspi_5fqspi_29',['QSPI Flash (r_xspi_qspi)',['../group___r_z_t___x_s_p_i___q_s_p_i.html',1,'']]]
+  ['qspi_20_28r_5fspibsc_29',['QSPI (r_spibsc)',['../group___r_z_a___s_p_i_b_s_c.html',1,'']]],
+  ['qspi_20_28r_5fxspi_5fqspi_29',['QSPI (r_xspi_qspi)',['../group___r_z_g___x_s_p_i___q_s_p_i.html',1,'']]],
+  ['qspi_20_28r_5fxspi_5fqspi_29',['QSPI (r_xspi_qspi)',['../group___r_z_n___x_s_p_i___q_s_p_i.html',1,'']]],
+  ['qspi_20_28r_5fxspi_5fqspi_29',['QSPI (r_xspi_qspi)',['../group___r_z_t___x_s_p_i___q_s_p_i.html',1,'']]],
+  ['qspi_20_28r_5fxspi_5fqspi_29',['QSPI (r_xspi_qspi)',['../group___r_z_v___x_s_p_i___q_s_p_i.html',1,'']]]
 ];

@@ -8,7 +8,8 @@ var group___r_z_a___s_p_i_b_s_c =
     [ "st_spibsc_extended_cfg", "group___r_z_a___s_p_i_b_s_c.html#struct_r_z_a_1_1st__spibsc__extended__cfg", [
       [ "delay", "group___r_z_a___s_p_i_b_s_c.html#a7f21651e85e9ed3987a7bf387fab28ef", null ],
       [ "io_fix_mask", "group___r_z_a___s_p_i_b_s_c.html#a2e187cb54ffac59e239153f63301c4f7", null ],
-      [ "io_fix_value", "group___r_z_a___s_p_i_b_s_c.html#af01a65b9684904fd4c6d6ceafa8e63b5", null ]
+      [ "io_fix_value", "group___r_z_a___s_p_i_b_s_c.html#af01a65b9684904fd4c6d6ceafa8e63b5", null ],
+      [ "p_reg", "group___r_z_a___s_p_i_b_s_c.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_spibsc_instance_ctrl", "group___r_z_a___s_p_i_b_s_c.html#struct_r_z_a_1_1st__spibsc__instance__ctrl", null ],
     [ "spibsc_delay_t", "group___r_z_a___s_p_i_b_s_c.html#gacaeeb4bc7bcc6681c24c758c015ef9a7", null ],

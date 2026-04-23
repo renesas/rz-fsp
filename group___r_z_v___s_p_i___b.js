@@ -20,7 +20,8 @@ var group___r_z_v___s_p_i___b =
       [ "ssl_level_keep", "group___r_z_v___s_p_i___b.html#a58a69378f459fb0c06e80084b263a9b5", null ],
       [ "transmit_fifo_threshold", "group___r_z_v___s_p_i___b.html#a0666aa7009b1e48f26679defd58a3b2e", null ],
       [ "receive_fifo_threshold", "group___r_z_v___s_p_i___b.html#a2163934956ddce69e04583001a559d43", null ],
-      [ "receive_data_ready_detect_adjustment", "group___r_z_v___s_p_i___b.html#ad48b54017bc3a4d98ec57b7f7bf749f0", null ]
+      [ "receive_data_ready_detect_adjustment", "group___r_z_v___s_p_i___b.html#ad48b54017bc3a4d98ec57b7f7bf749f0", null ],
+      [ "p_reg", "group___r_z_v___s_p_i___b.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_spi_b_instance_ctrl", "group___r_z_v___s_p_i___b.html#struct_r_z_v_1_1st__spi__b__instance__ctrl", [
       [ "open", "group___r_z_v___s_p_i___b.html#a46c9af2fb0c51a3bc152b006beefc554", null ],

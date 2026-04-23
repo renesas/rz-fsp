@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -175,10 +175,10 @@ Functions</h2></td></tr>
 <tr class="separator:ga268d27934c3d4bb372d2a3a371ef20e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa4878c2faf52554b6933c292dd20e419"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___i_i_c___s_l_a_v_e.html#gaa4878c2faf52554b6933c292dd20e419">R_IIC_SLAVE_Write</a> (<a class="el" href="group___r_z_t___i2_c___s_l_a_v_e___a_p_i.html#gaf676f2e6f026d5f3c96fcb18fdc71972">i2c_slave_ctrl_t</a> *const p_ctrl, uint8_t *const p_src, uint32_t const bytes)</td></tr>
 <tr class="separator:gaa4878c2faf52554b6933c292dd20e419"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad15d067c583a1028d55e08b7bc400a5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___i_i_c___s_l_a_v_e.html#gad15d067c583a1028d55e08b7bc400a5d">R_IIC_SLAVE_Close</a> (<a class="el" href="group___r_z_t___i2_c___s_l_a_v_e___a_p_i.html#gaf676f2e6f026d5f3c96fcb18fdc71972">i2c_slave_ctrl_t</a> *const p_ctrl)</td></tr>
-<tr class="separator:gad15d067c583a1028d55e08b7bc400a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga40c730b202cace968d483110e665760b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___i_i_c___s_l_a_v_e.html#ga40c730b202cace968d483110e665760b">R_IIC_SLAVE_CallbackSet</a> (<a class="el" href="group___r_z_t___i2_c___s_l_a_v_e___a_p_i.html#gaf676f2e6f026d5f3c96fcb18fdc71972">i2c_slave_ctrl_t</a> *const p_ctrl, void(*p_callback)(<a class="el" href="group___r_z_t___i2_c___s_l_a_v_e___a_p_i.html#ga3f42c51368d8a190bcbd3554ce3e29ca">i2c_slave_callback_args_t</a> *), void *const p_context, <a class="el" href="group___r_z_t___i2_c___s_l_a_v_e___a_p_i.html#ga3f42c51368d8a190bcbd3554ce3e29ca">i2c_slave_callback_args_t</a> *const p_callback_memory)</td></tr>
 <tr class="separator:ga40c730b202cace968d483110e665760b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad15d067c583a1028d55e08b7bc400a5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___i_i_c___s_l_a_v_e.html#gad15d067c583a1028d55e08b7bc400a5d">R_IIC_SLAVE_Close</a> (<a class="el" href="group___r_z_t___i2_c___s_l_a_v_e___a_p_i.html#gaf676f2e6f026d5f3c96fcb18fdc71972">i2c_slave_ctrl_t</a> *const p_ctrl)</td></tr>
+<tr class="separator:gad15d067c583a1028d55e08b7bc400a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Driver for the IIC peripheral on RZ microprocessor. This module implements the <a class="el" href="group___r_z_t___i2_c___s_l_a_v_e___a_p_i.html">I2C Slave Interface</a>. </p>
@@ -230,13 +230,13 @@ Disabled</li>
 </ul>
 </td><td>Disabled </td><td>If enabled, DMAC instances will be included in the build for both transmission and reception. Even if enabled, DMAC is not used without adding DMAC driver. </td></tr>
 <tr>
-<td>Multiplex Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Nested Interrupt (Multiplex Interrupt)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable multiplex interrupt for a single driver. </td></tr>
+</td><td>Disabled </td><td>Enable nested interrupt for a single driver. </td></tr>
 </table>
  <h2>Configurations for Connectivity &gt; I2C Slave (r_iic_slave)</h2>
 This module can be added to the Stacks tab via New Stack &gt; Connectivity &gt; I2C Slave (r_iic_slave).<br />
@@ -490,6 +490,12 @@ Number of digital filter stages based on brl_value. </td></tr>
 clock_settings</td>
 <td class="fielddoc">
 I2C Clock settings. </td></tr>
+<tr><td class="fieldtype">
+<a id="afe62c2bbb07bedc4bd4dad60b8c3c69c"></a>void *</td>
+<td class="fieldname">
+p_reg</td>
+<td class="fielddoc">
+Register base address for specified channel. </td></tr>
 </table>
 
 </div>
@@ -678,33 +684,6 @@ I2C Clock settings. </td></tr>
 
 </div>
 </div>
-<a id="gad15d067c583a1028d55e08b7bc400a5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad15d067c583a1028d55e08b7bc400a5d">&#9670;&nbsp;</a></span>R_IIC_SLAVE_Close()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> R_IIC_SLAVE_Close </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="group___r_z_t___i2_c___s_l_a_v_e___a_p_i.html#gaf676f2e6f026d5f3c96fcb18fdc71972">i2c_slave_ctrl_t</a> *const&#160;</td>
-          <td class="paramname"><em>p_ctrl</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Closes the I2C device.</p>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">FSP_SUCCESS</td><td>Device closed successfully. </td></tr>
-    <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>Device not opened. </td></tr>
-    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>p_ctrl is NULL. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="ga40c730b202cace968d483110e665760b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga40c730b202cace968d483110e665760b">&#9670;&nbsp;</a></span>R_IIC_SLAVE_CallbackSet()</h2>
 
@@ -754,13 +733,40 @@ I2C Clock settings. </td></tr>
 
 </div>
 </div>
+<a id="gad15d067c583a1028d55e08b7bc400a5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad15d067c583a1028d55e08b7bc400a5d">&#9670;&nbsp;</a></span>R_IIC_SLAVE_Close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> R_IIC_SLAVE_Close </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___r_z_t___i2_c___s_l_a_v_e___a_p_i.html#gaf676f2e6f026d5f3c96fcb18fdc71972">i2c_slave_ctrl_t</a> *const&#160;</td>
+          <td class="paramname"><em>p_ctrl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Closes the I2C device.</p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">FSP_SUCCESS</td><td>Device closed successfully. </td></tr>
+    <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>Device not opened. </td></tr>
+    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>p_ctrl is NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.7-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

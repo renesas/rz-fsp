@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -191,7 +191,7 @@ Overview</h1>
 Features</h2>
 <p>The POEG module has the following features:</p><ul>
 <li>Supports disabling GPT output pins based on GTETRG input pin level.</li>
-<li>Supports disabling GPT output pins when GTIOC pins are the same level (configurable in the <a class="el" href="group___r_z_v___g_p_t.html">General PWM Timer (r_gpt)</a> driver).</li>
+<li>Supports disabling GPT output pins when GTIOC pins are the same level (configurable in the <a class="el" href="group___r_z_v___g_p_t.html">Timer, General PWM (r_gpt)</a> driver).</li>
 <li>Supports disabling GPT output pins by software API.</li>
 <li>Supports notifying the application when GPT output pins are disabled by POEG.</li>
 <li>Supports resetting POEG status.</li>
@@ -280,11 +280,15 @@ Examples</h1>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_v_1_1st__poeg__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_o_e_g.html#struct_r_z_v_1_1st__poeg__instance__ctrl">st_poeg_instance_ctrl</a></td></tr>
 <tr class="separator:struct_r_z_v_1_1st__poeg__instance__ctrl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_v_1_1st__poeg__extended__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_o_e_g.html#struct_r_z_v_1_1st__poeg__extended__cfg">st_poeg_extended_cfg</a></td></tr>
+<tr class="separator:struct_r_z_v_1_1st__poeg__extended__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:ga49fb41578d39b87633c01ffec4a109c2"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_v___p_o_e_g.html#struct_r_z_v_1_1st__poeg__instance__ctrl">st_poeg_instance_ctrl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_o_e_g.html#ga49fb41578d39b87633c01ffec4a109c2">poeg_instance_ctrl_t</a></td></tr>
 <tr class="separator:ga49fb41578d39b87633c01ffec4a109c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga32e1c54db52917f6fa874ca36f84a69a"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_v___p_o_e_g.html#struct_r_z_v_1_1st__poeg__extended__cfg">st_poeg_extended_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_o_e_g.html#ga32e1c54db52917f6fa874ca36f84a69a">poeg_extended_cfg_t</a></td></tr>
+<tr class="separator:ga32e1c54db52917f6fa874ca36f84a69a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
 <a name="struct_r_z_v_1_1st__poeg__instance__ctrl" id="struct_r_z_v_1_1st__poeg__instance__ctrl"></a>
@@ -302,6 +306,21 @@ Typedefs</h2></td></tr>
 </div>
 </div>
 </div>
+<a name="struct_r_z_v_1_1st__poeg__extended__cfg" id="struct_r_z_v_1_1st__poeg__extended__cfg"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_v_1_1st__poeg__extended__cfg">&#9670;&nbsp;</a></span>RZV::st_poeg_extended_cfg</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct RZV::st_poeg_extended_cfg</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>POEG extended configuration </p>
+</div>
+</div>
+</div>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="ga49fb41578d39b87633c01ffec4a109c2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga49fb41578d39b87633c01ffec4a109c2">&#9670;&nbsp;</a></span>poeg_instance_ctrl_t</h2>
@@ -315,6 +334,21 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Channel control block. DO NOT INITIALIZE. Initialization occurs when <a class="el" href="group___r_z_v___p_o_e_g___a_p_i.html#a313f61b6ecd4398d1229df7bb3782645">poeg_api_t::open</a> is called. Please refer to the struct <a class="el" href="group___r_z_v___p_o_e_g.html#struct_r_z_v_1_1st__poeg__instance__ctrl">st_poeg_instance_ctrl</a>. </p>
+
+</div>
+</div>
+<a id="ga32e1c54db52917f6fa874ca36f84a69a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga32e1c54db52917f6fa874ca36f84a69a">&#9670;&nbsp;</a></span>poeg_extended_cfg_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_v___p_o_e_g.html#struct_r_z_v_1_1st__poeg__extended__cfg">st_poeg_extended_cfg</a> <a class="el" href="group___r_z_v___p_o_e_g.html#ga32e1c54db52917f6fa874ca36f84a69a">poeg_extended_cfg_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>POEG extended configuration. Please refer to the struct <a class="el" href="group___r_z_v___p_o_e_g.html#struct_r_z_v_1_1st__poeg__extended__cfg">st_poeg_extended_cfg</a>. </p>
 
 </div>
 </div>
@@ -536,7 +570,7 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

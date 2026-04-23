@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
-<title>RZ Flexible Software Package Documentation: Multi-Function Timer Pulse Unit 3 (r_mtu3)</title>
+<title>RZ Flexible Software Package Documentation: Timer, Multi-Function (r_mtu3)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.0.0</span>
+   &#160;<span id="projectnumber">Release v4.1.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('group___r_z_t___m_t_u3.html','');});
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
-<div class="title">Multi-Function Timer Pulse Unit 3 (r_mtu3)<div class="ingroups"><a class="el" href="group___r_z_t.html">RZT</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___t_i_m_e_r_s___m_o_d_u_l_e_s.html">Timers</a></div></div>  </div>
+<div class="title">Timer, Multi-Function (r_mtu3)<div class="ingroups"><a class="el" href="group___r_z_t.html">RZT</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___t_i_m_e_r_s___m_o_d_u_l_e_s.html">Timers</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -294,16 +294,16 @@ Enabled with Extra Features</li>
 </ul>
 </td><td>Disabled </td><td>If selected code for outputting a waveform to a pin is included in the build. </td></tr>
 <tr>
-<td>Multiplex Interrupt</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Nested Interrupt (Multiplex Interrupt)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable multiplex interrupt for a single driver. </td></tr>
+</td><td>Disabled </td><td>Enable nested interrupt for a single driver. </td></tr>
 </table>
- <h2>Configurations for Timers &gt; Timer , Multi-Function Timer Pulse Unit 3 (r_mtu3)</h2>
-This module can be added to the Stacks tab via New Stack &gt; Timers &gt; Timer , Multi-Function Timer Pulse Unit 3 (r_mtu3).<br />
+ <h2>Configurations for Timers &gt; Timer, Multi-Function (r_mtu3)</h2>
+This module can be added to the Stacks tab via New Stack &gt; Timers &gt; Timer, Multi-Function (r_mtu3).<br />
 </p><table class="doxtable">
 <tr>
 <th>Configuration</th><th>Options</th><th>Default</th><th>Description </th></tr>
@@ -469,7 +469,7 @@ Input capture at both edges</li>
 </ul>
 </td><td>16-bit </td><td>Select Bit Mode </td></tr>
 <tr>
-<td>Input &gt; Phase Count &gt; Counting Mode</td><td>Refer to the <a class="el" href="namespace_r_z_t.html" title="Default initialization function. ">RZT</a> Configuration tool for available options.</td><td>None </td><td>Select Counting Mode </td></tr>
+<td>Input &gt; Phase Count &gt; Counting Mode</td><td>Refer to the <a class="el" href="namespace_r_z_t.html">RZT</a> Configuration tool for available options.</td><td>None </td><td>Select Counting Mode </td></tr>
 <tr>
 <td>Input &gt; Phase Count &gt; Clock Pin Select</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -539,11 +539,11 @@ Enabled</li>
 <tr>
 <td>Custom Waveform &gt; TGRD(The Buffer Value of TGRB)</td><td>Value must be a valid non-negative integer with a maximum configurable value of 0xFFFF</td><td>0x10000 </td><td>Capture/Compare match D value. In the free-running mode, please set the same value between TGRB and TGRD </td></tr>
 <tr>
-<td>Custom Waveform &gt; TGRA I/O Pin Setting</td><td>Refer to the <a class="el" href="namespace_r_z_t.html" title="Default initialization function. ">RZT</a> Configuration tool for available options.</td><td>No Output </td><td>Select TGRA initial output. </td></tr>
+<td>Custom Waveform &gt; TGRA I/O Pin Setting</td><td>Refer to the <a class="el" href="namespace_r_z_t.html">RZT</a> Configuration tool for available options.</td><td>No Output </td><td>Select TGRA initial output. </td></tr>
 <tr>
-<td>Custom Waveform &gt; TGRB I/O Pin Setting</td><td>Refer to the <a class="el" href="namespace_r_z_t.html" title="Default initialization function. ">RZT</a> Configuration tool for available options.</td><td>No Output </td><td>Select TGRB initial output. </td></tr>
+<td>Custom Waveform &gt; TGRB I/O Pin Setting</td><td>Refer to the <a class="el" href="namespace_r_z_t.html">RZT</a> Configuration tool for available options.</td><td>No Output </td><td>Select TGRB initial output. </td></tr>
 <tr>
-<td>Custom Waveform &gt; Time Prescaler</td><td>Refer to the <a class="el" href="namespace_r_z_t.html" title="Default initialization function. ">RZT</a> Configuration tool for available options.</td><td>PCLKH divided by 1 (common ch) </td><td>Select time prescaler. </td></tr>
+<td>Custom Waveform &gt; Time Prescaler</td><td>Refer to the <a class="el" href="namespace_r_z_t.html">RZT</a> Configuration tool for available options.</td><td>PCLKH divided by 1 (common ch) </td><td>Select time prescaler. </td></tr>
 <tr>
 <td>Interrupts &gt; Callback</td><td>Name must be a valid C symbol</td><td>NULL </td><td>A user callback function can be specified here. If this callback function is provided, it will be called from the interrupt service routine (ISR) each time the timer period elapses </td></tr>
 <tr>
@@ -797,7 +797,7 @@ MTU Buffer Operation Example</div></div>
 <p>Be aware that if the interrupt processing time or overhead exceeds the time available to apply the new settings, the updates may not be implemented correctly before the next compare match event. Therefore, users should take interrupt processing time into consider when setting the period and duty cycle.</p>
 <p>If changing the period or duty, API need to be called before compare match event occurs.</p>
 <h2>One-Shot Mode</h2>
-<p>The MTU3 timer does not support one-shot mode natively. One-shot mode is achieved by stopping the timer in the interrupt service routine before the callback is called. If the interrupt is not serviced before the timer period expires again, the timer generates more than one event. The callback is only called once in this case. The output waveform in One-Shot mode is one peripheral clock cycle less than the configured period. The configured period must be at least 2 counts to generate an output pulse.</p>
+<p>The MTU3 timer does not support One-Shot mode natively; therefore, One-Shot mode is implemented by software control. The output waveform generation is started by configuring a compare match at 1 count. On the first compare match, the output is toggled and the counter is cleared. The compare match value is then updated using the buffer register. On the next compare match, the timer clock counting is stopped in the interrupt service routine before the callback function is called. If the interrupt is not serviced before the timer period expires again, the timer generates more than one event. The callback is only called once in this case.</p>
 <p>Examples of One-Shot signals that can be generated by this module are shown below:</p>
 <div class="image">
 <object type="image/svg+xml" data="rzt_r_mtu3_one_shot_output.svg">rzt_r_mtu3_one_shot_output.svg</object>
@@ -821,6 +821,8 @@ MTU3 Periodic Output</div></div>
 MTU3 PWM Output</div></div>
  <h2>Triggering ELC Events with MTU3</h2>
 <p>The MTU3 timer can trigger the start of other peripherals. The <a class="el" href="group___r_z_t___e_l_c.html">Event Link Controller (r_elc)</a> guide provides a list of all available peripherals.</p>
+<p>In the Stacks tab (MTU3 property) of the FSP Configurator, to select any event as a trigger source, you must add the ELC module and the corresponding module. Example: To select the GPT event source as a trigger source for MTU3, add both GPT and ELC.</p>
+<p>The Event Links tab does not require manual configuration for this use case. When the MTU3 trigger source is configured in the Stacks tab, the corresponding Event Link settings are automatically configured by the FSP Configurator.</p>
 <h2>Interrupt Skipping</h2>
 <p>When an interrupt skipping source is selected a hardware counter will increment each time the selected event occurs. Each interrupt past the first (up to the specified skip count) will be suppressed.</p>
 <h2>Phase Counting Mode</h2>
@@ -2613,7 +2615,7 @@ custom_waveform_enabled</td>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.0.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

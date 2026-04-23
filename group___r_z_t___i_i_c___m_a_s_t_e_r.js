@@ -32,7 +32,8 @@ var group___r_z_t___i_i_c___m_a_s_t_e_r =
     [ "st_iic_master_extended_cfg", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#struct_r_z_t_1_1st__iic__master__extended__cfg", [
       [ "timeout_mode", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#ac446ba95c718581e24d44f2418f83267", null ],
       [ "timeout_scl_low", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#a4ad0cfe37c7a676f870ba96e58605dee", null ],
-      [ "clock_settings", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#a8e92b550ba27227c4ffbd927e389ea6d", null ]
+      [ "clock_settings", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#a8e92b550ba27227c4ffbd927e389ea6d", null ],
+      [ "p_reg", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "iic_master_clock_settings_t", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#gab8e6a8eecc70fd4f4d495d7ca140fbf0", null ],
     [ "iic_master_instance_ctrl_t", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#gade358a8ebc2f901c88bd4b08459a79d9", null ],
@@ -50,7 +51,7 @@ var group___r_z_t___i_i_c___m_a_s_t_e_r =
     [ "R_IIC_MASTER_Write", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#ga022c0e9d187c58f165a2f350dc56012a", null ],
     [ "R_IIC_MASTER_Abort", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#ga9dedab62d50f799f893c22fcd8d82c27", null ],
     [ "R_IIC_MASTER_SlaveAddressSet", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#ga1187b3d689b2dcce8d06ea4b35b6257d", null ],
-    [ "R_IIC_MASTER_Close", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#gab299719e6795ecd05c773e18aa36ceab", null ],
     [ "R_IIC_MASTER_CallbackSet", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#ga0ca29ee4f3a15c46efc7fd8525125ac1", null ],
-    [ "R_IIC_MASTER_StatusGet", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#ga799c86ea4e428adf2b185c042bfdfbb2", null ]
+    [ "R_IIC_MASTER_StatusGet", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#ga799c86ea4e428adf2b185c042bfdfbb2", null ],
+    [ "R_IIC_MASTER_Close", "group___r_z_t___i_i_c___m_a_s_t_e_r.html#gab299719e6795ecd05c773e18aa36ceab", null ]
 ];
