@@ -31,6 +31,9 @@
 #define RM_FREERTOS_PLUS_TCP_SIZE_OF_IPV4              (4)
 #define RM_FREERTOS_PLUS_TCP_SIZE_OF_INTERFACE_NAME    (17)
 
+/* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
+FSP_HEADER
+
 #ifdef __FOR_FSP_DOCUMENT__
 #ifdef __cplusplus
 namespace RZA
