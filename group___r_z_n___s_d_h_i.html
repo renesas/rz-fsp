@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -378,7 +378,7 @@ Limitations</h2>
 <p>Data transfers should be 8-byte aligned and a multiple of 8 bytes in size whenever possible. This recommendation applies to the read(), write(), readIoExt(), and writeIoExt() APIs. When data transfers are 8-byte aligned and a multiple of 8-bytes, the r_sdhi driver is zero copy and takes full advantage of hardware acceleration by the internal DMAC. When data transfers are not 8-byte aligned or not a multiple of 8 bytes an extra CPU interrupt is required for each block transferred and a software copy is used to move data to the destination buffer.</p>
 <dl class="section note"><dt>Note</dt><dd>Developers should be aware of the following notes when using internal DMAC:<ul>
 <li>Due to hardware acceleration by the internal DMAC, it is necessary to use an uncached area for data buffer to read data to or data buffer to write data from.</li>
-<li>Internal DMAC has areas that cannot be specified as source/destination addresses (for example, Cortex-R52 TCM areas). When setting internal DMAC to be enabled, make sure that all addresses passed to the driver are in the DMAC transferable area. Consult Section "Address Space" in the RZ microprocessor User's Manual for details.</li>
+<li>Internal DMAC has areas that cannot be specified as source/destination addresses (for example, Cortex-R52 TCM areas). When setting internal DMAC to be enabled, make sure that all addresses passed to the driver are in the DMAC transferable area. Consult Section "Address Space" in the RZ microprocessor Hardware Manual for details.</li>
 </ul>
 </dd></dl>
 <h1><a class="anchor" id="RZN_r-sdhi-examples"></a>
@@ -1126,7 +1126,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

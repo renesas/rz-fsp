@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -161,7 +161,8 @@ $(document).ready(function(){initNavTree('group___r_z_t___s_d_h_i.html','');});
   <div class="summary">
 <a href="#func-members">Functions</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">SD/MMC (r_sdhi)<div class="ingroups"><a class="el" href="group___r_z_t.html">RZT</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_t___r_e_n_e_s_a_s___s_t_o_r_a_g_e___m_o_d_u_l_e_s.html">Storage</a></div></div>  </div>
 </div><!--header-->
@@ -320,6 +321,8 @@ High</li>
 Low</li>
 </ul>
 </td><td>Low </td><td>Select initial SD_IOVS pin output level. </td></tr>
+<tr>
+<td>Initial IO voltage output</td><td>MCU Specific Options</td><td></td><td>Select initial IO voltage. </td></tr>
 </table>
 </p>
 <h2>Interrupt Configurations:</h2>
@@ -332,7 +335,7 @@ Low</li>
 <p>The Access Interrupt, Internal DMAC Interrupt and the Card interrupt are treated as OXMN interrupt signal.</p>
 <h2><a class="anchor" id="RZT_r-sdhi-clock-configuration"></a>
 Clock Configuration</h2>
-<p>The SDMMC MPU peripheral (SDHI) uses the SDHI_clkhs (the operating clock for SDHI module) and SDHI_IMCLK (the clock source for SD clock (SD_CLK) frequency) for its clock source. The SDMMC driver selects the optimal built-in divider based on the SDHI_IMCLK frequency and the maximum clock rate allowed by the device obtained at media initialization.</p>
+<p>The SDMMC MPU peripheral (SDHI) uses the SDHI_clkhs (the operating clock for SDHI module) and PCLKAM / SDHI_IMCLK (the clock source for SD clock (SD_CLK) frequency) for its clock source. The SDMMC driver selects the optimal built-in divider based on the PCLKAM or SDHI_IMCLK frequency and the maximum clock rate allowed by the device obtained at media initialization.</p>
 <h2><a class="anchor" id="RZT_r-sdhi-pin-configuration"></a>
 Pin Configuration</h2>
 <p>The SDMMC driver supports the following pins (n = channel number):</p><ul>
@@ -378,7 +381,7 @@ Limitations</h2>
 <p>Data transfers should be 8-byte aligned and a multiple of 8 bytes in size whenever possible. This recommendation applies to the read(), write(), readIoExt(), and writeIoExt() APIs. When data transfers are 8-byte aligned and a multiple of 8-bytes, the r_sdhi driver is zero copy and takes full advantage of hardware acceleration by the internal DMAC. When data transfers are not 8-byte aligned or not a multiple of 8 bytes an extra CPU interrupt is required for each block transferred and a software copy is used to move data to the destination buffer.</p>
 <dl class="section note"><dt>Note</dt><dd>Developers should be aware of the following notes when using internal DMAC:<ul>
 <li>Due to hardware acceleration by the internal DMAC, it is necessary to use an uncached area for data buffer to read data to or data buffer to write data from.</li>
-<li>Internal DMAC has areas that cannot be specified as source/destination addresses (for example, Cortex-R52 TCM areas). When setting internal DMAC to be enabled, make sure that all addresses passed to the driver are in the DMAC transferable area. Consult Section "Address Space" in the RZ microprocessor User's Manual for details.</li>
+<li>Internal DMAC has areas that cannot be specified as source/destination addresses (for example, Cortex-R52 TCM areas). When setting internal DMAC to be enabled, make sure that all addresses passed to the driver are in the DMAC transferable area. Consult Section "Address Space" in the RZ microprocessor Hardware Manual for details.</li>
 </ul>
 </dd></dl>
 <h1><a class="anchor" id="RZT_r-sdhi-examples"></a>
@@ -401,6 +404,11 @@ Typedefs</h2></td></tr>
 <tr class="separator:gaf8bc75d653f0423110946174f9d8b5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2ed3d98a42306ab1987ea14beabda875"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_t___s_d_h_i.html#struct_r_z_t_1_1st__sdhi__extended__cfg">st_sdhi_extended_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___s_d_h_i.html#ga2ed3d98a42306ab1987ea14beabda875">sdhi_extended_cfg_t</a></td></tr>
 <tr class="separator:ga2ed3d98a42306ab1987ea14beabda875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga1e3e925cbe2ebe908e832df2a85e94fb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___s_d_h_i.html#ga1e3e925cbe2ebe908e832df2a85e94fb">sdhi_io_voltage_control_t</a> </td></tr>
+<tr class="separator:ga1e3e925cbe2ebe908e832df2a85e94fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
 <a name="struct_r_z_t_1_1st__sdmmc__instance__ctrl" id="struct_r_z_t_1_1st__sdmmc__instance__ctrl"></a>
@@ -457,6 +465,12 @@ sd_iovs_output</td>
 <td class="fielddoc">
 SD_IOVS output signal. </td></tr>
 <tr><td class="fieldtype">
+<a id="a80a2ac70c49cd0f6605b2a032d840056"></a><a class="el" href="group___r_z_t___s_d_h_i.html#ga1e3e925cbe2ebe908e832df2a85e94fb">sdhi_io_voltage_control_t</a></td>
+<td class="fieldname">
+sd_iovctrl</td>
+<td class="fielddoc">
+SD IO voltage control. </td></tr>
+<tr><td class="fieldtype">
 <a id="afe62c2bbb07bedc4bd4dad60b8c3c69c"></a>void *</td>
 <td class="fieldname">
 p_reg</td>
@@ -494,6 +508,30 @@ Register base address for specified channel. </td></tr>
       </table>
 </div><div class="memdoc">
 <p>Optional SDHI extension data structure. Please refer to the struct <a class="el" href="group___r_z_t___s_d_h_i.html#struct_r_z_t_1_1st__sdhi__extended__cfg">st_sdhi_extended_cfg</a>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga1e3e925cbe2ebe908e832df2a85e94fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1e3e925cbe2ebe908e832df2a85e94fb">&#9670;&nbsp;</a></span>sdhi_io_voltage_control_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_t___s_d_h_i.html#ga1e3e925cbe2ebe908e832df2a85e94fb">sdhi_io_voltage_control_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Select SDHI IO voltage register setting. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga1e3e925cbe2ebe908e832df2a85e94fba608b9ab48d98521d276a4d76942a0b95"></a>SDHI_IO_VOLTAGE_CONTROL_GREATER_THAN_OR_EQUAL_TO_2_5V&#160;</td><td class="fielddoc"><p>IO domain voltage is &gt;= 2.5V. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1e3e925cbe2ebe908e832df2a85e94fbaee32867c4d4beef6ebc28f7daeaef4a7"></a>SDHI_IO_VOLTAGE_CONTROL_LESS_THAN_OR_EQUAL_TO_1_8V&#160;</td><td class="fielddoc"><p>IO domain voltage is &lt;= 1.8V. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1e3e925cbe2ebe908e832df2a85e94fba3af601a516804d2d0a64cbd80808e0e1"></a>SDHI_IO_VOLTAGE_CONTROL_UNSUPPORTED&#160;</td><td class="fielddoc"><p>IO domain voltage is unsupported. </p>
+</td></tr>
+</table>
 
 </div>
 </div>
@@ -1126,7 +1164,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

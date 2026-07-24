@@ -6,7 +6,7 @@ var group___r_z_t___s_c_i___u_a_r_t =
       [ "bitrate_modulation", "group___r_z_t___s_c_i___u_a_r_t.html#ae18f2fdcc27ec2b1b37cbb6b14de0465", null ],
       [ "baud_rate_error_x_1000", "group___r_z_t___s_c_i___u_a_r_t.html#a03512a64697de32a7a80033073716dc2", null ]
     ] ],
-    [ "st_sci_baud_setting_t", "group___r_z_t___s_c_i___u_a_r_t.html#struct_r_z_t_1_1st__sci__baud__setting__t", null ],
+    [ "st_sci_baud_setting", "group___r_z_t___s_c_i___u_a_r_t.html#struct_r_z_t_1_1st__sci__baud__setting", null ],
     [ "st_sci_uart_rs485_setting", "group___r_z_t___s_c_i___u_a_r_t.html#struct_r_z_t_1_1st__sci__uart__rs485__setting", [
       [ "enable", "group___r_z_t___s_c_i___u_a_r_t.html#a1bd2486c34cd6fae7e7424c248e8291c", null ],
       [ "polarity", "group___r_z_t___s_c_i___u_a_r_t.html#aca5cbf15072d18fbc0304cc798bc26ef", null ],
@@ -23,11 +23,12 @@ var group___r_z_t___s_c_i___u_a_r_t =
       [ "flow_control", "group___r_z_t___s_c_i___u_a_r_t.html#adbfb2a4f1a4bcb2726db44c8e1135331", null ],
       [ "rs485_setting", "group___r_z_t___s_c_i___u_a_r_t.html#a05879f7553ad0eeabb7a2b870900e537", null ],
       [ "p_reg", "group___r_z_t___s_c_i___u_a_r_t.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ],
-      [ "clock_source", "group___r_z_t___s_c_i___u_a_r_t.html#ade79f538b210444a89020a93931a58bb", null ]
+      [ "clock_source", "group___r_z_t___s_c_i___u_a_r_t.html#ade79f538b210444a89020a93931a58bb", null ],
+      [ "unit", "group___r_z_t___s_c_i___u_a_r_t.html#a540f93b70c47db3ed09ef66a1d5b50cb", null ]
     ] ],
     [ "sci_uart_instance_ctrl_t", "group___r_z_t___s_c_i___u_a_r_t.html#gafc65fd64db25db3cb87229e34d86b062", null ],
     [ "sci_uart_baud_calculation_t", "group___r_z_t___s_c_i___u_a_r_t.html#ga481d576a670a42b3e37b385849b88a19", null ],
-    [ "sci_baud_setting_t", "group___r_z_t___s_c_i___u_a_r_t.html#gac3077dc0423c5d810bfe04718e291411", null ],
+    [ "sci_baud_setting_t", "group___r_z_t___s_c_i___u_a_r_t.html#ga2e878edbfa5647f6e7b08754845ffb8a", null ],
     [ "sci_uart_rs485_setting_t", "group___r_z_t___s_c_i___u_a_r_t.html#gafda46bb1e5365187f33a22d4482e02be", null ],
     [ "sci_uart_extended_cfg_t", "group___r_z_t___s_c_i___u_a_r_t.html#gaadca2f5aac426e869066a1dabe0a5e86", null ],
     [ "sci_uart_clock_t", "group___r_z_t___s_c_i___u_a_r_t.html#gaef6e8f161b3f19f95a469e775900c951", [
@@ -78,6 +79,10 @@ var group___r_z_t___s_c_i___u_a_r_t =
     [ "sci_uart_rs485_de_polarity_t", "group___r_z_t___s_c_i___u_a_r_t.html#ga0bd2440ef30f2feca9a2d129989bffce", [
       [ "SCI_UART_RS485_DE_POLARITY_HIGH", "group___r_z_t___s_c_i___u_a_r_t.html#gga0bd2440ef30f2feca9a2d129989bffcea7cfd9e1ff7eca0657388f7cf9ce708fc", null ],
       [ "SCI_UART_RS485_DE_POLARITY_LOW", "group___r_z_t___s_c_i___u_a_r_t.html#gga0bd2440ef30f2feca9a2d129989bffceac1a061d1cb22d6b336e23185af20e089", null ]
+    ] ],
+    [ "sci_uart_unit_t", "group___r_z_t___s_c_i___u_a_r_t.html#gabbf0efa2b09749ef815fedf193ee4972", [
+      [ "SCI_UART_UNIT_SCI", "group___r_z_t___s_c_i___u_a_r_t.html#ggabbf0efa2b09749ef815fedf193ee4972aa4dc4a36546e6dfbb89ff83176d91044", null ],
+      [ "SCI_UART_UNIT_SCIE", "group___r_z_t___s_c_i___u_a_r_t.html#ggabbf0efa2b09749ef815fedf193ee4972a919f431425998f0572834227d8028c41", null ]
     ] ],
     [ "sci_uart_clock_source_t", "group___r_z_t___s_c_i___u_a_r_t.html#ga62708954aea3d9755a464318c83055fb", null ],
     [ "R_SCI_UART_Open", "group___r_z_t___s_c_i___u_a_r_t.html#ga85439598e3e74e6405cf179a6761fd6a", null ],

@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -307,7 +307,22 @@ Disable</li>
 </p>
 <h2><a class="anchor" id="RZG_r-sci_b_i2c-clock-configuration"></a>
 Clock Configuration</h2>
-<p>The actual I2C transfer rate is derived from PLLCLN and will be calculated and set by the tooling depending on the selected transfer rate and the SDA delay. If the selected clock is configured in such a manner that the selected internal rate cannot be achieved, an error will be returned.</p>
+<table class="doxtable">
+<tr>
+<th>MPU Group </th><th>Communication Operation Clock  </th></tr>
+<tr>
+<td>RZ/G3E </td><td>P5CLK </td></tr>
+<tr>
+<td>RZ/G3L </td><td>Channel 0: P13CLK<br />
+Channel 1: P14CLK<br />
+Channel 2: P15CLK<br />
+Channel 3: P16CLK </td></tr>
+<tr>
+<td>RZ/G3SE </td><td>Channel 0: P13CLK<br />
+Channel 1: P14CLK<br />
+Channel 2: P15CLK<br />
+Channel 3: P16CLK </td></tr>
+</table>
 <h2><a class="anchor" id="RZG_r-sci_b_i2c-pin-configuration"></a>
 Pin Configuration</h2>
 <p>The SCI_B I2C peripheral module uses pins on the MPU to communicate to external devices. I/O pins must be selected and configured as required by the external device. An I2C channel would consist of two pins - SDA and SCL for data/address and clock respectively.</p>
@@ -885,7 +900,7 @@ Base register address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

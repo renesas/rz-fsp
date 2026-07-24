@@ -1,7 +1,7 @@
 var group___r_z_t___c_a_n_f_d =
 [
     [ "st_canfd_instance_ctrl", "group___r_z_t___c_a_n_f_d.html#struct_r_z_t_1_1st__canfd__instance__ctrl", null ],
-    [ "st_canfd_afl_entry_t", "group___r_z_t___c_a_n_f_d.html#struct_r_z_t_1_1st__canfd__afl__entry__t", null ],
+    [ "st_canfd_afl_entry", "group___r_z_t___c_a_n_f_d.html#struct_r_z_t_1_1st__canfd__afl__entry", null ],
     [ "st_canfd_global_cfg", "group___r_z_t___c_a_n_f_d.html#struct_r_z_t_1_1st__canfd__global__cfg", [
       [ "global_interrupts", "group___r_z_t___c_a_n_f_d.html#a18fece515bdd5317132dbe95b7112dc3", null ],
       [ "global_config", "group___r_z_t___c_a_n_f_d.html#acab0d8cd1bd7b438cdff2b5c0d21a02b", null ],
@@ -21,7 +21,7 @@ var group___r_z_t___c_a_n_f_d =
       [ "p_reg", "group___r_z_t___c_a_n_f_d.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "canfd_instance_ctrl_t", "group___r_z_t___c_a_n_f_d.html#ga3a1d29e62ed64a7b7001d61cd8775b2b", null ],
-    [ "canfd_afl_entry_t", "group___r_z_t___c_a_n_f_d.html#ga820e3a10772edcec018cff90b49a1097", null ],
+    [ "canfd_afl_entry_t", "group___r_z_t___c_a_n_f_d.html#ga78c3b715701e6af30e8502d984acfc79", null ],
     [ "canfd_global_cfg_t", "group___r_z_t___c_a_n_f_d.html#gafe7f4a31596af3b7b826ef1dba20a613", null ],
     [ "canfd_extended_cfg_t", "group___r_z_t___c_a_n_f_d.html#ga4d744bb254a56cc77d8acdb13b992483", null ],
     [ "canfd_status_t", "group___r_z_t___c_a_n_f_d.html#ga9bc23367cb7fb757b5ce2f29323524c0", [

@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -184,7 +184,7 @@ Functions</h2></td></tr>
 <tr class="separator:ga91e1364f8fd7b00073ccdb72a1bd34e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4c327408aaf082057bae8c89127e396c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga4c327408aaf082057bae8c89127e396c">R_SCI_B_UART_Abort</a> (<a class="el" href="group___r_z_v___u_a_r_t___a_p_i.html#gad04bd656a84140eaef1e8aa0f86564a8">uart_ctrl_t</a> *const p_api_ctrl, <a class="el" href="group___r_z_v___u_a_r_t___a_p_i.html#gac36c5a0dffa37b418fb9425a76c57740">uart_dir_t</a> communication_to_abort)</td></tr>
 <tr class="separator:ga4c327408aaf082057bae8c89127e396c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaafe9521b01cb274f8c8e45a4f62b020f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gaafe9521b01cb274f8c8e45a4f62b020f">R_SCI_B_UART_BaudCalculate</a> (uint32_t baudrate, bool bitrate_modulation, uint32_t baud_rate_error_x_1000, <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gaf6547baf4deaa1050785ce5a9aabd629">sci_b_baud_setting_t</a> *const p_baud_setting)</td></tr>
+<tr class="memitem:gaafe9521b01cb274f8c8e45a4f62b020f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gaafe9521b01cb274f8c8e45a4f62b020f">R_SCI_B_UART_BaudCalculate</a> (uint32_t baudrate, bool bitrate_modulation, uint32_t baud_rate_error_x_1000, <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga274f826083ab2bf31b501ddeee29ec3b">sci_b_baud_setting_t</a> *const p_baud_setting)</td></tr>
 <tr class="separator:gaafe9521b01cb274f8c8e45a4f62b020f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga83f8558ce7253a09f268bdd3bfc5148a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga83f8558ce7253a09f268bdd3bfc5148a">R_SCI_B_UART_CallbackSet</a> (<a class="el" href="group___r_z_v___u_a_r_t___a_p_i.html#gad04bd656a84140eaef1e8aa0f86564a8">uart_ctrl_t</a> *const p_api_ctrl, void(*p_callback)(<a class="el" href="group___r_z_v___u_a_r_t___a_p_i.html#ga547e9739434628a2d439797505f83bcb">uart_callback_args_t</a> *), void *const p_context, <a class="el" href="group___r_z_v___u_a_r_t___a_p_i.html#ga547e9739434628a2d439797505f83bcb">uart_callback_args_t</a> *const p_callback_memory)</td></tr>
 <tr class="separator:ga83f8558ce7253a09f268bdd3bfc5148a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -440,17 +440,17 @@ DMAC Limitations</h2>
 Examples</h1>
 <h2>SCI UART Example</h2>
 <div class="fragment"><div class="line">uint8_t  g_dest[TRANSFER_LENGTH];</div><div class="line">uint8_t  g_src[TRANSFER_LENGTH];</div><div class="line">uint8_t  g_out_of_band_received[TRANSFER_LENGTH];</div><div class="line">uint32_t g_transfer_complete = 0;</div><div class="line">uint32_t g_receive_complete  = 0;</div><div class="line">uint32_t g_out_of_band_index = 0;</div><div class="line"><span class="keywordtype">void</span> r_sci_b_uart_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <span class="comment">/* Initialize p_src to known data */</span></div><div class="line">    <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; TRANSFER_LENGTH; i++)</div><div class="line">    {</div><div class="line">        g_src[i] = (uint8_t) (<span class="charliteral">&#39;A&#39;</span> + (i % 26));</div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Open the transfer instance with initial configuration. */</span></div><div class="line">    <a class="code" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = <a class="code" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga60643fd4c7b00970ad9d295302498f13">R_SCI_B_UART_Open</a>(&amp;g_uart0_ctrl, &amp;g_uart0_cfg);</div><div class="line"></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gaa0e296b71701a2d0045add3c75d2fdd7">R_SCI_B_UART_Read</a>(&amp;g_uart0_ctrl, g_dest, TRANSFER_LENGTH);</div><div class="line"></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gad8456e403e88d52e1e858b62e19a2d0b">R_SCI_B_UART_Write</a>(&amp;g_uart0_ctrl, g_src, TRANSFER_LENGTH);</div><div class="line"></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="keywordflow">while</span> (!g_transfer_complete)</div><div class="line">    {</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keywordflow">while</span> (!g_receive_complete)</div><div class="line">    {</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> example_callback (<a class="code" href="group___r_z_v___u_a_r_t___a_p_i.html#ga547e9739434628a2d439797505f83bcb">uart_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="comment">/* Handle the UART event */</span></div><div class="line">    <span class="keywordflow">switch</span> (p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Received a character */</span></div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_v___u_a_r_t___a_p_i.html#ggaf739f04f788018b4b59fb7ad75da0a8da794925d1c74f16bde84152508e66a6bd">UART_EVENT_RX_CHAR</a>:</div><div class="line">        {</div><div class="line">            <span class="comment">/* Only put the next character in the receive buffer if there is space for it */</span></div><div class="line">            <span class="keywordflow">if</span> (<span class="keyword">sizeof</span>(g_out_of_band_received) &gt; g_out_of_band_index)</div><div class="line">            {</div><div class="line">                <span class="comment">/* Write either the next one or two bytes depending on the receive data size */</span></div><div class="line">                <span class="keywordflow">if</span> (<a class="code" href="group___r_z_v___u_a_r_t___a_p_i.html#ggadc68b8fd9ded3990f84129df23fee798ad768185f3773e2d5953b28f3345561db">UART_DATA_BITS_8</a> &gt;= g_uart0_cfg.data_bits)</div><div class="line">                {</div><div class="line">                    g_out_of_band_received[g_out_of_band_index++] = (uint8_t) p_args-&gt;data;</div><div class="line">                }</div><div class="line">                <span class="keywordflow">else</span></div><div class="line">                {</div><div class="line">                    uint16_t * p_dest = (uint16_t *) &amp;g_out_of_band_received[g_out_of_band_index];</div><div class="line">                    *p_dest              = (uint16_t) p_args-&gt;data;</div><div class="line">                    g_out_of_band_index += 2;</div><div class="line">                }</div><div class="line">            }</div><div class="line"></div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="comment">/* Receive complete */</span></div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_v___u_a_r_t___a_p_i.html#ggaf739f04f788018b4b59fb7ad75da0a8dabe2b1428416bd300ee15a2608df30837">UART_EVENT_RX_COMPLETE</a>:</div><div class="line">        {</div><div class="line">            g_receive_complete = 1;</div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="comment">/* Transmit complete */</span></div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_v___u_a_r_t___a_p_i.html#ggaf739f04f788018b4b59fb7ad75da0a8da56867c1db03ea3ee2c704604ac94b767">UART_EVENT_TX_COMPLETE</a>:</div><div class="line">        {</div><div class="line">            g_transfer_complete = 1;</div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keywordflow">default</span>:</div><div class="line">        {</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>SCI UART Baud Set Example</h2>
-<div class="fragment"><div class="line"><span class="preprocessor">#define SCI_B_UART_BAUDRATE_19200              (19200)</span></div><div class="line"><span class="preprocessor">#define SCI_B_UART_BAUDRATE_ERROR_PERCENT_5    (5000)</span></div><div class="line"><span class="keywordtype">void</span> r_sci_b_uart_baud_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gaf6547baf4deaa1050785ce5a9aabd629">sci_b_baud_setting_t</a> baud_setting;</div><div class="line">    uint32_t             baud_rate                 = SCI_B_UART_BAUDRATE_19200;</div><div class="line">    <span class="keywordtype">bool</span>                 enable_bitrate_modulation = <span class="keyword">false</span>;</div><div class="line">    uint32_t             error_rate_x_1000         = SCI_B_UART_BAUDRATE_ERROR_PERCENT_5;</div><div class="line"></div><div class="line">    <a class="code" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = <a class="code" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gaafe9521b01cb274f8c8e45a4f62b020f">R_SCI_B_UART_BaudCalculate</a>(baud_rate, enable_bitrate_modulation, error_rate_x_1000, &amp;baud_setting);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gad9ae4780db497c17ae0c1677573f0320">R_SCI_B_UART_BaudSet</a>(&amp;g_uart0_ctrl, (<span class="keywordtype">void</span> *) &amp;baud_setting);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
+<div class="fragment"><div class="line"><span class="preprocessor">#define SCI_B_UART_BAUDRATE_19200              (19200)</span></div><div class="line"><span class="preprocessor">#define SCI_B_UART_BAUDRATE_ERROR_PERCENT_5    (5000)</span></div><div class="line"><span class="keywordtype">void</span> r_sci_b_uart_baud_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga274f826083ab2bf31b501ddeee29ec3b">sci_b_baud_setting_t</a> baud_setting;</div><div class="line">    uint32_t             baud_rate                 = SCI_B_UART_BAUDRATE_19200;</div><div class="line">    <span class="keywordtype">bool</span>                 enable_bitrate_modulation = <span class="keyword">false</span>;</div><div class="line">    uint32_t             error_rate_x_1000         = SCI_B_UART_BAUDRATE_ERROR_PERCENT_5;</div><div class="line"></div><div class="line">    <a class="code" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = <a class="code" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gaafe9521b01cb274f8c8e45a4f62b020f">R_SCI_B_UART_BaudCalculate</a>(baud_rate, enable_bitrate_modulation, error_rate_x_1000, &amp;baud_setting);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gad9ae4780db497c17ae0c1677573f0320">R_SCI_B_UART_BaudSet</a>(&amp;g_uart0_ctrl, (<span class="keywordtype">void</span> *) &amp;baud_setting);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_v_1_1st__sci__b__uart__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__instance__ctrl">st_sci_b_uart_instance_ctrl</a></td></tr>
 <tr class="separator:struct_r_z_v_1_1st__sci__b__uart__instance__ctrl"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_v_1_1st__sci__b__baud__setting__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__baud__setting__t">st_sci_b_baud_setting_t</a></td></tr>
-<tr class="separator:struct_r_z_v_1_1st__sci__b__baud__setting__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_v_1_1st__sci__b__baud__setting"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__baud__setting">st_sci_b_baud_setting</a></td></tr>
+<tr class="separator:struct_r_z_v_1_1st__sci__b__baud__setting"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_v_1_1st__sci__b__uart__rs485__setting"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__rs485__setting">st_sci_b_uart_rs485_setting</a></td></tr>
 <tr class="separator:struct_r_z_v_1_1st__sci__b__uart__rs485__setting"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_v_1_1st__sci__b__uart__sci__b__uart__half__data__setting"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__sci__b__uart__half__data__setting">st_sci_b_uart_sci_b_uart_half_data_setting</a></td></tr>
-<tr class="separator:struct_r_z_v_1_1st__sci__b__uart__sci__b__uart__half__data__setting"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_v_1_1st__sci__b__uart__half__data__setting"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__half__data__setting">st_sci_b_uart_half_data_setting</a></td></tr>
+<tr class="separator:struct_r_z_v_1_1st__sci__b__uart__half__data__setting"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_v_1_1st__sci__b__uart__extended__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__extended__cfg">st_sci_b_uart_extended_cfg</a></td></tr>
 <tr class="separator:struct_r_z_v_1_1st__sci__b__uart__extended__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -458,12 +458,12 @@ Classes</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:gae0d6193a07d140fcba221ae77e6970c5"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__instance__ctrl">st_sci_b_uart_instance_ctrl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gae0d6193a07d140fcba221ae77e6970c5">sci_b_uart_instance_ctrl_t</a></td></tr>
 <tr class="separator:gae0d6193a07d140fcba221ae77e6970c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf6547baf4deaa1050785ce5a9aabd629"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__baud__setting__t">st_sci_b_baud_setting_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gaf6547baf4deaa1050785ce5a9aabd629">sci_b_baud_setting_t</a></td></tr>
-<tr class="separator:gaf6547baf4deaa1050785ce5a9aabd629"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga274f826083ab2bf31b501ddeee29ec3b"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__baud__setting">st_sci_b_baud_setting</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga274f826083ab2bf31b501ddeee29ec3b">sci_b_baud_setting_t</a></td></tr>
+<tr class="separator:ga274f826083ab2bf31b501ddeee29ec3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga514c91184be10063d8f09c4ba67fd1ab"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__rs485__setting">st_sci_b_uart_rs485_setting</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga514c91184be10063d8f09c4ba67fd1ab">sci_b_uart_rs485_setting_t</a></td></tr>
 <tr class="separator:ga514c91184be10063d8f09c4ba67fd1ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4cf42998a1c63a57ce8713850d74a69b"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__sci__b__uart__half__data__setting">st_sci_b_uart_sci_b_uart_half_data_setting</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga4cf42998a1c63a57ce8713850d74a69b">sci_b_uart_half_data_setting_t</a></td></tr>
-<tr class="separator:ga4cf42998a1c63a57ce8713850d74a69b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga75f868f57a4a239a3eba8380d1f1d9c8"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__half__data__setting">st_sci_b_uart_half_data_setting</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga75f868f57a4a239a3eba8380d1f1d9c8">sci_b_uart_half_data_setting_t</a></td></tr>
+<tr class="separator:ga75f868f57a4a239a3eba8380d1f1d9c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga46be7bcf79652a144fc0e3c9b1add6ba"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__extended__cfg">st_sci_b_uart_extended_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga46be7bcf79652a144fc0e3c9b1add6ba">sci_b_uart_extended_cfg_t</a></td></tr>
 <tr class="separator:ga46be7bcf79652a144fc0e3c9b1add6ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -502,14 +502,14 @@ Enumerations</h2></td></tr>
 </div>
 </div>
 </div>
-<a name="struct_r_z_v_1_1st__sci__b__baud__setting__t" id="struct_r_z_v_1_1st__sci__b__baud__setting__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_v_1_1st__sci__b__baud__setting__t">&#9670;&nbsp;</a></span>RZV::st_sci_b_baud_setting_t</h2>
+<a name="struct_r_z_v_1_1st__sci__b__baud__setting" id="struct_r_z_v_1_1st__sci__b__baud__setting"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_v_1_1st__sci__b__baud__setting">&#9670;&nbsp;</a></span>RZV::st_sci_b_baud_setting</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZV::st_sci_b_baud_setting_t</td>
+          <td class="memname">struct RZV::st_sci_b_baud_setting</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -559,14 +559,14 @@ Time in baseclock units after the end of a write transfer and before the DE sign
 
 </div>
 </div>
-<a name="struct_r_z_v_1_1st__sci__b__uart__sci__b__uart__half__data__setting" id="struct_r_z_v_1_1st__sci__b__uart__sci__b__uart__half__data__setting"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_v_1_1st__sci__b__uart__sci__b__uart__half__data__setting">&#9670;&nbsp;</a></span>RZV::st_sci_b_uart_sci_b_uart_half_data_setting</h2>
+<a name="struct_r_z_v_1_1st__sci__b__uart__half__data__setting" id="struct_r_z_v_1_1st__sci__b__uart__half__data__setting"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_v_1_1st__sci__b__uart__half__data__setting">&#9670;&nbsp;</a></span>RZV::st_sci_b_uart_half_data_setting</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZV::st_sci_b_uart_sci_b_uart_half_data_setting</td>
+          <td class="memname">struct RZV::st_sci_b_uart_half_data_setting</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -616,7 +616,7 @@ noise_cancel</td>
 <td class="fielddoc">
 Noise cancellation setting. </td></tr>
 <tr><td class="fieldtype">
-<a id="ac2dc13e973ee8738f29e4e78aed42797"></a><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gaf6547baf4deaa1050785ce5a9aabd629">sci_b_baud_setting_t</a> *</td>
+<a id="ac2dc13e973ee8738f29e4e78aed42797"></a><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga274f826083ab2bf31b501ddeee29ec3b">sci_b_baud_setting_t</a> *</td>
 <td class="fieldname">
 p_baud_setting</td>
 <td class="fielddoc">
@@ -646,7 +646,7 @@ rs485_setting</td>
 <td class="fielddoc">
 RS-485 settings. </td></tr>
 <tr><td class="fieldtype">
-<a id="a97498e86a04a43345a1b08ce036af855"></a><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga4cf42998a1c63a57ce8713850d74a69b">sci_b_uart_half_data_setting_t</a></td>
+<a id="a97498e86a04a43345a1b08ce036af855"></a><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga75f868f57a4a239a3eba8380d1f1d9c8">sci_b_uart_half_data_setting_t</a></td>
 <td class="fieldname">
 half_data_setting</td>
 <td class="fielddoc">
@@ -677,18 +677,18 @@ Register base address for specified channel. </td></tr>
 
 </div>
 </div>
-<a id="gaf6547baf4deaa1050785ce5a9aabd629"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf6547baf4deaa1050785ce5a9aabd629">&#9670;&nbsp;</a></span>sci_b_baud_setting_t</h2>
+<a id="ga274f826083ab2bf31b501ddeee29ec3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga274f826083ab2bf31b501ddeee29ec3b">&#9670;&nbsp;</a></span>sci_b_baud_setting_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__baud__setting__t">st_sci_b_baud_setting_t</a> <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gaf6547baf4deaa1050785ce5a9aabd629">sci_b_baud_setting_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__baud__setting">st_sci_b_baud_setting</a> <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga274f826083ab2bf31b501ddeee29ec3b">sci_b_baud_setting_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Register settings to achieve a desired baud rate and modulation duty. Please refer to the struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__baud__setting__t">st_sci_b_baud_setting_t</a>. </p>
+<p>Register settings to achieve a desired baud rate and modulation duty. Please refer to the struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__baud__setting">st_sci_b_baud_setting</a>. </p>
 
 </div>
 </div>
@@ -707,18 +707,18 @@ Register base address for specified channel. </td></tr>
 
 </div>
 </div>
-<a id="ga4cf42998a1c63a57ce8713850d74a69b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4cf42998a1c63a57ce8713850d74a69b">&#9670;&nbsp;</a></span>sci_b_uart_half_data_setting_t</h2>
+<a id="ga75f868f57a4a239a3eba8380d1f1d9c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga75f868f57a4a239a3eba8380d1f1d9c8">&#9670;&nbsp;</a></span>sci_b_uart_half_data_setting_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__sci__b__uart__half__data__setting">st_sci_b_uart_sci_b_uart_half_data_setting</a> <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga4cf42998a1c63a57ce8713850d74a69b">sci_b_uart_half_data_setting_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__half__data__setting">st_sci_b_uart_half_data_setting</a> <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga75f868f57a4a239a3eba8380d1f1d9c8">sci_b_uart_half_data_setting_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Configuration settings for controlling the Half Data Function. Please refer to the struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__sci__b__uart__half__data__setting">st_sci_b_uart_sci_b_uart_half_data_setting</a>. </p>
+<p>Configuration settings for controlling the Half Data Function. Please refer to the struct <a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__half__data__setting">st_sci_b_uart_half_data_setting</a>. </p>
 
 </div>
 </div>
@@ -1289,7 +1289,7 @@ Register base address for specified channel. </td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#gaf6547baf4deaa1050785ce5a9aabd629">sci_b_baud_setting_t</a> *const&#160;</td>
+          <td class="paramtype"><a class="el" href="group___r_z_v___s_c_i___b___u_a_r_t.html#ga274f826083ab2bf31b501ddeee29ec3b">sci_b_baud_setting_t</a> *const&#160;</td>
           <td class="paramname"><em>p_baud_setting</em>&#160;</td>
         </tr>
         <tr>
@@ -1468,7 +1468,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

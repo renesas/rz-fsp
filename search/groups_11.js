@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['timers',['Timers',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___t_i_m_e_r_s___i_n_t_e_r_f_a_c_e_s.html',1,'']]],
-  ['timers',['Timers',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___t_i_m_e_r_s___m_o_d_u_l_e_s.html',1,'']]],
-  ['transfer',['Transfer',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___t_r_a_n_s_f_e_r___i_n_t_e_r_f_a_c_e_s.html',1,'']]],
-  ['transfer',['Transfer',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___t_r_a_n_s_f_e_r___m_o_d_u_l_e_s.html',1,'']]],
   ['transfer_20_28r_5fdmac_29',['Transfer (r_dmac)',['../group___r_z_a___d_m_a_c.html',1,'']]],
   ['timer_2c_20general_20timer_20_28r_5fgtm_29',['Timer, General Timer (r_gtm)',['../group___r_z_a___g_t_m.html',1,'']]],
   ['timer_2c_20multi_2dfunction_20_28r_5fmtu3_29',['Timer, Multi-Function (r_mtu3)',['../group___r_z_a___m_t_u3.html',1,'']]],

@@ -26,7 +26,6 @@ var group___r_z_t___p_c_i_e___e_p =
     ] ],
     [ "st_pcie_ep_instance_ctrl", "group___r_z_t___p_c_i_e___e_p.html#struct_r_z_t_1_1st__pcie__ep__instance__ctrl", null ],
     [ "st_pcie_ep_extended_cfg", "group___r_z_t___p_c_i_e___e_p.html#struct_r_z_t_1_1st__pcie__ep__extended__cfg", [
-      [ "link_mode", "group___r_z_t___p_c_i_e___e_p.html#acc51e236dd66420e841bfd285c0bca66", null ],
       [ "axi_window_settings", "group___r_z_t___p_c_i_e___e_p.html#acae5d19da4d7947f8a78be4dd60a175d", null ],
       [ "pci_window_settings", "group___r_z_t___p_c_i_e___e_p.html#ae4b1125de072bfd10f43a1af75777d2c", null ],
       [ "event0_interrupts", "group___r_z_t___p_c_i_e___e_p.html#a02e7345ada63e836ba368cf1f12983bb", null ],
@@ -52,8 +51,7 @@ var group___r_z_t___p_c_i_e___e_p =
     [ "pcie_ep_instance_ctrl_t", "group___r_z_t___p_c_i_e___e_p.html#gaa5be6866bbe161069f256c4b0685a4e3", null ],
     [ "pcie_ep_extended_cfg_t", "group___r_z_t___p_c_i_e___e_p.html#ga73cf7364ee8d07a5e39004137d7d130b", null ],
     [ "pcie_ep_link_mode_t", "group___r_z_t___p_c_i_e___e_p.html#ga1828593cbcfdeb2074a1a6453f503495", [
-      [ "PCIE_EP_LINK_MODE_2LANE_1CHANNEL", "group___r_z_t___p_c_i_e___e_p.html#gga1828593cbcfdeb2074a1a6453f503495a6a221f7a7c657ceeabce0c5db2386919", null ],
-      [ "PCIE_EP_LINK_MODE_1LANE_2CHANNEL", "group___r_z_t___p_c_i_e___e_p.html#gga1828593cbcfdeb2074a1a6453f503495a12b2087f952ba387fec61a5ed7d7f6a8", null ]
+      [ "PCIE_EP_LINK_MODE_1LANE_1CHANNEL", "group___r_z_t___p_c_i_e___e_p.html#gga1828593cbcfdeb2074a1a6453f503495a7b3ff5478dcc18c0905c4c4812124dd9", null ]
     ] ],
     [ "R_PCIE_EP_Open", "group___r_z_t___p_c_i_e___e_p.html#gaae40203e88323684312cc877b3eec1cd", null ],
     [ "R_PCIE_EP_SelfConfigurationRegisterSet", "group___r_z_t___p_c_i_e___e_p.html#ga081dcdce971af61505f8aa09e63a01cf", null ],

@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -176,6 +176,10 @@ Functions</h2></td></tr>
 <tr class="separator:ga745fa70668486ae2a7d16bd72eb93a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga35f2abc47410d9906e8ae5bac12d7a29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_d_m.html#ga35f2abc47410d9906e8ae5bac12d7a29">R_PDM_Stop</a> (<a class="el" href="group___r_z_v___p_d_m___a_p_i.html#ga16be2346ab1fd4d3929228a28914430c">pdm_ctrl_t</a> *const p_ctrl)</td></tr>
 <tr class="separator:ga35f2abc47410d9906e8ae5bac12d7a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga81dc4496418f929e3f94339700008104"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_d_m.html#ga81dc4496418f929e3f94339700008104">R_PDM_SoundDetectionEnable</a> (<a class="el" href="group___r_z_v___p_d_m___a_p_i.html#ga16be2346ab1fd4d3929228a28914430c">pdm_ctrl_t</a> *const p_ctrl, <a class="el" href="group___r_z_v___p_d_m___a_p_i.html#gaeabaefe9292e75e1499332140249c12a">pdm_sound_detection_setting_t</a> sound_detection_setting)</td></tr>
+<tr class="separator:ga81dc4496418f929e3f94339700008104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga67db55f70c75153156284e6e6d6f1b01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_d_m.html#ga67db55f70c75153156284e6e6d6f1b01">R_PDM_SoundDetectionDisable</a> (<a class="el" href="group___r_z_v___p_d_m___a_p_i.html#ga16be2346ab1fd4d3929228a28914430c">pdm_ctrl_t</a> *const p_ctrl)</td></tr>
+<tr class="separator:ga67db55f70c75153156284e6e6d6f1b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga62fc9390544cabfb4800f38125f748ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_d_m.html#ga62fc9390544cabfb4800f38125f748ab">R_PDM_Read</a> (<a class="el" href="group___r_z_v___p_d_m___a_p_i.html#ga16be2346ab1fd4d3929228a28914430c">pdm_ctrl_t</a> *const p_ctrl, void *const p_dest, uint32_t const bytes)</td></tr>
 <tr class="separator:ga62fc9390544cabfb4800f38125f748ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf5696a4b5a4e9f33f89baefe9a7e1f94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_d_m.html#gaf5696a4b5a4e9f33f89baefe9a7e1f94">R_PDM_StatusGet</a> (<a class="el" href="group___r_z_v___p_d_m___a_p_i.html#ga16be2346ab1fd4d3929228a28914430c">pdm_ctrl_t</a> *const p_ctrl, <a class="el" href="group___r_z_v___p_d_m___a_p_i.html#ga976f27747b3f9b60435b62d0b4870524">pdm_status_t</a> *const p_status)</td></tr>
@@ -189,12 +193,18 @@ Functions</h2></td></tr>
 <p>Driver for the PDM peripheral on RZ MPUs. This module implements the <a class="el" href="group___r_z_v___p_d_m___a_p_i.html">PDM Interface</a>. </p>
 <h1><a class="anchor" id="RZV_r-pdm-overview"></a>
 Overview</h1>
+<p>The Pulse Density Modulation Interface (PDM-IF) has channels that are connectable with external microphone which outputs the pulse density modulated signal. PDM-IF can filter and convert 1-bit digital data streams that were pulse density modulated at a high sampling rate into 20-bit or 16-bit digital data at a lower sampling rate.</p>
 <h2><a class="anchor" id="RZV_r-pdm-features"></a>
 Features</h2>
-<p>The PDM module supports the following features:</p>
-<p>Reception of a voice data from external PDM device</p><ul>
-<li><a class="anchor" id="RZV_um_pdm_hardware_acceleration_using_dmac"></a>Integration with the DMAC transfer module</li>
-<li><a class="anchor" id="RZV_um_pdm_user_event_notification"></a>Callback function notification when data is received from the PDM FIFO</li>
+<ul>
+<li>Capable of filtering 1-bit digital input data and converting them into 20-bit or 16-bit digital data. The bit order is little-endian.<a class="anchor" id="RZV_um_pdm_basic_communication"></a></li>
+<li>Sound detection can be enabled for each channel. A moving average filter can be enabled for sound detection. Sound detection can be used to wake up the MPU from software standby mode.<a class="anchor" id="RZV_um_pdm_sound_detection"></a></li>
+<li>Each channel of IP includes programmable filters: 4th order sinc filter, high-pass filter (for suppression of DC bias), correction filter (for sinc passband distortion), and half-band decimation filter (for aliasing distortion).</li>
+<li>IP supports programmable and flexible decimation ratios.</li>
+<li>The sinc filter is selectable as first-, second-, third-, fourth-order.</li>
+<li>IP supports DMA operation through APB.</li>
+<li>Each channel has a 32 stage FIFO for receiving converted PDM data.</li>
+<li>Configurable callback for each channel which notifies of received data based on a configurable threshold as well as sound detection and error events.<a class="anchor" id="RZV_um_pdm_user_event_notification"></a><a class="anchor" id="RZV_um_pdm_callback_set"></a> </li>
 </ul>
 <h1><a class="anchor" id="RZV_r-pdm-configuration"></a>
 Configuration</h1>
@@ -220,7 +230,7 @@ Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>If code for DMAC transfer support is included in the build. </td></tr>
+</td><td>Disabled </td><td>If enabled code for DMAC transfer support is included in the build. </td></tr>
 </table>
  <h2>Configurations for Audio &gt; PDM (r_pdm)</h2>
 This module can be added to the Stacks tab via New Stack &gt; Audio &gt; PDM (r_pdm).<br />
@@ -236,9 +246,9 @@ Falling</li>
 </ul>
 </td><td>Rising </td><td>Select the edge of input audio data. </td></tr>
 <tr>
-<td>Input &gt; PDM_CLK frequency</td><td>Refer to the <a class="el" href="namespace_r_z_v.html">RZV</a> Configuration tool for available options.</td><td>2.4 MHz </td><td>Select PDM_CLK Frequency (MHz).  </td></tr>
+<td>Input &gt; PDM_CLK frequency</td><td>MCU Specific Options</td><td></td><td>Select PDM_CLK Frequency (MHz).  </td></tr>
 <tr>
-<td>Output &gt; Bit Depth</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Output &gt; Bit Format</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 20 Bits mode {1 Sign bit and [18:0] bits of the buffer}</li>
 <li>
@@ -258,9 +268,9 @@ Falling</li>
 <li>
 16 Bits mode {1 Sign bit and [14:0] bits of the buffer}</li>
 </ul>
-</td><td>20 Bits mode {1 Sign bit and [18:0] bits of the buffer} </td><td>Select the bit depth of one sample of audio data. </td></tr>
+</td><td>module.driver.rzv.pdm.pcm_width.pcm_width_20bits_0_18 </td><td>Select the bit format of the PCM data stored into the data FIFO. </td></tr>
 <tr>
-<td>Output &gt; Target sampling frequency</td><td>Refer to the <a class="el" href="namespace_r_z_v.html">RZV</a> Configuration tool for available options.</td><td>30 kHz </td><td>Select Target sampling Frequency (kHz).  </td></tr>
+<td>Output &gt; Target sampling frequency</td><td>Refer to the <a class="el" href="namespace_r_z_v.html">RZV</a> Configuration tool for available options.</td><td>30 kHz </td><td>Select Target sampling Frequency (Hz).  </td></tr>
 <tr>
 <td>Filter &gt; Low-pass filter &gt; Low-pass filter input shift</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -414,18 +424,6 @@ Disabled</li>
 </ul>
 </td><td>1 or more data </td><td>Select Data reception interrupt threshold.  </td></tr>
 <tr>
-<td>Sound Detection &gt; Sound detection enable</td><td><ul style="margin-top:0;margin-bottom:0;">
-<li>
-Enabled</li>
-<li>
-Disabled</li>
-</ul>
-</td><td>Enabled </td><td>Select sound detection.  </td></tr>
-<tr>
-<td>Sound Detection &gt; Sound detection lower limit</td><td>Value must be an integer between 0x0000 and 0xFFFFF</td><td>0x0 </td><td>Specify the Sound detection lower limit </td></tr>
-<tr>
-<td>Sound Detection &gt; Sound detection upper limit</td><td>Value must be an integer between 0x0000 and 0xFFFFF</td><td>0x0 </td><td>Specify the Sound detection upper limit </td></tr>
-<tr>
 <td>Short circuit detection &gt; Short circuit detection enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
@@ -479,22 +477,12 @@ Disabled</li>
 <td>Channel</td><td>Value must be an non-negative integer</td><td>1 </td><td>Specify the PDM channel. </td></tr>
 </table>
 </p>
-<h2><a class="anchor" id="RZV_r-pdm-clock-configuration"></a>
-Clock Configuration</h2>
-<p>This module has no required clock configurations.</p>
-<dl class="section note"><dt>Note</dt><dd>PDM unit generates, and outputs the sampling clock named PDM_CLKn. The frequency of this clock can be configured by FSP configurator.</dd></dl>
-<h2><a class="anchor" id="RZV_r-pdm-pin-configuration"></a>
-Pin Configuration</h2>
-<p>The PDM uses the following pins:</p><ul>
-<li>PDMDATn0 External PDM CH0 data reception pin</li>
-<li>PDMDATn1 External PDM CH1 data reception pin</li>
-<li>PDMDATn2 External PDM CH2 data reception pin</li>
-<li>PDMCLKn0 External PDM CH0 clock output pin</li>
-<li>PDMCLKn1 External PDM CH1 clock output pin</li>
-<li>PDMCLKn2 External PDM CH2 clock output pin</li>
-</ul>
 <h1><a class="anchor" id="RZV_r-pdm-usage_notes"></a>
 Usage Notes</h1>
+<h2>Startup and Settling Time</h2>
+<p>Upon calling <a class="el" href="group___r_z_v___p_d_m.html#ga348be7b997dd1200eb549ff3e7f946a0">R_PDM_Open</a> the user must wait for the filters to settle and any connected microphones to startup, otherwise PDM data may not be correct upon calling <a class="el" href="group___r_z_v___p_d_m.html#ga745fa70668486ae2a7d16bd72eb93a54">R_PDM_Start</a>.</p>
+<p>A property <code>filter_setting_time</code> is generated for the settling time. The user can use this property to delay for the settling time via their preferred method of doing a delay.</p>
+<p>In addition to the filter settling time any connected microphone startup time should be accounted for. This can be found in the connected microphone's datasheet.</p>
 <h2>Audio Data</h2>
 <p>PDM hardware converts PDM data to PCM data.</p>
 <p>Data arrays have the following size, alignment, and length based on the "Bit Depth" setting:</p>
@@ -526,11 +514,30 @@ Usage Notes</h1>
 <tr>
 <td>19-0 </td><td>Fixed-point data </td></tr>
 </table>
+<h2>Modes of Operation</h2>
+<p>In addition to calling <a class="el" href="group___r_z_v___p_d_m.html#ga348be7b997dd1200eb549ff3e7f946a0">R_PDM_Open</a>, other APIs need to be called to activate certain features of PDM. The following table lists what each API controls:</p>
+<table class="doxtable">
+<tr>
+<th>API </th><th>Features Enabled by API  </th></tr>
+<tr>
+<td><a class="el" href="group___r_z_v___p_d_m.html#ga348be7b997dd1200eb549ff3e7f946a0">R_PDM_Open</a> </td><td>over/undervoltage detection, short circuit detection </td></tr>
+<tr>
+<td><a class="el" href="group___r_z_v___p_d_m.html#ga745fa70668486ae2a7d16bd72eb93a54">R_PDM_Start</a> </td><td>data reception via interrupts or DMAC depending configuration, error interrupts </td></tr>
+<tr>
+<td><a class="el" href="group___r_z_v___p_d_m.html#ga81dc4496418f929e3f94339700008104">R_PDM_SoundDetectionEnable</a> </td><td>sound detection, sound detection thresholds, error interrupts </td></tr>
+</table>
+<h2>Error Interrupts</h2>
+<p>Error interrupts are only enabled when data reception is enabled (<a class="el" href="group___r_z_v___p_d_m.html#ga745fa70668486ae2a7d16bd72eb93a54">R_PDM_Start</a> has been called) OR sound detection is enabled (<a class="el" href="group___r_z_v___p_d_m.html#ga81dc4496418f929e3f94339700008104">R_PDM_SoundDetectionEnable</a> has been called).</p>
+<p><a class="el" href="group___r_z_v___p_d_m.html#gaf5696a4b5a4e9f33f89baefe9a7e1f94">R_PDM_StatusGet</a> can be called to get error statuses if error interrupts are not enabled (e.g. if only <a class="el" href="group___r_z_v___p_d_m.html#ga348be7b997dd1200eb549ff3e7f946a0">R_PDM_Open</a> has been called).</p>
+<h2>Limitations</h2>
+<ul>
+<li>Stereo mode is not fully supported. Two r_pdm driver instances can be used in combination with the <code>pcm_edge</code> configuration to get left/right stereo output from an appropriately configured PDM data stream, however, the data from these two instances will not be synchronized. Full synchronization of PDM channels requires using PDM mirror registers and starting data reading at the same time between channels. In the future a stereo-specific driver may be implemented using the r_pdm driver as a lower level driver to cover this use case.</li>
+<li>When calling <code>R_PDM_Start</code> any data in the FIFO before DATRE is enabled will be discarded.</li>
+</ul>
 <h1><a class="anchor" id="RZV_r-pdm-examples"></a>
 Examples</h1>
 <h2>Basic Example</h2>
-<p>This is a basic example of minimal use of the PDM in an application.</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#define BUFFER_SIZE    0x1000</span></div><div class="line">uint32_t buffer[BUFFER_SIZE] __attribute__((aligned(16)));</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> pdm_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initialize the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#ga348be7b997dd1200eb549ff3e7f946a0">R_PDM_Open</a>(&amp;g_pdm_ctrl, &amp;g_pdm_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#ga745fa70668486ae2a7d16bd72eb93a54">R_PDM_Start</a>(&amp;g_pdm_ctrl, buffer, <span class="keyword">sizeof</span>(buffer), BUFFER_SIZE / 2);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* wait */</span></div><div class="line"></div><div class="line">    <a class="code" href="group___r_z_v___p_d_m___a_p_i.html#ga976f27747b3f9b60435b62d0b4870524">pdm_status_t</a> status;</div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#gaf5696a4b5a4e9f33f89baefe9a7e1f94">R_PDM_StatusGet</a>(&amp;g_pdm_ctrl, &amp;status);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#ga35f2abc47410d9906e8ae5bac12d7a29">R_PDM_Stop</a>(&amp;g_pdm_ctrl);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#ga62fc9390544cabfb4800f38125f748ab">R_PDM_Read</a>(&amp;g_pdm_ctrl, buffer, <span class="keyword">sizeof</span>(buffer));</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#ga0f07fb3bab80af13bd260b7f7f54062e">R_PDM_Close</a>(&amp;g_pdm_ctrl);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
+<div class="fragment"><div class="line"><span class="preprocessor">#define PDM_BUFFER_NUM_SAMPLES      1024                       // Number of samples to store in data buffer</span></div><div class="line"><span class="preprocessor">#define PDM_CALLBACK_NUM_SAMPLES    PDM_BUFFER_NUM_SAMPLES / 2 // Number of samples to store in data buffer before getting a callback</span></div><div class="line"><span class="preprocessor">#define PDM_MIC_STARTUP_TIME_US     35000                      // PDM microphone startup time, RA8P1_EK mic startup time is 35ms</span></div><div class="line"><span class="preprocessor">#define PDM_SDE_UPPER_LIMIT         5000                       // Detect sound above this value</span></div><div class="line"><span class="preprocessor">#define PDM_SDE_LOWER_LIMIT         0xFFF80000                 // Detect sound below this value</span></div><div class="line"></div><div class="line">uint32_t g_pdm0_buffer[PDM_BUFFER_NUM_SAMPLES];</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> pdm_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initialize the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#ga348be7b997dd1200eb549ff3e7f946a0">R_PDM_Open</a>(&amp;g_pdm_ctrl, &amp;g_pdm_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Wait for PDM filters to settle. Use settling time calculated by e2 studio.</span></div><div class="line"><span class="comment">     * Also wait for PDM mic to startup. */</span></div><div class="line">    <a class="code" href="group___r_z_v___p_d_m.html#ga319363c5d6edca0f8eb47a158f79adc2">pdm_extended_cfg_t</a> * p_extend = (<a class="code" href="group___r_z_v___p_d_m.html#ga319363c5d6edca0f8eb47a158f79adc2">pdm_extended_cfg_t</a> *) g_pdm_cfg.p_extend;</div><div class="line">    <a class="code" href="group___r_z_v___b_s_p___m_c_u.html#gabf931eab4d4e26f30b32c1e35f14a345">R_BSP_SoftwareDelay</a>(p_extend-&gt;filter_setting_time + PDM_MIC_STARTUP_TIME_US, <a class="code" href="group___r_z_v___b_s_p___m_c_u.html#ggafd98e2a6f080d6a52a3ef72e3d731b2baa0312618f2508347a9a815b5887c12ae">BSP_DELAY_UNITS_MICROSECONDS</a>);</div><div class="line"></div><div class="line">    <span class="comment">/* Enable sound detection (if desired). */</span></div><div class="line">    <a class="code" href="group___r_z_v___p_d_m___a_p_i.html#gaeabaefe9292e75e1499332140249c12a">pdm_sound_detection_setting_t</a> sound_detection_setting =</div><div class="line">    {</div><div class="line">        .<a class="code" href="group___r_z_v___p_d_m___a_p_i.html#aa9bb08853aed1e0353a8dbeca6e4d2ac">sound_detection_lower_limit</a> = PDM_SDE_LOWER_LIMIT,</div><div class="line">        .sound_detection_upper_limit = PDM_SDE_UPPER_LIMIT</div><div class="line">    };</div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#ga81dc4496418f929e3f94339700008104">R_PDM_SoundDetectionEnable</a>(&amp;g_pdm_ctrl, sound_detection_setting);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#ga745fa70668486ae2a7d16bd72eb93a54">R_PDM_Start</a>(&amp;g_pdm_ctrl, g_pdm0_buffer, <span class="keyword">sizeof</span>(g_pdm0_buffer), PDM_CALLBACK_NUM_SAMPLES);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* DATA PROCESSING HERE */</span></div><div class="line"></div><div class="line">    <a class="code" href="group___r_z_v___p_d_m___a_p_i.html#ga976f27747b3f9b60435b62d0b4870524">pdm_status_t</a> status;</div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#gaf5696a4b5a4e9f33f89baefe9a7e1f94">R_PDM_StatusGet</a>(&amp;g_pdm_ctrl, &amp;status);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#ga35f2abc47410d9906e8ae5bac12d7a29">R_PDM_Stop</a>(&amp;g_pdm_ctrl);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_v___p_d_m.html#ga0f07fb3bab80af13bd260b7f7f54062e">R_PDM_Close</a>(&amp;g_pdm_ctrl);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> pdm_example_callback (<a class="code" href="group___r_z_v___p_d_m___a_p_i.html#gad7c1e31834c41372538000ee41dd7f7e">pdm_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">switch</span> (p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_v___p_d_m___a_p_i.html#ggafb514c195258d2f14c8e18e3778ad946a3cf03b37b166de31e8e8761161bf7e44">PDM_EVENT_SOUND_DETECTION</a>:</div><div class="line">        {</div><div class="line">            <span class="comment">/* Sound has been detected based on configured thresholds. */</span></div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_v___p_d_m___a_p_i.html#ggafb514c195258d2f14c8e18e3778ad946ac3719cfdf7fc1e91172888da1ab6f511">PDM_EVENT_DATA</a>:</div><div class="line">        {</div><div class="line">            <span class="comment">/* PDM_CALLBACK_NUM_SAMPLES has been stored in g_pdm0_buffer. */</span></div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_v___p_d_m___a_p_i.html#ggafb514c195258d2f14c8e18e3778ad946a6ab9b149f9673d692a581c5211f13134">PDM_EVENT_ERROR</a>:</div><div class="line">        {</div><div class="line">            <span class="keywordflow">if</span> (p_args-&gt;error &amp; <a class="code" href="group___r_z_v___p_d_m___a_p_i.html#ggaf682776db13b51a982b047a8eb5fef2da0507dc19cc300d66e07d4b452a44c9a9">PDM_ERROR_SHORT_CIRCUIT</a>)</div><div class="line">            {</div><div class="line">                <span class="comment">/* Short circuit has been detected based on configured counts */</span></div><div class="line">            }</div><div class="line"></div><div class="line">            <span class="keywordflow">if</span> (p_args-&gt;error &amp; <a class="code" href="group___r_z_v___p_d_m___a_p_i.html#ggaf682776db13b51a982b047a8eb5fef2da70bb4c740eec0bdd92cf20e63e540ba7">PDM_ERROR_OVERVOLTAGE_LOWER</a>)</div><div class="line">            {</div><div class="line">                <span class="comment">/* Overvoltage has been detected based on configured lower limit */</span></div><div class="line">            }</div><div class="line"></div><div class="line">            <span class="keywordflow">if</span> (p_args-&gt;error &amp; <a class="code" href="group___r_z_v___p_d_m___a_p_i.html#ggaf682776db13b51a982b047a8eb5fef2dab00a11e564c13def3c78e520e09573ab">PDM_ERROR_OVERVOLTAGE_UPPER</a>)</div><div class="line">            {</div><div class="line">                <span class="comment">/* Overvoltage has been detected based on configured upper limit */</span></div><div class="line">            }</div><div class="line"></div><div class="line">            <span class="keywordflow">if</span> (p_args-&gt;error &amp; <a class="code" href="group___r_z_v___p_d_m___a_p_i.html#ggaf682776db13b51a982b047a8eb5fef2da61c56fc9d6d836096a7c7e4b10c0ee17">PDM_ERROR_BUFFER_OVERWRITE</a>)</div><div class="line">            {</div><div class="line">                <span class="comment">/* Buffer overwrite has occurred */</span></div><div class="line">            }</div><div class="line"></div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keywordflow">default</span>:</div><div class="line">        {</div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_v_1_1st__pdm__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_d_m.html#struct_r_z_v_1_1st__pdm__instance__ctrl">st_pdm_instance_ctrl</a></td></tr>
@@ -561,6 +568,14 @@ Enumerations</h2></td></tr>
 <tr class="separator:ga10725534d91789f15654a46786339569"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa14fe788b2c7ab49898fb7030c7fbee8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_d_m.html#gaa14fe788b2c7ab49898fb7030c7fbee8">pdm_interrupt_threshold_t</a> </td></tr>
 <tr class="separator:gaa14fe788b2c7ab49898fb7030c7fbee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf30a2284491fafaec6a835746e4001a9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_d_m.html#gaf30a2284491fafaec6a835746e4001a9">pdm_short_circuit_enable_t</a> </td></tr>
+<tr class="separator:gaf30a2284491fafaec6a835746e4001a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae98d0a1699440f8d6405968bdb6a855a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_d_m.html#gae98d0a1699440f8d6405968bdb6a855a">pdm_overvoltage_lower_limit_enable_t</a> </td></tr>
+<tr class="separator:gae98d0a1699440f8d6405968bdb6a855a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa418eb6efe7d4d243ea4af5a074b10ae"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_d_m.html#gaa418eb6efe7d4d243ea4af5a074b10ae">pdm_overvoltage_upper_limit_enable_t</a> </td></tr>
+<tr class="separator:gaa418eb6efe7d4d243ea4af5a074b10ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaceae8e5dc8a19d9beaae7dbb64e78742"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___p_d_m.html#gaceae8e5dc8a19d9beaae7dbb64e78742">pdm_buffer_overwrite_detection_enable_t</a> </td></tr>
+<tr class="separator:gaceae8e5dc8a19d9beaae7dbb64e78742"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
 <a name="struct_r_z_v_1_1st__pdm__instance__ctrl" id="struct_r_z_v_1_1st__pdm__instance__ctrl"></a>
@@ -605,32 +620,26 @@ p_reg</td>
 <td class="fielddoc">
 Register base address for specified channel. </td></tr>
 <tr><td class="fieldtype">
-<a id="a98f0330ae41daae7066ce131c94b1d63"></a>uint8_t</td>
-<td class="fieldname">
-sound_detection_enable</td>
-<td class="fielddoc">
-Sound detection enable. <p>Function Settings. </p>
-</td></tr>
-<tr><td class="fieldtype">
-<a id="a6465f4cce150c1fded4e7ecef082bd22"></a>uint8_t</td>
+<a id="a8acf0ad1c3d940caccc1c387f5ce197a"></a><a class="el" href="group___r_z_v___p_d_m.html#gaf30a2284491fafaec6a835746e4001a9">pdm_short_circuit_enable_t</a></td>
 <td class="fieldname">
 short_circuit_detection_enable</td>
 <td class="fielddoc">
-Short circuit detection enable. </td></tr>
+Short circuit detection enable. <p>Function Settings. </p>
+</td></tr>
 <tr><td class="fieldtype">
-<a id="a937316c517e9df8608f13683336b7eba"></a>uint8_t</td>
+<a id="ad12ef10f8c6fa4520739aa9b2aa4273b"></a><a class="el" href="group___r_z_v___p_d_m.html#gae98d0a1699440f8d6405968bdb6a855a">pdm_overvoltage_lower_limit_enable_t</a></td>
 <td class="fieldname">
 over_voltage_lower_limit_detection_enable</td>
 <td class="fielddoc">
 Overvoltage detection lower limit enable. </td></tr>
 <tr><td class="fieldtype">
-<a id="aa8fe28c21ae8b4222ad3faa258412ee9"></a>uint8_t</td>
+<a id="aa4678ef9f5638661c24dada07688bed4"></a><a class="el" href="group___r_z_v___p_d_m.html#gaa418eb6efe7d4d243ea4af5a074b10ae">pdm_overvoltage_upper_limit_enable_t</a></td>
 <td class="fieldname">
 over_voltage_upper_limit_detection_enable</td>
 <td class="fielddoc">
 Overvoltage detection upper limit enable. </td></tr>
 <tr><td class="fieldtype">
-<a id="acf9a0b5603abaaa1081cd1175f96dff9"></a>uint8_t</td>
+<a id="aef1229bb055c46f1d14a574d40f76fab"></a><a class="el" href="group___r_z_v___p_d_m.html#gaceae8e5dc8a19d9beaae7dbb64e78742">pdm_buffer_overwrite_detection_enable_t</a></td>
 <td class="fieldname">
 buffer_overwrite_detection_enable</td>
 <td class="fielddoc">
@@ -691,15 +700,15 @@ hpf_coefficient_k1</td>
 <td class="fielddoc">
 High-pass filter coefficient k1 (16-bit signed fixed point data) </td></tr>
 <tr><td class="fieldtype">
-<a id="af419ab171f0c34e685f4281dd0e0033e"></a>uint16_t</td>
+<a id="a638332daf1670df117f84828563aea2a"></a>uint16_t</td>
 <td class="fieldname">
-hpf_coefficient_h[2]</td>
+hpf_coefficient_h[PDM_NUM_HPF_COEFFICIENT_H]</td>
 <td class="fielddoc">
 High-pass filter coefficient h(p) (16-bit signed fixed point data) </td></tr>
 <tr><td class="fieldtype">
-<a id="a8510759b5bd3db28bdc55f8c01a886e5"></a>uint16_t</td>
+<a id="af7ab531adba7c106b3e39d108f8388ee"></a>uint16_t</td>
 <td class="fieldname">
-compensation_filter_coefficient_h[11]</td>
+compensation_filter_coefficient_h[PDM_NUM_COMPENSATION_FILTER_COEFFICIENT_H]</td>
 <td class="fielddoc">
 High-pass filter coefficient h(p) (13-bit signed fixed point data) </td></tr>
 <tr><td class="fieldtype">
@@ -709,9 +718,9 @@ lpf_coefficient_h0</td>
 <td class="fielddoc">
 Low-pass (half-band decimation) filter coefficient h0 (13-bit signed fixed point data) </td></tr>
 <tr><td class="fieldtype">
-<a id="ae4057e191db1e34b8057245ae7c6f69e"></a>uint16_t</td>
+<a id="a6135016da3d6d2d8c9002af09c3fba27"></a>uint16_t</td>
 <td class="fieldname">
-lpf_coefficient_h1[20]</td>
+lpf_coefficient_h1[PDM_NUM_LPF_FILTER_COEFFICIENT_H1]</td>
 <td class="fielddoc">
 Low-pass (half-band decimation) filter coefficient h1 (13-bit signed fixed point data) </td></tr>
 <tr><td class="fieldtype">
@@ -721,24 +730,12 @@ filter_setting_time</td>
 <td class="fielddoc">
 Filter setting time. </td></tr>
 <tr><td class="fieldtype">
-<a id="acce8b6d57562631e06b156466947f98e"></a><a class="el" href="group___r_z_v___p_d_m.html#gaa14fe788b2c7ab49898fb7030c7fbee8">pdm_interrupt_threshold_t</a></td>
+<a id="afcb48b228ce05085627c55e3ce0b9b4c"></a><a class="el" href="group___r_z_v___p_d_m.html#gaa14fe788b2c7ab49898fb7030c7fbee8">pdm_interrupt_threshold_t</a></td>
 <td class="fieldname">
-interupt_threshold</td>
+interrupt_threshold</td>
 <td class="fielddoc">
-Data reception interrupt threshold. <p>Sound Detection Threshold. </p>
+Data reception interrupt threshold. <p>Data Reception. </p>
 </td></tr>
-<tr><td class="fieldtype">
-<a id="aa9bb08853aed1e0353a8dbeca6e4d2ac"></a>uint32_t</td>
-<td class="fieldname">
-sound_detection_lower_limit</td>
-<td class="fielddoc">
-Sound detection lower limit (20-bit signed fixed point data) </td></tr>
-<tr><td class="fieldtype">
-<a id="a92dc104131b830c30bc10078bc32dc78"></a>uint32_t</td>
-<td class="fieldname">
-sound_detection_upper_limit</td>
-<td class="fielddoc">
-Sound detection upper limit (20-bit signed fixed point data) </td></tr>
 <tr><td class="fieldtype">
 <a id="a777ba2d287ec998d9b9357988d0a296d"></a>uint16_t</td>
 <td class="fieldname">
@@ -1000,6 +997,90 @@ Overvoltage detection upper limit (20-bit signed fixed point data) </td></tr>
 
 </div>
 </div>
+<a id="gaf30a2284491fafaec6a835746e4001a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf30a2284491fafaec6a835746e4001a9">&#9670;&nbsp;</a></span>pdm_short_circuit_enable_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_v___p_d_m.html#gaf30a2284491fafaec6a835746e4001a9">pdm_short_circuit_enable_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Short circuit detection enable setting. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaf30a2284491fafaec6a835746e4001a9ac8bedd96c3d137a5da70bf96407ed158"></a>PDM_SHORT_CIRCUIT_DISABLED&#160;</td><td class="fielddoc"><p>Short circuit disabled. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf30a2284491fafaec6a835746e4001a9ac3a0ffc3b639f155fca29ed23d7b3464"></a>PDM_SHORT_CIRCUIT_ENABLED&#160;</td><td class="fielddoc"><p>Short circuit enabled. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gae98d0a1699440f8d6405968bdb6a855a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae98d0a1699440f8d6405968bdb6a855a">&#9670;&nbsp;</a></span>pdm_overvoltage_lower_limit_enable_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_v___p_d_m.html#gae98d0a1699440f8d6405968bdb6a855a">pdm_overvoltage_lower_limit_enable_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Overvoltage lower limit enable setting. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggae98d0a1699440f8d6405968bdb6a855aa5e3d26fab9eae562f86996594193b518"></a>PDM_OVERVOLTAGE_LOWER_LIMIT_DISABLED&#160;</td><td class="fielddoc"><p>Overvoltage lower limit disabled. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggae98d0a1699440f8d6405968bdb6a855aa5ade27dd0f5c1c6b430039253e2bc0d7"></a>PDM_OVERVOLTAGE_LOWER_LIMIT_ENABLED&#160;</td><td class="fielddoc"><p>Overvoltage lower limit enabled. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gaa418eb6efe7d4d243ea4af5a074b10ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa418eb6efe7d4d243ea4af5a074b10ae">&#9670;&nbsp;</a></span>pdm_overvoltage_upper_limit_enable_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_v___p_d_m.html#gaa418eb6efe7d4d243ea4af5a074b10ae">pdm_overvoltage_upper_limit_enable_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Overvoltage upper limit enable setting. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaa418eb6efe7d4d243ea4af5a074b10aea0f734c2cb607b99681c4fc7b6348635a"></a>PDM_OVERVOLTAGE_UPPER_LIMIT_DISABLED&#160;</td><td class="fielddoc"><p>Overvoltage upper limit disabled. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaa418eb6efe7d4d243ea4af5a074b10aeaf4f186ec9d044337d5da73f86ee138f6"></a>PDM_OVERVOLTAGE_UPPER_LIMIT_ENABLED&#160;</td><td class="fielddoc"><p>Overvoltage upper limit enabled. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gaceae8e5dc8a19d9beaae7dbb64e78742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaceae8e5dc8a19d9beaae7dbb64e78742">&#9670;&nbsp;</a></span>pdm_buffer_overwrite_detection_enable_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_v___p_d_m.html#gaceae8e5dc8a19d9beaae7dbb64e78742">pdm_buffer_overwrite_detection_enable_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Buffer overwrite detection enable setting. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaceae8e5dc8a19d9beaae7dbb64e78742a92d2d9a6fe3f835da690bbdbd4fba0cd"></a>PDM_BUFFER_OVERWRITE_DETECTION_DISABLED&#160;</td><td class="fielddoc"><p>Buffer overwrite detection disabled. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaceae8e5dc8a19d9beaae7dbb64e78742aea10d60946c58fb3928dbba804808bbb"></a>PDM_BUFFER_OVERWRITE_DETECTION_ENABLED&#160;</td><td class="fielddoc"><p>Buffer overwrite detection enabled. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga348be7b997dd1200eb549ff3e7f946a0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga348be7b997dd1200eb549ff3e7f946a0">&#9670;&nbsp;</a></span>R_PDM_Open()</h2>
@@ -1027,7 +1108,7 @@ Overvoltage detection upper limit (20-bit signed fixed point data) </td></tr>
       </table>
 </div><div class="memdoc">
 <p>Opens the PDM. Implements <a class="el" href="group___r_z_v___p_d_m___a_p_i.html#a0c3ded8686769659c68a7b37d792316b">pdm_api_t::open</a>.</p>
-<p>This function sets this clock divisor and the configurations specified in pdm_cfg_t. It also opens the timer and transfer instances if they are provided.</p>
+<p>This function sets this clock divisor and the configurations specified in pdm_cfg_t.</p>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Ready for PDM communication. </td></tr>
@@ -1037,10 +1118,7 @@ Overvoltage detection upper limit (20-bit signed fixed point data) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html">Common Error Codes</a> or functions called by this function for other popdmble return codes. This function calls:<ul>
-<li><a class="el" href="group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#a7beeb93638582a58a15ea595bdb4915b">transfer_api_t::open</a> </li>
-</ul>
-</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html">Common Error Codes</a> or functions called by this function for other possible return codes. </dd></dl>
 
 </div>
 </div>
@@ -1088,13 +1166,13 @@ Overvoltage detection upper limit (20-bit signed fixed point data) </td></tr>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>PDM communication stop request issued. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>The pointer to p_ctrl was null. </td></tr>
-    <tr><td class="paramname">FSP_ERR_INVALID_SIZE</td><td>The size of buffer is not the multiple of pdm_interrupt_threshold_t. </td></tr>
+    <tr><td class="paramname">FSP_ERR_INVALID_SIZE</td><td>The size of buffer is not a multiple of pdm_interrupt_threshold_t. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ALIGNMENT</td><td>The alignment of argument buffer_size is not matched with hardware specification. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The channel is not opened. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html">Common Error Codes</a> or lower level drivers for other popdmble return codes. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html">Common Error Codes</a> or lower level drivers for other possible return codes. </dd></dl>
 
 </div>
 </div>
@@ -1124,7 +1202,75 @@ Overvoltage detection upper limit (20-bit signed fixed point data) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html">Common Error Codes</a> or lower level drivers for other popdmble return codes. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html">Common Error Codes</a> or lower level drivers for other possible return codes. </dd></dl>
+
+</div>
+</div>
+<a id="ga81dc4496418f929e3f94339700008104"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga81dc4496418f929e3f94339700008104">&#9670;&nbsp;</a></span>R_PDM_SoundDetectionEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> R_PDM_SoundDetectionEnable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___r_z_v___p_d_m___a_p_i.html#ga16be2346ab1fd4d3929228a28914430c">pdm_ctrl_t</a> *const&#160;</td>
+          <td class="paramname"><em>p_ctrl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group___r_z_v___p_d_m___a_p_i.html#gaeabaefe9292e75e1499332140249c12a">pdm_sound_detection_setting_t</a>&#160;</td>
+          <td class="paramname"><em>sound_detection_setting</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Configures and enables sound detection. Implements <a class="el" href="group___r_z_v___p_d_m___a_p_i.html#a410b98edad27e37d6bb229b047345198">pdm_api_t::soundDetectionEnable</a>.</p>
+<p>This function configures sound detection based on the passed in settings. It then enables sound detection.</p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">FSP_SUCCESS</td><td>Sound detection configured and enabled. </td></tr>
+    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>The pointer to p_ctrl was null. </td></tr>
+    <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The channel is not opened. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html">Common Error Codes</a> or lower level drivers for other possible return codes. </dd></dl>
+
+</div>
+</div>
+<a id="ga67db55f70c75153156284e6e6d6f1b01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga67db55f70c75153156284e6e6d6f1b01">&#9670;&nbsp;</a></span>R_PDM_SoundDetectionDisable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> R_PDM_SoundDetectionDisable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___r_z_v___p_d_m___a_p_i.html#ga16be2346ab1fd4d3929228a28914430c">pdm_ctrl_t</a> *const&#160;</td>
+          <td class="paramname"><em>p_ctrl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Disables sound detection. Implements <a class="el" href="group___r_z_v___p_d_m___a_p_i.html#a5c8151bc90ee460c25349f9599b61294">pdm_api_t::soundDetectionDisable</a>.</p>
+<p>This function disables sound detection.</p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">FSP_SUCCESS</td><td>Sound detection disabled. </td></tr>
+    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>The pointer to p_ctrl was null. </td></tr>
+    <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The channel is not opened. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html">Common Error Codes</a> or lower level drivers for other possible return codes. </dd></dl>
 
 </div>
 </div>
@@ -1159,22 +1305,13 @@ Overvoltage detection upper limit (20-bit signed fixed point data) </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Reads data into provided buffer. Implements <a class="el" href="group___r_z_v___p_d_m___a_p_i.html#a799788802cfcaf37c58ae37fa61687d9">pdm_api_t::read</a>.</p>
-<p>This function resets the transfer if the transfer interface is used, or reads the length of data available in the FIFO then stores the remaining read buffer in the control block to be filled in the ISR.</p>
-<p>Read() cannot be called if another Start() operation is in progress. Read can be called when the PDM is idle.</p>
+<p>This function is not supported. Implements <a class="el" href="group___r_z_v___p_d_m___a_p_i.html#a799788802cfcaf37c58ae37fa61687d9">pdm_api_t::read</a>.</p>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">FSP_SUCCESS</td><td>Read initiated successfully. </td></tr>
-    <tr><td class="paramname">FSP_ERR_IN_USE</td><td>Peripheral is in the wrong mode or not idle. </td></tr>
-    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>The pointer to p_ctrl or p_dest was null, or bytes requested was 0. </td></tr>
-    <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The channel is not opened. </td></tr>
+    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>This function is not supported. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html">Common Error Codes</a> or functions called by this function for other popdmble return codes. This function calls:<ul>
-<li><a class="el" href="group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#a4adfb2f68bec452d1e1e1b59ba798907">transfer_api_t::reset</a> </li>
-</ul>
-</dd></dl>
 
 </div>
 </div>
@@ -1299,7 +1436,7 @@ Overvoltage detection upper limit (20-bit signed fixed point data) </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

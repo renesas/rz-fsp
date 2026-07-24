@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -515,6 +515,9 @@ Limitations</h2>
 <li>The behavior for Byte Swap operation is not guaranteed for data frames other than 16-bit and 32-bit.</li>
 <li>DMAC activation is not available for safety channel.</li>
 </ul>
+<h2>Data coherency</h2>
+<dl class="section note"><dt>Note</dt><dd>This section applies only when SPI utilizes the DMAC.</dd></dl>
+<p>Source and destination buffers must either be allocated to a non-cacheable region, or, if placed in a cacheable region, be managed via explicit cache maintenance operations (clean/invalidate) to ensure data coherency (This involves cleaning the cache before starting the transmission and invalidating it once the transmission is completed). In the case of the write-back policy, when a destination buffer is placed in a cacheable region, it must be aligned with 64 bytes. See <a class="el" href="group___r_z_n___b_s_p___m_c_u.html#RZN_memory-attributes">Memory attributes</a> for details.</p>
 <h1><a class="anchor" id="RZN_r-spi-examples"></a>
 Examples</h1>
 <h2>Basic Example</h2>
@@ -813,7 +816,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Extended SPI interface configuration Please refer to the struct <a class="el" href="group___r_z_n___s_p_i.html#struct_r_z_n_1_1st__spi__extended__cfg">st_spi_extended_cfg</a>. </p>
+<p>Extended SPI interface configuration. Please refer to the struct <a class="el" href="group___r_z_n___s_p_i.html#struct_r_z_n_1_1st__spi__extended__cfg">st_spi_extended_cfg</a>. </p>
 
 </div>
 </div>
@@ -1476,7 +1479,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

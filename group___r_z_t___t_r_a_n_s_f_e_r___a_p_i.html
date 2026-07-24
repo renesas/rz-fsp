@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -241,7 +241,7 @@ Enumerations</h2></td></tr>
 <td class="fieldname">
 p_context</td>
 <td class="fielddoc">
-Placeholder for user data. Set in <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#a7beeb93638582a58a15ea595bdb4915b">transfer_api_t::open</a> function in transfer_cfg_t. <p>Placeholder for user data. Set in <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#a7beeb93638582a58a15ea595bdb4915b">transfer_api_t::open</a> function in <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#gaa9251f9ad4f7025ced96cc447698b57d">RZT::transfer_cfg_t</a>. </p>
+Placeholder for user data. Set in <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#a7beeb93638582a58a15ea595bdb4915b">transfer_api_t::open</a> function in transfer_cfg_t. <p>Placeholder for user data. Set in <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#a7beeb93638582a58a15ea595bdb4915b">transfer_api_t::open</a> function in <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#gaa9251f9ad4f7025ced96cc447698b57d">transfer_cfg_t</a>. </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="ac1f4e227971245acf642a3dc37bce6a3"></a><a class="el" href="namespace_r_z_t.html#a1de4d0bd07babf1ef51c9730777b3371">transfer_event_t</a></td>
@@ -798,7 +798,8 @@ Pointer to the API structure for this instance. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Callback function parameter data. Please refer to the struct <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#struct_r_z_t_1_1st__transfer__callback__args__t">st_transfer_callback_args_t</a>. </p>
+<p>Callback function parameter data. Please refer to the struct <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#struct_r_z_t_1_1st__transfer__callback__args__t">st_transfer_callback_args_t</a>.</p>
+<p>Callback function parameter data. Please refer to the struct <a class="el" href="namespace_r_z_t.html#struct_r_z_t_1_1st__transfer__callback__args">st_transfer_callback_args</a>. </p>
 
 </div>
 </div>
@@ -926,6 +927,12 @@ Pointer to the API structure for this instance. </td></tr>
 <tr><td class="fieldname"><a id="gadfb7c2a6a73bfdf993e50505aa92992fac75d63bfc4ec0207886e6bedcc71f154"></a>TRANSFER_MODE_BLOCK&#160;</td><td class="fielddoc"><p>In block mode, each transfer request causes <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#aa22e7675f77b1f89a273f53b2707fc8b">transfer_info_t::length</a> transfers of <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12">transfer_size_t</a>. After each individual transfer, the source and destination pointers are updated according to <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51">transfer_addr_mode_t</a>. After the block transfer is complete, <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#a213753875950be3a3d5ba3752960b3bd">transfer_info_t::num_blocks</a> is decremented. After the <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#a213753875950be3a3d5ba3752960b3bd">transfer_info_t::num_blocks</a> reaches 0, transfer requests will not cause any further transfers.</p>
 <p>Block mode. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="gadfb7c2a6a73bfdf993e50505aa92992fab411e1efab8a8bb78c5fe7d5351a67d5"></a>TRANSFER_MODE_NORMAL&#160;</td><td class="fielddoc"><p>In normal mode, each transfer request causes a transfer of <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12">transfer_size_t</a> from the source pointer to the destination pointer. The transfer length is decremented and the source and address pointers are updated according to <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51">transfer_addr_mode_t</a>. After the transfer length reaches 0, transfer requests will not cause any further transfers.</p>
+<p>Normal mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gadfb7c2a6a73bfdf993e50505aa92992fac75d63bfc4ec0207886e6bedcc71f154"></a>TRANSFER_MODE_BLOCK&#160;</td><td class="fielddoc"><p>In block mode, each transfer request causes <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#aa22e7675f77b1f89a273f53b2707fc8b">transfer_info_t::length</a> transfers of <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12">transfer_size_t</a>. After each individual transfer, the source and destination pointers are updated according to <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#gadce62e6c2407d6ffd5a94636736f7c51">transfer_addr_mode_t</a>. After the block transfer is complete, <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#a213753875950be3a3d5ba3752960b3bd">transfer_info_t::num_blocks</a> is decremented. After the <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#a213753875950be3a3d5ba3752960b3bd">transfer_info_t::num_blocks</a> reaches 0, transfer requests will not cause any further transfers.</p>
+<p>Block mode. </p>
+</td></tr>
 </table>
 
 </div>
@@ -950,6 +957,20 @@ Pointer to the API structure for this instance. </td></tr>
 <tr><td class="fieldname"><a id="ga6c224e5afb174f3f6ea9eddbb9da8b12a15861d64b0f91214e25d98544fb2e317"></a>TRANSFER_SIZE_4_BYTE&#160;</td><td class="fielddoc"><p>Each transfer transfers a 32-bit value. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ga6c224e5afb174f3f6ea9eddbb9da8b12ae04695b1d336bfe64e70d89d9026c370"></a>TRANSFER_SIZE_8_BYTE&#160;</td><td class="fielddoc"><p>Each transfer transfers a 64-bit value. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga6c224e5afb174f3f6ea9eddbb9da8b12a1dc4fc28dc0641fadd05abb1540a7080"></a>TRANSFER_SIZE_1_BYTE&#160;</td><td class="fielddoc"><p>Each transfer transfers a 8-bit value. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga6c224e5afb174f3f6ea9eddbb9da8b12a9a74fb76d53d4760f0e95e2ee7dcc110"></a>TRANSFER_SIZE_2_BYTE&#160;</td><td class="fielddoc"><p>Each transfer transfers a 16-bit value. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga6c224e5afb174f3f6ea9eddbb9da8b12a15861d64b0f91214e25d98544fb2e317"></a>TRANSFER_SIZE_4_BYTE&#160;</td><td class="fielddoc"><p>Each transfer transfers a 32-bit value. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga6c224e5afb174f3f6ea9eddbb9da8b12ae04695b1d336bfe64e70d89d9026c370"></a>TRANSFER_SIZE_8_BYTE&#160;</td><td class="fielddoc"><p>Each transfer transfers a 64-bit value. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga6c224e5afb174f3f6ea9eddbb9da8b12a75a3111b0531dcd015986e5478f8d2fc"></a>TRANSFER_SIZE_16_BYTE&#160;</td><td class="fielddoc"><p>Each transfer transfers a 128-bit value. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga6c224e5afb174f3f6ea9eddbb9da8b12a6d39aae034896c279d76c27f347a157f"></a>TRANSFER_SIZE_32_BYTE&#160;</td><td class="fielddoc"><p>Each transfer transfers a 256-bit value. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga6c224e5afb174f3f6ea9eddbb9da8b12ab65781594f343d617444f637ad2736d9"></a>TRANSFER_SIZE_64_BYTE&#160;</td><td class="fielddoc"><p>Each transfer transfers a 512-bit value. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ga6c224e5afb174f3f6ea9eddbb9da8b12a1dc4fc28dc0641fadd05abb1540a7080"></a>TRANSFER_SIZE_1_BYTE&#160;</td><td class="fielddoc"><p>Each transfer transfers a 8-bit value. </p>
 </td></tr>
@@ -1032,6 +1053,11 @@ Pointer to the API structure for this instance. </td></tr>
 <p>Address pointer is incremented by associated <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12">RZT::transfer_size_t</a> after each transfer. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gadce62e6c2407d6ffd5a94636736f7c51a56a87e1587844119831414f3d5e6d761"></a>TRANSFER_ADDR_MODE_DECREMENTED&#160;</td><td class="fielddoc"><p>Address pointer is decremented by associated <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12">transfer_size_t</a> after each transfer. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gadce62e6c2407d6ffd5a94636736f7c51a6535db9d955842922eef45031838bdfd"></a>TRANSFER_ADDR_MODE_INCREMENTED&#160;</td><td class="fielddoc"><p>Address pointer is incremented by associated <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12">transfer_size_t</a> after each transfer.</p>
+<p>Address pointer is incremented by associated <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12">RZT::transfer_size_t</a> after each transfer. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gadce62e6c2407d6ffd5a94636736f7c51ac48df89a1b8069a028b1cc01ee860a15"></a>TRANSFER_ADDR_MODE_FIXED&#160;</td><td class="fielddoc"><p>Address pointer remains fixed after each transfer. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gadce62e6c2407d6ffd5a94636736f7c51a6535db9d955842922eef45031838bdfd"></a>TRANSFER_ADDR_MODE_INCREMENTED&#160;</td><td class="fielddoc"><p>Address pointer is incremented by associated <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12">transfer_size_t</a> after each transfer.</p>
 <p>Address pointer is incremented by associated <a class="el" href="group___r_z_t___t_r_a_n_s_f_e_r___a_p_i.html#ga6c224e5afb174f3f6ea9eddbb9da8b12">RZT::transfer_size_t</a> after each transfer. </p>
@@ -1149,7 +1175,7 @@ Pointer to the API structure for this instance. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

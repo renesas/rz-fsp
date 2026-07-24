@@ -43,7 +43,7 @@ var group___r_z_t___e_t_h_e_r___b =
       [ "GMAC_B_PORT_MASK_1", "group___r_z_t___e_t_h_e_r___b.html#gga9333565ca2c7dcf4f0f0e59a75918874a455741289dbe784e99dda87c231ebc71", null ],
       [ "GMAC_B_PORT_MASK_2", "group___r_z_t___e_t_h_e_r___b.html#gga9333565ca2c7dcf4f0f0e59a75918874aaebdf57f5463cb8209e0f716785ba350", null ],
       [ "GMAC_B_PORT_MASK_3", "group___r_z_t___e_t_h_e_r___b.html#gga9333565ca2c7dcf4f0f0e59a75918874afcfafece1e87b06e8b738ebbdbbd4842", null ],
-      [ "GMAC_B_PORT_MASK_ALL", "group___r_z_t___e_t_h_e_r___b.html#gga9333565ca2c7dcf4f0f0e59a75918874a2b15346a275eaef7c7982ebb3b1e9d5a", null ]
+      [ "GMAC_B_PORT_MASK_4", "group___r_z_t___e_t_h_e_r___b.html#gga9333565ca2c7dcf4f0f0e59a75918874ac770235be6b92153108c0e248e12dced", null ]
     ] ],
     [ "gmac_b_link_change_t", "group___r_z_t___e_t_h_e_r___b.html#ga7d42d58e9dc9295d0a3ab7aa25fcb666", [
       [ "GMAC_B_LINK_CHANGE_NO_CHANGE", "group___r_z_t___e_t_h_e_r___b.html#gga7d42d58e9dc9295d0a3ab7aa25fcb666a636758a3074087ce76d512200179be3f", null ],

@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -362,6 +362,9 @@ Restart</h2>
 <ul>
 <li>SCI I2C can hold the the bus after an I2C transaction by issuing a repeated start condition.</li>
 </ul>
+<h2>Data coherency</h2>
+<dl class="section note"><dt>Note</dt><dd>This section applies only when SCI I2C utilizes the DMAC.</dd></dl>
+<p>Source and destination buffers must either be allocated to a non-cacheable region, or, if placed in a cacheable region, be managed via explicit cache maintenance operations (clean/invalidate) to ensure data coherency (This involves cleaning the cache before starting the transmission and invalidating it once the transmission is completed). In the case of the write-back policy, when a destination buffer is placed in a cacheable region, it must be aligned with 64 bytes. See <a class="el" href="group___r_z_n___b_s_p___m_c_u.html#RZN_memory-attributes">Memory attributes</a> for details.</p>
 <h1><a class="anchor" id="RZN_r-sci_i2c-examples"></a>
 Examples</h1>
 <h2>Basic Example</h2>
@@ -510,7 +513,7 @@ Register base address for specified channel. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>I2C clock settings Please refer to the struct <a class="el" href="group___r_z_n___s_c_i___i2_c.html#struct_r_z_n_1_1st__sci__i2c__clock__settings">st_sci_i2c_clock_settings</a>. </p>
+<p>I2C clock settings. Please refer to the struct <a class="el" href="group___r_z_n___s_c_i___i2_c.html#struct_r_z_n_1_1st__sci__i2c__clock__settings">st_sci_i2c_clock_settings</a>. </p>
 
 </div>
 </div>
@@ -540,7 +543,7 @@ Register base address for specified channel. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>SCI I2C extended configuration Please refer to the struct <a class="el" href="group___r_z_n___s_c_i___i2_c.html#struct_r_z_n_1_1st__sci__i2c__extended__cfg">st_sci_i2c_extended_cfg</a>. </p>
+<p>SCI I2C extended configuration. Please refer to the struct <a class="el" href="group___r_z_n___s_c_i___i2_c.html#struct_r_z_n_1_1st__sci__i2c__extended__cfg">st_sci_i2c_extended_cfg</a>. </p>
 
 </div>
 </div>
@@ -899,7 +902,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

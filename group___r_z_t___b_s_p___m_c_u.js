@@ -4,6 +4,7 @@ var group___r_z_t___b_s_p___m_c_u =
     [ "RZT2L", "group___r_z_t___b_s_p___m_c_u___r_z_t2_l.html", "group___r_z_t___b_s_p___m_c_u___r_z_t2_l" ],
     [ "RZT2M", "group___r_z_t___b_s_p___m_c_u___r_z_t2_m.html", "group___r_z_t___b_s_p___m_c_u___r_z_t2_m" ],
     [ "RZT2ME", "group___r_z_t___b_s_p___m_c_u___r_z_t2_m_e.html", "group___r_z_t___b_s_p___m_c_u___r_z_t2_m_e" ],
+    [ "RZT2N", "group___r_z_t___b_s_p___m_c_u___r_z_t2_n.html", "group___r_z_t___b_s_p___m_c_u___r_z_t2_n" ],
     [ "BSP_IRQ_DISABLED", "group___r_z_t___b_s_p___m_c_u.html#gae685ec20bc3579295878f1586478b54c", null ],
     [ "FSP_RETURN", "group___r_z_t___b_s_p___m_c_u.html#ga8c791e904efc648fb8b69b56d7dd37ba", null ],
     [ "FSP_ERROR_LOG", "group___r_z_t___b_s_p___m_c_u.html#ga960f46c44b67ba8ad5377cfc8e4e6a75", null ],
@@ -69,7 +70,16 @@ var group___r_z_t___b_s_p___m_c_u =
       [ "FSP_IP_SDHI", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950afd3bcaf69cb14356e5fbcac52a2eb48a", null ],
       [ "FSP_IP_CPU1", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950a05f5c55e531069cef7bad0ff9b9c8c27", null ],
       [ "FSP_IP_CR52", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950a52aa3c12d6b922449e8d906dbbe4dca6", null ],
-      [ "FSP_IP_CA55", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950acdade886276a65a3ff02f6f0f687a4df", null ]
+      [ "FSP_IP_CA55", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950acdade886276a65a3ff02f6f0f687a4df", null ],
+      [ "FSP_IP_ESWM", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950a13fcc70b4ed817a0ba4e5a8f48256e5a", null ],
+      [ "FSP_IP_HPSW", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950a2c2983e8cfef42f65bcf7895ac69aa1d", null ],
+      [ "FSP_IP_NANDC", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950af8e7359d4c0acd40f267dc2aad7f7957", null ],
+      [ "FSP_IP_PHOSTIF", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950a75fcee9a9dda44780fb9e4ddc935ab1a", null ],
+      [ "FSP_IP_BISSL", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950a79f51382b1bbab759d7626d01f32d557", null ],
+      [ "FSP_IP_ENDAT3_RXTX", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950ad8bd71d5d609f929e4216d42033cbcb2", null ],
+      [ "FSP_IP_ENDAT3_SYSTEM", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950af27d04be601bfa985703f65803aa3cb4", null ],
+      [ "FSP_IP_OTFD", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950ad55b9304760d96fc27e21286413f3c0c", null ],
+      [ "FSP_IP_OTFDE", "group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950a70464c76617015ba7fb1dd4d97d82aa5", null ]
     ] ],
     [ "fsp_signal_t", "group___r_z_t___b_s_p___m_c_u.html#ga0f8db6472715cfd8203eb499b26904e8", [
       [ "FSP_SIGNAL_INTCPU0", "group___r_z_t___b_s_p___m_c_u.html#gga0f8db6472715cfd8203eb499b26904e8ad6c4a95b44bc37821e8521707dbfca36", null ],
@@ -556,6 +566,10 @@ var group___r_z_t___b_s_p___m_c_u =
       [ "BSP_WARM_START_POST_CLOCK", "group___r_z_t___b_s_p___m_c_u.html#gga6fe6dc3c0813eeae8665430a31c005b4a0ac1a271ef413302af1558941563f3e7", null ],
       [ "BSP_WARM_START_POST_C", "group___r_z_t___b_s_p___m_c_u.html#gga6fe6dc3c0813eeae8665430a31c005b4af322ff0740a8d31f831b98ff042f0811", null ]
     ] ],
+    [ "fsp_priv_clock_t", "group___r_z_t___b_s_p___m_c_u.html#ga0b3dd3838340f26522703d160787bddd", [
+      [ "FSP_PRIV_CLOCK_SDHI0_IMCLK", "group___r_z_t___b_s_p___m_c_u.html#gga0b3dd3838340f26522703d160787bddda10c347566bfeb6745452f7387f53cdff", null ],
+      [ "FSP_PRIV_CLOCK_SDHI1_IMCLK", "group___r_z_t___b_s_p___m_c_u.html#gga0b3dd3838340f26522703d160787bddda08b86723a7bc1db8729b85aa0651ecf6", null ]
+    ] ],
     [ "bsp_delay_units_t", "group___r_z_t___b_s_p___m_c_u.html#gafd98e2a6f080d6a52a3ef72e3d731b2b", [
       [ "BSP_DELAY_UNITS_SECONDS", "group___r_z_t___b_s_p___m_c_u.html#ggafd98e2a6f080d6a52a3ef72e3d731b2bacc709da08ef4acc99bf6e2e84946be5d", null ],
       [ "BSP_DELAY_UNITS_MILLISECONDS", "group___r_z_t___b_s_p___m_c_u.html#ggafd98e2a6f080d6a52a3ef72e3d731b2ba59fcc4e8d51046d4a1bd63c87ac64913", null ],
@@ -591,6 +605,12 @@ var group___r_z_t___b_s_p___m_c_u =
       [ "BSP_MODULE_RESET_GMAC1_HCLK", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289adb505a35591d2d6683963c10fa6d4427", null ],
       [ "BSP_MODULE_RESET_GMAC2_ACLK", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289a08062dc1a1a2a94cca956505e0d67900", null ],
       [ "BSP_MODULE_RESET_GMAC2_HCLK", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289a929fb9e405dc0e184a2516f8789afdee", null ],
+      [ "BSP_MODULE_RESET_ESWM", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289ab79794ad511c07fb75f0cefc55f34597", null ],
+      [ "BSP_MODULE_RESET_HPSW", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289a8c75f49f53c1e3d1ba17aae6c1f4e6c1", null ],
+      [ "BSP_MODULE_RESET_NANDC_SYSTEM", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289ad5dc8ea935926d52228c9495d2e417bd", null ],
+      [ "BSP_MODULE_RESET_NANDC_SLAVE_PHY_REGISTERS", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289a4f8518af2120555af19f9369d7b87e21", null ],
+      [ "BSP_MODULE_RESET_NANDC_PROTECT_REGISTERS", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289a255108fe6c355337f02f4c95fdacf1a6", null ],
+      [ "BSP_MODULE_RESET_PHOSTIF_CLOCK", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289a8601f4ff745896ce6f36307ffa0c3d29", null ],
       [ "BSP_MODULE_RESET_SHOSTIF_MASTER_BUS_CLOCK", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289a009f401f5644d6dc1b15548190080149", null ],
       [ "BSP_MODULE_RESET_SHOSTIF_SLAVE_BUS_CLOCK", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289a99b860eab0f01fc680d1a582a281cf54", null ],
       [ "BSP_MODULE_RESET_SHOSTIF_IP_CLOCK", "group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289ac34c548c5c3310dee2a2e6f59e9cf220", null ],
@@ -727,5 +747,6 @@ var group___r_z_t___b_s_p___m_c_u =
     [ "R_BSP_MpuRegionDynamicConfig", "group___r_z_t___b_s_p___m_c_u.html#ga492c5252e65b9d5928f559e802567398", null ],
     [ "R_BSP_MpuRegionRestoreConfig", "group___r_z_t___b_s_p___m_c_u.html#gad19cad98d346a6b4815cb2b3fbfd65ac", null ],
     [ "SystemCoreClock", "group___r_z_t___b_s_p___m_c_u.html#gaa3cd3e43291e81e795d642b79b6088e6", null ],
-    [ "g_bsp_system_clock_select_xspi_clk", "group___r_z_t___b_s_p___m_c_u.html#gab57e4db79d93cfa90e0c0070fa979a45", null ]
+    [ "g_bsp_system_clock_select_xspi_clk", "group___r_z_t___b_s_p___m_c_u.html#gab57e4db79d93cfa90e0c0070fa979a45", null ],
+    [ "BSP_GICD_ICFGR_INIT", "group___r_z_t___b_s_p___m_c_u.html#ga07e41ed238502f4b0d77b67279c4ccad", null ]
 ];

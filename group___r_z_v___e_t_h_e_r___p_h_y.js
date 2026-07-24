@@ -6,7 +6,7 @@ var group___r_z_v___e_t_h_e_r___p_h_y =
       [ "p_reg_etherc", "group___r_z_v___e_t_h_e_r___p_h_y.html#abf169ba58c490158413e3d09ffd6a95d", null ],
       [ "local_advertise", "group___r_z_v___e_t_h_e_r___p_h_y.html#a1c9bc84310da37fdda7a843f1fdd26ef", null ]
     ] ],
-    [ "s_ether_phy_extend_cfg", "group___r_z_v___e_t_h_e_r___p_h_y.html#struct_r_z_v_1_1s__ether__phy__extend__cfg", [
+    [ "st_ether_phy_extend_cfg", "group___r_z_v___e_t_h_e_r___p_h_y.html#struct_r_z_v_1_1st__ether__phy__extend__cfg", [
       [ "port_type", "group___r_z_v___e_t_h_e_r___p_h_y.html#a657ba48bce9edac07cc2daba6c575557", null ],
       [ "mdio_type", "group___r_z_v___e_t_h_e_r___p_h_y.html#a17dc2ee309eea259204b94adbbaf5953", null ],
       [ "bps", "group___r_z_v___e_t_h_e_r___p_h_y.html#a20aad58c61c77bca82b255b842381f07", null ],
@@ -17,7 +17,7 @@ var group___r_z_v___e_t_h_e_r___p_h_y =
       [ "p_target_init", "group___r_z_v___e_t_h_e_r___p_h_y.html#a1d3403ffe1064815bd8b2891d29364fe", null ]
     ] ],
     [ "ether_phy_instance_ctrl_t", "group___r_z_v___e_t_h_e_r___p_h_y.html#ga68756caf1f7329f01d58d1d94bf7df0e", null ],
-    [ "ether_phy_extend_cfg_t", "group___r_z_v___e_t_h_e_r___p_h_y.html#ga26ff7a9a1776e3e06f6a9f79d096cf4a", null ],
+    [ "ether_phy_extend_cfg_t", "group___r_z_v___e_t_h_e_r___p_h_y.html#ga9ffbfa4a14af6a2ac6dedce25db5769f", null ],
     [ "ether_phy_port_type_t", "group___r_z_v___e_t_h_e_r___p_h_y.html#ga8980d0ed39cd8aec1c24c899952a2a10", [
       [ "ETHER_PHY_PORT_TYPE_ETHERNET", "group___r_z_v___e_t_h_e_r___p_h_y.html#gga8980d0ed39cd8aec1c24c899952a2a10a2bd509e57ad2120c81f1acd947e87f9d", null ],
       [ "ETHER_PHY_PORT_TYPE_ETHER_CAT", "group___r_z_v___e_t_h_e_r___p_h_y.html#gga8980d0ed39cd8aec1c24c899952a2a10a68222d85b700aa6619ec69d54edd6b35", null ]

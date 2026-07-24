@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -161,7 +161,8 @@ $(document).ready(function(){initNavTree('group___r_z_g___l_c_d_c.html','');});
   <div class="summary">
 <a href="#func-members">Functions</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">LCD (r_lcdc)<div class="ingroups"><a class="el" href="group___r_z_g.html">RZG</a> &raquo; <a class="el" href="group___r_z_g___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_g___r_e_n_e_s_a_s___g_r_a_p_h_i_c_s___m_o_d_u_l_e_s.html">Graphics</a></div></div>  </div>
 </div><!--header-->
@@ -361,6 +362,14 @@ Disabled</li>
 <tr>
 <td>Input &gt; Graphics Layer 2 &gt; Framebuffer &gt; Section for framebuffer allocation</td><td>Manual Entry</td><td>UNCACHED_BSS </td><td>Specify the section in which to allocate the framebuffer. When Arm Compiler 6 is used to place this memory in on-chip SRAM, the section name must be .bss or start with .bss. to avoid consuming unnecessary ROM space. </td></tr>
 <tr>
+<td>Output &gt; Source &gt; Mode</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Display Parallel I/F</li>
+<li>
+MIPI-DSI</li>
+</ul>
+</td><td>Display Parallel I/F </td><td>Select the LCDC output source. Display Parallel I/F and MIPI-DSI cannot be used simultaneously. </td></tr>
+<tr>
 <td>Output &gt; Timing &gt; Horizontal total cycles</td><td>Value must be an integer from 3 to 28668</td><td>1650 </td><td>Specify the total cycles in a horizontal line. Set to the number of cycles defined in the data sheet of LCD panel sheet in your system </td></tr>
 <tr>
 <td>Output &gt; Timing &gt; Horizontal active video cycles</td><td>Value must be an integer from 0 to 8191</td><td>1280 </td><td>Specify the number of active video cycles in a horizontal line (including front and back porch). Set to the number of cycles defined in the data sheet of LCD panel sheet in your system. </td></tr>
@@ -494,6 +503,11 @@ Typedefs</h2></td></tr>
 <tr class="separator:gafe39907a0ea71c9ab58b1144496e9e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4f3ed7858410c9286b743115ce85ac49"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___l_c_d_c.html#struct_r_z_g_1_1st__lcdc__instance__ctrl">st_lcdc_instance_ctrl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___l_c_d_c.html#ga4f3ed7858410c9286b743115ce85ac49">lcdc_instance_ctrl_t</a></td></tr>
 <tr class="separator:ga4f3ed7858410c9286b743115ce85ac49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga16820b967c0e0c4932bf0f04f3ac896b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___l_c_d_c.html#ga16820b967c0e0c4932bf0f04f3ac896b">lcdc_output_source_t</a> </td></tr>
+<tr class="separator:ga16820b967c0e0c4932bf0f04f3ac896b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
 <a name="struct_r_z_g_1_1st__lcdc__extended__cfg" id="struct_r_z_g_1_1st__lcdc__extended__cfg"></a>
@@ -611,6 +625,28 @@ Under run interrupt vector. </td></tr>
       </table>
 </div><div class="memdoc">
 <p>Display control block. DO NOT INITIALIZE. Please refer to the struct <a class="el" href="group___r_z_g___l_c_d_c.html#struct_r_z_g_1_1st__lcdc__instance__ctrl">st_lcdc_instance_ctrl</a>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga16820b967c0e0c4932bf0f04f3ac896b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga16820b967c0e0c4932bf0f04f3ac896b">&#9670;&nbsp;</a></span>lcdc_output_source_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_g___l_c_d_c.html#ga16820b967c0e0c4932bf0f04f3ac896b">lcdc_output_source_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>LCDC output source selection. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga16820b967c0e0c4932bf0f04f3ac896ba25b8a837fa75edc70c986bf42b62664d"></a>LCDC_OUTPUT_SOURCE_PARALLEL&#160;</td><td class="fielddoc"><p>Display Parallel I/F output. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga16820b967c0e0c4932bf0f04f3ac896ba9b5e631ae05b1075b0d0985709100307"></a>LCDC_OUTPUT_SOURCE_MIPI_DSI&#160;</td><td class="fielddoc"><p>MIPI-DSI output. </p>
+</td></tr>
+</table>
 
 </div>
 </div>
@@ -1058,7 +1094,7 @@ Under run interrupt vector. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

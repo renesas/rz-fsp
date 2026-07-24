@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -197,8 +197,18 @@ Overview</h1>
 Features</h2>
 <p>The DSMIF module supports the following features:</p>
 <ul>
-<li>Number of units: 2 units (10 units for RZ/T2H)</li>
-<li>Number of channels: 3 channels per unit for a total of 6 channels (30 channels for RZ/T2H)</li>
+<li>Number of units:<ul>
+<li>RZ/T2M, RZ/T2ME, RZ/T2L: 2 units.</li>
+<li>RZ/T2H: 10 units.</li>
+<li>RZ/T2N: 5 units.</li>
+</ul>
+</li>
+<li>Number of channels:<ul>
+<li>RZ/T2M, RZ/T2ME, RZ/T2L: 3 channels per unit for a total of 6 channels.</li>
+<li>RZ/T2H: 3 channels per unit for a total of 30 channels.</li>
+<li>RZ/T2N: 3 channels per unit for a total of 15 channels.</li>
+</ul>
+</li>
 <li>Decimation filter characteristics: Filter are selectable as Sinc 1st order, Sinc 2nd order, Sinc 3rd order Can select each channel.</li>
 <li>Over-sampling rate (decimation rate): Selectable from 4 to 256 Can select each channel.</li>
 <li>Interface clock: Support Master mode (MCLK is used as output)/Slave mode (MCLK is used as input) by channel</li>
@@ -210,6 +220,9 @@ Features</h2>
 <p>Master mode supports the following output clock for RZ/T2H:</p><ul>
 <li>25/20/12.5/10/6.25/5 MHz (Core clock 400Mhz, Bus Clock 250 Mhz)</li>
 <li>25/20.8/12.5/10.4/6.25/5 MHz (Core Clock 250 MHz, Bus Clock 250 Mhz)</li>
+</ul>
+<p>Master mode supports the following output clock for RZ/T2N:</p><ul>
+<li>25/20/12.5/10/6.25/5 MHz (Core clock 200Mhz, Bus Clock 200 Mhz)</li>
 </ul>
 <p>Filter received clock inversion function.</p><ul>
 <li>Data capture: Crests and troughs can trigger capture, allowing capture of values for current with the same timing.<a class="anchor" id="RZT_um_dsmif_read"></a>Can select one capture trigger from six triggers for each trigger input by channel.</li>
@@ -679,6 +692,9 @@ Clock Configuration</h2>
 <li>25/20/12.5/10/6.25/5 MHz (Core clock 400Mhz, Bus Clock 250 Mhz)</li>
 <li>25/20.8/12.5/10.4/6.25/5 MHz (Core Clock 250 MHz, Bus Clock 250 Mhz)</li>
 </ul>
+<p>Master mode supports the following output clock for RZ/T2N:</p><ul>
+<li>25/20/12.5/10/6.25/5 MHz (Core clock 200Mhz, Bus Clock 200 Mhz)</li>
+</ul>
 <h2><a class="anchor" id="RZT_r-dsmif-pin-configuration"></a>
 Pin Configuration</h2>
 <p>The relationship between the I / O pin and the DSMIF unit for RZ/T2M, RZ/T2ME and RZ/T2L is as follows.</p>
@@ -690,7 +706,7 @@ Pin Configuration</h2>
 <tr>
 <td>Data </td><td>MDAT0-2</td><td>MDAT3-5 </td></tr>
 </table>
-<p>The relationship between the I / O pin and the DSMIF unit for RZ/T2H is as follows.</p>
+<p>The relationship between the I / O pin and the DSMIF unit for RZ/T2H and RZ/T2N is as follows.</p>
 <table class="doxtable">
 <tr>
 <th>Item </th><th>Unitm(DSMIFn)  </th></tr>
@@ -699,14 +715,17 @@ Pin Configuration</h2>
 <tr>
 <td>Data </td><td>MDATmn </td></tr>
 </table>
-<p>Note: m = 0 to 9 (unit), n = 0 to 2 (channel)</p>
+<p>Note:</p><ul>
+<li>T2H: m = 0 to 9 (unit), n = 0 to 2 (channel)</li>
+<li>T2N: m = 0 to 4 (unit), n = 0 to 2 (channel) </li>
+</ul>
 <h1><a class="anchor" id="RZT_r-dsmif-usage-notes"></a>
 Usage Notes</h1>
 <p>In this document, the term "sampling" refers to the ability to sample data from the DSMIF clock and works as follows:</p>
 <ol type="1">
 <li>Clock Specification Sampling clock ofDSMIF is Select slave mode or master mode. In slave mode, the external input MCLKn is the sampling clock. In master mode, the clock obtained by dividing PCLKH is the sampling clock.</li>
-<li>Channel Start and Channel Stop Sampling starts by starting the channel. Sampling is stopped by stopping the channel. There are two modes for starting the channel, synchronization control mode and individual control mode. Channel start and channel stop and mode selection are controlled by registers. Refer to the Table 39.4 "Channel start trigger and channel stop trigger" in Chapter 39.36 "Channel Start and Channel" Stop for the correspondence of the registers to be controlled.</li>
-<li>Channel Synchronization To synchronize the channels, you need to synchronize the Sinc filter of each channel. To sync, follow the steps in Section 39.3.1. Start the flow.<ol type="a">
+<li>Channel Start and Channel Stop Sampling starts by starting the channel. Sampling is stopped by stopping the channel. There are two modes for starting the channel, synchronization control mode and individual control mode. Channel start and channel stop and mode selection are controlled by registers. Refer to the Table "Channel start trigger and channel stop trigger" in Chapter "Channel Start and Channel" Stop for the correspondence of the registers to be controlled.</li>
+<li>Channel Synchronization To synchronize the channels, you need to synchronize the Sinc filter of each channel. To sync, follow the steps in Section Start the flow.<ol type="a">
 <li>Set the same clock settings.</li>
 <li>Select the same trigger for division counter initialization trigger. Set the same value to Division counter initialization trigger select bits (DSCMCTCRCHn.DITSEL[1:0]).</li>
 <li>Select the same trigger for capture trigger A and B. (a) Set the same value to the Current Capture Trigger A Select bits (DSCMCTCRCHn.CTSELA[2:0]). (b) Set the same value to the Current Capture Trigger B Select bits (DSCMCTCRCHn.CTSELB[2:0]).</li>
@@ -715,13 +734,13 @@ Usage Notes</h1>
 </li>
 <li>Data Input Control By using the DSCMCRCHn.SEDGE bit, data receive can be selected to receive on the falling edge of MCLKn or the rising edge of MCLKn. Data input control receives clock and data from DSM.</li>
 <li>Sinc Filter The differentiation stage is operated by decimation clock (the frequency is 1/M of MCLKn). M is the decimation ratio and is set in the DSCMFCRCHn.CMDEC[7:0] bits for current measurement or in the DSOCFCRCHn.OCDEC[7:0] bits for overcurrent detection. The filter result is stored in register every decimation clock. In the case of current data, an interrupt is output at the same time when the filter result is stored.</li>
-<li>Available Settings of Sinc Filter Available Settings of Sinc Filter is refer to Chapter 39.3.10. Table 39.5 lists the available settings of the sinc filter and data shifting.</li>
-<li>Current Measurement Data Processing Each channel of DSMIF has the data registers specified in Table 39.6. Capture trigger A is selected by DSCMCTCRCHn.CTSELA[2:0] and capture trigger B is selected by DSCMCTCRCHn.CTSELB[2:0]. The trigger capturing function allows the capture of the values for current at the time of capture trigger A and capture trigger B using the event link controller (ELC) to set the capture trigger A or capture trigger B.</li>
+<li>Available Settings of Sinc Filter Available Settings of Sinc Filter is refer to Table "lists the available settings of the sinc filter and data shifting".</li>
+<li>Current Measurement Data Processing Each channel of DSMIF has the data registers specified in Table Capture trigger A is selected by DSCMCTCRCHn.CTSELA[2:0] and capture trigger B is selected by DSCMCTCRCHn.CTSELB[2:0]. The trigger capturing function allows the capture of the values for current at the time of capture trigger A and capture trigger B using the event link controller (ELC) to set the capture trigger A or capture trigger B.</li>
 <li>Short-circuit Detection When the short-circuit detection enable (DSEDCRCHn.SDE) is valid, the short-circuit detection can operate. A dedicated 13-bit counter counts consecutive 0 or 1 input from dsmdata n (n = 0 to 2). When the number of consecutive 0 exceeds the value set in the DSSCTSRCHn.SCNTL[12:0] register or the number of consecutive 1 exceeds the value set in the DSSCTSRCHn.SCNTH[12:0] register, a short-circuit detection interrupt request is generated.</li>
 <li>Overcurrent Sum Error Detection<ul>
 <li>When the overcurrent sum error upper limit detection enable (DSSECR.SEEH) is valid, the overcurrent sum error upper limit detection can operate.</li>
 <li>When the overcurrent sum error lower limit detection enable (DSSECR.SEEL) is valid, the overcurrent sum error lower limit detection can operate.</li>
-<li>An overcurrent upper limit sum error detection interrupt is requested when the sum of the values for each mode (see Table 39.7) is higher than the value of SCMPTBH.</li>
+<li>An overcurrent upper limit sum error detection interrupt is requested when the sum of the values for each mode (see Table "List of sum error mode detect mode and capture data") is higher than the value of SCMPTBH.</li>
 <li>An overcurrent lower limit sum error detection interrupt is requested when the sum of the values for each mode is lower than the value of SCMPTBL.</li>
 </ul>
 </li>
@@ -734,7 +753,7 @@ Usage Notes</h1>
 Examples</h1>
 <h2>Basic Example</h2>
 <p>This is a basic example of minimal use of the DSMIF in an application.</p>
-<div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> dsmif_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga74d4453017c0f52214f7624872dbb9b4">R_DSMIF_Open</a>(&amp;g_dsmif0_ctrl, &amp;g_dsmif0_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line"></div><div class="line">    dsmif_status_t status;</div><div class="line">    status.state = DSMIF_STATE_IN_OPERATION;</div><div class="line">    <span class="keywordflow">while</span> (DSMIF_STATE_IN_OPERATION == status.state)</div><div class="line">    {</div><div class="line">        <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga6129f999b52c99e8d6a57835b6332fbc">R_DSMIF_StatusGet</a>(&amp;g_dsmif0_ctrl, &amp;status);</div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Calculate the stable output time of the filter result. */</span></div><div class="line">    set_time_unit0 = r_dsmif_setting_time_calc(&amp;g_dsmif0_ctrl);</div><div class="line"></div><div class="line">    <span class="comment">/* In software trigger mode, start a scan by calling R_DSMIF_ScanStart(). In other modes, enable external</span></div><div class="line"><span class="comment">     * triggers by calling R_DSMIF_ScanStart(). */</span></div><div class="line">    (void) <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga1103d4ad1679f689179bafdda2aada04">R_DSMIF_ScanStart</a>(&amp;g_dsmif0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Wait for the time from the start of the channel to the stable output of the filter result. */</span></div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#gad419f5c4dbe2154df756d1913da27c24">R_BSP_SoftwareDelay</a>(set_time_unit0, <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ggafd98e2a6f080d6a52a3ef72e3d731b2baa0312618f2508347a9a815b5887c12ae">BSP_DELAY_UNITS_MICROSECONDS</a>);</div><div class="line"></div><div class="line">    <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga770d2b01f8a236171bc47c76cba8739f">R_DSMIF_CfgSet</a>(&amp;g_dsmif0_ctrl, &amp;g_dsmif0_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Wait for conversion to complete. */</span></div><div class="line">    status.state = DSMIF_STATE_IN_OPERATION;</div><div class="line">    <span class="keywordflow">while</span> (DSMIF_STATE_IN_OPERATION == status.state)</div><div class="line">    {</div><div class="line">        <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga6129f999b52c99e8d6a57835b6332fbc">R_DSMIF_StatusGet</a>(&amp;g_dsmif0_ctrl, &amp;status);</div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Read converted data. */</span></div><div class="line">    uint32_t      data32;</div><div class="line">    <a class="code" href="group___r_z_t___a_d_c___a_p_i.html#gaafc4060027875f8fe46242b0656d7814">adc_channel_t</a> dsmif_ch = <a class="code" href="group___r_z_t___a_d_c___a_p_i.html#gaafc4060027875f8fe46242b0656d7814acb0aee94f2dc529c0e725ecf28afe777">ADC_CHANNEL_0</a>;</div><div class="line">    <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga4ed64820dfdcecfd65e2571b2888f210">R_DSMIF_Read</a>(&amp;g_dsmif0_ctrl, dsmif_ch, &amp;data32);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
+<div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> dsmif_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga74d4453017c0f52214f7624872dbb9b4">R_DSMIF_Open</a>(&amp;g_dsmif0_ctrl, &amp;g_dsmif0_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    dsmif_status_t status;</div><div class="line">    status.state = DSMIF_STATE_IN_OPERATION;</div><div class="line">    <span class="keywordflow">while</span> (DSMIF_STATE_IN_OPERATION == status.state)</div><div class="line">    {</div><div class="line">        <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga6129f999b52c99e8d6a57835b6332fbc">R_DSMIF_StatusGet</a>(&amp;g_dsmif0_ctrl, &amp;status);</div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Calculate the stable output time of the filter result. */</span></div><div class="line">    set_time_unit0 = r_dsmif_setting_time_calc(&amp;g_dsmif0_ctrl);</div><div class="line"></div><div class="line">    <span class="comment">/* In software trigger mode, start a scan by calling R_DSMIF_ScanStart(). In other modes, enable external</span></div><div class="line"><span class="comment">     * triggers by calling R_DSMIF_ScanStart(). */</span></div><div class="line">    (void) <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga1103d4ad1679f689179bafdda2aada04">R_DSMIF_ScanStart</a>(&amp;g_dsmif0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Wait for the time from the start of the channel to the stable output of the filter result. */</span></div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#gad419f5c4dbe2154df756d1913da27c24">R_BSP_SoftwareDelay</a>(set_time_unit0, <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ggafd98e2a6f080d6a52a3ef72e3d731b2baa0312618f2508347a9a815b5887c12ae">BSP_DELAY_UNITS_MICROSECONDS</a>);</div><div class="line"></div><div class="line">    <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga770d2b01f8a236171bc47c76cba8739f">R_DSMIF_CfgSet</a>(&amp;g_dsmif0_ctrl, &amp;g_dsmif0_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Wait for conversion to complete. */</span></div><div class="line">    status.state = DSMIF_STATE_IN_OPERATION;</div><div class="line">    <span class="keywordflow">while</span> (DSMIF_STATE_IN_OPERATION == status.state)</div><div class="line">    {</div><div class="line">        <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga6129f999b52c99e8d6a57835b6332fbc">R_DSMIF_StatusGet</a>(&amp;g_dsmif0_ctrl, &amp;status);</div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Read converted data. */</span></div><div class="line">    uint32_t      data32;</div><div class="line">    <a class="code" href="group___r_z_t___a_d_c___a_p_i.html#gaafc4060027875f8fe46242b0656d7814">adc_channel_t</a> dsmif_ch = <a class="code" href="group___r_z_t___a_d_c___a_p_i.html#gaafc4060027875f8fe46242b0656d7814acb0aee94f2dc529c0e725ecf28afe777">ADC_CHANNEL_0</a>;</div><div class="line">    <a class="code" href="group___r_z_t___d_s_m_i_f.html#ga4ed64820dfdcecfd65e2571b2888f210">R_DSMIF_Read</a>(&amp;g_dsmif0_ctrl, dsmif_ch, &amp;data32);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_t_1_1st__dsmif__channel__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___d_s_m_i_f.html#struct_r_z_t_1_1st__dsmif__channel__cfg">st_dsmif_channel_cfg</a></td></tr>
@@ -1821,7 +1840,7 @@ Overcurrent Sum state. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

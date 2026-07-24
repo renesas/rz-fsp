@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -418,7 +418,11 @@ Limitations</h2>
 <ul>
 <li>Only 1 channel is configuratable.</li>
 </ul>
-<table class="memberdecls">
+<h1><a class="anchor" id="RZN_r-ether-switch-examples"></a>
+Examples</h1>
+<h2>ETHSW Basic Example</h2>
+<p>This is a basic example of minimal use of the ETHSW in an application.</p>
+<div class="fragment"><div class="line"><span class="keyword">volatile</span> <span class="keywordtype">bool</span> all_port_up_flag = <span class="keyword">false</span>;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * Identify each MAC table entry by its MAC address and VLAN ID.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#gaf6248bcb4a0180a0b3592bbdd470544d">ethsw_mac_table_entry_addr_t</a> g_mac_entry_addr_mac_0 =</div><div class="line">{</div><div class="line">    .<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a82b8150e156d8e1c3cba8826931707fc">mac_addr</a> = &amp;ethsw_mac_addr_arr0,</div><div class="line">    .vlan_id  = 10,</div><div class="line">};</div><div class="line"><a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#gaf6248bcb4a0180a0b3592bbdd470544d">ethsw_mac_table_entry_addr_t</a> g_mac_entry_addr_mac_1 =</div><div class="line">{</div><div class="line">    .<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a82b8150e156d8e1c3cba8826931707fc">mac_addr</a> = &amp;ethsw_mac_addr_arr1,</div><div class="line">    .vlan_id  = 11,</div><div class="line">};</div><div class="line"><a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#gaf6248bcb4a0180a0b3592bbdd470544d">ethsw_mac_table_entry_addr_t</a> g_mac_entry_addr_mac_2 =</div><div class="line">{</div><div class="line">    .<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a82b8150e156d8e1c3cba8826931707fc">mac_addr</a> = &amp;ethsw_mac_addr_arr2,</div><div class="line">    .vlan_id  = 12,</div><div class="line">};</div><div class="line"><a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga52bb961c66b801c7713379535d782990">ethsw_mac_table_entry_info_t</a> g_mac_entry_info_set_mac_0 =</div><div class="line">{</div><div class="line">    .<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a7ac4edce6a442c20022469538d40150d">port_mask</a>.<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ad3bee21df6875eeccd25d3c577e0600a">mask</a> = PORT_0_MASK,</div><div class="line">    .priority       = (uint32_t) 5,</div><div class="line">};</div><div class="line"><a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga52bb961c66b801c7713379535d782990">ethsw_mac_table_entry_info_t</a> g_mac_entry_info_set_mac_1 =</div><div class="line">{</div><div class="line">    .<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a7ac4edce6a442c20022469538d40150d">port_mask</a>.<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ad3bee21df6875eeccd25d3c577e0600a">mask</a> = PORT_1_MASK,</div><div class="line">    .priority       = (uint32_t) 6,</div><div class="line">};</div><div class="line"><a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga52bb961c66b801c7713379535d782990">ethsw_mac_table_entry_info_t</a> g_mac_entry_info_set_mac_2 =</div><div class="line">{</div><div class="line">    .<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#a7ac4edce6a442c20022469538d40150d">port_mask</a>.<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ad3bee21df6875eeccd25d3c577e0600a">mask</a> = PORT_2_MASK,</div><div class="line">    .priority       = (uint32_t) 7,</div><div class="line">};</div><div class="line"></div><div class="line"><a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#gaed0483a7c3e3eae42427013df0a27f81">ethsw_mac_table_config_t</a> g_mac_table_config =</div><div class="line">{</div><div class="line">    .<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ad14e65e466e43b476ee71be8aec3b327">aging</a>            = 0,</div><div class="line">    .discard_unknown  = 1,             <span class="comment">/* Discard frames with an unknown destination. */</span></div><div class="line">    .independent_vlan = 0,</div><div class="line">    .learning         = 0,</div><div class="line">    .migration        = 0,</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> ethsw_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_n___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#gaef3b5272377b1f831cca781871c0d871">ethsw_link_status_t</a> link_status_port_0 = <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ggaef3b5272377b1f831cca781871c0d871a219f8464c684a407fa3043d3a0287fee">ETHSW_LINK_STATE_DOWN</a>;</div><div class="line">    <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#gaef3b5272377b1f831cca781871c0d871">ethsw_link_status_t</a> link_status_port_1 = <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ggaef3b5272377b1f831cca781871c0d871a219f8464c684a407fa3043d3a0287fee">ETHSW_LINK_STATE_DOWN</a>;</div><div class="line">    <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#gaef3b5272377b1f831cca781871c0d871">ethsw_link_status_t</a> link_status_port_2 = <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ggaef3b5272377b1f831cca781871c0d871a219f8464c684a407fa3043d3a0287fee">ETHSW_LINK_STATE_DOWN</a>;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the PHY and start auto negotiate. */</span></div><div class="line">    <span class="keywordflow">for</span> (uint16_t i = 0; i &lt; BSP_FEATURE_GMAC_MAX_PORTS; i++)</div><div class="line">    {</div><div class="line">        <span class="keywordflow">if</span> (NULL != g_ether0_phy_instance[i])</div><div class="line">        {</div><div class="line">            err = <a class="code" href="group___r_z_n___e_t_h_e_r___p_h_y.html#gac54aa95e5976561c6d810eb1c868048c">R_ETHER_PHY_Open</a>(g_ether0_phy_instance[i]-&gt;p_ctrl, g_ether0_phy_instance[i]-&gt;p_cfg);</div><div class="line">            assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">            err = <a class="code" href="group___r_z_n___e_t_h_e_r___p_h_y.html#gaca73174d76fd87100066407a8ff13147">R_ETHER_PHY_StartAutoNegotiate</a>(g_ether0_phy_instance[i]-&gt;p_ctrl);</div><div class="line">            assert(FSP_SUCCESS == err);</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Open the ETHSW instance with initial configuration. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga45e2ad4a48b24518fc4e1c1ad3a25994">R_ETHSW_Open</a>(g_ethsw0.p_ctrl, g_ethsw0.p_cfg);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keywordflow">while</span> (!all_port_up_flag)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Wait for callback to set flag. */</span></div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Get the current link state of port 0. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga98881b41b496da28e4339977a3cfc6f5">R_ETHSW_LinkStateGet</a>(&amp;g_ethsw0_ctrl, PORT_0, &amp;link_status_port_0);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Get the current link state of port 1. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga98881b41b496da28e4339977a3cfc6f5">R_ETHSW_LinkStateGet</a>(&amp;g_ethsw0_ctrl, PORT_1, &amp;link_status_port_1);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Get the current link state of port 2. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga98881b41b496da28e4339977a3cfc6f5">R_ETHSW_LinkStateGet</a>(&amp;g_ethsw0_ctrl, PORT_2, &amp;link_status_port_2);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">     * Verify that all available ports are linked up.</span></div><div class="line"><span class="comment">     * Link-state changes invoke ethsw_callback().</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    assert(<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ggaef3b5272377b1f831cca781871c0d871a5ec39c56fb09fd0263057e4e2e895d00">ETHSW_LINK_STATE_UP</a> == link_status_port_0);</div><div class="line">    assert(<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ggaef3b5272377b1f831cca781871c0d871a5ec39c56fb09fd0263057e4e2e895d00">ETHSW_LINK_STATE_UP</a> == link_status_port_1);</div><div class="line">    assert(<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ggaef3b5272377b1f831cca781871c0d871a5ec39c56fb09fd0263057e4e2e895d00">ETHSW_LINK_STATE_UP</a> == link_status_port_2);</div><div class="line"></div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga6a4f8bf7f7f2ad70ae38f27278e4596b">R_ETHSW_MacTableSet</a>(&amp;g_ethsw0_ctrl, &amp;g_mac_entry_addr_mac_0, &amp;g_mac_entry_info_set_mac_0);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga6a4f8bf7f7f2ad70ae38f27278e4596b">R_ETHSW_MacTableSet</a>(&amp;g_ethsw0_ctrl, &amp;g_mac_entry_addr_mac_1, &amp;g_mac_entry_info_set_mac_1);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#ga6a4f8bf7f7f2ad70ae38f27278e4596b">R_ETHSW_MacTableSet</a>(&amp;g_ethsw0_ctrl, &amp;g_mac_entry_addr_mac_2, &amp;g_mac_entry_info_set_mac_2);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#gaa704e2b31413b2beb07be161da15debc">R_ETHSW_MacTableConfigSet</a>(&amp;g_ethsw0_ctrl, &amp;g_mac_table_config);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">     * When a frame arrives, ETHSW looks up the MAC table using</span></div><div class="line"><span class="comment">     * the frame&#39;s destination MAC address and VLAN ID.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * If both values match an entry, the frame is forwarded to</span></div><div class="line"><span class="comment">     * the port specified by that entry&#39;s port mask:</span></div><div class="line"><span class="comment">     *   MAC address 0 and VLAN 10 -&gt; PORT_0</span></div><div class="line"><span class="comment">     *   MAC address 1 and VLAN 11 -&gt; PORT_1</span></div><div class="line"><span class="comment">     *   MAC address 2 and VLAN 12 -&gt; PORT_2</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * Since discard_unknown is enabled, a frame that does not</span></div><div class="line"><span class="comment">     * match any MAC table entry is discarded instead of being</span></div><div class="line"><span class="comment">     * flooded to other ports.</span></div><div class="line"><span class="comment">     */</span></div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * ETHSW callback.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * The callback stores the latest ETHSW event information.</span></div><div class="line"><span class="comment"> * The status_link member indicates the ports whose link states changed.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keywordtype">void</span> ethsw_callback (<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gadc03bc3dfccf088c6599fdc8a469f18d">ether_switch_callback_args_t</a> * <span class="keyword">const</span> p_arg)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span> (NULL != p_arg)</div><div class="line">    {</div><div class="line">        <span class="keywordflow">if</span> (<a class="code" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5">ETHER_SWITCH_EVENT_LINK_CHANGE</a> == p_arg-&gt;event)</div><div class="line">        {</div><div class="line">            <span class="keywordflow">if</span> (ALL_ETHSW_PORT_MASK == p_arg-&gt;status_link)</div><div class="line">            {</div><div class="line">                all_port_up_flag = <span class="keyword">true</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_n_1_1st__ethsw__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__instance__ctrl">st_ethsw_instance_ctrl</a></td></tr>
@@ -1954,7 +1958,7 @@ In port 1, Discarded frames count due to loop filtering. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="ad7a3faf1d793797d5412bdc1cd3ebea9"></a>union <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#union_r_z_n_1_1st__ethsw__cqf__enable_8____unnamed____">st_ethsw_cqf_enable</a></td>
+<a id="a915a687905a1b6f9c0dada913c504e0c"></a>union <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#union_r_z_n_1_1st__ethsw__cqf__enable_8____unnamed____">st_ethsw_cqf_enable</a></td>
 <td class="fieldname">
 __unnamed__</td>
 <td class="fielddoc">
@@ -2924,7 +2928,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Port mask Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__port__mask">st_ethsw_port_mask</a>. </p>
+<p>Port mask. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__port__mask">st_ethsw_port_mask</a>. </p>
 
 </div>
 </div>
@@ -2954,7 +2958,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Address in MAC table entry Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mac__table__entry__addr">st_ethsw_mac_table_entry_addr</a>. </p>
+<p>Address in MAC table entry. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mac__table__entry__addr">st_ethsw_mac_table_entry_addr</a>. </p>
 
 </div>
 </div>
@@ -2969,7 +2973,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Information in MAC table entry Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mac__table__entry__info">st_ethsw_mac_table_entry_info</a>. </p>
+<p>Information in MAC table entry. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mac__table__entry__info">st_ethsw_mac_table_entry_info</a>. </p>
 
 </div>
 </div>
@@ -2984,7 +2988,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>MAC table config Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mac__table__config">st_ethsw_mac_table_config</a>. </p>
+<p>MAC table config. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mac__table__config">st_ethsw_mac_table_config</a>. </p>
 
 </div>
 </div>
@@ -2999,7 +3003,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Flood domain configuration for unknown frames Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__flood__unknown__config">st_ethsw_flood_unknown_config</a>. </p>
+<p>Flood domain configuration for unknown frames. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__flood__unknown__config">st_ethsw_flood_unknown_config</a>. </p>
 
 </div>
 </div>
@@ -3014,7 +3018,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>DLR initilize Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__dlr__init">st_ethsw_dlr_init</a>. </p>
+<p>DLR initilize. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__dlr__init">st_ethsw_dlr_init</a>. </p>
 
 </div>
 </div>
@@ -3029,7 +3033,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>RX Pattern Matcher Function Control Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__rx__pattern__ctrl">st_ethsw_rx_pattern_ctrl</a>. </p>
+<p>RX Pattern Matcher Function Control. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__rx__pattern__ctrl">st_ethsw_rx_pattern_ctrl</a>. </p>
 
 </div>
 </div>
@@ -3044,7 +3048,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The parameter for set/get the Rx pattern matcher function Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__rx__pattern__matcher">st_ethsw_rx_pattern_matcher</a>. </p>
+<p>The parameter for set/get the Rx pattern matcher function. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__rx__pattern__matcher">st_ethsw_rx_pattern_matcher</a>. </p>
 
 </div>
 </div>
@@ -3059,7 +3063,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Callback parameter of the Rx pattern matcher Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__rx__pattern__event__data">st_ethsw_rx_pattern_event_data</a>. </p>
+<p>Callback parameter of the Rx pattern matcher. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__rx__pattern__event__data">st_ethsw_rx_pattern_event_data</a>. </p>
 
 </div>
 </div>
@@ -3074,7 +3078,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The parameter for set preemptable queue Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__preempt__queue">st_ethsw_preempt_queue</a>. </p>
+<p>The parameter for set preemptable queue. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__preempt__queue">st_ethsw_preempt_queue</a>. </p>
 
 </div>
 </div>
@@ -3089,7 +3093,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The parameter for set frame configuration of frame preemption for each ports Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__preempt__port__ctrl__config">st_ethsw_preempt_port_ctrl_config</a>. </p>
+<p>The parameter for set frame configuration of frame preemption for each ports. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__preempt__port__ctrl__config">st_ethsw_preempt_port_ctrl_config</a>. </p>
 
 </div>
 </div>
@@ -3104,7 +3108,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The parameter for get preemption status Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__preempt__status">st_ethsw_preempt_status</a>. </p>
+<p>The parameter for get preemption status. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__preempt__status">st_ethsw_preempt_status</a>. </p>
 
 </div>
 </div>
@@ -3119,7 +3123,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>queue gate Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mmctl__qgate">st_ethsw_mmctl_qgate</a>. </p>
+<p>queue gate. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mmctl__qgate">st_ethsw_mmctl_qgate</a>. </p>
 
 </div>
 </div>
@@ -3134,7 +3138,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The parameter for set/get memory pool size function Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mmctl__pool__size">st_ethsw_mmctl_pool_size</a>. </p>
+<p>The parameter for set/get memory pool size function. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mmctl__pool__size">st_ethsw_mmctl_pool_size</a>. </p>
 
 </div>
 </div>
@@ -3209,7 +3213,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Switch Base Statistics counter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__statistic__switch__base">st_ethsw_statistic_switch_base</a>. </p>
+<p>Switch Base Statistics counter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__statistic__switch__base">st_ethsw_statistic_switch_base</a>. </p>
 
 </div>
 </div>
@@ -3224,7 +3228,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>MAC Statistics counter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__statistic__mac">st_ethsw_statistic_mac</a>. </p>
+<p>MAC Statistics counter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__statistic__mac">st_ethsw_statistic_mac</a>. </p>
 
 </div>
 </div>
@@ -3239,7 +3243,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Global Discard and 802.3br Statistics counter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__statistics__8023br">st_ethsw_statistics_8023br</a>. </p>
+<p>Global Discard and 802.3br Statistics counter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__statistics__8023br">st_ethsw_statistics_8023br</a>. </p>
 
 </div>
 </div>
@@ -3254,7 +3258,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>DLR Statistics counter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__statistics__dlr">st_ethsw_statistics_dlr</a>. </p>
+<p>DLR Statistics counter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__statistics__dlr">st_ethsw_statistics_dlr</a>. </p>
 
 </div>
 </div>
@@ -3269,7 +3273,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The parameter for set CQF enable configuration Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__cqf__enable">st_ethsw_cqf_enable</a>. </p>
+<p>The parameter for set CQF enable configuration. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__cqf__enable">st_ethsw_cqf_enable</a>. </p>
 
 </div>
 </div>
@@ -3284,7 +3288,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Snoop parser config Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__snoop__parser__config">st_ethsw_snoop_parser_config</a>. </p>
+<p>Snoop parser config. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__snoop__parser__config">st_ethsw_snoop_parser_config</a>. </p>
 
 </div>
 </div>
@@ -3299,7 +3303,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Snoop arithmetic config Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__snoop__arith__config">st_ethsw_snoop_arith_config</a>. </p>
+<p>Snoop arithmetic config. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__snoop__arith__config">st_ethsw_snoop_arith_config</a>. </p>
 
 </div>
 </div>
@@ -3314,7 +3318,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>EEE Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__eee">st_ethsw_eee</a>. </p>
+<p>EEE. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__eee">st_ethsw_eee</a>. </p>
 
 </div>
 </div>
@@ -3329,7 +3333,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>QoS mode Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__qos__mode">st_ethsw_qos_mode</a>. </p>
+<p>QoS mode. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__qos__mode">st_ethsw_qos_mode</a>. </p>
 
 </div>
 </div>
@@ -3344,7 +3348,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>QoS VLAN priority Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__qos__prio__vlan">st_ethsw_qos_prio_vlan</a>. </p>
+<p>QoS VLAN priority. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__qos__prio__vlan">st_ethsw_qos_prio_vlan</a>. </p>
 
 </div>
 </div>
@@ -3359,7 +3363,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>QoS IP priority Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__qos__prio__ip">st_ethsw_qos_prio_ip</a>. </p>
+<p>QoS IP priority. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__qos__prio__ip">st_ethsw_qos_prio_ip</a>. </p>
 
 </div>
 </div>
@@ -3374,7 +3378,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>QoS Ethertype priority Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__qos__prio__type">st_ethsw_qos_prio_type</a>. </p>
+<p>QoS Ethertype priority. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__qos__prio__type">st_ethsw_qos_prio_type</a>. </p>
 
 </div>
 </div>
@@ -3389,7 +3393,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>mirror port config Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mirror__conf">st_ethsw_mirror_conf</a>. </p>
+<p>mirror port config. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__mirror__conf">st_ethsw_mirror_conf</a>. </p>
 
 </div>
 </div>
@@ -3419,7 +3423,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>tdma enable parameter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__tdma__enable">st_ethsw_tdma_enable</a>. </p>
+<p>tdma enable parameter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__tdma__enable">st_ethsw_tdma_enable</a>. </p>
 
 </div>
 </div>
@@ -3434,7 +3438,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>TDMA schedule entry parameter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__tdma__schedule__entry">st_ethsw_tdma_schedule_entry</a>. </p>
+<p>TDMA schedule entry parameter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__tdma__schedule__entry">st_ethsw_tdma_schedule_entry</a>. </p>
 
 </div>
 </div>
@@ -3449,7 +3453,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The parameter for set/get TDMA counter 1 function Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__tdma__counter1">st_ethsw_tdma_counter1</a>. </p>
+<p>The parameter for set/get TDMA counter 1 function. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__tdma__counter1">st_ethsw_tdma_counter1</a>. </p>
 
 </div>
 </div>
@@ -3464,7 +3468,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Timer enable/disable parameter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__enable">st_ethsw_time_enable</a>. </p>
+<p>Timer enable/disable parameter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__enable">st_ethsw_time_enable</a>. </p>
 
 </div>
 </div>
@@ -3479,7 +3483,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Timestamp parameter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__timestamp">st_ethsw_timestamp</a>. </p>
+<p>Timestamp parameter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__timestamp">st_ethsw_timestamp</a>. </p>
 
 </div>
 </div>
@@ -3494,7 +3498,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Transmit timestamp parameter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__transmit">st_ethsw_time_transmit</a>. </p>
+<p>Transmit timestamp parameter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__transmit">st_ethsw_time_transmit</a>. </p>
 
 </div>
 </div>
@@ -3509,7 +3513,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Peer delay info Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__peerdelay">st_ethsw_time_peerdelay</a>. </p>
+<p>Peer delay info. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__peerdelay">st_ethsw_time_peerdelay</a>. </p>
 
 </div>
 </div>
@@ -3524,7 +3528,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>offset correction parameter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__offset__correction">st_ethsw_time_offset_correction</a>. </p>
+<p>offset correction parameter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__offset__correction">st_ethsw_time_offset_correction</a>. </p>
 
 </div>
 </div>
@@ -3539,7 +3543,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Rate correction parameter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__rate__correction">st_ethsw_time_rate_correction</a>. </p>
+<p>Rate correction parameter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__rate__correction">st_ethsw_time_rate_correction</a>. </p>
 
 </div>
 </div>
@@ -3554,7 +3558,7 @@ Domain number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Domain parameter Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__domain">st_ethsw_time_domain</a>. </p>
+<p>Domain parameter. Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h.html#struct_r_z_n_1_1st__ethsw__time__domain">st_ethsw_time_domain</a>. </p>
 
 </div>
 </div>
@@ -7616,7 +7620,7 @@ Domain number. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

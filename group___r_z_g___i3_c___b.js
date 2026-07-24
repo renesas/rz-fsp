@@ -1,24 +1,24 @@
 var group___r_z_g___i3_c___b =
 [
-    [ "s_i3c_b_clock_stalling", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__clock__stalling", [
+    [ "st_i3c_b_clock_stalling", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__clock__stalling", [
       [ "assigned_address_phase_enable", "group___r_z_g___i3_c___b.html#a3de2ad9fdc4f115c0c3eb1ae8d309310", null ],
       [ "transition_phase_enable", "group___r_z_g___i3_c___b.html#a1e17c7ba051cbbc0ff57d90fea790529", null ],
       [ "parity_phase_enable", "group___r_z_g___i3_c___b.html#a6d4b6b31e9050c2c8ecf09bc5cde62a9", null ],
       [ "ack_phase_enable", "group___r_z_g___i3_c___b.html#a4760badf6fcc5695df7c4c8e58f7f9cb", null ],
       [ "clock_stalling_time", "group___r_z_g___i3_c___b.html#ad201fd4faf0f7853730805bc021cd4e0", null ]
     ] ],
-    [ "s_i3c_b_bitrate_settings", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__bitrate__settings", [
+    [ "st_i3c_b_bitrate_settings", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__bitrate__settings", [
       [ "stdbr", "group___r_z_g___i3_c___b.html#a01c93295963a1e8e0c9d360ba64dece8", null ],
       [ "extbr", "group___r_z_g___i3_c___b.html#a81410f4ed8c831ab3a557a098ace2fd7", null ],
       [ "clock_stalling", "group___r_z_g___i3_c___b.html#a33cca3dffdec68983a92137890232718", null ]
     ] ],
-    [ "s_i3c_b_ibi_control", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__ibi__control", [
+    [ "st_i3c_b_ibi_control", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__ibi__control", [
       [ "hot_join_acknowledge", "group___r_z_g___i3_c___b.html#afdcaea75728a0d9827cf375837cf3d0b", null ],
       [ "notify_rejected_hot_join_requests", "group___r_z_g___i3_c___b.html#a0cb306ec1d1775ad5818c34d148c9da3", null ],
       [ "notify_rejected_mastership_requests", "group___r_z_g___i3_c___b.html#ae8edd51be8989ad10d0bd1e99b89af7b", null ],
       [ "notify_rejected_interrupt_requests", "group___r_z_g___i3_c___b.html#a477eb34fced5003a4c7b1068d130e121", null ]
     ] ],
-    [ "s_i3c_b_slave_command_response_info", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__slave__command__response__info", [
+    [ "st_i3c_b_slave_command_response_info", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__slave__command__response__info", [
       [ "inband_interrupt_enable", "group___r_z_g___i3_c___b.html#a40401d8933181561a4bf71eee44da212", null ],
       [ "mastership_request_enable", "group___r_z_g___i3_c___b.html#ae75f1326dcadce231554de226ba938ad", null ],
       [ "hotjoin_request_enable", "group___r_z_g___i3_c___b.html#a464dd4396b8ae51654c1770b3ae96c46", null ],
@@ -34,13 +34,13 @@ var group___r_z_g___i3_c___b =
       [ "oscillator_frequency", "group___r_z_g___i3_c___b.html#a32c484a922969c980167943426e1e6ea", null ],
       [ "oscillator_inaccuracy", "group___r_z_g___i3_c___b.html#a83ac5e7022a05bd981b7fe3cd81ab9c5", null ]
     ] ],
-    [ "s_i3c_b_read_buffer_descriptor", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__read__buffer__descriptor", [
+    [ "st_i3c_b_read_buffer_descriptor", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__read__buffer__descriptor", [
       [ "p_buffer", "group___r_z_g___i3_c___b.html#a247b6cc8b5cd8bd49b0c4c62ed59f7b8", null ],
       [ "count", "group___r_z_g___i3_c___b.html#a86988a65e0d3ece7990c032c159786d6", null ],
       [ "buffer_size", "group___r_z_g___i3_c___b.html#ab4bab919e0d995ad7249474cd9028105", null ],
       [ "read_request_issued", "group___r_z_g___i3_c___b.html#a01a9c197843464be050b891415526a64", null ]
     ] ],
-    [ "s_i3c_b_write_buffer_descriptor", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__write__buffer__descriptor", [
+    [ "st_i3c_b_write_buffer_descriptor", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__write__buffer__descriptor", [
       [ "p_buffer", "group___r_z_g___i3_c___b.html#a247b6cc8b5cd8bd49b0c4c62ed59f7b8", null ],
       [ "count", "group___r_z_g___i3_c___b.html#a86988a65e0d3ece7990c032c159786d6", null ],
       [ "buffer_size", "group___r_z_g___i3_c___b.html#ab4bab919e0d995ad7249474cd9028105", null ]
@@ -62,7 +62,7 @@ var group___r_z_g___i3_c___b =
       [ "ibi_transfer_count_final", "group___r_z_g___i3_c___b.html#a465da0947cd92b703b40a0c6b4832542", null ],
       [ "p_cfg", "group___r_z_g___i3_c___b.html#a57d50c4416ece101a05bcb25dc4ad193", null ]
     ] ],
-    [ "s_i3c_b_extended_cfg", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__extended__cfg", [
+    [ "st_i3c_b_extended_cfg", "group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__extended__cfg", [
       [ "bitrate_settings", "group___r_z_g___i3_c___b.html#a3193c7390e7a66f7e3514f9aa5d3f6df", null ],
       [ "ibi_control", "group___r_z_g___i3_c___b.html#afb68149074f511ea4bbc7cc214d3b151", null ],
       [ "bus_free_detection_time", "group___r_z_g___i3_c___b.html#a94572403e6580dbc71d12244bb9818e6", null ],
@@ -95,14 +95,14 @@ var group___r_z_g___i3_c___b =
     [ "I3C_B_EVENT_STATUS_ABORTED_TO_MASTER", "group___r_z_g___i3_c___b.html#gae15f0c28a3098b35b3eaf0456f1c4a5b", null ],
     [ "I3C_B_EVENT_STATUS_ABORTED", "group___r_z_g___i3_c___b.html#ga7aed8b3fb4cfd7004b8f785a8884f4ff", null ],
     [ "I3C_B_EVENT_STATUS_IBI_NACK_DISABLED", "group___r_z_g___i3_c___b.html#gaacf3c8a9a14870a0e66c8815bed1c2e5", null ],
-    [ "i3c_b_clock_stalling_t", "group___r_z_g___i3_c___b.html#ga5687f99bf7e1adbf67b5c51e2a326318", null ],
-    [ "i3c_b_bitrate_settings_t", "group___r_z_g___i3_c___b.html#ga2e6407e545053b307b3aeb429ef6e4df", null ],
-    [ "i3c_b_ibi_control_t", "group___r_z_g___i3_c___b.html#ga6d715323031c24816d6814e73c00b134", null ],
-    [ "i3c_b_slave_command_response_info_t", "group___r_z_g___i3_c___b.html#gaa8aefe897e272d3b3b0a24db4b435b73", null ],
-    [ "i3c_b_read_buffer_descriptor_t", "group___r_z_g___i3_c___b.html#ga542b14f327f8b22fd3b60a3961d26e52", null ],
-    [ "i3c_b_write_buffer_descriptor_t", "group___r_z_g___i3_c___b.html#ga33b62e5a748bffe17b5ba2165bb6719b", null ],
+    [ "i3c_b_clock_stalling_t", "group___r_z_g___i3_c___b.html#ga584cadd192b48b2f550d3950c650867d", null ],
+    [ "i3c_b_bitrate_settings_t", "group___r_z_g___i3_c___b.html#gafbe58b8766a6b9d9660ad661a38e44a2", null ],
+    [ "i3c_b_ibi_control_t", "group___r_z_g___i3_c___b.html#ga11bfb9050c9c4ab1143b2fb82f6fe285", null ],
+    [ "i3c_b_slave_command_response_info_t", "group___r_z_g___i3_c___b.html#ga3f8c988b50454a91b7566063f4859351", null ],
+    [ "i3c_b_read_buffer_descriptor_t", "group___r_z_g___i3_c___b.html#ga9e541b329bd170aae01b533a8ee27e1b", null ],
+    [ "i3c_b_write_buffer_descriptor_t", "group___r_z_g___i3_c___b.html#ga6783f78f0517d591c7dbf7ffef28d57b", null ],
     [ "i3c_b_instance_ctrl_t", "group___r_z_g___i3_c___b.html#gaf185507f47479a2c71dd9f430a15ac73", null ],
-    [ "i3c_b_extended_cfg_t", "group___r_z_g___i3_c___b.html#gaf83c06889b94b04ad16d5600b01c55c5", null ],
+    [ "i3c_b_extended_cfg_t", "group___r_z_g___i3_c___b.html#ga7847a19d59b0ff0dac6b2f4cdc38fcbb", null ],
     [ "i3c_b_bitrate_mode_t", "group___r_z_g___i3_c___b.html#gac8fb0ec859c44282b8323eb13de6ad3c", [
       [ "I3C_B_BITRATE_MODE_I2C_STDBR", "group___r_z_g___i3_c___b.html#ggac8fb0ec859c44282b8323eb13de6ad3caf4dc5a9d144776169e8a4d7f21a93b84", null ],
       [ "I3C_B_BITRATE_MODE_I2C_EXTBR", "group___r_z_g___i3_c___b.html#ggac8fb0ec859c44282b8323eb13de6ad3ca1ea841b113c1fcc83d7caae57f91c266", null ],

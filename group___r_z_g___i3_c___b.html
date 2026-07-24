@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -609,22 +609,22 @@ Examples</h1>
 <div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> i3c_b_slave_ccc_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    uint8_t read_buffer[EXAMPLE_READ_BUFFER_SIZE] = {0};</div><div class="line"></div><div class="line">    <span class="comment">/* Broadcast and Direct Set commands will be read into the read_buffer the same way that</span></div><div class="line"><span class="comment">     * a normal SDR Master Write / Slave Read transfer is read. */</span></div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> status = <a class="code" href="group___r_z_g___i3_c___b.html#ga69047e20f165f6e44fea97f3fec69399">R_I3C_B_Read</a>(&amp;g_i3c_ctrl, read_buffer, <span class="keyword">sizeof</span>(read_buffer), <span class="keyword">false</span>);</div><div class="line">    assert(FSP_SUCCESS == status);</div><div class="line"></div><div class="line">    <span class="comment">/* Wait for the command to complete. */</span></div><div class="line">    i3c_b_app_event_wait(<a class="code" href="group___r_z_g___i3_c___a_p_i.html#ggaaeacda02a21254776fcbc47ab1ff265ca2e5a0467001efaba19b6c2de17d182be">I3C_EVENT_COMMAND_COMPLETE</a>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> i3c_b_slave_ccc_example_callback (<a class="code" href="group___r_z_g___i3_c___a_p_i.html#gab8f275b976b5b246a5133c5c729c6c16">i3c_callback_args_t</a> <span class="keyword">const</span> * <span class="keyword">const</span> p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">switch</span> (p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_g___i3_c___a_p_i.html#ggaaeacda02a21254776fcbc47ab1ff265ca2e5a0467001efaba19b6c2de17d182be">I3C_EVENT_COMMAND_COMPLETE</a>:</div><div class="line">        {</div><div class="line">            <span class="comment">/* The command code and transfer size will be available in p_args.</span></div><div class="line"><span class="comment">             * If the command code is a Broadcast or Direct Set, then data will</span></div><div class="line"><span class="comment">             * be stored in the read buffer provided by i3c_b_api_t::read.</span></div><div class="line"><span class="comment">             * If the command code is a Direct Get, then the data will be automatically</span></div><div class="line"><span class="comment">             * sent from device SFR. */</span></div><div class="line">            i3c_b_app_event_notify(<a class="code" href="group___r_z_g___i3_c___a_p_i.html#ggaaeacda02a21254776fcbc47ab1ff265ca2e5a0467001efaba19b6c2de17d182be">I3C_EVENT_COMMAND_COMPLETE</a>);</div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keywordflow">default</span>:</div><div class="line">        {</div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:struct_r_z_g_1_1s__i3c__b__clock__stalling"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__clock__stalling">s_i3c_b_clock_stalling</a></td></tr>
-<tr class="separator:struct_r_z_g_1_1s__i3c__b__clock__stalling"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_g_1_1s__i3c__b__bitrate__settings"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__bitrate__settings">s_i3c_b_bitrate_settings</a></td></tr>
-<tr class="separator:struct_r_z_g_1_1s__i3c__b__bitrate__settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_g_1_1s__i3c__b__ibi__control"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__ibi__control">s_i3c_b_ibi_control</a></td></tr>
-<tr class="separator:struct_r_z_g_1_1s__i3c__b__ibi__control"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_g_1_1s__i3c__b__slave__command__response__info"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__slave__command__response__info">s_i3c_b_slave_command_response_info</a></td></tr>
-<tr class="separator:struct_r_z_g_1_1s__i3c__b__slave__command__response__info"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_g_1_1s__i3c__b__read__buffer__descriptor"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__read__buffer__descriptor">s_i3c_b_read_buffer_descriptor</a></td></tr>
-<tr class="separator:struct_r_z_g_1_1s__i3c__b__read__buffer__descriptor"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_g_1_1s__i3c__b__write__buffer__descriptor"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__write__buffer__descriptor">s_i3c_b_write_buffer_descriptor</a></td></tr>
-<tr class="separator:struct_r_z_g_1_1s__i3c__b__write__buffer__descriptor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_g_1_1st__i3c__b__clock__stalling"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__clock__stalling">st_i3c_b_clock_stalling</a></td></tr>
+<tr class="separator:struct_r_z_g_1_1st__i3c__b__clock__stalling"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_g_1_1st__i3c__b__bitrate__settings"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__bitrate__settings">st_i3c_b_bitrate_settings</a></td></tr>
+<tr class="separator:struct_r_z_g_1_1st__i3c__b__bitrate__settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_g_1_1st__i3c__b__ibi__control"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__ibi__control">st_i3c_b_ibi_control</a></td></tr>
+<tr class="separator:struct_r_z_g_1_1st__i3c__b__ibi__control"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_g_1_1st__i3c__b__slave__command__response__info"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__slave__command__response__info">st_i3c_b_slave_command_response_info</a></td></tr>
+<tr class="separator:struct_r_z_g_1_1st__i3c__b__slave__command__response__info"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_g_1_1st__i3c__b__read__buffer__descriptor"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__read__buffer__descriptor">st_i3c_b_read_buffer_descriptor</a></td></tr>
+<tr class="separator:struct_r_z_g_1_1st__i3c__b__read__buffer__descriptor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_g_1_1st__i3c__b__write__buffer__descriptor"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__write__buffer__descriptor">st_i3c_b_write_buffer_descriptor</a></td></tr>
+<tr class="separator:struct_r_z_g_1_1st__i3c__b__write__buffer__descriptor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_g_1_1st__i3c__b__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__instance__ctrl">st_i3c_b_instance_ctrl</a></td></tr>
 <tr class="separator:struct_r_z_g_1_1st__i3c__b__instance__ctrl"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_g_1_1s__i3c__b__extended__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__extended__cfg">s_i3c_b_extended_cfg</a></td></tr>
-<tr class="separator:struct_r_z_g_1_1s__i3c__b__extended__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_g_1_1st__i3c__b__extended__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__extended__cfg">st_i3c_b_extended_cfg</a></td></tr>
+<tr class="separator:struct_r_z_g_1_1st__i3c__b__extended__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -658,22 +658,22 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ga5687f99bf7e1adbf67b5c51e2a326318"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__clock__stalling">s_i3c_b_clock_stalling</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ga5687f99bf7e1adbf67b5c51e2a326318">i3c_b_clock_stalling_t</a></td></tr>
-<tr class="separator:ga5687f99bf7e1adbf67b5c51e2a326318"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2e6407e545053b307b3aeb429ef6e4df"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__bitrate__settings">s_i3c_b_bitrate_settings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ga2e6407e545053b307b3aeb429ef6e4df">i3c_b_bitrate_settings_t</a></td></tr>
-<tr class="separator:ga2e6407e545053b307b3aeb429ef6e4df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6d715323031c24816d6814e73c00b134"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__ibi__control">s_i3c_b_ibi_control</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ga6d715323031c24816d6814e73c00b134">i3c_b_ibi_control_t</a></td></tr>
-<tr class="separator:ga6d715323031c24816d6814e73c00b134"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa8aefe897e272d3b3b0a24db4b435b73"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__slave__command__response__info">s_i3c_b_slave_command_response_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#gaa8aefe897e272d3b3b0a24db4b435b73">i3c_b_slave_command_response_info_t</a></td></tr>
-<tr class="separator:gaa8aefe897e272d3b3b0a24db4b435b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga542b14f327f8b22fd3b60a3961d26e52"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__read__buffer__descriptor">s_i3c_b_read_buffer_descriptor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ga542b14f327f8b22fd3b60a3961d26e52">i3c_b_read_buffer_descriptor_t</a></td></tr>
-<tr class="separator:ga542b14f327f8b22fd3b60a3961d26e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga33b62e5a748bffe17b5ba2165bb6719b"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__write__buffer__descriptor">s_i3c_b_write_buffer_descriptor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ga33b62e5a748bffe17b5ba2165bb6719b">i3c_b_write_buffer_descriptor_t</a></td></tr>
-<tr class="separator:ga33b62e5a748bffe17b5ba2165bb6719b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga584cadd192b48b2f550d3950c650867d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__clock__stalling">st_i3c_b_clock_stalling</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ga584cadd192b48b2f550d3950c650867d">i3c_b_clock_stalling_t</a></td></tr>
+<tr class="separator:ga584cadd192b48b2f550d3950c650867d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafbe58b8766a6b9d9660ad661a38e44a2"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__bitrate__settings">st_i3c_b_bitrate_settings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#gafbe58b8766a6b9d9660ad661a38e44a2">i3c_b_bitrate_settings_t</a></td></tr>
+<tr class="separator:gafbe58b8766a6b9d9660ad661a38e44a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga11bfb9050c9c4ab1143b2fb82f6fe285"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__ibi__control">st_i3c_b_ibi_control</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ga11bfb9050c9c4ab1143b2fb82f6fe285">i3c_b_ibi_control_t</a></td></tr>
+<tr class="separator:ga11bfb9050c9c4ab1143b2fb82f6fe285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3f8c988b50454a91b7566063f4859351"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__slave__command__response__info">st_i3c_b_slave_command_response_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ga3f8c988b50454a91b7566063f4859351">i3c_b_slave_command_response_info_t</a></td></tr>
+<tr class="separator:ga3f8c988b50454a91b7566063f4859351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9e541b329bd170aae01b533a8ee27e1b"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__read__buffer__descriptor">st_i3c_b_read_buffer_descriptor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ga9e541b329bd170aae01b533a8ee27e1b">i3c_b_read_buffer_descriptor_t</a></td></tr>
+<tr class="separator:ga9e541b329bd170aae01b533a8ee27e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6783f78f0517d591c7dbf7ffef28d57b"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__write__buffer__descriptor">st_i3c_b_write_buffer_descriptor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ga6783f78f0517d591c7dbf7ffef28d57b">i3c_b_write_buffer_descriptor_t</a></td></tr>
+<tr class="separator:ga6783f78f0517d591c7dbf7ffef28d57b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf185507f47479a2c71dd9f430a15ac73"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__instance__ctrl">st_i3c_b_instance_ctrl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#gaf185507f47479a2c71dd9f430a15ac73">i3c_b_instance_ctrl_t</a></td></tr>
 <tr class="separator:gaf185507f47479a2c71dd9f430a15ac73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf83c06889b94b04ad16d5600b01c55c5"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__extended__cfg">s_i3c_b_extended_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#gaf83c06889b94b04ad16d5600b01c55c5">i3c_b_extended_cfg_t</a></td></tr>
-<tr class="separator:gaf83c06889b94b04ad16d5600b01c55c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7847a19d59b0ff0dac6b2f4cdc38fcbb"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__extended__cfg">st_i3c_b_extended_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ga7847a19d59b0ff0dac6b2f4cdc38fcbb">i3c_b_extended_cfg_t</a></td></tr>
+<tr class="separator:ga7847a19d59b0ff0dac6b2f4cdc38fcbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -687,14 +687,14 @@ Enumerations</h2></td></tr>
 <tr class="separator:ga3289540419912324ce02f19ed6a972ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="struct_r_z_g_1_1s__i3c__b__clock__stalling" id="struct_r_z_g_1_1s__i3c__b__clock__stalling"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1s__i3c__b__clock__stalling">&#9670;&nbsp;</a></span>RZG::s_i3c_b_clock_stalling</h2>
+<a name="struct_r_z_g_1_1st__i3c__b__clock__stalling" id="struct_r_z_g_1_1st__i3c__b__clock__stalling"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1st__i3c__b__clock__stalling">&#9670;&nbsp;</a></span>RZG::st_i3c_b_clock_stalling</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZG::s_i3c_b_clock_stalling</td>
+          <td class="memname">struct RZG::st_i3c_b_clock_stalling</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -735,14 +735,14 @@ The amount of time to stall the clock in I3C source clock ticks. </td></tr>
 
 </div>
 </div>
-<a name="struct_r_z_g_1_1s__i3c__b__bitrate__settings" id="struct_r_z_g_1_1s__i3c__b__bitrate__settings"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1s__i3c__b__bitrate__settings">&#9670;&nbsp;</a></span>RZG::s_i3c_b_bitrate_settings</h2>
+<a name="struct_r_z_g_1_1st__i3c__b__bitrate__settings" id="struct_r_z_g_1_1st__i3c__b__bitrate__settings"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1st__i3c__b__bitrate__settings">&#9670;&nbsp;</a></span>RZG::st_i3c_b_bitrate_settings</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZG::s_i3c_b_bitrate_settings</td>
+          <td class="memname">struct RZG::st_i3c_b_bitrate_settings</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -762,7 +762,7 @@ extbr</td>
 <td class="fielddoc">
 The extended bitrate settings. </td></tr>
 <tr><td class="fieldtype">
-<a id="a33cca3dffdec68983a92137890232718"></a><a class="el" href="group___r_z_g___i3_c___b.html#ga5687f99bf7e1adbf67b5c51e2a326318">i3c_b_clock_stalling_t</a></td>
+<a id="a33cca3dffdec68983a92137890232718"></a><a class="el" href="group___r_z_g___i3_c___b.html#ga584cadd192b48b2f550d3950c650867d">i3c_b_clock_stalling_t</a></td>
 <td class="fieldname">
 clock_stalling</td>
 <td class="fielddoc">
@@ -772,14 +772,14 @@ clock_stalling</td>
 
 </div>
 </div>
-<a name="struct_r_z_g_1_1s__i3c__b__ibi__control" id="struct_r_z_g_1_1s__i3c__b__ibi__control"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1s__i3c__b__ibi__control">&#9670;&nbsp;</a></span>RZG::s_i3c_b_ibi_control</h2>
+<a name="struct_r_z_g_1_1st__i3c__b__ibi__control" id="struct_r_z_g_1_1st__i3c__b__ibi__control"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1st__i3c__b__ibi__control">&#9670;&nbsp;</a></span>RZG::st_i3c_b_ibi_control</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZG::s_i3c_b_ibi_control</td>
+          <td class="memname">struct RZG::st_i3c_b_ibi_control</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -814,14 +814,14 @@ Notify the application when an IBI Interrupt request has been NACK'd. </td></tr>
 
 </div>
 </div>
-<a name="struct_r_z_g_1_1s__i3c__b__slave__command__response__info" id="struct_r_z_g_1_1s__i3c__b__slave__command__response__info"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1s__i3c__b__slave__command__response__info">&#9670;&nbsp;</a></span>RZG::s_i3c_b_slave_command_response_info</h2>
+<a name="struct_r_z_g_1_1st__i3c__b__slave__command__response__info" id="struct_r_z_g_1_1st__i3c__b__slave__command__response__info"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1st__i3c__b__slave__command__response__info">&#9670;&nbsp;</a></span>RZG::st_i3c_b_slave_command_response_info</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZG::s_i3c_b_slave_command_response_info</td>
+          <td class="memname">struct RZG::st_i3c_b_slave_command_response_info</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -924,14 +924,14 @@ oscillator_inaccuracy</td>
 
 </div>
 </div>
-<a name="struct_r_z_g_1_1s__i3c__b__read__buffer__descriptor" id="struct_r_z_g_1_1s__i3c__b__read__buffer__descriptor"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1s__i3c__b__read__buffer__descriptor">&#9670;&nbsp;</a></span>RZG::s_i3c_b_read_buffer_descriptor</h2>
+<a name="struct_r_z_g_1_1st__i3c__b__read__buffer__descriptor" id="struct_r_z_g_1_1st__i3c__b__read__buffer__descriptor"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1st__i3c__b__read__buffer__descriptor">&#9670;&nbsp;</a></span>RZG::st_i3c_b_read_buffer_descriptor</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZG::s_i3c_b_read_buffer_descriptor</td>
+          <td class="memname">struct RZG::st_i3c_b_read_buffer_descriptor</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -967,14 +967,14 @@ read_request_issued</td>
 
 </div>
 </div>
-<a name="struct_r_z_g_1_1s__i3c__b__write__buffer__descriptor" id="struct_r_z_g_1_1s__i3c__b__write__buffer__descriptor"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1s__i3c__b__write__buffer__descriptor">&#9670;&nbsp;</a></span>RZG::s_i3c_b_write_buffer_descriptor</h2>
+<a name="struct_r_z_g_1_1st__i3c__b__write__buffer__descriptor" id="struct_r_z_g_1_1st__i3c__b__write__buffer__descriptor"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1st__i3c__b__write__buffer__descriptor">&#9670;&nbsp;</a></span>RZG::st_i3c_b_write_buffer_descriptor</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZG::s_i3c_b_write_buffer_descriptor</td>
+          <td class="memname">struct RZG::st_i3c_b_write_buffer_descriptor</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1055,15 +1055,15 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <tr class="memdesc:ad1ce26e3883d712ffd21bd3667716554"><td class="mdescLeft">&#160;</td><td class="mdescRight">The next word that will be written to the IBI FIFO. <br /></td></tr>
 <tr class="separator:ad1ce26e3883d712ffd21bd3667716554"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab95692f850331425f20d046bca365f47"><td class="memItemLeft" align="right" valign="top"><a id="ab95692f850331425f20d046bca365f47"></a>
-<a class="el" href="group___r_z_g___i3_c___b.html#ga33b62e5a748bffe17b5ba2165bb6719b">i3c_b_write_buffer_descriptor_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ab95692f850331425f20d046bca365f47">write_buffer_descriptor</a></td></tr>
+<a class="el" href="group___r_z_g___i3_c___b.html#ga6783f78f0517d591c7dbf7ffef28d57b">i3c_b_write_buffer_descriptor_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ab95692f850331425f20d046bca365f47">write_buffer_descriptor</a></td></tr>
 <tr class="memdesc:ab95692f850331425f20d046bca365f47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer descriptor for keeping track of a write transfer. <br /></td></tr>
 <tr class="separator:ab95692f850331425f20d046bca365f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a522dc917815dfbab262e5916af2afcfe"><td class="memItemLeft" align="right" valign="top"><a id="a522dc917815dfbab262e5916af2afcfe"></a>
-<a class="el" href="group___r_z_g___i3_c___b.html#ga542b14f327f8b22fd3b60a3961d26e52">i3c_b_read_buffer_descriptor_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#a522dc917815dfbab262e5916af2afcfe">read_buffer_descriptor</a></td></tr>
+<a class="el" href="group___r_z_g___i3_c___b.html#ga9e541b329bd170aae01b533a8ee27e1b">i3c_b_read_buffer_descriptor_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#a522dc917815dfbab262e5916af2afcfe">read_buffer_descriptor</a></td></tr>
 <tr class="memdesc:a522dc917815dfbab262e5916af2afcfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer descriptor for keeping track of a read transfer. <br /></td></tr>
 <tr class="separator:a522dc917815dfbab262e5916af2afcfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade91a081dc93f30c7cd6d40cafae88f1"><td class="memItemLeft" align="right" valign="top"><a id="ade91a081dc93f30c7cd6d40cafae88f1"></a>
-<a class="el" href="group___r_z_g___i3_c___b.html#ga542b14f327f8b22fd3b60a3961d26e52">i3c_b_read_buffer_descriptor_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ade91a081dc93f30c7cd6d40cafae88f1">ibi_buffer_descriptor</a></td></tr>
+<a class="el" href="group___r_z_g___i3_c___b.html#ga9e541b329bd170aae01b533a8ee27e1b">i3c_b_read_buffer_descriptor_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#ade91a081dc93f30c7cd6d40cafae88f1">ibi_buffer_descriptor</a></td></tr>
 <tr class="memdesc:ade91a081dc93f30c7cd6d40cafae88f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer descriptor for keeping track of an IBI read/write transfer. <br /></td></tr>
 <tr class="separator:ade91a081dc93f30c7cd6d40cafae88f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a2b4367c08afc0ea34dd8afd62eff2b"><td class="memItemLeft" align="right" valign="top"><a id="a4a2b4367c08afc0ea34dd8afd62eff2b"></a>
@@ -1082,14 +1082,14 @@ volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 
 </div>
 </div>
-<a name="struct_r_z_g_1_1s__i3c__b__extended__cfg" id="struct_r_z_g_1_1s__i3c__b__extended__cfg"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1s__i3c__b__extended__cfg">&#9670;&nbsp;</a></span>RZG::s_i3c_b_extended_cfg</h2>
+<a name="struct_r_z_g_1_1st__i3c__b__extended__cfg" id="struct_r_z_g_1_1st__i3c__b__extended__cfg"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_g_1_1st__i3c__b__extended__cfg">&#9670;&nbsp;</a></span>RZG::st_i3c_b_extended_cfg</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZG::s_i3c_b_extended_cfg</td>
+          <td class="memname">struct RZG::st_i3c_b_extended_cfg</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1097,13 +1097,13 @@ volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="a3193c7390e7a66f7e3514f9aa5d3f6df"></a><a class="el" href="group___r_z_g___i3_c___b.html#ga2e6407e545053b307b3aeb429ef6e4df">i3c_b_bitrate_settings_t</a></td>
+<a id="a3193c7390e7a66f7e3514f9aa5d3f6df"></a><a class="el" href="group___r_z_g___i3_c___b.html#gafbe58b8766a6b9d9660ad661a38e44a2">i3c_b_bitrate_settings_t</a></td>
 <td class="fieldname">
 bitrate_settings</td>
 <td class="fielddoc">
 Bitrate settings configuring the frequency and duty cycle for SCL. </td></tr>
 <tr><td class="fieldtype">
-<a id="afb68149074f511ea4bbc7cc214d3b151"></a><a class="el" href="group___r_z_g___i3_c___b.html#ga6d715323031c24816d6814e73c00b134">i3c_b_ibi_control_t</a></td>
+<a id="afb68149074f511ea4bbc7cc214d3b151"></a><a class="el" href="group___r_z_g___i3_c___b.html#ga11bfb9050c9c4ab1143b2fb82f6fe285">i3c_b_ibi_control_t</a></td>
 <td class="fieldname">
 ibi_control</td>
 <td class="fielddoc">
@@ -1136,7 +1136,7 @@ timeout_detection_enable</td>
 <td class="fielddoc">
 Notify the application if SCL is stuck high or low. </td></tr>
 <tr><td class="fieldtype">
-<a id="a9241d87b9ac5d92405617cb84390ced9"></a><a class="el" href="group___r_z_g___i3_c___b.html#gaa8aefe897e272d3b3b0a24db4b435b73">i3c_b_slave_command_response_info_t</a></td>
+<a id="a9241d87b9ac5d92405617cb84390ced9"></a><a class="el" href="group___r_z_g___i3_c___b.html#ga3f8c988b50454a91b7566063f4859351">i3c_b_slave_command_response_info_t</a></td>
 <td class="fieldname">
 slave_command_response_info</td>
 <td class="fielddoc">
@@ -1391,93 +1391,93 @@ Register base address for specified channel. </td></tr>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="ga5687f99bf7e1adbf67b5c51e2a326318"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5687f99bf7e1adbf67b5c51e2a326318">&#9670;&nbsp;</a></span>i3c_b_clock_stalling_t</h2>
+<a id="ga584cadd192b48b2f550d3950c650867d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga584cadd192b48b2f550d3950c650867d">&#9670;&nbsp;</a></span>i3c_b_clock_stalling_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__clock__stalling">s_i3c_b_clock_stalling</a> <a class="el" href="group___r_z_g___i3_c___b.html#ga5687f99bf7e1adbf67b5c51e2a326318">i3c_b_clock_stalling_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__clock__stalling">st_i3c_b_clock_stalling</a> <a class="el" href="group___r_z_g___i3_c___b.html#ga584cadd192b48b2f550d3950c650867d">i3c_b_clock_stalling_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Clock stalling settings. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__clock__stalling">s_i3c_b_clock_stalling</a>. </p>
+<p>Clock stalling settings. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__clock__stalling">st_i3c_b_clock_stalling</a>. </p>
 
 </div>
 </div>
-<a id="ga2e6407e545053b307b3aeb429ef6e4df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2e6407e545053b307b3aeb429ef6e4df">&#9670;&nbsp;</a></span>i3c_b_bitrate_settings_t</h2>
+<a id="gafbe58b8766a6b9d9660ad661a38e44a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafbe58b8766a6b9d9660ad661a38e44a2">&#9670;&nbsp;</a></span>i3c_b_bitrate_settings_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__bitrate__settings">s_i3c_b_bitrate_settings</a> <a class="el" href="group___r_z_g___i3_c___b.html#ga2e6407e545053b307b3aeb429ef6e4df">i3c_b_bitrate_settings_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__bitrate__settings">st_i3c_b_bitrate_settings</a> <a class="el" href="group___r_z_g___i3_c___b.html#gafbe58b8766a6b9d9660ad661a38e44a2">i3c_b_bitrate_settings_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Bitrate settings for configuring the SCL clock frequency. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__bitrate__settings">s_i3c_b_bitrate_settings</a>. </p>
+<p>Bitrate settings for configuring the SCL clock frequency. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__bitrate__settings">st_i3c_b_bitrate_settings</a>. </p>
 
 </div>
 </div>
-<a id="ga6d715323031c24816d6814e73c00b134"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6d715323031c24816d6814e73c00b134">&#9670;&nbsp;</a></span>i3c_b_ibi_control_t</h2>
+<a id="ga11bfb9050c9c4ab1143b2fb82f6fe285"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga11bfb9050c9c4ab1143b2fb82f6fe285">&#9670;&nbsp;</a></span>i3c_b_ibi_control_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__ibi__control">s_i3c_b_ibi_control</a> <a class="el" href="group___r_z_g___i3_c___b.html#ga6d715323031c24816d6814e73c00b134">i3c_b_ibi_control_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__ibi__control">st_i3c_b_ibi_control</a> <a class="el" href="group___r_z_g___i3_c___b.html#ga11bfb9050c9c4ab1143b2fb82f6fe285">i3c_b_ibi_control_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Settings for controlling the drivers behavior in response to IBIs. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__ibi__control">s_i3c_b_ibi_control</a>. </p>
+<p>Settings for controlling the drivers behavior in response to IBIs. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__ibi__control">st_i3c_b_ibi_control</a>. </p>
 
 </div>
 </div>
-<a id="gaa8aefe897e272d3b3b0a24db4b435b73"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa8aefe897e272d3b3b0a24db4b435b73">&#9670;&nbsp;</a></span>i3c_b_slave_command_response_info_t</h2>
+<a id="ga3f8c988b50454a91b7566063f4859351"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3f8c988b50454a91b7566063f4859351">&#9670;&nbsp;</a></span>i3c_b_slave_command_response_info_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__slave__command__response__info">s_i3c_b_slave_command_response_info</a> <a class="el" href="group___r_z_g___i3_c___b.html#gaa8aefe897e272d3b3b0a24db4b435b73">i3c_b_slave_command_response_info_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__slave__command__response__info">st_i3c_b_slave_command_response_info</a> <a class="el" href="group___r_z_g___i3_c___b.html#ga3f8c988b50454a91b7566063f4859351">i3c_b_slave_command_response_info_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Default configuration settings for the slave response to Direct Get Common Command Codes. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__slave__command__response__info">s_i3c_b_slave_command_response_info</a>. </p>
+<p>Default configuration settings for the slave response to Direct Get Common Command Codes. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__slave__command__response__info">st_i3c_b_slave_command_response_info</a>. </p>
 
 </div>
 </div>
-<a id="ga542b14f327f8b22fd3b60a3961d26e52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga542b14f327f8b22fd3b60a3961d26e52">&#9670;&nbsp;</a></span>i3c_b_read_buffer_descriptor_t</h2>
+<a id="ga9e541b329bd170aae01b533a8ee27e1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9e541b329bd170aae01b533a8ee27e1b">&#9670;&nbsp;</a></span>i3c_b_read_buffer_descriptor_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__read__buffer__descriptor">s_i3c_b_read_buffer_descriptor</a> <a class="el" href="group___r_z_g___i3_c___b.html#ga542b14f327f8b22fd3b60a3961d26e52">i3c_b_read_buffer_descriptor_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__read__buffer__descriptor">st_i3c_b_read_buffer_descriptor</a> <a class="el" href="group___r_z_g___i3_c___b.html#ga9e541b329bd170aae01b533a8ee27e1b">i3c_b_read_buffer_descriptor_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Buffer descriptor for keeping track of a read transfer. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__read__buffer__descriptor">s_i3c_b_read_buffer_descriptor</a>. </p>
+<p>Buffer descriptor for keeping track of a read transfer. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__read__buffer__descriptor">st_i3c_b_read_buffer_descriptor</a>. </p>
 
 </div>
 </div>
-<a id="ga33b62e5a748bffe17b5ba2165bb6719b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga33b62e5a748bffe17b5ba2165bb6719b">&#9670;&nbsp;</a></span>i3c_b_write_buffer_descriptor_t</h2>
+<a id="ga6783f78f0517d591c7dbf7ffef28d57b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6783f78f0517d591c7dbf7ffef28d57b">&#9670;&nbsp;</a></span>i3c_b_write_buffer_descriptor_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__write__buffer__descriptor">s_i3c_b_write_buffer_descriptor</a> <a class="el" href="group___r_z_g___i3_c___b.html#ga33b62e5a748bffe17b5ba2165bb6719b">i3c_b_write_buffer_descriptor_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__write__buffer__descriptor">st_i3c_b_write_buffer_descriptor</a> <a class="el" href="group___r_z_g___i3_c___b.html#ga6783f78f0517d591c7dbf7ffef28d57b">i3c_b_write_buffer_descriptor_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Buffer descriptor for keeping track of a write transfer. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__write__buffer__descriptor">s_i3c_b_write_buffer_descriptor</a>. </p>
+<p>Buffer descriptor for keeping track of a write transfer. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__write__buffer__descriptor">st_i3c_b_write_buffer_descriptor</a>. </p>
 
 </div>
 </div>
@@ -1496,18 +1496,18 @@ Register base address for specified channel. </td></tr>
 
 </div>
 </div>
-<a id="gaf83c06889b94b04ad16d5600b01c55c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf83c06889b94b04ad16d5600b01c55c5">&#9670;&nbsp;</a></span>i3c_b_extended_cfg_t</h2>
+<a id="ga7847a19d59b0ff0dac6b2f4cdc38fcbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7847a19d59b0ff0dac6b2f4cdc38fcbb">&#9670;&nbsp;</a></span>i3c_b_extended_cfg_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__extended__cfg">s_i3c_b_extended_cfg</a> <a class="el" href="group___r_z_g___i3_c___b.html#gaf83c06889b94b04ad16d5600b01c55c5">i3c_b_extended_cfg_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__extended__cfg">st_i3c_b_extended_cfg</a> <a class="el" href="group___r_z_g___i3_c___b.html#ga7847a19d59b0ff0dac6b2f4cdc38fcbb">i3c_b_extended_cfg_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Extended configuration for r_i3c_b. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1s__i3c__b__extended__cfg">s_i3c_b_extended_cfg</a>. </p>
+<p>Extended configuration for r_i3c_b. Please refer to the struct <a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__extended__cfg">st_i3c_b_extended_cfg</a>. </p>
 
 </div>
 </div>
@@ -1766,7 +1766,7 @@ Register base address for specified channel. </td></tr>
     <tr><td class="paramname">FSP_SUCCESS</td><td>Open successful. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>An argument was NULL. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>This instance has not been opened yet. </td></tr>
-    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>Mastership requests must be rejected is slave support is disabled. </td></tr>
+    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>Mastership requests must be rejected if slave support is disabled. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2100,7 +2100,7 @@ Register base address for specified channel. </td></tr>
     <tr><td class="paramname">FSP_ERR_IN_USE</td><td>The operation could not be completed because the driver is busy. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_MODE</td><td>This function is only called in slave mode. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ALIGNMENT</td><td>The buffer must be aligned to 4 bytes. </td></tr>
-    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>Slave supoprt is disabled. </td></tr>
+    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>Slave support is disabled. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2186,7 +2186,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

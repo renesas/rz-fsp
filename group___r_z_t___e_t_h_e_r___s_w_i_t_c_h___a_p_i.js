@@ -31,13 +31,19 @@ var group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i =
     [ "ether_switch_api_t", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gaadcff66a240541b27c5b818b6fcd9756", null ],
     [ "ether_switch_instance_t", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#ga3e56f1437130f3cb186a89473fcdab27", null ],
     [ "ether_switch_event_t", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524", [
-      [ "ETHER_SWITCH_EVENT_RX_COMPLETE", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524aa0a0514df6bac40c835e4fcda32073b4", null ],
-      [ "ETHER_SWITCH_EVENT_TX_COMPLETE", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a0487493c21c16952bd6586b0230c88d7", null ],
-      [ "ETHER_SWITCH_EVENT_RX_QUEUE_FULL", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a200ad7f19a1e015a4212e6fc5a9f164f", null ],
-      [ "ETHER_SWITCH_EVENT_RX_MESSAGE_LOST", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524af64610e3efae1b13eeaa962e5928891e", null ],
-      [ "ETHER_SWITCH_EVENT_TAS_ERROR", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524ac49554d86f33aab93cc7d939089fca1f", null ],
+      [ "ETHER_SWITCH_EVENT_RX_COMPLETE", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a7f70f5116b3a408c905272d16388d5b8", null ],
+      [ "ETHER_SWITCH_EVENT_TX_COMPLETE", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a0004841b5ff89e3009529a391c9c4b30", null ],
+      [ "ETHER_SWITCH_EVENT_RX_QUEUE_FULL", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a0a2d6474e495cd93399152b714d0543d", null ],
+      [ "ETHER_SWITCH_EVENT_RX_MESSAGE_LOST", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a75af041021fc79cbead8306d24c2a4ba", null ],
+      [ "ETHER_SWITCH_EVENT_TAS_ERROR", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a38e8a64daf7bb4507279f3f5968052b8", null ],
       [ "ETHER_SWITCH_EVENT_LINK_CHANGE", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5", null ],
       [ "ETHER_SWITCH_EVENT_LINK_CHANGE", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5", null ],
-      [ "ETHER_SWITCH_EVENT_LINK_CHANGE", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5", null ]
+      [ "ETHER_SWITCH_EVENT_LINK_CHANGE", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5", null ],
+      [ "ETHER_SWITCH_EVENT_LINK_CHANGE", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5", null ],
+      [ "ETHER_SWITCH_EVENT_RX_COMPLETE", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a7f70f5116b3a408c905272d16388d5b8", null ],
+      [ "ETHER_SWITCH_EVENT_TX_COMPLETE", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a0004841b5ff89e3009529a391c9c4b30", null ],
+      [ "ETHER_SWITCH_EVENT_RX_QUEUE_FULL", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a0a2d6474e495cd93399152b714d0543d", null ],
+      [ "ETHER_SWITCH_EVENT_RX_MESSAGE_LOST", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a75af041021fc79cbead8306d24c2a4ba", null ],
+      [ "ETHER_SWITCH_EVENT_TAS_ERROR", "group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524a38e8a64daf7bb4507279f3f5968052b8", null ]
     ] ]
 ];

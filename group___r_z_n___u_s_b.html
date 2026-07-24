@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -539,10 +539,8 @@ Usage Notes</h1>
 Limitations</h2>
 <p>Developers should be aware of the following limitations when using the USB driver: </p><h3>Peripheral Limitations</h3>
 <ul>
-<li>The current USB driver does not support DMA.</li>
 <li>Multiconfigurations are not supported.</li>
 <li>When using VBUSIN, please enable Schmitt trigger input in the pin configuration.</li>
-<li>This driver does not support CPU transfers using the D0FIFO/D1FIFO register.</li>
 <li>Only one device-class driver may be used at a time.</li>
 </ul>
 <h3>Host Limitations</h3>
@@ -550,6 +548,10 @@ Limitations</h2>
 <li>The current USB driver does not support hub.</li>
 <li>In USB host mode, the module does not support suspend during data transfers. Execute suspend only after confirming that all transfers are complete.</li>
 <li>In USB host mode, this USB driver does not support the composite device.</li>
+</ul>
+<h3>Common Limitations</h3>
+<ul>
+<li>When using R_USB_Read/Write, the transfer size must not exceed the size selected in the USB Driver Write/Read Buffer Size setting in the configuration. If you need to transfer a larger size, please split the data within your application.</li>
 </ul>
 <h1><a class="anchor" id="RZN_r-usb_basic-examples"></a>
 Examples</h1>
@@ -2060,7 +2062,7 @@ Do not call this API in the following function. </dd>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

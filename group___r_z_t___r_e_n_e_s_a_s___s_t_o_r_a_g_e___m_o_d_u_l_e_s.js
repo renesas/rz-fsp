@@ -1,6 +1,7 @@
 var group___r_z_t___r_e_n_e_s_a_s___s_t_o_r_a_g_e___m_o_d_u_l_e_s =
 [
     [ "BSC NOR (r_bsc_nor)", "group___r_z_t___b_s_c___n_o_r.html", "group___r_z_t___b_s_c___n_o_r" ],
+    [ "NAND Flash (r_nandc)", "group___r_z_t___n_a_n_d_c.html", "group___r_z_t___n_a_n_d_c" ],
     [ "SD/MMC (r_sdhi)", "group___r_z_t___s_d_h_i.html", "group___r_z_t___s_d_h_i" ],
     [ "xSPI HyperBus (r_xspi_hyper)", "group___r_z_t___x_s_p_i___h_y_p_e_r.html", "group___r_z_t___x_s_p_i___h_y_p_e_r" ],
     [ "OSPI Flash (r_xspi_ospi)", "group___r_z_t___x_s_p_i___o_s_p_i.html", "group___r_z_t___x_s_p_i___o_s_p_i" ],

@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['common',['Common',['../group___c_o_m_m_o_n.html',1,'']]],
-  ['connectivity',['Connectivity',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___c_o_n_n_e_c_t_i_v_i_t_y___i_n_t_e_r_f_a_c_e_s.html',1,'']]],
-  ['connectivity',['Connectivity',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___c_o_n_n_e_c_t_i_v_i_t_y___m_o_d_u_l_e_s.html',1,'']]],
   ['camera_20interface',['Camera Interface',['../group___r_z_a___c_a_m_e_r_a___a_p_i.html',1,'']]],
   ['can_20interface',['CAN Interface',['../group___r_z_a___c_a_n___a_p_i.html',1,'']]],
   ['can_20fd_20_28r_5fcanfd_29',['CAN FD (r_canfd)',['../group___r_z_a___c_a_n_f_d.html',1,'']]],

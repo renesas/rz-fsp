@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -215,7 +215,7 @@ Features</h2>
 <ul>
 <li>An alarm interrupt generated on a match of any combination of year, month, day, day of the week, hour, minute or second</li>
 <li>A periodic interrupt generated every 2, 1, 1/2, 1/4, 1/8, 1/16, 1/32, 1/64, or 1/128 second(s)</li>
-<li>A carry interrupt is used internally when reading time from the RTC calender to get accurant time readings. <dl class="section note"><dt>Note</dt><dd>See section "Reading 64-Hz Counter and Time" of the user's manual for more details.<br />
+<li>A carry interrupt is used internally when reading time from the RTC calender to get accurant time readings. <dl class="section note"><dt>Note</dt><dd>See section "Reading 64-Hz Counter and Time" of the hardware manual for more details.<br />
 </dd></dl>
 A user-defined callback function can be registered (in the <a class="el" href="group___r_z_g___r_t_c___a_p_i.html#abc98067385361f2dcf08b23ce0aa34ea">rtc_api_t::open</a> API call) and will be called from the interrupt service routine (ISR) for alarm and periodic interrupt. When called, it is passed a pointer to a structure (rtc_callback_args_t) that holds a user-defined context pointer and an indication of which type of interrupt was fired.</li>
 </ul>
@@ -228,7 +228,7 @@ A user-defined callback function can be registered (in the <a class="el" href="g
 </ul>
 <p><a class="anchor" id="RZG_um_rtc_set_time_error_adjustment"></a> The error adjustment is reset every time RTC is reconfigured or time is set.</p>
 <dl class="section note"><dt>Note</dt><dd>RTC driver configurations do not do error adjustment internally while initiliazing the driver. Application must make calls to the error adjustment api's for desired adjustment. See section "Time Error Adjustment
-       Function" of the user's manual for more details on this feature</dd></dl>
+       Function" of the hardware manual for more details on this feature</dd></dl>
 <h2>Clock Input Mode (External Clock Bypass Mode)</h2>
 <p>This MPU supports bypassing the RTC's oscillator circuit. The RTC can operate in the following clock input modes:</p><ul>
 <li>Crystal Oscillator Mode: The RTC operates using a crystal oscillator connected to the RTC oscillator circuit.</li>
@@ -1001,7 +1001,7 @@ volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

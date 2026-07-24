@@ -6,7 +6,7 @@ var group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t =
       [ "p_reg_ini", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#a4de6bf33c83fb4797eaaa6ed1fbbb3b9", null ],
       [ "p_reg", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#aac6480fac3b4f241632c59b7d20c534d", null ]
     ] ],
-    [ "s_ethercat_ssc_port_extend_cfg", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1s__ethercat__ssc__port__extend__cfg", [
+    [ "st_ethercat_ssc_port_extend_cfg", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1st__ethercat__ssc__port__extend__cfg", [
       [ "eeprom_size", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#a7a587bd2a900c41bf9f788fde9357632", null ],
       [ "txc0", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#a1b013b8cdada07321d69c478b2c8239d", null ],
       [ "txc1", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#a90e8c2cba4953574ff1efca000357905", null ],
@@ -14,7 +14,7 @@ var group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t =
       [ "p_ether_phy_instance", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#a0518a47229d4510589c3daa342a8137a", null ]
     ] ],
     [ "ethercat_ssc_port_instance_ctrl_t", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#gadf15789f1c55106c80b6aaf589db27d7", null ],
-    [ "ethercat_ssc_port_extend_cfg_t", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#ga487c8dc19ff30f0ba4e29ee1e0c54ceb", null ],
+    [ "ethercat_ssc_port_extend_cfg_t", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#gac5c29c1745e2078e39e4c9e44f2e3f4d", null ],
     [ "ethercat_ssc_port_eeprom_size_t", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#ga4770edd29dda539aabd891f0ac20b6f7", [
       [ "ETHERCAT_SSC_PORT_EEPROM_SIZE_UNDER_32KBIT", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#gga4770edd29dda539aabd891f0ac20b6f7a205ad752bfd271ac1b5833e6de52c531", null ],
       [ "ETHERCAT_SSC_PORT_EEPROM_SIZE_OVER_32KBIT", "group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#gga4770edd29dda539aabd891f0ac20b6f7a076185a3d46bea1c83585531a160e2e7", null ]

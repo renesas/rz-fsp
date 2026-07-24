@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -628,16 +628,19 @@ Usage Notes</h1>
 <h2>Self-Refresh Operation</h2>
 <p>After <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga2f2e78724073df56351b78425722a8d9">R_BSC_SDRAM_Open()</a> completes successfully, BSC_SDRAM starts Auto-Refresh operation which issues refresh command every configured cycle.</p>
 <p>If not using the auto-refresh operation after <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga2f2e78724073df56351b78425722a8d9">R_BSC_SDRAM_Open()</a>, self-refresh operation can be started by calling <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga33f746dccad9ebd1d56524ada849ec43">R_BSC_SDRAM_SelfRefreshEnter()</a> after <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga2f2e78724073df56351b78425722a8d9">R_BSC_SDRAM_Open()</a>.</p>
+<h2><a class="anchor" id="RZT_r-bsc-sdram-limitations"></a>
+Limitations</h2>
+<p>Due to the characteristics of the Arm memory architecture, depending on the memory attributes, the order of access to peripherals memory space by the HAL driver and the access to the External address space CSn (including mirror area) by the user may not be guaranteed. In such cases, the user program must explicitly insert memory barrier instructions (such as __DMB() or __DSB()) after calling the HAL API function.</p>
 <h1><a class="anchor" id="RZT_r-bsc-sdram-examples"></a>
 Examples</h1>
 <h2><a class="anchor" id="RZT_r-bsc-sdram-examples-basic"></a>
 Basic Example</h2>
 <p>This is a basic example of minimal use of the BSC_SDRAM module in an application.</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#define CS3_BASE                         (0x58000000)</span></div><div class="line"><span class="preprocessor">#define BSC_SDRAM_EXAMPLE_DATA_LENGTH    (256)</span></div><div class="line">uint16_t write_data[BSC_SDRAM_EXAMPLE_DATA_LENGTH];</div><div class="line">uint16_t read_data[BSC_SDRAM_EXAMPLE_DATA_LENGTH];</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> r_bsc_sdram_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <span class="comment">/* Write some data to the write buffer */</span></div><div class="line">    <span class="keywordflow">for</span> (uint16_t i = 0; i &lt; BSC_SDRAM_EXAMPLE_DATA_LENGTH; i++)</div><div class="line">    {</div><div class="line">        write_data[i] = i;</div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Open the BSC_SDRAM instance */</span></div><div class="line">    <a class="code" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = <a class="code" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga2f2e78724073df56351b78425722a8d9">R_BSC_SDRAM_Open</a>(&amp;g_sdram_ctrl, &amp;g_sdram_cfg);</div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* After R_BSC_SDRAM_Open() and any required device specific initialization, data can be write directly</span></div><div class="line"><span class="comment">     * to the SDRAM connected to BSC. */</span></div><div class="line">    <span class="keywordflow">for</span> (uint16_t i = 0; i &lt; BSC_SDRAM_EXAMPLE_DATA_LENGTH; i++)</div><div class="line">    {</div><div class="line">        *((<span class="keyword">volatile</span> uint16_t *) CS3_BASE + 0x0000 + i) = write_data[i];</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">/* After R_BSC_SDRAM_Open() and any required device specific initialization, data can be read directly</span></div><div class="line"><span class="comment">     * from the SDRAM connected to BSC. */</span></div><div class="line">    <span class="keywordflow">for</span> (uint16_t i = 0; i &lt; BSC_SDRAM_EXAMPLE_DATA_LENGTH; i++)</div><div class="line">    {</div><div class="line">        read_data[i] = *((<span class="keyword">volatile</span> uint16_t *) CS3_BASE + 0x0000 + i);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">/* Verify the read_data. */</span></div><div class="line">    <span class="keywordflow">for</span> (uint16_t i = 0; i &lt; BSC_SDRAM_EXAMPLE_DATA_LENGTH; i++)</div><div class="line">    {</div><div class="line">        <span class="keywordflow">if</span> (read_data[i] != write_data[i])</div><div class="line">        {</div><div class="line">            <span class="comment">/* Verify error. */</span></div><div class="line">            __BKPT(0);</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keywordflow">while</span> (1)</div><div class="line">    {</div><div class="line">        ;</div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
+<div class="fragment"><div class="line"><span class="preprocessor">#define CS3_BASE                         (0x58000000)</span></div><div class="line"><span class="preprocessor">#define BSC_SDRAM_EXAMPLE_DATA_LENGTH    (256)</span></div><div class="line">uint16_t write_data[BSC_SDRAM_EXAMPLE_DATA_LENGTH];</div><div class="line">uint16_t read_data[BSC_SDRAM_EXAMPLE_DATA_LENGTH];</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> r_bsc_sdram_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <span class="comment">/* Write some data to the write buffer */</span></div><div class="line">    <span class="keywordflow">for</span> (uint16_t i = 0; i &lt; BSC_SDRAM_EXAMPLE_DATA_LENGTH; i++)</div><div class="line">    {</div><div class="line">        write_data[i] = i;</div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Open the BSC_SDRAM instance */</span></div><div class="line">    <a class="code" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = <a class="code" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga2f2e78724073df56351b78425722a8d9">R_BSC_SDRAM_Open</a>(&amp;g_sdram_ctrl, &amp;g_sdram_cfg);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* After R_BSC_SDRAM_Open() and any required device specific initialization, data can be write directly</span></div><div class="line"><span class="comment">     * to the SDRAM connected to BSC. */</span></div><div class="line">    <span class="keywordflow">for</span> (uint16_t i = 0; i &lt; BSC_SDRAM_EXAMPLE_DATA_LENGTH; i++)</div><div class="line">    {</div><div class="line">        *((<span class="keyword">volatile</span> uint16_t *) CS3_BASE + 0x0000 + i) = write_data[i];</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">/* After R_BSC_SDRAM_Open() and any required device specific initialization, data can be read directly</span></div><div class="line"><span class="comment">     * from the SDRAM connected to BSC. */</span></div><div class="line">    <span class="keywordflow">for</span> (uint16_t i = 0; i &lt; BSC_SDRAM_EXAMPLE_DATA_LENGTH; i++)</div><div class="line">    {</div><div class="line">        read_data[i] = *((<span class="keyword">volatile</span> uint16_t *) CS3_BASE + 0x0000 + i);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">/* Verify the read_data. */</span></div><div class="line">    <span class="keywordflow">for</span> (uint16_t i = 0; i &lt; BSC_SDRAM_EXAMPLE_DATA_LENGTH; i++)</div><div class="line">    {</div><div class="line">        <span class="keywordflow">if</span> (read_data[i] != write_data[i])</div><div class="line">        {</div><div class="line">            <span class="comment">/* Verify error. */</span></div><div class="line">            __BKPT(0);</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keywordflow">while</span> (1)</div><div class="line">    {</div><div class="line">        ;</div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:struct_r_z_t_1_1st__bsc__sdram__callback__args__t"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__callback__args__t">st_bsc_sdram_callback_args_t</a></td></tr>
-<tr class="separator:struct_r_z_t_1_1st__bsc__sdram__callback__args__t"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_t_1_1st__bsc__sdram__callback__args"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__callback__args">st_bsc_sdram_callback_args</a></td></tr>
+<tr class="separator:struct_r_z_t_1_1st__bsc__sdram__callback__args"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_t_1_1st__bsc__sdram__cs2__settings"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__cs2__settings">st_bsc_sdram_cs2_settings</a></td></tr>
 <tr class="separator:struct_r_z_t_1_1st__bsc__sdram__cs2__settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_t_1_1st__bsc__sdram__extended__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__extended__cfg">st_bsc_sdram_extended_cfg</a></td></tr>
@@ -647,8 +650,8 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:gad6114b39d00becf1ec696502c0c4ed20"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__callback__args__t">st_bsc_sdram_callback_args_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#gad6114b39d00becf1ec696502c0c4ed20">bsc_sdram_callback_args_t</a></td></tr>
-<tr class="separator:gad6114b39d00becf1ec696502c0c4ed20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0ec4e58f0e55bea1c4e0074b1e0193e0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__callback__args">st_bsc_sdram_callback_args</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga0ec4e58f0e55bea1c4e0074b1e0193e0">bsc_sdram_callback_args_t</a></td></tr>
+<tr class="separator:ga0ec4e58f0e55bea1c4e0074b1e0193e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6405c0405683b8a9675793a4e9cf54cf"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__cs2__settings">st_bsc_sdram_cs2_settings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga6405c0405683b8a9675793a4e9cf54cf">bsc_sdram_cs2_settings_t</a></td></tr>
 <tr class="separator:ga6405c0405683b8a9675793a4e9cf54cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7f5934cbe87aadd2e7d0ad9ba7e850ea"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__extended__cfg">st_bsc_sdram_extended_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga7f5934cbe87aadd2e7d0ad9ba7e850ea">bsc_sdram_extended_cfg_t</a></td></tr>
@@ -666,14 +669,14 @@ Enumerations</h2></td></tr>
 <tr class="separator:gada1c0e66f14f9002e9ac5468a5affd07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="struct_r_z_t_1_1st__bsc__sdram__callback__args__t" id="struct_r_z_t_1_1st__bsc__sdram__callback__args__t"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_t_1_1st__bsc__sdram__callback__args__t">&#9670;&nbsp;</a></span>RZT::st_bsc_sdram_callback_args_t</h2>
+<a name="struct_r_z_t_1_1st__bsc__sdram__callback__args" id="struct_r_z_t_1_1st__bsc__sdram__callback__args"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_t_1_1st__bsc__sdram__callback__args">&#9670;&nbsp;</a></span>RZT::st_bsc_sdram_callback_args</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZT::st_bsc_sdram_callback_args_t</td>
+          <td class="memname">struct RZT::st_bsc_sdram_callback_args</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -807,7 +810,7 @@ IRQn_Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <tr class="separator:afcdcfbd16c5809f919d110fa19770ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ba513b5ad2096b3167a3f0a25410043"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga6405c0405683b8a9675793a4e9cf54cf">bsc_sdram_cs2_settings_t</a> const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#a5ba513b5ad2096b3167a3f0a25410043">p_cs2_cfg</a></td></tr>
 <tr class="separator:a5ba513b5ad2096b3167a3f0a25410043"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a655c91fea4007d10a85c09ff926de209"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#a655c91fea4007d10a85c09ff926de209">p_callback</a> )(<a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#gad6114b39d00becf1ec696502c0c4ed20">bsc_sdram_callback_args_t</a> *p_args)</td></tr>
+<tr class="memitem:a655c91fea4007d10a85c09ff926de209"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#a655c91fea4007d10a85c09ff926de209">p_callback</a> )(<a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga0ec4e58f0e55bea1c4e0074b1e0193e0">bsc_sdram_callback_args_t</a> *p_args)</td></tr>
 <tr class="separator:a655c91fea4007d10a85c09ff926de209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa207a6ef4d9f49f00f01a37810ac301d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#aa207a6ef4d9f49f00f01a37810ac301d">p_context</a></td></tr>
 <tr class="separator:aa207a6ef4d9f49f00f01a37810ac301d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -925,7 +928,7 @@ IRQn_Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(*  p_callback) (<a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#gad6114b39d00becf1ec696502c0c4ed20">bsc_sdram_callback_args_t</a> *p_args)</td>
+          <td class="memname">void(*  p_callback) (<a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga0ec4e58f0e55bea1c4e0074b1e0193e0">bsc_sdram_callback_args_t</a> *p_args)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -944,7 +947,7 @@ IRQn_Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Placeholder for user data. Passed to the user callback in <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#gad6114b39d00becf1ec696502c0c4ed20">bsc_sdram_callback_args_t</a>. </p>
+<p>Placeholder for user data. Passed to the user callback in <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga0ec4e58f0e55bea1c4e0074b1e0193e0">bsc_sdram_callback_args_t</a>. </p>
 
 </div>
 </div>
@@ -967,18 +970,18 @@ IRQn_Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="gad6114b39d00becf1ec696502c0c4ed20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad6114b39d00becf1ec696502c0c4ed20">&#9670;&nbsp;</a></span>bsc_sdram_callback_args_t</h2>
+<a id="ga0ec4e58f0e55bea1c4e0074b1e0193e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0ec4e58f0e55bea1c4e0074b1e0193e0">&#9670;&nbsp;</a></span>bsc_sdram_callback_args_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__callback__args__t">st_bsc_sdram_callback_args_t</a> <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#gad6114b39d00becf1ec696502c0c4ed20">bsc_sdram_callback_args_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__callback__args">st_bsc_sdram_callback_args</a> <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#ga0ec4e58f0e55bea1c4e0074b1e0193e0">bsc_sdram_callback_args_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Callback function parameter data. Please refer to the struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__callback__args__t">st_bsc_sdram_callback_args_t</a>. </p>
+<p>Callback function parameter data. Please refer to the struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__callback__args">st_bsc_sdram_callback_args</a>. </p>
 
 </div>
 </div>
@@ -993,7 +996,7 @@ IRQn_Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Specify SDRAM CS2 configuration Please refer to the struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__cs2__settings">st_bsc_sdram_cs2_settings</a>. </p>
+<p>Specify SDRAM CS2 configuration. Please refer to the struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__cs2__settings">st_bsc_sdram_cs2_settings</a>. </p>
 
 </div>
 </div>
@@ -1023,7 +1026,7 @@ IRQn_Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Instance control block. DO NOT INITIALIZE. Initialization occurs when <a class="el" href="group___r_z_t___s_d_r_a_m___a_p_i.html#a8a3e45c652817d01c8013bcdef1ae96d">RZT::sdram_api_t::open</a> is called Please refer to the struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__instance__ctrl">st_bsc_sdram_instance_ctrl</a>. </p>
+<p>Instance control block. DO NOT INITIALIZE. Initialization occurs when <a class="el" href="group___r_z_t___s_d_r_a_m___a_p_i.html#a8a3e45c652817d01c8013bcdef1ae96d">RZT::sdram_api_t::open</a> is called. Please refer to the struct <a class="el" href="group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__instance__ctrl">st_bsc_sdram_instance_ctrl</a>. </p>
 
 </div>
 </div>
@@ -1288,7 +1291,7 @@ IRQn_Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

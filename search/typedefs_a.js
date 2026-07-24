@@ -45,6 +45,7 @@ var searchData=
   ['mmu_5fapi_5ft',['mmu_api_t',['../group___r_z_a___m_m_u___a_p_i.html#ga972f9f432465748ee60007e9b5c23b81',1,'RZA']]],
   ['mmu_5fcfg_5ft',['mmu_cfg_t',['../group___r_z_a___m_m_u___a_p_i.html#gac0d112e052de655c5ce43ed5fa736a55',1,'RZA']]],
   ['mmu_5fctrl_5ft',['mmu_ctrl_t',['../group___r_z_a___m_m_u___a_p_i.html#ga554fca2e99d44c17e9fd4340d481488d',1,'RZA']]],
+  ['mmu_5finstance_5fctrl_5ft',['mmu_instance_ctrl_t',['../group___r_z_a___m_m_u.html#gac1299325f4f6e886f0ac8ccc312eae97',1,'RZA']]],
   ['mmu_5finstance_5ft',['mmu_instance_t',['../group___r_z_a___m_m_u___a_p_i.html#gadef1a40cea5913d7485da7bce2ccc596',1,'RZA']]],
   ['mmu_5fsection_5finfo_5ft',['mmu_section_info_t',['../group___r_z_a___m_m_u___a_p_i.html#gaa4c5e27e3fb770fe199d6891eb4b0d52',1,'RZA']]],
   ['mmu_5ftable_5finfo_5ft',['mmu_table_info_t',['../group___r_z_a___m_m_u___a_p_i.html#ga1e74416f478f7206697d540fa9bfd470',1,'RZA']]],

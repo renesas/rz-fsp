@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -213,7 +213,7 @@ Features</h2>
 <li>Supports Next0 Register set and Next1 Register set<a class="anchor" id="RZA_um_dmac_next1_register_set"></a></li>
 <li>Address increment, fixed<a class="anchor" id="RZA_um_transfer_address_inc_dec_fixed"></a></li>
 <li>Triggered by peripheral module events<ul>
-<li>See "Table On-Chip Module Requests" in the user's manual</li>
+<li>See "Table On-Chip Module Requests" in the hardware manual</li>
 </ul>
 </li>
 <li>Supports 1, 2, 4, 8, 16, 32, 64, 128 byte data units<a class="anchor" id="RZA_um_transfer_unit"></a><a class="anchor" id="RZA_um_dmac_src_unit"></a><a class="anchor" id="RZA_um_dmac_dest_unit"></a></li>
@@ -269,7 +269,7 @@ This module can be added to the Stacks tab via New Stack &gt; Transfer &gt; Tran
 <tr>
 <td>General &gt; Channel</td><td>Must be a valid integer between 0 and 15.</td><td>0 </td><td>Specify the hardware channel. </td></tr>
 <tr>
-<td>General &gt; Activation Source</td><td>Refer to the <a class="el" href="namespace_r_z_a.html">RZA</a> Configuration tool for available options.</td><td>SOFTWARE_TRIGGER </td><td>Select the DMAC transfer start event. </td></tr>
+<td>General &gt; Activation Source</td><td>MCU Specific Options</td><td></td><td>Select the DMAC transfer start event. </td></tr>
 <tr>
 <td>General &gt; External DREQ Input Pin Select</td><td>MCU Specific Options</td><td></td><td>Select DREQ input signal. </td></tr>
 <tr>
@@ -396,7 +396,7 @@ Transfer with Setting 1 and Setting 2 alternately</li>
 <td>Interrupts &gt; Transfer End Interrupt Priority</td><td>Value must be an integer between 0 and 31</td><td>24 </td><td>Select the transfer end interrupt priority. </td></tr>
 </table>
 </p>
-<dl class="section warning"><dt>Warning</dt><dd>"DMA Activation Request Source Select", "Low Detection Enable", "High Detection Enable", and "DACK output" must be set according to the DMAC transfer request source. For details, see 'DMA Transfer Request Detection Operation Setting Table' of the user's manual.</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>"DMA Activation Request Source Select", "Low Detection Enable", "High Detection Enable", and "DACK output" must be set according to the DMAC transfer request source. For details, see 'DMA Transfer Request Detection Operation Setting Table' of the hardware manual.</dd></dl>
 <h2><a class="anchor" id="RZA_r-dmac-clock-configuration"></a>
 Clock Configuration</h2>
 <p>The clock sources for the DMAC peripheral module vary depending on the device. These clocks are shown in the table below.</p>
@@ -420,12 +420,12 @@ Usage Notes</h1>
 <li><b>Block Mode</b> - In block mode, the amount of data units transfered by each interrupt. For one DMA request, performs transfers until a DMA transfer completes. When the counter reaches 0, transfers will no longer be triggered by the peripheral module event and the CPU can be interrupted to signal that all transfers have finished.</li>
 </ul>
 <h2>Link Mode</h2>
-<p>In Link mode, a DMA transfer is performed by reading a descriptor placed in the memory as the transfer information. The descriptor is configured by dmac_link_cfg_t struct. For more information see 'Link Mode' section in the user's manual.</p>
+<p>In Link mode, a DMA transfer is performed by reading a descriptor placed in the memory as the transfer information. The descriptor is configured by dmac_link_cfg_t struct. For more information see 'Link Mode' section in the hardware manual.</p>
 <dl class="section note"><dt>Note</dt><dd>1. The descriptor must be aligned in 4-byte boundaries. </dd>
 <dd>
-2. To set the transfer source/destination address, see 'Area Maps' chapter in the user's manual for details. If the device supports MMU, specify the physical address for the source/destination address. (Use R_MMU_VAtoPA to convert to a physical address.) </dd>
+2. To set the transfer source/destination address, see 'Area Maps' chapter in the hardware manual for details. If the device supports MMU, specify the physical address for the source/destination address. (Use R_MMU_VAtoPA to convert to a physical address.) </dd>
 <dd>
-3. <a class="el" href="group___r_z_a___d_m_a_c.html#a7edfef04879743f2429b6f085e81fd25" title="Channel configuration (Set value for CHCFG_n register). ">dmac_link_cfg_t::channel_cfg</a> and <a class="el" href="group___r_z_a___d_m_a_c.html#ac000c9dd8e28161144f6d4503b7cd907" title="Channel extension configuration (Set value for CHEXT_n register). ">dmac_link_cfg_t::channel_extension_cfg</a> have configuration restrictions same as the DMAC CHCFG_n and CHEXT_n registers. For more information see 'CHCFG_n : Channel Configuration Register n' and 'CHEXT_n : Channel Extension Register n' section in the user's manual. </dd>
+3. <a class="el" href="group___r_z_a___d_m_a_c.html#a7edfef04879743f2429b6f085e81fd25" title="Channel configuration (Set value for CHCFG_n register). ">dmac_link_cfg_t::channel_cfg</a> and <a class="el" href="group___r_z_a___d_m_a_c.html#ac000c9dd8e28161144f6d4503b7cd907" title="Channel extension configuration (Set value for CHEXT_n register). ">dmac_link_cfg_t::channel_extension_cfg</a> have configuration restrictions same as the DMAC CHCFG_n and CHEXT_n registers. For more information see 'CHCFG_n : Channel Configuration Register n' and 'CHEXT_n : Channel Extension Register n' section in the hardware manual. </dd>
 <dd>
 4. Setting the link destination of the last descriptor to the address of the previous descriptor configures the descriptors in a loop. When set the descriptor to a loop, disable Parameter Checking of Build Time Configuration to avoid infinite loop operation.</dd></dl>
 <h1><a class="anchor" id="RZA_r-dmac-examples"></a>
@@ -1668,7 +1668,7 @@ p_next1_register_setting</td>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

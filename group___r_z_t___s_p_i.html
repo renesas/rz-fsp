@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -515,6 +515,9 @@ Limitations</h2>
 <li>The behavior for Byte Swap operation is not guaranteed for data frames other than 16-bit and 32-bit.</li>
 <li>DMAC activation is not available for safety channel.</li>
 </ul>
+<h2>Data coherency</h2>
+<dl class="section note"><dt>Note</dt><dd>This section applies only when SPI utilizes the DMAC.</dd></dl>
+<p>Source and destination buffers must either be allocated to a non-cacheable region, or, if placed in a cacheable region, be managed via explicit cache maintenance operations (clean/invalidate) to ensure data coherency (This involves cleaning the cache before starting the transmission and invalidating it once the transmission is completed). In the case of the write-back policy, when a destination buffer is placed in a cacheable region, it must be aligned with 64 bytes. See <a class="el" href="group___r_z_t___b_s_p___m_c_u.html#RZT_memory-attributes">Memory attributes</a> for details.</p>
 <h1><a class="anchor" id="RZT_r-spi-examples"></a>
 Examples</h1>
 <h2>Basic Example</h2>
@@ -813,7 +816,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Extended SPI interface configuration Please refer to the struct <a class="el" href="group___r_z_t___s_p_i.html#struct_r_z_t_1_1st__spi__extended__cfg">st_spi_extended_cfg</a>. </p>
+<p>Extended SPI interface configuration. Please refer to the struct <a class="el" href="group___r_z_t___s_p_i.html#struct_r_z_t_1_1st__spi__extended__cfg">st_spi_extended_cfg</a>. </p>
 
 </div>
 </div>
@@ -1072,19 +1075,19 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970add46a321bd637dfb006e418ee3edd390"></a>SPI_MRIOCLK_ANALOG_DELAY_NODELAY&#160;</td><td class="fielddoc"><p>No delay. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970ab2a470c1c914305e3f95a9d4cc324177"></a>SPI_MRIOCLK_ANALOG_DELAY_1_1_NS&#160;</td><td class="fielddoc"><p>1.1 ns (1.4 ns on T2H) </p>
+<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970ab2a470c1c914305e3f95a9d4cc324177"></a>SPI_MRIOCLK_ANALOG_DELAY_1_1_NS&#160;</td><td class="fielddoc"><p>1.1 ns (1.4 ns on T2H and T2N) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970aba9405f2d0b049b084ce0aa994f2db40"></a>SPI_MRIOCLK_ANALOG_DELAY_2_2_NS&#160;</td><td class="fielddoc"><p>2.2 ns (2.8 ns on T2H) </p>
+<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970aba9405f2d0b049b084ce0aa994f2db40"></a>SPI_MRIOCLK_ANALOG_DELAY_2_2_NS&#160;</td><td class="fielddoc"><p>2.2 ns (2.8 ns on T2H and T2N) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970a087f3495f1f0763338cafa5b3a5a46fa"></a>SPI_MRIOCLK_ANALOG_DELAY_3_3_NS&#160;</td><td class="fielddoc"><p>3.3 ns (4.2 ns on T2H) </p>
+<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970a087f3495f1f0763338cafa5b3a5a46fa"></a>SPI_MRIOCLK_ANALOG_DELAY_3_3_NS&#160;</td><td class="fielddoc"><p>3.3 ns (4.2 ns on T2H and T2N) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970aef94269a5466c3d47338c6bb514f3714"></a>SPI_MRIOCLK_ANALOG_DELAY_4_4_NS&#160;</td><td class="fielddoc"><p>4.4 ns (5.6 ns on T2H) </p>
+<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970aef94269a5466c3d47338c6bb514f3714"></a>SPI_MRIOCLK_ANALOG_DELAY_4_4_NS&#160;</td><td class="fielddoc"><p>4.4 ns (5.6 ns on T2H and T2N) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970adb095b855efa9ebc89c455430ad4d9e2"></a>SPI_MRIOCLK_ANALOG_DELAY_5_5_NS&#160;</td><td class="fielddoc"><p>5.5 ns (7.0 ns on T2H) </p>
+<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970adb095b855efa9ebc89c455430ad4d9e2"></a>SPI_MRIOCLK_ANALOG_DELAY_5_5_NS&#160;</td><td class="fielddoc"><p>5.5 ns (7.0 ns on T2H and T2N) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970a388a306ac5dc4db75f4a0ea6a213ee0d"></a>SPI_MRIOCLK_ANALOG_DELAY_6_6_NS&#160;</td><td class="fielddoc"><p>6.6 ns (8.4 ns on T2H) </p>
+<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970a388a306ac5dc4db75f4a0ea6a213ee0d"></a>SPI_MRIOCLK_ANALOG_DELAY_6_6_NS&#160;</td><td class="fielddoc"><p>6.6 ns (8.4 ns on T2H and T2N) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970aed2b0b11b4e320019057429aa2b8b469"></a>SPI_MRIOCLK_ANALOG_DELAY_7_7_NS&#160;</td><td class="fielddoc"><p>7.7 ns (9.8 ns on T2H) </p>
+<tr><td class="fieldname"><a id="ggaae848e3c1407ee745d65948b36f07970aed2b0b11b4e320019057429aa2b8b469"></a>SPI_MRIOCLK_ANALOG_DELAY_7_7_NS&#160;</td><td class="fielddoc"><p>7.7 ns (9.8 ns on T2H and T2N) </p>
 </td></tr>
 </table>
 
@@ -1476,7 +1479,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

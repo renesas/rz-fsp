@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -216,7 +216,7 @@ Features</h2>
 <li>On-The-Fly Decryption (OTFD)</li>
 <li>Optional DMAC support for data transmission when used with xSPI_QSPI.</li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>1. The available chip select lines may differ between devices. A full list of selectable chip select lines is available in the User's Manual for your device. </dd>
+<dl class="section note"><dt>Note</dt><dd>1. The available chip select lines may differ between devices. A full list of selectable chip select lines is available in the Hardware Manual for your device. </dd>
 <dd>
 2. When using serial flash memory without a hardware reset pin, if this LSI is reset after the serial flash protocol setting has been changed from 1S-1S-1S protocol to another protocol mode by the user program, the protocol mode of the boot program does not coincide with the protocol mode of the serial flash memory, which causes a boot error.</dd></dl>
 <h1><a class="anchor" id="RZT_r-xspi-qspi-configuration"></a>
@@ -305,6 +305,8 @@ Chip Select 1</li>
 <tr>
 <td>General &gt; Flash Size</td><td>MCU Specific Options</td><td></td><td>Specify the QSPI Flash size. </td></tr>
 <tr>
+<td>General &gt; Flash Page Size Bytes</td><td>Must be a valid non-negative integer</td><td>256 </td><td>Specify the QSPI Flash page size. </td></tr>
+<tr>
 <td>General &gt; SPI Protocol</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 1S-1S-1S</li>
@@ -329,7 +331,7 @@ Chip Select 1</li>
 </ul>
 </td><td>3 </td><td>Select the number of address bytes. If 4-byte mode is selected, the application must issue the EN4B command using <a class="el" href="group___r_z_t___x_s_p_i___q_s_p_i.html#ga5e5bf2c3854fb149c7ac6f96fce9ee98">R_XSPI_QSPI_DirectTransfer()</a>. </td></tr>
 <tr>
-<td>General &gt; Dummy Clocks for Read</td><td>Refer to the <a class="el" href="namespace_r_z_t.html">RZT</a> Configuration tool for available options.</td><td>8 </td><td>Select the number of dummy clocks for read operations. </td></tr>
+<td>General &gt; Dummy Clocks for Read</td><td>Refer to the <a class="el" href="namespace_r_z_t.html">RZT</a> Configuration tool for available options.</td><td>0 </td><td>Select the number of dummy clocks for read operations. </td></tr>
 <tr>
 <td>Command Definitions &gt; Page Program Command</td><td>Must be an 8-bit QSPI command</td><td>0x02 </td><td>The command to program a page. </td></tr>
 <tr>
@@ -401,9 +403,9 @@ Disabled</li>
 </ul>
 </td><td>128 </td><td>Select AES key length. </td></tr>
 <tr>
-<td>OTFD &gt; Decryption start address</td><td>Value must be an integer between 0x60000000 and 0x6FFFFFFF</td><td>0x60000000 </td><td>xSPI decryption start address. Do not select mirror area. </td></tr>
+<td>OTFD &gt; Decryption start address</td><td>Value must be an integer</td><td>0x60000000 </td><td>xSPI decryption start address. Do not select mirror area. </td></tr>
 <tr>
-<td>OTFD &gt; Decryption end address</td><td>Value must be an integer between 0x60000000 and 0x6FFFFFFF</td><td>0x60001FFF </td><td>xSPI decryption end address. Do not select mirror area. </td></tr>
+<td>OTFD &gt; Decryption end address</td><td>Value must be an integer</td><td>0x60001FFF </td><td>xSPI decryption end address. Do not select mirror area. </td></tr>
 </table>
 </p>
 <h2><a class="anchor" id="RZT_r-xspi-qspi-clock-configuration"></a>
@@ -430,46 +432,46 @@ xSPI_QSPI Memory Mapped Access</h2>
 <p>If 'Memory Mapping Address Space Configuration Support' is 'Supported', 'Memory Mapping Address Space' should be set appropriately for your device. The table below shows an example of 'Memory Mapping Address Space' configurations when 64MB flash is used as a slave device in each Chip Select.</p>
 <table class="doxtable">
 <tr>
-<th>Properties </th><th>RZ/T2ME </th><th>RZ/T2H  </th></tr>
+<th>Properties </th><th>RZ/T2ME </th><th>RZ/T2H </th><th>RZ/T2N  </th></tr>
 <tr>
-<td>Memory Mapping Address Space &gt; Unit 0 &gt; Chip Select 0 &gt; Start Address </td><td>0x60000000 (Fixed) </td><td>0x40000000 (Fixed) </td></tr>
+<td>Memory Mapping Address Space &gt; Unit 0 &gt; Chip Select 0 &gt; Start Address </td><td>0x60000000 (Fixed) </td><td>0x40000000 (Fixed) </td><td>0x40000000 (Fixed) </td></tr>
 <tr>
-<td>Memory Mapping Address Space &gt; Unit 0 &gt; Chip Select 0 &gt; End Address </td><td>0x63FFFFFF </td><td>0x43FFFFFF </td></tr>
+<td>Memory Mapping Address Space &gt; Unit 0 &gt; Chip Select 0 &gt; End Address </td><td>0x63FFFFFF </td><td>0x43FFFFFF </td><td>0x43FFFFFF </td></tr>
 <tr>
-<td>Memory Mapping Address Space &gt; Unit 0 &gt; Chip Select 1 &gt; Start Address </td><td>0x64000000 </td><td>0x48000000 </td></tr>
+<td>Memory Mapping Address Space &gt; Unit 0 &gt; Chip Select 1 &gt; Start Address </td><td>0x64000000 </td><td>0x48000000 </td><td>0x48000000 </td></tr>
 <tr>
-<td>Memory Mapping Address Space &gt; Unit 0 &gt; Chip Select 1 &gt; End Address </td><td>0x67FFFFFF </td><td>0x4BFFFFFF </td></tr>
+<td>Memory Mapping Address Space &gt; Unit 0 &gt; Chip Select 1 &gt; End Address </td><td>0x67FFFFFF </td><td>0x4BFFFFFF </td><td>0x4BFFFFFF </td></tr>
 <tr>
-<td>Memory Mapping Address Space &gt; Unit 1 &gt; Chip Select 0 &gt; Start Address </td><td>0x68000000 (Fixed) </td><td>0x50000000 (Fixed) </td></tr>
+<td>Memory Mapping Address Space &gt; Unit 1 &gt; Chip Select 0 &gt; Start Address </td><td>0x68000000 (Fixed) </td><td>0x50000000 (Fixed) </td><td>0x50000000 (Fixed) </td></tr>
 <tr>
-<td>Memory Mapping Address Space &gt; Unit 1 &gt; Chip Select 0 &gt; End Address </td><td>0x6BFFFFFF </td><td>0x53FFFFFF </td></tr>
+<td>Memory Mapping Address Space &gt; Unit 1 &gt; Chip Select 0 &gt; End Address </td><td>0x6BFFFFFF </td><td>0x53FFFFFF </td><td>0x53FFFFFF </td></tr>
 <tr>
-<td>Memory Mapping Address Space &gt; Unit 1 &gt; Chip Select 1 &gt; Start Address </td><td>0x6C000000 </td><td>0x58000000 </td></tr>
+<td>Memory Mapping Address Space &gt; Unit 1 &gt; Chip Select 1 &gt; Start Address </td><td>0x6C000000 </td><td>0x58000000 </td><td>0x58000000 </td></tr>
 <tr>
-<td>Memory Mapping Address Space &gt; Unit 1 &gt; Chip Select 1 &gt; End Address </td><td>0x6FFFFFFF </td><td>0x5BFFFFFF </td></tr>
+<td>Memory Mapping Address Space &gt; Unit 1 &gt; Chip Select 1 &gt; End Address </td><td>0x6FFFFFFF </td><td>0x5BFFFFFF </td><td>0x5BFFFFFF </td></tr>
 <tr>
-<td>Memory Mapping Address Space &gt; Memory Mapping Address Space Configuration Support </td><td>Supported </td><td>Supported </td></tr>
+<td>Memory Mapping Address Space &gt; Memory Mapping Address Space Configuration Support </td><td>Supported </td><td>Supported </td><td>Supported </td></tr>
 </table>
 <p>The address space of each chip select set by the above configuration is as follows.</p>
 <table class="doxtable">
 <tr>
-<th>Address Space of Each Chip Select </th><th>RZ/T2ME </th><th>RZ/T2H  </th></tr>
+<th>Address Space of Each Chip Select </th><th>RZ/T2ME </th><th>RZ/T2H </th><th>RZ/T2N  </th></tr>
 <tr>
-<td>Unit 0 Chip Select 0 Start Address </td><td>0x60000000 (Fixed) </td><td>0x40000000 (Fixed) </td></tr>
+<td>Unit 0 Chip Select 0 Start Address </td><td>0x60000000 (Fixed) </td><td>0x40000000 (Fixed) </td><td>0x40000000 (Fixed) </td></tr>
 <tr>
-<td>Unit 0 Chip Select 0 End Address </td><td>0x63FFFFFF </td><td>0x43FFFFFF </td></tr>
+<td>Unit 0 Chip Select 0 End Address </td><td>0x63FFFFFF </td><td>0x43FFFFFF </td><td>0x43FFFFFF </td></tr>
 <tr>
-<td>Unit 0 Chip Select 1 Start Address </td><td>0x64000000 </td><td>0x48000000 </td></tr>
+<td>Unit 0 Chip Select 1 Start Address </td><td>0x64000000 </td><td>0x48000000 </td><td>0x48000000 </td></tr>
 <tr>
-<td>Unit 0 Chip Select 1 End Address </td><td>0x67FFFFFF </td><td>0x4BFFFFFF </td></tr>
+<td>Unit 0 Chip Select 1 End Address </td><td>0x67FFFFFF </td><td>0x4BFFFFFF </td><td>0x4BFFFFFF </td></tr>
 <tr>
-<td>Unit 1 Chip Select 0 Start Address </td><td>0x68000000 (Fixed) </td><td>0x50000000 (Fixed) </td></tr>
+<td>Unit 1 Chip Select 0 Start Address </td><td>0x68000000 (Fixed) </td><td>0x50000000 (Fixed) </td><td>0x50000000 (Fixed) </td></tr>
 <tr>
-<td>Unit 1 Chip Select 0 End Address </td><td>0x6BFFFFFF </td><td>0x53FFFFFF </td></tr>
+<td>Unit 1 Chip Select 0 End Address </td><td>0x6BFFFFFF </td><td>0x53FFFFFF </td><td>0x53FFFFFF </td></tr>
 <tr>
-<td>Unit 1 Chip Select 1 Start Address </td><td>0x6C000000 </td><td>0x58000000 </td></tr>
+<td>Unit 1 Chip Select 1 Start Address </td><td>0x6C000000 </td><td>0x58000000 </td><td>0x58000000 </td></tr>
 <tr>
-<td>Unit 1 Chip Select 1 End Address </td><td>0x6FFFFFFF </td><td>0x5BFFFFFF </td></tr>
+<td>Unit 1 Chip Select 1 End Address </td><td>0x6FFFFFFF </td><td>0x5BFFFFFF </td><td>0x5BFFFFFF </td></tr>
 </table>
 <h3>Example Configurations for the Device 'Memory Mapping Address Space Configuration Support' is 'Not Supported'</h3>
 <p>If 'Memory Mapping Address Space Configuration Support' is 'Not Supported' for your device, 'Memory Mapping Address Space' configurations are invalid. In this case, the start address of each chip select is fixed by device, and only the size of the address space is configured in 'Flash Size' property. The table below shows an example of the address space configuration when 64MB flash is used as a slave device in Unit 0 Chip Select 0.</p>
@@ -513,10 +515,32 @@ OTFD Support</h3>
 <li>Wrapped keys are supported.</li>
 </ul>
 <p>When configuring the OTFD options, make sure that the key format is specified.</p>
-<dl class="section note"><dt>Note</dt><dd><b>For a detailed description of the Crypto Engine operating modes, refer to Application Note on the RZ/T2ME R01AN7277.</b></dd></dl>
-<p>Using the OTFD feature requires first creating the encrypted blob on the PC and then configuring the OTFD module with the appropriate parameters to allow decryption of the blob once it is programmed into xSPI_QSPI. Use the Security Key Management Tool (<a href="https://www.renesas.com/us/en/software-tool/security-key-management-tool">https://www.renesas.com/us/en/software-tool/security-key-management-tool</a>) to create the encrypted blob. Example: To encrypt a 4096 byte area in a input srec file from 0x60001000 to 0x60001FFF (in the case of RZ/T2ME, it is the external address space xSPI0, and its mirror area is from 0x40001000 to 0x40001FFF) using a 128 AES encryption key "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" and iv "00000000000000000000000000000000" use SKMT with the following arguments: skmt.exe /encdotf /keytype "AES-128" /enckey "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" /nonce "00000000000000000000000000000000" /startaddr "60001000" /endaddr "60001FFF" /prg "input.srec" /incplain /output "encrypted_output.srec" /destaddr "40001000"</p>
-<p>The values for key, iv and decryption area start and end addresses that were used to create the blob using SKMT must be set in the OTFD configuration in FSP.</p>
-<p>The upper 100 bits of the iv (nonce) and the upper 28 bits of the start address (if there is mirror area, mirror area value is used) are used for encryption and decryption as counter. For example:</p><ul>
+<dl class="section note"><dt>Note</dt><dd><b>For a detailed description of the Crypto Engine operating modes, refer to Application Note on the RZ/T2ME R01AN7277. The OTFD-related specifications described in R01AN7277 also apply to the RZ/T2N.</b></dd></dl>
+<p>Using the OTFD feature requires first creating the encrypted blob on the PC and then configuring the OTFD module with the appropriate parameters to allow decryption of the blob once it is programmed into xSPI_QSPI. Use the Security Key Management Tool (<a href="https://www.renesas.com/us/en/software-tool/security-key-management-tool">https://www.renesas.com/us/en/software-tool/security-key-management-tool</a>) to create the encrypted blob.</p>
+<p>Example: RZ/T2ME (with mirror area)</p>
+<p>To encrypt a 4096 byte area in a input srec file from 0x60001000 to 0x60001FFF using a 128-bit AES key and IV:</p>
+<ul>
+<li>Encryption key: FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</li>
+<li>IV (nonce): 00000000000000000000000000000000</li>
+</ul>
+<p>In this case:</p><ul>
+<li>The target area corresponds to the external address space (xSPI0).</li>
+<li>Its mirror area is from 0x40001000 to 0x40001FFF.</li>
+</ul>
+<p>Use SKMT with the following arguments:</p>
+<div class="fragment"><div class="line">skmt.exe /encdotf /keytype &quot;AES-128&quot; /enckey &quot;FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF&quot; /nonce &quot;00000000000000000000000000000000&quot; /startaddr &quot;60001000&quot; /endaddr &quot;60001FFF&quot; /prg &quot;input.srec&quot; /incplain /output &quot;encrypted_output.srec&quot; /destaddr &quot;40001000&quot;</div></div><!-- fragment --><p>Example: RZ/T2N (without mirror area)</p>
+<p>To encrypt a 4096 byte area in a input srec file from 0x50001000 to 0x50001FFF using a 128-bit AES key and IV:</p>
+<ul>
+<li>Encryption key: FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</li>
+<li>IV (nonce): 00000000000000000000000000000000</li>
+</ul>
+<p>In this case:</p><ul>
+<li>The target area corresponds to the external address space (xSPI1).</li>
+<li>No mirror area is used.</li>
+</ul>
+<p>Use SKMT with the following arguments: </p><div class="fragment"><div class="line">skmt.exe /encdotf /keytype &quot;AES-128&quot; /enckey &quot;FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF&quot; /nonce &quot;00000000000000000000000000000000&quot; /startaddr &quot;50001000&quot; /endaddr &quot;50001FFF&quot; /prg &quot;input.srec&quot; /incplain /output &quot;encrypted_output.srec&quot;</div></div><!-- fragment --><p>The values for key, iv and decryption area start and end addresses that were used to create the blob using SKMT must be set in the OTFD configuration in FSP.</p>
+<p>The upper 100 bits of the iv (nonce) and the upper 28 bits of the start address are used for encryption and decryption as counter. If there is mirror area, mirror area value is used.</p>
+<p>For example:</p><ul>
 <li>IV: 0x00000000_11111111_22222222_33333333</li>
 <li>Start address: 0x40001000</li>
 <li>Counter: 0x00000000_11111111_22222222_34000100</li>
@@ -527,8 +551,12 @@ Limitations</h2>
 <li>Prefetch function support for memory-mapping access is applied to all slave devices connected xSPI0 or xSPI1. When using different types of xSPI modules (for example, xSPI_QSPI and xSPI_OSPI) to same xSPI unit, make sure that the prefetch function settings in the configurator properties are the same.</li>
 <li>In the configurator properties, when 'Memory Mapping Address Space Configuration Support' is 'Supported', memory mapping address space settings are applied to all slave devices connected xSPI0 or xSPI1. When using different types of xSPI modules (for example, xSPI_QSPI and xSPI_OSPI), make sure that 'Memory Mapping Address Space' settings are the same for all xSPI modules.</li>
 <li>Take care to restrict concurrent accesses of the xSPI address space. Collisions on the bus can occur if other bus masters attempt to write to the xSPI address space while another master is reading the xSPI address space.</li>
+<li>Due to the characteristics of the Arm memory architecture, depending on the memory attributes, the order of access to peripherals memory space by the HAL driver and the access to the External address space xSPIn (including mirror area) by the user may not be guaranteed. In such cases, the user program must explicitly insert memory barrier instructions (such as __DMB() or __DSB()) after calling the HAL API function.</li>
 <li>OTFD: AES-192 is not supported.</li>
 </ul>
+<h2>Data coherency</h2>
+<dl class="section note"><dt>Note</dt><dd>This section applies only when xSPI_QSPI utilizes the DMAC.</dd></dl>
+<p>A destination buffer must either be allocated to a non-cacheable region, or, if placed in a cacheable region, be managed via explicit cache maintenance operations (clean/invalidate) to ensure data coherency (This involves cleaning the cache before starting the transmission and invalidating it once the transmission is completed). In the case of the write-back policy, when a destination buffer is placed in a cacheable region, it must be aligned with 64 bytes. See <a class="el" href="group___r_z_t___b_s_p___m_c_u.html#RZT_memory-attributes">Memory attributes</a> for details.</p>
 <h1><a class="anchor" id="RZT_r-qspi-examples"></a>
 Examples</h1>
 <h2>Basic Example</h2>
@@ -786,7 +814,7 @@ Register base address for specified channel. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Memory mapped timing Please refer to the struct <a class="el" href="group___r_z_t___x_s_p_i___q_s_p_i.html#struct_r_z_t_1_1st__qspi__timing__setting">st_qspi_timing_setting</a>. </p>
+<p>Memory mapped timing. Please refer to the struct <a class="el" href="group___r_z_t___x_s_p_i___q_s_p_i.html#struct_r_z_t_1_1st__qspi__timing__setting">st_qspi_timing_setting</a>. </p>
 
 </div>
 </div>
@@ -801,7 +829,7 @@ Register base address for specified channel. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Address space settings Please refer to the struct <a class="el" href="group___r_z_t___x_s_p_i___q_s_p_i.html#struct_r_z_t_1_1st__qspi__address__space">st_qspi_address_space</a>. </p>
+<p>Address space settings. Please refer to the struct <a class="el" href="group___r_z_t___x_s_p_i___q_s_p_i.html#struct_r_z_t_1_1st__qspi__address__space">st_qspi_address_space</a>. </p>
 
 </div>
 </div>
@@ -846,7 +874,7 @@ Register base address for specified channel. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Instance control block. DO NOT INITIALIZE. Initialization occurs when <a class="el" href="group___r_z_t___s_p_i___f_l_a_s_h___a_p_i.html#a8f485a0d27ebe7077cfad40bb9f0eba1">RZT::spi_flash_api_t::open</a> is called Please refer to the struct <a class="el" href="group___r_z_t___x_s_p_i___q_s_p_i.html#struct_r_z_t_1_1st__xspi__qspi__instance__ctrl">st_xspi_qspi_instance_ctrl</a>. </p>
+<p>Instance control block. DO NOT INITIALIZE. Initialization occurs when <a class="el" href="group___r_z_t___s_p_i___f_l_a_s_h___a_p_i.html#a8f485a0d27ebe7077cfad40bb9f0eba1">RZT::spi_flash_api_t::open</a> is called. Please refer to the struct <a class="el" href="group___r_z_t___x_s_p_i___q_s_p_i.html#struct_r_z_t_1_1st__xspi__qspi__instance__ctrl">st_xspi_qspi_instance_ctrl</a>. </p>
 
 </div>
 </div>
@@ -1307,11 +1335,12 @@ Register base address for specified channel. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>Driver is not opened. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_MODE</td><td>This function can't be called when XIP mode is enabled. </td></tr>
     <tr><td class="paramname">FSP_ERR_DEVICE_BUSY</td><td>The device is busy. </td></tr>
-    <tr><td class="paramname">FSP_ERR_WRITE_FAILED</td><td>Write operation failed.</td></tr>
+    <tr><td class="paramname">FSP_ERR_WRITE_FAILED</td><td>Write operation failed. </td></tr>
+    <tr><td class="paramname">FSP_ERR_INVALID_SIZE</td><td>Insufficient space remaining in page.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>In this API, data can be written up to 64 bytes at a time if DMAC support is enabled. Otherwise, the number of bytes that can be written at one time depends on the MPU : 64bytes for RZ/T2M and RZ/T2L, 8bytes for RZ/T2ME and RZ/T2H. </dd>
+<dl class="section note"><dt>Note</dt><dd>In this API, data can be written up to 64 bytes at a time if DMAC support is enabled. Otherwise, the number of bytes that can be written at one time depends on the MPU : 64bytes for RZ/T2M and RZ/T2L, 8bytes for RZ/T2ME, RZ/T2H, and RZ/T2N. </dd>
 <dd>
 This API performs page program operations to the device. Writing across pages is not supported. Please set the write address and write size according to the page size of your device. </dd></dl>
 
@@ -1538,7 +1567,7 @@ This API performs page program operations to the device. Writing across pages is
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['modules',['Modules',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html',1,'']]],
-  ['monitoring',['Monitoring',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___m_o_n_i_t_o_r_i_n_g___i_n_t_e_r_f_a_c_e_s.html',1,'']]],
-  ['monitoring',['Monitoring',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___m_o_n_i_t_o_r_i_n_g___m_o_d_u_l_e_s.html',1,'']]],
   ['mpu_20board_20support_20package',['MPU Board Support Package',['../group___r_z_a___b_s_p___m_c_u.html',1,'']]],
   ['mipi_20cmd_20data_20types',['MIPI CMD Data Types',['../group___r_z_a___m_i_p_i___c_m_d___t_y_p_e_s.html',1,'']]],
   ['mipi_20dsi_20interface',['MIPI DSI Interface',['../group___r_z_a___m_i_p_i___d_s_i___a_p_i.html',1,'']]],

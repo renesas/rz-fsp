@@ -1,8 +1,7 @@
 var group___r_z_v___t_r_a_n_s_f_e_r___a_p_i =
 [
     [ "st_transfer_callback_args_t", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#struct_r_z_v_1_1st__transfer__callback__args__t", [
-      [ "p_context", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#a6de3966558ac6f22e0d23fffc1ebadd5", null ],
-      [ "event", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#ac1f4e227971245acf642a3dc37bce6a3", null ]
+      [ "p_context", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#aa207a6ef4d9f49f00f01a37810ac301d", null ]
     ] ],
     [ "st_transfer_properties", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#struct_r_z_v_1_1st__transfer__properties", [
       [ "block_count_max", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#ab2d27a7f026f3fee2cbae08726726929", null ],
@@ -46,7 +45,7 @@ var group___r_z_v___t_r_a_n_s_f_e_r___a_p_i =
       [ "p_api", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#abdb97fe3f1f463b2363957c5bcb2e050", null ]
     ] ],
     [ "transfer_ctrl_t", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#ga665f80fc984ccf7585606be8eeccbb98", null ],
-    [ "transfer_callback_args_t", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#ga48d22fb9d2698ee269f04b8524640d4b", null ],
+    [ "transfer_callback_args_t", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#gacc376a9485db432dc2b2f8fcedad7069", null ],
     [ "transfer_properties_t", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#gaa1b08c5715fd33b689643a82c63301d9", null ],
     [ "transfer_info_t", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#ga971f4055201125c15f25b4c7ba12d34e", null ],
     [ "transfer_cfg_t", "group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html#gaa9251f9ad4f7025ced96cc447698b57d", null ],

@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -749,6 +749,7 @@ Pointer to the API structure for this instance. </td></tr>
       </table>
 </div><div class="memdoc">
 <p>Callback function parameter data Please refer to the struct <a class="el" href="group___r_z_t___e_t_h_e_r___a_p_i.html#struct_r_z_t_1_1st__ether__callback__args">st_ether_callback_args</a>.</p>
+<p>Ether Callback function parameter data. Please refer to the struct <a class="el" href="group___r_z_t___e_t_h_e_r___a_p_i.html#struct_r_z_t_1_1st__ether__callback__args">st_ether_callback_args</a>.</p>
 <p>Ether Callback function parameter data Please refer to the struct <a class="el" href="group___r_z_t___e_t_h_e_r___a_p_i.html#struct_r_z_t_1_1st__ether__callback__args">st_ether_callback_args</a>. </p>
 
 </div>
@@ -938,11 +939,14 @@ Pointer to the API structure for this instance. </td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a1b065bc23bbd586a599ead1c8d507d7f"></a>ETHER_EVENT_LINK_OFF&#160;</td><td class="fielddoc"><p>Link down detection event. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a118f12d6a25a71bb430e76c2b1842d4a"></a>ETHER_EVENT_RX_COMPLETE&#160;</td><td class="fielddoc"><p>Receive complete event. </p>
+<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973aeecbeccab6ecb226b1492970a4eaa220"></a>ETHER_EVENT_RX_COMPLETE&#160;</td><td class="fielddoc"><p>Receive complete event. </p>
+<p>ESWM: Receive complete event. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973ac704f1554ad4ee63876e46bde19504a3"></a>ETHER_EVENT_RX_MESSAGE_LOST&#160;</td><td class="fielddoc"><p>Receive FIFO overflow or Receive descriptor is full. </p>
+<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a99bd77aec2966dd210b191ba9d8bb18b"></a>ETHER_EVENT_RX_MESSAGE_LOST&#160;</td><td class="fielddoc"><p>Receive FIFO overflow or Receive descriptor is full. </p>
+<p>ESWM: Receive FIFO overflow or Receive descriptor is full. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a4d43dd3828844f2e4218dc1357af86a1"></a>ETHER_EVENT_TX_COMPLETE&#160;</td><td class="fielddoc"><p>Transmit complete event. </p>
+<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a3e2e1ded4444c689fecbf2765be336ad"></a>ETHER_EVENT_TX_COMPLETE&#160;</td><td class="fielddoc"><p>Transmit complete event. </p>
+<p>ESWM: Transmit complete event. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a052805436818f77bba1db2b599973b55"></a>ETHER_EVENT_TX_BUFFER_EMPTY&#160;</td><td class="fielddoc"><p>Transmit descriptor or FIFO is empty. </p>
 </td></tr>
@@ -992,6 +996,25 @@ Pointer to the API structure for this instance. </td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a34d942ce2da98d469592809db9f31d52"></a>ETHER_EVENT_PMT_INTERRUPT&#160;</td><td class="fielddoc"><p>PMT Interrupt event. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a67acaf059b2ebf911f496682a615d8fc"></a>ETHER_EVENT_WAKEON_LAN&#160;</td><td class="fielddoc"><p>Magic packet detection event. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a0addaead02b6ec13e58a1a6698c3d676"></a>ETHER_EVENT_LINK_ON&#160;</td><td class="fielddoc"><p>Link up detection event. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a1b065bc23bbd586a599ead1c8d507d7f"></a>ETHER_EVENT_LINK_OFF&#160;</td><td class="fielddoc"><p>Link down detection event. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973ad3a484287c5b354b2956f0644ea09abd"></a>ETHER_EVENT_SBD_INTERRUPT&#160;</td><td class="fielddoc"><p>SBD Interrupt event. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a34d942ce2da98d469592809db9f31d52"></a>ETHER_EVENT_PMT_INTERRUPT&#160;</td><td class="fielddoc"><p>PMT Interrupt event. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973aeecbeccab6ecb226b1492970a4eaa220"></a>ETHER_EVENT_RX_COMPLETE&#160;</td><td class="fielddoc"><p>Receive complete event. </p>
+<p>ESWM: Receive complete event. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a99bd77aec2966dd210b191ba9d8bb18b"></a>ETHER_EVENT_RX_MESSAGE_LOST&#160;</td><td class="fielddoc"><p>Receive FIFO overflow or Receive descriptor is full. </p>
+<p>ESWM: Receive FIFO overflow or Receive descriptor is full. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gad029483e98651bf40e3e3439ed6d1973a3e2e1ded4444c689fecbf2765be336ad"></a>ETHER_EVENT_TX_COMPLETE&#160;</td><td class="fielddoc"><p>Transmit complete event. </p>
+<p>ESWM: Transmit complete event. </p>
+</td></tr>
 </table>
 
 </div>
@@ -1002,7 +1025,7 @@ Pointer to the API structure for this instance. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

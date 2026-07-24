@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -520,7 +520,7 @@ Limitations</h2>
 </ul>
 <h2><a class="anchor" id="rzg_r-mipi-dsi-interrupt-configuration"></a>
 Interrupt Configuration</h2>
-<p>When enabled, Interrupts will invoke the configured callback function. Low-power and High-Speed command status should be determined by checking Sequence 0 and Sequence 1 events, respectively. See the DSI Error Handling section of the user manual for information about how to handle error events.</p>
+<p>When enabled, Interrupts will invoke the configured callback function. Low-power and High-Speed command status should be determined by checking Sequence 0 and Sequence 1 events, respectively. See the DSI Error Handling section of the hardware manual for information about how to handle error events.</p>
 <h2>MIPI DSI Setup with External Display</h2>
 <p>Especially for use with display middleware such as emWin or GUIX, the callback will be invoked with post-open and pre-video-start events. Depending on your hardware, it may be necessary to use these events to configure the display.</p>
 <h1><a class="anchor" id="rzg_r-mipi-dsi-examples"></a>
@@ -743,7 +743,7 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gr
         </tr>
       </table>
 </div><div class="memdoc">
-<p>MIPI DSI interrupt configuration Please refer to the struct <a class="el" href="group___r_z_g___m_i_p_i___d_s_i___b.html#struct_r_z_g_1_1st__mipi__dsi__b__irq__cfg">st_mipi_dsi_b_irq_cfg</a>. </p>
+<p>MIPI DSI interrupt configuration. Please refer to the struct <a class="el" href="group___r_z_g___m_i_p_i___d_s_i___b.html#struct_r_z_g_1_1st__mipi__dsi__b__irq__cfg">st_mipi_dsi_b_irq_cfg</a>. </p>
 
 </div>
 </div>
@@ -1091,7 +1091,7 @@ p_data memory must not be updated until sequence operation is complete if byte_c
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

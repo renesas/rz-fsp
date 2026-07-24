@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -250,27 +250,27 @@ Features</h2>
 <h3>Per-MPU Specifications</h3>
 <table class="doxtable">
 <tr>
-<th></th><th>RZ/G2L, RZ/G2LC and RZ/G2UL </th><th>RZ/G3S </th><th>RZ/G3E  </th></tr>
+<th></th><th>RZ/G2L, RZ/G2LC and RZ/G2UL </th><th>RZ/G3S </th><th>RZ/G3E </th><th>RZ/G3L and RZ/G3SE  </th></tr>
 <tr>
-<td>Channels </td><td>2 </td><td>2 </td><td>6 </td></tr>
+<td>Channels </td><td>2 </td><td>2 </td><td>6 </td><td>3 </td></tr>
 <tr>
-<td>Max nominal bitrate </td><td>1 Mbps </td><td>1 Mbps </td><td>1 Mbps </td></tr>
+<td>Max nominal bitrate </td><td>1 Mbps </td><td>1 Mbps </td><td>1 Mbps </td><td>1 Mbps </td></tr>
 <tr>
-<td>Max data bitrate </td><td>4 Mbps </td><td>8 Mbps </td><td>8 Mbps </td></tr>
+<td>Max data bitrate </td><td>4 Mbps </td><td>8 Mbps </td><td>8 Mbps </td><td>8 Mbps </td></tr>
 <tr>
-<td>Filter rules </td><td>128 </td><td>128 </td><td>256 </td></tr>
+<td>Filter rules </td><td>128 </td><td>128 </td><td>256 </td><td>384 </td></tr>
 <tr>
-<td>TX message buffers </td><td>16/channel </td><td>32/channel </td><td>32/channel </td></tr>
+<td>TX message buffers </td><td>16/ch </td><td>32/ch </td><td>32/ch </td><td>32/ch </td></tr>
 <tr>
-<td>RX message buffers </td><td>32 </td><td>32 </td><td>96 </td></tr>
+<td>RX message buffers </td><td>32 </td><td>32 </td><td>96 </td><td>48 </td></tr>
 <tr>
-<td>RX FIFOs </td><td>8 </td><td>8 </td><td>8 </td></tr>
+<td>RX FIFOs </td><td>8 </td><td>8 </td><td>8 </td><td>8 </td></tr>
 <tr>
-<td>RX Buffer RAM </td><td>3584 bytes </td><td>9728 bytes </td><td>29,184 bytes </td></tr>
+<td>RX Buffer RAM </td><td>3584 bytes </td><td>9728 bytes </td><td>29,184 bytes </td><td>14,592 bytes </td></tr>
 <tr>
-<td>Standards </td><td>ISO </td><td>ISO </td><td>ISO </td></tr>
+<td>Standards </td><td>ISO </td><td>ISO </td><td>ISO </td><td>ISO </td></tr>
 <tr>
-<td>Common FIFOs </td><td>3/channel </td><td>3/channel </td><td>3/channel </td></tr>
+<td>Common FIFOs </td><td>3/ch </td><td>3/ch </td><td>3/ch </td><td>3/ch </td></tr>
 </table>
 <dl class="section note"><dt>Note</dt><dd>Each message buffer comprises 12 header bytes plus data length (8-64 bytes). Refer to the table above and configure the FIFO so that the RAM capacity is not exceeded.</dd></dl>
 <h1><a class="anchor" id="RZG_r-canfd-configuration"></a>
@@ -1713,9 +1713,9 @@ Clock Configuration</h2>
 <p>The CANFD peripheral uses the clocks shown in the table below as its clock sources.</p>
 <table class="doxtable">
 <tr>
-<th></th><th>RZ/G2L, RZ/G2LC and RZ/G2UL </th><th>RZ/G3S </th><th>RZ/G3E  </th></tr>
+<th></th><th>RZ/G2L, RZ/G2LC and RZ/G2UL </th><th>RZ/G3S, RZ/G3L, and RZ/G3SE </th><th>RZ/G3E  </th></tr>
 <tr>
-<td>Clock Source </td><td>P0 clock/2 or External CANFD Clock<sup>1</sup> </td><td>P4 clock/2 or External CANFD Clock<sup>1 2</sup> </td><td>CANFD_0_pclk </td></tr>
+<td>Clock Source </td><td>P0 clock/2 or External CANFD Clock*1 </td><td>P4 clock/2 or External CANFD Clock *1 *2 </td><td>CANFD_0_pclk </td></tr>
 </table>
 <dl class="section note"><dt>Note</dt><dd>1. Externally input clock to the CAN_CLK pin </dd>
 <dd>
@@ -1736,11 +1736,11 @@ Clock Configuration</h2>
 <tr>
 <td>Prescalar </td><td>1 </td><td>1024 </td><td>256 </td></tr>
 </table>
-<dl class="section note"><dt>Note</dt><dd>1. RZ/G2L, RZ/G2LC and RZ/G2UL supports up to 4 Mbps; RZ/G3S supports up to 8 Mbps. </dd>
+<dl class="section note"><dt>Note</dt><dd>1. RZ/G2L, RZ/G2LC and RZ/G2UL supports up to 4 Mbps; RZ/G3S, RZ/G3E, RZ/G3L, and RZ/G3SE supports up to 8 Mbps. </dd>
 <dd>
-2. RZ/G2L, RZ/G2LC and RZ/G2UL supports up to 16 Tq; RZ/G3S supports up to 32 Tq. </dd>
+2. RZ/G2L, RZ/G2LC and RZ/G2UL supports up to 16 Tq; RZ/G3S, RZ/G3E, RZ/G3L, and RZ/G3SE supports up to 32 Tq. </dd>
 <dd>
-3. RZ/G2L, RZ/G2LC and RZ/G2UL supports up to 8 Tq; RZ/G3S supports up to 16 Tq.</dd>
+3. RZ/G2L, RZ/G2LC and RZ/G2UL supports up to 8 Tq; RZ/G3S, RZ/G3E, RZ/G3L, and RZ/G3SE supports up to 16 Tq.</dd>
 <dd>
 RZ/G FSP does not support changing the frequency of the peripheral clock used in CANFD.</dd></dl>
 <h2><a class="anchor" id="RZG_r-canfd-pin-configuration"></a>
@@ -1752,7 +1752,7 @@ Usage Notes</h1>
 Buffers</h2>
 <p>The CANFD driver provides three types of buffers: Transmit Message Buffers (TX MBs), Receive Message Buffers (RX MBs) and Receive FIFOs (RX FIFOs).</p>
 <h3>TX Message Buffers</h3>
-<p>TX MBs are used for transmission only. Refer to the user's manual for your device for information on which TX MBs are available.</p>
+<p>TX MBs are used for transmission only. Refer to the hardware manual for your device for information on which TX MBs are available.</p>
 <dl class="section note"><dt>Note</dt><dd>The CANFD peripheral continually scans TX MBs for new data. Depending on the provided clock it may be possible to write to multiple TX MBs before transmission begins. In this case, messages will be sent in the priority specified by the Transmission Priority option in the RZ Configuration editor.</dd></dl>
 <h3>RX Message Buffers</h3>
 <p>RX MBs are for reception only and may only hold one message at a time. 32-96 total RX MBs are available and are shared across all channels.</p>
@@ -1818,7 +1818,7 @@ Limitations</h2>
 </ul>
 </li>
 <li>The CANFD peripheral has a limited amount of buffer pool RAM available for allocating RX MBs and FIFO stages. See the <a class="el" href="group___r_z_g___c_a_n_f_d.html#RZG_r-canfd-buffer-pool">RX Buffer Pool</a> section above for more information.</li>
-<li>When switching modes with <a class="el" href="group___r_z_g___c_a_n_f_d.html#ga00c7557917ce6e78eb2969d7b5855890">R_CANFD_ModeTransition</a> a delay of up to several CAN frames may be incurred. Consult Section "Channel Modes" in the user's manual for details.</li>
+<li>When switching modes with <a class="el" href="group___r_z_g___c_a_n_f_d.html#ga00c7557917ce6e78eb2969d7b5855890">R_CANFD_ModeTransition</a> a delay of up to several CAN frames may be incurred. Consult Section "Channel Modes" in the hardware manual for details.</li>
 <li>Only one channel will receive callbacks for Global Errors. If a different channel is opened first these error interrupts will be suppressed until the specified handler channel is opened.</li>
 </ul>
 <h1><a class="anchor" id="RZG_r-canfd-examples"></a>
@@ -1836,7 +1836,7 @@ Flexible Data</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#define CAN_EXAMPLE_64_BYTES    64</span></div><div class="line"></div><div class="line"><span class="keywordtype">void</span> canfd_fd_loopback_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err;</div><div class="line"></div><div class="line">    err = <a class="code" href="group___r_z_g___c_a_n_f_d.html#ga664d1e07613b250a3084681a613334be">R_CANFD_Open</a>(&amp;g_canfd0_ctrl, &amp;g_canfd0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Switch to external loopback mode */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___c_a_n_f_d.html#ga00c7557917ce6e78eb2969d7b5855890">R_CANFD_ModeTransition</a>(&amp;g_canfd0_ctrl, <a class="code" href="group___r_z_g___c_a_n___a_p_i.html#ggac29bd7d00b06d7457ae786471c296ba7abde5d9e8f5711b6fe8374671c96e6f72">CAN_OPERATION_MODE_NORMAL</a>, <a class="code" href="group___r_z_g___c_a_n___a_p_i.html#gga93f2b2c53f782b0c21beeb1339a108b7a892393a146c929398882d92a7c9303eb">CAN_TEST_MODE_LOOPBACK_EXTERNAL</a>);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Configure a frame to write 64 bytes with bitrate switching (BRS) enabled */</span></div><div class="line">    g_can_tx_frame.id               = CAN_EXAMPLE_ID;</div><div class="line">    g_can_tx_frame.id_mode          = <a class="code" href="group___r_z_g___c_a_n___a_p_i.html#gabc98e244722dcea05b5ce91bdb4c70c8a0a2fafa9c1f6d2099afa9ca304d5f3d6">CAN_ID_MODE_STANDARD</a>;</div><div class="line">    g_can_tx_frame.type             = <a class="code" href="group___r_z_g___c_a_n___a_p_i.html#gad3ffe1ae0429fcd1053a969d96c47610ab75ff26c6a51ad4603fbc4d85467e6f1">CAN_FRAME_TYPE_DATA</a>;</div><div class="line">    g_can_tx_frame.data_length_code = CAN_EXAMPLE_64_BYTES;</div><div class="line">    g_can_tx_frame.options          = <a class="code" href="group___r_z_g___c_a_n_f_d.html#gga6c4d104c3a9cce6b74a05035f0af6d87a46bb2a869fc5c7b63b16bc822d4ec712">CANFD_FRAME_OPTION_FD</a> | <a class="code" href="group___r_z_g___c_a_n_f_d.html#gga6c4d104c3a9cce6b74a05035f0af6d87a4a5ce70c8fb9ab5d9e320a79dd59aebf">CANFD_FRAME_OPTION_BRS</a>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Write some data to the transmit frame */</span></div><div class="line">    <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; CAN_DATA_BUFFER_LENGTH; i++)</div><div class="line">    {</div><div class="line">        g_can_tx_frame.data[i] = (uint8_t) i;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">/* Send data on the bus */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___c_a_n_f_d.html#ga9a43dfa148767d10e12b22cb317111a9">R_CANFD_Write</a>(&amp;g_canfd0_ctrl, CANFD_TX_MB_0, &amp;g_can_tx_frame);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Wait for a transmit and/or receive callback event */</span></div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2><a class="anchor" id="RZG_r-canfd-examples-internal-bus"></a>
 Internal Bus</h2>
 <p>In this example two CANFD channels are connected to the Internal Bus test mode. API error checking has been omitted for clarity.</p>
-<dl class="section note"><dt>Note</dt><dd>Internal Bus mode is only available on MPUs with more than one CANFD channel. In addition, use of Global Modes for any other purpose is not recommended without consulting the user's manual.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Internal Bus mode is only available on MPUs with more than one CANFD channel. In addition, use of Global Modes for any other purpose is not recommended without consulting the hardware manual.</dd></dl>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -2734,7 +2734,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

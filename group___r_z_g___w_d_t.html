@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -195,7 +195,7 @@ Overview</h1>
 Watchdog Timer Operation Example</div></div>
  <h2><a class="anchor" id="RZG_r-wdt-features"></a>
 Features</h2>
-<h3>RZ/G2L, RZ/G2LC, RZ/G2UL and RZ/G3S</h3>
+<h3>RZ/G2L, RZ/G2LC, RZ/G2UL, RZ/G3S, RZ/G3L, and RZ/G3SE</h3>
 <p>The WDT HAL module has the following key features:</p>
 <ul>
 <li>When the WDT timeouts twice, the following event can occur:<ul>
@@ -240,7 +240,7 @@ This module can be added to the Stacks tab via New Stack &gt; Monitoring &gt; Wa
 <tr>
 <td>General &gt; Name</td><td>Name must be a valid C symbol</td><td>g_wdt0 </td><td>Module name. </td></tr>
 <tr>
-<td>General &gt; Channel</td><td>MCU Specific Options</td><td></td><td>Check the user's manual: Hardware to see which CPU a channel is for. </td></tr>
+<td>General &gt; Channel</td><td>MCU Specific Options</td><td></td><td>Check the hardware manual: Hardware to see which CPU a channel is for. </td></tr>
 <tr>
 <td>General &gt; Timeout</td><td>Value must be non-negative between 0.04369 and 178.9</td><td>60 </td><td>Select the time (in seconds) before the WDT counter timeouts. (A single timeout does not generate a reset.) </td></tr>
 <tr>
@@ -282,6 +282,10 @@ Clock Configuration</h2>
 <td align="left">RZ/G3S </td><td align="left">OSCCLK = 24MHz </td><td align="left">178.9 seconds </td></tr>
 <tr>
 <td align="left">RZ/G3E </td><td align="left">OSCCLK = 24MHz </td><td align="left">0.175 seconds </td></tr>
+<tr>
+<td align="left">RZ/G3L </td><td align="left">OSCCLK = 24MHz </td><td align="left">178.9 seconds </td></tr>
+<tr>
+<td align="left">RZ/G3SE </td><td align="left">OSCCLK = 24MHz </td><td align="left">178.9 seconds </td></tr>
 </table>
 <h2><a class="anchor" id="RZG_r-wdt-pin-configuration"></a>
 Pin Configuration</h2>
@@ -289,20 +293,24 @@ Pin Configuration</h2>
 <tr>
 <th align="left">Device </th><th align="left">Pin name </th><th align="left">Description  </th></tr>
 <tr>
-<td align="left">RZ/G2L </td><td align="left">WDTOVF_PERROUT </td><td align="left">Watchdog timer counter overflow signal output. </td></tr>
+<td align="left">RZ/G2L </td><td align="left">WDTOVF_PERROUT# </td><td align="left">Watchdog timer counter overflow signal output. </td></tr>
 <tr>
-<td align="left">RZ/G2LC </td><td align="left">WDTOVF_PERROUT </td><td align="left">Watchdog timer counter overflow signal output. </td></tr>
+<td align="left">RZ/G2LC </td><td align="left">WDTOVF_PERROUT# </td><td align="left">Watchdog timer counter overflow signal output. </td></tr>
 <tr>
-<td align="left">RZ/G2UL </td><td align="left">WDTOVF_PERROUT </td><td align="left">Watchdog timer counter overflow signal output. </td></tr>
+<td align="left">RZ/G2UL </td><td align="left">WDTOVF_PERROUT# </td><td align="left">Watchdog timer counter overflow signal output. </td></tr>
 <tr>
-<td align="left">RZ/G3S </td><td align="left">WDTOVF_PERROUT </td><td align="left">Watchdog timer counter overflow signal output. </td></tr>
+<td align="left">RZ/G3S </td><td align="left">WDTOVF_PERROUT# </td><td align="left">Watchdog timer counter overflow signal output. </td></tr>
 <tr>
-<td align="left">RZ/G3E </td><td align="left">WDTUDF_PERROUT </td><td align="left">Watchdog timer counter underflow signal output. </td></tr>
+<td align="left">RZ/G3E </td><td align="left">WDTUDFCM </td><td align="left">Watchdog timer counter underflow signal output. </td></tr>
+<tr>
+<td align="left">RZ/G3L </td><td align="left">WDT_OVF_PERROUT# </td><td align="left">Watchdog timer counter overflow signal output. </td></tr>
+<tr>
+<td align="left">RZ/G3SE </td><td align="left">WDT_OVF_PERROUT# </td><td align="left">Watchdog timer counter overflow signal output. </td></tr>
 </table>
 <h1><a class="anchor" id="RZG_r-wdt-usage_notes"></a>
 Usage Notes</h1>
 <h2>Period Calculation</h2>
-<h3>On RZ/G2L, RZ/G2LC, RZ/G2UL and RZ/G3S</h3>
+<h3>On RZ/G2L, RZ/G2LC, RZ/G2UL, RZ/G3S, RZ/G3L, and RZ/G3SE</h3>
 <p>The configuration editor can directly enter the timeout period (seconds) until timeout. The selectable timeout time (seconds) is from 0.04369(s) to 178.9(s).</p>
 <p>Below is an example of calculating the maximum timeout time when OSCLK is 24MHz.</p>
 <p>OSCCLK = 24 MHz<br />
@@ -323,7 +331,7 @@ Limitations</h2>
 <ul>
 <li>Using the R_BSP_SystemResetStatusGet and R_BSP_SystemResetStatusClear to get and clear the reset status only for the channel currently in use.</li>
 </ul>
-<h3>On RZ/G2L, RZ/G2LC, RZ/G2UL and RZ/G3S</h3>
+<h3>On RZ/G2L, RZ/G2LC, RZ/G2UL, RZ/G3S, RZ/G3L, and RZ/G3SE</h3>
 <ul>
 <li>When using a debugger, if a system reset by WDT occured, the connection will be lost. In this case, terminate the current debug session and start a new one.</li>
 </ul>
@@ -719,7 +727,7 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

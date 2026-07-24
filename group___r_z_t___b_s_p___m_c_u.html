@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -215,7 +215,7 @@ Functions</h2></td></tr>
 <tr class="separator:ga856146f93ada9eb50eb0108bd46569cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac9a8a7463f2f7daae26efb724a5115c5"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE IRQn_Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#gac9a8a7463f2f7daae26efb724a5115c5">R_FSP_CurrentIrqGet</a> (void)</td></tr>
 <tr class="separator:gac9a8a7463f2f7daae26efb724a5115c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa70b3b2d344b9093a3fac75851a5ab76"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#gaa70b3b2d344b9093a3fac75851a5ab76">R_FSP_SystemClockHzGet</a> (fsp_priv_clock_t clock)</td></tr>
+<tr class="memitem:gaa70b3b2d344b9093a3fac75851a5ab76"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#gaa70b3b2d344b9093a3fac75851a5ab76">R_FSP_SystemClockHzGet</a> (<a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga0b3dd3838340f26522703d160787bddd">fsp_priv_clock_t</a> clock)</td></tr>
 <tr class="separator:gaa70b3b2d344b9093a3fac75851a5ab76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad419f5c4dbe2154df756d1913da27c24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#gad419f5c4dbe2154df756d1913da27c24">R_BSP_SoftwareDelay</a> (uint32_t delay, <a class="el" href="group___r_z_t___b_s_p___m_c_u.html#gafd98e2a6f080d6a52a3ef72e3d731b2b">bsp_delay_units_t</a> units)</td></tr>
 <tr class="separator:gad419f5c4dbe2154df756d1913da27c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -422,6 +422,8 @@ Functions</h2></td></tr>
 <li>
 <a href="#RZT_ddr">LPDDR4 SDRAM Subsystem</a> </li>
 <li>
+<a href="#RZT_otfde">OTFDE</a> </li>
+<li>
 <a href="#RZT_linker-script">Linker Script</a> </li>
 <li>
 <a href="#RZT_change-program-location">Change Program Location</a> </li>
@@ -522,7 +524,14 @@ Register Protection</h3>
 <p>Each time <a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga1bb35164e7e044bd1878a4ce015199c3">R_BSP_RegisterProtectDisable()</a> is called, the respective reference counter is incremented.</p>
 <p>Each time <a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga6a9c6b74983237446de75a9d9b65e752">R_BSP_RegisterProtectEnable()</a> is called, the respective reference counter is decremented.</p>
 <p>Both functions will only modify the protection state if their reference counter is zero.</p>
-<div class="fragment"><div class="line"></div><div class="line">    <span class="comment">/* Enable writing to protected CGC registers */</span></div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ga1bb35164e7e044bd1878a4ce015199c3">R_BSP_RegisterProtectDisable</a>(<a class="code" href="group___r_z_t___b_s_p___m_c_u.html#gga8f69caf459fd80173db15fdee8bc6fa3a331f34f99c7a66ca791edd7271144b3c">BSP_REG_PROTECT_CGC</a>);</div><div class="line"></div><div class="line">    <span class="comment">/* Insert code to modify protected CGC registers. */</span></div><div class="line"></div><div class="line">    <span class="comment">/* Disable writing to protected CGC registers */</span></div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ga6a9c6b74983237446de75a9d9b65e752">R_BSP_RegisterProtectEnable</a>(<a class="code" href="group___r_z_t___b_s_p___m_c_u.html#gga8f69caf459fd80173db15fdee8bc6fa3a331f34f99c7a66ca791edd7271144b3c">BSP_REG_PROTECT_CGC</a>);</div><div class="line"></div></div><!-- fragment --> <h3><a class="anchor" id="RZT_software-delay"></a>
+<div class="fragment"><div class="line"></div><div class="line">    <span class="comment">/* Enable writing to protected CGC registers */</span></div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ga1bb35164e7e044bd1878a4ce015199c3">R_BSP_RegisterProtectDisable</a>(<a class="code" href="group___r_z_t___b_s_p___m_c_u.html#gga8f69caf459fd80173db15fdee8bc6fa3a331f34f99c7a66ca791edd7271144b3c">BSP_REG_PROTECT_CGC</a>);</div><div class="line"></div><div class="line">    <span class="comment">/* Insert code to modify protected CGC registers. */</span></div><div class="line"></div><div class="line">    <span class="comment">/* Disable writing to protected CGC registers */</span></div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ga6a9c6b74983237446de75a9d9b65e752">R_BSP_RegisterProtectEnable</a>(<a class="code" href="group___r_z_t___b_s_p___m_c_u.html#gga8f69caf459fd80173db15fdee8bc6fa3a331f34f99c7a66ca791edd7271144b3c">BSP_REG_PROTECT_CGC</a>);</div><div class="line"></div></div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga1bb35164e7e044bd1878a4ce015199c3">R_BSP_RegisterProtectDisable()</a> monitors the protection status via polling to ensure mutual exclusion control. </dd>
+<dd>
+If you call <a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga1bb35164e7e044bd1878a4ce015199c3">R_BSP_RegisterProtectDisable()</a> and then call it again with the same arguments without calling <a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga6a9c6b74983237446de75a9d9b65e752">R_BSP_RegisterProtectEnable()</a> in between, the polling process will continue until a timeout occurs. </dd>
+<dd>
+Therefore, if you wish to keep the register protection disabled, you can set the value for "Register Protect Polling Count" in the BSP properties to 0x1 to prevent the polling from being performed.</dd>
+<dd>
+Semaphore 7 is used for mutual exclusion control while each function is being called.</dd></dl>
+<h3><a class="anchor" id="RZT_software-delay"></a>
 Software Delay</h3>
 <p><a class="anchor" id="RZT_um_bsp_software_delay"></a>Do not recommend using <code>R_BSP_SoftwareDelay ()</code> for strict wait time processing. The reason we do not recommend using this API is that the Delay Time may change depending on the memory area where the execution program is placed.</p>
 <p>Implements a blocking software delay. A delay can be specified in microseconds, milliseconds or seconds. The delay is implemented based on the system clock rate.</p>
@@ -530,7 +539,7 @@ Software Delay</h3>
 Trigonometric Function</h3>
 <p><a class="anchor" id="RZT_um_bsp_tfu"></a>Implements Trigonometric math inline functions utilizing TFU hardware. These functions can calculate sine, cosine, arctangent and hypotenuse. The trigonometric library functions <code>sinf()</code>, <code>cosf()</code>, <code>atan2f()</code>, and <code>hypotf()</code> can be mapped to respective TFU functions by enabling <code>TFU Mathlib</code> property in the FSP Configuration editor. Extended functions <code>sincosf()</code> and <code>atan2hypotf()</code> are also available when the <code>TFU Mathlib</code> property is enabled in the FSP Configuration editor.</p>
 <p>TFU functions are not reentrant. Disable the <code>TFU Mathlib</code> property in the FSP Configuration editor if reentrant access to trigonometric library functions is required.</p>
-<dl class="section note"><dt>Note</dt><dd>Refer to the MPU hardware user's manual or datasheet to determine if it has TFU support.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Refer to the MPU hardware manual or datasheet to determine if it has TFU support.</dd></dl>
 <h3><a class="anchor" id="RZT_critical-section-macros"></a>
 Critical Section Macros</h3>
 <p><a class="anchor" id="RZT_um_bsp_critical_section"></a>Implements a critical section. Interrupts with priority less than or equal to BSP_CFG_IRQ_MASK_LEVEL_FOR_CRITICAL_SECTION are not serviced in critical sections. Interrupts with higher priority than BSP_CFG_IRQ_MASK_LEVEL_FOR_CRITICAL_SECTION still execute in critical sections.</p>
@@ -611,19 +620,31 @@ Memory attributes</h3>
 </li>
 </ul>
 <p>The configuration values are generated as macro values in bsp_mcu_cpu_memory_cfg.h and are reflected in the ARM core registers in the startup code.</p>
-<dl class="section note"><dt>Note</dt><dd>In the case of the write-back policy, the write operation basically updates data in the cache, and data updates to main memory are performed according to the state of the cache. If it is necessary to explicitly update data to main memory, a separate clean operation must be performed. Please use the following BSP API functions for the clean operation:</dd>
+<dl class="section note"><dt>Note</dt><dd>In the case of the write-back policy, the write operation basically updates data in the cache, and data updates to main memory are performed according to the state of the cache. </dd>
 <dd>
-- R_BSP_CacheCleanAll</dd>
+If it is necessary to explicitly update data to main memory, use the following BSP API functions for the cache maintenance operation:</dd>
 <dd>
-- R_BSP_CacheCleanInvalidateAll</dd>
+- R_BSP_CacheCleanAll (only cache clean) </dd>
 <dd>
-If you need to invalidate the cache (clean data from the cache) in addition to the clean operation, use the following BSP API functions:</dd>
+- R_BSP_CacheInvalidateAll (only cache invalidate) </dd>
 <dd>
-- R_BSP_CacheCleanRange</dd>
+- R_BSP_CacheCleanInvalidateAll (cache clean and invalidate)</dd>
 <dd>
-- R_BSP_CacheCleanInvalidateRange</dd>
+To specify an address range, use the following BSP API functions.</dd>
 <dd>
-When using Cortex-R52 as the secondary core on the RZ/T2H for multi-core operation, set Cortex-R52 CPU0 ATCM via AXIS (0x20000000 - 0x2007FFFF) and Cortex-R52 CPU1 ATCM via AXIS (0x21000000 - 0x2107FFFF) to Device Memory.</dd></dl>
+- R_BSP_CacheCleanRange </dd>
+<dd>
+- R_BSP_CacheInvalidateRange </dd>
+<dd>
+- R_BSP_CacheCleanInvalidateRange</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>The cache is updated in 64-byte cache line increments. </dd>
+<dd>
+If writes are performed to different addresses within the same cache line-one from a cacheable region and the other from a noncache region-and a cache maintenance operation is subsequently executed, the data written from the noncache region will be overwritten. </dd>
+<dd>
+To maintain data coherence, it is recommended to define and write to variables that are 64-byte aligned, as shown below. </dd>
+<dd>
+<code>volatile uint8_t g_data BSP_ALIGN_VARIABLE(64)</code></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>When using Cortex-R52 CPU equipped with ATCM as the secondary core, set "Cortex-R52 CPU0 ATCM via AXIS (0x20000000 - 0x2007FFFF)" and "Cortex-R52 CPU1 ATCM via AXIS (0x21000000 - 0x2107FFFF)" to Device Memory.</dd></dl>
 <h3><a class="anchor" id="RZT_memory-access"></a>
 Memory Access</h3>
 <p>In the CPU-MPU configuration, it is feasible to configure memory attributes tailored to specific applications. For instance, the Normal memory attribute facilitates high-speed access, rendering it suitable for RAM access and instruction execution. Conversely, the Device memory attribute enforces strict execution order, making it apt for peripheral register access and flash memory write operations.</p>
@@ -873,27 +894,16 @@ Only one dynamic region can be configured at setup; consequently, once <code>R_B
 A 2M-byte aligned memory block</div></div>
  <h3><a class="anchor" id="RZT_tzc400"></a>
 TrustZone Address Space Controller (TZC-400)</h3>
-<p><a class="anchor" id="RZT_um_bsp_tzc_400_cfg"></a><a class="anchor" id="RZT_um_bsp_tzc_400_cfg_accessingNOK"></a><a class="anchor" id="RZT_um_bsp_tzc_400_cfg_accessingOK"></a> The TZC-400 module can be configured from the BSP properties of the RZ microprocessor containing the TZC-400.</p><ul>
-<li>TZC-400-0: DDR SDRAM A0/A1 I/F.</li>
-<li>TZC-400-1: DDR SDRAM A4 I/F.</li>
-<li>TZC-400-2: PCIE Unit 0/1.</li>
-<li>TZC-400-3: DDR SDRAM R2 I/F.</li>
-<li>TZC-400-4: DDR SDRAM R3 I/F.</li>
-<li>TZC-400-5: SYSRAM unit 0/1/2/3.</li>
-<li>TZC-400-6: BSC</li>
-<li>TZC-400-7: xSPI unit 0/1.</li>
-<li>TZC-400-8: Cortex-R52 CPU0/1 AXIS (TCM).</li>
-</ul>
+<p><a class="anchor" id="RZT_um_bsp_tzc_400_cfg"></a><a class="anchor" id="RZT_um_bsp_tzc_400_cfg_accessingNOK"></a><a class="anchor" id="RZT_um_bsp_tzc_400_cfg_accessingOK"></a> The TZC-400 module can be configured from the BSP properties of the RZ microprocessor containing the TZC-400.</p>
 <p>The configuration values are generated as macro values in bsp_mcu_tzc400_memory_cfg.h and reflected in the ARM core registers in the startup code.</p>
 <p>The default settings of the TZC-400 modules allow access in unprivileged and privileged in non-secure and secure in region 0.</p>
-<p>For example, in RZT2H device, when creating the access rule in TZC-400-0: DDR SDRAM A0/A1 I/F, the settings shown below are used:</p><ul>
+<p>For example, in the RZ microprocessor containing the TZC-400, when creating the access rule in TZC-400-0, the settings shown below are used:</p><ul>
 <li>Enter the filter unit in the Gatekeeper field.</li>
 <li>Region 0: Enter the filter unit in the attribute field.</li>
 <li>Region 0: Enable write control in attribute.</li>
 <li>Region 0: Enable read control in attribute.</li>
 <li>Region 0: Set ID (e.g. allow unprivileged and privileged access in non-secure, allow unprivileged and privileged access in secure) in NSAID read/write enable.</li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>When using Cortex-R52 as the secondary core on the RZ/T2H for multi-core operation, set filters 0 and 1 on the TZC-400-8 to enable access to the TCM of Cortex-R52 CPU0 and CPU1.</dd></dl>
 <h3><a class="anchor" id="RZT_module-stop"></a>
 Module Stop</h3>
 <p>The BSP shall provide a method to enable or cancel module stop for a given peripheral channel.</p>
@@ -901,7 +911,11 @@ Module Stop</h3>
 <dd>
 - <a class="el" href="group___r_z_n___b_s_p___m_c_u.html#gaf0a730b79b5bbe76759b6e8efafe2000">R_BSP_MODULE_START(FSP_IP_ENCIF, n)</a></dd>
 <dd>
-- <a class="el" href="group___r_z_n___b_s_p___m_c_u.html#ga2edfa2301d2ada75a9418be0e146e2bb">R_BSP_MODULE_STOP(FSP_IP_ENCIF, n)</a></dd></dl>
+- <a class="el" href="group___r_z_n___b_s_p___m_c_u.html#ga2edfa2301d2ada75a9418be0e146e2bb">R_BSP_MODULE_STOP(FSP_IP_ENCIF, n)</a></dd>
+<dd>
+Dummy reads are performed several times in the module start function according to the RZ microprocessor manual. However, depending on the device used, the number of dummy reads for RTC and LCDC may not be met. In that case, please perform additional dummy read processing after API execution. For example, in the case of the RZT2H, the RTC requires 300 dummy reads and the LCDC requires 100 dummy reads.</dd>
+<dd>
+Dummy reads for the HPSW register are not performed in the module start function. Therefore, when starting the module, make sure to perform dummy reads accurately. This is due to limitations on accessing the HPSW register. When accessing the HPSW register from specific bus masters, there are restrictions on region attributes and the instructions that can be used.</dd></dl>
 <h3><a class="anchor" id="RZT_module-reset"></a>
 Module Reset</h3>
 <p><a class="anchor" id="RZT_um_bsp_module_reset"></a> The reset state and the release can be set for each peripheral module. To secure processing after release from a module reset, dummy read the same register at several times after writing to initiate release from the module reset.</p>
@@ -971,13 +985,51 @@ System Error Interrupt (SEI,NMI)</h3>
 </ol>
 <div class="fragment"><div class="line"></div><div class="line"><span class="preprocessor"> #define VECTOR_NUMBER_SEI                 ((IRQn_Type) 406) </span><span class="comment">/* SEI (System error interrupt) */</span><span class="preprocessor"></span></div><div class="line"></div><div class="line"><span class="preprocessor"> #define SEI_NOISE_FILTER_ENABLE           (0x1UL)           </span><span class="comment">/* Noise filter enable */</span><span class="preprocessor"></span></div><div class="line"><span class="preprocessor"> #define SEI_NOISE_FILTER_SAMPLING_FREQ    (0x3UL)           </span><span class="comment">/* Noise filter sampling frequency: Divided by 64 */</span><span class="preprocessor"></span></div><div class="line"><span class="preprocessor"> #define SEI_EDGE_DETECTION_MODE           (0x1UL)           </span><span class="comment">/* Detection mode: Falling edge */</span><span class="preprocessor"></span></div><div class="line"></div><div class="line"><span class="preprocessor"> #define SENSE_EDGE                        (1UL)             </span><span class="comment">/* Detection type: Edge */</span><span class="preprocessor"></span></div><div class="line"><span class="preprocessor"> #define SEI_IPL                           (0UL)             </span><span class="comment">/* Interrupt priority level: 0 */</span><span class="preprocessor"></span></div><div class="line"></div><div class="line"><span class="keywordtype">void</span> bsp_sei_example_ca55 (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <span class="comment">/* Set SEI pin detection. */</span></div><div class="line">    R_ICU_S-&gt;S_PORTNF_FLTSEL_b.FLTSEI    = SEI_NOISE_FILTER_ENABLE;</div><div class="line">    R_ICU_S-&gt;S_PORTNF_CLKSEL_b.CLKSELSEI = SEI_NOISE_FILTER_SAMPLING_FREQ;</div><div class="line">    R_ICU_S-&gt;S_PORTNF_MD_b.MDSEI         = SEI_EDGE_DETECTION_MODE;</div><div class="line"></div><div class="line">    <span class="comment">/* For the CA55, SEI(SEI) interrupts are treated as normal interrupt events. */</span></div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ga47153a238f2f7418258af76853fa75be">R_BSP_IrqDetectTypeSet</a>(VECTOR_NUMBER_SEI, SENSE_EDGE);</div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ga520cbd88842a29bb1e2d678741af8e15">R_BSP_IrqCfg</a>(VECTOR_NUMBER_SEI, SEI_IPL, NULL);</div><div class="line"></div><div class="line">    <span class="comment">/* Clear the interrupt status and pending bits, before the interrupt is enabled. */</span></div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ga9632392c0509d4de7e19afd78e5aef90">R_BSP_IrqEnable</a>(VECTOR_NUMBER_SEI);</div><div class="line"></div><div class="line">    <span class="keywordflow">while</span> (1)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Do Nothing */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> sei_isr (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <span class="keywordflow">while</span> (1)</div><div class="line">    {</div><div class="line">        <span class="comment">/* SEI(SEI) interrupt occurred. */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h3><a class="anchor" id="RZT_ddr"></a>
 LPDDR4 SDRAM Subsystem</h3>
-<p><a class="anchor" id="RZT_um_bsp_ddr_init"></a> The FSP applies the DDR parameter file generated by the DDR parameter generation tool (hereinafter referred to as "gen_tool"). The procedure for modifying the DDR parameter file is as follows.</p>
+<p><a class="anchor" id="RZT_um_bsp_ddr_init"></a> <b>RZT2H</b></p>
+<p>To enable LPDDR4, complete the following two steps:</p>
+<ol type="1">
+<li>Open the Configurator. In the BSP tab, select "LPDDR4 SDRAM Subsystem" in the Property view, and then set "DDR Initialization" to "Enabled".</li>
+<li>In the Clocks tab, set to "PLL2 is released from standby state".</li>
+</ol>
+<p>The FSP applies the DDR parameter file generated by the DDR parameter generation tool (hereinafter referred to as "gen_tool"). The procedure for modifying the DDR parameter file is as follows.</p>
 <p>Let's assume the file name of the file generated by gen_tool is "param_ddrinit_ref_lpddr4_r02p03.h".</p>
 <ol type="1">
 <li>Rename "param_ddrinit_ref_lpddr4_r02p03.h" to "board_ddr_param.h".</li>
 <li>Replace the existing "board_ddr_param.h" file located in the "{rz device}/board/rzt2h_evb" folder with the new one.</li>
 </ol>
 <dl class="section note"><dt>Note</dt><dd>The folder path may vary depending on the board or device being used. For example, for a custom board, the path would be "{rz device}/board/custom".</dd></dl>
+<p><b>RZT2N</b></p>
+<p>To enable LPDDR4, complete the following two steps:</p>
+<ol type="1">
+<li>Open the Configurator. In the BSP tab, select "LPDDR4 SDRAM Subsystem" in the Property view, and then set "DDR Initialization" to "Enabled".</li>
+<li>In the Clocks tab, set to "PLL2 is released from standby state".</li>
+</ol>
+<p>FSP applies the DDR parameter file of the DDR reference code. The procedure for changing the DDR parameter file is as follows.</p>
+<p>Assume that the file name in the DDR reference code is "param_ddrinit.c".</p>
+<ol type="1">
+<li>Rename "param_ddrinit.c" to "board_ddr_param.h".</li>
+<li>Replace the existing "board_ddr_param.h" file located in the "rzt/board/rzt2n_489_evb" folder with the new one.</li>
+</ol>
+<dl class="section note"><dt>Note</dt><dd>The folder path may vary depending on the board or device being used. For example, for a custom board, the path would be "rzt/board/custom".</dd></dl>
+<h3><a class="anchor" id="RZT_otfde"></a>
+OTFDE</h3>
+<p><a class="anchor" id="RZT_um_bsp_otfde_init"></a> On-The-Fly Decryption/Encryption (OTFDE) can be configured for the LPDDR4 SDRAM Subsystem.</p>
+<p>By default, OTFDE is disabled. To enable OTFDE, complete the following two steps:</p>
+<ol type="1">
+<li>Open the Configurator. In the BSP tab, select "LPDDR4 SDRAM Subsystem" &gt; "OTFDE" in the Property view, and then set "OTFDE Support" to "Enabled" for each target core.</li>
+<li>In the Stacks tab, add the RSIP Protected Mode (r_rsip_protected) stack.</li>
+</ol>
+<p>When you enable OTFDE, in the set address range, data gets encrypted when writing to LPDDR4 and gets decrypted when reading from LPDDR4.</p>
+<p>About the parameters used for encryption and decryption:</p><ul>
+<li>As for key and IV, the generated random numbers are used.</li>
+<li>AES-192 is not supported.</li>
+<li>When selecting Enabled as Change IV on CR52 and CA55, the inverted values are used respectively.</li>
+</ul>
+<p>The upper 100 bits of the IV and the upper 28 bits of the lower 32 bits of the start address are used for encryption and decryption as counter. For example:</p><ul>
+<li>IV: 0x00000000_11111111_22222222_33333333</li>
+<li>Start address: 0x2_50001000</li>
+<li>Counter: 0x00000000_11111111_22222222_35000100</li>
+</ul>
 <h3><a class="anchor" id="RZT_linker-script"></a>
 Linker Script</h3>
 <p>To prevent build warnings, the GCC linker script separates the placement regions for .text and .data. (The same goes for .loader_text and .loader_data)</p>
@@ -1018,32 +1070,32 @@ Change Program Location</h3>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>Due to the specifications of the First Stage Boot Loader (FSBL), the Loader program of primary project will not function properly unless it is placed on the BTCM. If it is set to be placed anywhere other than the BTCM, a build error will be output.</dd></dl>
 <p>The symbols "LOADER_PROGRAM_LOCATION_PRV" and "USER_PROGRAM_LOCATION_PRV" are defined in the linker script, and the location is changed depending on these values.<br />
- The values ??correspond to the following locations:</p>
+ The values correspond to the following locations:</p>
 <ul>
 <li>0: ATCM</li>
 <li>1: BTCM</li>
-<li>2: SYSTEM_RAM</li>
+<li>2: System SRAM</li>
 </ul>
 <p>The setting method varies depending on the IDE.</p>
 <p><b>e&sup2; studio</b> The following additional properties must be set.</p><ol type="1">
 <li>In the Properties window of the project, click C/C++ Build &gt; Settings &gt; Tool Settings &gt; Cross ARM C Linker &gt; Other.</li>
 <li>Add symbols at Other linker flags. (x=0,1,2)<ul>
-<li>-Wl,&ndash;defsym=LOADER_PROGRAM_LOCATION=x</li>
-<li>-Wl,&ndash;defsym=USER_PROGRAM_LOCATION=x</li>
+<li><code>-Wl,--defsym=LOADER_PROGRAM_LOCATION=x</code></li>
+<li><code>-Wl,--defsym=USER_PROGRAM_LOCATION=x</code></li>
 </ul>
 </li>
 </ol>
 <p><b>EWARM</b> The following additional properties must be set.</p><ol type="1">
 <li>In the Options... window of the project, click Linker &gt; Config.</li>
 <li>Add symbols at Configuration file symbol definitions. (x=0,1,2)<ul>
-<li>LOADER_PROGRAM_LOCATION=x</li>
-<li>USER_PROGRAM_LOCATION=x</li>
+<li><code>LOADER_PROGRAM_LOCATION=x</code></li>
+<li><code>USER_PROGRAM_LOCATION=x</code></li>
 </ul>
 </li>
 <li>Click C/C++ Compiler &gt; Preprocessor.</li>
 <li>Add symbols at Defined symbols. (x: The same value as set in No. 2)<ul>
-<li>LOADER_PROGRAM_LOCATION=x</li>
-<li>USER_PROGRAM_LOCATION=x</li>
+<li><code>LOADER_PROGRAM_LOCATION=x</code></li>
+<li><code>USER_PROGRAM_LOCATION=x</code></li>
 </ul>
 </li>
 </ol>
@@ -1060,7 +1112,9 @@ eSD boot</h1>
 <p>In eSD boot mode (if the device supports), device boots a program from an external eSD device (including SD card) with 4-bit data bus. In FSP, you can create a write image file for the SD card by building a project for eSD boot mode. The created image file can be written to the SD card using a tool on your PC.</p>
 <dl class="section note"><dt>Note</dt><dd>The FSP eSD boot mode project virtually use memory space 0x88000000 - 0x93FFFFFF for the eSD boot process. This area cannot be used by user's application, for example, when using the CA55 MMU.</dd>
 <dd>
-The values of loader parameters in eSD boot mode can be configured in the FSP Configurator. As the default value for the loader parameter, the loader program size LDR_SIZE_NML is set to 0x8000. Similarly, in the linker file, the loader program size is defined as <code>LOADER_PROGRAM_SIZE = 0x8000;</code> .Therefore, if LDR_SIZE_NML is changed from its default value in the FSP Configurator, the value of LOADER_PROGRAM_SIZE in the linker file must also be modified to match.</dd></dl>
+The default value of the loader program start address LDR_ADDR_NML is set to 0x1000. Similarly, in the linker file, the offset for the loader program start address is defined as <code>FLASH_CONTENTS_OFFSET = 0x1000</code> or <code>LOADER_PARAM_OFFSET = 0x1000</code>. Therefore, if LDR_ADDR_NML is changed from its default value in the FSP Configurator, the corresponding offset (either FLASH_CONTENTS_OFFSET or LOADER_PARAM_OFFSET) in the linker file must also be modified to match.</dd>
+<dd>
+The values of loader parameters in eSD boot mode can be configured in the FSP Configurator. As the default value for the loader parameter, the loader program size LDR_SIZE_NML is set to 0x8000. Similarly, in the linker file, the loader program size is defined as <code>LOADER_PROGRAM_SIZE = 0x8000;</code>. Therefore, if LDR_SIZE_NML is changed from its default value in the FSP Configurator, the value of LOADER_PROGRAM_SIZE in the linker file must also be modified to match.</dd></dl>
 <h2><a class="anchor" id="RZT_preparation-procedure-for-the-SD-card-image-file"></a>
 Preparation procedure for the SD card image file</h2>
 <h3><a class="anchor" id="RZT_how-to-prepare-an-image-file-for-an-sd-card-in-e2studio"></a>
@@ -1072,7 +1126,7 @@ How to prepare an image file for an SD card in e² studio</h3>
 Created .bin file (e&sup2; studio)</div></div>
  <h4><a class="anchor" id="RZT_how-to-prepare-an-image-file-with-multiplexed-loader-programs-in-e2studio"></a>
 How to prepare an image file with multiplexed loader programs in e² studio</h4>
-<p>To perform multiplexing of the loader program, follow the procedure below. Skip the procedure if multiplexing is not required. Note that loader parameters are multiplexed by default. Refer to "Allocation of the Loader Parameter and Loader Program" in the RZ microprocessor User's Manual for details.</p>
+<p>To perform multiplexing of the loader program, follow the procedure below. Skip the procedure if multiplexing is not required. Note that loader parameters are multiplexed by default. Refer to "Allocation of the Loader Parameter and Loader Program" in the RZ microprocessor Hardware Manual for details.</p>
 <p>When the project is built, loader1.o - loader6.o are also generated in the Debug folder. To include loader1.o - loader6.o at subsequent builds, set loader1.o - loader6.o in the <b>Other objects</b> section of e&sup2; studio's Linker settings. This allows to place the loader program in spare areas #1-#6. To prevent build errors, this configuration must be set after loader1.o - loader6.o are generated in a prior build.</p>
 <p>Following additional properties must be set.</p>
 <ol type="1">
@@ -1110,14 +1164,14 @@ Created .bin file (EWARM)</div></div>
 <p> This allows to create a &lt;project_name&gt;.bin file in the Debug/Exe folder as a write image file for the SD card. Use the SD card writing tool on your PC to write the created image file to the SD card.</p>
 <h4><a class="anchor" id="RZT_how-to-prepare-an-image-file-with-multiplexed-loader-programs-in-ewarm"></a>
 How to prepare an image file with multiplexed loader programs in EWARM</h4>
-<p>To perform multiplexing of the loader program, follow the procedure below. Skip the procedure if multiplexing is not required. Note that loader parameters are multiplexed by default. Refer to "Allocation of the Loader Parameter and Loader Program" in the RZ microprocessor User's Manual for details.</p>
+<p>To perform multiplexing of the loader program, follow the procedure below. Skip the procedure if multiplexing is not required. Note that loader parameters are multiplexed by default. Refer to "Allocation of the Loader Parameter and Loader Program" in the RZ microprocessor Hardware Manual for details.</p>
 <p>To place the loader program in spare areas #1 to #6, extract the loader program.</p>
 <p>Following additional properties must be set.</p><ol type="1">
 <li>Click <b>Project &gt; Options...</b></li>
 <li>Click <b>Build Actions &gt; Build Actions Configuration &gt; New</b> and set it as follows:<ul>
 <li><p class="startli">a. Command line</p>
 <p class="startli"><code>ielftool --bin-multi=0x88001000-0x88008FFF; $TARGET_BPATH$.out $TARGET_BPATH$loader.bin</code></p>
-<dl class="section note"><dt>Note</dt><dd>If the loader program size LDR_SIZE_NML is changed from the default in FSP Configurator, the address range specified with &ndash;bin-multi for extraction must be changed accordingly. This example shows the command for the default value, LDR_SIZE_NML = 0x8000.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If the start address of the loader program LDR_ADDR_NML and/or the loader program size LDR_SIZE_NML are changed from the default in FSP Configurator, the address range specified with "--bin-multi" for extraction must be changed accordingly. This example shows the command for the default value, LDR_ADDR_SIZE = 0x1000 and LDR_SIZE_NML = 0x8000.</dd></dl>
 </li>
 <li><p class="startli">b. Build order</p>
 <p class="startli">Set "Run after Linking" for the <b>Build order</b>.</p>
@@ -1231,7 +1285,9 @@ eMMC boot</h1>
 <p>In eMMC boot mode (if the device supports), device boots a program from an external eMMC device with 8-bit data bus. In FSP, you can create a write image file for the eMMC by building a project for eMMC boot mode. The created image file can be written to the eMMC using a tool on your PC.</p>
 <dl class="section note"><dt>Note</dt><dd>The FSP eMMC boot mode project virtually use memory space 0x88000000 - 0x93FFFFFF for the eMMC boot process. This area cannot be used by user's application, for example, when using the CA55 MMU.</dd>
 <dd>
-The values of loader parameters in eMMC boot mode can be configured in the FSP Configurator. As the default value for the loader parameter, the loader program size LDR_SIZE_NML is set to 0x8000. Similarly, in the linker file, the loader program size is defined as <code>LOADER_PROGRAM_SIZE = 0x8000;</code> .Therefore, if LDR_SIZE_NML is changed from its default value in the FSP Configurator, the value of LOADER_PROGRAM_SIZE in the linker file must also be modified to match.</dd></dl>
+The default value of the loader program start address LDR_ADDR_NML is set to 0x1000. Similarly, in the linker file, the offset for the loader program start address is defined as <code>FLASH_CONTENTS_OFFSET = 0x1000</code> or <code>LOADER_PARAM_OFFSET = 0x1000</code>. Therefore, if LDR_ADDR_NML is changed from its default value in the FSP Configurator, the corresponding offset (either FLASH_CONTENTS_OFFSET or LOADER_PARAM_OFFSET) in the linker file must also be modified to match.</dd>
+<dd>
+The values of loader parameters in eMMC boot mode can be configured in the FSP Configurator. As the default value for the loader parameter, the loader program size LDR_SIZE_NML is set to 0x8000. Similarly, in the linker file, the loader program size is defined as <code>LOADER_PROGRAM_SIZE = 0x8000;</code>. Therefore, if LDR_SIZE_NML is changed from its default value in the FSP Configurator, the value of LOADER_PROGRAM_SIZE in the linker file must also be modified to match.</dd></dl>
 <h2>Preparation procedure for the eMMC image file</h2>
 <h3>How to prepare an image file for an eMMC in e2 studio</h3>
 <p>When using e2 studio, after building the project, the loader.srec and user.srec file is created in the Debug folder as a write image file for the eMMC. Use the eMMC writing tool on your PC to write the created image file to the eMMC.</p>
@@ -1256,6 +1312,7 @@ Created .srec file (e&sup2; studio)</div></div>
 <tr>
 <td>2 </td><td><code>srec_cat $TARGET_BPATH$.srec -crop 0x88009000 0x93FFFFFF -offset -0x88009000 -o $PROJ_DIR$\Debug\Exe\user.srec -motorola -address-length=4 -Output_Block_Size 16 -execution-start-address=0</code> </td><td>user.srec </td><td>$TARGET_BPATH$.srec </td><td>$PROJ_DIR$ </td><td>Run after linking </td></tr>
 </table>
+<dl class="section note"><dt>Note</dt><dd>If the start address of the loader program LDR_ADDR_NML and/or the loader program size LDR_SIZE_NML are changed from the default in FSP Configurator, the argument addresses must be updated accordingly. This example shows the command for the default value, LDR_ADDR_SIZE = 0x1000 and LDR_SIZE_NML = 0x8000.</dd></dl>
 <p>3.When the project is built, loader.srec and user.srec are generated in the <b>Debug/Exe</b> folder.</p>
 <div class="image">
 <img src="rzt_emmc_boot_crated_srec_file_ewarm.png" alt="rzt_emmc_boot_crated_srec_file_ewarm.png"/>
@@ -1287,7 +1344,7 @@ Created .srec file (EWARM)</div></div>
 <img src="rzt_emmc_boot_drag_and_drop_to_teraterm_window.png" alt="rzt_emmc_boot_drag_and_drop_to_teraterm_window.png"/>
 <div class="caption">
 Drag and Drop to Tera Term Window</div></div>
-<p> 7.The image will be sent to the board via serial connection. After completing that, send <b>Flash_Programmer_SCIF_CR52_RZT2H_EVK.mot</b> as same as <b>HDR NM</b>. Send it as soon as possible.</p>
+<p> 7.The image will be sent to the board via serial connection. After completing that, send the Flash Programmer in the same way as <b>HDR NM</b>. For RZ/T2H, use <b>Flash_Programmer_SCIF_CR52_RZT2H_EVK.mot</b>. For other devices, use the corresponding Flash Programmer file. Send it as soon as possible.</p>
 <div class="image">
 <img src="rzt_emmc_boot_send_file.png" alt="rzt_emmc_boot_send_file.png"/>
 <div class="caption">
@@ -1307,7 +1364,7 @@ Send file of Tera Term</div></div>
 <div class="fragment"><div class="line">&gt; EMMCWECSD 0xb1 0x2</div><div class="line">EXT_CSD[b1] = 0x2</div></div><!-- fragment --><p>14.After writing loader.srec and user.srec files normally, turn off the power switch of the board.</p>
 <p>15.Configure the eMMC boot mode using the MD pins of the device. Then turn the power ON. Device boots a program from the eMMC.</p>
 <h2>How to debug an eMMC boot project</h2>
-<p>The debugging procedure is the same as eSD boot. Refer to the <a href="#how-to-debug-an-esd-boot-project">How to debug an eSD boot project</a> section in this document.</p>
+<p>The debugging procedure is the same as eSD boot. Refer to the <a href="#RZT_how-to-debug-an-esd-boot-project">How to debug an eSD boot project</a> section in this document.</p>
 <h1><a class="anchor" id="RZT_bsp-exclusive-access"></a>
 Exclusive access</h1>
 <p>Exclusive access instructions for synchronization and semaphores in Cortex-R52 and Cortex-A55 are prohibited to System SRAM. For exclusive control, perform either of the below methods,</p><ul>
@@ -1326,7 +1383,7 @@ Exclusive access</h1>
 </ul>
 </li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>Please refer to the RZ microprocessor's user manual to confirm whether LPDDR4 SDRAM is installed.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Please refer to the RZ microprocessor's hardware manual to confirm whether LPDDR4 SDRAM is installed.</dd></dl>
 <h1><a class="anchor" id="RZT_bsp-configuration"></a>
 Configuration</h1>
 <p>The BSP is heavily data driven with most features and functionality being configured based on the content from configuration files. Configuration files represent the settings specified by the user and are generated when the project is built and/or when the Generate Project Content button is clicked in the FSP Configuration editor.</p>
@@ -1479,6 +1536,8 @@ Modules</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group___r_z_t___b_s_p___m_c_u___r_z_t2_m_e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u___r_z_t2_m_e.html">RZT2ME</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group___r_z_t___b_s_p___m_c_u___r_z_t2_n"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u___r_z_t2_n.html">RZT2N</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -1519,6 +1578,8 @@ Enumerations</h2></td></tr>
 <tr class="separator:ga0f8db6472715cfd8203eb499b26904e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6fe6dc3c0813eeae8665430a31c005b4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga6fe6dc3c0813eeae8665430a31c005b4">bsp_warm_start_event_t</a> </td></tr>
 <tr class="separator:ga6fe6dc3c0813eeae8665430a31c005b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0b3dd3838340f26522703d160787bddd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga0b3dd3838340f26522703d160787bddd">fsp_priv_clock_t</a> </td></tr>
+<tr class="separator:ga0b3dd3838340f26522703d160787bddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafd98e2a6f080d6a52a3ef72e3d731b2b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#gafd98e2a6f080d6a52a3ef72e3d731b2b">bsp_delay_units_t</a> </td></tr>
 <tr class="separator:gafd98e2a6f080d6a52a3ef72e3d731b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8f69caf459fd80173db15fdee8bc6fa3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga8f69caf459fd80173db15fdee8bc6fa3">bsp_reg_protect_t</a> </td></tr>
@@ -1544,6 +1605,8 @@ Variables</h2></td></tr>
 const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#gab57e4db79d93cfa90e0c0070fa979a45">g_bsp_system_clock_select_xspi_clk</a> [][2]</td></tr>
 <tr class="memdesc:gab57e4db79d93cfa90e0c0070fa979a45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default initialization function. <br /></td></tr>
 <tr class="separator:gab57e4db79d93cfa90e0c0070fa979a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga07e41ed238502f4b0d77b67279c4ccad"><td class="memItemLeft" align="right" valign="top">const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga07e41ed238502f4b0d77b67279c4ccad">BSP_GICD_ICFGR_INIT</a> [BSP_EVENT_ARRAY_NUM]</td></tr>
+<tr class="separator:ga07e41ed238502f4b0d77b67279c4ccad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="gae685ec20bc3579295878f1586478b54c"></a>
@@ -1870,7 +1933,7 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </td></tr>
 <tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950a776cbb7300e003b6d77fa0f080117cbf"></a>FSP_IP_ICU&#160;</td><td class="fielddoc"><p>Interrupt Control Unit. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950a1e369891a786f9446bfa5dd89179a023"></a>FSP_IP_BSC&#160;</td><td class="fielddoc"><p>Bus State Contoller. </p>
+<tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950a1e369891a786f9446bfa5dd89179a023"></a>FSP_IP_BSC&#160;</td><td class="fielddoc"><p>Bus State Controller. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950a49a9154b9a4c29544daf6b4c1b869ca8"></a>FSP_IP_CKIO&#160;</td><td class="fielddoc"><p>CKIO. </p>
 </td></tr>
@@ -1963,6 +2026,24 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950a52aa3c12d6b922449e8d906dbbe4dca6"></a>FSP_IP_CR52&#160;</td><td class="fielddoc"><p>Cortex-R52 CPUn Module Stop. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950acdade886276a65a3ff02f6f0f687a4df"></a>FSP_IP_CA55&#160;</td><td class="fielddoc"><p>Cortex-A55 CPUn Module Stop. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950a13fcc70b4ed817a0ba4e5a8f48256e5a"></a>FSP_IP_ESWM&#160;</td><td class="fielddoc"><p>Layer 3 Ethernet Switch Module. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950a2c2983e8cfef42f65bcf7895ac69aa1d"></a>FSP_IP_HPSW&#160;</td><td class="fielddoc"><p>Cortex-A55 CPUn Module Stop. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950af8e7359d4c0acd40f267dc2aad7f7957"></a>FSP_IP_NANDC&#160;</td><td class="fielddoc"><p>NAND Flash Controller. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950a75fcee9a9dda44780fb9e4ddc935ab1a"></a>FSP_IP_PHOSTIF&#160;</td><td class="fielddoc"><p>Parallel Host Interface. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950a79f51382b1bbab759d7626d01f32d557"></a>FSP_IP_BISSL&#160;</td><td class="fielddoc"><p>BiSS-Line. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950ad8bd71d5d609f929e4216d42033cbcb2"></a>FSP_IP_ENDAT3_RXTX&#160;</td><td class="fielddoc"><p>EnDat 3.0 RX/TX. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950af27d04be601bfa985703f65803aa3cb4"></a>FSP_IP_ENDAT3_SYSTEM&#160;</td><td class="fielddoc"><p>EnDat 3.0 System. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950ad55b9304760d96fc27e21286413f3c0c"></a>FSP_IP_OTFD&#160;</td><td class="fielddoc"><p>On-the-fly Decryption. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7880302f0edd7cc4290c037809975950a70464c76617015ba7fb1dd4d97d82aa5"></a>FSP_IP_OTFDE&#160;</td><td class="fielddoc"><p>On-the-fly Decryption/Encryption. </p>
 </td></tr>
 </table>
 
@@ -2964,6 +3045,26 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 
 </div>
 </div>
+<a id="ga0b3dd3838340f26522703d160787bddd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0b3dd3838340f26522703d160787bddd">&#9670;&nbsp;</a></span>fsp_priv_clock_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga0b3dd3838340f26522703d160787bddd">fsp_priv_clock_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga0b3dd3838340f26522703d160787bddda10c347566bfeb6745452f7387f53cdff"></a>FSP_PRIV_CLOCK_SDHI0_IMCLK&#160;</td><td class="fielddoc"><p>SDHI clock (for RZ/T2H and RZ/T2N). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0b3dd3838340f26522703d160787bddda08b86723a7bc1db8729b85aa0651ecf6"></a>FSP_PRIV_CLOCK_SDHI1_IMCLK&#160;</td><td class="fielddoc"><p>SDHI clock (for RZ/T2N). </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="gafd98e2a6f080d6a52a3ef72e3d731b2b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gafd98e2a6f080d6a52a3ef72e3d731b2b">&#9670;&nbsp;</a></span>bsp_delay_units_t</h2>
 
@@ -3096,6 +3197,18 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <tr><td class="fieldname"><a id="gga2ad788416478d6d6ea7398fd9ca84289a08062dc1a1a2a94cca956505e0d67900"></a>BSP_MODULE_RESET_GMAC2_ACLK&#160;</td><td class="fielddoc"><p>Enables writing to the registers related to GMAC Unit 2 (PCLKAH clock domain) reset control. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga2ad788416478d6d6ea7398fd9ca84289a929fb9e405dc0e184a2516f8789afdee"></a>BSP_MODULE_RESET_GMAC2_HCLK&#160;</td><td class="fielddoc"><p>Enables writing to the registers related to GMAC Unit 2 (PCLKAM clock domain) reset control. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga2ad788416478d6d6ea7398fd9ca84289ab79794ad511c07fb75f0cefc55f34597"></a>BSP_MODULE_RESET_ESWM&#160;</td><td class="fielddoc"><p>Enables writing to the registers related to ESWM reset control. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga2ad788416478d6d6ea7398fd9ca84289a8c75f49f53c1e3d1ba17aae6c1f4e6c1"></a>BSP_MODULE_RESET_HPSW&#160;</td><td class="fielddoc"><p>Enables writing to the registers related to HPSW reset control. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga2ad788416478d6d6ea7398fd9ca84289ad5dc8ea935926d52228c9495d2e417bd"></a>BSP_MODULE_RESET_NANDC_SYSTEM&#160;</td><td class="fielddoc"><p>Enables writing to the registers related to NANDC System reset control. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga2ad788416478d6d6ea7398fd9ca84289a4f8518af2120555af19f9369d7b87e21"></a>BSP_MODULE_RESET_NANDC_SLAVE_PHY_REGISTERS&#160;</td><td class="fielddoc"><p>Enables writing to the registers related to NANDC Slave/PHY Registers reset control. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga2ad788416478d6d6ea7398fd9ca84289a255108fe6c355337f02f4c95fdacf1a6"></a>BSP_MODULE_RESET_NANDC_PROTECT_REGISTERS&#160;</td><td class="fielddoc"><p>Enables writing to the registers related to NANDC Protect Registers reset control. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga2ad788416478d6d6ea7398fd9ca84289a8601f4ff745896ce6f36307ffa0c3d29"></a>BSP_MODULE_RESET_PHOSTIF_CLOCK&#160;</td><td class="fielddoc"><p>Enables writing to the registers related to PHOSTIF reset control. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga2ad788416478d6d6ea7398fd9ca84289a009f401f5644d6dc1b15548190080149"></a>BSP_MODULE_RESET_SHOSTIF_MASTER_BUS_CLOCK&#160;</td><td class="fielddoc"><p>Enables writing to the registers related to SHOSTIF (Master bus clock domain) reset control. </p>
 </td></tr>
@@ -3728,7 +3841,7 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t RZT::R_FSP_SystemClockHzGet </td>
           <td>(</td>
-          <td class="paramtype">fsp_priv_clock_t&#160;</td>
+          <td class="paramtype"><a class="el" href="group___r_z_t___b_s_p___m_c_u.html#ga0b3dd3838340f26522703d160787bddd">fsp_priv_clock_t</a>&#160;</td>
           <td class="paramname"><em>clock</em></td><td>)</td>
           <td></td>
         </tr>
@@ -5900,13 +6013,28 @@ Delays may be longer than expected when compiler optimization is turned off. </d
 
 </div>
 </div>
+<a id="ga07e41ed238502f4b0d77b67279c4ccad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga07e41ed238502f4b0d77b67279c4ccad">&#9670;&nbsp;</a></span>BSP_GICD_ICFGR_INIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint32_t BSP_GICD_ICFGR_INIT[BSP_EVENT_ARRAY_NUM]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Array of GICD_ICFGR initialization value. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.7-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

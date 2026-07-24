@@ -1,14 +1,14 @@
 var group___r_z_v___s_c_i___b___u_a_r_t =
 [
     [ "st_sci_b_uart_instance_ctrl", "group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__instance__ctrl", null ],
-    [ "st_sci_b_baud_setting_t", "group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__baud__setting__t", null ],
+    [ "st_sci_b_baud_setting", "group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__baud__setting", null ],
     [ "st_sci_b_uart_rs485_setting", "group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__rs485__setting", [
       [ "enable", "group___r_z_v___s_c_i___b___u_a_r_t.html#aa7cd18bab7b18bdf76edada473a410ad", null ],
       [ "polarity", "group___r_z_v___s_c_i___b___u_a_r_t.html#a059af49803cff5139dbe63dffd73d3e7", null ],
       [ "assertion_time", "group___r_z_v___s_c_i___b___u_a_r_t.html#a1e8e6fdbc4e9a8a1a4b189e9571768a3", null ],
       [ "negation_time", "group___r_z_v___s_c_i___b___u_a_r_t.html#a0fa69e823ca6e890162cf7d16a5e44ee", null ]
     ] ],
-    [ "st_sci_b_uart_sci_b_uart_half_data_setting", "group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__sci__b__uart__half__data__setting", [
+    [ "st_sci_b_uart_half_data_setting", "group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__half__data__setting", [
       [ "enable", "group___r_z_v___s_c_i___b___u_a_r_t.html#a0dd72a64c3e6d7e3b8137160a5fd2a9a", null ]
     ] ],
     [ "st_sci_b_uart_extended_cfg", "group___r_z_v___s_c_i___b___u_a_r_t.html#struct_r_z_v_1_1st__sci__b__uart__extended__cfg", [
@@ -24,9 +24,9 @@ var group___r_z_v___s_c_i___b___u_a_r_t =
       [ "p_reg", "group___r_z_v___s_c_i___b___u_a_r_t.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "sci_b_uart_instance_ctrl_t", "group___r_z_v___s_c_i___b___u_a_r_t.html#gae0d6193a07d140fcba221ae77e6970c5", null ],
-    [ "sci_b_baud_setting_t", "group___r_z_v___s_c_i___b___u_a_r_t.html#gaf6547baf4deaa1050785ce5a9aabd629", null ],
+    [ "sci_b_baud_setting_t", "group___r_z_v___s_c_i___b___u_a_r_t.html#ga274f826083ab2bf31b501ddeee29ec3b", null ],
     [ "sci_b_uart_rs485_setting_t", "group___r_z_v___s_c_i___b___u_a_r_t.html#ga514c91184be10063d8f09c4ba67fd1ab", null ],
-    [ "sci_b_uart_half_data_setting_t", "group___r_z_v___s_c_i___b___u_a_r_t.html#ga4cf42998a1c63a57ce8713850d74a69b", null ],
+    [ "sci_b_uart_half_data_setting_t", "group___r_z_v___s_c_i___b___u_a_r_t.html#ga75f868f57a4a239a3eba8380d1f1d9c8", null ],
     [ "sci_b_uart_extended_cfg_t", "group___r_z_v___s_c_i___b___u_a_r_t.html#ga46be7bcf79652a144fc0e3c9b1add6ba", null ],
     [ "sci_b_clk_src_t", "group___r_z_v___s_c_i___b___u_a_r_t.html#ga6c7272b892e958ee32afb345eb1d1bd0", [
       [ "SCI_B_UART_CLOCK_INT", "group___r_z_v___s_c_i___b___u_a_r_t.html#gga6c7272b892e958ee32afb345eb1d1bd0ae7e751b6add47042b86579de38c7a594", null ],

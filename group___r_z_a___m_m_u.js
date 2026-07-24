@@ -1,5 +1,6 @@
 var group___r_z_a___m_m_u =
 [
+    [ "mmu_instance_ctrl_t", "group___r_z_a___m_m_u.html#gac1299325f4f6e886f0ac8ccc312eae97", null ],
     [ "R_MMU_Open", "group___r_z_a___m_m_u.html#gaf2ff53d7a865a191aea49908302bcd40", null ],
     [ "R_MMU_Close", "group___r_z_a___m_m_u.html#ga00334860c2b9a0dc8bccbede18428cd1", null ],
     [ "R_MMU_AllocateTable", "group___r_z_a___m_m_u.html#gaaebd5a12450184c0fb7af17bd9cf5465", null ],

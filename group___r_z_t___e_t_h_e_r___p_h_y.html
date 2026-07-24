@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -285,6 +285,8 @@ This module can be added to the Stacks tab via New Stack &gt; Networking &gt; Et
 2</li>
 <li>
 3</li>
+<li>
+4</li>
 </ul>
 </td><td>0 </td><td>Select the Ethernet controller channel number. </td></tr>
 <tr>
@@ -341,6 +343,10 @@ ESC</li>
 GMAC1</li>
 <li>
 GMAC2</li>
+<li>
+RMAC0 in ESWM</li>
+<li>
+RMAC1 in ESWM</li>
 </ul>
 </td><td>GMAC </td><td>Select MDIO type to use. </td></tr>
 <tr>
@@ -351,6 +357,16 @@ OFF</li>
 ON</li>
 </ul>
 </td><td>ON </td><td>Select whether to ON or OFF auto negotiation. </td></tr>
+<tr>
+<td>MDI/MDI-X Mode</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Auto-MDIX</li>
+<li>
+MDI</li>
+<li>
+MDI-X</li>
+</ul>
+</td><td>Auto-MDIX </td><td>Select the MDI/MDI-X mode. </td></tr>
 <tr>
 <td>Speed</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -421,20 +437,24 @@ Limitations</h2>
 <ul>
 <li>The r_ether_phy module may need to be customized for PHY devices other than the ones currently supported (VSC8541, KSZ9131, KSZ9031, KSZ8081 and KSZ8041). Use the existing code as a starting point for creating a custom implementation.</li>
 </ul>
-<table class="memberdecls">
+<h1><a class="anchor" id="RZT_r-ether-phy-examples"></a>
+Examples</h1>
+<h2>ETHER PHY Basic Example</h2>
+<p>This is a basic example of minimal use of the ETHER PHY in an application.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> ether_phy_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    g_ether_phy0_ctrl.open         = 0U;</div><div class="line">    g_ether_phy0_ctrl.p_reg_etherc = (<span class="keywordtype">void</span> *) R_GMAC;</div><div class="line">    g_ether_phy0_cfg.channel       = 0;</div><div class="line"></div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ga1bb35164e7e044bd1878a4ce015199c3">R_BSP_RegisterProtectDisable</a>(<a class="code" href="group___r_z_t___b_s_p___m_c_u.html#gga8f69caf459fd80173db15fdee8bc6fa3af1cde6daab5fcdc9ceb1a2656683e065">BSP_REG_PROTECT_LPC_RESET</a>);</div><div class="line">    <a class="code" href="group___r_z_a___b_s_p___m_c_u.html#ga6c36d1d91a0e4e4a8373b2075f682145">R_BSP_MODULE_START</a>(<a class="code" href="group___r_z_t___b_s_p___m_c_u.html#gga7880302f0edd7cc4290c037809975950a796ec8c3a2840d483c947c29b279d3a0">FSP_IP_GMAC</a>, 0);</div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ga0c1592b2c2aee99bccf2d77026f87bae">R_BSP_ModuleResetDisable</a>(<a class="code" href="group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289aeb88bfa2af6c38e1c57b1bf42e34bdd8">BSP_MODULE_RESET_GMAC0_PCLKH</a>);</div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ga0c1592b2c2aee99bccf2d77026f87bae">R_BSP_ModuleResetDisable</a>(<a class="code" href="group___r_z_t___b_s_p___m_c_u.html#gga2ad788416478d6d6ea7398fd9ca84289accfd680e85fb8a6b6d5517b447c78671">BSP_MODULE_RESET_GMAC0_PCLKM</a>);</div><div class="line">    <a class="code" href="group___r_z_t___b_s_p___m_c_u.html#ga6a9c6b74983237446de75a9d9b65e752">R_BSP_RegisterProtectEnable</a>(<a class="code" href="group___r_z_t___b_s_p___m_c_u.html#gga8f69caf459fd80173db15fdee8bc6fa3af1cde6daab5fcdc9ceb1a2656683e065">BSP_REG_PROTECT_LPC_RESET</a>);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___e_t_h_e_r___p_h_y.html#gac54aa95e5976561c6d810eb1c868048c">R_ETHER_PHY_Open</a>(&amp;g_ether_phy0_ctrl, &amp;g_ether_phy0_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Start auto negotiation. */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___e_t_h_e_r___p_h_y.html#gaca73174d76fd87100066407a8ff13147">R_ETHER_PHY_StartAutoNegotiate</a>(&amp;g_ether_phy0_ctrl);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Polling until link is established. */</span></div><div class="line">    <span class="keywordflow">while</span> (FSP_SUCCESS != <a class="code" href="group___r_z_t___e_t_h_e_r___p_h_y.html#ga13e3a39ef86ed3f62805963c55442e03">R_ETHER_PHY_LinkStatusGet</a>(&amp;g_ether_phy0_ctrl))</div><div class="line">    {</div><div class="line">        <span class="comment">/* Do nothing */</span></div><div class="line">    }</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Get link partner ability from phy interface. */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___e_t_h_e_r___p_h_y.html#ga02b4fcbbb5e863cb759b610a7dc992bd">R_ETHER_PHY_LinkPartnerAbilityGet</a>(&amp;g_ether_phy0_ctrl,</div><div class="line">                                            &amp;g_ether_phy0_line_speed_duplex,</div><div class="line">                                            &amp;g_ether_phy0_local_pause,</div><div class="line">                                            &amp;g_ether_phy0_partner_pause);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Check current link status. */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___e_t_h_e_r___p_h_y.html#ga13e3a39ef86ed3f62805963c55442e03">R_ETHER_PHY_LinkStatusGet</a>(&amp;g_ether_phy0_ctrl);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_t_1_1st__ether__phy__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#struct_r_z_t_1_1st__ether__phy__instance__ctrl">st_ether_phy_instance_ctrl</a></td></tr>
 <tr class="separator:struct_r_z_t_1_1st__ether__phy__instance__ctrl"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_t_1_1s__ether__phy__extend__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#struct_r_z_t_1_1s__ether__phy__extend__cfg">s_ether_phy_extend_cfg</a></td></tr>
-<tr class="separator:struct_r_z_t_1_1s__ether__phy__extend__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_t_1_1st__ether__phy__extend__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#struct_r_z_t_1_1st__ether__phy__extend__cfg">st_ether_phy_extend_cfg</a></td></tr>
+<tr class="separator:struct_r_z_t_1_1st__ether__phy__extend__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:ga68756caf1f7329f01d58d1d94bf7df0e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#struct_r_z_t_1_1st__ether__phy__instance__ctrl">st_ether_phy_instance_ctrl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#ga68756caf1f7329f01d58d1d94bf7df0e">ether_phy_instance_ctrl_t</a></td></tr>
 <tr class="separator:ga68756caf1f7329f01d58d1d94bf7df0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga26ff7a9a1776e3e06f6a9f79d096cf4a"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#struct_r_z_t_1_1s__ether__phy__extend__cfg">s_ether_phy_extend_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#ga26ff7a9a1776e3e06f6a9f79d096cf4a">ether_phy_extend_cfg_t</a></td></tr>
-<tr class="separator:ga26ff7a9a1776e3e06f6a9f79d096cf4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9ffbfa4a14af6a2ac6dedce25db5769f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#struct_r_z_t_1_1st__ether__phy__extend__cfg">st_ether_phy_extend_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#ga9ffbfa4a14af6a2ac6dedce25db5769f">ether_phy_extend_cfg_t</a></td></tr>
+<tr class="separator:ga9ffbfa4a14af6a2ac6dedce25db5769f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -448,6 +468,8 @@ Enumerations</h2></td></tr>
 <tr class="separator:gac7e15fd94b78e695077edb3b2a1b73a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga62623cd3d6fd230145174c883f725631"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#ga62623cd3d6fd230145174c883f725631">ether_phy_auto_negotiation_t</a> </td></tr>
 <tr class="separator:ga62623cd3d6fd230145174c883f725631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaad12f16973fb7e7140ed613c36c26dcc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#gaad12f16973fb7e7140ed613c36c26dcc">ether_phy_mdi_mode_t</a> </td></tr>
+<tr class="separator:gaad12f16973fb7e7140ed613c36c26dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
 <a name="struct_r_z_t_1_1st__ether__phy__instance__ctrl" id="struct_r_z_t_1_1st__ether__phy__instance__ctrl"></a>
@@ -492,14 +514,14 @@ Capabilities bitmap for local advertising. </td></tr>
 
 </div>
 </div>
-<a name="struct_r_z_t_1_1s__ether__phy__extend__cfg" id="struct_r_z_t_1_1s__ether__phy__extend__cfg"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_t_1_1s__ether__phy__extend__cfg">&#9670;&nbsp;</a></span>RZT::s_ether_phy_extend_cfg</h2>
+<a name="struct_r_z_t_1_1st__ether__phy__extend__cfg" id="struct_r_z_t_1_1st__ether__phy__extend__cfg"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_t_1_1st__ether__phy__extend__cfg">&#9670;&nbsp;</a></span>RZT::st_ether_phy_extend_cfg</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZT::s_ether_phy_extend_cfg</td>
+          <td class="memname">struct RZT::st_ether_phy_extend_cfg</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -526,6 +548,10 @@ Capabilities bitmap for local advertising. </td></tr>
 <a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#ga62623cd3d6fd230145174c883f725631">ether_phy_auto_negotiation_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#afd966e998dcdcff553396bfe713016a4">auto_negotiation</a></td></tr>
 <tr class="memdesc:afd966e998dcdcff553396bfe713016a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auto Negotiation ON/OFF. <br /></td></tr>
 <tr class="separator:afd966e998dcdcff553396bfe713016a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc2697fa49a5aa58ec2cad4608f1f6ae"><td class="memItemLeft" align="right" valign="top"><a id="afc2697fa49a5aa58ec2cad4608f1f6ae"></a>
+<a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#gaad12f16973fb7e7140ed613c36c26dcc">ether_phy_mdi_mode_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#afc2697fa49a5aa58ec2cad4608f1f6ae">mdi_mode</a></td></tr>
+<tr class="memdesc:afc2697fa49a5aa58ec2cad4608f1f6ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">MDI Mode. <br /></td></tr>
+<tr class="separator:afc2697fa49a5aa58ec2cad4608f1f6ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4b9efc589289f7689c6f3cacfb87e74"><td class="memItemLeft" align="right" valign="top"><a id="af4b9efc589289f7689c6f3cacfb87e74"></a>
 <a class="el" href="group___r_z_t___b_s_p___i_o.html#ga0adbfd4b7db319886d667acb4804d80a">bsp_io_port_pin_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#af4b9efc589289f7689c6f3cacfb87e74">phy_reset_pin</a></td></tr>
 <tr class="memdesc:af4b9efc589289f7689c6f3cacfb87e74"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY reset pin. <br /></td></tr>
@@ -542,6 +568,10 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#a1d3403ffe1064815bd8b2891d29364fe">p_target_init</a> )(<a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#ga68756caf1f7329f01d58d1d94bf7df0e">ether_phy_instance_ctrl_t</a> *p_instance_ctrl)</td></tr>
 <tr class="memdesc:a1d3403ffe1064815bd8b2891d29364fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to callback that is called to initialize the target. <br /></td></tr>
 <tr class="separator:a1d3403ffe1064815bd8b2891d29364fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe62c2bbb07bedc4bd4dad60b8c3c69c"><td class="memItemLeft" align="right" valign="top"><a id="afe62c2bbb07bedc4bd4dad60b8c3c69c"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#afe62c2bbb07bedc4bd4dad60b8c3c69c">p_reg</a></td></tr>
+<tr class="memdesc:afe62c2bbb07bedc4bd4dad60b8c3c69c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to register base address. <br /></td></tr>
+<tr class="separator:afe62c2bbb07bedc4bd4dad60b8c3c69c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 
 </div>
@@ -562,18 +592,18 @@ void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gr
 
 </div>
 </div>
-<a id="ga26ff7a9a1776e3e06f6a9f79d096cf4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga26ff7a9a1776e3e06f6a9f79d096cf4a">&#9670;&nbsp;</a></span>ether_phy_extend_cfg_t</h2>
+<a id="ga9ffbfa4a14af6a2ac6dedce25db5769f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9ffbfa4a14af6a2ac6dedce25db5769f">&#9670;&nbsp;</a></span>ether_phy_extend_cfg_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#struct_r_z_t_1_1s__ether__phy__extend__cfg">s_ether_phy_extend_cfg</a> <a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#ga26ff7a9a1776e3e06f6a9f79d096cf4a">ether_phy_extend_cfg_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#struct_r_z_t_1_1st__ether__phy__extend__cfg">st_ether_phy_extend_cfg</a> <a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#ga9ffbfa4a14af6a2ac6dedce25db5769f">ether_phy_extend_cfg_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Extended configuration Please refer to the struct <a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#struct_r_z_t_1_1s__ether__phy__extend__cfg">s_ether_phy_extend_cfg</a>. </p>
+<p>Extended configuration. Please refer to the struct <a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#struct_r_z_t_1_1st__ether__phy__extend__cfg">st_ether_phy_extend_cfg</a>. </p>
 
 </div>
 </div>
@@ -686,6 +716,29 @@ void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gr
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga62623cd3d6fd230145174c883f725631ad7d16be369eb06f5cf6b7a58951ffaf5"></a>ETHER_PHY_AUTO_NEGOTIATION_OFF&#160;</td><td class="fielddoc"><p>Auto Negotiation is ON. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga62623cd3d6fd230145174c883f725631a2daaebff590d60ca907e665690f5dd32"></a>ETHER_PHY_AUTO_NEGOTIATION_ON&#160;</td><td class="fielddoc"><p>Auto Negotiation is OFF. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gaad12f16973fb7e7140ed613c36c26dcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaad12f16973fb7e7140ed613c36c26dcc">&#9670;&nbsp;</a></span>ether_phy_mdi_mode_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_t___e_t_h_e_r___p_h_y.html#gaad12f16973fb7e7140ed613c36c26dcc">ether_phy_mdi_mode_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>PHY MDI Mode for setting </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaad12f16973fb7e7140ed613c36c26dcca551489cfd028ee5620e12f647ee2ffb9"></a>ETHER_PHY_MDI_MODE_AUTO&#160;</td><td class="fielddoc"><p>Auto-MDIX. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaad12f16973fb7e7140ed613c36c26dcca57e79e09ab8e27ca09df85de0c5be56b"></a>ETHER_PHY_MDI_MODE_MDI&#160;</td><td class="fielddoc"><p>MDI. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaad12f16973fb7e7140ed613c36c26dcca72548cea4651cfcd783633a81e2e3e54"></a>ETHER_PHY_MDI_MODE_MDIX&#160;</td><td class="fielddoc"><p>MDI-X. </p>
 </td></tr>
 </table>
 
@@ -1004,7 +1057,7 @@ void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gr
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

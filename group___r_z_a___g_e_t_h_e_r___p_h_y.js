@@ -8,6 +8,7 @@ var group___r_z_a___g_e_t_h_e_r___p_h_y =
       [ "interface_status", "group___r_z_a___g_e_t_h_e_r___p_h_y.html#a0ccfdf4be259781f5b501b57f88f8f1d", null ]
     ] ],
     [ "ether_phy_instance_ctrl_t", "group___r_z_a___g_e_t_h_e_r___p_h_y.html#ga68756caf1f7329f01d58d1d94bf7df0e", null ],
+    [ "ether_phy_instance_extend_t", "group___r_z_a___g_e_t_h_e_r___p_h_y.html#ga0fd2d16aa3acec208c2a92208f3b9639", null ],
     [ "ether_phy_interface_status_t", "group___r_z_a___g_e_t_h_e_r___p_h_y.html#ga42a75f14ab026764468078631e8d0260", [
       [ "GETHER_PHY_INTERFACE_STATUS_UNINITIALIZED", "group___r_z_a___g_e_t_h_e_r___p_h_y.html#gga42a75f14ab026764468078631e8d0260a451c90afabeeb2fea556878baa74c01f", null ],
       [ "GETHER_PHY_INTERFACE_STATUS_INITIALIZED", "group___r_z_a___g_e_t_h_e_r___p_h_y.html#gga42a75f14ab026764468078631e8d0260af09a3e8d8f7d45854e014773f61f0b01", null ]

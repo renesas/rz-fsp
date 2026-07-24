@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -269,7 +269,9 @@ Placeholder for user data. </td></tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock"><p>Clock configuration structure - Used as an input parameter to the <a class="el" href="group___r_z_t___c_g_c___a_p_i.html#a75fb7923ed0c951e9aa2d18311707105">cgc_api_t::clockStart</a> function for the PLL clock.</p>
-<p>Clock configuration structure - Dummy definition because it is not used in this MPU. Set NULL as an input parameter to the <a class="el" href="group___r_z_t___c_g_c___a_p_i.html#a75fb7923ed0c951e9aa2d18311707105">cgc_api_t::clockStart</a> function for the PLL clock. </p>
+<p>Clock configuration structure - Used as an input parameter to the <a class="el" href="group___r_z_t___c_g_c___a_p_i.html#a75fb7923ed0c951e9aa2d18311707105">cgc_api_t::clockStart</a> function for the PLL clock.</p>
+<p>Clock configuration structure - Dummy definition because it is not used in this MPU. Set NULL as an input parameter to the <a class="el" href="group___r_z_t___c_g_c___a_p_i.html#a75fb7923ed0c951e9aa2d18311707105">cgc_api_t::clockStart</a> function for the PLL clock.</p>
+<p>Clock configuration structure - Used as an input parameter to the <a class="el" href="group___r_z_t___c_g_c___a_p_i.html#a75fb7923ed0c951e9aa2d18311707105">RZT::cgc_api_t::clockStart</a> function for the PLL clock. </p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -313,25 +315,25 @@ PLL divisor for output clock R. </td></tr>
 <td class="fieldname">
 pll0_ssc_cfg</td>
 <td class="fielddoc">
-</td></tr>
+SSC settings of PLL0 (for RZ/T2H and RZ/T2N). </td></tr>
 <tr><td class="fieldtype">
 <a id="ae3bbd990624b3113c9a1092c957984be"></a>cgc_pll_ssc_cfg_t</td>
 <td class="fieldname">
 pll2_ssc_cfg</td>
 <td class="fielddoc">
-</td></tr>
+SSC settings of PLL2 (for RZ/T2H and RZ/T2N). </td></tr>
 <tr><td class="fieldtype">
 <a id="a14d22fd034aa2ba4a6ed90cc9ceda1f7"></a>cgc_pll_vco_cfg_t</td>
 <td class="fieldname">
 pll3_vco_cfg</td>
 <td class="fielddoc">
-</td></tr>
+VCO settings of PLL3 (for RZ/T2H). </td></tr>
 <tr><td class="fieldtype">
 <a id="a44b7a3baf02bac7ad707e8f2f5eca1ca"></a>uint32_t</td>
 <td class="fieldname">
 dummy</td>
 <td class="fielddoc">
-</td></tr>
+Dummy definition for RZ/T2L, RZ/T2M, and RZ/T2ME because it is the unsupported feature on those devices. </td></tr>
 </table>
 
 </div>
@@ -871,6 +873,7 @@ Pointer to the API structure for this instance. </td></tr>
       </table>
 </div><div class="memdoc">
 <p>Please refer to the struct <a class="el" href="group___r_z_t___c_g_c___a_p_i.html#struct_r_z_t_1_1st__cgc__divider__cfg">st_cgc_divider_cfg</a>.</p>
+<p>Clock configuration structure. Please refer to the struct <a class="el" href="group___r_z_t___c_g_c___a_p_i.html#struct_r_z_t_1_1st__cgc__divider__cfg">st_cgc_divider_cfg</a>.</p>
 <p>Clock configuration structure Please refer to the struct <a class="el" href="group___r_z_t___c_g_c___a_p_i.html#struct_r_z_t_1_1st__cgc__divider__cfg">st_cgc_divider_cfg</a>. </p>
 
 </div>
@@ -916,7 +919,8 @@ Pointer to the API structure for this instance. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Clock configuration Please refer to the struct <a class="el" href="group___r_z_t___c_g_c___a_p_i.html#struct_r_z_t_1_1st__cgc__clocks__cfg">st_cgc_clocks_cfg</a>. </p>
+<p>Clock configuration Please refer to the struct <a class="el" href="group___r_z_t___c_g_c___a_p_i.html#struct_r_z_t_1_1st__cgc__clocks__cfg">st_cgc_clocks_cfg</a>.</p>
+<p>Clock configuration. Please refer to the struct <a class="el" href="group___r_z_t___c_g_c___a_p_i.html#struct_r_z_t_1_1st__cgc__clocks__cfg">st_cgc_clocks_cfg</a>. </p>
 
 </div>
 </div>
@@ -994,9 +998,21 @@ Pointer to the API structure for this instance. </td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6a33b68f7ecc39305f6b218b1df6d97fe0"></a>CGC_CLOCK_PLL2&#160;</td><td class="fielddoc"><p>The PLL2 oscillator. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6a9aa99bb1d1639102ef34d8fc7cdf656a"></a>CGC_CLOCK_PLL3&#160;</td><td class="fielddoc"><p>The PLL3 oscillator. </p>
+<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6ab5d0f29430cc9ddecd1bdf71cdeea505"></a>CGC_CLOCK_PLL3&#160;</td><td class="fielddoc"><p>The PLL3 oscillator. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6a8f531d8a513cb17ec213a45628502458"></a>CGC_CLOCK_PLL4&#160;</td><td class="fielddoc"><p>The PLL4 oscillator. </p>
+<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6ac515b711eac4fb0d10cef723336a1f4c"></a>CGC_CLOCK_PLL4&#160;</td><td class="fielddoc"><p>The PLL4 oscillator. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6ab0b6ca21b0e64aec79ea17e230bab990"></a>CGC_CLOCK_LOCO&#160;</td><td class="fielddoc"><p>The low speed on chip oscillator. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6a9291500bace17273f39dba13a901a1d6"></a>CGC_CLOCK_PLL0&#160;</td><td class="fielddoc"><p>The PLL0 oscillator. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6a608ca5b9be1dc24b526d263f7726b345"></a>CGC_CLOCK_PLL1&#160;</td><td class="fielddoc"><p>The PLL1 oscillator. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6ab0b6ca21b0e64aec79ea17e230bab990"></a>CGC_CLOCK_LOCO&#160;</td><td class="fielddoc"><p>The low speed on chip oscillator. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6a9291500bace17273f39dba13a901a1d6"></a>CGC_CLOCK_PLL0&#160;</td><td class="fielddoc"><p>The PLL0 oscillator. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6a608ca5b9be1dc24b526d263f7726b345"></a>CGC_CLOCK_PLL1&#160;</td><td class="fielddoc"><p>The PLL1 oscillator. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6ab0b6ca21b0e64aec79ea17e230bab990"></a>CGC_CLOCK_LOCO&#160;</td><td class="fielddoc"><p>The low speed on chip oscillator. </p>
 </td></tr>
@@ -1010,11 +1026,11 @@ Pointer to the API structure for this instance. </td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6a608ca5b9be1dc24b526d263f7726b345"></a>CGC_CLOCK_PLL1&#160;</td><td class="fielddoc"><p>The PLL1 oscillator. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6ab0b6ca21b0e64aec79ea17e230bab990"></a>CGC_CLOCK_LOCO&#160;</td><td class="fielddoc"><p>The low speed on chip oscillator. </p>
+<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6a33b68f7ecc39305f6b218b1df6d97fe0"></a>CGC_CLOCK_PLL2&#160;</td><td class="fielddoc"><p>The PLL2 oscillator. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6a9291500bace17273f39dba13a901a1d6"></a>CGC_CLOCK_PLL0&#160;</td><td class="fielddoc"><p>The PLL0 oscillator. </p>
+<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6ab5d0f29430cc9ddecd1bdf71cdeea505"></a>CGC_CLOCK_PLL3&#160;</td><td class="fielddoc"><p>The PLL3 oscillator. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6a608ca5b9be1dc24b526d263f7726b345"></a>CGC_CLOCK_PLL1&#160;</td><td class="fielddoc"><p>The PLL1 oscillator. </p>
+<tr><td class="fieldname"><a id="ga4dcbe960cf591207eef834969b83f8a6ac515b711eac4fb0d10cef723336a1f4c"></a>CGC_CLOCK_PLL4&#160;</td><td class="fielddoc"><p>The PLL4 oscillator. </p>
 </td></tr>
 </table>
 
@@ -1204,6 +1220,12 @@ Pointer to the API structure for this instance. </td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="ga67f8525be602a7cce075f0b33d5f2ad8a23eedd8537efd4314a98d4bed00816cb"></a>CGC_CLOCK_CHANGE_NONE&#160;</td><td class="fielddoc"><p>No change to the clock. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="ga67f8525be602a7cce075f0b33d5f2ad8a434557f7a621dd2a660504b8788fe3c9"></a>CGC_CLOCK_CHANGE_START&#160;</td><td class="fielddoc"><p>Start the clock. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga67f8525be602a7cce075f0b33d5f2ad8a4bffb8071123f30689d74848b8b1fb55"></a>CGC_CLOCK_CHANGE_STOP&#160;</td><td class="fielddoc"><p>Stop the clock. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga67f8525be602a7cce075f0b33d5f2ad8a23eedd8537efd4314a98d4bed00816cb"></a>CGC_CLOCK_CHANGE_NONE&#160;</td><td class="fielddoc"><p>No change to the clock. </p>
+</td></tr>
 </table>
 
 </div>
@@ -1214,7 +1236,7 @@ Pointer to the API structure for this instance. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

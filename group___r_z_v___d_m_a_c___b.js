@@ -1,10 +1,5 @@
 var group___r_z_v___d_m_a_c___b =
 [
-    [ "st_dmac_b_register_set_setting_t", "group___r_z_v___d_m_a_c___b.html#struct_r_z_v_1_1st__dmac__b__register__set__setting__t", [
-      [ "p_src", "group___r_z_v___d_m_a_c___b.html#aa0553362b46152b7234c882914e161d9", null ],
-      [ "p_dest", "group___r_z_v___d_m_a_c___b.html#aa1c5b83e492937d1d9d62a6f48082ca8", null ],
-      [ "length", "group___r_z_v___d_m_a_c___b.html#aebb70c2aab3407a9f05334c47131a43b", null ]
-    ] ],
     [ "st_dmac_b_link_cfg", "group___r_z_v___d_m_a_c___b.html#struct_r_z_v_1_1st__dmac__b__link__cfg", [
       [ "p_src", "group___r_z_v___d_m_a_c___b.html#a381a302f66d871b05dc4a32485744166", null ],
       [ "p_dest", "group___r_z_v___d_m_a_c___b.html#a156152c375c6e591b91fe46c07deb56b", null ],
@@ -39,16 +34,9 @@ var group___r_z_v___d_m_a_c___b =
       [ "p_context", "group___r_z_v___d_m_a_c___b.html#aa207a6ef4d9f49f00f01a37810ac301d", null ],
       [ "p_reg", "group___r_z_v___d_m_a_c___b.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
-    [ "st_dmac_b_extended_info", "group___r_z_v___d_m_a_c___b.html#struct_r_z_v_1_1st__dmac__b__extended__info", [
-      [ "src_size", "group___r_z_v___d_m_a_c___b.html#a8edb13c6557600538a7df42ee6543f35", null ],
-      [ "dest_size", "group___r_z_v___d_m_a_c___b.html#acde77eeaddd35305b3a935561f64bfe2", null ],
-      [ "p_next1_register_setting", "group___r_z_v___d_m_a_c___b.html#ac65827394fa87700d0b98bb078e92d34", null ]
-    ] ],
-    [ "dmac_b_register_set_setting_t", "group___r_z_v___d_m_a_c___b.html#gac5f62b61bc9a27db8b16167fea3793b8", null ],
     [ "dmac_b_link_cfg_t", "group___r_z_v___d_m_a_c___b.html#ga8f76ff4a2bc7d424cb564d1a6e1e36c9", null ],
     [ "dmac_b_instance_ctrl_t", "group___r_z_v___d_m_a_c___b.html#gaa6f1b60af1d6ef5d16d8d46d9092ab3a", null ],
     [ "dmac_b_extended_cfg_t", "group___r_z_v___d_m_a_c___b.html#ga89173598c8a24ced842313bb4c512d3e", null ],
-    [ "dmac_b_extended_info_t", "group___r_z_v___d_m_a_c___b.html#ga9c497ffafb33ec602b6c960b21a9ce3a", null ],
     [ "dmac_b_transfer_size_t", "group___r_z_v___d_m_a_c___b.html#ga77c350dbc52956dc8b1ce4987e721e05", [
       [ "DMAC_B_TRANSFER_SIZE_1_BYTE", "group___r_z_v___d_m_a_c___b.html#gga77c350dbc52956dc8b1ce4987e721e05a721e23f79b32c72da736ec54d5421bec", null ],
       [ "DMAC_B_TRANSFER_SIZE_2_BYTE", "group___r_z_v___d_m_a_c___b.html#gga77c350dbc52956dc8b1ce4987e721e05a4c2cfb773f20e835d60f56c0a629c8cf", null ],

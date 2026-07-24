@@ -18,6 +18,8 @@ var group___r_z_t___e_l_c =
       [ "ELC_GPT_EVENT_MASK_GPTX_BIT_11", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05da5329c0dd1d70e5236ac9a3859419bbad", null ],
       [ "ELC_GPT_EVENT_MASK_GPTX_BIT_12", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05da94ece71bb30fc36d414c50a29281e3ef", null ],
       [ "ELC_GPT_EVENT_MASK_GPTX_BIT_13", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05daf894bd883cb606d8eaf52fb662f22f9f", null ],
+      [ "ELC_GPT_EVENT_MASK_GPTX_BIT_14", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05da9b73ee2d6f788825cef1377967649006", null ],
+      [ "ELC_GPT_EVENT_MASK_GPTX_BIT_15", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05dac1585b23a1f1c10b415f13662a9d2424", null ],
       [ "ELC_GPT_EVENT_MASK_GPTY_BIT_0", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05dab08f2195e3b2df0f7660cd0004ea2cb0", null ],
       [ "ELC_GPT_EVENT_MASK_GPTY_BIT_1", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05da8a5c493ea9addf8aff2106372babe1eb", null ],
       [ "ELC_GPT_EVENT_MASK_GPTY_BIT_2", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05dadd58e99047beecff3b675262badfafa1", null ],
@@ -31,7 +33,9 @@ var group___r_z_t___e_l_c =
       [ "ELC_GPT_EVENT_MASK_GPTY_BIT_10", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05daa0ee5ed1115edb8771140854eea822a1", null ],
       [ "ELC_GPT_EVENT_MASK_GPTY_BIT_11", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05da3d516180fd896ae1366f80bad3fe7a12", null ],
       [ "ELC_GPT_EVENT_MASK_GPTY_BIT_12", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05dad68a617c9a37ac9dbb8179b741be018e", null ],
-      [ "ELC_GPT_EVENT_MASK_GPTY_BIT_13", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05daad0734f8e69041cf49b4454b81e592ec", null ]
+      [ "ELC_GPT_EVENT_MASK_GPTY_BIT_13", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05daad0734f8e69041cf49b4454b81e592ec", null ],
+      [ "ELC_GPT_EVENT_MASK_GPTY_BIT_14", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05da1b56276c21aebc517cd993ee5087724e", null ],
+      [ "ELC_GPT_EVENT_MASK_GPTY_BIT_15", "group___r_z_t___e_l_c.html#ggaf4fa75c085eb265e6c361a1549d1f05da1485192aa7c19e71778ad6664f138ff6", null ]
     ] ],
     [ "R_ELC_Open", "group___r_z_t___e_l_c.html#ga35864de459d2ef45a03da4343729712f", null ],
     [ "R_ELC_Close", "group___r_z_t___e_l_c.html#gac5e6b998138cc28bcbd8b17a5eb26674", null ],

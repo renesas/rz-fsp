@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -213,24 +213,32 @@ Overview</h1>
 <h2><a class="anchor" id="RZT_r-pcie_ep-features"></a>
 Features</h2>
 <ul>
-<li>By accessing the memory space of the RZ Microprocessor, MRd/MWr requests are issued and data is exchanged with the PCIE device.<a class="anchor" id="RZT_um_pci_memory_write_request"></a><a class="anchor" id="RZT_um_pci_memory_read_request"></a></li>
+<li>By accessing the memory space (either PCIE space (when the bus master supports 64-bit address space) or PCIE mirror space (when the bus master supports 32-bit address space only)) of the RZ Microprocessor, MRd/MWr requests are issued and data is exchanged with the PCIE device.<a class="anchor" id="RZT_um_pci_memory_write_request"></a><a class="anchor" id="RZT_um_pci_memory_read_request"></a><ul>
+<li>When the CPU accesses PCIE or PCIE mirror space, MWr/MRd requests are issued. The access destination address is configured using PCIe windows. For more details on how to configure PCIe windows refer to the <a class="el" href="group___r_z_t___p_c_i_e___e_p.html#RZT_r_pcie_ep-pcie-window-settings">PCIe Window settings (AXI to PCIe)</a> sections below.</li>
+<li>When accessed by MWr/MRd requests from an external PCIe device, the accessed address is configured using AXI windows. For more details on how to configure AXI windows refer to the <a class="el" href="group___r_z_t___p_c_i_e___e_p.html#RZT_r_pcie_ep-axi-window-settings">AXI Window settings (PCIe to AXI)</a> sections below.</li>
+</ul>
+</li>
 <li>The following is possible with Msg/MsgD requests.<ul>
 <li>Msg/MsgD can be sent/received.<a class="anchor" id="RZT_um_pci_message_send"></a><a class="anchor" id="RZT_um_pci_message_receive"></a></li>
 </ul>
 </li>
-<li>Can be set to either "1 Lane / 2 Channels" or "2 Lanes / 1 Channel".</li>
-<li>Can set its own Configuration Register0, including the Hwinit section, when opened.</li>
+<li>Can be set the channels and number of lanes to use. *1</li>
+<li>Can set its own Configuration Register0, including the Hwinit section, when the driver is opened.</li>
 <li>Can read/write its own Configuration Register.<a class="anchor" id="RZT_um_pci_self_configuration_register_get"></a><a class="anchor" id="RZT_um_pci_self_configuration_register_set"></a></li>
-<li>Can set BAR, PCIe and AXI window.<a class="anchor" id="RZT_um_pci_axi_window_settings"></a><a class="anchor" id="RZT_um_pci_pcie_window_settings"></a></li>
+<li>Can set BAR, PCIe and AXI window.<a class="anchor" id="RZT_um_pci_axi_window_settings"></a><a class="anchor" id="RZT_um_pci_pcie_window_settings"></a><ul>
+<li>BAR can be statically set according to the user configuration when the driver is opened. This is because FSP PCIE_EP driver is intended for use with embedded systems, the areas required by End Point device will generally be known in advance.</li>
+</ul>
+</li>
 <li>INTx interrupts can be issued.<a class="anchor" id="RZT_um_pci_assert_deassert_intx"></a></li>
 <li>MSI interrupts can be issued.<a class="anchor" id="RZT_um_pci_assert_msi"></a></li>
 <li>Can get the link status.<a class="anchor" id="RZT_um_pci_link_status"></a></li>
 <li>Can be notified when a function level reset is received.<a class="anchor" id="RZT_um_pci_function_level_reset_notify"></a></li>
 <li>Two functions can be set.<a class="anchor" id="RZT_um_pci_multi_function"></a></li>
-<li>Link width can be dynamically changed and user can be notified.<a class="anchor" id="RZT_um_pci_link_width_change"></a></li>
+<li>Link width can be dynamically changed and user can be notified. *2<a class="anchor" id="RZT_um_pci_link_width_change"></a></li>
 <li>Link Speed can be dynamically changed.<a class="anchor" id="RZT_um_pci_link_speed_change"></a></li>
-<li>Equalization can be requested. Also, user can be notified when equalization is requested.<a class="anchor" id="RZT_um_pci_link_equalization"></a> <a class="anchor" id="RZT_um_pci_callback_set"></a> </li>
+<li>Equalization can be requested. Also, user can be notified when equalization is requested. *3<a class="anchor" id="RZT_um_pci_link_equalization"></a> *1 Some devices only support 1 lane/1 channel. *2 Not implemented on specific devices that only support 1 lane/1 channel. *3 Not implemented on specific devices that do not support PCI Express Gen3.</li>
 </ul>
+<p><a class="anchor" id="RZT_um_pci_callback_set"></a> </p>
 <h1><a class="anchor" id="RZT_r-pcie_ep-configuration"></a>
 Configuration</h1>
 <p><h2>Build Time Configurations for r_pcie_ep</h2>
@@ -249,13 +257,7 @@ Disabled</li>
 </ul>
 </td><td>Default (BSP) </td><td>If selected code for parameter checking is included in the build. </td></tr>
 <tr>
-<td>Link Mode</td><td><ul style="margin-top:0;margin-bottom:0;">
-<li>
-2Lanes / 1Channel</li>
-<li>
-1Lane / 2Channels</li>
-</ul>
-</td><td>2Lanes / 1Channel </td><td>Link Mode. </td></tr>
+<td>Link Mode</td><td>MCU Specific Options</td><td></td><td>Link Mode. </td></tr>
 <tr>
 <td>Nested Interrupt (Multiplex Interrupt)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -273,13 +275,13 @@ This module can be added to the Stacks tab via New Stack &gt; Connectivity &gt; 
 <tr>
 <td>General &gt; Name</td><td>Name must be a valid C symbol</td><td>g_pci_ep0 </td><td>Module name. </td></tr>
 <tr>
-<td>General &gt; Channel</td><td>Channel should be 0 or 1</td><td>0 </td><td>Specify the PCIE channel. </td></tr>
+<td>General &gt; Channel</td><td>Value must be a non-negative integer</td><td>0 </td><td>Specify the PCIE channel. </td></tr>
 <tr>
 <td>General &gt; Function</td><td>Function should be 0 or 1</td><td>0 </td><td>Specify the PCIE EP function. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Vender ID / Device ID &gt; Vender ID</td><td>Manual Entry</td><td>0x0000 </td><td>Vender ID. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Vender ID / Device ID &gt; Vender ID</td><td>Value must be a 16bit width non-negative integer</td><td>0x0000 </td><td>Vender ID. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Vender ID / Device ID &gt; Device ID</td><td>Manual Entry</td><td>0x0000 </td><td>Device ID. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Vender ID / Device ID &gt; Device ID</td><td>Value must be a 16bit width non-negative integer</td><td>0x0000 </td><td>Device ID. </td></tr>
 <tr>
 <td>Type 0 Configuration Space Setting &gt; Command &gt; Memory Space Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -321,9 +323,9 @@ Enable</li>
 </ul>
 </td><td>Disable </td><td>Interrupt Disable. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Revision ID / Class Code &gt; Revision ID</td><td>Manual Entry</td><td>0x00 </td><td>Revision ID. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Revision ID / Class Code &gt; Revision ID</td><td>Value must be a 8bit width non-negative integer</td><td>0x00 </td><td>Revision ID. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Revision ID / Class Code &gt; Class Code</td><td>Manual Entry</td><td>0x000 </td><td>Class Code. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Revision ID / Class Code &gt; Class Code</td><td>Value must be a 24bit width non-negative integer</td><td>0x000 </td><td>Class Code. </td></tr>
 <tr>
 <td>Type 0 Configuration Space Setting &gt; Base Address Register 0 / 1 &gt; Type</td><td>64bit</td><td>64bit </td><td>Base Address Register 0 / 1 Type. </td></tr>
 <tr>
@@ -335,9 +337,9 @@ Enable</li>
 </ul>
 </td><td>Disable </td><td>Base Address Register 0 / 1 Prefetch. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Base Address Register 0 / 1 &gt; BAR0</td><td>Manual Entry</td><td>0x00000000 </td><td>Base Address Register 0. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Base Address Register 0 / 1 &gt; BAR0</td><td>Value must be a non-negative integer between 0x00000000 and 0xFFFFFFF0</td><td>0x00000000 </td><td>Base Address Register 0. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Base Address Register 0 / 1 &gt; BAR1</td><td>Manual Entry</td><td>0x00000000 </td><td>Base Address Register 1. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Base Address Register 0 / 1 &gt; BAR1</td><td>Value must be a non-negative integer between 0x00000000 and 0xFFFFFFFF</td><td>0x00000000 </td><td>Base Address Register 1. </td></tr>
 <tr>
 <td>Type 0 Configuration Space Setting &gt; Base Address Register 2 / 3 &gt; Type</td><td>64bit</td><td>64bit </td><td>Base Address Register 2 / 3 Type. </td></tr>
 <tr>
@@ -349,9 +351,9 @@ Enable</li>
 </ul>
 </td><td>Disable </td><td>Base Address Register 2 / 3 Prefetch. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Base Address Register 2 / 3 &gt; BAR2</td><td>Manual Entry</td><td>0x00000000 </td><td>Base Address Register 2. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Base Address Register 2 / 3 &gt; BAR2</td><td>Value must be a non-negative integer between 0x00000000 and 0xFFFFFFF0</td><td>0x00000000 </td><td>Base Address Register 2. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Base Address Register 2 / 3 &gt; BAR3</td><td>Manual Entry</td><td>0x00000000 </td><td>Base Address Register 3. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Base Address Register 2 / 3 &gt; BAR3</td><td>Value must be a non-negative integer between 0x00000000 and 0xFFFFFFFF</td><td>0x00000000 </td><td>Base Address Register 3. </td></tr>
 <tr>
 <td>Type 0 Configuration Space Setting &gt; Base Address Register 4 / 5 &gt; Type</td><td>64bit</td><td>64bit </td><td>Base Address Register 4 / 5 Type. </td></tr>
 <tr>
@@ -363,13 +365,13 @@ Enable</li>
 </ul>
 </td><td>Disable </td><td>Base Address Register 4 / 5 Prefetch. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Base Address Register 4 / 5 &gt; BAR4 (DEPRECATED)</td><td>Base Address Register 4 is fixed to 0x20000000</td><td>0x20000000 </td><td>BAR4 configuration is deprecated. Base Address Register 4. This value is fixed. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Base Address Register 4 / 5 &gt; BAR4 (DEPRECATED)</td><td>Manual Entry</td><td>0x20000000 </td><td>BAR4 configuration is deprecated. Base Address Register 4. This value is fixed. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Base Address Register 4 / 5 &gt; BAR5 (DEPRECATED)</td><td>Base Address Register 5 is fixed to 0x00000000</td><td>0x00000000 </td><td>BAR5 configuration is deprecated. Base Address Register 5. This value is fixed. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Base Address Register 4 / 5 &gt; BAR5 (DEPRECATED)</td><td>Manual Entry</td><td>0x00000000 </td><td>BAR5 configuration is deprecated. Base Address Register 5. This value is fixed. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Subsystem ID &gt; Subsystem Vendor ID</td><td>Manual Entry</td><td>0x0000 </td><td>Subsystem Vendor ID. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Subsystem ID &gt; Subsystem Vendor ID</td><td>Value must be a 16bit width non-negative integer</td><td>0x0000 </td><td>Subsystem Vendor ID. </td></tr>
 <tr>
-<td>Type 0 Configuration Space Setting &gt; Subsystem ID &gt; Subsystem ID</td><td>Manual Entry</td><td>0x0000 </td><td>Subsystem ID. </td></tr>
+<td>Type 0 Configuration Space Setting &gt; Subsystem ID &gt; Subsystem ID</td><td>Value must be a 16bit width non-negative integer</td><td>0x0000 </td><td>Subsystem ID. </td></tr>
 <tr>
 <td>Type 0 Configuration Space Setting &gt; Interrupt Register &gt; Interrupt Pin</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -395,11 +397,11 @@ Enabled</li>
 </ul>
 </td><td>Enabled </td><td>AXI Window 0 Enable. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 0 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 0 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 0 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 0 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 0 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>AXI Window 0 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 0 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>AXI Window 0 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 0 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 0 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 0 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 0 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>AXI Window Setting &gt; AXI Window Setting 1 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -409,11 +411,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>AXI Window 1 Enable. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 1 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 1 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 1 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 1 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 1 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>AXI Window 1 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 1 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>AXI Window 1 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 1 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 1 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 1 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 1 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>AXI Window Setting &gt; AXI Window Setting 2 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -423,11 +425,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>AXI Window 2 Enable. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 2 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 2 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 2 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 2 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 2 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>AXI Window 2 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 2 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>AXI Window 2 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 2 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 2 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 2 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 2 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>AXI Window Setting &gt; AXI Window Setting 3 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -437,11 +439,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>AXI Window 3 Enable. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 3 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 3 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 3 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 3 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 3 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>AXI Window 3 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 3 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>AXI Window 3 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 3 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 3 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 3 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 3 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>AXI Window Setting &gt; AXI Window Setting 4 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -451,11 +453,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>AXI Window 4 Enable. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 4 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 4 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 4 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 4 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 4 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>AXI Window 4 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 4 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>AXI Window 4 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 4 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 4 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 4 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 4 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>AXI Window Setting &gt; AXI Window Setting 5 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -465,11 +467,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>AXI Window 5 Enable. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 5 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 5 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 5 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 5 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 5 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>AXI Window 5 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 5 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>AXI Window 5 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 5 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 5 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 5 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 5 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>AXI Window Setting &gt; AXI Window Setting 6 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -479,11 +481,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>AXI Window 6 Enable. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 6 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 6 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 6 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 6 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 6 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>AXI Window 6 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 6 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>AXI Window 6 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 6 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 6 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 6 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 6 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>AXI Window Setting &gt; AXI Window Setting 7 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -493,11 +495,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>AXI Window 7 Enable. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 7 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 7 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 7 &gt; AXI Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 7 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 7 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1y)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>AXI Window 7 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 7 &gt; AXI Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>AXI Window 7 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>AXI Window Setting &gt; AXI Window Setting 7 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>AXI Window 7 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>AXI Window Setting &gt; AXI Window Setting 7 &gt; AXI Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>AXI Window 7 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>PCIe Window Setting &gt; PCIe Window Setting 0 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -507,11 +509,11 @@ Enabled</li>
 </ul>
 </td><td>Enabled </td><td>PCIe Window 0 Enable. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 0 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 0 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 0 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 0 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 0 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>PCIe Window 0 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 0 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>PCIe Window 0 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 0 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 0 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 0 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 0 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>PCIe Window Setting &gt; PCIe Window Setting 1 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -521,11 +523,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>PCIe Window 1 Enable. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 1 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 1 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 1 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 1 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 1 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>PCIe Window 1 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 1 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>PCIe Window 1 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 1 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 1 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 1 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 1 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>PCIe Window Setting &gt; PCIe Window Setting 2 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -535,11 +537,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>PCIe Window 2 Enable. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 2 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 2 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 2 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 2 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 2 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>PCIe Window 2 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 2 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>PCIe Window 2 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 2 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 2 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 2 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 2 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>PCIe Window Setting &gt; PCIe Window Setting 3 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -549,11 +551,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>PCIe Window 3 Enable. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 3 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 3 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 3 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 3 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 3 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>PCIe Window 3 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 3 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>PCIe Window 3 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 3 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 3 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 3 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 3 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>PCIe Window Setting &gt; PCIe Window Setting 4 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -563,11 +565,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>PCIe Window 4 Enable. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 4 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 4 Base Address The address must be 4Kbyte aligned.. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 4 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 4 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 4 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>PCIe Window 4 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 4 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>PCIe Window 4 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 4 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 4 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 4 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 4 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>PCIe Window Setting &gt; PCIe Window Setting 5 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -577,11 +579,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>PCIe Window 5 Enable. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 5 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 5 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 5 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 5 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 5 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>PCIe Window 5 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 5 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>PCIe Window 5 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 5 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 5 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 5 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 5 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>PCIe Window Setting &gt; PCIe Window Setting 6 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -591,11 +593,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>PCIe Window 6 Enable. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 6 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 6 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 6 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 6 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 6 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>PCIe Window 6 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 6 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>PCIe Window 6 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 6 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 6 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 6 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 6 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>PCIe Window Setting &gt; PCIe Window Setting 7 &gt; Window Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -605,11 +607,11 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>PCIe Window 7 Enable. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 7 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 7 Base Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 7 &gt; PCIe Window Base (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 7 Base Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 7 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Manual Entry</td><td>0x0000000000000FFF </td><td>PCIe Window 7 Mask. The address of lower 12bits must be 1 and 63th bit must be 0. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 7 &gt; PCIe Window Mask (63bit width, Lower 12bits must be 1)</td><td>Value must be a non-negative integer</td><td>0x0000000000000FFF </td><td>PCIe Window 7 Mask. The address of lower 12bits must be 1 and 63rd bit must be 0. </td></tr>
 <tr>
-<td>PCIe Window Setting &gt; PCIe Window Setting 7 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Manual Entry</td><td>0x0000000000000000 </td><td>PCIe Window 7 Destination Address. The address must be 4Kbyte aligned. </td></tr>
+<td>PCIe Window Setting &gt; PCIe Window Setting 7 &gt; PCIe Window Destination (64bit width, 4KB boundary)</td><td>Value must be a valid non-negative integer between 0x0000000000000000 and 0xFFFFFFFFFFFFF000</td><td>0x0000000000000000 </td><td>PCIe Window 7 Destination Address. The address must be 4Kbyte aligned. </td></tr>
 <tr>
 <td>PCIe Event Interrupt Sources &gt; Event 0</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -677,21 +679,10 @@ Clock Configuration</h2>
 <p>There is no clock configuration for the PCIe module.</p>
 <h2><a class="anchor" id="RZT_r-pcie_ep-pin-configuration"></a>
 Pin Configuration</h2>
-<p>The following pins are available to connect to an external PCIe device:</p><ul>
-<li>PCIE_REFCLK_P0: Ch0 Reference clock input (Positive)</li>
-<li>PCIE_REFCLK_N0: Ch0 Reference clock input (Negative)</li>
-<li>PCIE_REFCLK_P1: Ch1 Reference clock input (Positive)</li>
-<li>PCIE_REFCLK_N1: Ch1 Reference clock input (Negative)</li>
-<li>PCIE_RXDP_L0: Serial data input 0 (Positive)</li>
-<li>PCIE_RXDN_L0: Serial data input 0 (Negative)</li>
-<li>PCIE_RXDP_L1: Serial data input 1 (Positive)</li>
-<li>PCIE_RXDN_L1: Serial data input 1 (Negative)</li>
-<li>PCIE_TXDP_L0: Serial data output 0 (Positive)</li>
-<li>PCIE_TXDN_L0: Serial data output 0 (Negative)</li>
-<li>PCIE_TXDP_L1: Serial data output 1 (Positive)</li>
-<li>PCIE_TXDN_L1: Serial data output 1 (Negative)</li>
-<li>PCIE_RSTOUT0B: PCIE Reset output ch0 for Root Complex</li>
-<li>PCIE_RSTOUT1B: PCIE Reset output ch1 for Root Complex</li>
+<p>The pins with the following functions are available to connect to an external PCIe device:</p><ul>
+<li>Differencial reference clock input (Positive / Negative)</li>
+<li>Differencial serial data input and output (Positive /Negative) according to the number of lanes implemented in the device</li>
+<li>PCIE reset output for Root Complex</li>
 </ul>
 <h1><a class="anchor" id="RZT_r-pcie_ep-usage_notes"></a>
 Usage Notes</h1>
@@ -824,34 +815,60 @@ List of Configuration Register</h3>
 </table>
 <h3><a class="anchor" id="RZT_r-pcie_ep-initialization-of-configuration-register"></a>
 Initializaiton of Configuration Register</h3>
-<p>The PCIE_EP driver initializes the configuration register. Users can set the PCI compatible configuration registers up to address 0x40 using the FSP Configuration editor, and the configuration registers above address 0x40 can be set by setting pci_ep_configuration_register_init_t structure. The default template with one entry is shown below:</p>
-<div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="group___r_z_t___p_c_i___a_p_i.html#gaba79eb27da15632b7f2f49da0d1ee9d1">pci_configuration_register_init_t</a> g_pci_ep0_configuration_register_init_list[PCIE_EP_CH0_F0_CONFIG_REG_INIT_LIST_NUM] =</div><div class="line">{</div><div class="line">    {</div><div class="line">        <span class="comment">/* Specify Register number.*/</span></div><div class="line">        .<a class="code" href="group___r_z_t___p_c_i___a_p_i.html#a3cddd475fb2785a609c941bb76f6cae4">register_number</a> = 0x044 / 4,</div><div class="line"></div><div class="line">        <span class="comment">/* Value to be set in configuration register. */</span></div><div class="line">        .init_value      = 0x00000100,</div><div class="line"></div><div class="line">        <span class="comment">/* Mask setting for values when setting configuration registers. */</span></div><div class="line">        .init_value_mask = R_PCIE0_PCI_EP_PMSC_F0_PMEE_Msk,</div><div class="line">    },</div><div class="line">};</div></div><!-- fragment --><h3><a class="anchor" id="RZT_r-pcie_ep-access-of-configureation-register"></a>
+<p>The PCIE_EP driver initializes the configuration register. Users can set the PCI compatible configuration registers up to address 0x40 using the FSP Configuration editor, and the configuration registers above address 0x40 can be set by setting pci_ep_configuration_register_init_t structure. *1 The default template with one entry is shown below:</p>
+<div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="group___r_z_t___p_c_i___a_p_i.html#gaba79eb27da15632b7f2f49da0d1ee9d1">pci_configuration_register_init_t</a> g_pci_ep0_configuration_register_init_list[PCIE_EP_CH0_F0_CONFIG_REG_INIT_LIST_NUM] =</div><div class="line">{</div><div class="line">    {</div><div class="line">        <span class="comment">/* Specify Register number.*/</span></div><div class="line">        .<a class="code" href="group___r_z_t___p_c_i___a_p_i.html#a3cddd475fb2785a609c941bb76f6cae4">register_number</a> = 0x044 / 4,</div><div class="line"></div><div class="line">        <span class="comment">/* Value to be set in configuration register. */</span></div><div class="line">        .init_value      = 0x00000100,</div><div class="line"></div><div class="line">        <span class="comment">/* Mask setting for values when setting configuration registers. */</span></div><div class="line">        .init_value_mask = R_PCIE0_PCI_EP_PMSC_F0_PMEE_Msk,</div><div class="line">    },</div><div class="line">};</div></div><!-- fragment --><p>*1 For specific devices that do not support PCI Express Gen3, the value of following registers is changed from their default in the <a class="el" href="group___r_z_t___p_c_i_e___e_p.html#gaae40203e88323684312cc877b3eec1cd">R_PCIE_EP_Open()</a>. Details of the setting values are shown below.</p>
+<table class="doxtable">
+<tr>
+<th>Register </th><th>Setting value </th><th>Function  </th></tr>
+<tr>
+<td>PCI_EP_LINKC_Fi SLS </td><td>0x2 </td><td>5.0 GT/s and 2.5 GT/s Link speeds supported </td></tr>
+<tr>
+<td>PCI_EP_LINKC2_Fi SLSV </td><td>0x3 </td><td>2.5 GT/s, 5.0 GT/s </td></tr>
+<tr>
+<td>PCI_EP_LINKCS2_Fi MLS </td><td>0x2 </td><td>5.0 GT/s Target Link Speed </td></tr>
+</table>
+<h3><a class="anchor" id="RZT_r-pcie_ep-access-of-configureation-register"></a>
 Access of Configuration Register</h3>
 <p>The PCIE_EP driver provides an API to access the own configuration space. Use <a class="el" href="group___r_z_t___p_c_i_e___e_p.html#ga081dcdce971af61505f8aa09e63a01cf">R_PCIE_EP_SelfConfigurationRegisterSet</a> or <a class="el" href="group___r_z_t___p_c_i_e___e_p.html#ga77c7da365a348d333c50bfb347d6a353">R_PCIE_EP_SelfConfigurationRegisterGet</a> to access the configuration space of PCIe peripheral of this RZ Microprocessor.</p>
 <h2><a class="anchor" id="RZT_r_pcie_ep-axi-window-settings"></a>
 AXI Window settings (PCIe to AXI)</h2>
 <p>The AXI Window settings are used when MWr/MRd data from PCI Express is transferred to AXI bus (Data Receive operation via MWr/MRd request). Set AXI Window Base and AXI Window Mask in the BAR region. (BAR: PCI Express Configuration Register, Base Address Register)</p>
-<p>AXI access address is shown as below.</p>
-<p>AXI Access Address = PCIe Access Address - BAR0 - AXI Window Base + AXI Window Destination</p>
-<h3><a class="anchor" id="RZT_r_pcie_ep-example-of-axi-window-settings"></a>
+<p>In Endpoint mode, bridge register is assigned to BAR4/5. Region size is 8 KB. BAR4/5 is 0x0000_0000_2000_0000 and BARMask02 is 0x0000_0000_0000_1FFFF (fixed). Consult Section "AXI Bridge Register" in the RZ microprocessor Hardware Manual for details.</p>
+<div class="image">
+<img src="rzt_r_pcie_ep_relation_between_axi_window_and_registers.png" alt="rzt_r_pcie_ep_relation_between_axi_window_and_registers.png"/>
+<div class="caption">
+The PCI-AXI access for PCIe to AXI access</div></div>
+<p> Up to 4 AXI windows can be set by dividing the 64-bit memory space defined by each BAR. The mapping between BARs and AXI windows and the access addresses are as follows:</p>
+<p>In the case of {BAR1, BAR0}, AXI Window 0, AXI Window 1, AXI Window 2 and AXI Window 3 can be used.</p>
+<div class="fragment"><div class="line">AXI Access Address = PCIe Access Address - BAR0/1 - AXI Window Base(0-3) + AXI Window Destination</div></div><!-- fragment --><p>In the case of {BAR3, BAR2}, AXI Window 4, AXI Window 5, AXI Window 6 and AXI Window 7 can be used.</p>
+<div class="fragment"><div class="line">AXI Access Address = PCIe Access Address - BAR2/3 - AXI Window Base(4-7) + AXI Window Destination</div></div><!-- fragment --><h3><a class="anchor" id="RZT_r_pcie_ep-example-of-axi-window-settings"></a>
 Example of AXI Window settings</h3>
 <table class="doxtable">
 <tr>
 <th>Element </th><th>Setting Value </th><th>Settings  </th></tr>
 <tr>
-<td>BAR0 </td><td>0x0000_0000_1000_0000 </td><td>Configuration Register "PCI_EP_BAR0_Fi"/"PCI_EP_BAR1_Fi". Can be set by Stack Configuration. </td></tr>
+<td>BAR0/1 </td><td>0x0000_0000_1000_0000 </td><td>Configuration Register "PCI_EP_BAR0_Fi"/"PCI_EP_BAR1_Fi". Can be set by Stack Configuration. </td></tr>
 <tr>
-<td>BAR Mask0 </td><td>0x0000_0000_0FFF_FFFC </td><td>Configuration Register "PCI_EP_BARMSK00L_Fi"/"PCI_EP_BARMSK00U_Fi". </td></tr>
+<td>BAR Mask00 </td><td>0x0000_0000_0FFF_FFFF </td><td>Configuration Register "PCI_EP_BARMSK00L_Fi"/"PCI_EP_BARMSK00U_Fi". </td></tr>
 <tr>
-<td>AXI Window Base </td><td>0x0000_0000_0010_0000 </td><td>Can be set by Stack Configuration. </td></tr>
+<td>AXI Window Base0 </td><td>0x0000_0000_0010_0000 </td><td>Can be set by Stack Configuration. </td></tr>
 <tr>
-<td>AXI Window Mask </td><td>0x0000_0000_0003_FFFF </td><td>Can be set by Stack Configuration. </td></tr>
+<td>AXI Window Mask0 </td><td>0x0000_0000_0003_FFFF </td><td>Can be set by Stack Configuration. </td></tr>
 <tr>
-<td>AXI Window Destination </td><td>0x0000_0004_0100_0000 </td><td>Can be set by Stack Configuration. </td></tr>
+<td>AXI Window Destination0 </td><td>0x0000_0002_0100_0000 </td><td>Can be set by Stack Configuration. </td></tr>
+<tr>
+<td>BAR4/5 </td><td>0x0000_0000_2000_0000 (fixed) </td><td>Configuration Register "PCI_EP_BAR4_Fi"/"PCI_EP_BAR5_Fi". Can be set by Stack Configuration. </td></tr>
+<tr>
+<td>BAR Mask02 </td><td>0x0000_0000_0000_1FFF (fixed) </td><td>Configuration Register "PCI_EP_BARMSK02L_Fi"/"PCI_EP_BARMSK02U_Fi". </td></tr>
 </table>
-<p>BAR0 Assigned region : 0x0000_0000_1000_0000 to 0x0000_0000_1FFF_FFFF (256 MB)</p>
-<p>AXI Window region : 0x0000_0004_0100_0000 to 0x0000_0004_0103_FFFF (256 KB)</p>
-<p>Up to four AXI windows can be configured in each BAR area. Setting examples of AXI windows allocated to each of the BAR areas is as follows:</p>
+<p>BAR0/1 Assigned region : 0x0000_0000_1000_0000 to 0x0000_0000_1FFF_FFFF (256 MB)</p>
+<p>AXI Window 0 region : 0x0000_0002_0100_0000 to 0x0000_0002_0103_FFFF (256 KB)</p>
+<p>BAR4/5 Assigned region : 0x0000_0000_2000_0000 to 0x0000_0000_2000_1FFF (8 KB)</p>
+<div class="image">
+<img src="rzt_r_pcie_ep_example_of_the_pci_axi_access_for_pcie_to_axi_access.png" alt="rzt_r_pcie_ep_example_of_the_pci_axi_access_for_pcie_to_axi_access.png"/>
+<div class="caption">
+Example of the PCI-AXI access for PCIe to AXI access</div></div>
+<p> Up to four AXI windows can be configured in each BAR area. Setting examples of AXI windows allocated to each of the BAR areas is as follows:</p>
 <table class="doxtable">
 <tr>
 <th>BAR (Memory space) </th><th>Setting example 1 </th><th>Setting example 2 </th><th>Setting example 3 </th><th>Setting example 4  </th></tr>
@@ -872,28 +889,35 @@ Example of AXI Window settings</h3>
 </dd></dl>
 <h2><a class="anchor" id="RZT_r_pcie_ep-pcie-window-settings"></a>
 PCIe Window settings (AXI to PCIe)</h2>
-<p>PCIe Window settings are used when MWr/MRd data from AXI bus is transferred to PCI Express (Data Transmit operation via MWr/MRd request).</p>
-<p>PCIe access address is shown as below.</p>
-<p>PCIe Access Address = AXI Access Address - PCIe Window Base + PCIe Window Destination</p>
-<h3><a class="anchor" id="RZT_r_pcie_ep-example-of-pcie-window-settings"></a>
+<p>PCIe Window settings are used when MWr/MRd data from AXI bus is transferred to PCI Express (Data Transmit operation via MWr/MRd request). Access from the AXI side is converted into a PCIe request and then issued. A write transaction from the AXI via a window set as a PCIe window is converted into a MWr command and then issued. A read transaction from the AXI via a window set as a PCIe window is converted into an MRd command and then issued.</p>
+<div class="image">
+<img src="rzt_r_pcie_ep_relation_between_pcie_window_and_registers.png" alt="rzt_r_pcie_ep_relation_between_pcie_window_and_registers.png"/>
+<div class="caption">
+The PCI-AXI access for AXI to PCIe access</div></div>
+<p> PCIe access address is shown as below.</p>
+<div class="fragment"><div class="line">PCIe Access Address = AXI Access Address - PCIe Window Base + PCIe Window Destination</div></div><!-- fragment --><h3><a class="anchor" id="RZT_r_pcie_ep-example-of-pcie-window-settings"></a>
 Example of PCIe Window settings</h3>
 <table class="doxtable">
 <tr>
 <th>Element </th><th>Setting Value </th><th>Settings  </th></tr>
 <tr>
-<td>BAR0 </td><td>0x0000_0000_1000_0000 </td><td>Configuration Register "PCI_EP_BAR0_Fi"/"PCI_EP_BAR1_Fi". Can be set by Stack Configuration. </td></tr>
+<td>BAR0/1 </td><td>0x0000_0000_1000_0000 </td><td>Configuration Register "PCI_EP_BAR0_Fi"/"PCI_EP_BAR1_Fi". Can be set by Stack Configuration. </td></tr>
 <tr>
-<td>BAR Mask0 </td><td>0x0000_0000_07FF_FFFC </td><td>Configuration Register "PCI_EP_BARMSK00L_Fi"/"PCI_EP_BARMSK00U_Fi". </td></tr>
+<td>BAR Mask00 </td><td>0x0000_0000_07FF_FFFF </td><td>Configuration Register "PCI_EP_BARMSK00L_Fi"/"PCI_EP_BARMSK00U_Fi". </td></tr>
 <tr>
-<td>PCIe Window Base </td><td>0x0000_0000_0070_0000 </td><td>Can be set by Stack Configuration. </td></tr>
+<td>PCIe Window Base0 </td><td>0x0000_0004_0070_0000 </td><td>Can be set by Stack Configuration. </td></tr>
 <tr>
-<td>PCIe Window Mask </td><td>0x0000_0000_000F_FFFF </td><td>Can be set by Stack Configuration. </td></tr>
+<td>PCIe Window Mask0 </td><td>0x0000_0000_000F_FFFF </td><td>Can be set by Stack Configuration. </td></tr>
 <tr>
-<td>PCIe Window Destination </td><td>0x0000_0004_0070_0000 </td><td>Can be set by Stack Configuration. </td></tr>
+<td>PCIe Window Destination0 </td><td>0x0000_0000_1070_0000 </td><td>Can be set by Stack Configuration. </td></tr>
 </table>
-<p>BAR0 Assigned region : 0x0000_0000_1000_0000 to 0x0000_0000_17FF_FFFF (128 MB)</p>
-<p>PCIe Window region : 0x0070_0000 to 0x007F_FFFF (1 MB)</p>
-<dl class="section warning"><dt>Warning</dt><dd>When configuring the PCIe window in the FSP configuration editor, note the following conditions:<ul>
+<p>BAR0/1 Assigned region : 0x0000_0000_1000_0000 to 0x0000_0000_17FF_FFFF (128 MB)</p>
+<p>PCIe Window 0 region : 0x0000_0000_1070_0000 to 0x0000_0000_107F_FFFF (1 MB)</p>
+<div class="image">
+<img src="rzt_r_pcie_ep_example_of_the_pci_axi_access_for_axi_to_pcie_access.png" alt="rzt_r_pcie_ep_example_of_the_pci_axi_access_for_axi_to_pcie_access.png"/>
+<div class="caption">
+Example of the PCI-AXI access for AXI to PCIe access</div></div>
+ <dl class="section warning"><dt>Warning</dt><dd>When configuring the PCIe window in the FSP configuration editor, note the following conditions:<ul>
 <li>For the PCIe Window Base Address setting, the address must be 4Kbyte aligned.</li>
 <li>For the PCIe Window Mask setting, the lower 12 bits must be 1, and must be set 1 from the lowest bit. In addition, the 63rd bit must be 0.</li>
 <li>For the PCIe Window Destination Address setting, the address must be 4Kbyte aligned.</li>
@@ -901,16 +925,17 @@ Example of PCIe Window settings</h3>
 </dd></dl>
 <h2><a class="anchor" id="RZT_r_pcie_ep-address-expander"></a>
 Address Expander</h2>
-<p>Using the PCIE_EP HAL driver, other PCIe devices can be accessed through PCIEn space (8GB) or through PCIEn mirror space (256MB) (n=0,1). In particular, if the bus master supports 32-bit address space only, PCIEn space must be accessed through PCIEn mirror space. When using the mirror space, the address expander setting must first be configured in the BSP configuration. Consult Section "Address Expander" in the RZ microprocessor User's Manual for details.</p>
+<p>Using the PCIE_EP HAL driver, other PCIe devices can be accessed through PCIEn space (8GB) or through PCIEn mirror space (256MB) (n=0,1). In particular, if the bus master supports 32-bit address space only, PCIEn space must be accessed through PCIEn mirror space. When using the mirror space, the address expander setting must first be configured in the BSP configuration. Consult Section "Address Expander" in the RZ microprocessor Hardware Manual for details.</p>
 <h2><a class="anchor" id="RZT_r-pcie_ep-limitations"></a>
 Limitations</h2>
+<p>Due to the characteristics of the Arm memory architecture, depending on the memory attributes, the order of access to peripherals memory space by the HAL driver and the access to the PCIEn memory space (including mirror area) by the user may not be guaranteed. In such cases, the user program must explicitly insert memory barrier instructions (such as __DMB() or __DSB()) after calling the HAL API function.</p>
 <h1><a class="anchor" id="RZT_r-pcie_ep-examples"></a>
 Examples</h1>
 <h2>Configuration Space (above address 0x40) Initialization Example</h2>
 <p>The below is an example of configuration space initialization.</p>
 <div class="fragment"><div class="line"></div><div class="line"><span class="keyword">const</span> <a class="code" href="group___r_z_t___p_c_i___a_p_i.html#gaba79eb27da15632b7f2f49da0d1ee9d1">pci_configuration_register_init_t</a> p_pcie_cfg_reg_init[PCIE_CONFIGURATION_REGISTER_INIT_NUM] =</div><div class="line">{</div><div class="line">    {</div><div class="line">        .<a class="code" href="group___r_z_t___p_c_i___a_p_i.html#a3cddd475fb2785a609c941bb76f6cae4">register_number</a> = 0x044 / 4,  <span class="comment">/* PM Status/Control Register number */</span></div><div class="line">        .init_value      = 0x00000100, <span class="comment">/* PMEE = 1 : PME Enable */</span></div><div class="line">        .init_value_mask = R_PCIE0_PCI_EP_PMSC_F0_PMEE_Msk,</div><div class="line">    },</div><div class="line">};</div><div class="line"></div></div><!-- fragment --> <h2>Basic Example</h2>
 <p>This is a basic example of minimal use of the PCIE_EP module in an application.</p>
-<div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> pcie_ep_example ()</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Open PCIE module */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___p_c_i_e___e_p.html#gaae40203e88323684312cc877b3eec1cd">R_PCIE_EP_Open</a>(&amp;g_pci0_ctrl, &amp;g_pci0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line">    <span class="comment">/* Wait for link training from the RC side */</span></div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
+<div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> pcie_ep_example ()</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Open PCIE module */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___p_c_i_e___e_p.html#gaae40203e88323684312cc877b3eec1cd">R_PCIE_EP_Open</a>(&amp;g_pci0_ctrl, &amp;g_pci0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Wait for link training from the RC side */</span></div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_t_1_1st__pcie__ep__window__settings"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___p_c_i_e___e_p.html#struct_r_z_t_1_1st__pcie__ep__window__settings">st_pcie_ep_window_settings</a></td></tr>
@@ -1125,12 +1150,6 @@ Max_Lat / Min_Gnt / Interrupt Pin / Interrupt Line. </td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="acc51e236dd66420e841bfd285c0bca66"></a><a class="el" href="group___r_z_t___p_c_i_e___e_p.html#ga1828593cbcfdeb2074a1a6453f503495">pcie_ep_link_mode_t</a></td>
-<td class="fieldname">
-link_mode</td>
-<td class="fielddoc">
-PCI Express Link mode. </td></tr>
-<tr><td class="fieldtype">
 <a id="acae5d19da4d7947f8a78be4dd60a175d"></a><a class="el" href="group___r_z_t___p_c_i_e___e_p.html#ga4f94776739e7fc3078048ca69cd4fcce">pcie_ep_window_settings_t</a></td>
 <td class="fieldname">
 axi_window_settings[R_PCIE_EP_NUM_AXI_WINDOW]</td>
@@ -1323,9 +1342,7 @@ Supplemental setting registers base address for specified channel. </td></tr>
 </div><div class="memdoc">
 <p>PCI Express Link Mode </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga1828593cbcfdeb2074a1a6453f503495a6a221f7a7c657ceeabce0c5db2386919"></a>PCIE_EP_LINK_MODE_2LANE_1CHANNEL&#160;</td><td class="fielddoc"><p>PCIe 2 lanes x 1 channel. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="gga1828593cbcfdeb2074a1a6453f503495a12b2087f952ba387fec61a5ed7d7f6a8"></a>PCIE_EP_LINK_MODE_1LANE_2CHANNEL&#160;</td><td class="fielddoc"><p>PCIe 1 lane x 2 channels. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga1828593cbcfdeb2074a1a6453f503495a7b3ff5478dcc18c0905c4c4812124dd9"></a>PCIE_EP_LINK_MODE_1LANE_1CHANNEL&#160;</td><td class="fielddoc"><p>PCIe 1 lane x 1 channel. </p>
 </td></tr>
 </table>
 
@@ -1894,6 +1911,7 @@ Supplemental setting registers base address for specified channel. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>A required pointer is NULL. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The control block has not been opened. </td></tr>
     <tr><td class="paramname">FSP_ERR_TIMEOUT</td><td>Link Equalization was not done in time and timeout occurred. </td></tr>
+    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>If PCI Express Gen3 is not supported, the function is not supported. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1982,7 +2000,7 @@ Supplemental setting registers base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

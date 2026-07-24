@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -224,6 +224,10 @@ Overview</h1>
 <td>RZ/G2UL (Type-2) </td><td>channel0 to 5, channel7 </td><td>channel8 </td></tr>
 <tr>
 <td>RZ/G3S </td><td>channel0 to 7 </td><td>channel8 </td></tr>
+<tr>
+<td>RZ/G3L </td><td>channel0 to 7 </td><td>channel8 </td></tr>
+<tr>
+<td>RZ/G3SE </td><td>channel0 to 7 </td><td>channel8 </td></tr>
 </table>
 <h2><a class="anchor" id="RZG_r-mtu3-features"></a>
 Features</h2>
@@ -309,7 +313,7 @@ This module can be added to the Stacks tab via New Stack &gt; Timers &gt; Timer,
 <tr>
 <th>Configuration</th><th>Options</th><th>Default</th><th>Description </th></tr>
 <tr>
-<td>General &gt; Compare Match &gt; Status</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>General &gt; Compare Match &gt; Compare Match &gt; Status</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
@@ -317,7 +321,17 @@ Disabled</li>
 </ul>
 </td><td>Disabled </td><td></td></tr>
 <tr>
-<td>General &gt; Compare Match &gt; Compare match value</td><td>Value must be a non-negative integer less than or equal to 0x40000000000</td><td>0 </td><td>Specify the compare match value in units that selected in Period Unit section. </td></tr>
+<td>General &gt; Compare Match &gt; Compare Match &gt; Compare match value</td><td>Value must be greater than 0 and less than or equal to 0x40000000000</td><td>0x10000 </td><td>Specify the compare match value in units that selected in Period Unit section. (If the Counter Clear Source is TGRB or Disabled, the value is set to compare match A. If it is TGRA, the value is set to compare match B.) </td></tr>
+<tr>
+<td>General &gt; Compare Match &gt; Compare Match B &gt; Status</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Enabled</li>
+<li>
+Disabled</li>
+</ul>
+</td><td>Disabled </td><td>This menu is only available when Counter Clear Source is disabled. Otherwise, please use the above Compare Match menu. </td></tr>
+<tr>
+<td>General &gt; Compare Match &gt; Compare Match B &gt; Compare match value</td><td>Value must be greater than 0 and less than or equal to 0x40000000000</td><td>0x10000 </td><td>Specify the compare match B value in units that selected in Period Unit section. (This setting is valid only when the Counter Clear Source is Disabled.) </td></tr>
 <tr>
 <td>General &gt; Name</td><td>Name must be a valid C symbol</td><td>g_timer0 </td><td>Module name. </td></tr>
 <tr>
@@ -367,6 +381,10 @@ Disabled</li>
 TGRA</li>
 <li>
 TGRB</li>
+<li>
+TGRC</li>
+<li>
+TGRD</li>
 </ul>
 </td><td>Disabled </td><td>Select counter clear source. </td></tr>
 <tr>
@@ -438,6 +456,38 @@ Disabled</li>
 </ul>
 </td><td>Disabled </td><td>Retain the current MTIOC output level when counting is stopped. </td></tr>
 <tr>
+<td>Output &gt; MTIOCC Output Enabled</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+True</li>
+<li>
+False</li>
+</ul>
+</td><td>False </td><td>Enable the output of MTIOCC on a pin. </td></tr>
+<tr>
+<td>Output &gt; MTIOCC Stop Level</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Pin Level Low</li>
+<li>
+Pin Level High</li>
+</ul>
+</td><td>Pin Level Low </td><td>Select the behavior of the output pin when the timer is stopped. </td></tr>
+<tr>
+<td>Output &gt; MTIOCD Output Enabled</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+True</li>
+<li>
+False</li>
+</ul>
+</td><td>False </td><td>Enable the output of MTIOCD on a pin. </td></tr>
+<tr>
+<td>Output &gt; MTIOCD Stop Level</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Pin Level Low</li>
+<li>
+Pin Level High</li>
+</ul>
+</td><td>Pin Level Low </td><td>Select the behavior of the output pin when the timer is stopped. </td></tr>
+<tr>
 <td>Input &gt; Phase Count &gt; Bit Mode</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 16-bit</li>
@@ -480,6 +530,30 @@ Input capture at both edges</li>
 </ul>
 </td><td>No Output </td><td>Select MTIOCnB Input Capture Source. </td></tr>
 <tr>
+<td>Input &gt; Input Capture &gt; MTIOCnC Source</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+No Output</li>
+<li>
+Input capture at rising edge</li>
+<li>
+Input capture at falling edge</li>
+<li>
+Input capture at both edges</li>
+</ul>
+</td><td>No Output </td><td>Select MTIOCnC Input Capture Source. </td></tr>
+<tr>
+<td>Input &gt; Input Capture &gt; MTIOCnD Source</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+No Output</li>
+<li>
+Input capture at rising edge</li>
+<li>
+Input capture at falling edge</li>
+<li>
+Input capture at both edges</li>
+</ul>
+</td><td>No Output </td><td>Select MTIOCnD Input Capture Source. </td></tr>
+<tr>
 <td>Input &gt; Noise Filter &gt; External Clock &gt; Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 MTCLKA Enabled</li>
@@ -509,6 +583,10 @@ Clock source divided by 32</li>
 MTIOCA Enabled</li>
 <li>
 MTIOCB Enabled</li>
+<li>
+MTIOCC Enabled</li>
+<li>
+MTIOCD Enabled</li>
 </ul>
 </td><td></td><td>Select whether to enable extra features on this channel. </td></tr>
 <tr>
@@ -542,7 +620,7 @@ Enabled</li>
 <tr>
 <td>Custom Waveform &gt; Time Prescaler</td><td>Refer to the <a class="el" href="namespace_r_z_g.html">RZG</a> Configuration tool for available options.</td><td>Clock source divided by 1 (common ch) </td><td>Select time prescaler. </td></tr>
 <tr>
-<td>Custom Waveform &gt; MTIOCnA Pin Function</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Custom Waveform &gt; TGRA I/O Pin Setting</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 No Output</li>
 <li>
@@ -564,9 +642,9 @@ Input capture at falling edge</li>
 <li>
 Input capture at both edges</li>
 </ul>
-</td><td>No Output </td><td>Select TGRA initial output. </td></tr>
+</td><td>No Output </td><td>Selects the MTIOCnA pin operation when TGRA performs Input capture/Output compare. </td></tr>
 <tr>
-<td>Custom Waveform &gt; MTIOCnB Pin Function</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Custom Waveform &gt; TGRB I/O Pin Setting</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 No Output</li>
 <li>
@@ -588,7 +666,55 @@ Input capture at falling edge</li>
 <li>
 Input capture at both edges</li>
 </ul>
-</td><td>No Output </td><td>Select TGRB initial output. </td></tr>
+</td><td>No Output </td><td>Selects the MTIOCnB pin operation when TGRB performs Input capture/Output compare. In PWM mode, the MTIOCnB pin is not used for output, instead it is used to control the MTIOCnA pin output level. </td></tr>
+<tr>
+<td>Custom Waveform &gt; TGRC I/O Pin Setting</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+No Output</li>
+<li>
+Low Output at Low compare match</li>
+<li>
+Low Output at High compare match</li>
+<li>
+Low Output at Toggle compare match</li>
+<li>
+High Output at Low compare match</li>
+<li>
+High Output at High compare match</li>
+<li>
+High Output at Toggle compare match</li>
+<li>
+Input capture at rising edge</li>
+<li>
+Input capture at falling edge</li>
+<li>
+Input capture at both edges</li>
+</ul>
+</td><td>No Output </td><td>Selects the MTIOCnC pin operation when TGRC performs Input capture/Output compare. </td></tr>
+<tr>
+<td>Custom Waveform &gt; TGRD I/O Pin Setting</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+No Output</li>
+<li>
+Low Output at Low compare match</li>
+<li>
+Low Output at High compare match</li>
+<li>
+Low Output at Toggle compare match</li>
+<li>
+High Output at Low compare match</li>
+<li>
+High Output at High compare match</li>
+<li>
+High Output at Toggle compare match</li>
+<li>
+Input capture at rising edge</li>
+<li>
+Input capture at falling edge</li>
+<li>
+Input capture at both edges</li>
+</ul>
+</td><td>No Output </td><td>Selects the MTIOCnD pin operation when TGRD performs Input capture/Output compare. In PWM mode, the MTIOCnD pin is not used for output, instead it is used to control the MTIOCnC pin output level. </td></tr>
 <tr>
 <td>Interrupts &gt; Callback</td><td>Name must be a valid C symbol</td><td>NULL </td><td>A user callback function can be specified here. If this callback function is provided, it will be called from the interrupt service routine (ISR) each time the timer period elapses </td></tr>
 <tr>
@@ -604,9 +730,17 @@ Input capture at both edges</li>
 <tr>
 <td>Interrupts &gt; Capture/Compare match B Interrupt Priority</td><td>Value must be an integer between 0 and 255</td><td>24 </td><td>Select the interrupt priority for capture/compare match B. </td></tr>
 <tr>
-<td>Extra Features &gt; ADC Trigger &gt; Start request cycle A (Start Request Delaying Function)</td><td>Must be a valid non-negative integer with a maximum configurable value of 65535 (0xffff).</td><td>0 </td><td>Timer A/D Converter start request cycle A (MTU4 or MTU7). </td></tr>
+<td>Interrupts &gt; Capture/Compare match C Interrupt Enable</td><td>MCU Specific Options</td><td></td><td>Enable the capture/compare match C interrupt. </td></tr>
 <tr>
-<td>Extra Features &gt; ADC Trigger &gt; Start request cycle B (Start Request Delaying Function)</td><td>Must be a valid non-negative integer with a maximum configurable value of 65535 (0xffff).</td><td>0 </td><td>Timer A/D Converter start request cycle B (MTU4 or MTU7). </td></tr>
+<td>Interrupts &gt; Capture/Compare match C Interrupt Priority</td><td>Value must be an integer between 0 and 255</td><td>24 </td><td>Select the interrupt priority for capture/compare match C. </td></tr>
+<tr>
+<td>Interrupts &gt; Capture/Compare match D Interrupt Enable</td><td>MCU Specific Options</td><td></td><td>Enable the capture/compare match D interrupt. </td></tr>
+<tr>
+<td>Interrupts &gt; Capture/Compare match D Interrupt Priority</td><td>Value must be an integer between 0 and 255</td><td>24 </td><td>Select the interrupt priority for capture/compare match D. </td></tr>
+<tr>
+<td>Extra Features &gt; ADC Trigger &gt; Start request cycle A (Start Request Delaying Function)</td><td>Must be an integer in the range 1 to 65536 (0x10000).</td><td>0x10000 </td><td>Timer A/D Converter start request cycle A (MTU4 or MTU7). </td></tr>
+<tr>
+<td>Extra Features &gt; ADC Trigger &gt; Start request cycle B (Start Request Delaying Function)</td><td>Must be an integer in the range 1 to 65536 (0x10000).</td><td>0x10000 </td><td>Timer A/D Converter start request cycle B (MTU4 or MTU7). </td></tr>
 <tr>
 <td>Extra Features &gt; ADC Trigger &gt; A/D Converter Activation by TGRA Input Capture/Compare Match Enable</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -810,7 +944,7 @@ MTU3 PWM Output</div></div>
  <h2>Interrupt Skipping</h2>
 <p>When an interrupt skipping source is selected a hardware counter will increment each time the selected event occurs. Each interrupt past the first (up to the specified skip count) will be suppressed.</p>
 <h2>Phase Counting Mode</h2>
-<p>Phase count mode is provides 16-bit or 32-bit channels used in phase counting applications. The ability to set the count value of the channel and the function to obtain the count value are possible. In 16-bit mode, only channel 1 and channel 2 can be used. In 32-bit mode, only channel 1 can be set. Since channel 2 is also in use, channel 2 cannot operate in other modes. For information on the operation of each mode of phase counting, refer to the "Phase Counting Mode" in the user's manual. Example of setting for phase counting mode 1 are shown below. </p><table class="doxtable">
+<p>Phase count mode is provides 16-bit or 32-bit channels used in phase counting applications. The ability to set the count value of the channel and the function to obtain the count value are possible. In 16-bit mode, only channel 1 and channel 2 can be used. In 32-bit mode, only channel 1 can be set. Since channel 2 is also in use, channel 2 cannot operate in other modes. For information on the operation of each mode of phase counting, refer to the "Phase Counting Mode" in the hardware manual. Example of setting for phase counting mode 1 are shown below. </p><table class="doxtable">
 <tr>
 <th>Configuration</th><th>Options  </th></tr>
 <tr>
@@ -828,22 +962,22 @@ MTU3 PWM Output</div></div>
 Examples</h1>
 <h2>MTU3 Basic Example</h2>
 <p>This is a basic example of minimal use of the MTU3 in an application.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">void</span> mtu3_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Callback Example</h2>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> mtu3_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Callback Example</h2>
 <p>This is an example of a timer callback.</p>
-<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when timer expires. */</span></div><div class="line"><span class="keywordtype">void</span> timer_callback (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ggac3bee51f7c9078f794c5ac19522f91ebae310bef0d640f06765c01b4b91a5b84c">TIMER_EVENT_CYCLE_END</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Add application code to be called periodically here. */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Free Running Counter Example</h2>
+<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when timer expires. */</span></div><div class="line"><span class="keywordtype">void</span> timer_callback (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gac3bee51f7c9078f794c5ac19522f91ebaf35df6e894642f443099deff392469a1">TIMER_EVENT_CYCLE_END</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Add application code to be called periodically here. */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Free Running Counter Example</h2>
 <p>To use the MTU3 as a free running counter, select periodic mode and set the the Period to 0xFFFF for a 16-bit timer or 0xFFFFFFFF for a 32-bit timer.</p>
-<div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> mtu3_counter_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* (Optional) Stop the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga396b95f942eed8fd222c67e5bfd22800">R_MTU3_Stop</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Read the current counter value. Counter value is in status.counter. */</span></div><div class="line">    <a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ga8160de0e701f5d6acebcaf9d2c86120f">timer_status_t</a> status;</div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga8e02f073acf66a66ef6e525c8b57454e">R_MTU3_StatusGet</a>(&amp;g_timer0_ctrl, &amp;status);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Period Update Example</h2>
+<div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> mtu3_counter_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* (Optional) Stop the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga396b95f942eed8fd222c67e5bfd22800">R_MTU3_Stop</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Read the current counter value. Counter value is in status.counter. */</span></div><div class="line">    <a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ga8160de0e701f5d6acebcaf9d2c86120f">timer_status_t</a> status;</div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga8e02f073acf66a66ef6e525c8b57454e">R_MTU3_StatusGet</a>(&amp;g_timer0_ctrl, &amp;status);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Period Update Example</h2>
 <p>This an example of updating the period.</p>
-<div class="fragment"><div class="line"></div><div class="line"><span class="preprocessor">#define MTU3_EXAMPLE_MICROSEC_PER_SEC           (1000000)</span></div><div class="line"><span class="preprocessor">#define MTU3_EXAMPLE_DESIRED_PERIOD_MICROSEC    (200)</span></div><div class="line"></div><div class="line"><span class="comment">/* This example shows how to calculate a new period value at runtime. */</span></div><div class="line"><span class="keywordtype">void</span> mtu3_period_calculation_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Get the source clock frequency (in Hz). There are 3 ways to do this in FSP:</span></div><div class="line"><span class="comment">     *  - If P0 clock  is chosen in agt_extended_cfg_t::clock_source and the P0 clock frequency has not changed since reset,</span></div><div class="line"><span class="comment">     *      - The source clock frequency is BSP_STARTUP_P0CLK_HZ &gt;&gt; timer_cfg_t::source_div</span></div><div class="line"><span class="comment">     *  - Use the R_MTU3_InfoGet function (it accounts for the divider).</span></div><div class="line"><span class="comment">     *  - Calculate the current P0 clock frequency using R_FSP_SystemClockHzGet(FSP_PRIV_CLOCK_P0CLK) and right shift</span></div><div class="line"><span class="comment">     *    by mtu3_extended_cfg_t::mtu3_clk_div.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * This example uses the 3rd option (R_FSP_SystemClockHzGet).</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    uint32_t p0clk_freq_hz = <a class="code" href="group___r_z_g___b_s_p___m_c_u.html#ga992632ae2e45c2f962855fe4bbe98a63">R_FSP_SystemClockHzGet</a>(FSP_PRIV_CLOCK_P0CLK) &gt;&gt; g_timer0_cfg.source_div;</div><div class="line"></div><div class="line">    <span class="comment">/* Calculate the desired period based on the current clock. Note that this calculation could overflow if the</span></div><div class="line"><span class="comment">     * desired period is larger than UINT16_MAX / p0clk_freq_hz. A cast to uint64_t is used to prevent this. */</span></div><div class="line">    uint32_t period_counts =</div><div class="line">        (uint32_t) (((uint64_t) p0clk_freq_hz * MTU3_EXAMPLE_DESIRED_PERIOD_MICROSEC) / MTU3_EXAMPLE_MICROSEC_PER_SEC);</div><div class="line"></div><div class="line">    <span class="comment">/* Set the calculated period. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0d64e832230506418738a816a38489e4">R_MTU3_PeriodSet</a>(&amp;g_timer0_ctrl, period_counts);</div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Duty Cycle Update Example</h2>
+<div class="fragment"><div class="line"></div><div class="line"><span class="preprocessor">#define MTU3_EXAMPLE_MICROSEC_PER_SEC           (1000000)</span></div><div class="line"><span class="preprocessor">#define MTU3_EXAMPLE_DESIRED_PERIOD_MICROSEC    (200)</span></div><div class="line"></div><div class="line"><span class="comment">/* This example shows how to calculate a new period value at runtime. */</span></div><div class="line"><span class="keywordtype">void</span> mtu3_period_calculation_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Get the source clock frequency (in Hz). There are 3 ways to do this in FSP:</span></div><div class="line"><span class="comment">     *  - If P0 clock  is chosen in agt_extended_cfg_t::clock_source and the P0 clock frequency has not changed since reset,</span></div><div class="line"><span class="comment">     *      - The source clock frequency is BSP_STARTUP_P0CLK_HZ &gt;&gt; timer_cfg_t::source_div</span></div><div class="line"><span class="comment">     *  - Use the R_MTU3_InfoGet function (it accounts for the divider).</span></div><div class="line"><span class="comment">     *  - Calculate the current P0 clock frequency using R_FSP_SystemClockHzGet(FSP_PRIV_CLOCK_P0CLK) and right shift</span></div><div class="line"><span class="comment">     *    by mtu3_extended_cfg_t::mtu3_clk_div.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * This example uses the 3rd option (R_FSP_SystemClockHzGet).</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    uint32_t p0clk_freq_hz = <a class="code" href="group___r_z_g___b_s_p___m_c_u.html#ga992632ae2e45c2f962855fe4bbe98a63">R_FSP_SystemClockHzGet</a>(FSP_PRIV_CLOCK_P0CLK) &gt;&gt; g_timer0_cfg.source_div;</div><div class="line"></div><div class="line">    <span class="comment">/* Calculate the desired period based on the current clock. Note that this calculation could overflow if the</span></div><div class="line"><span class="comment">     * desired period is larger than UINT16_MAX / p0clk_freq_hz. A cast to uint64_t is used to prevent this. */</span></div><div class="line">    uint32_t period_counts =</div><div class="line">        (uint32_t) (((uint64_t) p0clk_freq_hz * MTU3_EXAMPLE_DESIRED_PERIOD_MICROSEC) / MTU3_EXAMPLE_MICROSEC_PER_SEC);</div><div class="line"></div><div class="line">    <span class="comment">/* Set the calculated period. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0d64e832230506418738a816a38489e4">R_MTU3_PeriodSet</a>(&amp;g_timer0_ctrl, period_counts);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Duty Cycle Update Example</h2>
 <p>This an example of updating the duty cycle.</p>
 <div class="fragment"><div class="line"></div><div class="line"><span class="preprocessor">#define MTU3_EXAMPLE_DESIRED_DUTY_CYCLE_PERCENT    (25)</span></div><div class="line"><span class="preprocessor">#define MTU3_EXAMPLE_MAX_PERCENT                   (100)</span></div><div class="line"></div><div class="line"><span class="comment">/* This example shows how to calculate a new duty cycle value at runtime. */</span></div><div class="line"><span class="keywordtype">void</span> mtu3_duty_cycle_calculation_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Get the current period setting. */</span></div><div class="line">    <a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaf372937699a6b2055a52c7444aea71b4">timer_info_t</a> info;</div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga0c1fcecad7205ef9928305c960c7e494">R_MTU3_InfoGet</a>(&amp;g_timer0_ctrl, &amp;info);</div><div class="line">    uint32_t current_period_counts = info.period_counts;</div><div class="line"></div><div class="line">    <span class="comment">/* Calculate the desired duty cycle based on the current period. */</span></div><div class="line">    uint32_t duty_cycle_counts = (current_period_counts * MTU3_EXAMPLE_DESIRED_DUTY_CYCLE_PERCENT) /</div><div class="line">                                 MTU3_EXAMPLE_MAX_PERCENT;</div><div class="line"></div><div class="line">    <span class="comment">/* Set the calculated duty cycle. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga5e4eda78ae4a5cb31e85eb682d6fe248">R_MTU3_DutyCycleSet</a>(&amp;g_timer0_ctrl, duty_cycle_counts, 0);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --><p> This an example of updating the duty cycle and period in the callback function. This example assumes that Compare match B is for setting the period (Count clear source) and Compare match A is for setting the duty cycle.</p>
-<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when a timer event occurs. This function handles timer capture events for modifying the PWM signal */</span></div><div class="line"><span class="keywordtype">void</span> timer_pwm_set_callback (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="comment">/* Handle the event Capture A occurs. Changing the duty cycle */</span></div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ggac3bee51f7c9078f794c5ac19522f91eba4bc1252f63147f4a01f7b7ba88afac1d">TIMER_EVENT_CAPTURE_A</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Increment the desired duty cycle counts */</span></div><div class="line">        desire_dutycycle_count += COUNT_INCREMENT;</div><div class="line"></div><div class="line">        <span class="comment">/* Update the new duty cycle */</span></div><div class="line">        <a class="code" href="group___r_z_g___m_t_u3.html#ga5e4eda78ae4a5cb31e85eb682d6fe248">R_MTU3_DutyCycleSet</a>(&amp;g_timer0_ctrl, desire_dutycycle_count, 0);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">/* Handle the event Capture B occurs. Changing the period */</span></div><div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ggac3bee51f7c9078f794c5ac19522f91ebab7b635fbf34ede5a3e2f55b5a60ac21b">TIMER_EVENT_CAPTURE_B</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Increment the desired period counts */</span></div><div class="line">        desire_period_count += COUNT_INCREMENT;</div><div class="line"></div><div class="line">        <span class="comment">/* Update the new period */</span></div><div class="line">        <a class="code" href="group___r_z_g___m_t_u3.html#ga0d64e832230506418738a816a38489e4">R_MTU3_PeriodSet</a>(&amp;g_timer0_ctrl, desire_period_count);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">/* Handle the event where the full PWM cycle ends */</span></div><div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ggac3bee51f7c9078f794c5ac19522f91ebae310bef0d640f06765c01b4b91a5b84c">TIMER_EVENT_CYCLE_END</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* No action is required. This event can be ignored or used for other tasks */</span></div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">/* Handle unexpected events or add a default action */</span></div><div class="line">    <span class="keywordflow">else</span></div><div class="line">    {</div><div class="line">        <span class="comment">/* Do nothing. */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> mtu3_pwm_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Compare Match Set Example</h2>
+<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when a timer event occurs. This function handles timer capture events for modifying the PWM signal */</span></div><div class="line"><span class="keywordtype">void</span> timer_pwm_set_callback (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="comment">/* Handle the event Capture A occurs. Changing the duty cycle */</span></div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gac3bee51f7c9078f794c5ac19522f91ebac6371aead2eaa6ad8e274d5f52f53716">TIMER_EVENT_CAPTURE_A</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Increment the desired duty cycle counts */</span></div><div class="line">        desire_dutycycle_count += COUNT_INCREMENT;</div><div class="line"></div><div class="line">        <span class="comment">/* Update the new duty cycle */</span></div><div class="line">        <a class="code" href="group___r_z_g___m_t_u3.html#ga5e4eda78ae4a5cb31e85eb682d6fe248">R_MTU3_DutyCycleSet</a>(&amp;g_timer0_ctrl, desire_dutycycle_count, 0);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">/* Handle the event Capture B occurs. Changing the period */</span></div><div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gac3bee51f7c9078f794c5ac19522f91eba53dc6cbac7d608a82a3e1dec3e8884af">TIMER_EVENT_CAPTURE_B</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Increment the desired period counts */</span></div><div class="line">        desire_period_count += COUNT_INCREMENT;</div><div class="line"></div><div class="line">        <span class="comment">/* Update the new period */</span></div><div class="line">        <a class="code" href="group___r_z_g___m_t_u3.html#ga0d64e832230506418738a816a38489e4">R_MTU3_PeriodSet</a>(&amp;g_timer0_ctrl, desire_period_count);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">/* Handle the event where the full PWM cycle ends */</span></div><div class="line">    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gac3bee51f7c9078f794c5ac19522f91ebaf35df6e894642f443099deff392469a1">TIMER_EVENT_CYCLE_END</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* No action is required. This event can be ignored or used for other tasks */</span></div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">/* Handle unexpected events or add a default action */</span></div><div class="line">    <span class="keywordflow">else</span></div><div class="line">    {</div><div class="line">        <span class="comment">/* Do nothing. */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> mtu3_pwm_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Compare Match Set Example</h2>
 <p>This example demonstrates the configuration and use of compare match with MTU3 timer.</p>
-<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when compare match occurs. */</span></div><div class="line"><span class="keywordtype">void</span> mtu3_compare_match_callback (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ggac3bee51f7c9078f794c5ac19522f91ebabc52a1efe80272e318bc5c62e327f33f">TIMER_EVENT_COMPARE_A</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Add application code to be called periodically here. */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="preprocessor">#define MTU3_COMPARE_MATCH_EXAMPLE_VALUE    (0x2000U)</span></div><div class="line"></div><div class="line"><span class="keywordtype">void</span> mtu3_compare_match_set_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Set the compare match value (MTU3_COMPARE_MATCH_EXAMPLE_VALUE). This value must be less than or equal to period value. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga919743a366cdd773ad49ece6bb029baf">R_MTU3_CompareMatchSet</a>(&amp;g_timer0_ctrl, MTU3_COMPARE_MATCH_EXAMPLE_VALUE, <a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ggaf5f22f5e34fe6ea640fd6a1c7e864cd9aaaad342d8de564fe934da6046de43b1b">TIMER_COMPARE_MATCH_A</a>);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Input Capture Example</h2>
+<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when compare match occurs. */</span></div><div class="line"><span class="keywordtype">void</span> mtu3_compare_match_callback (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gac3bee51f7c9078f794c5ac19522f91eba0c70d6721fc210edd653b582b451b5f8">TIMER_EVENT_COMPARE_A</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Add application code to be called periodically here. */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="preprocessor">#define MTU3_COMPARE_MATCH_EXAMPLE_VALUE    (0x2000U)</span></div><div class="line"></div><div class="line"><span class="keywordtype">void</span> mtu3_compare_match_set_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Set the compare match value (MTU3_COMPARE_MATCH_EXAMPLE_VALUE). This value must be less than or equal to period value. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga919743a366cdd773ad49ece6bb029baf">R_MTU3_CompareMatchSet</a>(&amp;g_timer0_ctrl, MTU3_COMPARE_MATCH_EXAMPLE_VALUE, <a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ggaf5f22f5e34fe6ea640fd6a1c7e864cd9aaaad342d8de564fe934da6046de43b1b">TIMER_COMPARE_MATCH_A</a>);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 Input Capture Example</h2>
 <p>This is an example of using the MTU3 to capture pulse width or pulse period measurements.</p>
-<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when a capture occurs. */</span></div><div class="line">uint64_t g_captured_time     = 0U;</div><div class="line">uint32_t g_capture_overflows = 0U;</div><div class="line"><span class="keywordtype">void</span> timer_capture_callback (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span> ((<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ggac3bee51f7c9078f794c5ac19522f91eba4bc1252f63147f4a01f7b7ba88afac1d">TIMER_EVENT_CAPTURE_A</a> == p_args-&gt;event) || (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ggac3bee51f7c9078f794c5ac19522f91ebab7b635fbf34ede5a3e2f55b5a60ac21b">TIMER_EVENT_CAPTURE_B</a> == p_args-&gt;event))</div><div class="line">    {</div><div class="line"></div><div class="line">        <span class="comment">/* (Optional) Get the current period if not known. */</span></div><div class="line">        <a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaf372937699a6b2055a52c7444aea71b4">timer_info_t</a> info;</div><div class="line">        (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga0c1fcecad7205ef9928305c960c7e494">R_MTU3_InfoGet</a>(&amp;g_timer0_ctrl, &amp;info);</div><div class="line">        uint64_t period = info.period_counts;</div><div class="line"></div><div class="line">        <span class="comment">/* The maximum period is one more than the maximum 32-bit number, but will be reflected as 0 in</span></div><div class="line"><span class="comment">         * timer_info_t::period_counts. */</span></div><div class="line">        <span class="keywordflow">if</span> (0U == period)</div><div class="line">        {</div><div class="line">            period = UINT32_MAX + 1U;</div><div class="line">        }</div><div class="line"></div><div class="line"></div><div class="line">        g_captured_time     = (period * g_capture_overflows) + p_args-&gt;capture;</div><div class="line">        g_capture_overflows = 0U;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ggac3bee51f7c9078f794c5ac19522f91ebae310bef0d640f06765c01b4b91a5b84c">TIMER_EVENT_CYCLE_END</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* An overflow occurred during capture. This must be accounted for at the application layer. */</span></div><div class="line">        g_capture_overflows++;</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> mtu3_capture_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Enable captures. Captured values arrive in the interrupt. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga7be983a26523a21e6eec4ed02b3d0902">R_MTU3_Enable</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* (Optional) Disable captures. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#gab8b9c7b84a459fabd5449e83db526ee1">R_MTU3_Disable</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 phase count Basic Example</h2>
+<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when a capture occurs. */</span></div><div class="line">uint64_t g_captured_time     = 0U;</div><div class="line">uint32_t g_capture_overflows = 0U;</div><div class="line"><span class="keywordtype">void</span> timer_capture_callback (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span> ((<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gac3bee51f7c9078f794c5ac19522f91ebac6371aead2eaa6ad8e274d5f52f53716">TIMER_EVENT_CAPTURE_A</a> == p_args-&gt;event) || (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gac3bee51f7c9078f794c5ac19522f91eba53dc6cbac7d608a82a3e1dec3e8884af">TIMER_EVENT_CAPTURE_B</a> == p_args-&gt;event))</div><div class="line">    {</div><div class="line"></div><div class="line">        <span class="comment">/* (Optional) Get the current period if not known. */</span></div><div class="line">        <a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaf372937699a6b2055a52c7444aea71b4">timer_info_t</a> info;</div><div class="line">        (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga0c1fcecad7205ef9928305c960c7e494">R_MTU3_InfoGet</a>(&amp;g_timer0_ctrl, &amp;info);</div><div class="line">        uint64_t period = info.period_counts;</div><div class="line"></div><div class="line">        <span class="comment">/* The maximum period is one more than the maximum 32-bit number, but will be reflected as 0 in</span></div><div class="line"><span class="comment">         * timer_info_t::period_counts. */</span></div><div class="line">        <span class="keywordflow">if</span> (0U == period)</div><div class="line">        {</div><div class="line">            period = UINT32_MAX + 1U;</div><div class="line">        }</div><div class="line"></div><div class="line"></div><div class="line">        g_captured_time     = (period * g_capture_overflows) + p_args-&gt;capture;</div><div class="line">        g_capture_overflows = 0U;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gac3bee51f7c9078f794c5ac19522f91ebaf35df6e894642f443099deff392469a1">TIMER_EVENT_CYCLE_END</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* An overflow occurred during capture. This must be accounted for at the application layer. */</span></div><div class="line">        g_capture_overflows++;</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> mtu3_capture_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Enable captures. Captured values arrive in the interrupt. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#ga7be983a26523a21e6eec4ed02b3d0902">R_MTU3_Enable</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* (Optional) Disable captures. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_g___m_t_u3.html#gab8b9c7b84a459fabd5449e83db526ee1">R_MTU3_Disable</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>MTU3 phase count Basic Example</h2>
 <p>This is an example of using the MTU3 to operate phase counting mode.</p>
-<div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> mtu3_phase_count_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line">    <span class="comment">/* Get phase counting information. Counter value is in status.counter. */</span></div><div class="line">    <a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ga8160de0e701f5d6acebcaf9d2c86120f">timer_status_t</a> status;</div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga8e02f073acf66a66ef6e525c8b57454e">R_MTU3_StatusGet</a>(&amp;g_timer0_ctrl, &amp;status);</div><div class="line">    handle_error(err);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
+<div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> mtu3_phase_count_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0ee0beb7bd1f1773916b0c633454fe0b">R_MTU3_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga57aa8e231848fe1eb00775bd722418ee">R_MTU3_Start</a>(&amp;g_timer0_ctrl);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Get phase counting information. Counter value is in status.counter. */</span></div><div class="line">    <a class="code" href="group___r_z_g___t_i_m_e_r___a_p_i.html#ga8160de0e701f5d6acebcaf9d2c86120f">timer_status_t</a> status;</div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga8e02f073acf66a66ef6e525c8b57454e">R_MTU3_StatusGet</a>(&amp;g_timer0_ctrl, &amp;status);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_g_1_1st__mtu3__output__pin"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_t_u3.html#struct_r_z_g_1_1st__mtu3__output__pin">st_mtu3_output_pin</a></td></tr>
@@ -933,6 +1067,18 @@ output_pin_level_b</td>
 <td class="fielddoc">
 I/O Control B. </td></tr>
 <tr><td class="fieldtype">
+<a id="af565279870c32c4d8002e2495f69f2da"></a><a class="el" href="group___r_z_g___m_t_u3.html#ga4a8786cd182fb52e974c1214c2de627a">mtu3_io_pin_level_t</a></td>
+<td class="fieldname">
+output_pin_level_c</td>
+<td class="fielddoc">
+I/O Control C. </td></tr>
+<tr><td class="fieldtype">
+<a id="af2e8cadbc58e22893e1a7820e74edb9f"></a><a class="el" href="group___r_z_g___m_t_u3.html#ga4a8786cd182fb52e974c1214c2de627a">mtu3_io_pin_level_t</a></td>
+<td class="fieldname">
+output_pin_level_d</td>
+<td class="fielddoc">
+I/O Control D. </td></tr>
+<tr><td class="fieldtype">
 <a id="a60940bcd60c62fcfd50f82a5ff503554"></a>bool</td>
 <td class="fieldname">
 output_enabled_a</td>
@@ -968,6 +1114,30 @@ Select a stop level from <a class="el" href="group___r_z_g___m_t_u3.html#gabd8de
 retain_level</td>
 <td class="fielddoc">
 Set to true to retain output, false to not retain output. </td></tr>
+<tr><td class="fieldtype">
+<a id="a0230c0bcd1acc56c8f3b4e14c0fda174"></a>bool</td>
+<td class="fieldname">
+output_enabled_c</td>
+<td class="fielddoc">
+Set to true to enable output, false to disable output. </td></tr>
+<tr><td class="fieldtype">
+<a id="a01e8edfd8e81f35272ba4b22cc0ba2ba"></a><a class="el" href="group___r_z_g___m_t_u3.html#gabd8de4974f621e5339527a4da1006839">mtu3_pin_level_t</a></td>
+<td class="fieldname">
+stop_level_c</td>
+<td class="fielddoc">
+Select a stop level from <a class="el" href="group___r_z_g___m_t_u3.html#gabd8de4974f621e5339527a4da1006839">mtu3_pin_level_t</a>. </td></tr>
+<tr><td class="fieldtype">
+<a id="ae09d2142c5086dd46c2104518f83e8d6"></a>bool</td>
+<td class="fieldname">
+output_enabled_d</td>
+<td class="fielddoc">
+Set to true to enable output, false to disable output. </td></tr>
+<tr><td class="fieldtype">
+<a id="a020e7171dfd722ba782151fd5bff2651"></a><a class="el" href="group___r_z_g___m_t_u3.html#gabd8de4974f621e5339527a4da1006839">mtu3_pin_level_t</a></td>
+<td class="fieldname">
+stop_level_d</td>
+<td class="fielddoc">
+Select a stop level from <a class="el" href="group___r_z_g___m_t_u3.html#gabd8de4974f621e5339527a4da1006839">mtu3_pin_level_t</a>. </td></tr>
 </table>
 
 </div>
@@ -1022,6 +1192,14 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="g
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_t_u3.html#a7fd5042c9ed72026d61cd5222b3f0857">tior_iob</a></td></tr>
 <tr class="memdesc:a7fd5042c9ed72026d61cd5222b3f0857"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIOR.IOB register value. <br /></td></tr>
 <tr class="separator:a7fd5042c9ed72026d61cd5222b3f0857"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a1571b89175de245f28c968f11fd69d"><td class="memItemLeft" align="right" valign="top"><a id="a6a1571b89175de245f28c968f11fd69d"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_t_u3.html#a6a1571b89175de245f28c968f11fd69d">tior_ioc</a></td></tr>
+<tr class="memdesc:a6a1571b89175de245f28c968f11fd69d"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIOR.IOC register value. <br /></td></tr>
+<tr class="separator:a6a1571b89175de245f28c968f11fd69d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21eedf5f89f6a817d88e5465106fbb9e"><td class="memItemLeft" align="right" valign="top"><a id="a21eedf5f89f6a817d88e5465106fbb9e"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_t_u3.html#a21eedf5f89f6a817d88e5465106fbb9e">tior_iod</a></td></tr>
+<tr class="memdesc:a21eedf5f89f6a817d88e5465106fbb9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIOR.IOD register value. <br /></td></tr>
+<tr class="separator:a21eedf5f89f6a817d88e5465106fbb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e3b7a11c599471c2cc9c1d20bf8fe6f"><td class="memItemLeft" align="right" valign="top"><a id="a5e3b7a11c599471c2cc9c1d20bf8fe6f"></a>
 void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_t_u3.html#a5e3b7a11c599471c2cc9c1d20bf8fe6f">p_callback</a> )(<a class="el" href="group___r_z_g___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> *)</td></tr>
 <tr class="memdesc:a5e3b7a11c599471c2cc9c1d20bf8fe6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to callback. <br /></td></tr>
@@ -1239,6 +1417,30 @@ capture_b_irq</td>
 <td class="fielddoc">
 Capture/Compare match B interrupt. </td></tr>
 <tr><td class="fieldtype">
+<a id="a66d20e2869295594c0b635bba36236ce"></a>uint8_t</td>
+<td class="fieldname">
+capture_c_ipl</td>
+<td class="fielddoc">
+Capture/Compare match C interrupt priority. </td></tr>
+<tr><td class="fieldtype">
+<a id="a4e74be1999b1c987455f538b413e0663"></a>uint8_t</td>
+<td class="fieldname">
+capture_d_ipl</td>
+<td class="fielddoc">
+Capture/Compare match D interrupt priority. </td></tr>
+<tr><td class="fieldtype">
+<a id="ad3bf47e6c19b8dabeb6d31595b65dcf9"></a>IRQn_Type</td>
+<td class="fieldname">
+capture_c_irq</td>
+<td class="fielddoc">
+Capture/Compare match C interrupt. </td></tr>
+<tr><td class="fieldtype">
+<a id="a56bdb387a64f80846ee11a46ba1d36cc"></a>IRQn_Type</td>
+<td class="fieldname">
+capture_d_irq</td>
+<td class="fielddoc">
+Capture/Compare match D interrupt. </td></tr>
+<tr><td class="fieldtype">
 <a id="a64e0d62cd1d274c6041cb4d950596491"></a><a class="el" href="group___r_z_g___m_t_u3.html#ga86eca1115445353d3ce4389dab894afe">mtu3_extended_pwm_cfg_t</a> const  *</td>
 <td class="fieldname">
 p_pwm_cfg</td>
@@ -1251,9 +1453,9 @@ p_reg</td>
 <td class="fielddoc">
 Register base address for specified channel. </td></tr>
 <tr><td class="fieldtype">
-<a id="adb68fc4f3a299dc144847b9dec5d0697"></a>uint32_t</td>
+<a id="a0980a7104f365d9b541dba029a74c666"></a>uint32_t</td>
 <td class="fieldname">
-compare_match_value</td>
+compare_match_value[2]</td>
 <td class="fielddoc">
 Storing compare match value for channels. </td></tr>
 <tr><td class="fieldtype">
@@ -1504,6 +1706,10 @@ Buffer mode enable. </td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="gga031ed640883cba19cb1243d46ea54709a7ab7fef8e1167140423f0d3bd325853b"></a>MTU3_TCNT_CLEAR_TGRB&#160;</td><td class="fielddoc"><p>TCNT cleared by TGRB compare match/input capture. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="gga031ed640883cba19cb1243d46ea54709ad604d2e7a8e5d7ce0a0339daaf14a196"></a>MTU3_TCNT_CLEAR_TGRC&#160;</td><td class="fielddoc"><p>TCNT cleared by TGRC compare match/input capture. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga031ed640883cba19cb1243d46ea54709a385cb23cfc4b4aad2b799924be6be310"></a>MTU3_TCNT_CLEAR_TGRD&#160;</td><td class="fielddoc"><p>TCNT cleared by TGRD compare match/input capture. </p>
+</td></tr>
 </table>
 
 </div>
@@ -1526,6 +1732,30 @@ Buffer mode enable. </td></tr>
 <tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4ceacd3adaab6bac29b0b63bd9c6a156c028"></a>MTU3_IO_PIN_MTIOCB&#160;</td><td class="fielddoc"><p>MTIOCB. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4cea6579c2e2017ea2d1a473d06d6554d528"></a>MTU3_IO_PIN_MTIOCA_AND_MTIOCB&#160;</td><td class="fielddoc"><p>MTIOCA and MTIOCB. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4ceab38d4f7dcd69c6c420073d492a67a3b5"></a>MTU3_IO_PIN_MTIOCC&#160;</td><td class="fielddoc"><p>MTIOCC. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4ceaf7a04d30c7f1ce7f7f50822c6f6c0c8b"></a>MTU3_IO_PIN_MTIOCD&#160;</td><td class="fielddoc"><p>MTIOCD. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4cea11839be3b127f30d45280b0ca3b55716"></a>MTU3_IO_PIN_MTIOCA_AND_MTIOCC&#160;</td><td class="fielddoc"><p>MTIOCA and MTIOCC. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4ceaefb4d7253ae6b683b5f5e18134e621e6"></a>MTU3_IO_PIN_MTIOCA_AND_MTIOCD&#160;</td><td class="fielddoc"><p>MTIOCA and MTIOCD. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4cea551cebc01adc4f7cf488d36101a92a23"></a>MTU3_IO_PIN_MTIOCB_AND_MTIOCC&#160;</td><td class="fielddoc"><p>MTIOCB and MTIOCC. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4cea7ff8a18426146d817ab0655eacce763e"></a>MTU3_IO_PIN_MTIOCB_AND_MTIOCD&#160;</td><td class="fielddoc"><p>MTIOCB and MTIOCD. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4ceadb0cd1225880c944ef704c8df05b3e95"></a>MTU3_IO_PIN_MTIOCC_AND_MTIOCD&#160;</td><td class="fielddoc"><p>MTIOCC and MTIOCD. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4cea73f1bb8e2fa6a1593e7057e32345aaff"></a>MTU3_IO_PIN_MTIOCA_AND_MTIOCB_AND_MTIOCC&#160;</td><td class="fielddoc"><p>MTIOCA, MTIOCB and MTIOCC. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4ceaf0b7da9d2e9dacb581f5cf875694e49d"></a>MTU3_IO_PIN_MTIOCA_AND_MTIOCB_AND_MTIOCD&#160;</td><td class="fielddoc"><p>MTIOCA, MTIOCB and MTIOCD. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4ceaa1042d172aa19b2d6c9ad600373d9bfe"></a>MTU3_IO_PIN_MTIOCA_AND_MTIOCC_AND_MTIOCD&#160;</td><td class="fielddoc"><p>MTIOCA, MTIOCC and MTIOCD. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4cea5d3d4a7daf4839a33af53b61190160bf"></a>MTU3_IO_PIN_MTIOCB_AND_MTIOCC_AND_MTIOCD&#160;</td><td class="fielddoc"><p>MTIOCB, MTIOCC and MTIOCD. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga8a74b8a0003ccd7602df801eb863a4cea1e273e08b6bf4149cd041d98feee7e5c"></a>MTU3_IO_PIN_MTIOCA_AND_MTIOCB_AND_MTIOCC_AND_MTIOCD&#160;</td><td class="fielddoc"><p>MTIOCA, MTIOCB, MTIOCC and MTIOCD. </p>
 </td></tr>
 </table>
 
@@ -1570,6 +1800,10 @@ Buffer mode enable. </td></tr>
 <tr><td class="fieldname"><a id="gga6ce62ddb141bf440c0539fc47512c586a99ecb4bf189434da6ef15bf58a73e665"></a>MTU3_NOISE_FILTER_A_ENABLE&#160;</td><td class="fielddoc"><p>The noise filter for the MTIOCA pin is enabled. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga6ce62ddb141bf440c0539fc47512c586ab0e36e5481656608bcca54312a3bbb37"></a>MTU3_NOISE_FILTER_B_ENABLE&#160;</td><td class="fielddoc"><p>The noise filter for the MTIOCB pin is enabled. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6ce62ddb141bf440c0539fc47512c586adfeeaad3eb2b5f291de0f3e895484bdb"></a>MTU3_NOISE_FILTER_C_ENABLE&#160;</td><td class="fielddoc"><p>The noise filter for the MTIOCC pin is enabled. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6ce62ddb141bf440c0539fc47512c586abe5991bbfdeb972f5047d6368f09fab6"></a>MTU3_NOISE_FILTER_D_ENABLE&#160;</td><td class="fielddoc"><p>The noise filter for the MTIOCD pin is enabled. </p>
 </td></tr>
 </table>
 
@@ -1993,10 +2227,10 @@ Buffer mode enable. </td></tr>
       </table>
 </div><div class="memdoc">
 <p>Sets period value provided. If the timer is running, the period will be updated after the next compare match. If the timer is stopped, this function resets the counter and updates the period. Implements <a class="el" href="group___r_z_g___t_i_m_e_r___a_p_i.html#a385d71f8afc519184892ed4d0ff6274e">timer_api_t::periodSet</a>.</p>
-<p>Example: </p><div class="fragment"><div class="line"></div><div class="line">    <span class="comment">/* Get the source clock frequency (in Hz). There are 3 ways to do this in FSP:</span></div><div class="line"><span class="comment">     *  - If P0 clock  is chosen in agt_extended_cfg_t::clock_source and the P0 clock frequency has not changed since reset,</span></div><div class="line"><span class="comment">     *      - The source clock frequency is BSP_STARTUP_P0CLK_HZ &gt;&gt; timer_cfg_t::source_div</span></div><div class="line"><span class="comment">     *  - Use the R_MTU3_InfoGet function (it accounts for the divider).</span></div><div class="line"><span class="comment">     *  - Calculate the current P0 clock frequency using R_FSP_SystemClockHzGet(FSP_PRIV_CLOCK_P0CLK) and right shift</span></div><div class="line"><span class="comment">     *    by mtu3_extended_cfg_t::mtu3_clk_div.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * This example uses the 3rd option (R_FSP_SystemClockHzGet).</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    uint32_t p0clk_freq_hz = <a class="code" href="group___r_z_g___b_s_p___m_c_u.html#ga992632ae2e45c2f962855fe4bbe98a63">R_FSP_SystemClockHzGet</a>(FSP_PRIV_CLOCK_P0CLK) &gt;&gt; g_timer0_cfg.source_div;</div><div class="line"></div><div class="line">    <span class="comment">/* Calculate the desired period based on the current clock. Note that this calculation could overflow if the</span></div><div class="line"><span class="comment">     * desired period is larger than UINT16_MAX / p0clk_freq_hz. A cast to uint64_t is used to prevent this. */</span></div><div class="line">    uint32_t period_counts =</div><div class="line">        (uint32_t) (((uint64_t) p0clk_freq_hz * MTU3_EXAMPLE_DESIRED_PERIOD_MICROSEC) / MTU3_EXAMPLE_MICROSEC_PER_SEC);</div><div class="line"></div><div class="line">    <span class="comment">/* Set the calculated period. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0d64e832230506418738a816a38489e4">R_MTU3_PeriodSet</a>(&amp;g_timer0_ctrl, period_counts);</div><div class="line">    handle_error(err);</div><div class="line"></div></div><!-- fragment --> <dl class="retval"><dt>Return values</dt><dd>
+<p>Example: </p><div class="fragment"><div class="line"></div><div class="line">    <span class="comment">/* Get the source clock frequency (in Hz). There are 3 ways to do this in FSP:</span></div><div class="line"><span class="comment">     *  - If P0 clock  is chosen in agt_extended_cfg_t::clock_source and the P0 clock frequency has not changed since reset,</span></div><div class="line"><span class="comment">     *      - The source clock frequency is BSP_STARTUP_P0CLK_HZ &gt;&gt; timer_cfg_t::source_div</span></div><div class="line"><span class="comment">     *  - Use the R_MTU3_InfoGet function (it accounts for the divider).</span></div><div class="line"><span class="comment">     *  - Calculate the current P0 clock frequency using R_FSP_SystemClockHzGet(FSP_PRIV_CLOCK_P0CLK) and right shift</span></div><div class="line"><span class="comment">     *    by mtu3_extended_cfg_t::mtu3_clk_div.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * This example uses the 3rd option (R_FSP_SystemClockHzGet).</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    uint32_t p0clk_freq_hz = <a class="code" href="group___r_z_g___b_s_p___m_c_u.html#ga992632ae2e45c2f962855fe4bbe98a63">R_FSP_SystemClockHzGet</a>(FSP_PRIV_CLOCK_P0CLK) &gt;&gt; g_timer0_cfg.source_div;</div><div class="line"></div><div class="line">    <span class="comment">/* Calculate the desired period based on the current clock. Note that this calculation could overflow if the</span></div><div class="line"><span class="comment">     * desired period is larger than UINT16_MAX / p0clk_freq_hz. A cast to uint64_t is used to prevent this. */</span></div><div class="line">    uint32_t period_counts =</div><div class="line">        (uint32_t) (((uint64_t) p0clk_freq_hz * MTU3_EXAMPLE_DESIRED_PERIOD_MICROSEC) / MTU3_EXAMPLE_MICROSEC_PER_SEC);</div><div class="line"></div><div class="line">    <span class="comment">/* Set the calculated period. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_t_u3.html#ga0d64e832230506418738a816a38489e4">R_MTU3_PeriodSet</a>(&amp;g_timer0_ctrl, period_counts);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div></div><!-- fragment --> <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Period value written successfully. </td></tr>
-    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>A required pointer was NULL, or the period was not in the valid range of 1 to 0xFFFF. </td></tr>
+    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>A required pointer was NULL. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The instance is not opened. </td></tr>
   </table>
   </dd>
@@ -2048,7 +2282,7 @@ Buffer mode enable. </td></tr>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Duty cycle updated successfully. </td></tr>
-    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>A required pointer was NULL, or the period was not in the valid range of 1 to 0xFFFF. </td></tr>
+    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>A required pointer was NULL. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The instance is not opened. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ARGUMENT</td><td>Duty cycle is larger than period. </td></tr>
     <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>MTU3_CFG_OUTPUT_SUPPORT_ENABLE is 0. </td></tr>
@@ -2233,7 +2467,7 @@ Buffer mode enable. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Disable output for MTIOCA and/or MTIOCB.</p>
+<p>Disable output for MTIOCA, MTIOCB, MTIOCC and/or MTIOCD.</p>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Output is disabled. </td></tr>
@@ -2470,7 +2704,7 @@ Buffer mode enable. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

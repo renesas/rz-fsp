@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -215,7 +215,7 @@ Features</h2>
 <li>Configurable prefetch function during read transaction in memory-mapping mode<a class="anchor" id="RZN_um_qspi_prefetch_function"></a></li>
 <li>Optional DMAC support for data transmission when used with xSPI_QSPI.</li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>1. The available chip select lines may differ between devices. A full list of selectable chip select lines is available in the User's Manual for your device. </dd>
+<dl class="section note"><dt>Note</dt><dd>1. The available chip select lines may differ between devices. A full list of selectable chip select lines is available in the Hardware Manual for your device. </dd>
 <dd>
 2. When using serial flash memory without a hardware reset pin, if this LSI is reset after the serial flash protocol setting has been changed from 1S-1S-1S protocol to another protocol mode by the user program, the protocol mode of the boot program does not coincide with the protocol mode of the serial flash memory, which causes a boot error.</dd></dl>
 <h1><a class="anchor" id="RZN_r-xspi-qspi-configuration"></a>
@@ -302,6 +302,8 @@ Chip Select 1</li>
 <tr>
 <td>General &gt; Flash Size</td><td>MCU Specific Options</td><td></td><td>Specify the QSPI Flash size. </td></tr>
 <tr>
+<td>General &gt; Flash Page Size Bytes</td><td>Must be a valid non-negative integer</td><td>256 </td><td>Specify the QSPI Flash page size. </td></tr>
+<tr>
 <td>General &gt; SPI Protocol</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 1S-1S-1S</li>
@@ -326,7 +328,7 @@ Chip Select 1</li>
 </ul>
 </td><td>3 </td><td>Select the number of address bytes. If 4-byte mode is selected, the application must issue the EN4B command using <a class="el" href="group___r_z_n___x_s_p_i___q_s_p_i.html#ga5e5bf2c3854fb149c7ac6f96fce9ee98">R_XSPI_QSPI_DirectTransfer()</a>. </td></tr>
 <tr>
-<td>General &gt; Dummy Clocks for Read</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td>8 </td><td>Select the number of dummy clocks for read operations. </td></tr>
+<td>General &gt; Dummy Clocks for Read</td><td>Refer to the <a class="el" href="namespace_r_z_n.html">RZN</a> Configuration tool for available options.</td><td>0 </td><td>Select the number of dummy clocks for read operations. </td></tr>
 <tr>
 <td>Command Definitions &gt; Page Program Command</td><td>Must be an 8-bit QSPI command</td><td>0x02 </td><td>The command to program a page. </td></tr>
 <tr>
@@ -482,7 +484,11 @@ Limitations</h2>
 <li>Prefetch function support for memory-mapping access is applied to all slave devices connected xSPI0 or xSPI1. When using different types of xSPI modules (for example, xSPI_QSPI and xSPI_OSPI) to same xSPI unit, make sure that the prefetch function settings in the configurator properties are the same.</li>
 <li>In the configurator properties, when 'Memory Mapping Address Space Configuration Support' is 'Supported', memory mapping address space settings are applied to all slave devices connected xSPI0 or xSPI1. When using different types of xSPI modules (for example, xSPI_QSPI and xSPI_OSPI), make sure that 'Memory Mapping Address Space' settings are the same for all xSPI modules.</li>
 <li>Take care to restrict concurrent accesses of the xSPI address space. Collisions on the bus can occur if other bus masters attempt to write to the xSPI address space while another master is reading the xSPI address space.</li>
+<li>Due to the characteristics of the Arm memory architecture, depending on the memory attributes, the order of access to peripherals memory space by the HAL driver and the access to the External address space xSPIn (including mirror area) by the user may not be guaranteed. In such cases, the user program must explicitly insert memory barrier instructions (such as __DMB() or __DSB()) after calling the HAL API function.</li>
 </ul>
+<h2>Data coherency</h2>
+<dl class="section note"><dt>Note</dt><dd>This section applies only when xSPI_QSPI utilizes the DMAC.</dd></dl>
+<p>A destination buffer must either be allocated to a non-cacheable region, or, if placed in a cacheable region, be managed via explicit cache maintenance operations (clean/invalidate) to ensure data coherency (This involves cleaning the cache before starting the transmission and invalidating it once the transmission is completed). In the case of the write-back policy, when a destination buffer is placed in a cacheable region, it must be aligned with 64 bytes. See <a class="el" href="group___r_z_n___b_s_p___m_c_u.html#RZN_memory-attributes">Memory attributes</a> for details.</p>
 <h1><a class="anchor" id="RZN_r-qspi-examples"></a>
 Examples</h1>
 <h2>Basic Example</h2>
@@ -721,7 +727,7 @@ Register base address for specified channel. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Memory mapped timing Please refer to the struct <a class="el" href="group___r_z_n___x_s_p_i___q_s_p_i.html#struct_r_z_n_1_1st__qspi__timing__setting">st_qspi_timing_setting</a>. </p>
+<p>Memory mapped timing. Please refer to the struct <a class="el" href="group___r_z_n___x_s_p_i___q_s_p_i.html#struct_r_z_n_1_1st__qspi__timing__setting">st_qspi_timing_setting</a>. </p>
 
 </div>
 </div>
@@ -736,7 +742,7 @@ Register base address for specified channel. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Address space settings Please refer to the struct <a class="el" href="group___r_z_n___x_s_p_i___q_s_p_i.html#struct_r_z_n_1_1st__qspi__address__space">st_qspi_address_space</a>. </p>
+<p>Address space settings. Please refer to the struct <a class="el" href="group___r_z_n___x_s_p_i___q_s_p_i.html#struct_r_z_n_1_1st__qspi__address__space">st_qspi_address_space</a>. </p>
 
 </div>
 </div>
@@ -766,7 +772,7 @@ Register base address for specified channel. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Instance control block. DO NOT INITIALIZE. Initialization occurs when <a class="el" href="group___r_z_n___s_p_i___f_l_a_s_h___a_p_i.html#a8f485a0d27ebe7077cfad40bb9f0eba1">RZN::spi_flash_api_t::open</a> is called Please refer to the struct <a class="el" href="group___r_z_n___x_s_p_i___q_s_p_i.html#struct_r_z_n_1_1st__xspi__qspi__instance__ctrl">st_xspi_qspi_instance_ctrl</a>. </p>
+<p>Instance control block. DO NOT INITIALIZE. Initialization occurs when <a class="el" href="group___r_z_n___s_p_i___f_l_a_s_h___a_p_i.html#a8f485a0d27ebe7077cfad40bb9f0eba1">RZN::spi_flash_api_t::open</a> is called. Please refer to the struct <a class="el" href="group___r_z_n___x_s_p_i___q_s_p_i.html#struct_r_z_n_1_1st__xspi__qspi__instance__ctrl">st_xspi_qspi_instance_ctrl</a>. </p>
 
 </div>
 </div>
@@ -1227,7 +1233,8 @@ Register base address for specified channel. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>Driver is not opened. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_MODE</td><td>This function can't be called when XIP mode is enabled. </td></tr>
     <tr><td class="paramname">FSP_ERR_DEVICE_BUSY</td><td>The device is busy. </td></tr>
-    <tr><td class="paramname">FSP_ERR_WRITE_FAILED</td><td>Write operation failed.</td></tr>
+    <tr><td class="paramname">FSP_ERR_WRITE_FAILED</td><td>Write operation failed. </td></tr>
+    <tr><td class="paramname">FSP_ERR_INVALID_SIZE</td><td>Insufficient space remaining in page.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1458,7 +1465,7 @@ This API performs page program operations to the device. Writing across pages is
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

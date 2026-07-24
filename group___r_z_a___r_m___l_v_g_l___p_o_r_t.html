@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -774,13 +774,13 @@ Getting Started</h2>
 <p>The LVGL packed with FSP also includes the <code>src/libs</code> directory that is in the LVGL project. Only <code>bin_decoder</code> is a mandatory library used by LVGL. Other libraries are either first-party or third-party libraries available for use within LVGL.</p>
 <dl class="section note"><dt>Note</dt><dd>The included libraries may not be applicable to an RZ embedded context. The included libraries may not compile or function without further modification. Libraries like ThorVG require a C++ based FSP project. These libraries are included for convenience but are not validated or officially supported as part of the FSP LVGL integration. Not all libraries have been included.</dd></dl>
 <h2>Multi-thread Support</h2>
-<p>LVGL is not a thread safe library. Please refer to <a href="https://docs.lvgl.io/master/integration/overview/threading.html">Threading Considerations</a> for information on how to use LVGL in a multi-thread environment.</p>
+<p>LVGL is not a thread safe library. Please refer to <a href="https://docs.lvgl.io/9.5/integration/overview.html#operating-systems-and-threads">Operating Systems and Threads</a> for information on how to use LVGL in a multi-thread environment.</p>
 <dl class="section note"><dt>Note</dt><dd>This includes both bare metal and FreeRTOS projects. RTOS support is optionally configured depending on whether FreeRTOS is used in the project.</dd></dl>
 <h2><a class="anchor" id="RZA_rm-lvgl-port-limitations"></a>
 Limitations</h2>
 <p>Developers should be aware of the following limitations when using LVGL with FSP:</p>
 <ul>
-<li>Compilers may produce different results at this time (v9.4.0). AC6 is known to produce different software rendering output when blending certain image formats with a 32-bit color depth. LLVM is known to create artifacts with LVGL image decoding and blending.</li>
+<li>Compilers may produce different results at this time (v9.5.0). AC6 is known to produce different software rendering output when blending certain image formats with a 32-bit color depth. LLVM is known to create artifacts with LVGL image decoding and blending.</li>
 <li>The DRW upstream driver does not support all LVGL rendering features. Some unsupported features are horizontal gradients, dashed lines, and blitting of certain image formats. In some cases, the LVGL software renderer will act as a fallback renderer, such as when an unsupported image format is used.</li>
 <li>Since the work memory size is large, the work memory configured by <code>LV_MEM_SIZE</code> should be allocated to SDRAM. <hr/>
 </li>
@@ -897,7 +897,7 @@ Error code if RM_LVGL_PORT_EVENT_ERROR. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Callback arguments for the FSP LVGL Port Please refer to the struct <a class="el" href="group___r_z_a___r_m___l_v_g_l___p_o_r_t.html#struct_r_z_a_1_1st__rm__lvgl__port__callback__args">st_rm_lvgl_port_callback_args</a>. </p>
+<p>Callback arguments for the FSP LVGL Port. Please refer to the struct <a class="el" href="group___r_z_a___r_m___l_v_g_l___p_o_r_t.html#struct_r_z_a_1_1st__rm__lvgl__port__callback__args">st_rm_lvgl_port_callback_args</a>. </p>
 
 </div>
 </div>
@@ -912,7 +912,7 @@ Error code if RM_LVGL_PORT_EVENT_ERROR. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Configuration structure for the FSP LVGL Port Please refer to the struct <a class="el" href="group___r_z_a___r_m___l_v_g_l___p_o_r_t.html#struct_r_z_a_1_1st__rm__lvgl__port__cfg">st_rm_lvgl_port_cfg</a>. </p>
+<p>Configuration structure for the FSP LVGL Port. Please refer to the struct <a class="el" href="group___r_z_a___r_m___l_v_g_l___p_o_r_t.html#struct_r_z_a_1_1st__rm__lvgl__port__cfg">st_rm_lvgl_port_cfg</a>. </p>
 
 </div>
 </div>
@@ -927,7 +927,7 @@ Error code if RM_LVGL_PORT_EVENT_ERROR. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Instance control block for LVGL Port Please refer to the struct <a class="el" href="group___r_z_a___r_m___l_v_g_l___p_o_r_t.html#struct_r_z_a_1_1st__rm__lvgl__port__instance__ctrl">st_rm_lvgl_port_instance_ctrl</a>. </p>
+<p>Instance control block for LVGL Port. Please refer to the struct <a class="el" href="group___r_z_a___r_m___l_v_g_l___p_o_r_t.html#struct_r_z_a_1_1st__rm__lvgl__port__instance__ctrl">st_rm_lvgl_port_instance_ctrl</a>. </p>
 
 </div>
 </div>
@@ -1019,7 +1019,7 @@ Error code if RM_LVGL_PORT_EVENT_ERROR. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

@@ -1,6 +1,6 @@
 var group___r_z_n___i_i_c___m_a_s_t_e_r =
 [
-    [ "iic_master_clock_settings", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#struct_r_z_n_1_1iic__master__clock__settings", [
+    [ "st_iic_master_clock_settings", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#struct_r_z_n_1_1st__iic__master__clock__settings", [
       [ "cks_value", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#a1a897aaa8e351f5389b9edea861a26df", null ],
       [ "brh_value", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#a0e30d90eaf57d071c761dc52562696a5", null ],
       [ "brl_value", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#ae2f176e71599502ec4bbe7a8b8ac3611", null ]
@@ -35,7 +35,7 @@ var group___r_z_n___i_i_c___m_a_s_t_e_r =
       [ "clock_settings", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#a8e92b550ba27227c4ffbd927e389ea6d", null ],
       [ "p_reg", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
-    [ "iic_master_clock_settings_t", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#gab8e6a8eecc70fd4f4d495d7ca140fbf0", null ],
+    [ "iic_master_clock_settings_t", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#ga7c0d3e4c70069c1b7021f760b48da2d7", null ],
     [ "iic_master_instance_ctrl_t", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#gade358a8ebc2f901c88bd4b08459a79d9", null ],
     [ "iic_master_extended_cfg_t", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#ga77cfb04cfed30b43f5ea9c48db458b83", null ],
     [ "iic_master_timeout_mode_t", "group___r_z_n___i_i_c___m_a_s_t_e_r.html#gaf8ecd43a76bfa058281bb8b6b3981d3f", [

@@ -84,11 +84,11 @@ var group___r_z_n___x_s_p_i___h_y_p_e_r =
     ] ],
     [ "R_XSPI_HYPER_Open", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#gaf8a2c741ebcc619ec85b896fedac688b", null ],
     [ "R_XSPI_HYPER_BurstTypeSet", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#ga0dd1bd1a499b711b67881920d5e00a47", null ],
-    [ "R_XSPI_HYPER_AccessSpaceSet", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#gaaeb7cbd1abbb6230d65f5c80741bd23c", null ],
+    [ "R_XSPI_HYPER_AccessSpaceSet", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#ga31ceb039f39be8e869cbdb64833dfa8d", null ],
     [ "R_XSPI_HYPER_DirectTransfer", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#ga1bd6bcab769c986f4f7d96b135faed66", null ],
-    [ "R_XSPI_HYPER_Write", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#ga41d34dd155d2dea4439cb196c0f97271", null ],
-    [ "R_XSPI_HYPER_Erase", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#ga948d860aae9cf93a67762635067b8ddf", null ],
-    [ "R_XSPI_HYPER_StatusGet", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#gacda208d0dc55871cab5c696388a24bc1", null ],
-    [ "R_XSPI_HYPER_AutoCalibrate", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#gad9f780852e6c6242ed3dc2df2de6a059", null ],
-    [ "R_XSPI_HYPER_Close", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#ga18f866b0d9e5e876018f448642fe9024", null ]
+    [ "R_XSPI_HYPER_Write", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#gafd46de58984ba99fa57bcfbb926c0020", null ],
+    [ "R_XSPI_HYPER_Erase", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#gadcfc106f3112f9ae83132e04d26bffbe", null ],
+    [ "R_XSPI_HYPER_StatusGet", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#ga8de0a0da1ccf7e2adb65f44324f13b4d", null ],
+    [ "R_XSPI_HYPER_AutoCalibrate", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#gaac39dc28da23682c307ceb41ecdeac62", null ],
+    [ "R_XSPI_HYPER_Close", "group___r_z_n___x_s_p_i___h_y_p_e_r.html#gaea04b19e6d089f86551943f274374963", null ]
 ];

@@ -1,6 +1,6 @@
 var group___r_z_n___i_i_c___s_l_a_v_e =
 [
-    [ "iic_slave_clock_settings", "group___r_z_n___i_i_c___s_l_a_v_e.html#struct_r_z_n_1_1iic__slave__clock__settings", [
+    [ "st_iic_slave_clock_settings", "group___r_z_n___i_i_c___s_l_a_v_e.html#struct_r_z_n_1_1st__iic__slave__clock__settings", [
       [ "cks_value", "group___r_z_n___i_i_c___s_l_a_v_e.html#a1a897aaa8e351f5389b9edea861a26df", null ],
       [ "brl_value", "group___r_z_n___i_i_c___s_l_a_v_e.html#ae2f176e71599502ec4bbe7a8b8ac3611", null ],
       [ "digital_filter_stages", "group___r_z_n___i_i_c___s_l_a_v_e.html#a7b62fbddfa95e433c9113fedc7336027", null ]
@@ -10,7 +10,7 @@ var group___r_z_n___i_i_c___s_l_a_v_e =
       [ "clock_settings", "group___r_z_n___i_i_c___s_l_a_v_e.html#ae801cfa6f436d31f37c3532ee97ec11d", null ],
       [ "p_reg", "group___r_z_n___i_i_c___s_l_a_v_e.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
-    [ "iic_slave_clock_settings_t", "group___r_z_n___i_i_c___s_l_a_v_e.html#gaa5722a6421a852c603c8edc6eff2f2cf", null ],
+    [ "iic_slave_clock_settings_t", "group___r_z_n___i_i_c___s_l_a_v_e.html#ga586258651c8d90a056b036f56247b29c", null ],
     [ "iic_slave_instance_ctrl_t", "group___r_z_n___i_i_c___s_l_a_v_e.html#ga30c387b3b877ca51f92956992cab0525", null ],
     [ "iic_slave_extended_cfg_t", "group___r_z_n___i_i_c___s_l_a_v_e.html#ga8b23ab07011729c5214fbc70e2d27e31", null ],
     [ "R_IIC_SLAVE_Open", "group___r_z_n___i_i_c___s_l_a_v_e.html#ga9a45ce52ecfa0fe2372d77eaf7eda0c9", null ],

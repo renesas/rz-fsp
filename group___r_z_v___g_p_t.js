@@ -1,10 +1,10 @@
 var group___r_z_v___g_p_t =
 [
-    [ "s_gpt_output_pin", "group___r_z_v___g_p_t.html#struct_r_z_v_1_1s__gpt__output__pin", [
+    [ "st_gpt_output_pin", "group___r_z_v___g_p_t.html#struct_r_z_v_1_1st__gpt__output__pin", [
       [ "output_enabled", "group___r_z_v___g_p_t.html#a24dbd2df12ac81f00bd66e45123f84e6", null ],
       [ "stop_level", "group___r_z_v___g_p_t.html#a6eb49c8fdaed55e754544efa0a1d85cc", null ]
     ] ],
-    [ "s_gpt_gtior_setting", "group___r_z_v___g_p_t.html#struct_r_z_v_1_1s__gpt__gtior__setting", null ],
+    [ "st_gpt_gtior_setting", "group___r_z_v___g_p_t.html#struct_r_z_v_1_1st__gpt__gtior__setting", null ],
     [ "st_gpt_instance_ctrl", "group___r_z_v___g_p_t.html#struct_r_z_v_1_1st__gpt__instance__ctrl", null ],
     [ "st_gpt_extended_pwm_cfg", "group___r_z_v___g_p_t.html#struct_r_z_v_1_1st__gpt__extended__pwm__cfg", [
       [ "trough_ipl", "group___r_z_v___g_p_t.html#ac3a383279ce416d97a166d362d90da72", null ],
@@ -44,8 +44,8 @@ var group___r_z_v___g_p_t =
       [ "gtior_setting", "group___r_z_v___g_p_t.html#a9f30539c4c848e41e17c86909e31c57d", null ],
       [ "p_reg", "group___r_z_v___g_p_t.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
-    [ "gpt_output_pin_t", "group___r_z_v___g_p_t.html#gac691cd9064242d113319fc7fddb9aed1", null ],
-    [ "gpt_gtior_setting_t", "group___r_z_v___g_p_t.html#ga4a1bf9f0875385e02964627ea70b33b5", null ],
+    [ "gpt_output_pin_t", "group___r_z_v___g_p_t.html#ga399d9cd68e6f784320c4521365a293ae", null ],
+    [ "gpt_gtior_setting_t", "group___r_z_v___g_p_t.html#gafc7448b6ed81ad9ae96c340af42e0293", null ],
     [ "gpt_instance_ctrl_t", "group___r_z_v___g_p_t.html#ga122b050e64226608efad3f44c2e046cd", null ],
     [ "gpt_extended_pwm_cfg_t", "group___r_z_v___g_p_t.html#ga4aea54e4c396171a65e3c93a1591a5aa", null ],
     [ "gpt_extended_cfg_t", "group___r_z_v___g_p_t.html#gabda913e8240920fb5bbab5cec0474b66", null ],

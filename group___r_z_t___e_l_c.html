@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -220,9 +220,13 @@ Features</h2>
 <li>Single port output and input</li>
 <li>ENCOUT trigger</li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>The available sources and peripherals may differ between devices. A full list of selectable peripherals and events is available in the User's Manual for your device.</dd>
+<p>The following functions are not supported.</p>
+<ul>
+<li>RZT2L, RZT2M, RZT2ME: Input capture MTUm.TGRA, MTUm.TGRB, MTUm.TGRC, MTUm.TGRD (m = 0, 3, 4, 6, 7).</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>The available sources and peripherals may differ between devices. A full list of selectable peripherals and events is available in the Hardware Manual for your device.</dd>
 <dd>
-Some peripherals have specific settings related to ELC event generation and/or reception. Details on how to enable event functionality for each peripheral are located in the usage notes for the related module(s) as well as in the User's Manual for your device.</dd></dl>
+Some peripherals have specific settings related to ELC event generation and/or reception. Details on how to enable event functionality for each peripheral are located in the usage notes for the related module(s) as well as in the Hardware Manual for your device.</dd></dl>
 <h1><a class="anchor" id="RZT_r-elc-configuration"></a>
 Configuration</h1>
 <dl class="section note"><dt>Note</dt><dd>Event links will be automatically generated based on the selections made in module properties. To view the currently linked events check the Event Links tab in the FSP Configuration editor.</dd></dl>
@@ -507,6 +511,26 @@ This module can be added to the Stacks tab via New Stack &gt; System &gt; Event 
 <td>GPT/MTU3 Event Select &gt; GPT04_4 Event Select &gt; GPT04_4_INT3 Event Source</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 ELC event select for GPT04_4_INT3. </td></tr>
 <tr>
 <td>GPT/MTU3 Event Select &gt; GPT04_4 Event Select &gt; GPT04_4_INT4 Event Select</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 combined ELC event select for GPT04_4_INT4. </td></tr>
+<tr>
+<td>GPT/MTU3 Event Select &gt; GPT04_5 Event Select &gt; GPT04_5_INT0 Event Source</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 ELC event select for GPT04_5_INT0. </td></tr>
+<tr>
+<td>GPT/MTU3 Event Select &gt; GPT04_5 Event Select &gt; GPT04_5_INT1 Event Source</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 ELC event select for GPT04_5_INT1. </td></tr>
+<tr>
+<td>GPT/MTU3 Event Select &gt; GPT04_5 Event Select &gt; GPT04_5_INT2 Event Source</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 ELC event select for GPT04_5_INT2. </td></tr>
+<tr>
+<td>GPT/MTU3 Event Select &gt; GPT04_5 Event Select &gt; GPT04_5_INT3 Event Source</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 ELC event select for GPT04_5_INT3. </td></tr>
+<tr>
+<td>GPT/MTU3 Event Select &gt; GPT04_5 Event Select &gt; GPT04_5_INT4 Event Select</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 combined ELC event select for GPT04_5_INT4. </td></tr>
+<tr>
+<td>GPT/MTU3 Event Select &gt; GPT04_6 Event Select &gt; GPT04_6_INT0 Event Source</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 ELC event select for GPT04_6_INT0. </td></tr>
+<tr>
+<td>GPT/MTU3 Event Select &gt; GPT04_6 Event Select &gt; GPT04_6_INT1 Event Source</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 ELC event select for GPT04_6_INT1. </td></tr>
+<tr>
+<td>GPT/MTU3 Event Select &gt; GPT04_6 Event Select &gt; GPT04_6_INT2 Event Source</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 ELC event select for GPT04_6_INT2. </td></tr>
+<tr>
+<td>GPT/MTU3 Event Select &gt; GPT04_6 Event Select &gt; GPT04_6_INT3 Event Source</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 ELC event select for GPT04_6_INT3. </td></tr>
+<tr>
+<td>GPT/MTU3 Event Select &gt; GPT04_6 Event Select &gt; GPT04_6_INT4 Event Select</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 combined ELC event select for GPT04_6_INT4. </td></tr>
 <tr>
 <td>GPT/MTU3 Event Select &gt; GPT05_0 Event Select &gt; GPT05_0_INT0 Event Source</td><td>MCU Specific Options</td><td></td><td>GPT/MTU3 ELC event select for GPT05_0_INT0. </td></tr>
 <tr>
@@ -794,7 +818,7 @@ Limitations</h2>
 Examples</h1>
 <h2>Basic Example</h2>
 <p>Below is a basic example of minimal use of event linking in an application.</p>
-<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* This struct is automatically generated based on the events configured by peripherals in the FSP Configuration editor. */</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="group___r_z_t___e_l_c___a_p_i.html#ga72ca0efba6828f8f40b1b2ea1c3a51e6">elc_cfg_t</a> g_elc_cfg =</div><div class="line">{</div><div class="line">    .<a class="code" href="group___r_z_t___e_l_c___a_p_i.html#af57378d16fb4435134a55b7526b1cd48">link</a>[ELC_PERIPHERAL_MTU0]        = ELC_EVENT_INTCPU0,</div><div class="line">    .link[ELC_PERIPHERAL_SINGLEPORT0] = ELC_EVENT_GPT0_OVF</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> elc_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the software and sets the links defined in the control structure. */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___e_l_c.html#ga35864de459d2ef45a03da4343729712f">R_ELC_Open</a>(&amp;g_elc_ctrl, &amp;g_elc_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Create or modify a link between a peripheral function and an event source. */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___e_l_c.html#ga4b40a4cb59194b6315cf608cd5e36bd9">R_ELC_LinkSet</a>(&amp;g_elc_ctrl, ELC_PERIPHERAL_ADC0_A, ELC_EVENT_GPT0_OVF);</div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
+<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* This struct is automatically generated based on the events configured by peripherals in the FSP Configuration editor. */</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="group___r_z_t___e_l_c___a_p_i.html#ga72ca0efba6828f8f40b1b2ea1c3a51e6">elc_cfg_t</a> g_elc_cfg =</div><div class="line">{</div><div class="line">    .<a class="code" href="group___r_z_t___e_l_c___a_p_i.html#af57378d16fb4435134a55b7526b1cd48">link</a>[ELC_PERIPHERAL_MTU0]        = ELC_EVENT_INTCPU0,</div><div class="line">    .link[ELC_PERIPHERAL_SINGLEPORT0] = ELC_EVENT_CMT0_CMI</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> elc_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_t___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the software and sets the links defined in the control structure. */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___e_l_c.html#ga35864de459d2ef45a03da4343729712f">R_ELC_Open</a>(&amp;g_elc_ctrl, &amp;g_elc_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Create or modify a link between a peripheral function and an event source. */</span></div><div class="line">    err = <a class="code" href="group___r_z_t___e_l_c.html#ga4b40a4cb59194b6315cf608cd5e36bd9">R_ELC_LinkSet</a>(&amp;g_elc_ctrl, ELC_PERIPHERAL_ADC0_A, ELC_EVENT_CMT0_CMI);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_t_1_1st__elc__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___e_l_c.html#struct_r_z_t_1_1st__elc__instance__ctrl">st_elc_instance_ctrl</a></td></tr>
@@ -886,6 +910,10 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="ggaf4fa75c085eb265e6c361a1549d1f05daf894bd883cb606d8eaf52fb662f22f9f"></a>ELC_GPT_EVENT_MASK_GPTX_BIT_13&#160;</td><td class="fielddoc"><p>GPT2n Event BIT13 mask. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="ggaf4fa75c085eb265e6c361a1549d1f05da9b73ee2d6f788825cef1377967649006"></a>ELC_GPT_EVENT_MASK_GPTX_BIT_14&#160;</td><td class="fielddoc"><p>GPT2n Event BIT14 mask. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf4fa75c085eb265e6c361a1549d1f05dac1585b23a1f1c10b415f13662a9d2424"></a>ELC_GPT_EVENT_MASK_GPTX_BIT_15&#160;</td><td class="fielddoc"><p>GPT2n Event BIT15 mask. </p>
+</td></tr>
 <tr><td class="fieldname"><a id="ggaf4fa75c085eb265e6c361a1549d1f05dab08f2195e3b2df0f7660cd0004ea2cb0"></a>ELC_GPT_EVENT_MASK_GPTY_BIT_0&#160;</td><td class="fielddoc"><p>GPT2n+1 Event BIT0 mask. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggaf4fa75c085eb265e6c361a1549d1f05da8a5c493ea9addf8aff2106372babe1eb"></a>ELC_GPT_EVENT_MASK_GPTY_BIT_1&#160;</td><td class="fielddoc"><p>GPT2n+1 Event BIT1 mask. </p>
@@ -913,6 +941,10 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="ggaf4fa75c085eb265e6c361a1549d1f05dad68a617c9a37ac9dbb8179b741be018e"></a>ELC_GPT_EVENT_MASK_GPTY_BIT_12&#160;</td><td class="fielddoc"><p>GPT2n+1 Event BIT12 mask. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggaf4fa75c085eb265e6c361a1549d1f05daad0734f8e69041cf49b4454b81e592ec"></a>ELC_GPT_EVENT_MASK_GPTY_BIT_13&#160;</td><td class="fielddoc"><p>GPT2n+1 Event BIT13 mask. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf4fa75c085eb265e6c361a1549d1f05da1b56276c21aebc517cd993ee5087724e"></a>ELC_GPT_EVENT_MASK_GPTY_BIT_14&#160;</td><td class="fielddoc"><p>GPT2n+1 Event BIT14 mask. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf4fa75c085eb265e6c361a1549d1f05da1485192aa7c19e71778ad6664f138ff6"></a>ELC_GPT_EVENT_MASK_GPTY_BIT_15&#160;</td><td class="fielddoc"><p>GPT2n+1 Event BIT15 mask. </p>
 </td></tr>
 </table>
 
@@ -1155,7 +1187,7 @@ Enumerations</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

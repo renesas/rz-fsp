@@ -21,6 +21,9 @@ var group___r_z_v___s_p_i___b =
       [ "transmit_fifo_threshold", "group___r_z_v___s_p_i___b.html#a0666aa7009b1e48f26679defd58a3b2e", null ],
       [ "receive_fifo_threshold", "group___r_z_v___s_p_i___b.html#a2163934956ddce69e04583001a559d43", null ],
       [ "receive_data_ready_detect_adjustment", "group___r_z_v___s_p_i___b.html#ad48b54017bc3a4d98ec57b7f7bf749f0", null ],
+      [ "master_receive_clock", "group___r_z_v___s_p_i___b.html#aaa5da9ea572e7a251d148c86b2322a02", null ],
+      [ "analog_delay", "group___r_z_v___s_p_i___b.html#af2af8598794ca8cd267c5e24b967ea5a", null ],
+      [ "digital_delay", "group___r_z_v___s_p_i___b.html#a38fe2f5fbfc74cebc5311d733b04c330", null ],
       [ "p_reg", "group___r_z_v___s_p_i___b.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "st_spi_b_instance_ctrl", "group___r_z_v___s_p_i___b.html#struct_r_z_v_1_1st__spi__b__instance__ctrl", [
@@ -80,6 +83,30 @@ var group___r_z_v___s_p_i___b =
       [ "SPI_B_DELAY_COUNT_8", "group___r_z_v___s_p_i___b.html#gga355039269814474fa2d7a016207df18ea54a1d1391831fd7afe9fa1839370665d", null ]
     ] ],
     [ "spi_b_clock_source_t", "group___r_z_v___s_p_i___b.html#gabb41b27e51f28d09548219c18435346b", null ],
+    [ "spi_b_master_receive_clock_t", "group___r_z_v___s_p_i___b.html#ga71c09df1c9bd190a0053267c6daa9482", [
+      [ "SPI_B_MASTER_RECEIVE_CLOCK_ANALOG_DELAY", "group___r_z_v___s_p_i___b.html#gga71c09df1c9bd190a0053267c6daa9482a35cba67ab113dd6394fb6f70728afbc8", null ],
+      [ "SPI_B_MASTER_RECEIVE_CLOCK_DEGITAL_DELAY", "group___r_z_v___s_p_i___b.html#gga71c09df1c9bd190a0053267c6daa9482a0a3b1a1d2b3fee84b8e2b9677fb6a1f5", null ]
+    ] ],
+    [ "spi_b_analog_delay_t", "group___r_z_v___s_p_i___b.html#ga612cd383994bd86ef11124e71896e23a", [
+      [ "SPI_B_ANALOG_DELAY_NODELAY", "group___r_z_v___s_p_i___b.html#gga612cd383994bd86ef11124e71896e23aa8d978f644855942f1c921da3361c9c0a", null ],
+      [ "SPI_B_ANALOG_DELAY_1_1_NS", "group___r_z_v___s_p_i___b.html#gga612cd383994bd86ef11124e71896e23aa67a8d56109ee031ed503a8c809d9546c", null ],
+      [ "SPI_B_ANALOG_DELAY_2_2_NS", "group___r_z_v___s_p_i___b.html#gga612cd383994bd86ef11124e71896e23aa367fa5d954310a325900d54f4b51af58", null ],
+      [ "SPI_B_ANALOG_DELAY_3_3_NS", "group___r_z_v___s_p_i___b.html#gga612cd383994bd86ef11124e71896e23aa6f52fcfb0aa1d5da300c2433af815b6b", null ],
+      [ "SPI_B_ANALOG_DELAY_4_4_NS", "group___r_z_v___s_p_i___b.html#gga612cd383994bd86ef11124e71896e23aa0bc0639a2621d224b21135ef5a8a5ee7", null ],
+      [ "SPI_B_ANALOG_DELAY_5_5_NS", "group___r_z_v___s_p_i___b.html#gga612cd383994bd86ef11124e71896e23aa2d62238db27e63ecd27432a85213a235", null ],
+      [ "SPI_B_ANALOG_DELAY_6_6_NS", "group___r_z_v___s_p_i___b.html#gga612cd383994bd86ef11124e71896e23aaafe9c2eb1356a5fffa0bc5b8173aaf94", null ],
+      [ "SPI_B_ANALOG_DELAY_7_7_NS", "group___r_z_v___s_p_i___b.html#gga612cd383994bd86ef11124e71896e23aa87477dc59fff33605182bab878c51eb7", null ]
+    ] ],
+    [ "spi_b_digital_delay_t", "group___r_z_v___s_p_i___b.html#ga294982b92f85bea4e2df9349930dd36f", [
+      [ "SPI_B_DIGITAL_DELAY_CLOCK_0", "group___r_z_v___s_p_i___b.html#gga294982b92f85bea4e2df9349930dd36fa9dc134c5102573984ce80d3e10b7ab6a", null ],
+      [ "SPI_B_DIGITAL_DELAY_CLOCK_1", "group___r_z_v___s_p_i___b.html#gga294982b92f85bea4e2df9349930dd36fa65919d0dd85a048a4414a667e53c0241", null ],
+      [ "SPI_B_DIGITAL_DELAY_CLOCK_2", "group___r_z_v___s_p_i___b.html#gga294982b92f85bea4e2df9349930dd36fa3d91e31c83f12ea2f3ff33382d39e39b", null ],
+      [ "SPI_B_DIGITAL_DELAY_CLOCK_3", "group___r_z_v___s_p_i___b.html#gga294982b92f85bea4e2df9349930dd36fae15ba442e6da96de75582211dadf12b5", null ],
+      [ "SPI_B_DIGITAL_DELAY_CLOCK_4", "group___r_z_v___s_p_i___b.html#gga294982b92f85bea4e2df9349930dd36fa7daabdec9dcbb344482edaa9668da396", null ],
+      [ "SPI_B_DIGITAL_DELAY_CLOCK_5", "group___r_z_v___s_p_i___b.html#gga294982b92f85bea4e2df9349930dd36fad2130b691a307cbaaf498e20240ff342", null ],
+      [ "SPI_B_DIGITAL_DELAY_CLOCK_6", "group___r_z_v___s_p_i___b.html#gga294982b92f85bea4e2df9349930dd36fa0de58c90dd3de6c24f4f16c59e85dd34", null ],
+      [ "SPI_B_DIGITAL_DELAY_CLOCK_7", "group___r_z_v___s_p_i___b.html#gga294982b92f85bea4e2df9349930dd36fa1af0629ee52227953342a71711e013f1", null ]
+    ] ],
     [ "spi_b_ssl_level_keep_t", "group___r_z_v___s_p_i___b.html#ga8232020978a99300962810b2e9f9dc86", [
       [ "SPI_B_SSL_LEVEL_KEEP_DISABLE", "group___r_z_v___s_p_i___b.html#gga8232020978a99300962810b2e9f9dc86a74c4d474dc8844704917781a861159aa", null ],
       [ "SPI_B_SSL_LEVEL_KEEP_ENABLE", "group___r_z_v___s_p_i___b.html#gga8232020978a99300962810b2e9f9dc86af7408a6172952573cc49aae43aff1a43", null ]

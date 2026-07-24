@@ -1,6 +1,6 @@
 var group___r_z_t___b_s_c___s_d_r_a_m =
 [
-    [ "st_bsc_sdram_callback_args_t", "group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__callback__args__t", [
+    [ "st_bsc_sdram_callback_args", "group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__callback__args", [
       [ "p_context", "group___r_z_t___b_s_c___s_d_r_a_m.html#aa207a6ef4d9f49f00f01a37810ac301d", null ]
     ] ],
     [ "st_bsc_sdram_cs2_settings", "group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__cs2__settings", [
@@ -29,7 +29,7 @@ var group___r_z_t___b_s_c___s_d_r_a_m =
       [ "p_context", "group___r_z_t___b_s_c___s_d_r_a_m.html#aa207a6ef4d9f49f00f01a37810ac301d", null ]
     ] ],
     [ "st_bsc_sdram_instance_ctrl", "group___r_z_t___b_s_c___s_d_r_a_m.html#struct_r_z_t_1_1st__bsc__sdram__instance__ctrl", null ],
-    [ "bsc_sdram_callback_args_t", "group___r_z_t___b_s_c___s_d_r_a_m.html#gad6114b39d00becf1ec696502c0c4ed20", null ],
+    [ "bsc_sdram_callback_args_t", "group___r_z_t___b_s_c___s_d_r_a_m.html#ga0ec4e58f0e55bea1c4e0074b1e0193e0", null ],
     [ "bsc_sdram_cs2_settings_t", "group___r_z_t___b_s_c___s_d_r_a_m.html#ga6405c0405683b8a9675793a4e9cf54cf", null ],
     [ "bsc_sdram_extended_cfg_t", "group___r_z_t___b_s_c___s_d_r_a_m.html#ga7f5934cbe87aadd2e7d0ad9ba7e850ea", null ],
     [ "bsc_sdram_instance_ctrl_t", "group___r_z_t___b_s_c___s_d_r_a_m.html#gad2e9c0f649d57f95e86e4f603470adb1", null ],

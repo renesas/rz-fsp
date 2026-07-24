@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -381,6 +381,8 @@ Features</h2>
 <td>RZ/T2ME </td><td>R01AN7375EJ </td><td>RZ/T2ME Group Renesas Secure IP Driver </td></tr>
 <tr>
 <td>RZ/T2H </td><td>R01AN7451EJ </td><td>RZ/T2H and RZ/N2H Groups Renesas Secure IP Driver </td></tr>
+<tr>
+<td>RZ/T2N </td><td>R01AN7963EJ </td><td>RZ/T2N Group Renesas Secure IP Driver </td></tr>
 </table>
 <ul>
 <li>Key Management<ul>
@@ -483,7 +485,7 @@ Features</h2>
 <li>Expected value (hash IDs) generation for JTAG and SCI/USB boot authentication</li>
 </ul>
 </li>
-<li>On-the-Fly Decryption (OTFD)<ul>
+<li>On-the-Fly Decryption (OTFD) and On-the-Fly Decryption/Encryption (OTFDE)<ul>
 <li>Initializing</li>
 </ul>
 </li>
@@ -495,7 +497,7 @@ Features</h2>
 <tr>
 <td>Type 1 </td><td>RZ/T2M, RZ/T2ME, RZ/T2L </td><td>Computational speed per clock of ECC, RSA-3072 and RSA-4096 is lower than Type 2. </td></tr>
 <tr>
-<td>Type 2 </td><td>RZ/T2H </td><td>- </td></tr>
+<td>Type 2 </td><td>RZ/T2H, RZ/T2N </td><td>- </td></tr>
 </table>
 <h2><a class="anchor" id="RZT_r-rsip-protected-supported-algorithms"></a>
 Supported algorithms</h2>
@@ -777,25 +779,25 @@ Miscellaneous</h3>
 <p>Channel assignment is device dependent.</p>
 <table class="doxtable">
 <tr>
-<th>Channel (<a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d___a_p_i.html#ga618a71f221199f10a09b5bcab3739682">rsip_otf_channel_t</a>) </th><th>RZ/T2H </th><th>RZ/T2M </th><th>RZ/T2ME </th><th>RZ/T2L  </th></tr>
+<th>Channel (<a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d___a_p_i.html#ga618a71f221199f10a09b5bcab3739682">rsip_otf_channel_t</a>) </th><th>RZ/T2H </th><th>RZ/T2N </th><th>RZ/T2M </th><th>RZ/T2ME </th><th>RZ/T2L  </th></tr>
 <tr>
-<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d___a_p_i.html#ggaca697250b4f88c1093dc22ab86403c5eaa571a76df8d5ab392c7355e7a824f175">RSIP_OTF_CHANNEL_0</a> </td><td>- </td><td>- </td><td>OTFD channel 0 </td><td>- </td></tr>
+<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d___a_p_i.html#ggaca697250b4f88c1093dc22ab86403c5eaa571a76df8d5ab392c7355e7a824f175">RSIP_OTF_CHANNEL_0</a> </td><td>- </td><td>OTFD0 </td><td>- </td><td>OTFD0 </td><td>- </td></tr>
 <tr>
-<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d___a_p_i.html#ggaca697250b4f88c1093dc22ab86403c5ea2475cc0e76c0acd6d3d032c7918927d2">RSIP_OTF_CHANNEL_1</a> </td><td>- </td><td>- </td><td>OTFD channel 1 </td><td>- </td></tr>
+<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d___a_p_i.html#ggaca697250b4f88c1093dc22ab86403c5ea2475cc0e76c0acd6d3d032c7918927d2">RSIP_OTF_CHANNEL_1</a> </td><td>- </td><td>OTFD1 </td><td>- </td><td>OTFD1 </td><td>- </td></tr>
 <tr>
-<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d___a_p_i.html#ggaca697250b4f88c1093dc22ab86403c5ea471c89d507990355980ca7797b633071">RSIP_OTF_CHANNEL_2</a> </td><td>- </td><td>- </td><td>- </td><td>- </td></tr>
+<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d___a_p_i.html#ggaca697250b4f88c1093dc22ab86403c5ea471c89d507990355980ca7797b633071">RSIP_OTF_CHANNEL_2</a> </td><td>- </td><td>OTFDE </td><td>- </td><td>- </td><td>- </td></tr>
 </table>
 <p><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#gaf52c5eda14f8bab93a4fa7d1f3b86ad8">R_RSIP_AuthPasswordHashCompute()</a></p>
 <p>The available authentication types depend on the device.</p>
 <table class="doxtable">
 <tr>
-<th>Authenctation type (<a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#gaddd2bac1b601953b483f96d8935946e9">rsip_auth_type_t</a>) </th><th>RZ/T2H </th><th>RZ/T2M </th><th>RZ/T2ME </th><th>RZ/T2L  </th></tr>
+<th>Authenctation type (<a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#gaddd2bac1b601953b483f96d8935946e9">rsip_auth_type_t</a>) </th><th>RZ/T2H </th><th>RZ/T2N </th><th>RZ/T2M </th><th>RZ/T2ME </th><th>RZ/T2L  </th></tr>
 <tr>
-<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#ggaddd2bac1b601953b483f96d8935946e9ab5fda58260a770817da2b8eede4eef33">RSIP_AUTH_TYPE_JTAG_DEBUG_LEVEL1</a> </td><td>Supported </td><td>Supported </td><td>Supported </td><td>Supported </td></tr>
+<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#ggaddd2bac1b601953b483f96d8935946e9ab5fda58260a770817da2b8eede4eef33">RSIP_AUTH_TYPE_JTAG_DEBUG_LEVEL1</a> </td><td>Supported </td><td>Supported </td><td>Supported </td><td>Supported </td><td>Supported </td></tr>
 <tr>
-<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#ggaddd2bac1b601953b483f96d8935946e9a0354cdf42cae8d27a42862c5e2823843">RSIP_AUTH_TYPE_JTAG_DEBUG_LEVEL2</a> </td><td>Supported </td><td>Supported </td><td>Supported </td><td>Supported </td></tr>
+<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#ggaddd2bac1b601953b483f96d8935946e9a0354cdf42cae8d27a42862c5e2823843">RSIP_AUTH_TYPE_JTAG_DEBUG_LEVEL2</a> </td><td>Supported </td><td>Supported </td><td>Supported </td><td>Supported </td><td>Supported </td></tr>
 <tr>
-<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#ggaddd2bac1b601953b483f96d8935946e9a161210ea220e8f3485a7042a749ac776">RSIP_AUTH_TYPE_SCI_USB_BOOT</a> </td><td>Supported </td><td>- </td><td>- </td><td>- </td></tr>
+<td><a class="el" href="group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#ggaddd2bac1b601953b483f96d8935946e9a161210ea220e8f3485a7042a749ac776">RSIP_AUTH_TYPE_SCI_USB_BOOT</a> </td><td>Supported </td><td>Supported </td><td>- </td><td>- </td><td>- </td></tr>
 </table>
 <h1><a class="anchor" id="RZT_r-rsip-protected-configuration"></a>
 Configuration</h1>
@@ -901,9 +903,9 @@ Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable secp521r1 (also known as NIST P-521) </td></tr>
+</td><td>Enabled </td><td>Enable secp521r1 (also known as NIST P-521) </td></tr>
 <tr>
-<td>ECC &gt; secp256k1</td><td>Disabled only</td><td>config.driver.rzt.rsip_protected.ecc.secp256k1.disabled </td><td>Enable secp256k1 </td></tr>
+<td>ECC &gt; secp256k1</td><td>Disabled only</td><td>Disabled only </td><td>Enable secp256k1 </td></tr>
 <tr>
 <td>ECC &gt; brainpoolP256r1</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -927,7 +929,7 @@ Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable brainpoolP512r1 </td></tr>
+</td><td>Enabled </td><td>Enable brainpoolP512r1 </td></tr>
 <tr>
 <td>ECC &gt; edwards25519</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -1043,7 +1045,7 @@ Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable HMAC-SHA384 for KDF </td></tr>
+</td><td>Enabled </td><td>Enable HMAC-SHA384 for KDF </td></tr>
 <tr>
 <td>KDF HMAC &gt; HMAC-SHA512</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -1051,7 +1053,7 @@ Enabled</li>
 <li>
 Disabled</li>
 </ul>
-</td><td>Disabled </td><td>Enable HMAC-SHA512 for KDF </td></tr>
+</td><td>Enabled </td><td>Enable HMAC-SHA512 for KDF </td></tr>
 <tr>
 <td>Parameter Checking</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -7872,7 +7874,7 @@ Enumerations</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

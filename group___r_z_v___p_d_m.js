@@ -4,11 +4,10 @@ var group___r_z_v___p_d_m =
     [ "st_pdm_extended_cfg", "group___r_z_v___p_d_m.html#struct_r_z_v_1_1st__pdm__extended__cfg", [
       [ "clock_div", "group___r_z_v___p_d_m.html#a1d06fbc9691b6d2d5432d1f124252971", null ],
       [ "p_reg", "group___r_z_v___p_d_m.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ],
-      [ "sound_detection_enable", "group___r_z_v___p_d_m.html#a98f0330ae41daae7066ce131c94b1d63", null ],
-      [ "short_circuit_detection_enable", "group___r_z_v___p_d_m.html#a6465f4cce150c1fded4e7ecef082bd22", null ],
-      [ "over_voltage_lower_limit_detection_enable", "group___r_z_v___p_d_m.html#a937316c517e9df8608f13683336b7eba", null ],
-      [ "over_voltage_upper_limit_detection_enable", "group___r_z_v___p_d_m.html#aa8fe28c21ae8b4222ad3faa258412ee9", null ],
-      [ "buffer_overwrite_detection_enable", "group___r_z_v___p_d_m.html#acf9a0b5603abaaa1081cd1175f96dff9", null ],
+      [ "short_circuit_detection_enable", "group___r_z_v___p_d_m.html#a8acf0ad1c3d940caccc1c387f5ce197a", null ],
+      [ "over_voltage_lower_limit_detection_enable", "group___r_z_v___p_d_m.html#ad12ef10f8c6fa4520739aa9b2aa4273b", null ],
+      [ "over_voltage_upper_limit_detection_enable", "group___r_z_v___p_d_m.html#aa4678ef9f5638661c24dada07688bed4", null ],
+      [ "buffer_overwrite_detection_enable", "group___r_z_v___p_d_m.html#aef1229bb055c46f1d14a574d40f76fab", null ],
       [ "moving_average_mode", "group___r_z_v___p_d_m.html#a259103d6e0b458742f560c620dc2a3d0", null ],
       [ "low_pass_filter_shift", "group___r_z_v___p_d_m.html#a3c2673100c60d188d6c4ae2da7b9344f", null ],
       [ "compensation_filter_shift", "group___r_z_v___p_d_m.html#a85aabe8b475ba1e377d7ebc6f88b4296", null ],
@@ -18,14 +17,12 @@ var group___r_z_v___p_d_m =
       [ "sincdec", "group___r_z_v___p_d_m.html#a87297fc21cc875f1a2eaec2204c9040e", null ],
       [ "hpf_coefficient_s0", "group___r_z_v___p_d_m.html#ad25cbaffd72b0b58787f8057b5376b34", null ],
       [ "hpf_coefficient_k1", "group___r_z_v___p_d_m.html#aec9f2fecd1f043c7640afa01c05ee9a4", null ],
-      [ "hpf_coefficient_h", "group___r_z_v___p_d_m.html#af419ab171f0c34e685f4281dd0e0033e", null ],
-      [ "compensation_filter_coefficient_h", "group___r_z_v___p_d_m.html#a8510759b5bd3db28bdc55f8c01a886e5", null ],
+      [ "hpf_coefficient_h", "group___r_z_v___p_d_m.html#a638332daf1670df117f84828563aea2a", null ],
+      [ "compensation_filter_coefficient_h", "group___r_z_v___p_d_m.html#af7ab531adba7c106b3e39d108f8388ee", null ],
       [ "lpf_coefficient_h0", "group___r_z_v___p_d_m.html#a16f3d7abb0547970f179244d9555e769", null ],
-      [ "lpf_coefficient_h1", "group___r_z_v___p_d_m.html#ae4057e191db1e34b8057245ae7c6f69e", null ],
+      [ "lpf_coefficient_h1", "group___r_z_v___p_d_m.html#a6135016da3d6d2d8c9002af09c3fba27", null ],
       [ "filter_setting_time", "group___r_z_v___p_d_m.html#a8818119cb37f59c3356bea5548a3a2b2", null ],
-      [ "interupt_threshold", "group___r_z_v___p_d_m.html#acce8b6d57562631e06b156466947f98e", null ],
-      [ "sound_detection_lower_limit", "group___r_z_v___p_d_m.html#aa9bb08853aed1e0353a8dbeca6e4d2ac", null ],
-      [ "sound_detection_upper_limit", "group___r_z_v___p_d_m.html#a92dc104131b830c30bc10078bc32dc78", null ],
+      [ "interrupt_threshold", "group___r_z_v___p_d_m.html#afcb48b228ce05085627c55e3ce0b9b4c", null ],
       [ "short_circuit_count_h", "group___r_z_v___p_d_m.html#a777ba2d287ec998d9b9357988d0a296d", null ],
       [ "short_circuit_count_l", "group___r_z_v___p_d_m.html#ad77722153b2d0499ae52a61d6b3354ac", null ],
       [ "overvoltage_detection_lower_limit", "group___r_z_v___p_d_m.html#a8b47b7c7e4223ef34762d7297ae4250c", null ],
@@ -87,9 +84,27 @@ var group___r_z_v___p_d_m =
       [ "PDM_INTERRUPT_THRESHOLD_8", "group___r_z_v___p_d_m.html#ggaa14fe788b2c7ab49898fb7030c7fbee8addbf54abea07e335a42267a1172e44bd", null ],
       [ "PDM_INTERRUPT_THRESHOLD_16", "group___r_z_v___p_d_m.html#ggaa14fe788b2c7ab49898fb7030c7fbee8addb15f7e3c60581f90c436ab9eb3055d", null ]
     ] ],
+    [ "pdm_short_circuit_enable_t", "group___r_z_v___p_d_m.html#gaf30a2284491fafaec6a835746e4001a9", [
+      [ "PDM_SHORT_CIRCUIT_DISABLED", "group___r_z_v___p_d_m.html#ggaf30a2284491fafaec6a835746e4001a9ac8bedd96c3d137a5da70bf96407ed158", null ],
+      [ "PDM_SHORT_CIRCUIT_ENABLED", "group___r_z_v___p_d_m.html#ggaf30a2284491fafaec6a835746e4001a9ac3a0ffc3b639f155fca29ed23d7b3464", null ]
+    ] ],
+    [ "pdm_overvoltage_lower_limit_enable_t", "group___r_z_v___p_d_m.html#gae98d0a1699440f8d6405968bdb6a855a", [
+      [ "PDM_OVERVOLTAGE_LOWER_LIMIT_DISABLED", "group___r_z_v___p_d_m.html#ggae98d0a1699440f8d6405968bdb6a855aa5e3d26fab9eae562f86996594193b518", null ],
+      [ "PDM_OVERVOLTAGE_LOWER_LIMIT_ENABLED", "group___r_z_v___p_d_m.html#ggae98d0a1699440f8d6405968bdb6a855aa5ade27dd0f5c1c6b430039253e2bc0d7", null ]
+    ] ],
+    [ "pdm_overvoltage_upper_limit_enable_t", "group___r_z_v___p_d_m.html#gaa418eb6efe7d4d243ea4af5a074b10ae", [
+      [ "PDM_OVERVOLTAGE_UPPER_LIMIT_DISABLED", "group___r_z_v___p_d_m.html#ggaa418eb6efe7d4d243ea4af5a074b10aea0f734c2cb607b99681c4fc7b6348635a", null ],
+      [ "PDM_OVERVOLTAGE_UPPER_LIMIT_ENABLED", "group___r_z_v___p_d_m.html#ggaa418eb6efe7d4d243ea4af5a074b10aeaf4f186ec9d044337d5da73f86ee138f6", null ]
+    ] ],
+    [ "pdm_buffer_overwrite_detection_enable_t", "group___r_z_v___p_d_m.html#gaceae8e5dc8a19d9beaae7dbb64e78742", [
+      [ "PDM_BUFFER_OVERWRITE_DETECTION_DISABLED", "group___r_z_v___p_d_m.html#ggaceae8e5dc8a19d9beaae7dbb64e78742a92d2d9a6fe3f835da690bbdbd4fba0cd", null ],
+      [ "PDM_BUFFER_OVERWRITE_DETECTION_ENABLED", "group___r_z_v___p_d_m.html#ggaceae8e5dc8a19d9beaae7dbb64e78742aea10d60946c58fb3928dbba804808bbb", null ]
+    ] ],
     [ "R_PDM_Open", "group___r_z_v___p_d_m.html#ga348be7b997dd1200eb549ff3e7f946a0", null ],
     [ "R_PDM_Start", "group___r_z_v___p_d_m.html#ga745fa70668486ae2a7d16bd72eb93a54", null ],
     [ "R_PDM_Stop", "group___r_z_v___p_d_m.html#ga35f2abc47410d9906e8ae5bac12d7a29", null ],
+    [ "R_PDM_SoundDetectionEnable", "group___r_z_v___p_d_m.html#ga81dc4496418f929e3f94339700008104", null ],
+    [ "R_PDM_SoundDetectionDisable", "group___r_z_v___p_d_m.html#ga67db55f70c75153156284e6e6d6f1b01", null ],
     [ "R_PDM_Read", "group___r_z_v___p_d_m.html#ga62fc9390544cabfb4800f38125f748ab", null ],
     [ "R_PDM_StatusGet", "group___r_z_v___p_d_m.html#gaf5696a4b5a4e9f33f89baefe9a7e1f94", null ],
     [ "R_PDM_Close", "group___r_z_v___p_d_m.html#ga0f07fb3bab80af13bd260b7f7f54062e", null ],

@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -222,39 +222,45 @@ Enumerations</h2></td></tr>
 <td class="fieldname">
 channel</td>
 <td class="fielddoc">
-Device channel number. </td></tr>
+Device channel number. <p>ETHSW/ESWM: Device channel number. </p>
+</td></tr>
 <tr><td class="fieldtype">
 <a id="a45a7145f1abb4b65a5582bcdd41bb653"></a>uint32_t</td>
 <td class="fieldname">
 ports</td>
 <td class="fielddoc">
-Bitmap of ports on which the interrupt occurred. </td></tr>
+Bitmap of ports on which the interrupt occurred. <p>ESWM: Bitmap of ports on which the interrupt occurred. </p>
+</td></tr>
 <tr><td class="fieldtype">
 <a id="a2e0e2eb31fc25a6ae6f16e1e9e2cb924"></a>uint32_t</td>
 <td class="fieldname">
 queue_index</td>
 <td class="fielddoc">
-Queue index where a interrupt occurs. </td></tr>
+Queue index where a interrupt occurs. <p>ESWM: Queue index where a interrupt occurs. </p>
+</td></tr>
 <tr><td class="fieldtype">
 <a id="a666eae20f1dfe6796eb3367ea0b64fd1"></a><a class="el" href="group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gacd79a4b5f23db68c622b963ff8aa8524">ether_switch_event_t</a></td>
 <td class="fieldname">
 event</td>
 <td class="fielddoc">
-The event can be used to identify what caused the callback. <p>Event code. </p>
+The event can be used to identify what caused the callback. <p>ETHSW/ESWM: The event can be used to identify what caused the callback.</p>
+<p>Event code. </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a6de3966558ac6f22e0d23fffc1ebadd5"></a>void *</td>
 <td class="fieldname">
 p_context</td>
 <td class="fielddoc">
-Placeholder for user data. Set in <a class="el" href="group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#af21cca47060fe396a8f5016f2860c38f">ether_switch_api_t::open</a> function in <a class="el" href="group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#ga557c57d843e46684bc6c5c916faa3462">ether_switch_cfg_t</a>. <p>Placeholder for user data. </p>
+Placeholder for user data. Set in <a class="el" href="group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#af21cca47060fe396a8f5016f2860c38f">ether_switch_api_t::open</a> function in <a class="el" href="group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#ga557c57d843e46684bc6c5c916faa3462">ether_switch_cfg_t</a>. <p>ETHSW/ESWM: Placeholder for user data. Set in <a class="el" href="group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#af21cca47060fe396a8f5016f2860c38f">RZT::ether_switch_api_t::open</a> function in <a class="el" href="group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#ga557c57d843e46684bc6c5c916faa3462">RZT::ether_switch_cfg_t</a>.</p>
+<p>Placeholder for user data. </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="a85fc119ebc28ce1347614558f485692e"></a>uint32_t</td>
 <td class="fieldname">
 status_link</td>
 <td class="fielddoc">
-Link status bit0:port0. bit1:port1. bit2:port2, bit3:port3. </td></tr>
+Link status bit0:port0. bit1:port1. bit2:port2, bit3:port3. <p>ETHSW: Link status bit0:port0. bit1:port1. bit2:port2, bit3:port3. </p>
+</td></tr>
 </table>
 
 </div>
@@ -430,6 +436,7 @@ Pointer to the API structure for this instance. </td></tr>
       </table>
 </div><div class="memdoc">
 <p>Callback function parameter data Please refer to the struct <a class="el" href="group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#struct_r_z_t_1_1st__ether__switch__callback__args">st_ether_switch_callback_args</a>.</p>
+<p>Ether Switch Callback function parameter data. Please refer to the struct <a class="el" href="group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#struct_r_z_t_1_1st__ether__switch__callback__args">st_ether_switch_callback_args</a>.</p>
 <p>Ether Switch Callback function parameter data Please refer to the struct <a class="el" href="group___r_z_t___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#struct_r_z_t_1_1st__ether__switch__callback__args">st_ether_switch_callback_args</a>. </p>
 
 </div>
@@ -508,21 +515,47 @@ Pointer to the API structure for this instance. </td></tr>
 </div><div class="memdoc">
 <p>Events that can trigger a callback function </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524aa0a0514df6bac40c835e4fcda32073b4"></a>ETHER_SWITCH_EVENT_RX_COMPLETE&#160;</td><td class="fielddoc"><p>A descriptor complete to receive a flame. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a7f70f5116b3a408c905272d16388d5b8"></a>ETHER_SWITCH_EVENT_RX_COMPLETE&#160;</td><td class="fielddoc"><p>A descriptor complete to receive a flame. </p>
+<p>ESWM: A descriptor complete to receive a flame. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a0487493c21c16952bd6586b0230c88d7"></a>ETHER_SWITCH_EVENT_TX_COMPLETE&#160;</td><td class="fielddoc"><p>A descriptor complete to transmit a flame. </p>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a0004841b5ff89e3009529a391c9c4b30"></a>ETHER_SWITCH_EVENT_TX_COMPLETE&#160;</td><td class="fielddoc"><p>A descriptor complete to transmit a flame. </p>
+<p>ESWM: A descriptor complete to transmit a flame. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a200ad7f19a1e015a4212e6fc5a9f164f"></a>ETHER_SWITCH_EVENT_RX_QUEUE_FULL&#160;</td><td class="fielddoc"><p>A RX descriptor queue is full. </p>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a0a2d6474e495cd93399152b714d0543d"></a>ETHER_SWITCH_EVENT_RX_QUEUE_FULL&#160;</td><td class="fielddoc"><p>A RX descriptor queue is full. </p>
+<p>ESWM: A RX descriptor queue is full. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524af64610e3efae1b13eeaa962e5928891e"></a>ETHER_SWITCH_EVENT_RX_MESSAGE_LOST&#160;</td><td class="fielddoc"><p>Receive a frame when a RX descriptor queue is full. </p>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a75af041021fc79cbead8306d24c2a4ba"></a>ETHER_SWITCH_EVENT_RX_MESSAGE_LOST&#160;</td><td class="fielddoc"><p>Receive a frame when a RX descriptor queue is full. </p>
+<p>ESWM: Receive a frame when a RX descriptor queue is full. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524ac49554d86f33aab93cc7d939089fca1f"></a>ETHER_SWITCH_EVENT_TAS_ERROR&#160;</td><td class="fielddoc"><p>TAS gate error. </p>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a38e8a64daf7bb4507279f3f5968052b8"></a>ETHER_SWITCH_EVENT_TAS_ERROR&#160;</td><td class="fielddoc"><p>TAS gate error. </p>
+<p>ESWM: TAS gate error. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5"></a>ETHER_SWITCH_EVENT_LINK_CHANGE&#160;</td><td class="fielddoc"><p>Change Link status. </p>
+<p>ETHSW: Change Link status. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5"></a>ETHER_SWITCH_EVENT_LINK_CHANGE&#160;</td><td class="fielddoc"><p>Change Link status. </p>
+<p>ETHSW: Change Link status. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5"></a>ETHER_SWITCH_EVENT_LINK_CHANGE&#160;</td><td class="fielddoc"><p>Change Link status. </p>
+<p>ETHSW: Change Link status. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5"></a>ETHER_SWITCH_EVENT_LINK_CHANGE&#160;</td><td class="fielddoc"><p>Change Link status. </p>
+<p>ETHSW: Change Link status. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a7f70f5116b3a408c905272d16388d5b8"></a>ETHER_SWITCH_EVENT_RX_COMPLETE&#160;</td><td class="fielddoc"><p>A descriptor complete to receive a flame. </p>
+<p>ESWM: A descriptor complete to receive a flame. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a0004841b5ff89e3009529a391c9c4b30"></a>ETHER_SWITCH_EVENT_TX_COMPLETE&#160;</td><td class="fielddoc"><p>A descriptor complete to transmit a flame. </p>
+<p>ESWM: A descriptor complete to transmit a flame. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a0a2d6474e495cd93399152b714d0543d"></a>ETHER_SWITCH_EVENT_RX_QUEUE_FULL&#160;</td><td class="fielddoc"><p>A RX descriptor queue is full. </p>
+<p>ESWM: A RX descriptor queue is full. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a75af041021fc79cbead8306d24c2a4ba"></a>ETHER_SWITCH_EVENT_RX_MESSAGE_LOST&#160;</td><td class="fielddoc"><p>Receive a frame when a RX descriptor queue is full. </p>
+<p>ESWM: Receive a frame when a RX descriptor queue is full. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a38e8a64daf7bb4507279f3f5968052b8"></a>ETHER_SWITCH_EVENT_TAS_ERROR&#160;</td><td class="fielddoc"><p>TAS gate error. </p>
+<p>ESWM: TAS gate error. </p>
 </td></tr>
 </table>
 
@@ -534,7 +567,7 @@ Pointer to the API structure for this instance. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

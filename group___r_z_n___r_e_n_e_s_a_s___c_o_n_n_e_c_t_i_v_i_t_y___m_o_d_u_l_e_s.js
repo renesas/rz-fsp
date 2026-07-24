@@ -8,7 +8,7 @@ var group___r_z_n___r_e_n_e_s_a_s___c_o_n_n_e_c_t_i_v_i_t_y___m_o_d_u_l_e_s =
     [ "I2C Master (r_sci_i2c)", "group___r_z_n___s_c_i___i2_c.html", "group___r_z_n___s_c_i___i2_c" ],
     [ "SMCI (r_sci_smci)", "group___r_z_n___s_c_i___s_m_c_i.html", "group___r_z_n___s_c_i___s_m_c_i" ],
     [ "SPI (r_sci_spi)", "group___r_z_n___s_c_i___s_p_i.html", "group___r_z_n___s_c_i___s_p_i" ],
-    [ "UART (r_sci_uart)", "group___r_z_n___s_c_i___u_a_r_t.html", "group___r_z_n___s_c_i___u_a_r_t" ],
+    [ "UART (r_sci_uart, r_scie_uart)", "group___r_z_n___s_c_i___u_a_r_t.html", "group___r_z_n___s_c_i___u_a_r_t" ],
     [ "SPI (r_spi)", "group___r_z_n___s_p_i.html", "group___r_z_n___s_p_i" ],
     [ "USB (r_usb_basic)", "group___r_z_n___u_s_b.html", "group___r_z_n___u_s_b" ],
     [ "USB HCDC (r_usb_hcdc)", "group___r_z_n___u_s_b___h_c_d_c.html", "group___r_z_n___u_s_b___h_c_d_c" ],

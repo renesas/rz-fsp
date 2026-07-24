@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['input',['Input',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___i_n_p_u_t___i_n_t_e_r_f_a_c_e_s.html',1,'']]],
-  ['input',['Input',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___i_n_p_u_t___m_o_d_u_l_e_s.html',1,'']]],
-  ['interfaces',['Interfaces',['../group___c_o_m_m_o_n___r_e_n_e_s_a_s___i_n_t_e_r_f_a_c_e_s.html',1,'']]],
   ['i2c_20master_20interface',['I2C Master Interface',['../group___r_z_a___i2_c___m_a_s_t_e_r___a_p_i.html',1,'']]],
   ['i2c_20slave_20interface',['I2C Slave Interface',['../group___r_z_a___i2_c___s_l_a_v_e___a_p_i.html',1,'']]],
   ['i2s_20interface',['I2S Interface',['../group___r_z_a___i2_s___a_p_i.html',1,'']]],

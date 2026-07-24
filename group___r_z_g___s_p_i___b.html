@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -460,11 +460,73 @@ Enable</li>
 <td>Receive FIFO Threshold</td><td>Value must be an integer between 0 and 15</td><td>0 </td><td>Select the receive FIFO threshold that is the basis for the receive buffer empty interrupt generation. </td></tr>
 <tr>
 <td>Receive Data Ready Detect Adjustment</td><td>Value must be an integer between 0 and 255</td><td>0 </td><td>Configure the timing to detect the received data ready. </td></tr>
+<tr>
+<td>Master Receive Clock Delay Adjustment</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Adjust with Analog Delay</li>
+<li>
+Adjust with Digital Delay</li>
+</ul>
+</td><td>Adjust with Analog Delay </td><td>Select the master receive clock. </td></tr>
+<tr>
+<td>Max Analog Delay</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+No delay</li>
+<li>
+1.1 ns</li>
+<li>
+2.2 ns</li>
+<li>
+3.3 ns</li>
+<li>
+4.4 ns</li>
+<li>
+5.5 ns</li>
+<li>
+6.6 ns</li>
+<li>
+7.7 ns</li>
+</ul>
+</td><td>No delay </td><td>Select the max analog delay. </td></tr>
+<tr>
+<td>Digital Delay</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+0 Clocks</li>
+<li>
+1 Clock</li>
+<li>
+2 Clocks</li>
+<li>
+3 Clocks</li>
+<li>
+4 Clocks</li>
+<li>
+5 Clocks</li>
+<li>
+6 Clocks</li>
+<li>
+7 Clocks</li>
+</ul>
+</td><td>0 Clocks </td><td>Select the digital delay. </td></tr>
 </table>
 </p>
 <h2><a class="anchor" id="RZG_r-spi-b-clock-configuration"></a>
 Clock Configuration</h2>
-<p>The SPI peripheral uses the P0CLK for communication and internal operations. Both can be configured via the <b>Clocks</b> tab of the RZ Configuration editor.</p>
+<p>The SPI peripheral uses the following clock for communication and internal operations.</p>
+<table class="doxtable">
+<tr>
+<th>MPU Group </th><th>Peripheral Bus Clock </th><th>Communication Operation Clock  </th></tr>
+<tr>
+<td>RZ/G3E </td><td>P4CLK </td><td>P4CLK </td></tr>
+<tr>
+<td>RZ/G3L </td><td>P3CLK </td><td>Channel 0: P17CLK<br />
+Channel 1: P18CLK<br />
+Channel 2: P19CLK </td></tr>
+<tr>
+<td>RZ/G3SE </td><td>P3CLK </td><td>Channel 0: P17CLK<br />
+Channel 1: P18CLK<br />
+Channel 2: P19CLK </td></tr>
+</table>
 <h2><a class="anchor" id="RZG_r-spi-b-pin-configuration"></a>
 Pin Configuration</h2>
 <p>This module uses MOSI, MISO, RSPCK, and SSL pins to communicate with on board devices.</p>
@@ -540,6 +602,12 @@ Enumerations</h2></td></tr>
 <tr class="separator:ga355039269814474fa2d7a016207df18e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabb41b27e51f28d09548219c18435346b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___s_p_i___b.html#gabb41b27e51f28d09548219c18435346b">spi_b_clock_source_t</a> </td></tr>
 <tr class="separator:gabb41b27e51f28d09548219c18435346b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga71c09df1c9bd190a0053267c6daa9482"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___s_p_i___b.html#ga71c09df1c9bd190a0053267c6daa9482">spi_b_master_receive_clock_t</a> </td></tr>
+<tr class="separator:ga71c09df1c9bd190a0053267c6daa9482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga612cd383994bd86ef11124e71896e23a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___s_p_i___b.html#ga612cd383994bd86ef11124e71896e23a">spi_b_analog_delay_t</a> </td></tr>
+<tr class="separator:ga612cd383994bd86ef11124e71896e23a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga294982b92f85bea4e2df9349930dd36f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___s_p_i___b.html#ga294982b92f85bea4e2df9349930dd36f">spi_b_digital_delay_t</a> </td></tr>
+<tr class="separator:ga294982b92f85bea4e2df9349930dd36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8232020978a99300962810b2e9f9dc86"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___s_p_i___b.html#ga8232020978a99300962810b2e9f9dc86">spi_b_ssl_level_keep_t</a> </td></tr>
 <tr class="separator:ga8232020978a99300962810b2e9f9dc86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -684,6 +752,24 @@ Receive FIFO threshold (0~15) </td></tr>
 receive_data_ready_detect_adjustment</td>
 <td class="fielddoc">
 Receive data ready detect timing (0~255 counts of operation clock) </td></tr>
+<tr><td class="fieldtype">
+<a id="aaa5da9ea572e7a251d148c86b2322a02"></a><a class="el" href="group___r_z_g___s_p_i___b.html#ga71c09df1c9bd190a0053267c6daa9482">spi_b_master_receive_clock_t</a></td>
+<td class="fieldname">
+master_receive_clock</td>
+<td class="fielddoc">
+SPI master receive clock. </td></tr>
+<tr><td class="fieldtype">
+<a id="af2af8598794ca8cd267c5e24b967ea5a"></a><a class="el" href="group___r_z_g___s_p_i___b.html#ga612cd383994bd86ef11124e71896e23a">spi_b_analog_delay_t</a></td>
+<td class="fieldname">
+analog_delay</td>
+<td class="fielddoc">
+SPI max analog delay. </td></tr>
+<tr><td class="fieldtype">
+<a id="a38fe2f5fbfc74cebc5311d733b04c330"></a><a class="el" href="group___r_z_g___s_p_i___b.html#ga294982b92f85bea4e2df9349930dd36f">spi_b_digital_delay_t</a></td>
+<td class="fieldname">
+digital_delay</td>
+<td class="fielddoc">
+SPI digital delay. </td></tr>
 <tr><td class="fieldtype">
 <a id="afe62c2bbb07bedc4bd4dad60b8c3c69c"></a>void *</td>
 <td class="fieldname">
@@ -995,6 +1081,93 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
       </table>
 </div><div class="memdoc">
 <p>SPI communication clock source. </p>
+
+</div>
+</div>
+<a id="ga71c09df1c9bd190a0053267c6daa9482"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga71c09df1c9bd190a0053267c6daa9482">&#9670;&nbsp;</a></span>spi_b_master_receive_clock_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_g___s_p_i___b.html#ga71c09df1c9bd190a0053267c6daa9482">spi_b_master_receive_clock_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SPI master receive clock. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga71c09df1c9bd190a0053267c6daa9482a35cba67ab113dd6394fb6f70728afbc8"></a>SPI_B_MASTER_RECEIVE_CLOCK_ANALOG_DELAY&#160;</td><td class="fielddoc"><p>SPI Master Receive Clock with Analog Delay. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga71c09df1c9bd190a0053267c6daa9482a0a3b1a1d2b3fee84b8e2b9677fb6a1f5"></a>SPI_B_MASTER_RECEIVE_CLOCK_DEGITAL_DELAY&#160;</td><td class="fielddoc"><p>SPI Master Receive Clock with Digital Delay. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga612cd383994bd86ef11124e71896e23a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga612cd383994bd86ef11124e71896e23a">&#9670;&nbsp;</a></span>spi_b_analog_delay_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_g___s_p_i___b.html#ga612cd383994bd86ef11124e71896e23a">spi_b_analog_delay_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SPI max analog delay. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga612cd383994bd86ef11124e71896e23aa8d978f644855942f1c921da3361c9c0a"></a>SPI_B_ANALOG_DELAY_NODELAY&#160;</td><td class="fielddoc"><p>No delay. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga612cd383994bd86ef11124e71896e23aa67a8d56109ee031ed503a8c809d9546c"></a>SPI_B_ANALOG_DELAY_1_1_NS&#160;</td><td class="fielddoc"><p>1.1 ns (max) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga612cd383994bd86ef11124e71896e23aa367fa5d954310a325900d54f4b51af58"></a>SPI_B_ANALOG_DELAY_2_2_NS&#160;</td><td class="fielddoc"><p>2.2 ns (max) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga612cd383994bd86ef11124e71896e23aa6f52fcfb0aa1d5da300c2433af815b6b"></a>SPI_B_ANALOG_DELAY_3_3_NS&#160;</td><td class="fielddoc"><p>3.3 ns (max) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga612cd383994bd86ef11124e71896e23aa0bc0639a2621d224b21135ef5a8a5ee7"></a>SPI_B_ANALOG_DELAY_4_4_NS&#160;</td><td class="fielddoc"><p>4.4 ns (max) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga612cd383994bd86ef11124e71896e23aa2d62238db27e63ecd27432a85213a235"></a>SPI_B_ANALOG_DELAY_5_5_NS&#160;</td><td class="fielddoc"><p>5.5 ns (max) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga612cd383994bd86ef11124e71896e23aaafe9c2eb1356a5fffa0bc5b8173aaf94"></a>SPI_B_ANALOG_DELAY_6_6_NS&#160;</td><td class="fielddoc"><p>6.6 ns (max) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga612cd383994bd86ef11124e71896e23aa87477dc59fff33605182bab878c51eb7"></a>SPI_B_ANALOG_DELAY_7_7_NS&#160;</td><td class="fielddoc"><p>7.7 ns (max) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga294982b92f85bea4e2df9349930dd36f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga294982b92f85bea4e2df9349930dd36f">&#9670;&nbsp;</a></span>spi_b_digital_delay_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_g___s_p_i___b.html#ga294982b92f85bea4e2df9349930dd36f">spi_b_digital_delay_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SPI digital delay. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga294982b92f85bea4e2df9349930dd36fa9dc134c5102573984ce80d3e10b7ab6a"></a>SPI_B_DIGITAL_DELAY_CLOCK_0&#160;</td><td class="fielddoc"><p>0 PCLKSPIn </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga294982b92f85bea4e2df9349930dd36fa65919d0dd85a048a4414a667e53c0241"></a>SPI_B_DIGITAL_DELAY_CLOCK_1&#160;</td><td class="fielddoc"><p>1 PCLKSPIn </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga294982b92f85bea4e2df9349930dd36fa3d91e31c83f12ea2f3ff33382d39e39b"></a>SPI_B_DIGITAL_DELAY_CLOCK_2&#160;</td><td class="fielddoc"><p>2 PCLKSPIn </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga294982b92f85bea4e2df9349930dd36fae15ba442e6da96de75582211dadf12b5"></a>SPI_B_DIGITAL_DELAY_CLOCK_3&#160;</td><td class="fielddoc"><p>3 PCLKSPIn </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga294982b92f85bea4e2df9349930dd36fa7daabdec9dcbb344482edaa9668da396"></a>SPI_B_DIGITAL_DELAY_CLOCK_4&#160;</td><td class="fielddoc"><p>4 PCLKSPIn </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga294982b92f85bea4e2df9349930dd36fad2130b691a307cbaaf498e20240ff342"></a>SPI_B_DIGITAL_DELAY_CLOCK_5&#160;</td><td class="fielddoc"><p>5 PCLKSPIn </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga294982b92f85bea4e2df9349930dd36fa0de58c90dd3de6c24f4f16c59e85dd34"></a>SPI_B_DIGITAL_DELAY_CLOCK_6&#160;</td><td class="fielddoc"><p>6 PCLKSPIn </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga294982b92f85bea4e2df9349930dd36fa1af0629ee52227953342a71711e013f1"></a>SPI_B_DIGITAL_DELAY_CLOCK_7&#160;</td><td class="fielddoc"><p>7 PCLKSPIn </p>
+</td></tr>
+</table>
 
 </div>
 </div>
@@ -1372,7 +1545,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

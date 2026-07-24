@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -273,7 +273,7 @@ Valid input value range:<br />
 - When 'Raw Counts' is selected in 'Period Unit', set the value to 0x00000001~0x100000000<br />
 - When other item is selected in 'Period Unit', set the value to (1 / count clock) ~ (0x100000000 / count clock)<br />
 <br />
-If the input value is exceeded valid range, the ERROR will be shown in hal_data.c. </td></tr>
+If the requested period cannot be achieved, the settings with the largest possible period that is less than or equal to the requested period are used. The theoretical calculated period is printed in a comment in the generated timer_cfg_t structure. </td></tr>
 <tr>
 <td>General &gt; Period Unit</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -344,7 +344,7 @@ Examples</h1>
 <p>This is a basic example of minimal use of the GTM in an application.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> gtm_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_v___g_t_m.html#ga329fac4f1af8dee4e45200fd0ce5a9a5">R_GTM_Open</a>(&amp;g_timer_ctrl, &amp;g_timer_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_v___g_t_m.html#gae0fe404d6571eb59c9f05f43f55eed25">R_GTM_Start</a>(&amp;g_timer_ctrl);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>GTM Callback Example</h2>
 <p>This is an example of a timer callback.</p>
-<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when timer expires. */</span></div><div class="line"><span class="keywordtype">void</span> timer_callback (<a class="code" href="group___r_z_v___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_v___t_i_m_e_r___a_p_i.html#ggac3bee51f7c9078f794c5ac19522f91ebae310bef0d640f06765c01b4b91a5b84c">TIMER_EVENT_CYCLE_END</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Add application code to be called periodically here. */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>GTM Free Running Counter Example</h2>
+<div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when timer expires. */</span></div><div class="line"><span class="keywordtype">void</span> timer_callback (<a class="code" href="group___r_z_v___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_v___t_i_m_e_r___a_p_i.html#gac3bee51f7c9078f794c5ac19522f91ebaf35df6e894642f443099deff392469a1">TIMER_EVENT_CYCLE_END</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Add application code to be called periodically here. */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>GTM Free Running Counter Example</h2>
 <p>To use the GTM as a free running counter, select Free-Running Comparison Mode.</p>
 <div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> gtm_counter_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_v___g_t_m.html#ga329fac4f1af8dee4e45200fd0ce5a9a5">R_GTM_Open</a>(&amp;g_timer_ctrl, &amp;g_timer_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_v___g_t_m.html#gae0fe404d6571eb59c9f05f43f55eed25">R_GTM_Start</a>(&amp;g_timer_ctrl);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* (Optional) Stop the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_v___g_t_m.html#ga89c7ca62fbb288cd5f44e5c773c699cf">R_GTM_Stop</a>(&amp;g_timer_ctrl);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Read the current counter value. Counter value is in status.counter. */</span></div><div class="line">    <a class="code" href="group___r_z_v___t_i_m_e_r___a_p_i.html#ga8160de0e701f5d6acebcaf9d2c86120f">timer_status_t</a> status;</div><div class="line">    (void) <a class="code" href="group___r_z_v___g_t_m.html#gaa95357cd0d4d8c43f7a2523d4c3b24f7">R_GTM_StatusGet</a>(&amp;g_timer_ctrl, &amp;status);</div><div class="line"></div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>GTM Period Update Example</h2>
 <p>This is an example of updating the period.</p>
@@ -925,7 +925,7 @@ Stop the timer before calling this function if one-shot output is used.</dd></dl
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

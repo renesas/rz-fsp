@@ -6,10 +6,16 @@ var group___r_z_t___s_d_h_i =
       [ "oxmnirq_ipl", "group___r_z_t___s_d_h_i.html#a29efd24fb1264ca9ca5a0f28602e8299", null ],
       [ "sd_pwen_output", "group___r_z_t___s_d_h_i.html#aa1aad0c7b54b711d6626de2dc857812b", null ],
       [ "sd_iovs_output", "group___r_z_t___s_d_h_i.html#a13c51746baa7a528ae3602aa572b4a42", null ],
+      [ "sd_iovctrl", "group___r_z_t___s_d_h_i.html#a80a2ac70c49cd0f6605b2a032d840056", null ],
       [ "p_reg", "group___r_z_t___s_d_h_i.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "sdhi_instance_ctrl_t", "group___r_z_t___s_d_h_i.html#gaf8bc75d653f0423110946174f9d8b5a0", null ],
     [ "sdhi_extended_cfg_t", "group___r_z_t___s_d_h_i.html#ga2ed3d98a42306ab1987ea14beabda875", null ],
+    [ "sdhi_io_voltage_control_t", "group___r_z_t___s_d_h_i.html#ga1e3e925cbe2ebe908e832df2a85e94fb", [
+      [ "SDHI_IO_VOLTAGE_CONTROL_GREATER_THAN_OR_EQUAL_TO_2_5V", "group___r_z_t___s_d_h_i.html#gga1e3e925cbe2ebe908e832df2a85e94fba608b9ab48d98521d276a4d76942a0b95", null ],
+      [ "SDHI_IO_VOLTAGE_CONTROL_LESS_THAN_OR_EQUAL_TO_1_8V", "group___r_z_t___s_d_h_i.html#gga1e3e925cbe2ebe908e832df2a85e94fbaee32867c4d4beef6ebc28f7daeaef4a7", null ],
+      [ "SDHI_IO_VOLTAGE_CONTROL_UNSUPPORTED", "group___r_z_t___s_d_h_i.html#gga1e3e925cbe2ebe908e832df2a85e94fba3af601a516804d2d0a64cbd80808e0e1", null ]
+    ] ],
     [ "R_SDHI_Open", "group___r_z_t___s_d_h_i.html#ga37b6d1c11d0f6d92ef6ae985a420ffbb", null ],
     [ "R_SDHI_MediaInit", "group___r_z_t___s_d_h_i.html#gabacaaf35153339d0931c6c0932eca4e3", null ],
     [ "R_SDHI_Read", "group___r_z_t___s_d_h_i.html#ga400250f503190acfb97e58a561feec69", null ],

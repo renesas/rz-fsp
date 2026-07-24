@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.1.0</span>
+   &#160;<span id="projectnumber">Release v4.2.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -295,22 +295,24 @@ Limitations</h2>
 </ul>
 </li>
 </ul>
+<h1><a class="anchor" id="RZN_rm-ethercat-ssc-port-examples"></a>
+Examples</h1>
 <h2>ETHERCAT SSC Port Basic Example</h2>
 <p>This is a basic example of minimal use of the ETHERCAT SSC Port in an application.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">void</span> ethercat_ssc_port_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_n___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module before using the EtherCAT Slave Stack. */</span></div><div class="line">    <span class="comment">/* The instance of EtherCAT SSC Port instance can be accessed as gp_ether_cat_ssc_port */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#ga1a6b2a699f7e6b12b55be6e8fde1378a">RM_ETHERCAT_SSC_PORT_Open</a>(gp_ethercat_ssc_port-&gt;<a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#af23e4b9e696217bf26338b16e1cc55ad">p_ctrl</a>, gp_ethercat_ssc_port-&gt;<a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#ad3434f4e0ee249c9bcac288f4a98ff8e">p_cfg</a>);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    handle_error(err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Close the module after using the EtherCAT Slave Stack. */</span></div><div class="line">    <a class="code" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#ga624cf5c5dc7585c5a90be0b24285ee9c">RM_ETHERCAT_SSC_PORT_Close</a>(gp_ethercat_ssc_port-&gt;<a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#af23e4b9e696217bf26338b16e1cc55ad">p_ctrl</a>);</div><div class="line"></div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">/* Example callback called when EtherCAT interrupt. */</span></div><div class="line"><span class="keywordtype">void</span> ssc_port_callback (<a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#ga24f6fadcca45525f2ad189b8f808a84f">ethercat_ssc_port_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">switch</span> (p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#gga64505999c1c12637ff288e706880a7a4ae33cbf059059bd6baa4c54c1af613f4c">ETHERCAT_SSC_PORT_EVENT_ESC_CAT_INTERRUPT</a>:</div><div class="line">        {</div><div class="line"><span class="comment">/* ESC CAT Interrupt application */</span></div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#gga64505999c1c12637ff288e706880a7a4a1dca66ff4bbda5a9addccfb293034156">ETHERCAT_SSC_PORT_EVENT_ESC_SYNC0_INTERRUPT</a>:</div><div class="line">        {</div><div class="line"><span class="comment">/* ESC SYNC0 Interrupt application */</span></div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#gga64505999c1c12637ff288e706880a7a4a7ea1aeb862ca2e7e436bfb1c07ad1985">ETHERCAT_SSC_PORT_EVENT_ESC_SYNC1_INTERRUPT</a>:</div><div class="line">        {</div><div class="line"><span class="comment">/* ESC SYNC1 Interrupt application */</span></div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keywordflow">default</span>:</div><div class="line">        {</div><div class="line">            <span class="comment">/* Do Nothing! */</span></div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> ethercat_ssc_port_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_n___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module before using the EtherCAT Slave Stack. */</span></div><div class="line">    <span class="comment">/* The instance of EtherCAT SSC Port instance can be accessed as gp_ether_cat_ssc_port */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#ga1a6b2a699f7e6b12b55be6e8fde1378a">RM_ETHERCAT_SSC_PORT_Open</a>(gp_ethercat_ssc_port-&gt;<a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#af23e4b9e696217bf26338b16e1cc55ad">p_ctrl</a>, gp_ethercat_ssc_port-&gt;<a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#ad3434f4e0ee249c9bcac288f4a98ff8e">p_cfg</a>);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Close the module after using the EtherCAT Slave Stack. */</span></div><div class="line">    <a class="code" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#ga624cf5c5dc7585c5a90be0b24285ee9c">RM_ETHERCAT_SSC_PORT_Close</a>(gp_ethercat_ssc_port-&gt;<a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#af23e4b9e696217bf26338b16e1cc55ad">p_ctrl</a>);</div><div class="line"></div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">/* Example callback called when EtherCAT interrupt. */</span></div><div class="line"><span class="keywordtype">void</span> ssc_port_callback (<a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#ga24f6fadcca45525f2ad189b8f808a84f">ethercat_ssc_port_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">switch</span> (p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#gga64505999c1c12637ff288e706880a7a4ae33cbf059059bd6baa4c54c1af613f4c">ETHERCAT_SSC_PORT_EVENT_ESC_CAT_INTERRUPT</a>:</div><div class="line">        {</div><div class="line"><span class="comment">/* ESC CAT Interrupt application */</span></div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#gga64505999c1c12637ff288e706880a7a4a1dca66ff4bbda5a9addccfb293034156">ETHERCAT_SSC_PORT_EVENT_ESC_SYNC0_INTERRUPT</a>:</div><div class="line">        {</div><div class="line"><span class="comment">/* ESC SYNC0 Interrupt application */</span></div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keywordflow">case</span> <a class="code" href="group___r_z_n___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t___a_p_i.html#gga64505999c1c12637ff288e706880a7a4a7ea1aeb862ca2e7e436bfb1c07ad1985">ETHERCAT_SSC_PORT_EVENT_ESC_SYNC1_INTERRUPT</a>:</div><div class="line">        {</div><div class="line"><span class="comment">/* ESC SYNC1 Interrupt application */</span></div><div class="line">            <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keywordflow">default</span>:</div><div class="line">        {</div><div class="line">            <span class="comment">/* Do Nothing! */</span></div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_n_1_1st__ethercat__ssc__port__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1st__ethercat__ssc__port__instance__ctrl">st_ethercat_ssc_port_instance_ctrl</a></td></tr>
 <tr class="separator:struct_r_z_n_1_1st__ethercat__ssc__port__instance__ctrl"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_n_1_1s__ethercat__ssc__port__extend__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1s__ethercat__ssc__port__extend__cfg">s_ethercat_ssc_port_extend_cfg</a></td></tr>
-<tr class="separator:struct_r_z_n_1_1s__ethercat__ssc__port__extend__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_n_1_1st__ethercat__ssc__port__extend__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1st__ethercat__ssc__port__extend__cfg">st_ethercat_ssc_port_extend_cfg</a></td></tr>
+<tr class="separator:struct_r_z_n_1_1st__ethercat__ssc__port__extend__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:gadf15789f1c55106c80b6aaf589db27d7"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1st__ethercat__ssc__port__instance__ctrl">st_ethercat_ssc_port_instance_ctrl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#gadf15789f1c55106c80b6aaf589db27d7">ethercat_ssc_port_instance_ctrl_t</a></td></tr>
 <tr class="separator:gadf15789f1c55106c80b6aaf589db27d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga487c8dc19ff30f0ba4e29ee1e0c54ceb"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1s__ethercat__ssc__port__extend__cfg">s_ethercat_ssc_port_extend_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#ga487c8dc19ff30f0ba4e29ee1e0c54ceb">ethercat_ssc_port_extend_cfg_t</a></td></tr>
-<tr class="separator:ga487c8dc19ff30f0ba4e29ee1e0c54ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac5c29c1745e2078e39e4c9e44f2e3f4d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1st__ethercat__ssc__port__extend__cfg">st_ethercat_ssc_port_extend_cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#gac5c29c1745e2078e39e4c9e44f2e3f4d">ethercat_ssc_port_extend_cfg_t</a></td></tr>
+<tr class="separator:gac5c29c1745e2078e39e4c9e44f2e3f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -362,14 +364,14 @@ Pointer to EtherCAT Slave Controller registers. </td></tr>
 
 </div>
 </div>
-<a name="struct_r_z_n_1_1s__ethercat__ssc__port__extend__cfg" id="struct_r_z_n_1_1s__ethercat__ssc__port__extend__cfg"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_n_1_1s__ethercat__ssc__port__extend__cfg">&#9670;&nbsp;</a></span>RZN::s_ethercat_ssc_port_extend_cfg</h2>
+<a name="struct_r_z_n_1_1st__ethercat__ssc__port__extend__cfg" id="struct_r_z_n_1_1st__ethercat__ssc__port__extend__cfg"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_n_1_1st__ethercat__ssc__port__extend__cfg">&#9670;&nbsp;</a></span>RZN::st_ethercat_ssc_port_extend_cfg</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZN::s_ethercat_ssc_port_extend_cfg</td>
+          <td class="memname">struct RZN::st_ethercat_ssc_port_extend_cfg</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -426,18 +428,18 @@ Pointer to ETHER_PHY instance. </td></tr>
 
 </div>
 </div>
-<a id="ga487c8dc19ff30f0ba4e29ee1e0c54ceb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga487c8dc19ff30f0ba4e29ee1e0c54ceb">&#9670;&nbsp;</a></span>ethercat_ssc_port_extend_cfg_t</h2>
+<a id="gac5c29c1745e2078e39e4c9e44f2e3f4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac5c29c1745e2078e39e4c9e44f2e3f4d">&#9670;&nbsp;</a></span>ethercat_ssc_port_extend_cfg_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1s__ethercat__ssc__port__extend__cfg">s_ethercat_ssc_port_extend_cfg</a> <a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#ga487c8dc19ff30f0ba4e29ee1e0c54ceb">ethercat_ssc_port_extend_cfg_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1st__ethercat__ssc__port__extend__cfg">st_ethercat_ssc_port_extend_cfg</a> <a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#gac5c29c1745e2078e39e4c9e44f2e3f4d">ethercat_ssc_port_extend_cfg_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Extended configuration Please refer to the struct <a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1s__ethercat__ssc__port__extend__cfg">s_ethercat_ssc_port_extend_cfg</a>. </p>
+<p>Extended configuration. Please refer to the struct <a class="el" href="group___r_z_n___r_m___e_t_h_e_r_c_a_t___s_s_c___p_o_r_t.html#struct_r_z_n_1_1st__ethercat__ssc__port__extend__cfg">st_ethercat_ssc_port_extend_cfg</a>. </p>
 
 </div>
 </div>
@@ -563,7 +565,7 @@ Pointer to ETHER_PHY instance. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.1.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

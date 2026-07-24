@@ -1,14 +1,14 @@
 var group___r_z_t___s_c_i___s_m_c_i =
 [
     [ "st_sci_smci_instance_ctrl", "group___r_z_t___s_c_i___s_m_c_i.html#struct_r_z_t_1_1st__sci__smci__instance__ctrl", null ],
-    [ "st_sci_smci_baud_setting_t", "group___r_z_t___s_c_i___s_m_c_i.html#struct_r_z_t_1_1st__sci__smci__baud__setting__t", null ],
+    [ "st_sci_smci_baud_setting", "group___r_z_t___s_c_i___s_m_c_i.html#struct_r_z_t_1_1st__sci__smci__baud__setting", null ],
     [ "st_sci_smci_extended_cfg", "group___r_z_t___s_c_i___s_m_c_i.html#struct_r_z_t_1_1st__sci__smci__extended__cfg", [
       [ "p_smci_baud_setting", "group___r_z_t___s_c_i___s_m_c_i.html#a15f02dd6fdb89757fedbfb91016eb303", null ],
       [ "clock_source", "group___r_z_t___s_c_i___s_m_c_i.html#a4170ec4d0c0cfe6e8b231499b5057527", null ],
       [ "p_reg", "group___r_z_t___s_c_i___s_m_c_i.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "sci_smci_instance_ctrl_t", "group___r_z_t___s_c_i___s_m_c_i.html#ga5d75ef6a1ba297af4e859db104d8cb5c", null ],
-    [ "sci_smci_baud_setting_t", "group___r_z_t___s_c_i___s_m_c_i.html#ga23afadeca0398d8791bc844bd94fdf09", null ],
+    [ "sci_smci_baud_setting_t", "group___r_z_t___s_c_i___s_m_c_i.html#ga7e553d8b5eb6731bb9e34de80b6cadf3", null ],
     [ "sci_smci_extended_cfg_t", "group___r_z_t___s_c_i___s_m_c_i.html#ga63aff7022f9208121c11a3b4833bf10c", null ],
     [ "sci_smci_clock_source_t", "group___r_z_t___s_c_i___s_m_c_i.html#gab46583a926fc41ae091dfc997fb813fd", null ],
     [ "R_SCI_SMCI_Open", "group___r_z_t___s_c_i___s_m_c_i.html#ga325b2943fd7fe7c0ce11e5ec9359c8e5", null ],
