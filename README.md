@@ -15,7 +15,7 @@ FSP uses an open software ecosystem and provides flexibility in using your prefe
 
 ### Current Release
 
-[FSP v4.1.0](https://github.com/renesas/rz-fsp/releases/tag/v4.1.0)
+[FSP v4.2.0](https://github.com/renesas/rz-fsp/releases/tag/v4.2.0)
 
 ### Previous Release
 * [RZ/A FSP](https://github.com/renesas/rza-fsp)
@@ -36,6 +36,7 @@ RZ/G series
 * [Evaluation Board Kit for RZ/G2UL MPU](https://www.renesas.com/design-resources/boards-kits/rz-g2ul-evkit)
 * [Evaluation Board Kit for RZ/G3S MPU](https://www.renesas.com/design-resources/boards-kits/rz-g3s-evkit)
 * [Evaluation Board Kit for RZ/G3E MPU](https://www.renesas.com/design-resources/boards-kits/rz-g3e-evkit)
+* Evaluation Board Kit for RZ/G3L MPU
 
 RZ/N series
 * [Renesas Starter Kit+ for RZ/N2L](https://www.renesas.com/design-resources/boards-kits/rz-n2l-rsk)
@@ -67,27 +68,30 @@ Refer to the release notes for each version.
 ### Setup Instructions
 #### For existing users that are using FSP with e<sup>2</sup> studio
 
-- FSP versions of 4.0.0 requires a minimum e<sup>2</sup> studio version of 2025-12.
-- FSP versions of 4.1.0 requires a minimum e<sup>2</sup> studio version of 2026-04.1.
+- FSP versions of 4.0.0 and later requires a minimum e<sup>2</sup> studio version of 2025-12.
+- FSP versions of 4.1.0 and later requires a minimum e<sup>2</sup> studio version of 2026-04.1.
+- FSP versions of 4.2.0 and later requires a minimum e<sup>2</sup> studio version of 2026-07.
 
 If you have already installed a previous FSP release that included e<sup>2</sup> studio then you can download the packs separately. These are available for download under the Assets section for each release. There is a zipped version, FSP_Packs_\<version\>.zip, and an installer version, FSP_Packs_\<version\>.exe.
 
+When using the zipped version of the packs the zip file should be extracted into the e<sup>2</sup> studio support area. This directory is typically found under the user's home directory with a path such as `~/.eclipse/com.renesas.platform_2047834950`. The number on the end of the path is unique to each e<sup>2</sup> studio installation. If you have two e<sup>2</sup> studio installations then you will have two directories with names of the format `~/.eclipse/com.renesas.platform_<unique_number>`. Please note that e<sup>2</sup> studio must have been run at least once for this directory to be created. You can find the support area for a particular e<sup>2</sup> studio installation by clicking `Help >> About e<sup>2</sup> studio`. In the window that pops up click `Installation Details` and choose the `Support Folders` tab. The e<sup>2</sup> studio support area path will be shown.
+
 #### For new users that are using FSP with e<sup>2</sup> studio
 
-1.	Download the FSP with e<sup>2</sup> studio Installer from the Assets section of the [current release](https://github.com/renesas/rz-fsp/releases/tag/v4.1.0).
+1.	Download the FSP with e<sup>2</sup> studio Installer from the Assets section of the [current release](https://github.com/renesas/rz-fsp/releases/tag/v4.2.0).
 2.	Run the installer. This will install the e<sup>2</sup> studio tool, FSP packs, GCC toolchain and other tools required to use this software. No additional installations are required.
 
 #### If using FSP Smart Configurator (FSP SC) with IAR Embedded Workbench for ARM&reg; ####
 
 1. Download the IAR Embedded Workbench for ARM&reg; installer from [IAR website](https://www.iar.com/embedded-development-tools/iar-embedded-workbench).
-2. Download the FSP Smart Configurator Installer from the Assets section of the [current release](https://github.com/renesas/rz-fsp/releases/tag/v4.1.0).
+2. Download the FSP Smart Configurator Installer from the Assets section of the [current release](https://github.com/renesas/rz-fsp/releases/tag/v4.2.0).
 3. Run each installer.
 
 #### Getting Started with Flexible Software Package
-- RZ/A series   : [RZ/A Getting Started with Flexible Software Package](https://www.renesas.com/document/apn/rza-getting-started-flexible-software-package)
-- RZ/G series   : [RZ/G Getting Started with Flexible Software Package](https://www.renesas.com/document/apn/rzg-getting-started-flexible-software-package)
-- RZ/V series   : [RZ/V Getting Started with Flexible Software Package](https://www.renesas.com/document/apn/rzv-getting-started-flexible-software-package)
-- RZ/T,N series : [RZ/T2, RZ/N2 Getting Started with Flexible Software Package](https://www.renesas.com/document/apn/rzt2-rzn2-getting-started-flexible-software-package)
+- RZ/A series   : [RZ/A Series Getting Started with Flexible Software Package](https://www.renesas.com/document/apn/rza-getting-started-flexible-software-package)
+- RZ/G series   : [RZ/G Series Getting Started with Flexible Software Package](https://www.renesas.com/document/apn/rzg-getting-started-flexible-software-package)
+- RZ/V series   : [RZ/V Series Getting Started with Flexible Software Package](https://www.renesas.com/document/apn/rzv-getting-started-flexible-software-package)
+- RZ/T,N series : [RZ/T2, RZ/N2 Series Getting Started with Flexible Software Package](https://www.renesas.com/document/apn/rzt2-rzn2-getting-started-flexible-software-package)
 
 ### Related Links
 
