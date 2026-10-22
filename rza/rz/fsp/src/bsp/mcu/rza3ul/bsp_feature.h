@@ -28,11 +28,16 @@
  **********************************************************************************************************************/
 
 /* ADC-Related Definitions */
-#define BSP_FEATURE_ADC_NUM_CALIBRATION_DATA                            (2U)
-#define BSP_FEATURE_ADC_UNIT_VALID_CONVERSION_RESULT_REGISTER_MASKS \
-    BSP_FEATURE_ADC_UNIT_0_VALID_CONVERSION_RESULT_REGISTER_MASK
-#define BSP_FEATURE_ADC_UNIT_0_VALID_CONVERSION_RESULT_REGISTER_MASK    (0xFFU)
-#define BSP_FEATURE_ADC_VALID_UNIT_MASK                                 (0x1U)
+#define BSP_FEATURE_ADC_C_UNIT_VALID_CONVERSION_RESULT_REGISTER_MASKS \
+    BSP_FEATURE_ADC_C_UNIT_0_VALID_CONVERSION_RESULT_REGISTER_MASK
+#define BSP_FEATURE_ADC_C_UNIT_0_VALID_CONVERSION_RESULT_REGISTER_MASK    (0xFU)
+#define BSP_FEATURE_ADC_C_SAMPLE_STATE_COUNT_MIN                          (6U)
+#define BSP_FEATURE_ADC_C_SAMPLE_STATE_COUNT_MAX                          (2800U)
+#define BSP_FEATURE_ADC_C_CONVERSION_TIME                                 (14U)
+#define BSP_FEATURE_ADC_C_HAS_ADIVC                                       (1U)
+#define BSP_FEATURE_ADC_C_TSU_CONTROL_AVAILABLE                           (0U)
+#define BSP_FEATURE_ADC_C_VALID_UNIT_MASK                                 (0x1U)
+#define BSP_FEATURE_ADC_C_TSUMODE_TSUEN_SETTING                           (0U)
 
 /* BSP Capabilities Definitions */
 #define BSP_FEATURE_BSP_SUPPORT_PLL5_CONFIG                             (0U)
@@ -56,11 +61,17 @@
 #define BSP_FEATURE_BSP_SD_REG_SIZE_BY_BIT                              (8)
 
 /* CANFD-Related Definitions */
-#define BSP_FEATURE_CANFD_NUM_CHANNELS                                  (2U)
-#define BSP_FEATURE_CANFD_FD_SUPPORT                                    (1U)
+#define BSP_FEATURE_CANFD_NUM_CHANNELS                                  (2)
+#define BSP_FEATURE_CANFD_FD_SUPPORT                                    (1)
 #define BSP_FEATURE_CANFD_LITE                                          (0U)
 #define BSP_FEATURE_CANFD_NUM_INSTANCES                                 (1U)
 #define BSP_FEATURE_CANFD_HAS_RSCANFD                                   (1U)
+#define BSP_FEATURE_CANFD_TXMB_OFFSET                                   (16U)
+#define BSP_FEATURE_CANFD_TXMB_CHANNEL_OFFSET                           (16U)
+#define BSP_FEATURE_CANFD_RXMB_MAX                                      (32U)
+#define BSP_FEATURE_CANFD_ERROR_GLOBAL_CH0_ECC_REG_POS                  (28U)
+#define BSP_FEATURE_CANFD_NUM_COMMON_FIFOS                              (6U)
+#define BSP_FEATURE_CANFD_64BIT_SYSTEM                                  (1U)
 
 /* CPG-Related Definitions */
 #define BSP_FEATURE_CPG_HAS_ICLK                                        (1U)
@@ -82,6 +93,7 @@
 /* DMAC-Related Definitions */
 #define BSP_FEATURE_DMAC_MAX_CHANNEL                                    (16U)
 #define BSP_FEATURE_DMAC_64BIT_SYSTEM                                   (1U)
+#define BSP_FEATURE_DMAC_VALID_UNIT_MASK                                (0x2U) // Mask of valid units for DMAC.
 
 /* GETHER-Related Definitions */
 #define BSP_FEATURE_GETHER_MAX_CHANNELS                                 (2U)
@@ -139,7 +151,7 @@
 #define BSP_FEATURE_RSPI_CLK_MIN_DIV                                    (4U)
 
 /* SCIF-Related Definitions */
-#define BSP_FEATURE_SCIF_CHANNELS                                       (0x1FU)
+#define BSP_FEATURE_SCIF_CHANNELS_MASK                                  (0x1FU)
 #define BSP_FEATURE_SCIF_CHANNELS_HAS_RTSCTS                            (0x07U)
 #define BSP_FEATURE_SCIF_CLOCK                                          (FSP_PRIV_CLOCK_P0CLK)
 #define BSP_FEATURE_SCIF_MAX_CHANNELS                                   (5U)

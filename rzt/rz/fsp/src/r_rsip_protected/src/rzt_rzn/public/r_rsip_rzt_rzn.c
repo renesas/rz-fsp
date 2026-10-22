@@ -20,85 +20,98 @@
 #define RSIP_PRV_BYTE_SIZE_ENC_ROOT_CERT_MAC                           (16U)
 
 #if RSIP_CFG_AES_128_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_128                           r_rsip_p10
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_128                           r_rsip_wrapper_pac_aes128
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_128                           NULL
 #endif
 #if RSIP_CFG_AES_192_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_192                           r_rsip_p84
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_192                           r_rsip_wrapper_pac_aes192
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_192                           NULL
 #endif
 #if RSIP_CFG_AES_256_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_256                           r_rsip_p04
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_256                           r_rsip_wrapper_pac_aes256
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_AES_256                           NULL
 #endif
 
 #if RSIP_CFG_XTS_AES_128_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_XTS_AES_128                       r_rsip_p18
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_XTS_AES_128                       r_rsip_wrapper_pac_xts_aes128
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_XTS_AES_128                       NULL
 #endif
 #if RSIP_CFG_XTS_AES_256_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_XTS_AES_256                       r_rsip_p1a
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_XTS_AES_256                       r_rsip_wrapper_pac_xts_aes256
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_XTS_AES_256                       NULL
 #endif
 
+#if RSIP_CFG_CHACHA20_ENABLE
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_CHACHA20                          r_rsip_wrapper_pac_chacha20
+#else
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_CHACHA20                          NULL
+#endif
+
 #if RSIP_CFG_ECC_SECP256R1_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256R1_PUBLIC              r_rsip_wrapper_pfa_secp256r1
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256R1_PRIVATE             r_rsip_wrapper_pf3_secp256r1
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256R1_PUBLIC              r_rsip_wrapper_pac_secp256r1_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256R1_PRIVATE             r_rsip_wrapper_pac_secp256r1_priv
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256R1_PUBLIC              NULL
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256R1_PRIVATE             NULL
 #endif
 #if RSIP_CFG_ECC_SECP384R1_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PUBLIC              r_rsip_wrapper_pf7_secp384r1
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PRIVATE             r_rsip_wrapper_pf8_secp384r1
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PUBLIC              r_rsip_wrapper_pac_secp384r1_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PRIVATE             r_rsip_wrapper_pac_secp384r1_priv
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PUBLIC              NULL
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PRIVATE             NULL
 #endif
 #if RSIP_CFG_ECC_SECP521R1_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PUBLIC              r_rsip_p3e
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PRIVATE             r_rsip_p3f
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PUBLIC              r_rsip_wrapper_pac_secp521r1_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PRIVATE             r_rsip_wrapper_pac_secp521r1_priv
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PUBLIC              NULL
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PRIVATE             NULL
 #endif
+#if RSIP_CFG_ECC_SECP256K1_ENABLE
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256K1_PUBLIC              r_rsip_wrapper_pac_secp256k1_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256K1_PRIVATE             r_rsip_wrapper_pac_secp256k1_priv
+#else
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256K1_PUBLIC              NULL
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256K1_PRIVATE             NULL
+#endif
 #if RSIP_CFG_ECC_BRAINPOOLP256R1_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PUBLIC        r_rsip_wrapper_pfa_brainpoolp256r1
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PRIVATE       r_rsip_wrapper_pf3_brainpoolp256r1
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PUBLIC        r_rsip_wrapper_pac_brainpoolp256r1_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PRIVATE       r_rsip_wrapper_pac_brainpoolp256r1_priv
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PUBLIC        NULL
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PRIVATE       NULL
 #endif
 #if RSIP_CFG_ECC_BRAINPOOLP384R1_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PUBLIC        r_rsip_wrapper_pf7_brainpoolp384r1
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PRIVATE       r_rsip_wrapper_pf8_brainpoolp384r1
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PUBLIC        r_rsip_wrapper_pac_brainpoolp384r1_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PRIVATE       r_rsip_wrapper_pac_brainpoolp384r1_priv
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PUBLIC        NULL
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PRIVATE       NULL
 #endif
 #if RSIP_CFG_ECC_BRAINPOOLP512R1_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PUBLIC        r_rsip_pfb
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PRIVATE       r_rsip_pfc
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PUBLIC        r_rsip_wrapper_pac_brainpoolp512r1_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PRIVATE       r_rsip_wrapper_pac_brainpoolp512r1_priv
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PUBLIC        NULL
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PRIVATE       NULL
 #endif
 #if RSIP_CFG_ECC_EDWARDS25519_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_EDWARDS25519_PUBLIC           r_rsip_pb1
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_EDWARDS25519_PRIVATE          r_rsip_pb2
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_EDWARDS25519_PUBLIC           r_rsip_wrapper_pac_edwards25519_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_EDWARDS25519_PRIVATE          r_rsip_wrapper_pac_edwards25519_priv
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_EDWARDS25519_PUBLIC           NULL
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_EDWARDS25519_PRIVATE          NULL
 #endif
 
 #if RSIP_CFG_RSA_1024_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_1024_PUBLIC                   r_rsip_p59
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_1024_PRIVATE                  r_rsip_p60
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_1024_PUBLIC                   r_rsip_wrapper_pac_rsa1024_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_1024_PRIVATE                  r_rsip_wrapper_pac_rsa1024_priv
  #define RSIP_PRV_FUNC_TLS12_RSA_PREMASTER_SECRET_ENCRYPT_1024         NULL
  #define RSIP_PRV_FUNC_TLS12_RSA_PREMASTER_SECRET_DECRYPT_1024         NULL
 #else
@@ -108,8 +121,8 @@
  #define RSIP_PRV_FUNC_TLS12_RSA_PREMASTER_SECRET_DECRYPT_1024         NULL
 #endif
 #if RSIP_CFG_RSA_2048_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_2048_PUBLIC                   r_rsip_p62
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_2048_PRIVATE                  r_rsip_p63
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_2048_PUBLIC                   r_rsip_wrapper_pac_rsa2048_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_2048_PRIVATE                  r_rsip_wrapper_pac_rsa2048_priv
  #define RSIP_PRV_FUNC_TLS12_RSA_PREMASTER_SECRET_ENCRYPT_2048         r_rsip_peb
  #define RSIP_PRV_FUNC_TLS12_RSA_PREMASTER_SECRET_DECRYPT_2048         r_rsip_pec
 #else
@@ -119,8 +132,8 @@
  #define RSIP_PRV_FUNC_TLS12_RSA_PREMASTER_SECRET_DECRYPT_2048         NULL
 #endif
 #if RSIP_CFG_RSA_3072_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_3072_PUBLIC                   r_rsip_p37
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_3072_PRIVATE                  r_rsip_p42
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_3072_PUBLIC                   r_rsip_wrapper_pac_rsa3072_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_3072_PRIVATE                  r_rsip_wrapper_pac_rsa3072_priv
  #define RSIP_PRV_FUNC_TLS12_RSA_PREMASTER_SECRET_ENCRYPT_3072         NULL
  #define RSIP_PRV_FUNC_TLS12_RSA_PREMASTER_SECRET_DECRYPT_3072         NULL
 #else
@@ -130,8 +143,8 @@
  #define RSIP_PRV_FUNC_TLS12_RSA_PREMASTER_SECRET_DECRYPT_3072         NULL
 #endif
 #if RSIP_CFG_RSA_4096_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_4096_PUBLIC                   r_rsip_p43
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_4096_PRIVATE                  r_rsip_p45
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_4096_PUBLIC                   r_rsip_wrapper_pac_rsa4096_pub
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_RSA_4096_PRIVATE                  r_rsip_wrapper_pac_rsa4096_priv
  #define RSIP_PRV_FUNC_TLS12_RSA_PREMASTER_SECRET_ENCRYPT_4096         NULL
  #define RSIP_PRV_FUNC_TLS12_RSA_PREMASTER_SECRET_DECRYPT_4096         NULL
 #else
@@ -142,29 +155,49 @@
 #endif
 
 #if RSIP_CFG_HMAC_SHA1_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA1                         r_rsip_wrapper_p80_hmac_sha1
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA1                         r_rsip_wrapper_pac_hmac_sha1
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA1                         NULL
 #endif
 #if RSIP_CFG_HMAC_SHA224_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA224                       r_rsip_wrapper_p80_hmac_sha224
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA224                       r_rsip_wrapper_pac_hmac_sha224
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA224                       NULL
 #endif
 #if RSIP_CFG_HMAC_SHA256_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA256                       r_rsip_wrapper_p80_hmac_sha256
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA256                       r_rsip_wrapper_pac_hmac_sha256
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA256                       NULL
 #endif
 #if RSIP_CFG_HMAC_SHA384_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA384                       r_rsip_p92
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA384                       r_rsip_wrapper_pac_hmac_sha384
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA384                       NULL
 #endif
 #if RSIP_CFG_HMAC_SHA512_ENABLE
- #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA512                       r_rsip_p93
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA512                       r_rsip_wrapper_pac_hmac_sha512
 #else
  #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA512                       NULL
+#endif
+#if RSIP_CFG_HMAC_SHA3_224_ENABLE
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_224                     r_rsip_wrapper_pac_hmac_sha3_224
+#else
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_224                     NULL
+#endif
+#if RSIP_CFG_HMAC_SHA3_256_ENABLE
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_256                     r_rsip_wrapper_pac_hmac_sha3_256
+#else
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_256                     NULL
+#endif
+#if RSIP_CFG_HMAC_SHA3_384_ENABLE
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_384                     r_rsip_wrapper_pac_hmac_sha3_384
+#else
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_384                     NULL
+#endif
+#if RSIP_CFG_HMAC_SHA3_512_ENABLE
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_512                     r_rsip_wrapper_pac_hmac_sha3_512
+#else
+ #define RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_512                     NULL
 #endif
 
 #if RSIP_CFG_KDF_HMAC_SHA256_ENABLE
@@ -249,7 +282,7 @@ static const rsip_func_initial_key_wrap_t gsp_func_initial_key_wrap_xts_aes[RSIP
 
 static const rsip_func_initial_key_wrap_t gsp_func_initial_key_wrap_chacha[RSIP_PRV_KEY_SUBTYPE_CHACHA_NUM] =
 {
-    NULL
+    [RSIP_PRV_KEY_SUBTYPE_CHACHA_CHACHA20] = RSIP_PRV_FUNC_INIT_KEY_WRAP_CHACHA20
 };
 
 static const rsip_func_initial_key_wrap_t gsp_func_initial_key_wrap_ecc_pub[RSIP_PRV_KEY_SUBTYPE_ECC_NUM] =
@@ -257,6 +290,7 @@ static const rsip_func_initial_key_wrap_t gsp_func_initial_key_wrap_ecc_pub[RSIP
     [RSIP_PRV_KEY_SUBTYPE_ECC_SECP256R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256R1_PUBLIC,
     [RSIP_PRV_KEY_SUBTYPE_ECC_SECP384R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PUBLIC,
     [RSIP_PRV_KEY_SUBTYPE_ECC_SECP521R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PUBLIC,
+    [RSIP_PRV_KEY_SUBTYPE_ECC_SECP256K1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256K1_PUBLIC,
     [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP256R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PUBLIC,
     [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP384R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PUBLIC,
     [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP512R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PUBLIC,
@@ -268,6 +302,7 @@ static const rsip_func_initial_key_wrap_t gsp_func_initial_key_wrap_ecc_priv[RSI
     [RSIP_PRV_KEY_SUBTYPE_ECC_SECP256R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256R1_PRIVATE,
     [RSIP_PRV_KEY_SUBTYPE_ECC_SECP384R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP384R1_PRIVATE,
     [RSIP_PRV_KEY_SUBTYPE_ECC_SECP521R1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP521R1_PRIVATE,
+    [RSIP_PRV_KEY_SUBTYPE_ECC_SECP256K1]       = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_SECP256K1_PRIVATE,
     [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP256R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP256R1_PRIVATE,
     [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP384R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP384R1_PRIVATE,
     [RSIP_PRV_KEY_SUBTYPE_ECC_BRAINPOOLP512R1] = RSIP_PRV_FUNC_INIT_KEY_WRAP_ECC_BRAINPOOLP512R1_PRIVATE,
@@ -292,16 +327,20 @@ static const rsip_func_initial_key_wrap_t gsp_func_initial_key_wrap_rsa_priv[RSI
 
 static const rsip_func_initial_key_wrap_t gsp_func_initial_key_wrap_hmac[RSIP_PRV_KEY_SUBTYPE_HMAC_NUM] =
 {
-    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA1]   = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA1,
-    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA224] = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA224,
-    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA256] = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA256,
-    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA384] = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA384,
-    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512] = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA512
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA1]     = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA1,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA224]   = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA224,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA256]   = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA256,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA384]   = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA384,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512]   = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA512,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_224] = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_224,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_256] = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_256,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_384] = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_384,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_512] = RSIP_PRV_FUNC_INIT_KEY_WRAP_HMAC_SHA3_512
 };
 
 static const rsip_func_initial_key_wrap_t gsp_func_initial_key_wrap_misc[RSIP_PRV_KEY_SUBTYPE_MISC_NUM] =
 {
-    [RSIP_PRV_KEY_SUBTYPE_MISC_KUK] = r_rsip_p1f
+    [RSIP_PRV_KEY_SUBTYPE_MISC_KUK] = r_rsip_wrapper_pac_misc_kuk
 };
 
 static const rsip_func_initial_key_wrap_t gsp_func_auth_password_hash_compute[3] =

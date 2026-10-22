@@ -202,7 +202,7 @@ namespace RZN
 /* Function-like macro used to wait for a condition to be met, most often used to wait for hardware register updates.
  * This macro can be redefined to add a timeout if necessary. */
  #ifndef FSP_HARDWARE_REGISTER_WAIT
-  #define FSP_HARDWARE_REGISTER_WAIT(reg, required_value)    while (reg != required_value) {__asm volatile ("nop");}
+  #define FSP_HARDWARE_REGISTER_WAIT(reg, required_value)    while (reg != required_value) {}
  #endif
 
 /* Read a register and discard the result. */

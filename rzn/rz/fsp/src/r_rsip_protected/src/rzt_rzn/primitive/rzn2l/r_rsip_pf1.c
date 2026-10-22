@@ -227,8 +227,8 @@ rsip_ret_t r_rsip_pf1 (const uint32_t InData_CurveType[],
         r_rsip_func045();
         r_rsip_func023();
         r_rsip_subfunc009(bswap_32big(0x000000f1U));
-        r_rsip_func101(bswap_32big(0x72b69f3eU), bswap_32big(0x6b4256adU), bswap_32big(0x20d4e887U),
-                       bswap_32big(0x87ecda63U));
+        r_rsip_func101(bswap_32big(0x4ffeab44U), bswap_32big(0x4b1ed231U), bswap_32big(0x44f5efebU),
+                       bswap_32big(0x62e2d52dU));
         r_rsip_func046();
         WR1_PROG(REG_1444H, 0x000000a2U);
         WR1_PROG(REG_1A24H, 0x08000044U);

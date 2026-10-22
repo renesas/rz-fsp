@@ -17,6 +17,16 @@
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
 
+/***********************************************************************************************************************
+ * Macro definitions
+ **********************************************************************************************************************/
+
+ #if BSP_FEATURE_CANFD_LITE
+  #define R_CANFD_NUM_COMMON_FIFOS    (1U)
+ #else
+  #define R_CANFD_NUM_COMMON_FIFOS    (6U)
+ #endif
+
  #ifdef __FOR_FSP_DOCUMENT__
   #ifdef __cplusplus
 namespace RZA
@@ -28,15 +38,6 @@ namespace RZA
  * @addtogroup RZA_CANFD
  * @{
  **********************************************************************************************************************/
-
-/***********************************************************************************************************************
- * Macro definitions
- **********************************************************************************************************************/
- #if BSP_FEATURE_CANFD_LITE
-  #define R_CANFD_NUM_COMMON_FIFOS    (1U)
- #else
-  #define R_CANFD_NUM_COMMON_FIFOS    (6U)
- #endif
 
 /**********************************************************************************************************************
  * Typedef definitions
@@ -56,34 +57,70 @@ typedef enum e_canfd_status
     CANFD_STATUS_ESI           = 0x100, ///< At least one CAN-FD message was received with the ESI flag set
 } canfd_status_t;
 
+#ifndef BSP_OVERRIDE_CANFD_ERROR_T
+
 /** CANFD Error Code */
 typedef enum e_canfd_error
 {
-    CANFD_ERROR_CHANNEL_BUS              = 0x00000001, ///< Bus Error
-    CANFD_ERROR_CHANNEL_WARNING          = 0x00000002, ///< Error Warning (TX/RX error count over 0x5F)
-    CANFD_ERROR_CHANNEL_PASSIVE          = 0x00000004, ///< Error Passive (TX/RX error count over 0x7F)
-    CANFD_ERROR_CHANNEL_BUS_OFF_ENTRY    = 0x00000008, ///< Bus-Off State Entry
-    CANFD_ERROR_CHANNEL_BUS_OFF_RECOVERY = 0x00000010, ///< Recovery from Bus-Off State
-    CANFD_ERROR_CHANNEL_OVERLOAD         = 0x00000020, ///< Overload
-    CANFD_ERROR_CHANNEL_BUS_LOCK         = 0x00000040, ///< Bus Locked
-    CANFD_ERROR_CHANNEL_ARBITRATION_LOSS = 0x00000080, ///< Arbitration Lost
-    CANFD_ERROR_CHANNEL_STUFF            = 0x00000100, ///< Stuff Error
-    CANFD_ERROR_CHANNEL_FORM             = 0x00000200, ///< Form Error
-    CANFD_ERROR_CHANNEL_ACK              = 0x00000400, ///< ACK Error
-    CANFD_ERROR_CHANNEL_CRC              = 0x00000800, ///< CRC Error
-    CANFD_ERROR_CHANNEL_BIT_RECESSIVE    = 0x00001000, ///< Bit Error (recessive) Error
-    CANFD_ERROR_CHANNEL_BIT_DOMINANT     = 0x00002000, ///< Bit Error (dominant) Error
-    CANFD_ERROR_CHANNEL_ACK_DELIMITER    = 0x00004000, ///< ACK Delimiter Error
-    CANFD_ERROR_GLOBAL_DLC               = 0x00010000, ///< DLC Error
-    CANFD_ERROR_GLOBAL_MESSAGE_LOST      = 0x00020000, ///< Message Lost
-    CANFD_ERROR_GLOBAL_PAYLOAD_OVERFLOW  = 0x00080000, ///< FD Payload Overflow
-    CANFD_ERROR_GLOBAL_TXQ_OVERWRITE     = 0x00100000, ///< TX Queue Message Overwrite
-    CANFD_ERROR_GLOBAL_TXQ_MESSAGE_LOST  = 0x00400000, ///< TX Queue Message Lost
-    CANFD_ERROR_GLOBAL_CH0_SCAN_FAIL     = 0x01000000, ///< Channel 0 RX Scan Failure
-    CANFD_ERROR_GLOBAL_CH1_SCAN_FAIL     = 0x02000000, ///< Channel 1 RX Scan Failure
-    CANFD_ERROR_GLOBAL_CH0_ECC           = 0x10000000, ///< Channel 0 ECC Error
-    CANFD_ERROR_GLOBAL_CH1_ECC           = 0x20000000, ///< Channel 1 ECC Error
+   CANFD_ERROR_CHANNEL_BUS              = 0x00000001, ///< Bus Error
+   CANFD_ERROR_CHANNEL_WARNING          = 0x00000002, ///< Error Warning (TX/RX error count over 0x5F)
+   CANFD_ERROR_CHANNEL_PASSIVE          = 0x00000004, ///< Error Passive (TX/RX error count over 0x7F)
+   CANFD_ERROR_CHANNEL_BUS_OFF_ENTRY    = 0x00000008, ///< Bus-Off State Entry
+   CANFD_ERROR_CHANNEL_BUS_OFF_RECOVERY = 0x00000010, ///< Recovery from Bus-Off State
+   CANFD_ERROR_CHANNEL_OVERLOAD         = 0x00000020, ///< Overload
+   CANFD_ERROR_CHANNEL_BUS_LOCK         = 0x00000040, ///< Bus Locked
+   CANFD_ERROR_CHANNEL_ARBITRATION_LOSS = 0x00000080, ///< Arbitration Lost
+   CANFD_ERROR_CHANNEL_STUFF            = 0x00000100, ///< Stuff Error
+   CANFD_ERROR_CHANNEL_FORM             = 0x00000200, ///< Form Error
+   CANFD_ERROR_CHANNEL_ACK              = 0x00000400, ///< ACK Error
+   CANFD_ERROR_CHANNEL_CRC              = 0x00000800, ///< CRC Error
+   CANFD_ERROR_CHANNEL_BIT_RECESSIVE    = 0x00001000, ///< Bit Error (recessive) Error
+   CANFD_ERROR_CHANNEL_BIT_DOMINANT     = 0x00002000, ///< Bit Error (dominant) Error
+   CANFD_ERROR_CHANNEL_ACK_DELIMITER    = 0x00004000, ///< ACK Delimiter Error
+   CANFD_ERROR_GLOBAL_DLC               = 0x00010000, ///< DLC Error
+   CANFD_ERROR_GLOBAL_MESSAGE_LOST      = 0x00020000, ///< Message Lost
+   CANFD_ERROR_GLOBAL_PAYLOAD_OVERFLOW  = 0x00080000, ///< FD Payload Overflow
+   CANFD_ERROR_GLOBAL_TXQ_OVERWRITE     = 0x00100000, ///< TX Queue Message Overwrite
+   CANFD_ERROR_GLOBAL_TXQ_MESSAGE_LOST  = 0x00400000, ///< TX Queue Message Lost
+   CANFD_ERROR_GLOBAL_CH0_SCAN_FAIL     = 0x01000000, ///< Channel 0 RX Scan Failure
+   CANFD_ERROR_GLOBAL_CH1_SCAN_FAIL     = 0x02000000, ///< Channel 1 RX Scan Failure
+   CANFD_ERROR_GLOBAL_CH0_ECC           = 0x10000000, ///< Channel 0 ECC Error
+   CANFD_ERROR_GLOBAL_CH1_ECC           = 0x20000000, ///< Channel 1 ECC Error
 } canfd_error_t;
+
+#endif
+
+#ifndef BSP_OVERRIDE_CANFD_TX_BUFFER_T
+
+/** CANFD Transmit Buffer (MB + CFIFO) */
+typedef enum e_canfd_tx_buffer
+{
+   CANFD_TX_BUFFER_0 = 0,
+   CANFD_TX_BUFFER_1 = 1,
+   CANFD_TX_BUFFER_2 = 2,
+   CANFD_TX_BUFFER_3 = 3,
+ #if !BSP_FEATURE_CANFD_LITE
+   CANFD_TX_BUFFER_4  = 4,
+   CANFD_TX_BUFFER_5  = 5,
+   CANFD_TX_BUFFER_6  = 6,
+   CANFD_TX_BUFFER_7  = 7,
+   CANFD_TX_BUFFER_32 = 32,
+   CANFD_TX_BUFFER_33 = 33,
+   CANFD_TX_BUFFER_34 = 34,
+   CANFD_TX_BUFFER_35 = 35,
+   CANFD_TX_BUFFER_36 = 36,
+   CANFD_TX_BUFFER_37 = 37,
+   CANFD_TX_BUFFER_38 = 38,
+   CANFD_TX_BUFFER_39 = 39,
+ #endif
+   CANFD_TX_BUFFER_FIFO_COMMON_0 = 40,
+ #if !BSP_FEATURE_CANFD_LITE
+   CANFD_TX_BUFFER_FIFO_COMMON_1 = 41,
+   CANFD_TX_BUFFER_FIFO_COMMON_2 = 42,
+ #endif
+} canfd_tx_buffer_t;
+
+#endif
 
  #ifndef BSP_OVERRIDE_CANFD_TX_MB_T
 
@@ -99,14 +136,6 @@ typedef enum e_canfd_tx_mb
     CANFD_TX_MB_5  = 5,
     CANFD_TX_MB_6  = 6,
     CANFD_TX_MB_7  = 7,
-    CANFD_TX_MB_8  = 8,
-    CANFD_TX_MB_9  = 9,
-    CANFD_TX_MB_10 = 10,
-    CANFD_TX_MB_11 = 11,
-    CANFD_TX_MB_12 = 12,
-    CANFD_TX_MB_13 = 13,
-    CANFD_TX_MB_14 = 14,
-    CANFD_TX_MB_15 = 15,
     CANFD_TX_MB_32 = 32,
     CANFD_TX_MB_33 = 33,
     CANFD_TX_MB_34 = 34,
@@ -115,17 +144,12 @@ typedef enum e_canfd_tx_mb
     CANFD_TX_MB_37 = 37,
     CANFD_TX_MB_38 = 38,
     CANFD_TX_MB_39 = 39,
-    CANFD_TX_MB_40 = 40,
-    CANFD_TX_MB_41 = 41,
-    CANFD_TX_MB_42 = 42,
-    CANFD_TX_MB_43 = 43,
-    CANFD_TX_MB_44 = 44,
-    CANFD_TX_MB_45 = 45,
-    CANFD_TX_MB_46 = 46,
-    CANFD_TX_MB_47 = 47,
   #endif
 } canfd_tx_mb_t;
+
  #endif
+
+#ifndef BSP_OVERRIDE_CANFD_RX_BUFFER_T
 
 /** CANFD Receive Buffer (MB + FIFO + CFIFO) */
 typedef enum e_canfd_rx_buffer
@@ -179,6 +203,10 @@ typedef enum e_canfd_rx_buffer
  #endif
 } canfd_rx_buffer_t;
 
+#endif
+
+#ifndef BSP_OVERRIDE_CANFD_RX_MB_T
+
 /** CANFD Receive Message Buffer (RX MB) */
 typedef enum e_canfd_rx_mb
 {
@@ -217,6 +245,10 @@ typedef enum e_canfd_rx_mb
     CANFD_RX_MB_31   = 0x80 + 31,
 } canfd_rx_mb_t;
 
+#endif
+
+#ifndef BSP_OVERRIDE_CANFD_RX_FIFO_T
+
 /** CANFD Receive FIFO (RX FIFO) */
 typedef enum e_canfd_rx_fifo
 {
@@ -239,6 +271,8 @@ typedef enum e_canfd_rx_fifo
     CANFD_RX_FIFO_COMMON_5 = (1U << 13),
  #endif
 } canfd_rx_fifo_t;
+
+#endif
 
 /** CANFD AFL Minimum DLC settings */
 typedef enum e_canfd_minimum_dlc
@@ -358,7 +392,7 @@ struct st_canfd_global_cfg
     uint32_t rx_mb_config;                                 ///< Number and size of RX Message Buffers (CFDRMNB register setting)
     uint8_t  global_err_ipl;                               ///< Global Error interrupt priority
     uint8_t  rx_fifo_ipl;                                  ///< RX FIFO interrupt priority
-    uint32_t common_fifo_config[R_CANFD_NUM_COMMON_FIFOS]; ///< Common FIFO configurations
+    uint32_t common_fifo_config[BSP_FEATURE_CANFD_NUM_COMMON_FIFOS]; ///< Common FIFO configurations
 };
 
 /** CANFD Global Configuration. Please refer to the struct st_canfd_global_cfg. */
@@ -409,7 +443,6 @@ fsp_err_t R_CANFD_CallbackSet(can_ctrl_t * const          p_api_ctrl,
 /*******************************************************************************************************************//**
  * @} (end defgroup CAN)
  **********************************************************************************************************************/
-
  #ifdef __FOR_FSP_DOCUMENT__
   #ifdef __cplusplus
 }

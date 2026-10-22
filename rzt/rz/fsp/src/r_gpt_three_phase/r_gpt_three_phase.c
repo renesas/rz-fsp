@@ -26,6 +26,30 @@
 #define GPT_THREE_PHASE_PRV_GTBER_SINGLE_BUFFER    (0x50000U)
 #define GPT_THREE_PHASE_PRV_GTBER_DOUBLE_BUFFER    (0xA0000U)
 
+/* Bit position for GTIOR*/
+#define GPT_THREE_PHASE_PRV_GTIOR_INITIAL_LEVEL_BIT    (4U)
+
+/* The GPT register type and the GTIOR field positions differ per device. */
+#if 1U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
+ #define GPT_THREE_PHASE_PRV_GPT_TYPE                     R_GPT0_Type
+ #define GPT_THREE_PHASE_PRV_GTIOR_GTIOA_INITIAL_LEVEL    (1U << (R_GPT7_GTIOR_GTIOA_Pos + \
+                                                                  GPT_THREE_PHASE_PRV_GTIOR_INITIAL_LEVEL_BIT))
+ #define GPT_THREE_PHASE_PRV_GTIOR_GTIOB_INITIAL_LEVEL    (1U << (R_GPT7_GTIOR_GTIOB_Pos + \
+                                                                  GPT_THREE_PHASE_PRV_GTIOR_INITIAL_LEVEL_BIT))
+#elif 2U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
+ #define GPT_THREE_PHASE_PRV_GPT_TYPE                     R_GPT00_0_Type
+ #define GPT_THREE_PHASE_PRV_GTIOR_GTIOA_INITIAL_LEVEL    (1U << (R_GPT09_0_GTIOR_GTIOA_Pos + \
+                                                                  GPT_THREE_PHASE_PRV_GTIOR_INITIAL_LEVEL_BIT))
+ #define GPT_THREE_PHASE_PRV_GTIOR_GTIOB_INITIAL_LEVEL    (1U << (R_GPT09_0_GTIOR_GTIOB_Pos + \
+                                                                  GPT_THREE_PHASE_PRV_GTIOR_INITIAL_LEVEL_BIT))
+#elif 3U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
+ #define GPT_THREE_PHASE_PRV_GPT_TYPE                     R_GPT0_0_Type
+ #define GPT_THREE_PHASE_PRV_GTIOR_GTIOA_INITIAL_LEVEL    (1U << (R_GPT4_0_GTIOR_GTIOA_Pos + \
+                                                                  GPT_THREE_PHASE_PRV_GTIOR_INITIAL_LEVEL_BIT))
+ #define GPT_THREE_PHASE_PRV_GTIOR_GTIOB_INITIAL_LEVEL    (1U << (R_GPT4_0_GTIOR_GTIOB_Pos + \
+                                                                  GPT_THREE_PHASE_PRV_GTIOR_INITIAL_LEVEL_BIT))
+#endif
+
 /***********************************************************************************************************************
  * Typedef definitions
  **********************************************************************************************************************/
@@ -274,25 +298,31 @@ fsp_err_t R_GPT_THREE_PHASE_DutyCycleSet (three_phase_ctrl_t * const       p_ctr
 
     r_gpt_write_protect_disable_all(p_instance_ctrl);
 
+    uint32_t gtpr = p_instance_ctrl->p_reg[THREE_PHASE_CHANNEL_U]->GTPR;
+
     /* Set all duty cycle registers */
     for (three_phase_channel_t ch = THREE_PHASE_CHANNEL_U; ch <= THREE_PHASE_CHANNEL_W; ch++)
     {
+        GPT_THREE_PHASE_PRV_GPT_TYPE * p_reg = p_instance_ctrl->p_reg[ch];
         uint32_t duty      = p_duty_cycle->duty[ch];
-        uint32_t gtuddtyc  = p_instance_ctrl->p_reg[ch]->GTUDDTYC;
+
         bool     duty_zero = (duty == 0U);
-        bool     duty_high = (duty >= p_instance_ctrl->p_reg[THREE_PHASE_CHANNEL_U]->GTPR);
+        bool     duty_high = (duty >= gtpr);
 
-        /* Get GTIOR register */
-        uint32_t gtioa = p_instance_ctrl->p_reg[ch]->GTIOR_b.GTIOA;
-        uint32_t gtiob = p_instance_ctrl->p_reg[ch]->GTIOR_b.GTIOB;
 
-        /* Determine initial level from GTIOR */
-        bool first_level_low_a = ((gtioa & 0x10U) == 0U);
-        bool first_level_low_b = ((gtiob & 0x10U) == 0U);
         if (duty_zero || duty_high)
         {
             uint32_t omdty_a;
             uint32_t omdty_b;
+
+            uint32_t gtuddtyc  = p_reg->GTUDDTYC;
+
+            /* Get GTIOR register */
+            uint32_t gtior = p_reg->GTIOR;
+
+            /* Determine initial level from GTIOR */
+            bool first_level_low_a = ((gtior & GPT_THREE_PHASE_PRV_GTIOR_GTIOA_INITIAL_LEVEL) == 0U);
+            bool first_level_low_b = ((gtior & GPT_THREE_PHASE_PRV_GTIOR_GTIOB_INITIAL_LEVEL) == 0U);
 
             if ((duty_zero && !first_level_low_a) || (duty_high && first_level_low_a))
             {
@@ -315,31 +345,26 @@ fsp_err_t R_GPT_THREE_PHASE_DutyCycleSet (three_phase_ctrl_t * const       p_ctr
 #if 1U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
             gtuddtyc &= ~R_GPT7_GTUDDTYC_OADTY_Msk;
             gtuddtyc |= omdty_a << R_GPT7_GTUDDTYC_OADTY_Pos;
-#elif 2U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
-            gtuddtyc &= (uint32_t) ~R_GPT09_0_GTUDDTYC_OADTY_Msk;
-            gtuddtyc |= omdty_a << R_GPT09_0_GTUDDTYC_OADTY_Pos;
-#elif 3U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
-            gtuddtyc &= (uint32_t) ~R_GPT4_0_GTUDDTYC_OADTY_Msk;
-            gtuddtyc |= omdty_a << R_GPT4_0_GTUDDTYC_OADTY_Pos;
-#endif
-
-#if 1U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
             gtuddtyc &= ~R_GPT7_GTUDDTYC_OBDTY_Msk;
             gtuddtyc |= omdty_b << R_GPT7_GTUDDTYC_OBDTY_Pos;
 #elif 2U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
+            gtuddtyc &= (uint32_t) ~R_GPT09_0_GTUDDTYC_OADTY_Msk;
+            gtuddtyc |= omdty_a << R_GPT09_0_GTUDDTYC_OADTY_Pos;
             gtuddtyc &= (uint32_t) ~R_GPT09_0_GTUDDTYC_OBDTY_Msk;
             gtuddtyc |= omdty_b << R_GPT09_0_GTUDDTYC_OBDTY_Pos;
 #elif 3U == BSP_FEATURE_GPT_REGISTER_MASK_TYPE
+            gtuddtyc &= (uint32_t) ~R_GPT4_0_GTUDDTYC_OADTY_Msk;
+            gtuddtyc |= omdty_a << R_GPT4_0_GTUDDTYC_OADTY_Pos;
             gtuddtyc &= (uint32_t) ~R_GPT4_0_GTUDDTYC_OBDTY_Msk;
             gtuddtyc |= omdty_b << R_GPT4_0_GTUDDTYC_OBDTY_Pos;
 #endif
 
-            p_instance_ctrl->p_reg[ch]->GTUDDTYC = gtuddtyc;
+            p_reg->GTUDDTYC = gtuddtyc;
         }
         else
         {
-            p_instance_ctrl->p_reg[ch]->GTCCR[GPT_THREE_PHASE_PRV_GTCCRC] = p_duty_cycle->duty[ch];
-            p_instance_ctrl->p_reg[ch]->GTCCR[GPT_THREE_PHASE_PRV_GTCCRE] = p_duty_cycle->duty[ch];
+            p_reg->GTCCR[GPT_THREE_PHASE_PRV_GTCCRC] = duty;
+            p_reg->GTCCR[GPT_THREE_PHASE_PRV_GTCCRE] = duty;
 
             /* Set double-buffer registers (if applicable) */
             if ((THREE_PHASE_BUFFER_MODE_DOUBLE == p_instance_ctrl->buffer_mode) ||

@@ -1260,22 +1260,11 @@ void hw_usb_set_dreqe (usb_utr_t * ptr, uint16_t pipemode)
 
     p_reg = hw_usb_get_fifosel_adr(ptr, pipemode);
 
-    if (true == usb_check_use_usba_module(ptr))
+    if (p_reg != NULL)
     {
-        (*p_reg) = (uint16_t) ((*p_reg) & (uint16_t) (~(USB_DREQE | USB_CURPIPE)));
-
-        /* WAIT_LOOP */
-        while (0 != ((*p_reg) & USB_CURPIPE))
-        {
-            /* Wait Clear CURPIPE */
-        }
+        (*p_reg)  = (uint16_t) ((*p_reg) & (~USB_DREQE));
+        (*p_reg) |= USB_DREQE;
     }
-    else
-    {
-        (*p_reg) = (uint16_t) ((*p_reg) & (~USB_DREQE));
-    }
-
-    (*p_reg) |= USB_DREQE;
 }
 
 /******************************************************************************
@@ -1386,14 +1375,6 @@ void hw_usb_set_curpipe (usb_utr_t * ptr, uint16_t pipemode, uint16_t pipeno)
     if (p_reg != NULL)
     {
         reg = *p_reg;
-    }
-
-    if ((USB_D0USE == pipemode) || (USB_D1USE == pipemode))
-    {
-        if (false == usb_check_use_usba_module(ptr))
-        {
-            reg = (uint16_t) (reg & (~USB_DREQE));
-        }
     }
 
     reg = (uint16_t) (reg & (~USB_CURPIPE));
@@ -3665,7 +3646,18 @@ void hw_usb_clear_suspm (uint8_t usb_ip)
 
  #endif                                /* ( (USB_CFG_MODE & USB_CFG_PERI) == USB_CFG_PERI ) */
 
-#endif /* USB_IP_EHCI_OHCI == 0 */
+/******************************************************************************
+ * Function Name   : hw_usb_set_pll_rst
+ * Description     : Set PLL_RST bit.
+ * Arguments       : none
+ * Return value    : none
+ ******************************************************************************/
+void hw_usb_set_pll_rst (void)
+{
+    USB00->USBCTR_b.PLL_RST = 1;
+}
+
+#endif                                 /* USB_IP_EHCI_OHCI == 0 */
 
 /******************************************************************************
  * End of file

@@ -403,12 +403,20 @@ struct st_gpt_extended_cfg
 
     uint8_t   capture_a_ipl;                      ///< Capture A interrupt priority
     uint8_t   capture_b_ipl;                      ///< Capture B interrupt priority
+    uint8_t   compare_match_c_ipl;                ///< Compare match C interrupt priority
+    uint8_t   compare_match_d_ipl;                ///< Compare match D interrupt priority
+    uint8_t   compare_match_e_ipl;                ///< Compare match E interrupt priority
+    uint8_t   compare_match_f_ipl;                ///< Compare match F interrupt priority
     uint8_t   dead_time_ipl;                      ///< Dead time error interrupt priority
     IRQn_Type capture_a_irq;                      ///< Capture A interrupt
     IRQn_Type capture_b_irq;                      ///< Capture B interrupt
+    IRQn_Type compare_match_c_irq;                ///< Compare match C interrupt
+    IRQn_Type compare_match_d_irq;                ///< Compare match D interrupt
+    IRQn_Type compare_match_e_irq;                ///< Compare match E interrupt
+    IRQn_Type compare_match_f_irq;                ///< Compare match F interrupt
     IRQn_Type dead_time_irq;                      ///< Dead time error interrupt
 
-    uint32_t compare_match_value[2];              ///< Storing compare match value for channels
+    uint32_t compare_match_value[6];              ///< Storing compare match value for channels
     uint8_t  compare_match_status;                ///< Storing the compare match register status
 
     gpt_extended_pwm_cfg_t const * p_pwm_cfg;     ///< Advanced PWM features, optional
@@ -441,6 +449,9 @@ fsp_err_t R_GPT_Enable(timer_ctrl_t * const p_ctrl);
 fsp_err_t R_GPT_Disable(timer_ctrl_t * const p_ctrl);
 fsp_err_t R_GPT_PeriodSet(timer_ctrl_t * const p_ctrl, uint32_t const period_counts);
 fsp_err_t R_GPT_DutyCycleSet(timer_ctrl_t * const p_ctrl, uint32_t const duty_cycle_counts, uint32_t const pin);
+fsp_err_t R_GPT_CompareMatchSet(timer_ctrl_t * const        p_ctrl,
+                                uint32_t const              compare_match_value,
+                                timer_compare_match_t const match_channel);
 fsp_err_t R_GPT_InfoGet(timer_ctrl_t * const p_ctrl, timer_info_t * const p_info);
 fsp_err_t R_GPT_StatusGet(timer_ctrl_t * const p_ctrl, timer_status_t * const p_status);
 fsp_err_t R_GPT_CounterSet(timer_ctrl_t * const p_ctrl, uint32_t counter);
@@ -459,9 +470,7 @@ fsp_err_t R_GPT_CallbackSet(timer_ctrl_t * const          p_api_ctrl,
                             timer_callback_args_t * const p_callback_memory);
 fsp_err_t R_GPT_Close(timer_ctrl_t * const p_ctrl);
 fsp_err_t R_GPT_PwmOutputDelayInitialize(void);
-fsp_err_t R_GPT_CompareMatchSet(timer_ctrl_t * const        p_ctrl,
-                                uint32_t const              compare_match_value,
-                                timer_compare_match_t const match_channel);
+
 
 /*******************************************************************************************************************//**
  * @} (end defgroup GPT)

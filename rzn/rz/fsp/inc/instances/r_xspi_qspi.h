@@ -61,6 +61,13 @@ typedef enum e_xspi_qspi_memory_size
     XSPI_QSPI_MEMORY_SIZE_64MB = 0x3F, ///< Memory size 64MB
 } xspi_qspi_memory_size_t;
 
+/* Behavior when xSPI receive WRAP transaction */
+typedef enum e_xspi_qspi_wrap_separate
+{
+    XSPI_QSPI_WRAP_SEPARATE_ENABLE,    ///< Separate xSPI frame at the wrapping address boundary
+    XSPI_QSPI_WRAP_SEPARATE_DISABLE,   ///< Not separate xSPI frame at the wrapping address boundary
+} xspi_qspi_wrap_separate_t;
+
 /* QSPI command to command interval*/
 typedef enum e_xspi_qspi_command_interval_clocks
 {
@@ -141,6 +148,8 @@ struct st_xspi_qspi_extended_cfg
     uint8_t                            unit;              ///< Unit number of xSPI
     xspi_qspi_chip_select_t            chip_select;       ///< Device number to be used for memory device
     uint32_t                           memory_size;       ///< Size of memory device
+    uint8_t                            address_msb_mask;  ///< Mask of bits to zero when using memory-mapped operations; only applies to the most-significant byte.
+    xspi_qspi_wrap_separate_t          wrap_separate;     ///< Behavior when xSPI receive WRAP transaction
     xspi_qspi_timing_setting_t const * p_timing_settings; ///< Memory mapped timing settings
     xspi_qspi_prefetch_function_t      prefetch_en;       ///< Prefetch function settings
     xspi_qspi_io_voltage_t             io_voltage;        ///< Voltage setting of xSPI IO domain

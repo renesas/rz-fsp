@@ -177,12 +177,14 @@ static fsp_err_t r_sci_read_write_param_check(sci_uart_instance_ctrl_t const * c
 #endif
 
 static void r_sci_uart_config_set(sci_uart_instance_ctrl_t * const p_instance_ctrl, uart_cfg_t const * const p_cfg);
+static void r_sci_uart_synchronization_delay_cfg(sci_uart_instance_ctrl_t * const p_ctrl);
 
 #if SCI_UART_CFG_DMAC_SUPPORTED
 static fsp_err_t r_sci_uart_transfer_configure(sci_uart_instance_ctrl_t * const p_instance_ctrl,
                                                transfer_instance_t const      * p_transfer,
                                                uint32_t                       * p_transfer_reg,
-                                               uint32_t                         address);
+                                               transfer_info_t                * p_info,
+                                               uint32_t                         sci_buffer_address);
 
 static fsp_err_t r_sci_uart_transfer_open(sci_uart_instance_ctrl_t * const p_instance_ctrl,
                                           uart_cfg_t const * const         p_cfg);
@@ -237,11 +239,6 @@ void sci_uart_tei_isr(void);
 /***********************************************************************************************************************
  * Private global variables
  **********************************************************************************************************************/
-
-/* Name of module used by error logger macro */
-#if BSP_CFG_ERROR_LOG != 0
-static const char g_module_name[] = "sci_uart";
-#endif
 
 /* Baud rate divisor information (UART mode) */
 static const baud_setting_const_t g_async_baud[SCI_UART_NUM_DIVISORS_ASYNC] =
@@ -469,6 +466,8 @@ fsp_err_t R_SCI_UART_Open (uart_ctrl_t * const p_ctrl, uart_cfg_t const * const 
     p_instance_ctrl->tx_src_bytes  = 0U;
     p_instance_ctrl->p_rx_dest     = NULL;
     p_instance_ctrl->rx_dest_bytes = 0;
+
+    r_sci_uart_synchronization_delay_cfg(p_instance_ctrl);
 
     uint32_t ccr0 = SCI_UART_CCR0_IDSEL_MASK;
 #if (SCI_UART_CFG_RX_ENABLE)
@@ -828,6 +827,9 @@ fsp_err_t R_SCI_UART_BaudSet (uart_ctrl_t * const p_ctrl, void const * const p_b
     FSP_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->CCR0_b.TE, 0);
     p_instance_ctrl->p_tx_src = NULL;
 
+    /* Update delay loops in case PCLKSCI changed since open */
+    r_sci_uart_synchronization_delay_cfg(p_instance_ctrl);
+
     /* Apply new baud rate register settings. */
     r_sci_uart_baud_set(p_instance_ctrl->p_reg, p_baud_setting);
 
@@ -1108,8 +1110,8 @@ fsp_err_t R_SCI_UART_BaudCalculate (sci_uart_baud_calculation_t const * const p_
     {
         for (uint32_t i = 0U; i < SCI_UART_NUM_DIVISORS_ASYNC; i++)
         {
-            /* if select_16_base_clk_cycles == true:  Skip this calculation for divisors that are not acheivable with 16 base clk cycles per bit.
-             *  if select_16_base_clk_cycles == false: Skip this calculation for divisors that are only acheivable without 16 base clk cycles per bit.
+            /* if select_16_base_clk_cycles == true:  Skip this calculation for divisors that are not achievable with 16 base clk cycles per bit.
+             *  if select_16_base_clk_cycles == false: Skip this calculation for divisors that are only achievable without 16 base clk cycles per bit.
              */
             if (((uint8_t) select_16_base_clk_cycles) ^ (g_async_baud[i].abcs | g_async_baud[i].abcse))
             {
@@ -1293,8 +1295,11 @@ static fsp_err_t r_sci_read_write_param_check (sci_uart_instance_ctrl_t const * 
 /*******************************************************************************************************************//**
  * Subroutine to apply common UART transfer settings.
  *
- * @param[in]  p_cfg              Pointer to UART specific configuration structure
+ * @param[in]  p_ctrl             Pointer to UART specific control structure
  * @param[in]  p_transfer         Pointer to transfer instance to configure
+ * @param[in]  p_transfer_reg     Pointer to transfer register
+ * @param[in]  p_info             Pointer to transfer info buffer
+ * @param[in]  sci_buffer_address Pointer to sci buffer address
  *
  * @retval     FSP_SUCCESS        UART transfer drivers successfully configured
  * @retval     FSP_ERR_ASSERTION  Invalid pointer
@@ -1302,21 +1307,24 @@ static fsp_err_t r_sci_read_write_param_check (sci_uart_instance_ctrl_t const * 
 static fsp_err_t r_sci_uart_transfer_configure (sci_uart_instance_ctrl_t * const p_instance_ctrl,
                                                 transfer_instance_t const      * p_transfer,
                                                 uint32_t                       * p_transfer_reg,
+                                                transfer_info_t                * p_info,
                                                 uint32_t                         sci_buffer_address)
 {
     /* Configure the transfer instance, if enabled. */
  #if (SCI_UART_CFG_PARAM_CHECKING_ENABLE)
+    FSP_ASSERT(NULL != p_info);
     FSP_ASSERT(NULL != p_transfer->p_api);
     FSP_ASSERT(NULL != p_transfer->p_ctrl);
     FSP_ASSERT(NULL != p_transfer->p_cfg);
     FSP_ASSERT(NULL != p_transfer->p_cfg->p_info);
     FSP_ASSERT(NULL != p_transfer->p_cfg->p_extend);
+ #else
+    FSP_PARAMETER_NOT_USED(p_transfer);
  #endif
 
     /* Casting for compatibility with 7 or 8 bit mode. */
     *p_transfer_reg = sci_buffer_address;
 
-    transfer_info_t * p_info = p_transfer->p_cfg->p_info;
     if (UART_DATA_BITS_9 == p_instance_ctrl->p_cfg->data_bits)
     {
         p_info->src_size  = TRANSFER_SIZE_2_BYTE;
@@ -1327,9 +1335,6 @@ static fsp_err_t r_sci_uart_transfer_configure (sci_uart_instance_ctrl_t * const
         p_info->src_size  = TRANSFER_SIZE_1_BYTE;
         p_info->dest_size = TRANSFER_SIZE_1_BYTE;
     }
-
-    fsp_err_t err = p_transfer->p_api->open(p_transfer->p_ctrl, p_transfer->p_cfg);
-    FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
     return FSP_SUCCESS;
 }
@@ -1361,16 +1366,18 @@ static fsp_err_t r_sci_uart_transfer_open (sci_uart_instance_ctrl_t * const p_in
     /* If a transfer instance is used for reception, apply UART specific settings and open the transfer instance. */
     if (NULL != p_cfg->p_transfer_rx)
     {
-        transfer_info_t * p_info = p_cfg->p_transfer_rx->p_cfg->p_info;
+        transfer_instance_t const * p_transfer = p_cfg->p_transfer_rx;
+        transfer_info_t           * p_info     = p_transfer->p_cfg->p_info;
+
+        err = p_transfer->p_api->open(p_transfer->p_ctrl, p_transfer->p_cfg);
+        FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
         p_info->mode           = TRANSFER_MODE_NORMAL;
         p_info->src_addr_mode  = TRANSFER_ADDR_MODE_FIXED;
         p_info->dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED;
 
         err =
-            r_sci_uart_transfer_configure(p_instance_ctrl,
-                                          p_cfg->p_transfer_rx,
-                                          (uint32_t *) &p_info->p_src,
+            r_sci_uart_transfer_configure(p_instance_ctrl, p_cfg->p_transfer_rx, (uint32_t *) &p_info->p_src, p_info,
                                           (uint32_t) (uintptr_t) &(p_instance_ctrl->p_reg->RDR));
         FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
     }
@@ -1380,17 +1387,10 @@ static fsp_err_t r_sci_uart_transfer_open (sci_uart_instance_ctrl_t * const p_in
     /* If a transfer instance is used for transmission, apply UART specific settings and open the transfer instance. */
     if (NULL != p_cfg->p_transfer_tx)
     {
-        transfer_info_t * p_info = p_cfg->p_transfer_tx->p_cfg->p_info;
+        transfer_instance_t const * p_transfer = p_cfg->p_transfer_tx;
+        transfer_info_t           * p_info     = p_transfer->p_cfg->p_info;
 
-        p_info->mode           = TRANSFER_MODE_NORMAL;
-        p_info->src_addr_mode  = TRANSFER_ADDR_MODE_INCREMENTED;
-        p_info->dest_addr_mode = TRANSFER_ADDR_MODE_FIXED;
-
-        err =
-            r_sci_uart_transfer_configure(p_instance_ctrl,
-                                          p_cfg->p_transfer_tx,
-                                          (uint32_t *) &p_info->p_dest,
-                                          (uint32_t) (uintptr_t) &p_instance_ctrl->p_reg->TDR);
+        err = p_transfer->p_api->open(p_transfer->p_ctrl, p_transfer->p_cfg);
 
   #if (SCI_UART_CFG_RX_ENABLE)
         if ((err != FSP_SUCCESS) && (NULL != p_cfg->p_transfer_rx))
@@ -1398,6 +1398,14 @@ static fsp_err_t r_sci_uart_transfer_open (sci_uart_instance_ctrl_t * const p_in
             p_cfg->p_transfer_rx->p_api->close(p_cfg->p_transfer_rx->p_ctrl);
         }
   #endif
+        FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+
+        p_info->mode           = TRANSFER_MODE_NORMAL;
+        p_info->src_addr_mode  = TRANSFER_ADDR_MODE_INCREMENTED;
+        p_info->dest_addr_mode = TRANSFER_ADDR_MODE_FIXED;
+
+        r_sci_uart_transfer_configure(p_instance_ctrl, p_cfg->p_transfer_tx, (uint32_t *) &p_info->p_dest, p_info,
+                                      (uint32_t) (uintptr_t) &p_instance_ctrl->p_reg->TDR);
         FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
     }
  #endif
@@ -1524,6 +1532,48 @@ static void r_sci_uart_config_set (sci_uart_instance_ctrl_t * const p_instance_c
     dcr |= ((uint32_t) p_extend->rs485_setting.negation_time << R_SCI0_DCR_DENGT_Pos) &
            (uint32_t) R_SCI0_DCR_DENGT_Msk;
     p_instance_ctrl->p_reg->DCR = dcr;
+}
+
+/*******************************************************************************************************************//**
+ * When PCLKSCI is much slower than PCLKM, it may be necessary to delay up to 3 cycles of PCLKSCI after
+ * writing the last data to TDR to avoid early termination of the transmission.
+ *
+ * This function configures the synchronization delay loop count
+ *
+ * @param[in]     p_ctrl  Pointer to UART control structure
+ **********************************************************************************************************************/
+static void r_sci_uart_synchronization_delay_cfg (sci_uart_instance_ctrl_t * const p_ctrl)
+{
+    sci_uart_extended_cfg_t * p_extend = (sci_uart_extended_cfg_t *) p_ctrl->p_cfg->p_extend;
+    p_ctrl->delay_loops = 0;
+    if (p_extend->delay_cycles && (SCI_UART_CLOCK_SOURCE_PCLKM != p_extend->clock_source))
+    {
+        uint32_t clksci;
+#if (BSP_FEATURE_BSP_HAS_SCISPI_CLOCK)
+        clksci = R_FSP_SciSpiClockHzGet();
+#elif (BSP_FEATURE_BSP_HAS_SCI_CLOCK)
+        clksci = R_FSP_SciClockHzGet();
+#else
+        if (SCI_UART_UNIT_SCIE == p_extend->unit)
+        {
+            clksci = R_FSP_SystemClockHzGet((fsp_priv_clock_t) ((uint8_t) FSP_PRIV_CLOCK_PCLKSCIE0 +
+                                                                ((uint8_t) p_extend->clock_source -
+                                                                 (uint8_t) SCI_UART_CLOCK_SOURCE_SCIE0ASYNCCLK)));
+        }
+        else
+        {
+            clksci =
+                R_FSP_SystemClockHzGet((fsp_priv_clock_t) ((uint8_t) FSP_PRIV_CLOCK_PCLKSCI0 +
+                                                           (uint8_t) p_extend->clock_source));
+        }
+#endif
+
+        if (0U != clksci)
+        {
+            uint32_t delay_cycles_system_clock = (uint32_t) ((p_extend->delay_cycles * SystemCoreClock) / clksci);
+            p_ctrl->delay_loops = BSP_DELAY_LOOPS_CALCULATE(delay_cycles_system_clock);
+        }
+    }
 }
 
 #if SCI_UART_CFG_FIFO_SUPPORT
@@ -1752,6 +1802,13 @@ static void sci_uart_txi_common (sci_uart_instance_ctrl_t * p_instance_ctrl)
         uint32_t ccr0_temp = p_instance_ctrl->p_reg->CCR0;
         ccr0_temp |= SCI_UART_CCR0_TEIE_MASK;
         ccr0_temp &= (uint32_t) ~SCI_UART_CCR0_TIE_MASK;
+
+        /* If configured, wait for TDR synchronization delay to prevent TEI firing before data transfer to TSR */
+        if (p_instance_ctrl->delay_loops)
+        {
+            bsp_prv_software_delay_loop(p_instance_ctrl->delay_loops);
+        }
+
         p_instance_ctrl->p_reg->CCR0 = ccr0_temp;
 
         p_instance_ctrl->p_tx_src = NULL;

@@ -39,27 +39,24 @@ namespace RZV
 /** Channel control block. DO NOT INITIALIZE.  Initialization occurs when @ref mhu_api_t::open is called. */
 struct st_mhu_b_s_instance_ctrl
 {
-    uint32_t          open;             ///< Indicates whether the open() API has been successfully called.
-    mhu_cfg_t const * p_cfg;            ///< Pointer to instance configuration
-    R_MHU0_Type     * p_regs;           ///< Base register for this channel
+    uint32_t          open;                     ///< Indicates whether the open() API has been successfully called.
+    mhu_cfg_t const * p_cfg;                    ///< Pointer to instance configuration
+    R_MHU0_Type     * p_regs;                   ///< Base register for this channel
 
-    uint32_t        channel;            ///< channel
-    mhu_send_type_t send_type;          ///< Send Type: Message or Response
-    uint32_t      * p_shared_memory_tx; ///< Pointer to send data area
-    uint32_t      * p_shared_memory_rx; ///< Pointer to recv data area
+    uint32_t        channel;                    ///< channel
+    mhu_send_type_t send_type;                  ///< Send Type: Message or Response
+    uint32_t      * p_shared_memory_tx;         ///< Pointer to send data area
+    uint32_t      * p_shared_memory_rx;         ///< Pointer to recv data area
 
  #if BSP_TZ_SECURE_BUILD
-    bool callback_is_secure;            ///< p_callback is in secure memory
+    bool callback_is_secure;                    ///< p_callback is in secure memory
  #endif
 
-    /* Pointer to callback and optional working memory */
-    void (* p_callback)(mhu_callback_args_t *);
+    void (* p_callback)(mhu_callback_args_t *); ///< Pointer to callback and optional working memory
 
-    /* Pointer to non-secure memory that can be used to pass arguments to a callback in non-secure memory. */
-    mhu_callback_args_t * p_callback_memory;
+    mhu_callback_args_t * p_callback_memory;    ///< Pointer to non-secure memory that can be used to pass arguments to a callback in non-secure memory
 
-    /* Pointer to context to be passed into callback function */
-    void * p_context;
+    void * p_context;                           ///< Pointer to context to be passed into callback function
 };
 
 /** Channel control block. DO NOT INITIALIZE.  Initialization occurs when @ref mhu_api_t::open is called. Please refer to the struct st_mhu_b_s_instance_ctrl. */
@@ -87,7 +84,7 @@ extern const mhu_api_t g_mhu_b_s_on_mhu_b_s;
 /***********************************************************************************************************************
  * Public APIs
  **********************************************************************************************************************/
-fsp_err_t R_MHU_B_S_Open(mhu_ctrl_t * p_ctrl, mhu_cfg_t const * const p_cfg);
+fsp_err_t R_MHU_B_S_Open(mhu_ctrl_t * const p_ctrl, mhu_cfg_t const * const p_cfg);
 
 fsp_err_t R_MHU_B_S_MsgSend(mhu_ctrl_t * const p_ctrl, uint32_t const msg);
 

@@ -1067,7 +1067,7 @@ fsp_err_t R_SPIBSC_Write (spi_flash_ctrl_t    * p_api_ctrl,
  *
  * @retval FSP_SUCCESS                 The command to erase the flash was executed successfully.
  * @retval FSP_ERR_ASSERTION           p_api_ctrl or p_device_address is NULL, or byte_count doesn't match an erase
- *                                     size defined in spi_flash_cfg_t, or device is in XIP mode.
+ *                                     size defined in spi_flash_cfg_t.
  * @retval FSP_ERR_NOT_OPEN            Driver is not opened.
  * @retval FSP_ERR_INVALID_MODE        This function can't be called when XIP mode is enabled.
  **********************************************************************************************************************/

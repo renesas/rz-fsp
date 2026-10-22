@@ -175,8 +175,8 @@ struct st_sci_uart_extended_cfg
     sci_uart_start_bit_t          rx_edge_start;    ///< Start reception on falling edge
     sci_uart_noise_cancellation_t noise_cancel;     ///< Noise cancellation setting
     baud_setting_t              * p_baud_setting;   ///< Register settings for a desired baud rate.
-    sci_uart_rx_fifo_trigger_t    rx_fifo_trigger;  ///< Receive FIFO trigger level, unused if channel has no FIFO or if DTC is used.
-    bsp_io_port_pin_t             flow_control_pin; ///< UART Driver Enable pin
+    sci_uart_rx_fifo_trigger_t    rx_fifo_trigger;  ///< Receive FIFO trigger level, unused if channel has no FIFO or if DTC or DMAC is used.
+    bsp_io_port_pin_t             flow_control_pin; ///< RTS pin used for UART flow control
     sci_uart_flow_control_t       flow_control;     ///< CTS/RTS function of the SSn pin
     sci_uart_rs485_setting_t      rs485_setting;    ///< RS-485 settings.
     void * p_reg;                                   ///< Register base address for specified channel

@@ -231,6 +231,10 @@
 #define USB_ISO_PIPE_START                     (1U)
 #define USB_ISO_PIPE_END                       (2U)
 
+/*Max position pipe for USB class */
+#define USB_MAX_PIPE_POS_PERI                  (20U)
+#define USB_MAX_PIPE_POS_HOST                  (72U)
+
 /* SPEED mode */
 #define USB_HS_DISABLE                         ((uint16_t) 0U)
 #define USB_HS_ENABLE                          ((uint16_t) 1U)

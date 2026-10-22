@@ -122,11 +122,12 @@ static bool      r_dmac_address_tcm_check(uintptr_t address);
 #if DMAC_CFG_PARAM_CHECKING_ENABLE
 static fsp_err_t r_dma_open_parameter_checking(dmac_instance_ctrl_t * const p_instance_ctrl,
                                                transfer_cfg_t const * const p_cfg);
-static fsp_err_t r_dmac_reconfigure_parameter_checking(transfer_info_t const * const p_info);
-static fsp_err_t r_dmac_link_descriptor_parameter_checking(dmac_link_cfg_t const * p_descriptor);
+static fsp_err_t r_dmac_reconfigure_parameter_checking(transfer_cfg_t const * const p_cfg, transfer_info_t const * const p_info);
+static fsp_err_t r_dmac_link_descriptor_parameter_checking(transfer_cfg_t const * const p_cfg, dmac_link_cfg_t const * p_descriptor);
 static fsp_err_t r_dmac_enable_parameter_checking(dmac_instance_ctrl_t * const p_instance_ctrl);
 static fsp_err_t r_dmac_enable_parameter_checking_register_mode(dmac_instance_ctrl_t * const p_instance_ctrl);
 static fsp_err_t r_dmac_enable_parameter_checking_link_mode(dmac_instance_ctrl_t * const p_instance_ctrl);
+static fsp_err_t r_dmac_transfer_size_parameter_checking(transfer_size_t src_size, transfer_size_t dest_size, uint8_t unit);
 
 static bool r_dmac_address_tcm_via_axis_check(uintptr_t address);
 
@@ -259,7 +260,7 @@ fsp_err_t R_DMAC_LinkDescriptorSet (transfer_ctrl_t * const p_ctrl, dmac_link_cf
     FSP_ASSERT(p_instance_ctrl != NULL);
     FSP_ERROR_RETURN(p_instance_ctrl->open == DMAC_ID, FSP_ERR_NOT_OPEN);
     FSP_ASSERT(p_descriptor != NULL);
-    err = r_dmac_link_descriptor_parameter_checking(p_descriptor);
+    err = r_dmac_link_descriptor_parameter_checking(p_instance_ctrl->p_cfg, p_descriptor);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 #endif
 
@@ -325,7 +326,7 @@ fsp_err_t R_DMAC_Reconfigure (transfer_ctrl_t * const p_ctrl, transfer_info_t * 
 #if DMAC_CFG_PARAM_CHECKING_ENABLE
     FSP_ASSERT(p_instance_ctrl != NULL);
     FSP_ERROR_RETURN(p_instance_ctrl->open == DMAC_ID, FSP_ERR_NOT_OPEN);
-    err = r_dmac_reconfigure_parameter_checking(p_info);
+    err = r_dmac_reconfigure_parameter_checking(p_instance_ctrl->p_cfg, p_info);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
     dmac_extended_cfg_t * p_extend = (dmac_extended_cfg_t *) p_instance_ctrl->p_cfg->p_extend;
 
@@ -518,6 +519,9 @@ fsp_err_t R_DMAC_SoftwareStart (transfer_ctrl_t * const p_ctrl, transfer_start_m
 
     uint8_t group   = DMAC_PRV_GROUP(p_extend->channel);
     uint8_t channel = DMAC_PRV_CHANNEL(p_extend->channel);
+
+    /* All previous loads and stores must be ordered and completed before DMAC channel software start. */
+    __DSB();
 
     /* Set auto clear bit and software start bit. */
     p_instance_ctrl->p_reg->GRP[group].CH[channel].CHCTRL = DMAC_PRV_CHCTRL_STG_MASK;
@@ -889,6 +893,9 @@ static fsp_err_t r_dmac_prv_enable (dmac_instance_ctrl_t * p_instance_ctrl)
         /* Does not mask DMA transfer end interrupt */
         p_instance_ctrl->p_reg->GRP[group].CH[channel].CHCFG &= (~((uint32_t) DMAC_PRV_CHCFG_DEM_MASK));
     }
+
+    /* All previous loads and stores must be ordered and completed before DMAC channel enable. */
+    __DSB();
 
     /* Enable transfer. */
     p_instance_ctrl->p_reg->GRP[group].CH[channel].CHCTRL = DMAC_PRV_CHCTRL_SETEN_MASK;
@@ -1449,6 +1456,7 @@ static bool r_dmac_address_tcm_check (uintptr_t address)
  * @retval FSP_ERR_IRQ_BSP_DISABLED       Callback is not NULL and the DMAC IRQ is not enabled.
  * @retval FSP_ERR_ALREADY_OPEN           The control structure is already opened.
  * @retval FSP_ERR_INVALID_ADDRESS        Descriptor address is invalid.
+ * @retval FSP_ERR_IP_UNIT_NOT_PRESENT    The configured unit is invalid.
  **********************************************************************************************************************/
 static fsp_err_t r_dma_open_parameter_checking (dmac_instance_ctrl_t * const p_instance_ctrl,
                                                 transfer_cfg_t const * const p_cfg)
@@ -1459,21 +1467,26 @@ static fsp_err_t r_dma_open_parameter_checking (dmac_instance_ctrl_t * const p_i
     dmac_extended_cfg_t * p_extend = (dmac_extended_cfg_t *) p_cfg->p_extend;
     FSP_ASSERT(NULL != p_cfg->p_extend);
     FSP_ASSERT(NULL != p_extend->p_reg);
+
+    /* Verify the channel exists on the MPU. */
     FSP_ERROR_RETURN(p_extend->channel < BSP_FEATURE_DMAC_MAX_CHANNEL, FSP_ERR_IP_CHANNEL_NOT_PRESENT);
+
+    /* Verify the unit exists on the MPU. */
+    FSP_ERROR_RETURN(((1U << p_extend->unit) & BSP_FEATURE_DMAC_VALID_UNIT_MASK), FSP_ERR_IP_UNIT_NOT_PRESENT);
 
     if (NULL != p_extend->p_callback)
     {
         FSP_ERROR_RETURN(p_extend->dmac_int_irq >= 0, FSP_ERR_IRQ_BSP_DISABLED);
     }
 
-    fsp_err_t err = r_dmac_reconfigure_parameter_checking(p_cfg->p_info);
+    fsp_err_t err = r_dmac_reconfigure_parameter_checking(p_cfg, p_cfg->p_info);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
     if (DMAC_MODE_SELECT_LINK == p_extend->dmac_mode)
     {
         if (NULL != p_extend->p_descriptor)
         {
-            err = r_dmac_link_descriptor_parameter_checking(p_extend->p_descriptor);
+            err = r_dmac_link_descriptor_parameter_checking(p_cfg, p_extend->p_descriptor);
             FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
         }
     }
@@ -1484,14 +1497,21 @@ static fsp_err_t r_dma_open_parameter_checking (dmac_instance_ctrl_t * const p_i
 /*******************************************************************************************************************//**
  * Checks for errors in the transfer into structure.
  *
- * @param[in]   p_info              Pointer transfer info.
+ * @param[in]   p_cfg               Pointer to configuration structure.
+ * @param[in]   p_info              Pointer to transfer info.
  *
  * @retval FSP_SUCCESS              The transfer info is valid.
  * @retval FSP_ERR_ASSERTION        A transfer info setting is invalid.
  **********************************************************************************************************************/
-static fsp_err_t r_dmac_reconfigure_parameter_checking (transfer_info_t const * const p_info)
+static fsp_err_t r_dmac_reconfigure_parameter_checking (transfer_cfg_t const * const p_cfg, transfer_info_t const * const p_info)
 {
+    dmac_extended_cfg_t * p_extend = (dmac_extended_cfg_t *) p_cfg->p_extend;
+
     FSP_ASSERT(p_info != NULL);
+
+    /* Check the valid input of transfer size.  */
+    fsp_err_t err = r_dmac_transfer_size_parameter_checking(p_info->src_size, p_info->dest_size, p_extend->unit);
+    FSP_ERROR_RETURN(FSP_SUCCESS == err, FSP_ERR_INVALID_ARGUMENT);
 
     return FSP_SUCCESS;
 }
@@ -1499,13 +1519,14 @@ static fsp_err_t r_dmac_reconfigure_parameter_checking (transfer_info_t const * 
 /*******************************************************************************************************************//**
  * Checks for errors in the transfer link mode descriptor structure.
  *
+ * @param[in]   p_cfg               Pointer to configuration structure.
  * @param[in]   p_descriptor        Pointer link mode descriptor.
  *
  * @retval FSP_SUCCESS              The descriptor is valid.
  * @retval FSP_ERR_ASSERTION        A descriptor setting is invalid.
  * @retval FSP_ERR_INVALID_ADDRESS  Descriptor address is invalid.
  **********************************************************************************************************************/
-static fsp_err_t r_dmac_link_descriptor_parameter_checking (dmac_link_cfg_t const * p_descriptor)
+static fsp_err_t r_dmac_link_descriptor_parameter_checking (transfer_cfg_t const * const p_cfg, dmac_link_cfg_t const * p_descriptor)
 {
     /* Provide a pointer variable for accessing values stored in the descriptor.
      * In CA55 environment, the virtual address of the descriptor is stored. */
@@ -1515,10 +1536,13 @@ static fsp_err_t r_dmac_link_descriptor_parameter_checking (dmac_link_cfg_t cons
      * Since DMAC handles 32 bit physical addresses, the descriptor address is evaluated as same condition. */
     uint32_t current_descriptor_pa;
 
+    dmac_extended_cfg_t * p_extend = (dmac_extended_cfg_t *) p_cfg->p_extend;
+
+    fsp_err_t err;
+
  #if defined(BSP_CFG_CORE_CA55)
     uint64_t  va;
     uint64_t  pa;
-    fsp_err_t err;
 
     /* In CA55 environment, address conversion is required to store physical address to current_descriptor_pa
      * since a virtual address is provided as the descriptor address. */
@@ -1545,6 +1569,17 @@ static fsp_err_t r_dmac_link_descriptor_parameter_checking (dmac_link_cfg_t cons
         FSP_ERROR_RETURN(false == r_dmac_address_tcm_check((uintptr_t) current_descriptor_pa), FSP_ERR_ASSERTION);
         FSP_ERROR_RETURN(false == r_dmac_address_tcm_via_axis_check((uintptr_t) current_descriptor_pa),
                          FSP_ERR_ASSERTION);
+
+        uint32_t channel_cfg = p_current_descriptor->channel_cfg;
+
+        transfer_size_t src_size =
+            (transfer_size_t) ((channel_cfg >> DMAC_PRV_CHCFG_SDS_OFFSET) & DMAC_PRV_CHCFG_SDS_VALUE_MASK);
+        transfer_size_t dest_size =
+            (transfer_size_t) ((channel_cfg >> DMAC_PRV_CHCFG_DDS_OFFSET) & DMAC_PRV_CHCFG_DDS_VALUE_MASK);
+
+        /* Check the valid input of transfer size. */
+        err = r_dmac_transfer_size_parameter_checking(src_size, dest_size, p_extend->unit);
+        FSP_ERROR_RETURN(FSP_SUCCESS == err, FSP_ERR_INVALID_ARGUMENT);
 
         if (DMAC_LINK_END_ENABLE == p_current_descriptor->header.link_end)
         {
@@ -1808,6 +1843,26 @@ static bool r_dmac_address_tcm_via_axis_check (uintptr_t address)
                    (((DMAC_PRV_BTCM_START_ADDRESS + DMAC_PRV_CPU0_TCM_BASE_ADDRESS) <= address) &&
                     (address <= (DMAC_PRV_BTCM_END_ADDRESS + DMAC_PRV_CPU0_TCM_BASE_ADDRESS))));
  #endif
+}
+
+/*******************************************************************************************************************//**
+ * Checks for the valid transfer size.
+ *
+ * @param[in]   src_size             Source data size.
+ * @param[in]   dest_size            Destination data size.
+ * @param[in]   unit                 DMAC unit.
+ *
+ * @retval FSP_SUCCESS               The transfer size is valid.
+ * @retval FSP_ERR_INVALID_ARGUMENT  The transfer size is unsupported.
+ **********************************************************************************************************************/
+static fsp_err_t r_dmac_transfer_size_parameter_checking(transfer_size_t src_size, transfer_size_t dest_size, uint8_t unit)
+{
+    if ((0 != unit) && (TRANSFER_SIZE_64_BYTE == src_size || TRANSFER_SIZE_64_BYTE == dest_size))
+    {
+        return FSP_ERR_INVALID_ARGUMENT;
+    }
+
+    return FSP_SUCCESS;
 }
 
 #endif

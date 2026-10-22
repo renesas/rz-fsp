@@ -160,11 +160,11 @@ void vPortTaskUsesFPU(void);
 
 /*-----------------------------------------------------------*/
 
- #ifdef configASSERT
+ #if (configASSERT_DEFINED == 1)
 void vPortValidateInterruptPriority(void);
 
   #define portASSERT_IF_INTERRUPT_PRIORITY_INVALID()    vPortValidateInterruptPriority()
- #endif                                /* configASSERT */
+ #endif                                /* configASSERT_DEFINED == 1 */
 
  #define portNOP()                                      __asm volatile ("NOP")
 

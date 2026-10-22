@@ -77,10 +77,10 @@ const rm_block_media_api_t g_rm_block_media_on_usb =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -183,10 +183,10 @@ fsp_err_t RM_BLOCK_MEDIA_USB_MediaInit (rm_block_media_ctrl_t * const p_ctrl)
 #endif
 
     usb_instance_t * p_usb = (usb_instance_t *) p_extended_cfg->p_usb;
-    fsp_err_t        err   = R_USB_HMSC_StorageCommand(p_usb->p_ctrl,
-                                                       p_instance_ctrl->p_read_buffer,
-                                                       USB_ATAPI_READ_CAPACITY,
-                                                       p_instance_ctrl->device_address);
+    fsp_err_t        err   = g_hmsc_on_usb.storageCommand(p_usb->p_ctrl,
+                                                          p_instance_ctrl->p_read_buffer,
+                                                          USB_ATAPI_READ_CAPACITY,
+                                                          p_instance_ctrl->device_address);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
 #if 2 == BSP_CFG_RTOS
@@ -283,10 +283,10 @@ fsp_err_t RM_BLOCK_MEDIA_USB_Read (rm_block_media_ctrl_t * const p_ctrl,
 
     /* Call the underlying driver. */
     uint8_t   p_drive;
-    fsp_err_t err = R_USB_HMSC_DriveNumberGet(p_usb->p_ctrl, &p_drive, p_instance_ctrl->device_address);
+    fsp_err_t err = g_hmsc_on_usb.driveNumberGet(p_usb->p_ctrl, &p_drive, p_instance_ctrl->device_address);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
-    err = R_USB_HMSC_StorageReadSector(p_drive, p_dest_address, block_address, (uint16_t) num_blocks);
+    err = g_hmsc_on_usb.storageReadSector(p_drive, p_dest_address, block_address, (uint16_t) num_blocks);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
 #if BSP_CFG_RTOS == 0
@@ -379,10 +379,10 @@ fsp_err_t RM_BLOCK_MEDIA_USB_Write (rm_block_media_ctrl_t * const p_ctrl,
 
     /* Call the underlying driver. */
     uint8_t   p_drive;
-    fsp_err_t err = R_USB_HMSC_DriveNumberGet(p_usb->p_ctrl, &p_drive, p_instance_ctrl->device_address);
+    fsp_err_t err = g_hmsc_on_usb.driveNumberGet(p_usb->p_ctrl, &p_drive, p_instance_ctrl->device_address);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
-    err = R_USB_HMSC_StorageWriteSector(p_drive, p_src_address, block_address, (uint16_t) num_blocks);
+    err = g_hmsc_on_usb.storageWriteSector(p_drive, p_src_address, block_address, (uint16_t) num_blocks);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
 #if BSP_CFG_RTOS == 0
@@ -472,11 +472,11 @@ fsp_err_t RM_BLOCK_MEDIA_USB_Erase (rm_block_media_ctrl_t * const p_ctrl,
 
     /* Call the underlying driver. */
     uint8_t   p_drive;
-    fsp_err_t err = R_USB_HMSC_DriveNumberGet(p_usb->p_ctrl, &p_drive, p_instance_ctrl->device_address);
+    fsp_err_t err = g_hmsc_on_usb.driveNumberGet(p_usb->p_ctrl, &p_drive, p_instance_ctrl->device_address);
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
     for (uint32_t i = 0; i < num_blocks; i++)
     {
-        err = R_USB_HMSC_StorageWriteSector(p_drive, &g_block_media_usb_erase_data[0], block_address + i, 1U);
+        err = g_hmsc_on_usb.storageWriteSector(p_drive, &g_block_media_usb_erase_data[0], block_address + i, 1U);
         FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
 #if BSP_CFG_RTOS == 0
@@ -757,9 +757,9 @@ static void rm_block_media_usb_call_callback (rm_block_media_usb_instance_ctrl_t
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

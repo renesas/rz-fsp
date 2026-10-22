@@ -132,11 +132,6 @@ void scif_uart_rx_dmac_callback(scif_uart_instance_ctrl_t * p_ctrl);
  * Private global variables
  **********************************************************************************************************************/
 
-/** Name of module used by error logger macro */
-#if BSP_CFG_ERROR_LOG != 0
-static const char g_module_name[] = "scif_uart";
-#endif
-
 /** Baud rate divisor information (UART mode) */
 static const baud_setting_const_t g_async_baud[SCIF_UART_NUM_DIVISORS_ASYNC] =
 {
@@ -439,7 +434,9 @@ fsp_err_t R_SCIF_UART_Close (uart_ctrl_t * const p_api_ctrl)
  *
  * @retval  FSP_SUCCESS                  Data reception successfully ends.
  * @retval  FSP_ERR_ASSERTION            Pointer to UART control block is NULL.
- *                                       Number of transfers outside the max or min boundary when transfer instance used
+ *                                       Number of transfers outside the max or min boundary when transfer instance used.
+ *                                       Pointer to address is NULL.
+ *                                       Transfer size is 0.
  * @retval  FSP_ERR_NOT_OPEN             The control block has not been opened
  * @retval  FSP_ERR_IN_USE               A previous read operation is still in progress.
  * @retval  FSP_ERR_UNSUPPORTED          SCIF_UART_CFG_RX_ENABLE is set to 0
@@ -499,7 +496,9 @@ fsp_err_t R_SCIF_UART_Read (uart_ctrl_t * const p_api_ctrl, uint8_t * const p_de
  *
  * @retval  FSP_SUCCESS                  Data transmission finished successfully.
  * @retval  FSP_ERR_ASSERTION            Pointer to UART control block is NULL.
- *                                       Number of transfers outside the max or min boundary when transfer instance used
+ *                                       Number of transfers outside the max or min boundary when transfer instance used.
+ *                                       Pointer to address is NULL.
+ *                                       Transfer size is 0.
  * @retval  FSP_ERR_NOT_OPEN             The control block has not been opened
  * @retval  FSP_ERR_IN_USE               A UART transmission is in progress
  * @retval  FSP_ERR_UNSUPPORTED          SCIF_UART_CFG_TX_ENABLE is set to 0
@@ -712,7 +711,7 @@ fsp_err_t R_SCIF_UART_InfoGet (uart_ctrl_t * const p_api_ctrl, uart_info_t * con
  #if SCIF_UART_CFG_DMAC_ENABLE
     if (NULL != p_ctrl->p_cfg->p_transfer_rx)
     {
-        p_info->write_bytes_max = SCIF_UART_DMAC_MAX_TRANSFER;
+        p_info->read_bytes_max = SCIF_UART_DMAC_MAX_TRANSFER;
     }
  #endif
 #endif
@@ -723,7 +722,7 @@ fsp_err_t R_SCIF_UART_InfoGet (uart_ctrl_t * const p_api_ctrl, uart_info_t * con
  #if SCIF_UART_CFG_DMAC_ENABLE
     if (NULL != p_ctrl->p_cfg->p_transfer_tx)
     {
-        p_info->read_bytes_max = SCIF_UART_DMAC_MAX_TRANSFER;
+        p_info->write_bytes_max = SCIF_UART_DMAC_MAX_TRANSFER;
     }
  #endif
 #endif
@@ -920,9 +919,9 @@ fsp_err_t R_SCIF_UART_BaudCalculate (uart_ctrl_t * const         p_api_ctrl,
     {
         for (uint32_t i = 0U; i < SCIF_UART_NUM_DIVISORS_ASYNC; i++)
         {
-            /* if select_16_base_clk_cycles == true:  Skip this calculation for divisors that are not acheivable with
+            /* if select_16_base_clk_cycles == true:  Skip this calculation for divisors that are not achievable with
              *   16 base clk cycles per bit.
-             *  if select_16_base_clk_cycles == false: Skip this calculation for divisors that are only acheivable
+             *  if select_16_base_clk_cycles == false: Skip this calculation for divisors that are only achievable
              *   without 16 base clk cycles per bit.
              */
             if (((uint8_t) select_16_base_clk_cycles) ^ (g_async_baud[i].abcs))
@@ -1109,7 +1108,9 @@ static void r_scif_negate_de_pin (scif_uart_instance_ctrl_t const * const p_ctrl
  *
  * @retval  FSP_SUCCESS              No parameter error found
  * @retval  FSP_ERR_NOT_OPEN         The control block has not been opened
- * @retval  FSP_ERR_ASSERTION        Pointer to UART control block or configuration structure is NULL
+ * @retval  FSP_ERR_ASSERTION        Pointer to UART control block or configuration structure is NULL.
+ *                                   Pointer to address is NULL.
+ *                                   Transfer size is 0.
  **********************************************************************************************************************/
 static fsp_err_t r_scif_read_write_param_check (scif_uart_instance_ctrl_t const * const p_ctrl,
                                                 uint8_t const * const                   addr,

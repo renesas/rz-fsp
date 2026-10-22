@@ -39,7 +39,7 @@ typedef VP_INT  usb_vp_int_t;
 #if ((USB_CFG_MODE & USB_CFG_PERI) == USB_CFG_PERI)
 typedef volatile R_USBF_Type * usb_regadr1_t;
 typedef volatile R_USBF_Type * usb_regadr_t;
-#else                                 /* ((USB_CFG_MODE & USB_CFG_PERI) == USB_CFG_PERI) */
+#else                                  /* ((USB_CFG_MODE & USB_CFG_PERI) == USB_CFG_PERI) */
 typedef volatile R_USBHC_Type * usb_regadr1_t;
 typedef volatile R_USBHC_Type * usb_regadr_t;
 #endif
@@ -49,33 +49,33 @@ typedef void        (* usb_cb_t)(struct usb_utr *, uint16_t, uint16_t);
 
 typedef struct usb_utr
 {
-    usb_mh_t     msghead;                      /* Message header (for SH-solution) */
-    usb_cb_t     complete;                     /* Call Back Function Info */
-    void const * p_tranadr;                    /* Transfer data Start address */
-    uint32_t     read_req_len;                 /* Read Request Length */
-    uint32_t     tranlen;                      /* Transfer data length */
-    uint16_t   * p_setup;                      /* Setup packet(for control only) */
+    usb_mh_t     msghead;              /* Message header (for SH-solution) */
+    usb_cb_t     complete;             /* Call Back Function Info */
+    void const * p_tranadr;            /* Transfer data Start address */
+    uint32_t     read_req_len;         /* Read Request Length */
+    uint32_t     tranlen;              /* Transfer data length */
+    uint16_t   * p_setup;              /* Setup packet(for control only) */
     void       * p_usr_data;
 #if (BSP_CFG_RTOS == 2)
-    usb_hdl_t cur_task_hdl;                    /* Task Handle */
+    usb_hdl_t cur_task_hdl;            /* Task Handle */
 #endif /* #if (BSP_CFG_RTOS == 2) */
-    uint16_t msginfo;                          /* Message Info for F/W */
-    uint16_t keyword;                          /* Root port / Device address / Pipe number */
-    uint8_t  ip;                               /* USB module number(0 or 1) */
-    uint16_t result;                           /* Result */
-    uint16_t status;                           /* Status */
-    uint16_t pipectr;                          /* Pipe control register */
+    uint16_t msginfo;                  /* Message Info for F/W */
+    uint16_t keyword;                  /* Root port / Device address / Pipe number */
+    uint8_t  ip;                       /* USB module number(0 or 1) */
+    uint16_t result;                   /* Result */
+    uint16_t status;                   /* Status */
+    uint16_t pipectr;                  /* Pipe control register */
 #if (BSP_CFG_RTOS == 2)
-    uint16_t setup_data[5];                    /* Save setup for Request */
+    uint16_t setup_data[5];            /* Save setup for Request */
 #endif /* #if (BSP_CFG_RTOS == 2) */
-    uint8_t errcnt;                            /* Error count */
-    uint8_t segment;                           /* Last flag */
+    uint8_t errcnt;                    /* Error count */
+    uint8_t segment;                   /* Last flag */
     union
     {
-        usb_regadr_t ipp;                      /* USB module startAddress(USB0/USB1)*/
+        usb_regadr_t ipp;              /* USB module startAddress(USB0/USB1)*/
 #if USB_NUM_USBIP == 2
-        usb_regadr1_t ipp1;                    /* USB module start address(USBA) */
-#endif                                         /* USB_NUM_USBIP == 2 */
+        usb_regadr1_t ipp1;            /* USB module start address(USBA) */
+#endif                                 /* USB_NUM_USBIP == 2 */
     };
 } usb_message_t;
 
@@ -212,26 +212,27 @@ typedef struct usb_pipe_reg
 
 typedef enum e_usb_class_internal
 {
-    USB_CLASS_INTERNAL_PCDC = 0,       ///< PCDC Class      0
-    USB_CLASS_INTERNAL_PCDCC,          ///< PCDCC Class     1
-    USB_CLASS_INTERNAL_PCDC2,          ///< PCDC2 Class     2
-    USB_CLASS_INTERNAL_PCDCC2,         ///< PCDCC2 Class    3
-    USB_CLASS_INTERNAL_PHID,           ///< PHID Class      4
-    USB_CLASS_INTERNAL_PHID2,          ///< PHID2 Class     5
-    USB_CLASS_INTERNAL_PAUD,           ///< PAUD Class      6
-    USB_CLASS_INTERNAL_PPRN,           ///< PPRN Class      7
-    USB_CLASS_INTERNAL_DFU,            ///< DFU Class       8
-    USB_CLASS_INTERNAL_PVND,           ///< PVND Class      9
-    USB_CLASS_INTERNAL_HCDC,           ///< HCDC Class      10
-    USB_CLASS_INTERNAL_HCDCC,          ///< HCDCC Class     11
-    USB_CLASS_INTERNAL_HHID,           ///< HHID Class      12
-    USB_CLASS_INTERNAL_HVND,           ///< HVND Class      13
-    USB_CLASS_INTERNAL_HMSC,           ///< HMSC Class      14
-    USB_CLASS_INTERNAL_PMSC,           ///< PMSC Class      15
-    USB_CLASS_INTERNAL_HPRN,           ///< HPRN Class      16
-    USB_CLASS_INTERNAL_HUVC,           ///< HUVC Class      17
-    USB_CLASS_INTERNAL_REQUEST,        ///< USB Class Request      18
-    USB_CLASS_INTERNAL_END,            ///< USB Class       19
+    USB_CLASS_INTERNAL_PCDC = 0,       ///< PCDC Class
+    USB_CLASS_INTERNAL_PCDCC,          ///< PCDCC Class
+    USB_CLASS_INTERNAL_PCDC2,          ///< PCDC2 Class
+    USB_CLASS_INTERNAL_PCDCC2,         ///< PCDCC2 Class
+    USB_CLASS_INTERNAL_PHID,           ///< PHID Class
+    USB_CLASS_INTERNAL_PHID2,          ///< PHID2 Class
+    USB_CLASS_INTERNAL_PAUD,           ///< PAUD Class
+    USB_CLASS_INTERNAL_PPRN,           ///< PPRN Class
+    USB_CLASS_INTERNAL_DFU,            ///< DFU Class
+    USB_CLASS_INTERNAL_PUVC,           ///< PUVC Class
+    USB_CLASS_INTERNAL_PVND,           ///< PVND Class
+    USB_CLASS_INTERNAL_HCDC,           ///< HCDC Class
+    USB_CLASS_INTERNAL_HCDCC,          ///< HCDCC Class
+    USB_CLASS_INTERNAL_HHID,           ///< HHID Class
+    USB_CLASS_INTERNAL_HVND,           ///< HVND Class
+    USB_CLASS_INTERNAL_HMSC,           ///< HMSC Class
+    USB_CLASS_INTERNAL_PMSC,           ///< PMSC Class
+    USB_CLASS_INTERNAL_HPRN,           ///< HPRN Class
+    USB_CLASS_INTERNAL_HUVC,           ///< HUVC Class
+    USB_CLASS_INTERNAL_REQUEST,        ///< USB Class Request
+    USB_CLASS_INTERNAL_END,            ///< USB Class
 } usb_class_internal_t;
 
 #endif /* R_USB_TYPEDEF_H */

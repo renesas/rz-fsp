@@ -7,6 +7,8 @@
 /******************************************************************************
  * Includes   <System Includes> , "Project Includes"
  ******************************************************************************/
+#include "inc/r_usb_hcdc_driver.h"
+
 #include <string.h>
 
 #include <r_usb_basic.h>
@@ -15,7 +17,6 @@
 #include "../../../r_usb_basic/src/driver/inc/r_usb_extern.h"
 #include "../../../r_usb_basic/src/hw/inc/r_usb_bitdefine.h"
 #include "r_usb_hcdc_api.h"
-#include "inc/r_usb_hcdc.h"
 
 #define USB_VALUE_32    (32)
 
@@ -448,6 +449,22 @@ void usb_hcdc_detach (usb_utr_t * ptr, uint16_t devadr, uint16_t data2)
     ctrl.module_number  = ptr->ip;           /* Module number setting */
     ctrl.device_address = (uint8_t) devadr;
     usb_set_event(USB_STATUS_DETACH, &ctrl); /* Set Event()  */
+    switch (devadr)
+    {
+        case 1:
+        case 2:
+        {
+            g_usb_hcdc_bulk_in_pipe[ptr->ip]  = 0;
+            g_usb_hcdc_bulk_out_pipe[ptr->ip] = 0;
+            g_usb_hcdc_int_in_pipe[ptr->ip]   = 0;
+            break;
+        }
+
+        default:
+        {
+            break;
+        }
+    }
 }
 
 /******************************************************************************

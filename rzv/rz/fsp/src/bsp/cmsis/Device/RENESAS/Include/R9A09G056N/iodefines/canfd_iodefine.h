@@ -557,7 +557,18 @@ typedef struct
         } DF_b[64];
     };
     __IM uint8_t RESERVED[52];
-} R_CANFD_CFDTM_Type;                  /*!< Size = 128 (0x80)                                                         */
+} R_CANFD_CFDTM_GRP_BCP_Type;          /*!< Size = 128 (0x80)                                                         */
+
+typedef struct
+{
+    __IOM R_CANFD_CFDTM_GRP_BCP_Type BCP[16];
+    __IM uint8_t RESERVED[2048];
+} R_CANFD_CFDTM_GRP_Type;
+
+typedef struct
+{
+    __IOM R_CANFD_CFDTM_GRP_Type GRP[2];
+} R_CANFD_CFDTM_Type;
 
 /* =========================================================================================================================== */
 /* ================                                          R_CANFD                                          ================ */
@@ -1808,7 +1819,7 @@ typedef struct                         /*!< (@ 0x400B0000) R_CANFD Structure    
         } CFDRPGACC_b[64];
     };
     __IM uint8_t             RESERVED45[31488];
-    __IOM R_CANFD_CFDTM_Type CFDTM[384]; /*!< (@ 0x00010000) TX Message Buffer Access Registers                         */
+    __IOM R_CANFD_CFDTM_Type CFDTM[6]; /*!< (@ 0x00010000) TX Message Buffer Access Registers                         */
 } R_CANFD_Type;                          /*!< Size = 81920 (0x14000)                                                    */
 
 /* =========================================================================================================================== */

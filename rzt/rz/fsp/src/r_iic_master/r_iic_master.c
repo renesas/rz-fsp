@@ -47,9 +47,6 @@
 /* The transmit data empty interrupt enable bit */
 #define IIC_MASTER_TXI_EN_BIT                       (0x80)
 
-/* Bit position for STOP condition flag in ICSR2 */
-#define IIC_MASTER_ICSR2_STOP_BIT                   (0x08U)
-
 #define IIC_MASTER_BUS_RATE_REG_RESERVED_BITS       (0xE0U)
 #define IIC_MASTER_INTERNAL_REF_CLOCK_SELECT_MAX    (0x07U)
 
@@ -61,7 +58,7 @@
 #define IIC_MASTER_STATUS_REGISTER_2_ERR_MASK       (0x1FU)
 #define IIC_MASTER_BUS_MODE_REGISTER_1_MASK         (0x08U)
 #define IIC_MASTER_BUS_MODE_REGISTER_2_MASK         (0x04U)
-#define IIC_MASTER_PRV_SCL_SDA_NOT_DRIVEN           (0x1FU)
+#define IIC_MASTER_ICCR1_SCL_SDA_OUTPUT_MASK        (0x1FU)
 #define IIC_MASTER_ICCR1_ICE_BIT_MASK               (0x80)
 #define IIC_MASTER_ICCR1_IICRST_BIT_MASK            (0x40)
 #define IIC_MASTER_ICCR2_SP_BIT_MASK                (0x08)
@@ -248,8 +245,17 @@ fsp_err_t R_IIC_MASTER_Open (i2c_master_ctrl_t * const p_ctrl, i2c_master_cfg_t 
     p_instance_ctrl->p_context         = p_cfg->p_context;
     p_instance_ctrl->p_callback_memory = NULL;
 
-    /* Open the hardware in master mode. Performs IIC initialization as described in hardware manual (see Section
-     * 'Initial Settings' of the RZ microprocessor manual). */
+    p_instance_ctrl->p_buff    = NULL;
+    p_instance_ctrl->total     = 0U;
+    p_instance_ctrl->remain    = 0U;
+    p_instance_ctrl->loaded    = 0U;
+    p_instance_ctrl->read      = false;
+    p_instance_ctrl->restart   = false;
+    p_instance_ctrl->err       = false;
+    p_instance_ctrl->restarted = false;
+
+    /* Open the hardware in master mode. Performs IIC initialization as described in hardware manual (see
+     * "Initial Settings" in the IIC Operation section of the relevant hardware manual). */
     iic_master_open_hw_master(p_instance_ctrl, p_cfg);
 
 #if IIC_MASTER_CFG_DMAC_ENABLE
@@ -267,15 +273,7 @@ fsp_err_t R_IIC_MASTER_Open (i2c_master_ctrl_t * const p_ctrl, i2c_master_cfg_t 
     }
 #endif
 
-    p_instance_ctrl->p_buff    = NULL;
-    p_instance_ctrl->total     = 0U;
-    p_instance_ctrl->remain    = 0U;
-    p_instance_ctrl->loaded    = 0U;
-    p_instance_ctrl->read      = false;
-    p_instance_ctrl->restart   = false;
-    p_instance_ctrl->err       = false;
-    p_instance_ctrl->restarted = false;
-    p_instance_ctrl->open      = IIC_MASTER_OPEN;
+    p_instance_ctrl->open = IIC_MASTER_OPEN;
 
     return FSP_SUCCESS;
 }
@@ -329,16 +327,13 @@ fsp_err_t R_IIC_MASTER_Write (i2c_master_ctrl_t * const p_ctrl,
 #if IIC_MASTER_CFG_PARAM_CHECKING_ENABLE
     FSP_ASSERT(p_ctrl != NULL);
 #endif
-    fsp_err_t err = FSP_SUCCESS;
 
     /* Record the restart information about this transfer.
      * This is done here to keep the parameter (argument) list of iic_master_read_write to 4. */
     ((iic_master_instance_ctrl_t *) p_ctrl)->restart = restart;
 
     /* Call the common helper function to perform I2C Write operation.*/
-    err = iic_master_read_write(p_ctrl, p_src, bytes, IIC_MASTER_TRANSFER_DIR_WRITE);
-
-    return err;
+    return iic_master_read_write(p_ctrl, p_src, bytes, IIC_MASTER_TRANSFER_DIR_WRITE);
 }
 
 /*******************************************************************************************************************//**
@@ -472,8 +467,8 @@ fsp_err_t R_IIC_MASTER_Close (i2c_master_ctrl_t * const p_ctrl)
     /* Abort an in-progress transfer with this device only */
     iic_master_abort_seq_master(p_instance_ctrl, true);
 
-    /* Disable I2C interrupts. Described in hardware manual (see Section
-     * 'I2C Bus Interrupt Enable Register (ICIER)' of the RZ microprocessor manual). */
+    /* Disable I2C interrupts. Described in hardware manual (see
+     * "I2C Bus Interrupt Enable Register (ICIER)" description in the IIC section of the relevant hardware manual). */
     p_instance_ctrl->p_reg->ICIER = 0x00;
 
 #if IIC_MASTER_CFG_DMAC_ENABLE
@@ -546,8 +541,6 @@ static fsp_err_t iic_master_read_write (i2c_master_ctrl_t * const p_ctrl,
     FSP_ASSERT(((iic_master_instance_ctrl_t *) p_ctrl)->p_callback != NULL);
 #endif
 
-    fsp_err_t err = FSP_SUCCESS;
-
     p_instance_ctrl->p_buff = p_buffer;
     p_instance_ctrl->total  = bytes;
 
@@ -569,7 +562,7 @@ static fsp_err_t iic_master_read_write (i2c_master_ctrl_t * const p_ctrl,
         p_instance_ctrl->addr_low = (uint8_t) p_instance_ctrl->slave;
 
         /* Addr total = 3 for Read and 2 for Write.
-         * See Section "Communication Data Format" of the RZ microprocessor manual
+         * See "Communication Data Format" in the IIC section of the relevant hardware manual.
          */
         p_instance_ctrl->addr_total = (uint8_t) ((uint8_t) direction + IIC_MASTER_SLAVE_10_BIT_ADDR_LEN_ADJUST);
     }
@@ -578,11 +571,7 @@ static fsp_err_t iic_master_read_write (i2c_master_ctrl_t * const p_ctrl,
     p_instance_ctrl->read = (bool) direction;
 
     /* Kickoff the read operation as a master */
-    err = iic_master_run_hw_master(p_instance_ctrl);
-
-    FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
-
-    return FSP_SUCCESS;
+    return iic_master_run_hw_master(p_instance_ctrl);
 }
 
 /*******************************************************************************************************************//**
@@ -679,7 +668,7 @@ static void iic_master_abort_seq_master (iic_master_instance_ctrl_t * const p_in
 
     /* Enable Interrupts: TMOIE, ALIE, NAKIE, RIE, TIE.
      * Disable Interrupt: TEIE, STIE, SPIE
-     * (see Section 'I2C Bus Interrupt Enable Register (ICIER)' of the RZ microprocessor manual).
+     * (see "I2C Bus Interrupt Enable Register (ICIER)" description in the IIC section of the relevant hardware manual).
      */
     p_instance_ctrl->p_reg->ICIER = IIC_MASTER_INTERRUPT_ENABLE_INIT_MASK;
 
@@ -692,8 +681,8 @@ static void iic_master_abort_seq_master (iic_master_instance_ctrl_t * const p_in
 }
 
 /*******************************************************************************************************************//**
- * Performs the hardware initialization sequence when operating as a master (see Section
- * 'Initial Settings' of the RZ microprocessor manual).
+ * Performs the hardware initialization sequence when operating as a master (see
+ * "Initial Settings" in the IIC Operation section of the relevant hardware manual).
  *
  * @param[in]  p_instance_ctrl       Pointer to IIC specific control structure
  * @param[in]  p_cfg                 Pointer to IIC specific configuration structure.
@@ -701,22 +690,29 @@ static void iic_master_abort_seq_master (iic_master_instance_ctrl_t * const p_in
 static void iic_master_open_hw_master (iic_master_instance_ctrl_t * const p_instance_ctrl,
                                        i2c_master_cfg_t const * const     p_cfg)
 {
-    /* Perform IIC reset */
-    p_instance_ctrl->p_reg->ICCR1 = (uint8_t) IIC_MASTER_PRV_SCL_SDA_NOT_DRIVEN;
+    uint32_t timeout_count = IIC_MASTER_PERIPHERAL_REG_MAX_WAIT;
 
-    /* Reset */
-    p_instance_ctrl->p_reg->ICCR1 = (uint8_t) (IIC_MASTER_ICCR1_IICRST_BIT_MASK | IIC_MASTER_PRV_SCL_SDA_NOT_DRIVEN);
+    /* Perform IIC reset */
+    /* S1. Set the ICCR1.ICE bit to 0 to set the SCLn and SDAn pins to the inactive state. */
+    p_instance_ctrl->p_reg->ICCR1_b.ICE = 0UL;
+
+    /* S2. Set the ICCR1.IICRST bit to 1 to initiate IIC reset. */
+    p_instance_ctrl->p_reg->ICCR1_b.IICRST = 1UL;
+
+    /* Wait for IICRST to be set. */
+    timeout_count = IIC_MASTER_PERIPHERAL_REG_MAX_WAIT;
+    IIC_MASTER_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICCR1_b.IICRST, 1U, timeout_count);
+
+    /* S3. Set the ICCR1.ICE bit to 1 to initiate internal reset. */
+    p_instance_ctrl->p_reg->ICCR1_b.ICE = 1UL;
+
+    /* S4. Set other registers as required. */
 
     /* Set valid interrupt contexts and user provided priority. Enable the interrupts at the GIC  */
     R_BSP_IrqCfgEnable(p_cfg->eri_irq, p_cfg->ipl, p_instance_ctrl);
     R_BSP_IrqCfgEnable(p_cfg->txi_irq, p_cfg->ipl, p_instance_ctrl);
     R_BSP_IrqCfgEnable(p_cfg->tei_irq, p_cfg->ipl, p_instance_ctrl);
     R_BSP_IrqCfgEnable(p_cfg->rxi_irq, p_cfg->ipl, p_instance_ctrl);
-
-    /* Come out of IIC reset to internal reset */
-    p_instance_ctrl->p_reg->ICCR1 =
-        (uint8_t) (IIC_MASTER_ICCR1_ICE_BIT_MASK | IIC_MASTER_ICCR1_IICRST_BIT_MASK |
-                   IIC_MASTER_PRV_SCL_SDA_NOT_DRIVEN);
 
     /* Configure the clock settings. This is set in the configuration structure by the tooling. */
     /* Set the number of counts that the clock remains low, bit 7 to 5 should be written as 1 */
@@ -742,7 +738,7 @@ static void iic_master_open_hw_master (iic_master_instance_ctrl_t * const p_inst
     /* TMOL 'Timeout L Count Control' and TMOH 'Timeout H Count Control' will be set at the time of I2C reset.
      * This will enable time out detection for both SCLn high and low.
      * Only Set/Clear TMOS here to select long or short mode.
-     * (see Section 'I2C Bus Mode Register 2 (ICMR2)' of the RZ microprocessor manual).
+     * (see "I2C Bus Mode Register 2 (ICMR2)" description in the IIC section of the relevant hardware manual).
      */
     p_instance_ctrl->p_reg->ICMR2 = (uint8_t) (IIC_MASTER_BUS_MODE_REGISTER_2_MASK |
                                                (uint8_t) (IIC_MASTER_TIMEOUT_MODE_SHORT ==
@@ -761,10 +757,10 @@ static void iic_master_open_hw_master (iic_master_instance_ctrl_t * const p_inst
      * 5. Enable NACK reception transfer suspension.
      * 6. Use the digital noise filter circuit. Upon I2C reset, 'NF[1:0] Noise Filter Stage Select' will be set to 0x00
      * This would imply  'Filter out noise of up to 1 IIC cycle (single-stage filter)'
-     * (see Section 'I2C Bus Mode Register 3 (ICMR3)' of the RZ microprocessor manual)
+     * (see "I2C Bus Mode Register 3 (ICMR3)" description in the IIC section of the relevant hardware manual).
      * 7. Do not use the SCL synchronous circuit.
      * 8. Enable FM+ slope circuit if fast mode plus is enabled.
-     * (see Section 'I2C Bus Function Enable Register' of the RZ microprocessor manual for more details)
+     * (see "I2C Bus Function Enable Register" description in the IIC section of the relevant hardware manual).
      */
     p_instance_ctrl->p_reg->ICFER = IIC_MASTER_FUNCTION_ENABLE_INIT_SETTINGS;
 
@@ -773,20 +769,18 @@ static void iic_master_open_hw_master (iic_master_instance_ctrl_t * const p_inst
 
     /* Enable Interrupts: TMOIE, ALIE, NAKIE, RIE, TIE.
      * Disable Interrupt: TEIE, STIE, SPIE
-     * (see Section 'I2C Bus Interrupt Enable Register (ICIER)' of the RZ microprocessor manual).
+     * (see "I2C Bus Interrupt Enable Register (ICIER)" description in the IIC section of the relevant hardware manual).
      */
     p_instance_ctrl->p_reg->ICIER = IIC_MASTER_INTERRUPT_ENABLE_INIT_MASK;
 
-    /* Release IIC from internal reset */
-
-    /* Reset */
-    p_instance_ctrl->p_reg->ICCR1 = (uint8_t) (IIC_MASTER_ICCR1_ICE_BIT_MASK | IIC_MASTER_PRV_SCL_SDA_NOT_DRIVEN);
+    /* S5. Set the ICCR1.IICRST bit to 0 to release the IIC reset. */
+    p_instance_ctrl->p_reg->ICCR1_b.IICRST = 0UL;
 }
 
 /*******************************************************************************************************************//**
  * Performs the data transfer described by the parameters when operating as a master.
- * See "Master Transmit Operation" and section "Master Receive Operation"
- * of the RZ microprocessor manual.
+ * See "Master Transmit Operation" and "Master Receive Operation"
+ * in the IIC section of the relevant hardware manual.
  *
  * @param[in]       p_instance_ctrl  Pointer to control structure of specific device.
  *
@@ -869,7 +863,7 @@ static fsp_err_t iic_master_run_hw_master (iic_master_instance_ctrl_t * const p_
     /* Check if this is a new transaction or a continuation */
     if (!p_instance_ctrl->restarted)
     {
-        /* As per BBSY clearing conditions in section of the RZ microprocessor manual,
+        /* As per BBSY clearing conditions in "I2C Bus Control Register 2" description in the IIC section of the relevant hardware manual,
          * the BBSY bit is 0 after the bus free time (ICBRL setting)
          * if a start condition is not detected after a stop condition detection.
          */
@@ -878,12 +872,11 @@ static fsp_err_t iic_master_run_hw_master (iic_master_instance_ctrl_t * const p_
         /* If bus is busy, return error */
         FSP_ERROR_RETURN((0U != timeout_count), FSP_ERR_IN_USE);
 
-        /* This is not a restarted transaction. Enable TXI for the next transfer.
-         * This had been disabled at the end of TXI interrupt.
-         * The intention is to only enable IIC_MASTER_TXI_EN_BIT.
-         * Writing the whole mask - IIC_MASTER_INTERRUPT_ENABLE_INIT_MASK saves cycles.
+        /* This is not a restarted transaction.
+         * Interrupt requests are not expected while control struct is being reinitialized,
+         * especially for multi-master use case, so they need to be disabled.
          */
-        p_instance_ctrl->p_reg->ICIER = IIC_MASTER_INTERRUPT_ENABLE_INIT_MASK;
+        p_instance_ctrl->p_reg->ICIER = 0;
     }
 
     /* Initialize fields used during transfer */
@@ -904,7 +897,7 @@ static fsp_err_t iic_master_run_hw_master (iic_master_instance_ctrl_t * const p_
     /* TMOL 'Timeout L Count Control' and TMOH 'Timeout H Count Control' will be set at the time of I2C reset.
      * This will enable time out detection for both SCLn high and low.
      * Only Set/Clear TMOS here to select long or short mode.
-     * (see Section 'I2C Bus Mode Register 2 (ICMR2)' of the RZ microprocessor manual).
+     * (see "I2C Bus Mode Register 2 (ICMR2)" description in the IIC section of the relevant hardware manual).
      */
     iic_master_extended_cfg_t * p_extend = (iic_master_extended_cfg_t *) p_instance_ctrl->p_cfg->p_extend;
 
@@ -921,36 +914,29 @@ static fsp_err_t iic_master_run_hw_master (iic_master_instance_ctrl_t * const p_
     /* Enable timeout function */
     p_instance_ctrl->p_reg->ICFER_b.TMOE = 1U;
 
-    /* Clear STOP flag.
-     * The stop condition may be detected in multi-master setups by another IIC module transaction or
-     * after the previous IIC master transaction is aborted by reset.
-     * In these cases, the STOP flag is not cleared in ISRs and it can lead to undesired interrupts
-     * after SPIE is enabled. So it is cleared here.
-     */
-    p_instance_ctrl->p_reg->ICSR2 &= (uint8_t) ~(IIC_MASTER_ICSR2_STOP_BIT);
+    /* Clear error flags in case they are set unexpectedly, e.g stop condition in multil-master use case */
+    p_instance_ctrl->p_reg->ICSR2 &= (uint8_t) ~(R_IIC0_ICSR2_STOP_Msk | R_IIC0_ICSR2_START_Msk);
 
     /* Wait for the value to reflect at the peripheral.
      * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual. */
     timeout_count = IIC_MASTER_PERIPHERAL_REG_MAX_WAIT;
-    IIC_MASTER_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICSR2_b.STOP, 0U, timeout_count);
-
-    /* Enable TXI. This is treated differently to support restart functionality.
-     * In case the previous IIC master transaction enabled restart, the queued TXI will fire a this point.
-     *
-     * The TXI had been GIC-disabled (but Peripheral enabled) before setting the
-     * RS bit by the previous restart enabled transaction.
-     * The RS bit mimics a "stop" followed by a "start" and keeps the bus busy.
-     * As a part of the previous transaction, TXI fires at the peripheral level and is queued at the CPU.
-     *
-     * If the previous transaction was not restart enabled -
-     * GIC-enable TXI which will fire after the start condition below.
-     */
-    R_BSP_IrqEnableNoClear(p_instance_ctrl->p_cfg->txi_irq);
+    IIC_MASTER_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICSR2 & (R_IIC0_ICSR2_STOP_Msk | R_IIC0_ICSR2_START_Msk),
+                                      0U,
+                                      timeout_count);
 
     /* Enable SPIE to detect unexpected STOP condition. This is disabled between communication events as it can lead
      * to undesired interrupts in multi-master setups. */
     p_instance_ctrl->p_reg->ICIER = IIC_MASTER_INTERRUPT_ENABLE_INIT_MASK | R_IIC0_ICIER_STIE_Msk |
                                     R_IIC0_ICIER_SPIE_Msk;
+
+    /* Enable TXI. This is treated differently to support restart functionality.
+     * In case the previous IIC master transaction enabled restart, the queued TXI will fire at this point.
+     *
+     * TXI will be triggered after the STIE and SPIE bits of the ICIER register have been enabled.
+     * This prevents an unexpected issue where TXI is triggered before SPIE and STIE are properly enabled,
+     * causing the ERI ISR not to be raised.
+     */
+    R_BSP_IrqEnableNoClear(p_instance_ctrl->p_cfg->txi_irq);
 
     /* If previous transaction did not end with restart, send a start condition */
     if (!p_instance_ctrl->restarted)
@@ -964,8 +950,8 @@ static fsp_err_t iic_master_run_hw_master (iic_master_instance_ctrl_t * const p_
     }
 
     /*
-     * The Flowchart under "Master Transmit Operation" and section "Master Receive Operation"
-     * of the RZ microprocessor manual is covered in the interrupts:
+     * The Flowchart under "Master Transmit Operation" and "Master Receive Operation"
+     * in the IIC section of the relevant hardware manual is covered in the interrupts:
      *
      * 1. NACKF processing is handled in the ERI interrupt.
      *    For receive, dummy reading ICDRR is not required because the NACK processing in this driver resets the IIC peripheral.
@@ -997,7 +983,8 @@ static void iic_master_rxi_master (iic_master_instance_ctrl_t * p_instance_ctrl)
         if (1U == p_instance_ctrl->remain)
         {
             /* Writes to be done separately.
-             * See Note 1 in Section 'I2C Bus Mode Register 3 (ICMR3)' of the RZ microprocessor manual
+             * See Note 1 of "I2C Bus Mode Register 3 (ICMR3)" description in the IIC section of the relevant
+             * hardware manual.
              */
             p_instance_ctrl->p_reg->ICMR3_b.ACKWP = 1; /* Write enable ACKBT */
             p_instance_ctrl->p_reg->ICMR3_b.ACKBT = 1;
@@ -1102,7 +1089,7 @@ static void iic_master_txi_master (iic_master_instance_ctrl_t * p_instance_ctrl)
             p_instance_ctrl->p_reg->ICIER_b.TIE = 0U;
 
             /* Wait for the value to reflect at the peripheral.
-             * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual */
+             * See 'Note' under Table "Interrupt sources" in the IIC section of the relevant hardware manual. */
             IIC_MASTER_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICIER_b.TIE, 0U, timeout_count);
 
             /* Enable the transmit end IRQ, to issue a STOP or RESTART */
@@ -1173,7 +1160,7 @@ static void iic_master_tei_master (iic_master_instance_ctrl_t * p_instance_ctrl)
             /* Clear STOP flag and set SP.
              * It is ok to clear other status' as this transaction is over.
              */
-            p_instance_ctrl->p_reg->ICSR2 &= (uint8_t) ~(IIC_MASTER_ICSR2_STOP_BIT);
+            p_instance_ctrl->p_reg->ICSR2 &= (uint8_t) ~(R_IIC0_ICSR2_STOP_Msk);
 
             /* Wait for the value to reflect at the peripheral.
              * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual. */
@@ -1193,7 +1180,7 @@ static void iic_master_tei_master (iic_master_instance_ctrl_t * p_instance_ctrl)
     p_instance_ctrl->p_reg->ICIER_b.TEIE = 0U;
 
     /* Wait for the value to reflect at the peripheral.
-     * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual */
+     * See 'Note' under the table "Interrupt sources" in the IIC section of the relevant hardware manual. */
     timeout_count = IIC_MASTER_PERIPHERAL_REG_MAX_WAIT;
     IIC_MASTER_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICIER_b.TEIE, 0U, timeout_count);
 }
@@ -1228,8 +1215,8 @@ static void iic_master_err_master (iic_master_instance_ctrl_t * p_instance_ctrl)
          *     a. In case of an arbitration loss error.also occurs.
          *     b. If the slave timeout is lesser than master timeout and the slave releases
          *        the bus by performing an internal reset.
-         *        Refer Section "I2C Bus Control Register 2 (ICCR2) - Clearing conditions for MST"
-         *        of the RZ microprocessor manual.
+         *        See clearing conditions of MST in "I2C Bus Control Register 2 (ICCR2)" description
+         *        in the IIC section of the relevant hardware manual.
          * 3. This is a Timeout error after attempting to issue a stop after detecting a NACK previously.
          *//* Set the error flag when an error event occurred */
         p_instance_ctrl->err = true;
@@ -1242,7 +1229,7 @@ static void iic_master_err_master (iic_master_instance_ctrl_t * p_instance_ctrl)
     else if ((errs_events & (uint8_t) (IIC_MASTER_ERR_EVENT_NACK)) && (1U == p_instance_ctrl->p_reg->ICCR2_b.MST))
     {
         /* MST bit must be set to issue a stop condition.
-         * Refer Section "Issuing a Stop Condition" of the RZ microprocessor manual.
+         * See "Issuing a Stop Condition" in the IIC section of the relevant hardware manual.
          */
 
         /* Set the error flag when an error event occurred
@@ -1250,7 +1237,7 @@ static void iic_master_err_master (iic_master_instance_ctrl_t * p_instance_ctrl)
         p_instance_ctrl->err = true;
 
         /* The sequence below is to handle a NACK received from slave in the middle of a write.
-         * See item '[4]' under 'Figure Example master transmission flow' of the RZ microprocessor manual. */
+         * See item '[4]' under the figure "Example master transmission flow" in the IIC section of the relevant hardware manual. */
 
         /* Request IIC to issue the stop condition */
         p_instance_ctrl->p_reg->ICCR2 = (uint8_t) IIC_MASTER_ICCR2_SP_BIT_MASK; /* It is safe to write 0's to other bits. */
@@ -1263,16 +1250,16 @@ static void iic_master_err_master (iic_master_instance_ctrl_t * p_instance_ctrl)
         /* This interrupt will be fired again when wither stop condition is sent
          * or the hardware detects the line is stuck low causing a timeout */
     }
-    /* This is a STOP, START or RESTART event. We need to process these events only at the
-     * end of the requisite transfers.
+    /* This is a STOP or RESTART event. Please note there may be expected start/stop condition in multi-master use case.
      * NOTE: Do not use p_transfer->loaded or p_transfer->remain to check whether the transfer is
      * completed, since using them would lead to a race condition between txi and eri interrupts in case
-     * of one byte transfer which will result in BUS arbitration loss error */
+     * of one byte transfer which will result in BUS arbitration loss error.
+     */
     else if ((errs_events & (uint8_t) IIC_MASTER_ERR_EVENT_STOP) ||
              ((p_instance_ctrl->restarted) && (errs_events & (uint8_t) IIC_MASTER_ERR_EVENT_START)))
     {
         i2c_master_event_t event = I2C_MASTER_EVENT_ABORTED;
-        if (false == p_instance_ctrl->err) /* Successful transaction */
+        if ((0 == p_instance_ctrl->remain) && (false == p_instance_ctrl->err)) /* Successful transaction */
         {
             /* Get the correct event to notify the user */
             event = (p_instance_ctrl->read) ? I2C_MASTER_EVENT_RX_COMPLETE : I2C_MASTER_EVENT_TX_COMPLETE;
@@ -1324,7 +1311,7 @@ static void iic_master_rxi_read_data (iic_master_instance_ctrl_t * const p_insta
     else if (2U == p_instance_ctrl->remain)
     {
         /* Writes to be done separately.
-         * See Note 1 in Section 'I2C Bus Mode Register 3 (ICMR3)' of the RZ microprocessor manual.
+         * See Note 1 in "I2C Bus Mode Register 3 (ICMR3)" in the IIC section of the relevant hardware manual.
          */
         p_instance_ctrl->p_reg->ICMR3_b.ACKWP = 1; /* Write enable ACKBT */
         p_instance_ctrl->p_reg->ICMR3_b.ACKBT = 1;
@@ -1363,7 +1350,7 @@ static void iic_master_rxi_read_data (iic_master_instance_ctrl_t * const p_insta
             /* Clear STOP flag and set SP.
              * It is ok to clear other status' as this transaction is over.
              */
-            p_instance_ctrl->p_reg->ICSR2 &= (uint8_t) ~(IIC_MASTER_ICSR2_STOP_BIT);
+            p_instance_ctrl->p_reg->ICSR2 &= (uint8_t) ~(R_IIC0_ICSR2_STOP_Msk);
 
             /* Wait for the value to reflect at the peripheral.
              * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual. */
@@ -1374,7 +1361,7 @@ static void iic_master_rxi_read_data (iic_master_instance_ctrl_t * const p_insta
             p_instance_ctrl->p_reg->ICCR2 = (uint8_t) IIC_MASTER_ICCR2_SP_BIT_MASK; /* It is safe to write 0's to other bits. */
 
             /* STOP flag will not be set just yet. STOP will be set only after reading the last byte from ICDRR and clearing the WAIT.
-             * See Point #7 under 'Master Receive Operation' of the RZ microprocessor manual.
+             * See Point #7 under "Master Receive Operation" in the IIC section of the relevant hardware manual.
              */
         }
     }
@@ -1423,7 +1410,7 @@ static void iic_master_txi_send_address (iic_master_instance_ctrl_t * const p_in
         p_instance_ctrl->p_reg->ICIER_b.TIE = 0U;
 
         /* Wait for the value to reflect at the peripheral.
-         * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual. */
+         * See 'Note' under table "Interrupt sources" in the IIC section of the relevant hardware manual. */
         IIC_MASTER_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICIER_b.TIE, 0U, timeout_count);
 
         /* Enable the transmit end IRQ, so that we can generate a RESTART condition */

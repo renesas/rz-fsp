@@ -596,7 +596,13 @@ usb_er_t usb_cstd_isnd_msg(uint8_t id, usb_msg_t * mess);
 void usb_pstd_usb_handler(void);
 
 /* r_usb_pdriver.c */
-void     usb_pstd_pcd_task(void);
+ #if (BSP_CFG_RTOS == 1)
+void usb_pstd_pcd_task(ULONG entry_input);
+
+ #else                                 /* #if (BSP_CFG_RTOS == 1) */
+void usb_pstd_pcd_task(void);
+
+ #endif /* #if (BSP_CFG_RTOS == 1) */
 usb_er_t usb_pstd_set_submitutr(usb_utr_t * utrmsg);
 void     usb_pstd_clr_alt(void);
 void     usb_pstd_clr_mem(void);

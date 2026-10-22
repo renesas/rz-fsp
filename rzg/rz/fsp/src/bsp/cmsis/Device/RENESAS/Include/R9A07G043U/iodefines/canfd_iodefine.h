@@ -505,7 +505,17 @@ typedef struct
             __IOM uint8_t TMDB : 8;    /*!< [7..0] TX Message Buffer Data Byte                                        */
         } DF_b[20];
     };
-} R_CANFD_CFDTM_Type;                  /*!< Size = 128 (0x80)                                                         */
+} R_CANFD_CFDTM_GRP_BCP_Type;          /*!< Size = 128 (0x80)                                                         */
+
+typedef struct
+{
+    __IOM R_CANFD_CFDTM_GRP_BCP_Type BCP[16];
+} R_CANFD_CFDTM_GRP_Type;
+
+typedef struct
+{
+    __IOM R_CANFD_CFDTM_GRP_Type GRP[1];
+} R_CANFD_CFDTM_Type;
 
 /* =========================================================================================================================== */
 /* ================                                          R_CANFD                                          ================ */
@@ -1183,7 +1193,7 @@ typedef struct                         /*!< (@ 0x400B0000) R_CANFD Structure    
     __IOM R_CANFD_CFDRF_Type   CFDRF[8];    /*!< (@ 0x00003000) RX FIFO Access Registers                                */
     __IOM R_CANFD_CFDCF_Type   CFDCF[6];    /*!< (@ 0x00003400) Common FIFO Access Registers                            */
     __IM uint8_t               RESERVED27[2304];
-    __IOM R_CANFD_CFDTM_Type   CFDTM[128];  /*!< (@ 0x00004000) TX Message Buffer Access Registers                      */
+    __IOM R_CANFD_CFDTM_Type   CFDTM[2];    /*!< (@ 0x00004000) TX Message Buffer Access Registers                      */
     __IM uint8_t               RESERVED28[4096];
     __IOM R_CANFD_CFDTHL_Type  CFDTHL[2];   /*!< (@ 0x00006000) Channel TX History List                                 */
     __IM uint8_t               RESERVED29[1016];

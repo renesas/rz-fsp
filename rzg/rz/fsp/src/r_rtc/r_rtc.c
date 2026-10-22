@@ -929,14 +929,16 @@ fsp_err_t R_RTC_TimeCaptureSet (rtc_ctrl_t * const p_ctrl, rtc_time_capture_t * 
     /* Clear config, set TCEN bit before set other bit. */
     R_RTC->RTCCR0 = R_RTC_RTCCR0_TCEN_Msk;
 
-    /* When RTCCRn is modified, check that all the bits except the TCST bit are updated before continuing with
-     * additional processing. */
+    /* When RTCCR0 is modified, check that all the bits except the TCST bit are updated before continuing with
+     * additional processing (see "Time Capture Control Register (RTCCR0)" in the RTC section
+     * of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT(R_RTC->RTCCR0, (uint8_t) R_RTC_RTCCR0_TCEN_Msk);
 
     R_RTC->RTCCR0 |=
         (uint8_t) (p_time_capture->noise_filter << R_RTC_RTCCR0_TCNF_Pos);
 
-    /* When the noise filter is used, set the TCNF[2:0] bits,wait for 3 cycles of the specified sampling period */
+    /* When the noise filter is used, set the TCNF[2:0] bits, wait for 3 cycles of the specified sampling period
+     * (see "Time Capture Control Register (RTCCR0)" in the RTC section of the relevant hardware manual). */
     uint32_t noise_filter_delay_us = 0;
 
  #if !BSP_FEATURE_RTC_TCNF_WIDTH_3BITS
@@ -994,14 +996,16 @@ fsp_err_t R_RTC_TimeCaptureSet (rtc_ctrl_t * const p_ctrl, rtc_time_capture_t * 
         R_BSP_SoftwareDelay(NOISE_FILTER_SET_NUMBER_DELAY * noise_filter_delay_us, BSP_DELAY_UNITS_MICROSECONDS);
     }
 
-    /* When RTCCRn is modified, check that all the bits except the TCST bit are updated before continuing with
-     * additional processing. */
+    /* When RTCCR0 is modified, check that all the bits except the TCST bit are updated before continuing with
+     * additional processing (see "Time Capture Control Register (RTCCR0)" in the RTC section
+     * of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT(R_RTC->RTCCR0_b.TCNF, (uint8_t) p_time_capture->noise_filter);
 
     R_RTC->RTCCR0 |= (uint8_t) (p_time_capture->source << R_RTC_RTCCR0_TCCT_Pos);
 
-    /* When RTCCRn is modified, check that all the bits except the TCST bit are updated before continuing with
-     * additional processing. */
+    /* When RTCCR0 is modified, check that all the bits except the TCST bit are updated before continuing with
+     * additional processing (see "Time Capture Control Register (RTCCR0)" in the RTC section
+     * of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT(R_RTC->RTCCR0_b.TCCT, (uint8_t) p_time_capture->source);
 
     return FSP_SUCCESS;
@@ -1049,13 +1053,15 @@ fsp_err_t R_RTC_TimeCaptureGet (rtc_ctrl_t * const p_ctrl, rtc_time_capture_t * 
     p_time_capture->source       = (rtc_time_capture_source_t) R_RTC->RTCCR0_b.TCCT;
     p_time_capture->noise_filter = (rtc_time_capture_noise_filter_t) R_RTC->RTCCR0_b.TCNF;
 
-    /* Before reading from this register, the time capture event detection should be stopped using the RTCCRn.TCCT[1:0]
-     * bits. */
+    /* Before reading from this register, the time capture event detection should be stopped using the RTCCR0.TCCT[1:0]
+     * bits (see section "In calendar count mode" of "Second Capture Register (RSECCP0)/BCNT0 Capture Register (BCNT0CP0)"
+     * in the RTC section of the relevant hardware manual). */
     uint8_t rtccr = R_RTC->RTCCR0;
     R_RTC->RTCCR0 = rtccr & ((uint8_t) ~R_RTC_RTCCR0_TCCT_Msk);
 
-    /* When RTCCRn is modified, check that all the bits except the TCST bit are updated before continuing with
-     * additional processing. */
+    /* When RTCCR0 is modified, check that all the bits except the TCST bit are updated before continuing with
+     * additional processing (see "Time Capture Control Register (RTCCR0)" in the RTC section
+     * of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT(R_RTC->RTCCR0, (uint8_t) (rtccr & ((uint8_t) ~R_RTC_RTCCR0_TCCT_Msk)));
 
     p_time_capture->time.tm_sec  = rtc_bcd_to_dec(R_RTC->RSECCNT & RTC_MASK_8TH_BIT);
@@ -1070,8 +1076,8 @@ fsp_err_t R_RTC_TimeCaptureGet (rtc_ctrl_t * const p_ctrl, rtc_time_capture_t * 
     /* Restore setting and clear Time capture status bit */
     R_RTC->RTCCR0 = rtccr & ((uint8_t) ~R_RTC_RTCCR0_TCST_Msk);
 
-    /* When RTCCRn is modified, check that all the bits except the TCST bit are updated before continuing with
-     * additional processing. */
+    /* When RTCCR0 is modified, check that all the bits except the TCST bit are updated before continuing with
+     * additional processing (see "Time Capture Control Register (RTCCR0)" in the RTC section of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT(R_RTC->RTCCR0, (uint8_t) (rtccr & ((uint8_t) ~R_RTC_RTCCR0_TCST_Msk)));
 
     return FSP_SUCCESS;

@@ -40,6 +40,7 @@
  #define BSP_OVERRIDE_DISPLAY_IN_FORMAT_T
  #define BSP_OVERRIDE_DISPLAY_INPUT_CFG_T
  #define BSP_OVERRIDE_DISPLAY_DATA_SWAP_T
+ #define BSP_OVERRIDE_CANFD_TX_BUFFER_T
  #define BSP_OVERRIDE_CANFD_TX_MB_T
 
 /* Define register overrides required for this MPU. */
@@ -277,16 +278,18 @@ struct st_transfer_info
 /** This structure specifies the properties of the transfer. Please refer to the struct st_transfer_info. */
 typedef struct st_transfer_info transfer_info_t;
 
+/*==============================================
+ * ADC API Overrides
+ *==============================================*/
+
 /** ADC Information Structure for Transfer Interface */
 struct st_adc_info
 {
-    __IM void * p_address;                                                  ///< The address to start reading the data from
-    uint32_t    length;                                                     ///< The total number of transfers to read
-
-    transfer_size_t transfer_size;                                          ///< The size of each transfer
-    uint32_t        calibration_data[BSP_FEATURE_ADC_NUM_CALIBRATION_DATA]; ///< Temperature sensor calibration data (0xFFFFFFFF if unsupported) for reference voltage
-    int16_t         slope_microvolts;                                       ///< Temperature sensor slope in microvolts/degrees C
-    bool            calibration_ongoing;                                    ///< Calibration is in progress.
+    volatile const void * p_address;         ///< The address to start reading the data from
+    uint32_t              length;            ///< The total number of transfers to read
+    transfer_size_t       transfer_size;     ///< The size of each transfer
+    uint32_t              calibration_data1; ///< Temperature sensor calibration data1
+    uint32_t              calibration_data2; ///< Temperature sensor calibration data2
 };
 
 /** ADC Information Structure for Transfer Interface. Please refer to the struct st_adc_info. */
@@ -356,6 +359,10 @@ struct st_display_input_cfg
 
 /** Graphics plane input configuration structure. Please refer to the struct st_display_input_cfg. */
 typedef struct st_display_input_cfg display_input_cfg_t;
+
+/*==============================================
+ * CANFD Overrides
+ *==============================================*/
 
 /** CANFD Transmit Message Buffer (TX MB) */
 typedef enum e_canfd_tx_mb

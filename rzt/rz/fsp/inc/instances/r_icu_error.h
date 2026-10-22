@@ -5,14 +5,14 @@
 */
 
 #ifndef R_ICU_ERROR_H
-#define R_ICU_ERROR_H
+ #define R_ICU_ERROR_H
 
 /***********************************************************************************************************************
  * Includes
  **********************************************************************************************************************/
-#include "bsp_api.h"
-#include "r_error_api.h"
-#include "r_icu_error_cfg.h"
+ #include "bsp_api.h"
+ #include "r_error_api.h"
+ #include "r_icu_error_cfg.h"
 
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
@@ -20,9 +20,9 @@ FSP_HEADER
 /**********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
-#define PERIPHERAL_ERROR_TABLE_MAX_ENTRIES    (128)
-#define DSMIF_ERROR_TABLE_MAX_ENTRIES         (384)
-#define ENCIF_ERROR_TABLE_MAX_ENTRIES         (196)
+ #define PERIPHERAL_ERROR_TABLE_MAX_ENTRIES    (128)
+ #define DSMIF_ERROR_TABLE_MAX_ENTRIES         (384)
+ #define ENCIF_ERROR_TABLE_MAX_ENTRIES         (196)
 
 /***********************************************************************************************************************
  * Typedef definitions
@@ -60,7 +60,7 @@ typedef enum e_icu_error_cpu0_error
     ICU_ERROR_CPU0_ERROR_EVENT25 = (1UL << 25)
 } icu_error_cpu0_error_t;
 
-#if BSP_FEATURE_ICU_ERROR_CR52_CPU1_SUPPORTED
+ #if BSP_FEATURE_ICU_ERROR_CR52_CPU1_SUPPORTED
 
 /** ICU_ERROR CPU1 Error Code */
 typedef enum e_icu_error_cpu1_error
@@ -92,28 +92,41 @@ typedef enum e_icu_error_cpu1_error
     ICU_ERROR_CPU1_ERROR_EVENT24 = (1UL << 24),
     ICU_ERROR_CPU1_ERROR_EVENT25 = (1UL << 25)
 } icu_error_cpu1_error_t;
-#endif
+ #endif
 
-#if BSP_FEATURE_ICU_ERROR_CA55_SUPPORTED
+ #if BSP_FEATURE_ICU_ERROR_CA55_SUPPORTED
 typedef enum e_icu_error_ca55_error
 {
-    ICU_ERROR_CR55_ERROR_0_NFAULTIRQ1        = (1UL << 0),
-    ICU_ERROR_CR55_ERROR_1_NFAULTIRQ2        = (1UL << 1),
-    ICU_ERROR_CR55_ERROR_2_NFAULTIRQ3        = (1UL << 2),
-    ICU_ERROR_CR55_ERROR_3_NFAULTIRQ4        = (1UL << 3),
-    ICU_ERROR_CR55_ERROR_4_NFAULTIRQ0        = (1UL << 4),
-    ICU_ERROR_CR55_ERROR_5_NERRIRQ1          = (1UL << 5),
-    ICU_ERROR_CR55_ERROR_6_NERRIRQ2          = (1UL << 6),
-    ICU_ERROR_CR55_ERROR_7_NERRIRQ3          = (1UL << 7),
-    ICU_ERROR_CR55_ERROR_8_NERRIRQ4          = (1UL << 8),
-    ICU_ERROR_CR55_ERROR_9_NERRIRQ0          = (1UL << 9),
-    ICU_ERROR_CR55_ERROR_10_GIC600_FAULT_INT = (1UL << 10),
-    ICU_ERROR_CR55_ERROR_11_GIC600_ERR_INT   = (1UL << 11),
-    ICU_ERROR_CR55_ERROR_12_GIC600_PMU_INT   = (1UL << 12),
+    ICU_ERROR_CR55_ERROR_0_NFAULTIRQ1        = (1UL << 0),  // DEPRECATED
+    ICU_ERROR_CR55_ERROR_1_NFAULTIRQ2        = (1UL << 1),  // DEPRECATED
+    ICU_ERROR_CR55_ERROR_2_NFAULTIRQ3        = (1UL << 2),  // DEPRECATED
+    ICU_ERROR_CR55_ERROR_3_NFAULTIRQ4        = (1UL << 3),  // DEPRECATED
+    ICU_ERROR_CR55_ERROR_4_NFAULTIRQ0        = (1UL << 4),  // DEPRECATED
+    ICU_ERROR_CR55_ERROR_5_NERRIRQ1          = (1UL << 5),  // DEPRECATED
+    ICU_ERROR_CR55_ERROR_6_NERRIRQ2          = (1UL << 6),  // DEPRECATED
+    ICU_ERROR_CR55_ERROR_7_NERRIRQ3          = (1UL << 7),  // DEPRECATED
+    ICU_ERROR_CR55_ERROR_8_NERRIRQ4          = (1UL << 8),  // DEPRECATED
+    ICU_ERROR_CR55_ERROR_9_NERRIRQ0          = (1UL << 9),  // DEPRECATED
+    ICU_ERROR_CR55_ERROR_10_GIC600_FAULT_INT = (1UL << 10), // DEPRECATED
+    ICU_ERROR_CR55_ERROR_11_GIC600_ERR_INT   = (1UL << 11), // DEPRECATED
+    ICU_ERROR_CR55_ERROR_12_GIC600_PMU_INT   = (1UL << 12), // DEPRECATED
+    ICU_ERROR_CA55_ERROR_0_NFAULTIRQ1        = (1UL << 0),
+    ICU_ERROR_CA55_ERROR_1_NFAULTIRQ2        = (1UL << 1),
+    ICU_ERROR_CA55_ERROR_2_NFAULTIRQ3        = (1UL << 2),
+    ICU_ERROR_CA55_ERROR_3_NFAULTIRQ4        = (1UL << 3),
+    ICU_ERROR_CA55_ERROR_4_NFAULTIRQ0        = (1UL << 4),
+    ICU_ERROR_CA55_ERROR_5_NERRIRQ1          = (1UL << 5),
+    ICU_ERROR_CA55_ERROR_6_NERRIRQ2          = (1UL << 6),
+    ICU_ERROR_CA55_ERROR_7_NERRIRQ3          = (1UL << 7),
+    ICU_ERROR_CA55_ERROR_8_NERRIRQ4          = (1UL << 8),
+    ICU_ERROR_CA55_ERROR_9_NERRIRQ0          = (1UL << 9),
+    ICU_ERROR_CA55_ERROR_10_GIC600_FAULT_INT = (1UL << 10),
+    ICU_ERROR_CA55_ERROR_11_GIC600_ERR_INT   = (1UL << 11),
+    ICU_ERROR_CA55_ERROR_12_GIC600_PMU_INT   = (1UL << 12),
 } icu_error_ca55_error_t;
-#endif
+ #endif
 
-#if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 1
+ #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 1
 
 /** ICU_ERROR Peripheral 0 Error Code */
 typedef enum e_icu_error_peripheral_error_0
@@ -183,9 +196,9 @@ typedef enum e_icu_error_peripheral_error_1
     ICU_ERROR_PERIPHERAL_ERROR_1_MPU_DBGR        = (1UL << 27), // Master MPU Read channel for Debug error
     ICU_ERROR_PERIPHERAL_ERROR_1_MPU_DBGW        = (1UL << 28), // Master MPU Write channel for Debug error
 } icu_error_peripheral_error_1_t;
-#endif
+ #endif
 
-#if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 2
+ #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 2
 
 /** ICU_ERROR Peripheral 0 Error Code */
 typedef enum e_icu_error_peripheral_error_0
@@ -322,9 +335,9 @@ typedef enum e_icu_error_peripheral_error_3
     ICU_ERROR_PERIPHERAL_ERROR_3_AFMT0_TMOUT            = (1UL << 29), // AFMT0 Time out error
     ICU_ERROR_PERIPHERAL_ERROR_3_AFMT1_TMOUT            = (1UL << 30), // AFMT1 Time out error
 } icu_error_peripheral_error_3_t;
-#endif
+ #endif
 
-#if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
+ #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
 
 /** ICU_ERROR Peripheral 0 Error Code */
 typedef enum e_icu_error_peripheral_error_0
@@ -430,9 +443,9 @@ typedef enum e_icu_error_peripheral_error_2
     ICU_ERROR_PERIPHERAL_ERROR_2_PERF_MON_DATA_STATUS1  = (1UL << 28), // Performance monitor signal 1
 } icu_error_peripheral_error_2_t;
 
-#endif
+ #endif
 
-#if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 4
+ #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 4
 
 /** ICU_ERROR Peripheral 0 Error Code */
 typedef enum e_icu_error_peripheral_error_0
@@ -543,9 +556,9 @@ typedef enum e_icu_error_peripheral_error_3
     ICU_ERROR_PERIPHERAL_ERROR_3_ESWM_ETHA0_ERR = (1UL << 29), // ESWM ETHA0 Error Interrupt
     ICU_ERROR_PERIPHERAL_ERROR_3_ESWM_ETHA1_ERR = (1UL << 30), // ESWM ETHA1 Error Interrupt
 } icu_error_peripheral_error_3_t;
-#endif
+ #endif
 
-#if BSP_FEATURE_ICU_ERROR_DSMIF_ERR_INTERRUPT_SUPPORTED
+ #if BSP_FEATURE_ICU_ERROR_DSMIF_ERR_INTERRUPT_SUPPORTED
 typedef enum e_icu_error_dsmif_error_0
 {
     ICU_ERROR_DSMIF_ERROR_0_DSMIF0_OVC0EH0 = (1UL << 0),  // DSMIF0 Overcurrent Upper limit Detection 0 CH 0
@@ -711,7 +724,7 @@ typedef enum e_icu_error_dsmif_error_4
     ICU_ERROR_DSMIF_ERROR_4_DSMIF4_OVC3WN2 = (1UL << 28), // DSMIF4 Overcurrent Detection Window Notification 3 CH 2
 } icu_error_dsmif_error_4_t;
 
- #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
+  #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
 typedef enum e_icu_error_dsmif_error_5
 {
     ICU_ERROR_DSMIF_ERROR_5_DSMIF5_OVC0EH0 = (1UL << 0),  // DSMIF5 Overcurrent Upper limit Detection 0 CH 0
@@ -876,7 +889,7 @@ typedef enum e_icu_error_dsmif_error_9
     ICU_ERROR_DSMIF_ERROR_9_DSMIF9_OVC2WN2 = (1UL << 27), // DSMIF9 Overcurrent Detection Window Notification 2 CH 2
     ICU_ERROR_DSMIF_ERROR_9_DSMIF9_OVC3WN2 = (1UL << 28), // DSMIF9 Overcurrent Detection Window Notification 3 CH 2
 } icu_error_dsmif_error_9_t;
- #endif
+  #endif
 
 typedef enum e_icu_error_dsmif_error_10
 {
@@ -912,7 +925,7 @@ typedef enum e_icu_error_dsmif_error_10
     ICU_ERROR_DSMIF_ERROR_10_DSMIF4_OVC0EL0 = (1UL << 29), // DSMIF4 Overcurrent Lower limit Detection 0 CH 0
 } icu_error_dsmif_error_10_t;
 
- #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
+  #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
 typedef enum e_icu_error_dsmif_error_11
 {
     ICU_ERROR_DSMIF_ERROR_11_DSMIF5_SUMERRL = (1UL << 0),  // DSMIF5 Overcurrent Sum Error Lower limit detection
@@ -946,11 +959,11 @@ typedef enum e_icu_error_dsmif_error_11
     ICU_ERROR_DSMIF_ERROR_11_DSMIF9_SCE2    = (1UL << 28), // DSMIF9 Short Circuit Detection CH 2
     ICU_ERROR_DSMIF_ERROR_11_DSMIF9_OVC0EL0 = (1UL << 29), // DSMIF9 Overcurrent Lower limit Detection 0 CH 0
 } icu_error_dsmif_error_11_t;
+  #endif
  #endif
-#endif
 
-#if BSP_FEATURE_ICU_ERROR_ENCIF_ERR_INTERRUPT_SUPPORTED
- #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
+ #if BSP_FEATURE_ICU_ERROR_ENCIF_ERR_INTERRUPT_SUPPORTED
+  #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
 typedef enum e_icu_error_encif_error_0
 {
     ICU_ERROR_ENCIF_ERROR_0_BISS00_NER   = (1UL << 0),  // BISS00 Error interrupt
@@ -986,7 +999,7 @@ typedef enum e_icu_error_encif_error_0
     ICU_ERROR_ENCIF_ERROR_0_AFMT14_TMOUT = (1UL << 30), // AFMT14 Time out error
     ICU_ERROR_ENCIF_ERROR_0_AFMT15_TMOUT = (1UL << 31), // AFMT15 Time out error
 } icu_error_encif_error_0_t;
- #elif BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 4
+  #elif BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 4
 typedef enum e_icu_error_encif_error_0
 {
     ICU_ERROR_ENCIF_ERROR_0_BISS00_NER   = (1UL << 0),  // BISS00 Error interrupt
@@ -1006,7 +1019,7 @@ typedef enum e_icu_error_encif_error_0
     ICU_ERROR_ENCIF_ERROR_0_AFMT06_TMOUT = (1UL << 22), // AFMT06 Time out error
     ICU_ERROR_ENCIF_ERROR_0_AFMT07_TMOUT = (1UL << 23), // AFMT07 Time out error
 } icu_error_encif_error_0_t;
- #endif
+  #endif
 
 typedef enum e_icu_error_encif_error_1
 {
@@ -1072,7 +1085,7 @@ typedef enum e_icu_error_encif_error_2
     ICU_ERROR_ENCIF_ERROR_2_HDSL07_DEV_THR_ERR      = (1UL << 30), // HDSL07 Estimator deviation threshold reached
 } icu_error_encif_error_2_t;
 
- #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
+  #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
 typedef enum e_icu_error_encif_error_3
 {
     ICU_ERROR_ENCIF_ERROR_3_HDSL08_ESTIMATOR_ON     = (1UL << 0),  // HDSL08 Position Estimator activated
@@ -1136,9 +1149,9 @@ typedef enum e_icu_error_encif_error_4
     ICU_ERROR_ENCIF_ERROR_4_HDSL15_ENCODING_ERR     = (1UL << 29), // HDSL15 DSL message encoding error
     ICU_ERROR_ENCIF_ERROR_4_HDSL15_DEV_THR_ERR      = (1UL << 30), // HDSL15 Estimator deviation threshold reached
 } icu_error_encif_error_4_t;
- #endif
+  #endif
 
- #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 4
+  #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 4
 typedef enum e_icu_error_encif_error_5
 {
     ICU_ERROR_ENCIF_ERROR_5_BISSL0_NER = (1UL << 0), // BISSL0 Error interrupt
@@ -1146,8 +1159,8 @@ typedef enum e_icu_error_encif_error_5
     ICU_ERROR_ENCIF_ERROR_5_BISSL4_NER = (1UL << 4), // BISSL4 Error interrupt
     ICU_ERROR_ENCIF_ERROR_5_BISSL5_NER = (1UL << 5), // BISSL5 Error interrupt
 } icu_error_encif_error_5_t;
+  #endif
  #endif
-#endif
 
 /** ERROR instance control block. Do not initialize. Initialization occurs when the @ref RZT::error_api_t::open function is called. */
 struct st_icu_error_instance_ctrl
@@ -1171,67 +1184,67 @@ struct st_icu_error_extended_cfg
     IRQn_Type cpu0_err0_irq;                           ///< Cortex-R52 CPU0 error 0 interrupt IRQ number
     uint8_t   cpu0_err1_ipl;                           ///< Cortex-R52 CPU0 error 1 interrupt priority
     IRQn_Type cpu0_err1_irq;                           ///< Cortex-R52 CPU0 error 1 interrupt IRQ number
-#if BSP_FEATURE_ICU_ERROR_CR52_CPU1_SUPPORTED
+ #if BSP_FEATURE_ICU_ERROR_CR52_CPU1_SUPPORTED
     uint8_t   cpu1_err0_ipl;                           ///< Cortex-R52 CPU1 error 0 interrupt interrupt priority
     IRQn_Type cpu1_err0_irq;                           ///< Cortex-R52 CPU1 error 0 interrupt IRQ number
     uint8_t   cpu1_err1_ipl;                           ///< Cortex-R52 CPU1 error 1 interrupt interrupt priority
     IRQn_Type cpu1_err1_irq;                           ///< Cortex-R52 CPU1 error 1 interrupt IRQ number
-#endif
-#if BSP_FEATURE_ICU_ERROR_CA55_SUPPORTED
+ #endif
+ #if BSP_FEATURE_ICU_ERROR_CA55_SUPPORTED
     uint8_t   ca55_err0_ipl;                           ///< Cortex-A55 error 0 interrupt interrupt priority
     IRQn_Type ca55_err0_irq;                           ///< Cortex-A55 error 0 interrupt IRQ number
     uint8_t   ca55_err1_ipl;                           ///< Cortex-A55 error 1 interrupt interrupt priority
     IRQn_Type ca55_err1_irq;                           ///< Cortex-A55 error 1 interrupt IRQ number
-#endif
+ #endif
     uint8_t   peri_err0_ipl;                           ///< Peripheral error 0 interrupt priority
     IRQn_Type peri_err0_irq;                           ///< Peripheral error 0 interrupt IRQ number
     uint8_t   peri_err1_ipl;                           ///< Peripheral error 1 interrupt priority
     IRQn_Type peri_err1_irq;                           ///< Peripheral error 1 interrupt IRQ number
 
-#if BSP_FEATURE_ICU_ERROR_DSMIF_ERR_INTERRUPT_SUPPORTED
+ #if BSP_FEATURE_ICU_ERROR_DSMIF_ERR_INTERRUPT_SUPPORTED
     uint8_t   dsmif_err0_ipl;                          ///< DSMIF error 0 interrupt priority
     IRQn_Type dsmif_err0_irq;                          ///< DSMIF error 0 interrupt IRQ number
     uint8_t   dsmif_err1_ipl;                          ///< DSMIF error 1 interrupt priority
     IRQn_Type dsmif_err1_irq;                          ///< DSMIF error 1 interrupt IRQ number
-#endif
+ #endif
 
-#if BSP_FEATURE_ICU_ERROR_ENCIF_ERR_INTERRUPT_SUPPORTED
+ #if BSP_FEATURE_ICU_ERROR_ENCIF_ERR_INTERRUPT_SUPPORTED
     uint8_t   encif_err0_ipl;                          ///< ENCIF error 0 interrupt priority
     IRQn_Type encif_err0_irq;                          ///< ENCIF error 0 interrupt IRQ number
     uint8_t   encif_err1_ipl;                          ///< ENCIF error 1 interrupt priority
     IRQn_Type encif_err1_irq;                          ///< ENCIF error 1 interrupt IRQ number
-#endif
+ #endif
 
     uint32_t cpu0_err_reset_mask;                      ///< Cortex-R52 CPU0 error reset mask
     uint32_t cpu0_err0_event_mask;                     ///< Cortex-R52 CPU0 error 0 event mask
     uint32_t cpu0_err1_event_mask;                     ///< Cortex-R52 CPU0 error 1 event mask
-#if BSP_FEATURE_ICU_ERROR_CR52_CPU1_SUPPORTED
+ #if BSP_FEATURE_ICU_ERROR_CR52_CPU1_SUPPORTED
     uint32_t cpu1_err_reset_mask;                      ///< Cortex-R52 CPU1 error reset mask
     uint32_t cpu1_err0_event_mask;                     ///< Cortex-R52 CPU1 error 0 event mask
     uint32_t cpu1_err1_event_mask;                     ///< Cortex-R52 CPU1 error 1 event mask
-#endif
-#if BSP_FEATURE_ICU_ERROR_CA55_SUPPORTED
+ #endif
+ #if BSP_FEATURE_ICU_ERROR_CA55_SUPPORTED
     uint32_t ca55_err_reset_mask;                      ///< Cortex-R52 CA55 error reset mask
     uint32_t ca55_err0_event_mask;                     ///< Cortex-R52 CA55 error 0 event mask
     uint32_t ca55_err1_event_mask;                     ///< Cortex-R52 CA55 error 1 event mask
-#endif
+ #endif
     uint32_t peri_err_event_0_reset_mask;              ///< Peripheral error event 0 reset mask
     uint32_t peri_err0_event_0_mask;                   ///< Peripheral error 0 event 0 mask
     uint32_t peri_err1_event_0_mask;                   ///< Peripheral error 1 event 0 mask
     uint32_t peri_err_event_1_reset_mask;              ///< Peripheral error event 1 reset mask
     uint32_t peri_err0_event_1_mask;                   ///< Peripheral error 0 event 1 mask
     uint32_t peri_err1_event_1_mask;                   ///< Peripheral error 1 event 1 mask
-#if 2U < BSP_FEATURE_ICU_ERROR_PERI_ERR_REG_NUM
+ #if 2U < BSP_FEATURE_ICU_ERROR_PERI_ERR_REG_NUM
     uint32_t peri_err_event_2_reset_mask;              ///< Peripheral error event 2 reset mask
     uint32_t peri_err0_event_2_mask;                   ///< Peripheral error 0 event 2 mask
     uint32_t peri_err1_event_2_mask;                   ///< Peripheral error 1 event 2 mask
-#endif
-#if 3U < BSP_FEATURE_ICU_ERROR_PERI_ERR_REG_NUM
+ #endif
+ #if 3U < BSP_FEATURE_ICU_ERROR_PERI_ERR_REG_NUM
     uint32_t peri_err_event_3_reset_mask;              ///< Peripheral error event 3 reset mask
     uint32_t peri_err0_event_3_mask;                   ///< Peripheral error 0 event 3 mask
     uint32_t peri_err1_event_3_mask;                   ///< Peripheral error 1 event 3 mask
-#endif
-#if BSP_FEATURE_ICU_ERROR_DSMIF_ERR_INTERRUPT_SUPPORTED
+ #endif
+ #if BSP_FEATURE_ICU_ERROR_DSMIF_ERR_INTERRUPT_SUPPORTED
     uint32_t dsmif_err_event_0_reset_mask;             ///< DSMIF error event 0 reset mask
     uint32_t dsmif_err0_event_0_mask;                  ///< DSMIF error 0 event 0 mask
     uint32_t dsmif_err1_event_0_mask;                  ///< DSMIF error 1 event 0 mask
@@ -1247,7 +1260,7 @@ struct st_icu_error_extended_cfg
     uint32_t dsmif_err_event_4_reset_mask;             ///< DSMIF error event 4 reset mask
     uint32_t dsmif_err0_event_4_mask;                  ///< DSMIF error 0 event 4 mask
     uint32_t dsmif_err1_event_4_mask;                  ///< DSMIF error 1 event 4 mask
- #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
+  #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
     uint32_t dsmif_err_event_5_reset_mask;             ///< DSMIF error event 5 reset mask
     uint32_t dsmif_err0_event_5_mask;                  ///< DSMIF error 0 event 5 mask
     uint32_t dsmif_err1_event_5_mask;                  ///< DSMIF error 1 event 5 mask
@@ -1263,17 +1276,17 @@ struct st_icu_error_extended_cfg
     uint32_t dsmif_err_event_9_reset_mask;             ///< DSMIF error event 9 reset mask
     uint32_t dsmif_err0_event_9_mask;                  ///< DSMIF error 0 event 9 mask
     uint32_t dsmif_err1_event_9_mask;                  ///< DSMIF error 1 event 9 mask
- #endif
+  #endif
     uint32_t dsmif_err_event_10_reset_mask;            ///< DSMIF error event 10 reset mask
     uint32_t dsmif_err0_event_10_mask;                 ///< DSMIF error 0 event 10 mask
     uint32_t dsmif_err1_event_10_mask;                 ///< DSMIF error 1 event 10 mask
- #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
+  #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
     uint32_t dsmif_err_event_11_reset_mask;            ///< DSMIF error event 11 reset mask
     uint32_t dsmif_err0_event_11_mask;                 ///< DSMIF error 0 event 11 mask
     uint32_t dsmif_err1_event_11_mask;                 ///< DSMIF error 1 event 11 mask
+  #endif
  #endif
-#endif
-#if BSP_FEATURE_ICU_ERROR_ENCIF_ERR_INTERRUPT_SUPPORTED
+ #if BSP_FEATURE_ICU_ERROR_ENCIF_ERR_INTERRUPT_SUPPORTED
     uint32_t encif_err_event_0_reset_mask;             ///< ENCIF error event 0 reset mask
     uint32_t encif_err0_event_0_mask;                  ///< ENCIF error 0 event 0 mask
     uint32_t encif_err1_event_0_mask;                  ///< ENCIF error 1 event 0 mask
@@ -1283,29 +1296,29 @@ struct st_icu_error_extended_cfg
     uint32_t encif_err_event_2_reset_mask;             ///< ENCIF error event 2 reset mask
     uint32_t encif_err0_event_2_mask;                  ///< ENCIF error 0 event 2 mask
     uint32_t encif_err1_event_2_mask;                  ///< ENCIF error 1 event 2 mask
- #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
+  #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 3
     uint32_t encif_err_event_3_reset_mask;             ///< ENCIF error event 3 reset mask
     uint32_t encif_err0_event_3_mask;                  ///< ENCIF error 0 event 3 mask
     uint32_t encif_err1_event_3_mask;                  ///< ENCIF error 1 event 3 mask
     uint32_t encif_err_event_4_reset_mask;             ///< ENCIF error event 4 reset mask
     uint32_t encif_err0_event_4_mask;                  ///< ENCIF error 0 event 4 mask
     uint32_t encif_err1_event_4_mask;                  ///< ENCIF error 1 event 4 mask
- #endif
- #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 4
+  #endif
+  #if BSP_FEATURE_ICU_ERROR_PERIPHERAL_TYPE == 4
     uint32_t encif_err_event_5_reset_mask;             ///< ENCIF error event 5 reset mask
     uint32_t encif_err0_event_5_mask;                  ///< ENCIF error 0 event 5 mask
     uint32_t encif_err1_event_5_mask;                  ///< ENCIF error 1 event 5 mask
+  #endif
  #endif
-#endif
     const error_table_t * p_error_handler_table;       ///< Peripheral error handler table
 
-#if BSP_FEATURE_ICU_ERROR_DSMIF_ERR_INTERRUPT_SUPPORTED
+ #if BSP_FEATURE_ICU_ERROR_DSMIF_ERR_INTERRUPT_SUPPORTED
     const error_table_t * p_dsmif_error_handler_table; ///< DSMIF error handler table
-#endif
+ #endif
 
-#if BSP_FEATURE_ICU_ERROR_ENCIF_ERR_INTERRUPT_SUPPORTED
+ #if BSP_FEATURE_ICU_ERROR_ENCIF_ERR_INTERRUPT_SUPPORTED
     const error_table_t * p_encif_error_handler_table; ///< ENCIF error handler table
-#endif
+ #endif
 };
 
 /** ERROR event configuration extension. Please refer to the struct st_icu_error_extended_cfg. */
@@ -1321,6 +1334,18 @@ extern const error_api_t g_error_on_icu_error;
 
 /** @endcond */
 
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+namespace RZT
+{
+  #endif
+ #endif
+
+/*******************************************************************************************************************//**
+ * @addtogroup RZT_ICU_ERROR
+ * @{
+ **********************************************************************************************************************/
+
 /***********************************************************************************************************************
  * Public APIs
  **********************************************************************************************************************/
@@ -1332,6 +1357,15 @@ fsp_err_t R_ICU_ERROR_CallbackSet(error_ctrl_t * const          p_ctrl,
                                   void (                      * p_callback)(error_callback_args_t *),
                                   void * const                  p_context,
                                   error_callback_args_t * const p_callback_memory);
+
+/*******************************************************************************************************************//**
+ * @} (end defgroup ICU_ERROR)
+ **********************************************************************************************************************/
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+}
+  #endif
+ #endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

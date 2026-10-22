@@ -20,9 +20,6 @@
 #define IOPORT_OPEN                       (0x504F5254U)
 #define IOPORT_CLOSED                     (0x00000000U)
 
-/* Shift to get pin 0 on a package in extended data. */
-#define IOPORT_PRV_EXISTS_B0_SHIFT        (16UL)
-
 /* Mask to determine if any pins on port exist on this package. */
 #define IOPORT_PRV_PORT_EXISTS_MASK       (0xFFFF0000U)
 
@@ -65,9 +62,6 @@
 #define IOPORT_PRV_POS_ALIGN_2BIT         (2U)
 #define IOPORT_PRV_POS_ALIGN_4BIT         (4U)
 #define IOPORT_PRV_POS_ALIGN_8BIT         (8U)
-
-#define IOPORT_PRV_SET_PWPR_PFSWE         (0x40U)
-#define IOPORT_PRV_SET_PWPR_BOWI          (0x80U)
 
 #define IOPORT_PRV_NONMASK_ACCESS         (0xFFFFFFFFUL)
 

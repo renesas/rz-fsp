@@ -64,10 +64,10 @@ const crc_api_t g_crc_on_crc =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZN
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -260,7 +260,7 @@ fsp_err_t R_CRC_CalculatedValueGet (crc_ctrl_t * const p_ctrl, uint32_t * calcul
  * sent to the CRC calculator as if the value was explicitly written directly to the CRC calculator.
  *
  * @retval FSP_SUCCESS                  Snoop configured successfully.
- * @retval FSP_ERR_ASSERTION            Pointer to control stucture is NULL
+ * @retval FSP_ERR_ASSERTION            Pointer to control structure is NULL
  * @retval FSP_ERR_NOT_OPEN             The driver is not opened.
  * @retval FSP_ERR_UNSUPPORTED          SNOOP operation is not supported.
  *
@@ -341,9 +341,9 @@ fsp_err_t R_CRC_SnoopDisable (crc_ctrl_t * const p_ctrl)
 
 /** @} (end addtogroup CRC) */
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************
@@ -460,8 +460,8 @@ static void crc_calculate_polynomial (crc_instance_ctrl_t * const p_instance_ctr
             {
                 /* CRCDIR is a 32-bit read/write register to write data to for CRC-32 or CRC-32C calculation.
                  * CRCDIR_BY is an 8-bit read/write register to write data to for CRC-8, CRC-16, or CRC-CCITT
-                 * calculation. Reference section "CRCDIR/CRCDIR_BY : CRC Data Input Register" in the RZ
-                 * microprocessor manual. Write an 8-bit value to the input register of the CRC Calculator */
+                 * calculation. Reference section "CRCDIR/CRCDIR_BY : CRC Data Input Register"
+                 * of the relevant hardware manual. Write an 8-bit value to the input register of the CRC Calculator */
                 p_instance_ctrl->p_reg->CRCDIR_BY = *p_data;
                 p_data = (p_data + 1UL);
             }

@@ -37,6 +37,10 @@
 #define XSPI_QSPI_PRV_CMCFG0_FFMT_OFFSET                 (0U)
 #define XSPI_QSPI_PRV_CMCFG0_ADDSIZE_OFFSET              (2U)
 #define XSPI_QSPI_PRV_CMCFG0_ADDSIZE_VALUE_MASK          (0x03U)
+#define XSPI_QSPI_PRV_CMCFG0_WPBSTMD_OFFSET              (4U)
+#define XSPI_QSPI_PRV_CMCFG0_WPBSTMD_VALUE_MASK          (0x01U)
+#define XSPI_QSPI_PRV_CMCFG0_ADDRPEN_OFFSET              (16U)
+#define XSPI_QSPI_PRV_CMCFG0_ADDRPEN_VALUE_MASK          (0xFFU)
 #define XSPI_QSPI_PRV_CMCFG1_RDCMD_UPPER_OFFSET          (8U)
 #define XSPI_QSPI_PRV_CMCFG1_RDCMD_VALUE_MASK            (0xFFU)
 #define XSPI_QSPI_PRV_CMCFG1_RDLATE_OFFSET               (16U)
@@ -80,6 +84,10 @@
 #define XSPI_QSPI_PRV_DEVICE_WRITE_STATUS_BIT_MASK       (1U)
 
 #define XSPI_QSPI_PRV_MAX_COMBINE_SIZE                   (64U)
+
+#define XSPI_QSPI_PRV_ADDRESS_REPLACE_VALUE              (0xF0)
+#define XSPI_QSPI_PRV_ADDRESS_REPLACE_ENABLE_BITS        (XSPI_QSPI_PRV_ADDRESS_REPLACE_VALUE << \
+                                                          XSPI_QSPI_PRV_CMCFG0_ADDRPEN_OFFSET)
 
 #define XSPI_QSPI_PRV_WORD_ACCESS_SIZE                   (4U)
 #define XSPI_QSPI_PRV_HALF_WORD_ACCESS_SIZE              (2U)
@@ -543,9 +551,22 @@ fsp_err_t R_XSPI_QSPI_Open (spi_flash_ctrl_t * p_ctrl, spi_flash_cfg_t const * c
 
     /* Specifies the read/write commands and Read dummy clocks for Device
      * (see RZ microprocessor Hardware Manual section "Flow of Memory-mapping"). */
-    p_instance_ctrl->p_reg->CSa[p_cfg_extend->chip_select].CMCFG0 =
+    uint32_t cmcfg0 =
         (0U << XSPI_QSPI_PRV_CMCFG0_FFMT_OFFSET) |
-        ((p_cfg->address_bytes & XSPI_QSPI_PRV_CMCFG0_ADDSIZE_VALUE_MASK) << XSPI_QSPI_PRV_CMCFG0_ADDSIZE_OFFSET);
+        ((p_cfg->address_bytes & XSPI_QSPI_PRV_CMCFG0_ADDSIZE_VALUE_MASK) << XSPI_QSPI_PRV_CMCFG0_ADDSIZE_OFFSET) |
+        ((p_cfg_extend->wrap_separate & XSPI_QSPI_PRV_CMCFG0_WPBSTMD_VALUE_MASK) <<
+            XSPI_QSPI_PRV_CMCFG0_WPBSTMD_OFFSET) |
+        ((p_cfg_extend->address_msb_mask & XSPI_QSPI_PRV_CMCFG0_ADDRPEN_VALUE_MASK) <<
+            XSPI_QSPI_PRV_CMCFG0_ADDRPEN_OFFSET);
+
+    /* When using 4-byte addressing, always mask off the most-significant nybble to remove the system bus offset from
+     * the transmitted addresses. */
+    if (p_cfg->address_bytes == SPI_FLASH_ADDRESS_BYTES_4)
+    {
+        cmcfg0 |= XSPI_QSPI_PRV_ADDRESS_REPLACE_ENABLE_BITS;
+    }
+
+    p_instance_ctrl->p_reg->CSa[p_cfg_extend->chip_select].CMCFG0 = cmcfg0;
 
     p_instance_ctrl->p_reg->CSa[p_cfg_extend->chip_select].CMCFG1 =
         ((p_cfg->read_command & XSPI_QSPI_PRV_CMCFG1_RDCMD_VALUE_MASK) << XSPI_QSPI_PRV_CMCFG1_RDCMD_UPPER_OFFSET) |

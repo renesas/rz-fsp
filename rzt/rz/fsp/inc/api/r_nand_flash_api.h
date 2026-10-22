@@ -5,14 +5,14 @@
 */
 
 #ifndef R_NAND_FLASH_API_H
- #define R_NAND_FLASH_API_H
+#define R_NAND_FLASH_API_H
 
 /***********************************************************************************************************************
  * Includes
  **********************************************************************************************************************/
 
 /* Includes board and MCU related header files. */
- #include "bsp_api.h"
+#include "bsp_api.h"
 
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
@@ -21,19 +21,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
- #ifdef __FOR_FSP_DOCUMENT__
-  #ifdef __cplusplus
-namespace RZT
-{
-  #endif
- #endif
-
 /*******************************************************************************************************************//**
- * @ingroup RZT_RENESAS_STORAGE_INTERFACES
- * @defgroup RZT_NAND_FLASH_API NAND Flash Interface
+ * @ingroup RENESAS_STORAGE_INTERFACES
+ * @defgroup NAND_FLASH_API NAND Flash Interface
  * @brief Interface for accessing NAND Flash devices.
  *
- * @section RZT_NAND_FLASH_API_SUMMARY Summary
+ * @section NAND_FLASH_API_SUMMARY Summary
  * The NAND Flash interface provides APIs and definitions for ONFI-compliant communication in NAND Flash memory devices.
  *
  * @{
@@ -74,27 +67,24 @@ typedef enum e_nand_flash_event
 } nand_flash_event_t;
 
 /** Selected page information for read or write */
-struct st_nand_flash_device_page
+typedef struct st_nand_flash_device_page
 {
     uint32_t row_address;              ///< Row address of the NAND Flash
     uint32_t page_count;               ///< Number of pages to read or write
-};
-
-/** Selected page information for read or write. Please refer to the struct st_nand_flash_device_page. */
-typedef struct st_nand_flash_device_page nand_flash_device_page_t;
+} nand_flash_device_page_t;
 
 /** Data buffer information for read or write */
-struct st_nand_flash_data_buffer
+typedef struct st_nand_flash_data_buffer
 {
     uint8_t * p_main_data_buffer;      ///< Address of the main data buffer
     uint8_t * p_oob_data_buffer;       ///< Address of the OOB data buffer
-};
+} nand_flash_data_buffer_t;
 
-/** Data buffer information for read or write. Please refer to the struct st_nand_flash_data_buffer. */
-typedef struct st_nand_flash_data_buffer nand_flash_data_buffer_t;
+#ifndef BSP_OVERRIDE_NAND_FLASH_DEVICE_FEATURE_T
 
-/** Features supported bytes in parameter page for the NAND Flash */
-struct st_nand_flash_device_feature
+/** Features supported bytes in ONFI parameter page for the NAND Flash
+ *  (Bit field definition is a superset of Features supported bytes across multiple ONFI specification versions) */
+typedef struct st_nand_flash_device_feature
 {
     union
     {
@@ -102,31 +92,33 @@ struct st_nand_flash_device_feature
 
         struct
         {
-            uint16_t supports_16_bit_data_bus_width                    : 1;
-            uint16_t supports_multi_lun_operations                     : 1;
-            uint16_t supports_non_sequential_page_programming          : 1;
-            uint16_t supports_interleaved_program_and_erase_operations : 1;
-            uint16_t supports_odd_to_even_page_copyback                : 1;
-            uint16_t supports_synchronous_ddr_mode                     : 1;
-            uint16_t supports_interleaved_read_operations              : 1;
-            uint16_t supports_extended_parameter_page                  : 1;
-            uint16_t supports_program_page_register_clear_enhancement  : 1;
-            uint16_t supports_eznand                                   : 1;
-            uint16_t supports_nv_ddr_2                                 : 1;
-            uint16_t supports_volume_addressing                        : 1;
-            uint16_t supports_external_vpp                             : 1;
-            uint16_t supports_nv_ddr_3                                 : 1;
-            uint16_t supports_zq_calibration                           : 1;
-            uint16_t supports_package_eletrical_specification          : 1;
+            uint16_t supports_16_bit_data_bus_width                    : 1; ///< Features supported bit 0 in ONFI 1.0
+            uint16_t supports_multiple_lun_operations                  : 1; ///< Features supported bit 1 in ONFI 1.0
+            uint16_t supports_non_sequential_page_programming          : 1; ///< Features supported bit 2 in ONFI 1.0
+            uint16_t supports_interleaved_operations                   : 1; ///< Features supported bit 3 in ONFI 1.0 (Later also defined as 'multi-plane program and erase operations')
+            uint16_t supports_odd_to_even_page_copyback                : 1; ///< Features supported bit 4 in ONFI 1.0
+            uint16_t supports_source_synchronous                       : 1; ///< Features supported bit 5 in ONFI 2.0 (Later also defined as 'NV-DDR')
+            uint16_t supports_interleaved_read_operations              : 1; ///< Features supported bit 6 in ONFI 2.1 (Later also defined as 'multi-plane read operations')
+            uint16_t supports_extended_parameter_page                  : 1; ///< Features supported bit 7 in ONFI 2.1
+            uint16_t supports_program_page_register_clear_enhancement  : 1; ///< Features supported bit 8 in ONFI 2.2
+            uint16_t supports_ez_nand                                  : 1; ///< Features supported bit 9 in ONFI 2.3 (Later also defined as 'NV-LPDDR4')
+            uint16_t supports_nv_ddr_2                                 : 1; ///< Features supported bit 10 in ONFI 3.0.
+            uint16_t supports_volume_addressing                        : 1; ///< Features supported bit 11 in ONFI 3.0.
+            uint16_t supports_external_vpp                             : 1; ///< Features supported bit 12 in ONFI 3.0.
+            uint16_t supports_nv_ddr_3                                 : 1; ///< Features supported bit 13 in ONFI 4.0.
+            uint16_t supports_zq_calibration                           : 1; ///< Features supported bit 14 in ONFI 4.0.
+            uint16_t supports_package_eletrical_specification          : 1; ///< Features supported bit 15 in ONFI 4.0.
         } device_features_bit;
     };
-};
+} nand_flash_device_feature_t;
 
-/** Features supported bytes in parameter page for the NAND Flash. Please refer to the struct st_nand_flash_device_feature. */
-typedef struct st_nand_flash_device_feature nand_flash_device_feature_t;
+#endif
 
-/** Optional commands bytes in parameter page for the NAND Flash */
-struct st_nand_flash_optional_commands
+#ifndef BSP_OVERRIDE_NAND_FLASH_OPTIONAL_COMMANDS_T
+
+/** Optional commands bytes in ONFI parameter page for the NAND Flash
+ *  (Bit field definition is a superset of Optional commands bytes across multiple ONFI specification versions) */
+typedef struct st_nand_flash_optional_commands
 {
     union
     {
@@ -134,30 +126,30 @@ struct st_nand_flash_optional_commands
 
         struct
         {
-            uint16_t supports_page_cache_program_command    : 1;
-            uint16_t supports_read_cache_command            : 1;
-            uint16_t supports_get_and_set_features          : 1;
-            uint16_t supports_read_status_enhanced_command  : 1;
-            uint16_t supports_copyback                      : 1;
-            uint16_t supports_read_unique_id                : 1;
-            uint16_t supports_change_read_column_enhanced   : 1;
-            uint16_t supports_change_row_address_for_onfi   : 1;
-            uint16_t supports_change_small_data_move        : 1;
-            uint16_t supports_reset_lun                     : 1;
-            uint16_t supports_volume_select                 : 1;
-            uint16_t supports_odt_configure                 : 1;
-            uint16_t supports_lun_get_and_lun_set_features  : 1;
-            uint16_t supports_zq_calibration_long_and_short : 1;
+            uint16_t supports_page_cache_program_command    : 1; ///< Optional commands bit 0 in ONFI 1.0
+            uint16_t supports_read_cache_commands           : 1; ///< Optional commands bit 1 in ONFI 1.0
+            uint16_t supports_get_features_and_set_features : 1; ///< Optional commands bit 2 in ONFI 1.0
+            uint16_t supports_read_status_enhanced          : 1; ///< Optional commands bit 3 in ONFI 1.0
+            uint16_t supports_copyback                      : 1; ///< Optional commands bit 4 in ONFI 1.0
+            uint16_t supports_read_unique_id                : 1; ///< Optional commands bit 5 in ONFI 1.0
+            uint16_t supports_change_read_column_enhanced   : 1; ///< Optional commands bit 6 in ONFI 2.1
+            uint16_t supports_change_row_address            : 1; ///< Optional commands bit 7 in ONFI 2.1
+            uint16_t supports_small_data_move               : 1; ///< Optional commands bit 8 in ONFI 2.1
+            uint16_t supports_reset_lun                     : 1; ///< Optional commands bit 9 in ONFI 2.2
+            uint16_t supports_volume_select                 : 1; ///< Optional commands bit 10 in ONFI 3.0
+            uint16_t supports_odt_configure                 : 1; ///< Optional commands bit 11 in ONFI 3.0
+            uint16_t supports_lun_get_and_lun_set_features  : 1; ///< Optional commands bit 12 in ONFI 3.1
+            uint16_t supports_zq_calibration_long_and_short : 1; ///< Optional commands bit 13 in ONFI 4.0
             uint16_t reserved                               : 2;
         } optional_commands_bit;
     };
-};
+} nand_flash_optional_commands_t;
 
-/** Optional commands bytes in parameter page for the NAND Flash Please refer to the struct st_nand_flash_optional_commands. */
-typedef struct st_nand_flash_optional_commands nand_flash_optional_commands_t;
+#endif
 
-/** Timing mode support bytes in parameter page for the NAND Flash */
-struct st_nand_flash_timing_mode
+/** Timing mode support bytes in ONFI parameter page for the NAND Flash
+ *  (Bit field definition is a superset of Timing mode support bytes across multiple ONFI specification versions) */
+typedef struct st_nand_flash_timing_mode
 {
     union
     {
@@ -165,22 +157,19 @@ struct st_nand_flash_timing_mode
 
         struct
         {
-            uint16_t supports_timing_mode_0 : 1;
-            uint16_t supports_timing_mode_1 : 1;
-            uint16_t supports_timing_mode_2 : 1;
-            uint16_t supports_timing_mode_3 : 1;
-            uint16_t supports_timing_mode_4 : 1;
-            uint16_t supports_timing_mode_5 : 1;
+            uint16_t supports_timing_mode_0 : 1; ///< Timing mode support bit 0 in ONFI 1.0
+            uint16_t supports_timing_mode_1 : 1; ///< Timing mode support bit 1 in ONFI 1.0
+            uint16_t supports_timing_mode_2 : 1; ///< Timing mode support bit 2 in ONFI 1.0
+            uint16_t supports_timing_mode_3 : 1; ///< Timing mode support bit 3 in ONFI 1.0
+            uint16_t supports_timing_mode_4 : 1; ///< Timing mode support bit 4 in ONFI 1.0
+            uint16_t supports_timing_mode_5 : 1; ///< Timing mode support bit 5 in ONFI 1.0
             uint16_t reserved               : 10;
         } timing_modes_bit;
     };
-};
-
-/** Timing mode support bytes in parameter page for the NAND Flash Please refer to the struct st_nand_flash_timing_mode. */
-typedef struct st_nand_flash_timing_mode nand_flash_timing_mode_t;
+} nand_flash_timing_mode_t;
 
 /** Connected NAND Flash information */
-struct st_nand_flash_device_info
+typedef struct st_nand_flash_device_info
 {
     uint32_t data_bytes_per_page;                       ///< Data bytes per page in connected NAND Flash
     uint32_t spare_bytes_per_page;                      ///< Spare bytes per page in connected NAND Flash
@@ -189,49 +178,37 @@ struct st_nand_flash_device_info
     nand_flash_device_feature_t    device_feature;      ///< Features supported bytes in parameter page for connected NAND Flash
     nand_flash_optional_commands_t optional_commands;   ///< Optional commands bytes in parameter page for connected NAND Flash
     nand_flash_timing_mode_t       support_timing_mode; ///< Timing mode support bytes in parameter page for connected NAND Flash
-};
-
-/** Connected NAND Flash information Please refer to the struct st_nand_flash_device_info. */
-typedef struct st_nand_flash_device_info nand_flash_device_info_t;
+} nand_flash_device_info_t;
 
 /** Device status */
-struct st_nand_flash_status
+typedef struct st_nand_flash_status
 {
     nand_flash_device_status_t device_status; ///< Whether the device is in busy state or in ready state
-};
-
-/** Device status Please refer to the struct st_nand_flash_status. */
-typedef struct st_nand_flash_status nand_flash_status_t;
+} nand_flash_status_t;
 
 /** Callback function parameter data. */
-struct st_nand_flash_callback_args
+typedef struct st_nand_flash_callback_args
 {
     void const       * p_context;      ///< Placeholder for user data
     nand_flash_event_t event;          ///< The event can be used to identify what caused the callback
     uint64_t           error;          ///< Error status when an error event occurs
-};
-
-/** Callback function parameter data. Please refer to the struct st_nand_flash_callback_args. */
-typedef struct st_nand_flash_callback_args nand_flash_callback_args_t;
+} nand_flash_callback_args_t;
 
 /** User configuration structure */
-struct st_nand_flash_cfg
+typedef struct st_nand_flash_cfg
 {
-    void         (* p_callback)(nand_flash_callback_args_t * p_args); ///< Pointer to callback function
-    void const * p_context;                                           ///< User defined context passed into callback function
-    void const * p_extend;                                            ///< Hardware dependent configuration
-    IRQn_Type    irq;                                                 ///< IRQ number
-    uint8_t      ipl;                                                 ///< Interrupt priority
-};
-
-/** User configuration structure Please refer to the struct st_nand_flash_cfg. */
-typedef struct st_nand_flash_cfg nand_flash_cfg_t;
+    void (* p_callback)(nand_flash_callback_args_t * p_args); ///< Pointer to callback function
+    void const * p_context;                                   ///< User defined context passed into callback function
+    void const * p_extend;                                    ///< Hardware dependent configuration
+    IRQn_Type    irq;                                         ///< IRQ number
+    uint8_t      ipl;                                         ///< Interrupt priority
+} nand_flash_cfg_t;
 
 /** NAND Flash control block.  Allocate an instance specific control block to pass into the NAND Flash API calls. */
 typedef void nand_flash_ctrl_t;
 
 /** NAND Flash API structure. General NAND Flash functions implemented at the HAL layer follow this API. */
-struct st_nand_flash_api
+typedef struct st_nand_flash_api
 {
     /** Open the NAND Flash driver.
      *
@@ -359,31 +336,19 @@ struct st_nand_flash_api
      * @param[out]  p_info            Information of the device stored here.
      */
     fsp_err_t (* infoGet)(nand_flash_ctrl_t * const p_ctrl, nand_flash_device_info_t * const p_info);
-};
-
-/** NAND Flash API structure. General NAND Flash functions implemented at the HAL layer follow this API. Please refer to the struct st_nand_flash_api. */
-typedef struct st_nand_flash_api nand_flash_api_t;
+} nand_flash_api_t;
 
 /** This structure encompasses everything that is needed to use an instance of this interface. */
-struct st_nand_flash_instance
+typedef struct st_nand_flash_instance
 {
     nand_flash_ctrl_t      * p_ctrl;   ///< Pointer to the control structure for this instance
     nand_flash_cfg_t const * p_cfg;    ///< Pointer to the configuration structure for this instance
     nand_flash_api_t const * p_api;    ///< Pointer to the API structure for this instance
-};
-
-/** This structure encompasses everything that is needed to use an instance of this interface. Please refer to the struct st_nand_flash_instance. */
-typedef struct st_nand_flash_instance nand_flash_instance_t;
+} nand_flash_instance_t;
 
 /*******************************************************************************************************************//**
- * @} (end defgroup RZT_NAND_FLASH_API)
+ * @} (end defgroup NAND_FLASH_API)
  **********************************************************************************************************************/
-
- #ifdef __FOR_FSP_DOCUMENT__
-  #ifdef __cplusplus
-}
-  #endif
- #endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

@@ -1218,6 +1218,9 @@ void spi_b_tei_isr (void)
 
     spi_b_instance_ctrl_t * p_ctrl = (spi_b_instance_ctrl_t *) R_FSP_IsrContextGet(irq);
 
+    /* Clear Communication end flag clear. */
+    p_ctrl->p_regs->SPSRC = R_SPI_B0_SPSRC_CENDFC_Msk;
+
     if ((0 == p_ctrl->p_regs->SPSR_b.IDLNF) || (SPI_MODE_SLAVE == p_ctrl->p_cfg->operating_mode))
     {
         R_BSP_IrqDisable(irq);

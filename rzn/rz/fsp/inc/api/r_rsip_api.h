@@ -71,7 +71,11 @@ FSP_HEADER
  #define RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512            (0x4)
  #define RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512_224        (0x5)
  #define RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512_256        (0x6)
- #define RSIP_PRV_KEY_SUBTYPE_HMAC_NUM               (0x7)
+ #define RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_224          (0x7)
+ #define RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_256          (0x8)
+ #define RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_384          (0x9)
+ #define RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_512          (0xa)
+ #define RSIP_PRV_KEY_SUBTYPE_HMAC_NUM               (0xb)
  #define RSIP_PRV_KEY_SUBTYPE_MISC_KUK               (0x0)
  #define RSIP_PRV_KEY_SUBTYPE_MISC_NUM               (0x1)
 
@@ -192,6 +196,14 @@ enum e_rsip_key_type
         RSIP_PRV_KEY_TYPE_VAL(16, RSIP_PRV_ALG_HMAC, RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512_224),            ///< HMAC-SHA512/224
     RSIP_KEY_TYPE_HMAC_SHA512_256 =
         RSIP_PRV_KEY_TYPE_VAL(16, RSIP_PRV_ALG_HMAC, RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512_256),            ///< HMAC-SHA512/256
+    RSIP_KEY_TYPE_HMAC_SHA3_224 =
+        RSIP_PRV_KEY_TYPE_VAL(8, RSIP_PRV_ALG_HMAC, RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_224),               ///< HMAC-SHA3-224
+    RSIP_KEY_TYPE_HMAC_SHA3_256 =
+        RSIP_PRV_KEY_TYPE_VAL(8, RSIP_PRV_ALG_HMAC, RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_256),               ///< HMAC-SHA3-256
+    RSIP_KEY_TYPE_HMAC_SHA3_384 =
+        RSIP_PRV_KEY_TYPE_VAL(12, RSIP_PRV_ALG_HMAC, RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_384),              ///< HMAC-SHA3-384
+    RSIP_KEY_TYPE_HMAC_SHA3_512 =
+        RSIP_PRV_KEY_TYPE_VAL(16, RSIP_PRV_ALG_HMAC, RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_512),              ///< HMAC-SHA3-512
     RSIP_KEY_TYPE_KDF_HMAC_SHA256 =
         RSIP_PRV_KEY_TYPE_VAL(16, RSIP_PRV_ALG_KDF_HMAC, RSIP_PRV_KEY_SUBTYPE_HMAC_SHA256),            ///< HMAC-SHA256
     RSIP_KEY_TYPE_KDF_HMAC_SHA384 =
@@ -1345,7 +1357,6 @@ typedef struct st_rsip_instance rsip_instance_t;
 /*******************************************************************************************************************//**
  * @} (end addtogroup RSIP_PROTECTED_API)
  **********************************************************************************************************************/
-
  #ifdef __FOR_FSP_DOCUMENT__
   #ifdef __cplusplus
 }

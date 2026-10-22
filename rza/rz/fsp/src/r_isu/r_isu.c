@@ -17,7 +17,7 @@
  **********************************************************************************************************************/
 
 /* Register data settings */
-#define ENABLE_INTERRUPT                (0x00000003)
+#define ENABLE_INTERRUPT                (0x00000001)
 #define START_PROSESSING                (0x00010001)
 #define DESCRIPTOR_START                (0x00000002)
 #define DESCRIPTOR_STOP                 (0x00000000)
@@ -158,7 +158,6 @@ typedef struct
 /***********************************************************************************************************************
  * Private function prototypes
  **********************************************************************************************************************/
-static void r_isu_start_process();
 static void r_isu_fm_set_addr();
 static void r_isu_fm_set_data(isu_runtime_cfg_t const * const p_cfg);
 static void r_isu_irqcfg_enable(isu_instance_ctrl_t * const p_instance_ctrl);
@@ -211,10 +210,10 @@ const isu_api_t g_isu_on_isu =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -232,7 +231,7 @@ namespace RZA
  *
  * @retval FSP_SUCCESS              Initializes the ISU modules.
  * @retval FSP_ERR_ASSERTION        Pointer to the control block is NULL.
- * @retval FSP_ERR_ALREADY_OPEN     IRU module is already open
+ * @retval FSP_ERR_ALREADY_OPEN     ISU module is already open
  * @retval FSP_ERR_INVALID_ARGUMENT Invalid argument error
  * @retval FSP_ERR_INVALID_ALIGNMENT       Input buffer alignment
  **********************************************************************************************************************/
@@ -306,9 +305,9 @@ fsp_err_t R_ISU_Close (isu_ctrl_t * const p_api_ctrl)
 /*******************************************************************************************************************//**
  *　Start scaling the input image
  *
- * @retval FSP_SUCCESS              start a capture.
+ * @retval FSP_SUCCESS              Start scaling the input image.
  * @retval FSP_ERR_ASSERTION        Pointer to the control block is NULL.
- * @retval FSP_ERR_INVALID_MODE     ISU module is not ready.
+ * @retval FSP_ERR_INVALID_MODE     ISU module is not ISU_IN_PROGRESS.
  **********************************************************************************************************************/
 fsp_err_t R_ISU_Start (isu_ctrl_t * const p_api_ctrl)
 {
@@ -345,7 +344,8 @@ fsp_err_t R_ISU_Start (isu_ctrl_t * const p_api_ctrl)
     /* Wait 10 microsecond */
     R_BSP_SoftwareDelay(MICRO_WAIT_10, BSP_DELAY_UNITS_MICROSECONDS);
 
-    r_isu_start_process();
+    /* Start frame processing */
+    R_ISU->ISU_FM_FRCON = START_PROSESSING;
 
     p_ctrl->state = ISU_STATE_BUSY;
 
@@ -357,7 +357,7 @@ fsp_err_t R_ISU_Start (isu_ctrl_t * const p_api_ctrl)
  *
  * @retval FSP_SUCCESS              Change scaling configuration.
  * @retval FSP_ERR_ASSERTION        Pointer to the control block is NULL.
- * @retval FSP_ERR_INVALID_MODE     ISU module is not ready.
+ * @retval FSP_ERR_INVALID_MODE     ISU module is not ISU_STATE_BUSY.
  * @retval FSP_ERR_INVALID_ARGUMENT Invalid argument error
  * @retval FSP_ERR_INVALID_ALIGNMENT Invalid alignment error
  **********************************************************************************************************************/
@@ -382,7 +382,8 @@ fsp_err_t R_ISU_ChangeCfg (isu_ctrl_t * const p_api_ctrl, isu_runtime_cfg_t * co
     /* Wait 10 microsecond */
     R_BSP_SoftwareDelay(MICRO_WAIT_10, BSP_DELAY_UNITS_MICROSECONDS);
 
-    r_isu_start_process();
+    /* Start frame processing */
+    R_ISU->ISU_FM_FRCON = START_PROSESSING;
 
     p_ctrl->state = ISU_STATE_BUSY;
 
@@ -390,13 +391,13 @@ fsp_err_t R_ISU_ChangeCfg (isu_ctrl_t * const p_api_ctrl, isu_runtime_cfg_t * co
 }
 
 /*******************************************************************************************************************//**
- * @} (end addtogroup IOPORT)
+ * @} (end addtogroup ISU)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************
@@ -642,43 +643,6 @@ static void r_isu_fm_set_data (isu_runtime_cfg_t const * const p_cfg)
 }
 
 /*******************************************************************************************************************//**
- * Start scaling processing
- *
- * @retval        none
- **********************************************************************************************************************/
-static void r_isu_start_process (void)
-{
-    uint32_t flag_interrupt;
-
-    /* Start frame processing */
-    R_ISU->ISU_FM_FRCON = START_PROSESSING;
-
-    /* Wait for read completion interruption */
-    while (1)
-    {
-        flag_interrupt = R_ISU->ISU_FM_INT_STA_b.DESEND;
-        if (true == (flag_interrupt))
-        {
-            break;
-        }
-    }
-
-    R_ISU->ISU_FM_INT_STA = CLEAR_INTERRUPT_DESEND;
-
-    /* Wait for frame end interruption */
-    while (1)
-    {
-        flag_interrupt = R_ISU->ISU_FM_INT_STA_b.FREND;
-        if (true == (flag_interrupt))
-        {
-            break;
-        }
-    }
-
-    R_ISU->ISU_FM_INT_STA = CLEAR_INTERRUPT_FREND;
-}
-
-/*******************************************************************************************************************//**
  * Set the interrupt settings for ISU module
  *
  * @param[in]       p_instance_ctrl         ISU instance control block
@@ -711,6 +675,9 @@ void isu_int_fre_isr (IRQn_Type const irq)
         args.p_context = p_ctrl->p_context;
         p_ctrl->p_callback(&args);
     }
+
+    /* Clear interrupt status */
+    R_ISU->ISU_FM_INT_STA = CLEAR_INTERRUPT_FREND;
 
     /* Restore context if RTOS is used */
     FSP_CONTEXT_RESTORE

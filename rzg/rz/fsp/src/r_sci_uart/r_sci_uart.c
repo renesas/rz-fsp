@@ -439,7 +439,9 @@ fsp_err_t R_SCI_UART_Close (uart_ctrl_t * const p_api_ctrl)
  *
  * @retval  FSP_SUCCESS                  Data reception successfully ends.
  * @retval  FSP_ERR_ASSERTION            Pointer to UART control block is NULL.
- *                                       Number of transfers outside the max or min boundary when transfer instance used
+ *                                       Number of transfers outside the max or min boundary when transfer instance used.
+ *                                       Pointer to address is NULL.
+ *                                       Transfer size is 0.
  * @retval  FSP_ERR_INVALID_ARGUMENT     Destination address or data size is not valid for 9-bit mode.
  * @retval  FSP_ERR_NOT_OPEN             The control block has not been opened
  * @retval  FSP_ERR_IN_USE               A previous read operation is still in progress.
@@ -497,7 +499,9 @@ fsp_err_t R_SCI_UART_Read (uart_ctrl_t * const p_api_ctrl, uint8_t * const p_des
  *
  * @retval  FSP_SUCCESS                  Data transmission finished successfully.
  * @retval  FSP_ERR_ASSERTION            Pointer to UART control block is NULL.
- *                                       Number of transfers outside the max or min boundary when transfer instance used
+ *                                       Number of transfers outside the max or min boundary when transfer instance used.
+ *                                       Pointer to address is NULL.
+ *                                       Transfer size is 0.
  * @retval  FSP_ERR_INVALID_ARGUMENT     Source address or data size is not valid for 9-bit mode.
  * @retval  FSP_ERR_NOT_OPEN             The control block has not been opened
  * @retval  FSP_ERR_IN_USE               A UART transmission is in progress
@@ -802,7 +806,7 @@ fsp_err_t R_SCI_UART_Abort (uart_ctrl_t * const p_api_ctrl, uart_dir_t communica
  * @retval  FSP_SUCCESS                  UART transaction aborted successfully.
  * @retval  FSP_ERR_ASSERTION            Pointer to UART control block is NULL.
  * @retval  FSP_ERR_NOT_OPEN             The control block has not been opened.
- * @retval  FSP_ERR_UNSUPPORTED          The requested Abort direction is unsupported.
+ * @retval  FSP_ERR_UNSUPPORTED          The requested read stop operation is unsupported because receive functionality is disabled.
  *
  * @return                       See @ref RZG_RENESAS_ERROR_CODES or functions called by this function for other possible
  *                               return codes. This function calls:
@@ -1068,7 +1072,9 @@ static void r_sci_negate_de_pin (sci_uart_instance_ctrl_t const * const p_ctrl)
  *
  * @retval  FSP_SUCCESS              No parameter error found
  * @retval  FSP_ERR_NOT_OPEN         The control block has not been opened
- * @retval  FSP_ERR_ASSERTION        Pointer to UART control block or configuration structure is NULL
+ * @retval  FSP_ERR_ASSERTION        Pointer to UART control block or configuration structure is NULL.
+ *                                   Pointer to address is NULL.
+ *                                   Transfer size is 0.
  * @retval  FSP_ERR_INVALID_ARGUMENT Address is not aligned to 2-byte boundary or size is the odd number when the data
  *                                   length is 9-bit
  **********************************************************************************************************************/

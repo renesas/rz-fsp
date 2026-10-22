@@ -67,6 +67,7 @@ struct st_sci_uart_instance_ctrl
     uint8_t  data_bytes         : 2;   // 1 byte for 7 or 8 bit data, 2 bytes for 9 bit data
     uint8_t  bitrate_modulation : 1;   // 1 if bit rate modulation is enabled, 0 otherwise
     uint32_t open;                     // Used to determine if the channel is configured
+    uint32_t delay_loops;              // Number of software delay loops before enabling TEI
 
     bsp_io_port_pin_t flow_pin;
 
@@ -251,6 +252,7 @@ struct st_sci_uart_extended_cfg
     sci_uart_clock_source_t clock_source;
 
     sci_uart_unit_t unit;              ///< Hardware unit selection (SCI or SCIE).
+    uint8_t         delay_cycles;      ///< Number of PCLKSCI cycles to delay after writing last byte to TDR
 };
 
 /** UART on SCI device Configuration. Please refer to the struct st_sci_uart_extended_cfg. */

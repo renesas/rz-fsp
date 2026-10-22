@@ -41,7 +41,7 @@ namespace RZV
 struct st_elc_instance_ctrl
 {
     uint32_t     open;
-    void const * p_context;
+    void  * p_context;
 };
 
 /** ELC private control block. DO NOT MODIFY. Initialization occurs when R_ELC_Open() is called. Please refer to the struct st_elc_instance_ctrl. */

@@ -115,7 +115,7 @@ fsp_err_t R_WDT_Open (wdt_ctrl_t * const p_ctrl, wdt_cfg_t const * const p_cfg)
     wdt_extended_cfg_t * p_extend = (wdt_extended_cfg_t *) p_cfg->p_extend;
     R_WDT0->WDTSET = p_extend->wdt_timeout << R_WDT0_WDTSET_WDTTIME_Pos;
 
-    /* Enable WDT Overflow interrupt. */
+    /* Enable WDT Overflow interrupt when callback is set. */
     if (NULL != p_instance_ctrl->p_callback)
     {
         R_BSP_IrqCfgEnable(p_extend->overflow_irq, p_extend->overflow_ipl, p_instance_ctrl);
@@ -143,7 +143,7 @@ fsp_err_t R_WDT_TimeoutGet (wdt_ctrl_t * const p_ctrl, wdt_timeout_values_t * co
 #endif
     FSP_PARAMETER_NOT_USED(p_ctrl);
 
-    /* Get timeout value from WDTTIM register.
+    /* Get timeout value from WDTTIME register.
      * (see section 'WDT Period Setting Register_n (WDTSET_n)' of the hardware manual)*/
     p_timeout->timeout_clocks = WDT_PRV_WDTSET_TIMEOUT_CALCURATE_VALUE *
                                 ((R_WDT0->WDTSET >> R_WDT0_WDTSET_WDTTIME_Pos) + 1);

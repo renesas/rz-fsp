@@ -52,7 +52,7 @@ void mhu_b_ns_swint_get_int_isr(void);
  * Global Variables
  **********************************************************************************************************************/
 
-/** MHU_B_NS_SWINT_GET Implementation of General Timer Driver  */
+/** MHU_B_NS_SWINT_GET Implementation of MHU Driver  */
 const mhu_ns_swint_get_api_t g_mhu_ns_swint_get_on_mhu_b_ns_swint_get =
 {
     .open        = R_MHU_B_NS_SWINT_GET_Open,
@@ -270,7 +270,7 @@ static fsp_err_t r_mhu_b_ns_swint_get_common_preamble (mhu_b_ns_swint_get_instan
 }
 
 /*********************************************************************************************************************
- * MHU_B_NS_SWINT_GET receive interrupt (for bere mhu_b_ns_swint_get application).
+ * MHU_B_NS_SWINT_GET receive interrupt (for bare mhu_b_ns_swint_get application).
  **********************************************************************************************************************/
 void mhu_b_ns_swint_get_int_isr (void)
 {

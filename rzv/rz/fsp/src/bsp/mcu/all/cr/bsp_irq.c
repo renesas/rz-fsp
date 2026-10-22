@@ -62,10 +62,10 @@ const bsp_interrupt_event_t g_interrupt_event_link_select[BSP_ICU_VECTOR_MAX_ENT
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZV
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -356,9 +356,9 @@ uint32_t R_BSP_IrqMaskLevelGet (void)
 /** @} (end addtogroup RZV_BSP_MCU) */
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -463,8 +463,6 @@ void bsp_common_interrupt_handler (uint32_t id)
         /* Remain the interrupt number */
         g_current_interrupt_num[g_current_interrupt_pointer++] =
             (uint16_t) (gic_intid - BSP_CORTEX_VECTOR_TABLE_ENTRIES);
-
-        __asm volatile ("dmb");
 
         __enable_irq();
 

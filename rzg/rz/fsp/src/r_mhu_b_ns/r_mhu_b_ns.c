@@ -342,7 +342,7 @@ fsp_err_t R_MHU_B_NS_Close (mhu_ctrl_t * const p_ctrl)
 }
 
 /**********************************************************************************************************************
- * End of function R_MHU_NS_Close
+ * End of function R_MHU_B_NS_Close
  *********************************************************************************************************************/
 
 /** @} (end addtogroup MHU_B_NS) */
@@ -483,7 +483,7 @@ void metal_irq_isr_wrapper (void)
 #endif
 
 /*********************************************************************************************************************
- * MHU_B_NS receive interrupt (for bere mhu_b_ns application).
+ * MHU_B_NS receive interrupt (for bare mhu_b_ns application).
  **********************************************************************************************************************/
 void mhu_b_ns_int_isr (void)
 {

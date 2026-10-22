@@ -159,7 +159,8 @@ fsp_err_t R_SCI_I2C_Open (i2c_master_ctrl_t * const p_ctrl, i2c_master_cfg_t con
     FSP_ASSERT(p_cfg->txi_irq >= (IRQn_Type) 0);
     FSP_ASSERT(p_cfg->tei_irq >= (IRQn_Type) 0);
     FSP_ERROR_RETURN(SCI_I2C_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
-    FSP_ERROR_RETURN((p_cfg->channel < 8 * sizeof(unsigned int)) && (BSP_FEATURE_SCI_CHANNELS & (1U << p_cfg->channel)),
+    FSP_ERROR_RETURN((p_cfg->channel < 8 * sizeof(unsigned int)) &&
+                     (BSP_FEATURE_SCI_CHANNELS & (1U << p_cfg->channel)),
                      FSP_ERR_IP_CHANNEL_NOT_PRESENT);
 #endif
 
@@ -520,7 +521,7 @@ static fsp_err_t sci_i2c_read_write (i2c_master_ctrl_t * const p_ctrl,
             (uint8_t) (((p_instance_ctrl->slave >> 7U) | SCI_I2C_PRV_CODE_10BIT) & (uint8_t) ~(SCI_I2C_PRV_CODE_READ));
         p_instance_ctrl->addr_low = (uint8_t) p_instance_ctrl->slave;
 
-        /* Addr total = 3 for Read and 2 for Write (See Section "Communication Data Format" in the RZ microprocessor manual). */
+        /* Addr total = 3 for Read and 2 for Write (See "Communication Data Format" in the IIC section of the relevant hardware manual). */
         p_instance_ctrl->addr_total = (uint8_t) ((uint8_t) direction + SCI_I2C_PRV_SLAVE_10_BIT_ADDR_LEN_ADJUST);
     }
 #endif
@@ -626,7 +627,8 @@ static void sci_i2c_abort_seq_master (sci_i2c_instance_ctrl_t * const p_instance
 static void sci_i2c_open_hw_master (sci_i2c_instance_ctrl_t * const p_instance_ctrl,
                                     i2c_master_cfg_t const * const  p_cfg)
 {
-    /* SCI Initialization in Simple I2C Mode (See Section "SCI Initialization (Simple I2C mode)" in RZ microprocessor manual). */
+    /* SCI Initialization in Simple I2C Mode (See "SCI Initialization (Simple I2C mode)" in the SCI section of the
+     * relevant hardware manual). */
 
     sci_i2c_extended_cfg_t * pextend = (sci_i2c_extended_cfg_t *) p_instance_ctrl->p_cfg->p_extend;
 
@@ -1082,7 +1084,7 @@ static fsp_err_t sci_i2c_transfer_configure (sci_i2c_instance_ctrl_t        * p_
     {
         /* In case of read operation using DMAC, the TXI interrupt will trigger the DMAC to write 0xFF into TDR
          * (See Figure "Example of the procedure for master reception operations in simple I2C mode (when ICR.IICINTM
-         * is 1, and transmission interrupts and reception interrupts are in use.)" in the RZ microprocessor manual). */
+         * is 1, and transmission interrupts and reception interrupts are in use.)" in the SCI section of the relevant hardware manual). */
 
         /* In case of Write operation this will be reconfigured */
         p_info->mode           = TRANSFER_MODE_NORMAL;
@@ -1271,7 +1273,7 @@ static void sci_i2c_txi_send_data (sci_i2c_instance_ctrl_t * const p_instance_ct
     /* Write 1 byte data to data register (see Figure "Example of the procedure for master transmission operations in
      * simple I2C mode (when ICR.IICINTM is 1, and when confirming ACK / NACK by address transmission only.)" and
      * Figure "Example of the procedure for master reception operations in simple I2C mode (when ICR.IICINTM is 1, and
-     * transmission interrupts and reception interrupts are in use.)" in the RZ microprocessor manual).
+     * transmission interrupts and reception interrupts are in use.)" in the SCI section of the relevant hardware manual).
      * - In case of write operation this will be data from user buffer.
      * - In case of read operation this will be 0xFF as required by HW.
      */

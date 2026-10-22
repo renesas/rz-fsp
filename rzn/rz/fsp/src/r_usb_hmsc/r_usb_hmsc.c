@@ -51,10 +51,10 @@ const usb_hmsc_api_t g_hmsc_on_usb =
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZN
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -122,8 +122,8 @@ fsp_err_t R_USB_HMSC_StorageCommand (usb_ctrl_t * const p_ctrl, uint8_t * buf, u
         if (USB_HMSC_CSW_ERR == utr.result)
         {
             p_instance_ctrl->status         = USB_CSW_RESULT_FAIL;
-            p_instance_ctrl->module_number  = utr.ip;                /* Module number setting */
-            p_instance_ctrl->pipe           = (uint8_t) utr.keyword; /* Pipe number setting */
+            p_instance_ctrl->module_number  = utr.ip;                                     /* Module number setting */
+            p_instance_ctrl->pipe           = (uint8_t) g_usb_hmsc_in_pipe[utr.ip][side]; /* Pipe number setting */
             p_instance_ctrl->device_address = (uint8_t) (usb_hstd_get_devsel(&utr, p_instance_ctrl->pipe) >> 12);
             p_instance_ctrl->data_size      = 0;
  #if (BSP_CFG_RTOS == 2)
@@ -145,8 +145,8 @@ fsp_err_t R_USB_HMSC_StorageCommand (usb_ctrl_t * const p_ctrl, uint8_t * buf, u
 #if (BSP_CFG_RTOS == 2)
     else
     {
-        p_instance_ctrl->module_number  = utr.ip;                /* Module number setting */
-        p_instance_ctrl->pipe           = (uint8_t) utr.keyword; /* Pipe number setting */
+        p_instance_ctrl->module_number  = utr.ip;                                     /* Module number setting */
+        p_instance_ctrl->pipe           = (uint8_t) g_usb_hmsc_in_pipe[utr.ip][side]; /* Pipe number setting */
         p_instance_ctrl->device_address = (uint8_t) (usb_hstd_get_devsel(&utr, p_instance_ctrl->pipe) >> 12);
         p_instance_ctrl->data_size      = 0;
 
@@ -485,7 +485,7 @@ fsp_err_t R_USB_HMSC_SemaphoreRelease (void)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif

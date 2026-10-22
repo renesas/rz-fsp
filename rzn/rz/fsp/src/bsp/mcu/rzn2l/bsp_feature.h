@@ -120,6 +120,7 @@ FSP_HEADER
 #define BSP_FEATURE_BSP_SHOSTIF_SUPPORTED                      (1U)
 #define BSP_FEATURE_BSP_PHOSTIF_SUPPORTED                      (1U)
 #define BSP_FEATURE_BSP_SLAVE_STOP_SUPPORTED                   (0U)
+#define BSP_FEATURE_BSP_SLAVE_STOP_TYPE                        (1U)
 #define BSP_FEATURE_BSP_TRACE_CLOCK_SUPPORTED                  (1U)
 #define BSP_FEATURE_BSP_XSPI0_CS0_BASE_ADDRESS                 (0x60000000U)
 #define BSP_FEATURE_BSP_XSPI0_CS0_SIZE                         (0x8000000U)
@@ -209,8 +210,9 @@ FSP_HEADER
 #define BSP_FEATURE_DMAC_MAX_CHANNEL                           (8U)
 #define BSP_FEATURE_DMAC_MAX_UNIT                              (2U)
 #define BSP_FEATURE_DMAC_UNIT0_ERROR_NUM                       (5U)
+#define BSP_FEATURE_DMAC_VALID_UNIT_MASK                       (0x3U) // Mask of valid units for DMAC.
 
-#define BSP_FEATURE_DOC_VERSION                                (1UL) // The version of the DOC peripheral.
+#define BSP_FEATURE_DOC_VERSION                                (1UL)  // The version of the DOC peripheral.
 
 #define BSP_FEATURE_DSMIF_ADDRESS_OFFSET                       (0x0400)
 #define BSP_FEATURE_DSMIF_CHANNEL_STATUS                       (1U)

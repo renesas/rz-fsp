@@ -398,8 +398,6 @@ fsp_err_t R_GETHER_Open (ether_ctrl_t * const p_ctrl, ether_cfg_t const * const 
     /* register interrupt */
     R_FSP_IsrContextSet(p_instance_ctrl->p_gether_cfg->irq, gether_eint_isr);
 
-    R_BSP_MODULE_START(FSP_IP_ETHER, p_instance_ctrl->p_gether_cfg->channel);
-
     /* Set callback and context pointers, if configured */
     p_instance_ctrl->p_callback        = p_cfg->p_callback;
     p_instance_ctrl->p_context         = p_cfg->p_context;

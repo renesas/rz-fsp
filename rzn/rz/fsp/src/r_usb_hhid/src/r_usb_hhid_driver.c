@@ -325,8 +325,8 @@ void usb_hhid_task (usb_vp_int_t stacd)
  * Description     : pipe information table set
  * Arguments       : usb_utr_t *mess         : Pointer to usb_utr_t structure.
  *                 : uint8_t *table          : Descriptor store address
- *                 : uint16_t speed          : Conect Dpeed(Hi/Full/...)
- *                 : uint16_t length         : Descriptor total lenght
+ *                 : uint16_t speed          : Connect Speed(Hi/Full/...)
+ *                 : uint16_t length         : Descriptor total length
  * Return value    : uint16_t                : Error info
  ******************************************************************************/
 uint16_t usb_hhid_pipe_info (usb_utr_t * ptr, uint8_t * table, uint16_t speed, uint16_t length)
@@ -613,6 +613,21 @@ void usb_hid_detach (usb_utr_t * ptr, uint16_t devadr, uint16_t data2)
     ctrl.device_address = (uint8_t) devadr;
     ctrl.type           = USB_CLASS_HHID;
     usb_set_event(USB_STATUS_DETACH, &ctrl); /* Set Event()  */
+    switch (devadr)
+    {
+        case 1:
+        case 2:
+        {
+            g_usb_hhid_int_in_pipe[ptr->ip]  = 0;
+            g_usb_hhid_int_out_pipe[ptr->ip] = 0;
+            break;
+        }
+
+        default:
+        {
+            break;
+        }
+    }
 }
 
 /******************************************************************************
@@ -723,7 +738,7 @@ void usb_hhid_write_complete (usb_utr_t * mess, uint16_t data1, uint16_t data2)
     ctrl.device_address = (uint8_t) (usb_hstd_get_devsel(mess, ctrl.pipe) >> 12);
     ctrl.type           = USB_CLASS_HHID;            /* hid Data class  */
 
-    if (USB_DATA_NONE == mess->status)               /* USB_CFG_PHID_INT_OUT */
+    if (USB_DATA_NONE == mess->status)
     {
         ctrl.status = FSP_SUCCESS;
     }

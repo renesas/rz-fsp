@@ -89,14 +89,6 @@ typedef enum e_intsel_cause
     INTSEL_CAUSE_IRQ_CAUSE_NUM  = 1,   ///< The number of cause of interrupt of IRQ
 } intsel_cause_t;
 
-/** @} (end addtogroup BSP_MCU) */
-
- #ifdef __FOR_FSP_DOCUMENT__
-  #ifdef __cplusplus
-}
-  #endif
- #endif
-
 /**********************************************************************************************************************
  * Exported global variables
  *********************************************************************************************************************/
@@ -117,6 +109,14 @@ fsp_err_t R_BSP_IntCauseSelectionSet(fsp_ip_t ip, uint8_t channel, intsel_cause_
 
 uint32_t  R_BSP_IntStatusControlGet(fsp_ip_t ip, uint8_t channel, IRQn_Type irq);
 fsp_err_t R_BSP_IntStatusControlClear(fsp_ip_t ip, uint8_t channel, IRQn_Type irq, uint32_t int_source);
+
+/** @} (end addtogroup BSP_MCU) */
+
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+}
+  #endif
+ #endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

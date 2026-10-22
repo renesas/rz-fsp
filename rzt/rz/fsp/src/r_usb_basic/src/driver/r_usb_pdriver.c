@@ -322,7 +322,7 @@ static void usb_pstd_interrupt (uint16_t type, uint16_t status, usb_cfg_t * p_cf
         /* Error */
         case USB_INT_UNKNOWN:
         {
-            USB_PRINTF0("pINT_UNKNOWN\n");
+            /* USB_PRINTF0("pINT_UNKNOWN\n"); */
             break;
         }
 
@@ -599,7 +599,7 @@ static void usb_pstd_interrupt (usb_utr_t * p_mess)
         /* Error */
         case USB_INT_UNKNOWN:
         {
-            USB_PRINTF0("pINT_UNKNOWN\n");
+            /* USB_PRINTF0("pINT_UNKNOWN\n"); */
             break;
         }
 
@@ -1168,7 +1168,7 @@ void usb_pstd_fifo_to_buf (uint16_t pipe, uint16_t useport, usb_utr_t * p_utr)
         case USB_FIFOERROR:
         {
             /* FIFO access error */
-            USB_PRINTF0("### FIFO access error \n");
+            USB_PRINTF0("###usb_pstd_fifo_to_buf FIFO access error \n");
             usb_pstd_forced_termination(pipe, (uint16_t) USB_DATA_ERR, p_utr);
             break;
         }
@@ -1283,7 +1283,6 @@ usb_er_t usb_pstd_transfer_start (usb_utr_t * ptr)
     }
 
   #if (BSP_CFG_RTOS == 0)
-
     if (NULL != g_p_usb_pstd_pipe[pipenum])
     {
         /* Get PIPE TYPE */
@@ -1311,6 +1310,8 @@ usb_er_t usb_pstd_transfer_start (usb_utr_t * ptr)
     p_tran_data = (usb_utr_t *) pvPortMalloc(sizeof(usb_utr_t));
     if (NULL == p_tran_data)
     {
+        USB_PRINTF0("### usb_pstd_transfer_start pvPortMalloc ERROR\n");
+
         return USB_ERROR;
     }
 
@@ -1349,6 +1350,8 @@ usb_er_t usb_pstd_transfer_end (usb_utr_t * p_utr, uint16_t pipe)
 
     if (USB_MAX_PIPE_NO < pipe)
     {
+        USB_PRINTF1("### usb_pstd_transfer_end PipeNo ERROR:%d\n", pipe);
+
         return USB_ERROR;              /* Error */
     }
 
@@ -1422,6 +1425,7 @@ void usb_pstd_change_device_state (uint16_t state, uint16_t keyword, usb_cb_t co
             err = (uint16_t) USB_SND_MSG(USB_PCD_MBX, (usb_msg_t *) &utr);
             if (USB_OK != err)
             {
+                USB_PRINTF1("###usb_pstd_change_device_state USB_SND_MSG error:%04X\n", err);
                 g_usb_pstd_remote_wakeup_state = USB_ERROR;
             }
   #endif                               /* BSP_CFG_RTOS == 0 */
@@ -1588,6 +1592,8 @@ usb_er_t usb_pstd_set_stall_clr_feature (usb_utr_t * ptr, usb_cb_t complete, uin
 
     if (USB_MAX_PIPE_NO < pipe)
     {
+        USB_PRINTF1("*** usb_pstd_set_stall_clr_feature PipeNo ERROR %d\n", pipe);
+
         return USB_ERROR;              /* Error */
     }
 
@@ -1741,6 +1747,13 @@ uint16_t usb_peri_pipe_info (uint8_t * table, uint16_t speed, uint16_t length, u
             {
                 retval = USB_OK;
             }
+            else
+            {
+                USB_PRINTF3("###usb_peri_pipe_info ERROR Type:%02X ADDR:%02X ATR:%02X \n",
+                            table[USB_EP_B_DESCRIPTORTYPE],
+                            table[USB_EP_B_ENDPOINTADDRESS],
+                            table[USB_EP_B_ATTRIBUTES]);
+            }
         }
 
         ofdsc = (uint16_t) (ofdsc + table[ofdsc]);
@@ -1885,8 +1898,8 @@ void usb_pvnd_read_complete (usb_utr_t * mess, uint16_t data1, uint16_t data2)
 
     /* Set Receive data length */
     ctrl.data_size = mess->read_req_len - mess->tranlen;
-    ctrl.pipe = (uint8_t)mess->keyword;         /* Pipe number setting */
-    ctrl.type = (usb_class_t)USB_CLASS_INTERNAL_PVND;              /* Device class setting  */
+    ctrl.pipe      = (uint8_t) mess->keyword;               /* Pipe number setting */
+    ctrl.type      = (usb_class_t) USB_CLASS_INTERNAL_PVND; /* Device class setting  */
   #if (BSP_CFG_RTOS == 2)
     ctrl.p_data = (void *) mess->cur_task_hdl;
   #endif /* (BSP_CFG_RTOS == 2) */
@@ -1935,8 +1948,8 @@ void usb_pvnd_write_complete (usb_utr_t * mess, uint16_t data1, uint16_t data2)
     FSP_PARAMETER_NOT_USED(data1);
     FSP_PARAMETER_NOT_USED(data2);
 
-    ctrl.pipe = (uint8_t)mess->keyword;         /* Pipe number setting */
-    ctrl.type = (usb_class_t)USB_CLASS_INTERNAL_PVND;              /* CDC Control class  */
+    ctrl.pipe = (uint8_t) mess->keyword;               /* Pipe number setting */
+    ctrl.type = (usb_class_t) USB_CLASS_INTERNAL_PVND; /* CDC Control class  */
     if (USB_DATA_NONE == mess->status)
     {
         ctrl.status = FSP_SUCCESS;

@@ -87,6 +87,21 @@
 /* I2C Bus Status Register 2 Mask */
 #define IIC_SLAVE_STATUS_REGISTER_2_ERR_MASK               (0x1FU)
 
+/* Worst case ratio of (CPUnCLK / I2C clock) = 320.
+ */
+#define IIC_SLAVE_PERIPHERAL_REG_MAX_WAIT                  (0x140U)
+
+/* Register Wait Time */
+#define IIC_SLAVE_HARDWARE_REGISTER_WAIT(reg, required_value, timeout) \
+    while ((timeout))                                                  \
+    {                                                                  \
+        if ((required_value) == (reg))                                 \
+        {                                                              \
+            break;                                                     \
+        }                                                              \
+        (timeout)--;                                                   \
+    }
+
 #define RIIC_SLAVE_DMAC_RX_TRANSFER_SETTINGS               ((TRANSFER_MODE_NORMAL << TRANSFER_SETTINGS_MODE_BITS) | \
                                                             (TRANSFER_SIZE_1_BYTE << TRANSFER_SETTINGS_SIZE_BITS) | \
                                                             (TRANSFER_ADDR_MODE_FIXED <<                            \
@@ -252,8 +267,8 @@ fsp_err_t R_RIIC_SLAVE_Open (i2c_slave_ctrl_t * const p_api_ctrl, i2c_slave_cfg_
     /* Indicate that restart and stop condition detection yet to be enabled */
     p_ctrl->start_interrupt_enabled = false;
 
-    /* Open the hardware in slave mode. Performs RIIC initialization as described in hardware manual (see Section
-     * 'Initial Settings' of the hardware manual). */
+    /* Open the hardware in slave mode. Performs IIC initialization as described in hardware manual (see
+     * "Initial Settings" in the IIC Operation section of the relevant hardware manual). */
     iic_open_hw_slave(p_ctrl);
 
 #if RIIC_SLAVE_CFG_DMAC_ENABLE
@@ -573,17 +588,17 @@ static void iic_slave_notify (iic_slave_instance_ctrl_t * const p_ctrl, i2c_slav
     /*
      * Since the transaction resulted in an error or is not completed at the master (this is a bus hang situation)
      * the slave must do an internal reset to release the bus.
-     * Refer the note in Section 'I2C Bus Control Register 1 (ICCR1)' under
-     * 'IICRST bit (IIC-Bus Interface Internal Reset)' description of the hardware manual.
+     * See note "I2C Bus Control Register 1 (ICCR1)" under
+     * "IICRST bit (IIC-Bus Interface Internal Reset)" description
+     * in the IIC section of the relevant hardware manual.
      */
     else
     {
         /* Internal reset */
-        p_ctrl->p_reg->ICCR1 =
-            (uint8_t) (IIC_SLAVE_ICCR1_ICE_BIT_MASK | IIC_SLAVE_ICCR1_IICRST_BIT_MASK);
+        p_ctrl->p_reg->ICCR1_b.IICRST = 1UL;
 
-        /* Release RIIC from internal reset */
-        p_ctrl->p_reg->ICCR1 = (uint8_t) (IIC_SLAVE_ICCR1_ICE_BIT_MASK | IIC_SLAVE_ICCR1_SCL_SDA_OUTPUT_MASK);
+        /* Release IIC from internal reset */
+        p_ctrl->p_reg->ICCR1_b.IICRST = 0UL;
     }
 
     /* Save transaction count */
@@ -623,13 +638,14 @@ static void iic_slave_callback_request (iic_slave_instance_ctrl_t * const p_ctrl
 }
 
 /******************************************************************************************************************//**
- * Performs the hardware initialization sequence when operating as a slave (see Section
- * 'Initial Settings' of the hardware manual).
+ * Performs the hardware initialization sequence when operating as a slave (see
+ * "Initial Settings" in the IIC Operation section of the relevant hardware manual).
  *
  * @param[in]       p_ctrl     Pointer to the control structure.
  *********************************************************************************************************************/
 static void iic_open_hw_slave (iic_slave_instance_ctrl_t * const p_ctrl)
 {
+    uint32_t timeout_count               = 0;
     riic_slave_extended_cfg_t * p_extend = (riic_slave_extended_cfg_t *) p_ctrl->p_cfg->p_extend;
 
     uint8_t digital_filter_stages =
@@ -641,6 +657,10 @@ static void iic_open_hw_slave (iic_slave_instance_ctrl_t * const p_ctrl)
 
     /* S2. Set the ICCR1.IICRST bit to 1 to initiate IIC reset. */
     p_ctrl->p_reg->ICCR1_b.IICRST = 1UL;
+
+    /* Wait for IICRST to be set. */
+    timeout_count = IIC_SLAVE_PERIPHERAL_REG_MAX_WAIT;
+    IIC_SLAVE_HARDWARE_REGISTER_WAIT(p_ctrl->p_reg->ICCR1_b.IICRST, 1U, timeout_count);
 
     /* S3. Set the ICCR1.ICE bit to 1 to initiate internal reset. */
     p_ctrl->p_reg->ICCR1_b.ICE = 1UL;
@@ -677,7 +697,7 @@ static void iic_open_hw_slave (iic_slave_instance_ctrl_t * const p_ctrl)
      * 6. Do not use the digital noise filter circuit.
      * 7. Use the SCL synchronous circuit.
      * 8. Enable FM+ slope circuit if fast mode plus is enabled.
-     * (see Section 'I2C Bus Function Enable Register' of the hardware manual for more details)
+     * (see "I2C Bus Function Enable Register" in the IIC section of the relevant hardware manual).
      */
     p_ctrl->p_reg->ICFER =
         (uint8_t) (((uint8_t) (I2C_SLAVE_RATE_FASTPLUS == p_ctrl->p_cfg->rate) << 7U) |
@@ -703,9 +723,9 @@ static void iic_open_hw_slave (iic_slave_instance_ctrl_t * const p_ctrl)
     /* 1. Set the digital filter.
      * 2. ACKBT should be set to 0 after reset to send out an ACK upon slave address match.
      * 3. Set WAIT bit based on user config.
-     * Refer Section ICMR3 : I2C Bus Mode Register 3 :
+     * See "ICMR3 : I2C Bus Mode Register 3" :
      * 'WAIT bit (WAIT)' and 'RDRFS bit (RDRF Flag Set Timing Select)'
-     * of the hardware manual.
+     * in the IIC section of the relevant hardware manual.
      * Since RDRFS = 0:
      * - SCLn line will *not* be held low at the falling edge of the 8th clock cycle.
      * - RDRF flag will be set at the rising edge of the 9th clock cycle. (Cause of iic_rxi_slave)
@@ -1146,7 +1166,8 @@ static void iic_tei_slave (iic_slave_instance_ctrl_t * p_ctrl)
     /* Disable the interrupt as we are done with the transfer */
     p_ctrl->p_reg->ICIER_b.TEIE = 0U;
 
-    /* Wait for the value to reflect at the peripheral. */
+    /* Wait for the value to reflect at the peripheral.
+     * See 'Note' under table "Interrupt sources" in the IIC section of the relevant hardware manual. */
     while (0UL != p_ctrl->p_reg->ICIER_b.TEIE)
     {
         /* Do nothing */
@@ -1167,7 +1188,7 @@ static void iic_naki_slave (iic_slave_instance_ctrl_t * p_ctrl)
     {
         /* NACK interrupt will be triggered on MasterReadSlaveWrite operation.
          * Do dummy read to release SCL
-         * Refer Section "Slave Transmit Operation" of the hardware manual.
+         * Refer point #5 under Section "Slave Transmit Operation" in the IIC section of the relevant hardware manual.
          */
         volatile uint32_t dummy_read = p_ctrl->p_reg->ICDRR_byte.LL;
         FSP_PARAMETER_NOT_USED(dummy_read);

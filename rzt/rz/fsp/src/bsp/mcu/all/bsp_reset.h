@@ -172,7 +172,7 @@ typedef enum e_bsp_module_reset
     /** Enables writing to the registers related to NANDC Protect Registers reset control. */
     BSP_MODULE_RESET_NANDC_PROTECT_REGISTERS = (BSP_RESET_MRCTLH_SELECT | BSP_RESET_MRCTL_BIT6_SHIFT),
 
-    /** Enables writing to the registers related to PHOSTIF reset control. */
+    /** DEPRECATED Enables writing to the registers related to PHOSTIF reset control. */
     BSP_MODULE_RESET_PHOSTIF_CLOCK = (BSP_RESET_MRCTLI_SELECT | BSP_RESET_MRCTL_BIT0_SHIFT),
 
     /** Enables writing to the registers related to SHOSTIF (Master bus clock domain) reset control. */

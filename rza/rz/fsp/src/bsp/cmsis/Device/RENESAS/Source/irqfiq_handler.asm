@@ -40,22 +40,19 @@ fiq_handler:
         MRS             x0, FPCR
         MRS             x1, FPSR
         STP             x0, x1, [SP, #-0x10]!
-        STP             q30, q31, [SP, #-0x20]!
-        STP             q28, q29, [SP, #-0x20]!
-        STP             q26, q27, [SP, #-0x20]!
-        STP             q24, q25, [SP, #-0x20]!
-        STP             q22, q23, [SP, #-0x20]!
-        STP             q20, q21, [SP, #-0x20]!
-        STP             q18, q19, [SP, #-0x20]!
-        STP             q16, q17, [SP, #-0x20]!
-        STP             q14, q15, [SP, #-0x20]!
-        STP             q12, q13, [SP, #-0x20]!
-        STP             q10, q11, [SP, #-0x20]!
-        STP             q8, q9, [SP, #-0x20]!
-        STP             q6, q7, [SP, #-0x20]!
-        STP             q4, q5, [SP, #-0x20]!
-        STP             q2, q3, [SP, #-0x20]!
-        STP             q0, q1, [SP, #-0x20]!
+        MOV             x0, #-0x40
+
+        /* Reserve for 4 Q regsiters */
+        SUB             SP, SP, #0x40
+        /* Store all 32 Q registers using LD1 (8 groups of 4 registers) */
+        ST1             {v28.2d, v29.2d, v30.2d, v31.2d}, [SP], x0
+        ST1             {v24.2d, v25.2d, v26.2d, v27.2d}, [SP], x0
+        ST1             {v20.2d, v21.2d, v22.2d, v23.2d}, [SP], x0
+        ST1             {v16.2d, v17.2d, v18.2d, v19.2d}, [SP], x0
+        ST1             {v12.2d, v13.2d, v14.2d, v15.2d}, [SP], x0
+        ST1             {v8.2d, v9.2d, v10.2d, v11.2d}, [SP], x0
+        ST1             {v4.2d, v5.2d, v6.2d, v7.2d}, [SP], x0
+        ST1             {v0.2d, v1.2d, v2.2d, v3.2d}, [SP]
 #endif
         /* Save the SPSR and ELR. */
         MRS             x3, SPSR_EL3
@@ -65,8 +62,6 @@ fiq_handler:
         BL              FIQ_ExecuteHandler
 
         MSR             DAIFSET, #DAIF_BIT_F
-        DSB             SY
-        ISB             SY
 
         /* Restore volatile registers. */
         LDP             x4, x5, [sp], #0x10     /* SPSR and ELR. */
@@ -74,29 +69,26 @@ fiq_handler:
         MSR             SPSR_EL3, x5
         MSR             ELR_EL3, x4
 
-        DSB             SY
+        DMB             SY
         ISB             SY
 
 #if ((__FPU_USED || __ARM_NEON) && (BSP_CFG_FPU_REGISTERS_SAVING))
-        LDP             q0, q1, [sp], #0x20
-        LDP             q2, q3, [sp], #0x20
-        LDP             q4, q5, [sp], #0x20
-        LDP             q6, q7, [sp], #0x20
-        LDP             q8, q9, [sp], #0x20
-        LDP             q10, q11, [sp], #0x20
-        LDP             q12, q13, [sp], #0x20
-        LDP             q14, q15, [sp], #0x20
-        LDP             q16, q17, [sp], #0x20
-        LDP             q18, q19, [sp], #0x20
-        LDP             q20, q21, [sp], #0x20
-        LDP             q22, q23, [sp], #0x20
-        LDP             q24, q25, [sp], #0x20
-        LDP             q26, q27, [sp], #0x20
-        LDP             q28, q29, [sp], #0x20
-        LDP             q30, q31, [sp], #0x20
-        LDP             x0, x1, [sp], #0x10
+
+        /* Restore all 32 Q registers using LD1 (8 groups of 4 registers) */
+        LD1             {v0.2d, v1.2d, v2.2d, v3.2d}, [SP], #0x40
+        LD1             {v4.2d, v5.2d, v6.2d, v7.2d}, [SP], #0x40
+        LD1             {v8.2d, v9.2d, v10.2d, v11.2d}, [SP], #0x40
+        LD1             {v12.2d, v13.2d, v14.2d, v15.2d}, [SP], #0x40
+        LD1             {v16.2d, v17.2d, v18.2d, v19.2d}, [SP], #0x40
+        LD1             {v20.2d, v21.2d, v22.2d, v23.2d}, [SP], #0x40
+        LD1             {v24.2d, v25.2d, v26.2d, v27.2d}, [SP], #0x40
+        LD1             {v28.2d, v29.2d, v30.2d, v31.2d}, [SP], #0x40
+
+        /* Restore FPCR and FPSR */
+        LDP             x0, x1, [SP], #0x10
         MSR             FPCR, x0
         MSR             FPSR, x1
+
 #endif
         LDP             x0, x1, [sp], #0x10
         LDP             x2, x3, [sp], #0x10

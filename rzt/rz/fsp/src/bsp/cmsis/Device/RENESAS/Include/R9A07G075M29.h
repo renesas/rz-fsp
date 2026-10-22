@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright (c) 2020 - 2026 Renesas Electronics Corporation and/or its affiliates
 *
 * SPDX-License-Identifier: BSD-3-Clause
@@ -15042,18 +15042,18 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P0_QGPPC;        /*!< (@ 0x00002204) Qci Gate (All) Passed Packet Count Port 0                  */
+        __IM uint32_t P0_QGPPC0;       /*!< (@ 0x00002204) Qci Gate 0 Passed Packet Count Port 0                      */
 
         struct
         {
             __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
             uint32_t            : 16;
-        } P0_QGPPC_b;
+        } P0_QGPPC0_b;
     };
 
     union
     {
-        __IM uint32_t P0_QGDPC0;       /*!< (@ 0x00002208) Qci Gate 0 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGDPC0;       /*!< (@ 0x00002208) Qci Gate 0 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -15061,11 +15061,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P0_QGDPC0_b;
     };
-    __IM uint32_t RESERVED59;
 
     union
     {
-        __IM uint32_t P0_QGDPC1;       /*!< (@ 0x00002210) Qci Gate 1 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGPPC1;       /*!< (@ 0x0000220C) Qci Gate 1 Passed Packet Count Port 0                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P0_QGPPC1_b;
+    };
+
+    union
+    {
+        __IM uint32_t P0_QGDPC1;       /*!< (@ 0x00002210) Qci Gate 1 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -15073,11 +15083,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P0_QGDPC1_b;
     };
-    __IM uint32_t RESERVED60;
 
     union
     {
-        __IM uint32_t P0_QGDPC2;       /*!< (@ 0x00002218) Qci Gate 2 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGPPC2;       /*!< (@ 0x00002214) Qci Gate 2 Passed Packet Count Port 0                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P0_QGPPC2_b;
+    };
+
+    union
+    {
+        __IM uint32_t P0_QGDPC2;       /*!< (@ 0x00002218) Qci Gate 2 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -15085,11 +15105,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P0_QGDPC2_b;
     };
-    __IM uint32_t RESERVED61;
 
     union
     {
-        __IM uint32_t P0_QGDPC3;       /*!< (@ 0x00002220) Qci Gate 3 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGPPC3;       /*!< (@ 0x0000221C) Qci Gate 3 Passed Packet Count Port 0                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P0_QGPPC3_b;
+    };
+
+    union
+    {
+        __IM uint32_t P0_QGDPC3;       /*!< (@ 0x00002220) Qci Gate 3 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -15097,11 +15127,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P0_QGDPC3_b;
     };
-    __IM uint32_t RESERVED62;
 
     union
     {
-        __IM uint32_t P0_QGDPC4;       /*!< (@ 0x00002228) Qci Gate 4 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGPPC4;       /*!< (@ 0x00002224) Qci Gate 4 Passed Packet Count Port 0                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P0_QGPPC4_b;
+    };
+
+    union
+    {
+        __IM uint32_t P0_QGDPC4;       /*!< (@ 0x00002228) Qci Gate 4 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -15109,11 +15149,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P0_QGDPC4_b;
     };
-    __IM uint32_t RESERVED63;
 
     union
     {
-        __IM uint32_t P0_QGDPC5;       /*!< (@ 0x00002230) Qci Gate 5 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGPPC5;       /*!< (@ 0x0000222C) Qci Gate 5 Passed Packet Count Port 0                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P0_QGPPC5_b;
+    };
+
+    union
+    {
+        __IM uint32_t P0_QGDPC5;       /*!< (@ 0x00002230) Qci Gate 5 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -15121,11 +15171,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P0_QGDPC5_b;
     };
-    __IM uint32_t RESERVED64;
 
     union
     {
-        __IM uint32_t P0_QGDPC6;       /*!< (@ 0x00002238) Qci Gate 6 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGPPC6;       /*!< (@ 0x00002234) Qci Gate 6 Passed Packet Count Port 0                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P0_QGPPC6_b;
+    };
+
+    union
+    {
+        __IM uint32_t P0_QGDPC6;       /*!< (@ 0x00002238) Qci Gate 6 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -15133,11 +15193,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P0_QGDPC6_b;
     };
-    __IM uint32_t RESERVED65;
 
     union
     {
-        __IM uint32_t P0_QGDPC7;       /*!< (@ 0x00002240) Qci Gate 7 Dropped Packet Count Port n                     */
+        __IM uint32_t P0_QGPPC7;       /*!< (@ 0x0000223C) Qci Gate 7 Passed Packet Count Port 0                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P0_QGPPC7_b;
+    };
+
+    union
+    {
+        __IM uint32_t P0_QGDPC7;       /*!< (@ 0x00002240) Qci Gate 7 Dropped Packet Count Port 0                     */
 
         struct
         {
@@ -15732,7 +15802,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t                   : 16;
         } P0_VIC_DROP_CNT_b;
     };
-    __IM uint32_t RESERVED66[6];
+    __IM uint32_t RESERVED59[6];
 
     union
     {
@@ -15775,7 +15845,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t               : 27;
         } P0_ERROR_MASK_b;
     };
-    __IM uint32_t RESERVED67[35];
+    __IM uint32_t RESERVED60[35];
 
     union
     {
@@ -15848,7 +15918,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             __IM uint32_t RDATA : 32;   /*!< [31..0] Destination MAC address regeneration read data                    */
         } ASI_MEM_RDATA_b[4];
     };
-    __IM uint32_t RESERVED68[4];
+    __IM uint32_t RESERVED61[4];
 
     union
     {
@@ -16857,7 +16927,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t             : 16;
         } P1_QMSRPC7_b;
     };
-    __IM uint32_t RESERVED69[42];
+    __IM uint32_t RESERVED62[42];
 
     union
     {
@@ -16892,7 +16962,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t             : 24;
         } P1_QSEID_b;
     };
-    __IM uint32_t RESERVED70[3];
+    __IM uint32_t RESERVED63[3];
 
     union
     {
@@ -16907,18 +16977,18 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P1_QGPPC;        /*!< (@ 0x00002604) Qci Gate (All) Passed Packet Count Port 1                  */
+        __IM uint32_t P1_QGPPC0;       /*!< (@ 0x00002604) Qci Gate 0 Passed Packet Count Port 1                      */
 
         struct
         {
             __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
             uint32_t            : 16;
-        } P1_QGPPC_b;
+        } P1_QGPPC0_b;
     };
 
     union
     {
-        __IM uint32_t P1_QGDPC0;       /*!< (@ 0x00002608) Qci Gate 0 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGDPC0;       /*!< (@ 0x00002608) Qci Gate 0 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -16926,11 +16996,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P1_QGDPC0_b;
     };
-    __IM uint32_t RESERVED71;
 
     union
     {
-        __IM uint32_t P1_QGDPC1;       /*!< (@ 0x00002610) Qci Gate 1 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGPPC1;       /*!< (@ 0x0000260C) Qci Gate 1 Passed Packet Count Port 1                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P1_QGPPC1_b;
+    };
+
+    union
+    {
+        __IM uint32_t P1_QGDPC1;       /*!< (@ 0x00002610) Qci Gate 1 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -16938,11 +17018,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P1_QGDPC1_b;
     };
-    __IM uint32_t RESERVED72;
 
     union
     {
-        __IM uint32_t P1_QGDPC2;       /*!< (@ 0x00002618) Qci Gate 2 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGPPC2;       /*!< (@ 0x00002614) Qci Gate 2 Passed Packet Count Port 1                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P1_QGPPC2_b;
+    };
+
+    union
+    {
+        __IM uint32_t P1_QGDPC2;       /*!< (@ 0x00002618) Qci Gate 2 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -16950,11 +17040,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P1_QGDPC2_b;
     };
-    __IM uint32_t RESERVED73;
 
     union
     {
-        __IM uint32_t P1_QGDPC3;       /*!< (@ 0x00002620) Qci Gate 3 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGPPC3;       /*!< (@ 0x0000261C) Qci Gate 3 Passed Packet Count Port 1                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P1_QGPPC3_b;
+    };
+
+    union
+    {
+        __IM uint32_t P1_QGDPC3;       /*!< (@ 0x00002620) Qci Gate 3 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -16962,11 +17062,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P1_QGDPC3_b;
     };
-    __IM uint32_t RESERVED74;
 
     union
     {
-        __IM uint32_t P1_QGDPC4;       /*!< (@ 0x00002628) Qci Gate 4 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGPPC4;       /*!< (@ 0x00002624) Qci Gate 4 Passed Packet Count Port 1                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P1_QGPPC4_b;
+    };
+
+    union
+    {
+        __IM uint32_t P1_QGDPC4;       /*!< (@ 0x00002628) Qci Gate 4 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -16974,11 +17084,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P1_QGDPC4_b;
     };
-    __IM uint32_t RESERVED75;
 
     union
     {
-        __IM uint32_t P1_QGDPC5;       /*!< (@ 0x00002630) Qci Gate 5 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGPPC5;       /*!< (@ 0x0000262C) Qci Gate 5 Passed Packet Count Port 1                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P1_QGPPC5_b;
+    };
+
+    union
+    {
+        __IM uint32_t P1_QGDPC5;       /*!< (@ 0x00002630) Qci Gate 5 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -16986,11 +17106,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P1_QGDPC5_b;
     };
-    __IM uint32_t RESERVED76;
 
     union
     {
-        __IM uint32_t P1_QGDPC6;       /*!< (@ 0x00002638) Qci Gate 6 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGPPC6;       /*!< (@ 0x00002634) Qci Gate 6 Passed Packet Count Port 1                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P1_QGPPC6_b;
+    };
+
+    union
+    {
+        __IM uint32_t P1_QGDPC6;       /*!< (@ 0x00002638) Qci Gate 6 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -16998,11 +17128,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P1_QGDPC6_b;
     };
-    __IM uint32_t RESERVED77;
 
     union
     {
-        __IM uint32_t P1_QGDPC7;       /*!< (@ 0x00002640) Qci Gate 7 Dropped Packet Count Port n                     */
+        __IM uint32_t P1_QGPPC7;       /*!< (@ 0x0000263C) Qci Gate 7 Passed Packet Count Port 1                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P1_QGPPC7_b;
+    };
+
+    union
+    {
+        __IM uint32_t P1_QGDPC7;       /*!< (@ 0x00002640) Qci Gate 7 Dropped Packet Count Port 1                     */
 
         struct
         {
@@ -17597,7 +17737,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t                   : 16;
         } P1_VIC_DROP_CNT_b;
     };
-    __IM uint32_t RESERVED78[6];
+    __IM uint32_t RESERVED64[6];
 
     union
     {
@@ -17640,7 +17780,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t               : 27;
         } P1_ERROR_MASK_b;
     };
-    __IM uint32_t RESERVED79[51];
+    __IM uint32_t RESERVED65[51];
 
     union
     {
@@ -18649,7 +18789,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t             : 16;
         } P2_QMSRPC7_b;
     };
-    __IM uint32_t RESERVED80[42];
+    __IM uint32_t RESERVED66[42];
 
     union
     {
@@ -18684,7 +18824,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t             : 24;
         } P2_QSEID_b;
     };
-    __IM uint32_t RESERVED81[3];
+    __IM uint32_t RESERVED67[3];
 
     union
     {
@@ -18699,18 +18839,18 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
 
     union
     {
-        __IM uint32_t P2_QGPPC;        /*!< (@ 0x00002A04) Qci Gate (All) Passed Packet Count Port 2                  */
+        __IM uint32_t P2_QGPPC0;       /*!< (@ 0x00002A04) Qci Gate 0 Passed Packet Count Port 2                      */
 
         struct
         {
             __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
             uint32_t            : 16;
-        } P2_QGPPC_b;
+        } P2_QGPPC0_b;
     };
 
     union
     {
-        __IM uint32_t P2_QGDPC0;       /*!< (@ 0x00002A08) Qci Gate 0 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGDPC0;       /*!< (@ 0x00002A08) Qci Gate 0 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -18718,11 +18858,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P2_QGDPC0_b;
     };
-    __IM uint32_t RESERVED82;
 
     union
     {
-        __IM uint32_t P2_QGDPC1;       /*!< (@ 0x00002A10) Qci Gate 1 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGPPC1;       /*!< (@ 0x00002A0C) Qci Gate 1 Passed Packet Count Port 2                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P2_QGPPC1_b;
+    };
+
+    union
+    {
+        __IM uint32_t P2_QGDPC1;       /*!< (@ 0x00002A10) Qci Gate 1 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -18730,11 +18880,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P2_QGDPC1_b;
     };
-    __IM uint32_t RESERVED83;
 
     union
     {
-        __IM uint32_t P2_QGDPC2;       /*!< (@ 0x00002A18) Qci Gate 2 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGPPC2;       /*!< (@ 0x00002A14) Qci Gate 2 Passed Packet Count Port 2                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P2_QGPPC2_b;
+    };
+
+    union
+    {
+        __IM uint32_t P2_QGDPC2;       /*!< (@ 0x00002A18) Qci Gate 2 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -18742,11 +18902,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P2_QGDPC2_b;
     };
-    __IM uint32_t RESERVED84;
 
     union
     {
-        __IM uint32_t P2_QGDPC3;       /*!< (@ 0x00002A20) Qci Gate 3 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGPPC3;       /*!< (@ 0x00002A1C) Qci Gate 3 Passed Packet Count Port 2                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P2_QGPPC3_b;
+    };
+
+    union
+    {
+        __IM uint32_t P2_QGDPC3;       /*!< (@ 0x00002A20) Qci Gate 3 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -18754,11 +18924,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P2_QGDPC3_b;
     };
-    __IM uint32_t RESERVED85;
 
     union
     {
-        __IM uint32_t P2_QGDPC4;       /*!< (@ 0x00002A28) Qci Gate 4 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGPPC4;       /*!< (@ 0x00002A24) Qci Gate 4 Passed Packet Count Port 2                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P2_QGPPC4_b;
+    };
+
+    union
+    {
+        __IM uint32_t P2_QGDPC4;       /*!< (@ 0x00002A28) Qci Gate 4 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -18766,11 +18946,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P2_QGDPC4_b;
     };
-    __IM uint32_t RESERVED86;
 
     union
     {
-        __IM uint32_t P2_QGDPC5;       /*!< (@ 0x00002A30) Qci Gate 5 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGPPC5;       /*!< (@ 0x00002A2C) Qci Gate 5 Passed Packet Count Port 2                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P2_QGPPC5_b;
+    };
+
+    union
+    {
+        __IM uint32_t P2_QGDPC5;       /*!< (@ 0x00002A30) Qci Gate 5 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -18778,11 +18968,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P2_QGDPC5_b;
     };
-    __IM uint32_t RESERVED87;
 
     union
     {
-        __IM uint32_t P2_QGDPC6;       /*!< (@ 0x00002A38) Qci Gate 6 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGPPC6;       /*!< (@ 0x00002A34) Qci Gate 6 Passed Packet Count Port 2                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P2_QGPPC6_b;
+    };
+
+    union
+    {
+        __IM uint32_t P2_QGDPC6;       /*!< (@ 0x00002A38) Qci Gate 6 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -18790,11 +18990,21 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t            : 16;
         } P2_QGDPC6_b;
     };
-    __IM uint32_t RESERVED88;
 
     union
     {
-        __IM uint32_t P2_QGDPC7;       /*!< (@ 0x00002A40) Qci Gate 7 Dropped Packet Count Port n                     */
+        __IM uint32_t P2_QGPPC7;       /*!< (@ 0x00002A3C) Qci Gate 7 Passed Packet Count Port 2                      */
+
+        struct
+        {
+            __IM uint32_t QGPPC : 16;  /*!< [15..0] Qci gate passed packet count                                      */
+            uint32_t            : 16;
+        } P2_QGPPC7_b;
+    };
+
+    union
+    {
+        __IM uint32_t P2_QGDPC7;       /*!< (@ 0x00002A40) Qci Gate 7 Dropped Packet Count Port 2                     */
 
         struct
         {
@@ -19389,7 +19599,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t                   : 16;
         } P2_VIC_DROP_CNT_b;
     };
-    __IM uint32_t RESERVED89[6];
+    __IM uint32_t RESERVED68[6];
 
     union
     {
@@ -19432,7 +19642,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t               : 27;
         } P2_ERROR_MASK_b;
     };
-    __IM uint32_t RESERVED90[564];
+    __IM uint32_t RESERVED69[564];
 
     union
     {
@@ -19492,7 +19702,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
                                                       *   or when a clear-after-read is used.                                       */
         } STATN_CLEARVALUE_LO_b;
     };
-    __IM uint32_t RESERVED91[21];
+    __IM uint32_t RESERVED70[21];
 
     union
     {
@@ -20158,7 +20368,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
                                            *   IDISC_VLAN, IDSIC_UNTAGGED, IDISC_SRCFLT, and IDISC_BLOCKED.              */
         } IDISC_ANY3_b;
     };
-    __IM uint32_t RESERVED92[363];
+    __IM uint32_t RESERVED71[363];
 
     union
     {
@@ -20203,7 +20413,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t : 8;
         } MMCTL_CTFL_P0_3_ENA_b;
     };
-    __IM uint32_t RESERVED93[6];
+    __IM uint32_t RESERVED72[6];
 
     union
     {
@@ -20224,7 +20434,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t : 15;
         } MMCTL_YELLOW_BYTE_LENGTH_P_b[3];
     };
-    __IM uint32_t RESERVED94[5];
+    __IM uint32_t RESERVED73[5];
 
     union
     {
@@ -20257,7 +20467,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t : 6;
         } MMCTL_POOL1_CTR_b;
     };
-    __IM uint32_t RESERVED95[6];
+    __IM uint32_t RESERVED74[6];
 
     union
     {
@@ -20390,7 +20600,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t : 8;
         } MMCTL_QCLOSED_STATUS_P0_3_b;
     };
-    __IM uint32_t RESERVED96;
+    __IM uint32_t RESERVED75;
 
     union
     {
@@ -20409,7 +20619,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t : 8;
         } MMCTL_1FRAME_MODE_P_b[3];
     };
-    __IM uint32_t RESERVED97[5];
+    __IM uint32_t RESERVED76[5];
 
     union
     {
@@ -20423,7 +20633,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t                  : 8;
         } MMCTL_P0_3_QUEUE_STATUS_b;
     };
-    __IM uint32_t RESERVED98;
+    __IM uint32_t RESERVED77;
 
     union
     {
@@ -20440,7 +20650,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t : 8;
         } MMCTL_P0_3_FLUSH_STATUS_b;
     };
-    __IM uint32_t RESERVED99;
+    __IM uint32_t RESERVED78;
 
     union
     {
@@ -20536,7 +20746,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t : 16;
         } MMCTL_CQF_CTRL_P_b[4];
     };
-    __IM uint32_t RESERVED100[4];
+    __IM uint32_t RESERVED79[4];
 
     union
     {
@@ -20558,7 +20768,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
                                                     *   still queued.                                                             */
         } MMCTL_P0_3_QCLOSED_NONEMPTY_b;
     };
-    __IM uint32_t RESERVED101;
+    __IM uint32_t RESERVED80;
 
     union
     {
@@ -20574,7 +20784,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t : 24;
         } MMCTL_PREEMPT_EXTRA_b;
     };
-    __IM uint32_t RESERVED102[5];
+    __IM uint32_t RESERVED81[5];
 
     union
     {
@@ -20737,7 +20947,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t               : 16;
         } DLR_LOC_MAChi_b;
     };
-    __IM uint32_t RESERVED103;
+    __IM uint32_t RESERVED82;
 
     union
     {
@@ -20853,7 +21063,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
                                         *   port 1. Sequence ID of the ignored frames is not stored.                  */
         } DLR_SEQ_ID_b;
     };
-    __IM uint32_t RESERVED104[5];
+    __IM uint32_t RESERVED83[5];
 
     union
     {
@@ -20898,7 +21108,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
                                               *   0                                                                         */
         } DLR_RX_ERR_STAT0_b;
     };
-    __IM uint32_t RESERVED105;
+    __IM uint32_t RESERVED84;
 
     union
     {
@@ -20933,7 +21143,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
                                               *   1                                                                         */
         } DLR_RX_ERR_STAT1_b;
     };
-    __IM uint32_t RESERVED106;
+    __IM uint32_t RESERVED85;
 
     union
     {
@@ -20947,7 +21157,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t : 24;
         } DLR_RX_LF_STAT1_b;
     };
-    __IM uint32_t RESERVED107[32];
+    __IM uint32_t RESERVED86[32];
 
     union
     {
@@ -21262,7 +21472,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
                                             +   to be treated as drop allowed).                                           */
         } CntMissing_b;
     };
-    __IM uint32_t RESERVED108[40];
+    __IM uint32_t RESERVED87[40];
 
     union
     {
@@ -21415,7 +21625,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t                       : 29;
         } HUB_OPORT_STATUS_b;
     };
-    __IM uint32_t RESERVED109[22];
+    __IM uint32_t RESERVED88[22];
 
     union
     {
@@ -21694,7 +21904,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             __IOM uint32_t GPIO_MODE  : 16; /*!< [31..16] 2 bits per GPIO pin to configure its operating mode              */
         } TDMA_GPIO_b;
     };
-    __IM uint32_t RESERVED110[14];
+    __IM uint32_t RESERVED89[14];
 
     union
     {
@@ -21706,7 +21916,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t                  : 20;
         } RXMATCH_CONFIG_b[4];
     };
-    __IM uint32_t RESERVED111[12];
+    __IM uint32_t RESERVED90[12];
 
     union
     {
@@ -21773,7 +21983,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
                                                  *   select one among all queues.                                              */
         } PATTERN_CTRL_b[12];
     };
-    __IM uint32_t RESERVED112[4];
+    __IM uint32_t RESERVED91[4];
 
     union
     {
@@ -21827,7 +22037,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             uint32_t : 28;
         } PATTERN_SEL_b;
     };
-    __IM uint32_t RESERVED113[12];
+    __IM uint32_t RESERVED92[12];
 
     union
     {
@@ -21858,7 +22068,7 @@ typedef struct                         /*!< (@ 0x80120000) R_ETHSW Structure    
             __IOM uint32_t PTRN_CMP_118 : 32; /*!< [31..0] Pattern Compare Value Bytes 11 .. 8                               */
         } PTRN_CMP_118_b;
     };
-    __IM uint32_t RESERVED114;
+    __IM uint32_t RESERVED93;
 
     union
     {
@@ -38354,15 +38564,78 @@ typedef struct                         /*!< (@ 0xC0060000) R_GSC Structure      
 /* =======================================================  P2_QGMOD  ======================================================== */
  #define R_ETHSW_P2_QGMOD_QGMOD_Pos                                       (0UL)          /*!< QGMOD (Bit 0)                                         */
  #define R_ETHSW_P2_QGMOD_QGMOD_Msk                                       (0xffUL)       /*!< QGMOD (Bitfield-Mask: 0xff)                           */
-/* =======================================================  P0_QGPPC  ======================================================== */
- #define R_ETHSW_P0_QGPPC_QGPPC_Pos                                       (0UL)          /*!< QGPPC (Bit 0)                                         */
- #define R_ETHSW_P0_QGPPC_QGPPC_Msk                                       (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
-/* =======================================================  P1_QGPPC  ======================================================== */
- #define R_ETHSW_P1_QGPPC_QGPPC_Pos                                       (0UL)          /*!< QGPPC (Bit 0)                                         */
- #define R_ETHSW_P1_QGPPC_QGPPC_Msk                                       (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
-/* =======================================================  P2_QGPPC  ======================================================== */
- #define R_ETHSW_P2_QGPPC_QGPPC_Pos                                       (0UL)          /*!< QGPPC (Bit 0)                                         */
- #define R_ETHSW_P2_QGPPC_QGPPC_Msk                                       (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P0_QGPPC0  ======================================================= */
+ #define R_ETHSW_P0_QGPPC0_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P0_QGPPC0_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P0_QGPPC1  ======================================================= */
+ #define R_ETHSW_P0_QGPPC1_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P0_QGPPC1_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P0_QGPPC2  ======================================================= */
+ #define R_ETHSW_P0_QGPPC2_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P0_QGPPC2_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P0_QGPPC3  ======================================================= */
+ #define R_ETHSW_P0_QGPPC3_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P0_QGPPC3_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P0_QGPPC4  ======================================================= */
+ #define R_ETHSW_P0_QGPPC4_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P0_QGPPC4_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P0_QGPPC5  ======================================================= */
+ #define R_ETHSW_P0_QGPPC5_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P0_QGPPC5_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P0_QGPPC6  ======================================================= */
+ #define R_ETHSW_P0_QGPPC6_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P0_QGPPC6_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P0_QGPPC7  ======================================================= */
+ #define R_ETHSW_P0_QGPPC7_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P0_QGPPC7_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P1_QGPPC0  ======================================================= */
+ #define R_ETHSW_P1_QGPPC0_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P1_QGPPC0_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P1_QGPPC1  ======================================================= */
+ #define R_ETHSW_P1_QGPPC1_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P1_QGPPC1_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P1_QGPPC2  ======================================================= */
+ #define R_ETHSW_P1_QGPPC2_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P1_QGPPC2_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P1_QGPPC3  ======================================================= */
+ #define R_ETHSW_P1_QGPPC3_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P1_QGPPC3_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P1_QGPPC4  ======================================================= */
+ #define R_ETHSW_P1_QGPPC4_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P1_QGPPC4_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P1_QGPPC5  ======================================================= */
+ #define R_ETHSW_P1_QGPPC5_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P1_QGPPC5_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P1_QGPPC6  ======================================================= */
+ #define R_ETHSW_P1_QGPPC6_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P1_QGPPC6_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P1_QGPPC7  ======================================================= */
+ #define R_ETHSW_P1_QGPPC7_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P1_QGPPC7_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P2_QGPPC0  ======================================================= */
+ #define R_ETHSW_P2_QGPPC0_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P2_QGPPC0_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P2_QGPPC1  ======================================================= */
+ #define R_ETHSW_P2_QGPPC1_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P2_QGPPC1_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P2_QGPPC2  ======================================================= */
+ #define R_ETHSW_P2_QGPPC2_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P2_QGPPC2_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P2_QGPPC3  ======================================================= */
+ #define R_ETHSW_P2_QGPPC3_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P2_QGPPC3_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P2_QGPPC4  ======================================================= */
+ #define R_ETHSW_P2_QGPPC4_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P2_QGPPC4_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P2_QGPPC5  ======================================================= */
+ #define R_ETHSW_P2_QGPPC5_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P2_QGPPC5_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P2_QGPPC6  ======================================================= */
+ #define R_ETHSW_P2_QGPPC6_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P2_QGPPC6_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
+/* =======================================================  P2_QGPPC7  ======================================================= */
+ #define R_ETHSW_P2_QGPPC7_QGPPC_Pos                                      (0UL)          /*!< QGPPC (Bit 0)                                         */
+ #define R_ETHSW_P2_QGPPC7_QGPPC_Msk                                      (0xffffUL)     /*!< QGPPC (Bitfield-Mask: 0xffff)                         */
 /* =======================================================  P0_QGDPC0  ======================================================= */
  #define R_ETHSW_P0_QGDPC0_QGDPC_Pos                                      (0UL)          /*!< QGDPC (Bit 0)                                         */
  #define R_ETHSW_P0_QGDPC0_QGDPC_Msk                                      (0xffffUL)     /*!< QGDPC (Bitfield-Mask: 0xffff)                         */

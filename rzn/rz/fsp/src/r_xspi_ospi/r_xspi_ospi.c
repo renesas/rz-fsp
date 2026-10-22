@@ -36,6 +36,10 @@
 #define XSPI_OSPI_PRV_CMCFG0_FFMT_OFFSET                    (0U)
 #define XSPI_OSPI_PRV_CMCFG0_ADDSIZE_OFFSET                 (2U)
 #define XSPI_OSPI_PRV_CMCFG0_ADDSIZE_VALUE_MASK             (0x03U)
+#define XSPI_OSPI_PRV_CMCFG0_WPBSTMD_OFFSET                 (4U)
+#define XSPI_OSPI_PRV_CMCFG0_WPBSTMD_VALUE_MASK             (0x01U)
+#define XSPI_OSPI_PRV_CMCFG0_ADDRPEN_OFFSET                 (16U)
+#define XSPI_OSPI_PRV_CMCFG0_ADDRPEN_VALUE_MASK             (0xFFU)
 #define XSPI_OSPI_PRV_CMCFG1_RDCMD_OFFSET                   (0U)
 #define XSPI_OSPI_PRV_CMCFG1_RDCMD_UPPER_OFFSET             (8U)
 #define XSPI_OSPI_PRV_CMCFG1_RDCMD_1B_VALUE_MASK            (0xFFU)
@@ -97,6 +101,11 @@
 #define XSPI_OSPI_PRV_INTC_CMDCMPC_OFFSET                   (0U)
 
 #define XSPI_OSPI_PRV_MAX_COMBINE_SIZE                      (64U)
+
+#define XSPI_OSPI_PRV_ADDRESS_REPLACE_VALUE                 (0xF0)
+#define XSPI_OSPI_PRV_ADDRESS_REPLACE_ENABLE_BITS           (XSPI_OSPI_PRV_ADDRESS_REPLACE_VALUE << \
+                                                             XSPI_OSPI_PRV_CMCFG0_ADDRPEN_OFFSET)
+#define XSPI_OSPI_PRV_ADDRESS_REPLACE_MASK                  (~(XSPI_OSPI_PRV_ADDRESS_REPLACE_VALUE << 24))
 
 #define XSPI_OSPI_PRV_WORD_ACCESS_SIZE                      (4U)
 #define XSPI_OSPI_PRV_HALF_WORD_ACCESS_SIZE                 (2U)
@@ -1137,9 +1146,15 @@ static fsp_err_t r_xspi_ospi_spi_protocol_specific_settings (xspi_ospi_instance_
      * (see RZ microprocessor Hardware Manual section "Flow of Memory-mapping"). */
     if ((SPI_FLASH_PROTOCOL_1S_1S_1S == spi_protocol))
     {
-        p_instance_ctrl->p_reg->CSa[chip_select].CMCFG0 =
+        uint32_t cmcfg0 =
             (0U << XSPI_OSPI_PRV_CMCFG0_FFMT_OFFSET) |
-            ((p_cfg->address_bytes & XSPI_OSPI_PRV_CMCFG0_ADDSIZE_VALUE_MASK) << XSPI_OSPI_PRV_CMCFG0_ADDSIZE_OFFSET);
+            ((p_cfg->address_bytes & XSPI_OSPI_PRV_CMCFG0_ADDSIZE_VALUE_MASK) << XSPI_OSPI_PRV_CMCFG0_ADDSIZE_OFFSET) |
+            ((p_cfg_extend->wrap_separate & XSPI_OSPI_PRV_CMCFG0_WPBSTMD_VALUE_MASK) <<
+                XSPI_OSPI_PRV_CMCFG0_WPBSTMD_OFFSET) |
+            ((p_cfg_extend->address_msb_mask & XSPI_OSPI_PRV_CMCFG0_ADDRPEN_VALUE_MASK) <<
+                XSPI_OSPI_PRV_CMCFG0_ADDRPEN_OFFSET);
+
+        p_instance_ctrl->p_reg->CSa[chip_select].CMCFG0 = cmcfg0;
 
         p_instance_ctrl->p_reg->CSa[chip_select].CMCFG1 =
             ((p_cfg->read_command & XSPI_OSPI_PRV_CMCFG1_RDCMD_1B_VALUE_MASK) <<
@@ -1154,9 +1169,15 @@ static fsp_err_t r_xspi_ospi_spi_protocol_specific_settings (xspi_ospi_instance_
     else
     {
         xspi_ospi_opi_command_set_t const * p_opi_commands = p_cfg_extend->p_opi_commands;
-        p_instance_ctrl->p_reg->CSa[chip_select].CMCFG0 =
+        uint32_t cmcfg0 =
             (1U << XSPI_OSPI_PRV_CMCFG0_FFMT_OFFSET) |
-            ((p_cfg->address_bytes & XSPI_OSPI_PRV_CMCFG0_ADDSIZE_VALUE_MASK) << XSPI_OSPI_PRV_CMCFG0_ADDSIZE_OFFSET);
+            ((p_cfg->address_bytes & XSPI_OSPI_PRV_CMCFG0_ADDSIZE_VALUE_MASK) << XSPI_OSPI_PRV_CMCFG0_ADDSIZE_OFFSET) |
+            ((p_cfg_extend->wrap_separate & XSPI_OSPI_PRV_CMCFG0_WPBSTMD_VALUE_MASK) <<
+                XSPI_OSPI_PRV_CMCFG0_WPBSTMD_OFFSET) |
+            ((p_cfg_extend->address_msb_mask & XSPI_OSPI_PRV_CMCFG0_ADDRPEN_VALUE_MASK) <<
+                XSPI_OSPI_PRV_CMCFG0_ADDRPEN_OFFSET);
+
+        p_instance_ctrl->p_reg->CSa[chip_select].CMCFG0 = cmcfg0;
 
         p_instance_ctrl->p_reg->CSa[chip_select].CMCFG1 =
             ((p_opi_commands->dual_read_command & XSPI_OSPI_PRV_CMCFG1_RDCMD_2B_VALUE_MASK) <<
@@ -1311,7 +1332,8 @@ static fsp_err_t r_xspi_ospi_automatic_calibration_seq (xspi_ospi_instance_ctrl_
             ((p_opi_commands->dual_read_command & XSPI_OSPI_PRV_CCCTL2_CARDCMD_VALUE_MASK) <<
                 XSPI_OSPI_PRV_CCCTL2_CARDCMD_OFFSET);
         p_instance_ctrl->p_reg->CSb[chip_select].CCCTL3 =
-            (uint32_t) (uintptr_t) p_cfg_extend->p_autocalibration_preamble_pattern_addr;
+            (uint32_t) (uintptr_t) p_cfg_extend->p_autocalibration_preamble_pattern_addr &
+            XSPI_OSPI_PRV_ADDRESS_REPLACE_MASK;
 
         if (XSPI_OSPI_BYTE_ORDER_1032 == p_cfg_extend->byte_order)
         {

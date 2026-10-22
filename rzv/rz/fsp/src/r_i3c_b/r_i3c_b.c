@@ -266,24 +266,22 @@ fsp_err_t R_I3C_B_Open (i3c_ctrl_t * const p_api_ctrl, i3c_cfg_t const * const p
 #endif
 
     /*
-     * Reset the I3C Peripheral so that it is in a known state during initialization (See Figure 'I3C Communication Flow'
-     * in the hardware manual).
+     * Reset the I3C Peripheral so that it is in a known state during initialization (See Figure "I3C Communication Flow"
+     * in the I3C section of the relevant hardware manual).
      */
     p_ctrl->p_reg->BCTL_b.BUSE = 0;
     p_ctrl->p_reg->RSTCTL      = 1U;
 
-    /* The field will be cleared automatically upon reset completion (See section 'Reset Control Register'
-     * in the hardware manual).
-     */
+    /* The field will be cleared automatically upon reset completion (See "RSTCTL : Reset Control Register" description in the I3C section of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT(p_ctrl->p_reg->RSTCTL, 0U);
 
-    /* Reset the internal state */
+    /* Set internal reset to one before setting I3C mode. */
     p_ctrl->p_reg->RSTCTL_b.INTLRST = 1U;
 
     /* Set I3C mode. */
     p_ctrl->p_reg->PRTS = 0U;
 
-    /* Release from resetting */
+    /* Clear internal reset. */
     p_ctrl->p_reg->RSTCTL_b.INTLRST = 0U;
 
     return FSP_SUCCESS;
@@ -310,7 +308,8 @@ fsp_err_t R_I3C_B_Enable (i3c_ctrl_t * const p_api_ctrl)
     i3c_b_extended_cfg_t const * p_extend = (i3c_b_extended_cfg_t const *) p_ctrl->p_cfg->p_extend;
 
     /*
-     * Write all remaining configuration settings (See Figure 'I3C Communication Flow' in the hardware manual).
+     * Write all remaining configuration settings (See Figure "I3C Communication Flow" in the I3C section
+     * of the relevant hardware manual).
      *
      * Configure the Normal IBI Data Segment Size used for receiving IBI data.
      */
@@ -413,17 +412,8 @@ fsp_err_t R_I3C_B_Enable (i3c_ctrl_t * const p_api_ctrl)
     /* Write settings to the IBI Notify Control Register. */
     p_ctrl->p_reg->IBINCTL = ibinctl;
 
-    /* Calculate the value of the SCL Clock Stalling Control Register. */
-    uint32_t scstlctl = (uint32_t) (p_extend->bitrate_settings.clock_stalling.assigned_address_phase_enable <<
-                                    R_I3C_B_SCSTLCTL_AAPE_Pos);
-    scstlctl |=
-        (uint32_t) (p_extend->bitrate_settings.clock_stalling.parity_phase_enable << R_I3C_B_SCSTLCTL_PARPE_Pos);
-    scstlctl |= (uint32_t) (p_extend->bitrate_settings.clock_stalling.ack_phase_enable << R_I3C_B_SCSTLCTL_ACKPE_Pos);
-    scstlctl |=
-        (uint32_t) (p_extend->bitrate_settings.clock_stalling.clock_stalling_time << R_I3C_B_SCSTLCTL_STLCYC_Pos);
-
     /* Write clock stalling settings to the SCL Clock Stalling Control Register. */
-    p_ctrl->p_reg->SCSTLCTL = scstlctl;
+    p_ctrl->p_reg->SCSTLCTL = p_extend->bitrate_settings.scstlctl;
 
     /* Write Bus Condition Detection Registers. */
     p_ctrl->p_reg->BFRECDT = p_extend->bus_free_detection_time;
@@ -528,8 +518,8 @@ fsp_err_t R_I3C_B_DeviceCfgSet (i3c_ctrl_t * const p_api_ctrl, i3c_device_cfg_t 
     if (I3C_DEVICE_TYPE_MAIN_MASTER == p_ctrl->p_cfg->device_type)
     {
         /*
-         * Configure the master dynamic address and set it to valid (See Figure 'I3C Communication Flow'
-         * in the hardware manual).
+         * Configure the master dynamic address and set it to valid (See Figure "I3C Communication Flow"
+         * in the I3C section of the relevant hardware manual).
          */
         uint32_t msdvad = (uint32_t) p_device_cfg->dynamic_address << R_I3C_B_MSDVAD_MDYAD_Pos;
         msdvad               |= R_I3C_B_MSDVAD_MDYADV_Msk;
@@ -545,7 +535,7 @@ fsp_err_t R_I3C_B_DeviceCfgSet (i3c_ctrl_t * const p_api_ctrl, i3c_device_cfg_t 
 
         /*
          * Configure slave device address table, Device Characteristics, Bus Characteristics, and
-         * Provisional ID (See Figure 'I3C Communication Flow' in the hardware manual).
+         * Provisional ID (See Figure "I3C Communication Flow" in the I3C section of the relevant hardware manual).
          *
          * Configure the device static address. */
         uint32_t sdatbas0 = (uint32_t) p_device_cfg->static_address & R_I3C_B_SDATBAS0_SDSTAD_Msk;
@@ -809,7 +799,7 @@ fsp_err_t R_I3C_B_DynamicAddressAssignmentStart (i3c_ctrl_t * const            p
     /*
      * Write to the descriptor to the command queue.
      * Note that the command descriptor is two words. The least significant word must be written first followed by
-     * the most significant word (See Section "Command Descriptor" in the hardware manual).
+     * the most significant word (See section "Command Descriptor" in the I3C Operation section of the relevant hardware manual).
      */
     p_ctrl->p_reg->NCMDQP = command_descriptor;
     p_ctrl->p_reg->NCMDQP = 0U;
@@ -922,7 +912,7 @@ fsp_err_t R_I3C_B_CommandSend (i3c_ctrl_t * const                     p_api_ctrl
     if ((4 >= p_command_descriptor->length) && !p_command_descriptor->rnw)
     {
         /* If the transfer length is less than or equal to 4 bytes, then use "Immediate Data Transfer".
-         * See Section "Immediate Transfer Command" in the hardware manual. */
+         * See section "Immediate Transfer Command" in the I3C section of the relevant hardware manual. */
         cmd1 |= I3C_B_CMD_DESC_CND_ATTR_IMMED_DATA_XFER;
         cmd1 |= (p_command_descriptor->length << I3C_B_CMD_DESC_IMMED_DATA_XFER_BYTE_CNT_Pos);
         cmd2  = i3c_b_next_data_word_calculate(&p_ctrl->write_buffer_descriptor);
@@ -937,7 +927,7 @@ fsp_err_t R_I3C_B_CommandSend (i3c_ctrl_t * const                     p_api_ctrl
     /*
      * Write the descriptor to the command queue.
      * Note that the command descriptor is two words. The least significant word must be written first followed by
-     * the most significant word (See Section "Command Descriptor" in the hardware manual).
+     * the most significant word (See section "Command Descriptor" in the I3C Operation section of the relevant hardware manual).
      */
     p_ctrl->p_reg->NCMDQP = cmd1;
     p_ctrl->p_reg->NCMDQP = cmd2;
@@ -1040,7 +1030,7 @@ fsp_err_t R_I3C_B_Write (i3c_ctrl_t * const p_api_ctrl, uint8_t const * const p_
              */
             p_ctrl->p_reg->RSTCTL = R_I3C_B_RSTCTL_TDBRST_Msk;
 
-            /* The field will be cleared automatically upon reset completion (See Section "Reset Control Register" in the hardware manual). */
+            /* The field will be cleared automatically upon reset completion (See "RSTCTL : Reset Control Register" description in the I3C section of the relevant hardware manual). */
             FSP_HARDWARE_REGISTER_WAIT(p_ctrl->p_reg->RSTCTL, 0U);
         }
 
@@ -1071,7 +1061,7 @@ fsp_err_t R_I3C_B_Write (i3c_ctrl_t * const p_api_ctrl, uint8_t const * const p_
         /*
          * Write the descriptor to the command queue.
          * Note that the command descriptor is two words. The least significant word must be written first followed by
-         * the most significant word (See Section "Command Descriptor" in the hardware manual).
+         * the most significant word (See section "Command Descriptor" in the I3C Operation section of the relevant hardware manual).
          */
         uint32_t cmd1 = i3c_b_xfer_command_calculate(p_ctrl->device_index, false, p_ctrl->device_bitrate_mode, restart);
 
@@ -1079,7 +1069,7 @@ fsp_err_t R_I3C_B_Write (i3c_ctrl_t * const p_api_ctrl, uint8_t const * const p_
         if (length <= 4)
         {
             /* If the transfer length is less than or equal to 4 bytes, then use "Immediate Data Transfer".
-             * See Section "Immediate Transfer Command" in the hardware manual. */
+             * See section "Immediate Transfer Command" in the I3C section of the relevant hardware manual. */
             cmd1 |= I3C_B_CMD_DESC_CND_ATTR_IMMED_DATA_XFER;
             cmd1 |= (length << I3C_B_CMD_DESC_IMMED_DATA_XFER_BYTE_CNT_Pos);
             cmd2  = p_ctrl->next_word;
@@ -1165,7 +1155,7 @@ fsp_err_t R_I3C_B_Read (i3c_ctrl_t * const p_api_ctrl, uint8_t * const p_data, u
         /*
          * Write the descriptor to the command queue.
          * Note that the command descriptor is two words. The least significant word must be written first followed by
-         * the most significant word (See Section "Command Descriptor" in the hardware manual).
+         * the most significant word (See section "Command Descriptor" in the I3C Operation section of the relevant hardware manual).
          */
         p_ctrl->p_reg->NCMDQP = i3c_b_xfer_command_calculate(p_ctrl->device_index,
                                                              true,
@@ -1283,7 +1273,7 @@ fsp_err_t R_I3C_B_IbiWrite (i3c_ctrl_t * const    p_api_ctrl,
     /*
      * Write the descriptor to the command queue.
      * Note that the command descriptor is two words. The least significant word must be written first followed by
-     * the most significant word (See Section "Command Descriptor" in the hardware manual).
+     * the most significant word (See section "Command Descriptor" in the I3C Operation section of the relevant hardware manual).
      */
     p_ctrl->p_reg->NCMDQP = command_descriptor;
     p_ctrl->p_reg->NCMDQP = (length << I3C_B_CMD_DESC_XFER_LENGTH_Pos) & I3C_B_CMD_DESC_XFER_LENGTH_Msk;
@@ -1397,7 +1387,7 @@ fsp_err_t R_I3C_B_Close (i3c_ctrl_t * const p_api_ctrl)
     p_ctrl->p_reg->BCTL_b.BUSE = 0;
     p_ctrl->p_reg->RSTCTL      = 1U;
 
-    /* The field will be cleared automatically upon reset completion (See Section "Reset Control Register" in the hardware manual). */
+    /* The field will be cleared automatically upon reset completion (See "RSTCTL : Reset Control Register" description in the I3C section of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT(p_ctrl->p_reg->RSTCTL, 0U);
 
     /* Set the I3C Module Stop bit. */
@@ -1764,7 +1754,9 @@ void i3c_b_resp_isr (void)
  #if I3C_B_ERROR_RECOVERY_VERSION_1 == I3C_B_CFG_ERROR_RECOVERY_SUPPORT || \
             I3C_B_ERROR_RECOVERY_VERSION_BOTH == I3C_B_CFG_ERROR_RECOVERY_SUPPORT
 
-            /* If the transfer length is less than expected, the driver must perform error recovery */
+            /* If the transfer length is less than expected, the driver must perform error recovery defined in
+             * See figure "Example of error recovery operation flowchart for I3C master" in the I3C section of the
+             * relevant hardware manual. */
             if (data_length != p_ctrl->read_buffer_descriptor.buffer_size)
             {
                 error_recovery_case_2 = true;
@@ -1846,7 +1838,7 @@ void i3c_b_resp_isr (void)
 
     /* If a transfer error occurs, follow the error recovery operation defined in Figure
      * "Example of Error Recovery Operation Flowchart for I3C Master" and
-     * "Example of Error Recovery Operation Flowchart for I3C Slave" in the hardware manual.
+     * "Example of Error Recovery Operation Flowchart for I3C Slave" in the I3C section of the relevant hardware manual.
      */
     if ((0 != (ntst & R_I3C_B_NTST_TEF_Msk)) || error_recovery_case_2)
     {
@@ -2036,8 +2028,7 @@ void i3c_b_rcv_isr (void)
             {
                 /*
                  * Perform dummy read.
-                 * See Section "Operation Mode" (2) Slave Mode Operation (b-1) Dynamic Address Assignment Procedure
-                 * in the hardware manual.
+                 * See "Dynamic Address Assign Procedure" in the I3C Slave Operation section of the relevant hardware manual.
                  */
                 p_ctrl->p_reg->NTDTBP0;
             }
@@ -2110,7 +2101,7 @@ void i3c_b_rcv_isr (void)
     uint32_t ntst = p_ctrl->p_reg->NTST;
 
     /* If an error occurred during the transfer, perform the error recovery operation defined in
-     * Figure "Example of Error Recovery Operation Flowchart for I3C Slave" in the hardware manual.
+     * Figure "Example of Error Recovery Operation Flowchart for I3C Slave" in the I3C section of the relevant hardware manual.
      */
     if ((0 != (ntst & (R_I3C_B_NTST_TEF_Msk | R_I3C_B_NTST_TABTF_Msk))) && (0U == p_ctrl->p_reg->NRSQSTLV_b.RSQLV))
     {
@@ -2284,7 +2275,8 @@ void i3c_b_tmo_isr (void)
 /*******************************************************************************************************************//**
  * ISR for providing the I3C_EVENT_INTERNAL_ERROR event to the application:
  * I3C_EVENT_INTERNAL_ERROR : An internal error can occur if too many transfers occur sequentially and overflow
- *                            the Receive Status Queue (See 25.2.7 INST: Internal Status Register in the hardware manual).
+ *                            the Receive Status Queue (See "INST: Internal Status Register" description in the I3C section
+ *                            of the relevant hardware manual).
  **********************************************************************************************************************/
 void i3c_b_ierr_isr (void)
 {
@@ -2378,7 +2370,7 @@ void i3c_b_abort_isr (void)
 
 /*******************************************************************************************************************//**
  * Perform error recovery according to Figure "Example of Error Recovery Operation Flowchart for I3C Master"
- * in the hardware manual
+ * in the I3C section of the relevant hardware manual.
  **********************************************************************************************************************/
 void i3c_b_master_error_recovery (i3c_b_instance_ctrl_t * p_ctrl, bool error_recovery_case_2)
 {
@@ -2388,7 +2380,7 @@ void i3c_b_master_error_recovery (i3c_b_instance_ctrl_t * p_ctrl, bool error_rec
     /* Flush the Command, Rx and Tx Buffers. */
     p_ctrl->p_reg->RSTCTL = I3C_B_RSTCTRL_FIFO_FLUSH_Msk;
 
-    /* The field will be cleared automatically upon reset completion. */
+    /* The field will be cleared automatically upon reset completion (See "RSTCTL : Reset Control Register" description in the I3C section of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT((p_ctrl->p_reg->RSTCTL & I3C_B_RSTCTRL_FIFO_FLUSH_Msk), 0U);
 
     /* Wait for the bus available condition. */
@@ -2510,7 +2502,7 @@ void i3c_b_master_error_recovery (i3c_b_instance_ctrl_t * p_ctrl, bool error_rec
     /* Flush the Command, Rx and Tx Buffers. */
     p_ctrl->p_reg->RSTCTL = I3C_B_RSTCTRL_FIFO_FLUSH_Msk;
 
-    /* The field will be cleared automatically upon reset completion (See Section "Reset Control Register" in the hardware manual). */
+    /* The field will be cleared automatically upon reset completion (See "RSTCTL : Reset Control Register" description in the I3C section of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT((p_ctrl->p_reg->RSTCTL & I3C_B_RSTCTRL_FIFO_FLUSH_Msk), 0U);
 
     /* Resume I3C operation. */
@@ -2524,7 +2516,7 @@ void i3c_b_master_error_recovery (i3c_b_instance_ctrl_t * p_ctrl, bool error_rec
 
 /*******************************************************************************************************************//**
  * Perform error recovery according to Figure "Example of Error Recovery Operation Flowchart for I3C Slave"
- * in the hardware manual
+ * in the I3C section of the relevant hardware manual.
  **********************************************************************************************************************/
 void i3c_b_slave_error_recovery (i3c_b_instance_ctrl_t * p_ctrl, i3c_b_slave_error_recovery_type_t recovery_type)
 {
@@ -2557,16 +2549,18 @@ void i3c_b_slave_error_recovery (i3c_b_instance_ctrl_t * p_ctrl, i3c_b_slave_err
         }
     }
 
-    /* The field will be cleared automatically upon reset completion (See Section "Reset Control Register" in the hardware manual). */
+    /* The field will be cleared automatically upon reset completion (See "RSTCTL : Reset Control Register" description in the I3C section of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT(p_ctrl->p_reg->RSTCTL, 0U);
 
  #if I3C_B_ERROR_RECOVERY_VERSION_1 == I3C_B_CFG_ERROR_RECOVERY_SUPPORT || \
     I3C_B_ERROR_RECOVERY_VERSION_BOTH == I3C_B_CFG_ERROR_RECOVERY_SUPPORT
 
-    /* Wait for Bus Available Condition. */
+    /* Wait for Bus Available Condition (See Figure "Example of error recovery operation flowchart for I3C slave"
+     * in the I3C section of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT((p_ctrl->p_reg->BCST & R_I3C_B_BCST_BAVLF_Msk), R_I3C_B_BCST_BAVLF_Msk);
 
-    /* Wait for start condition to be cleared. */
+    /* Wait for start condition to be cleared (See Figure "Example of error recovery operation flowchart for I3C slave"
+     * in the I3C section of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT((p_ctrl->p_reg->BST & R_I3C_B_BST_STCNDDF_Msk), 0);
 
     /* Read the current value of SDDYAD. */
@@ -2593,7 +2587,8 @@ void i3c_b_slave_error_recovery (i3c_b_instance_ctrl_t * p_ctrl, i3c_b_slave_err
             /* Perform internal software reset. */
             p_ctrl->p_reg->RSTCTL = R_I3C_B_RSTCTL_INTLRST_Msk;
 
-            /* Wait for Bus Available Condition. */
+            /* Wait for Bus Available Condition (See Figure "Example of error recovery operation flowchart for I3C slave"
+             * in the I3C section of the relevant hardware manual). */
             FSP_HARDWARE_REGISTER_WAIT((p_ctrl->p_reg->BCST & R_I3C_B_BCST_BAVLF_Msk), R_I3C_B_BCST_BAVLF_Msk);
 
             p_ctrl->p_reg->RSTCTL = 0;

@@ -513,32 +513,43 @@ struct st_gpt_extended_cfg
      * and count_down_source, then the timer count source is PCLK.  */
     gpt_source_t count_down_source;
 
-    gpt_capture_filter_t capture_filter_gtioca;        ///< Debounce filter for GTIOCxA input signal pin.
+    gpt_capture_filter_t capture_filter_gtioca;         ///< Debounce filter for GTIOCxA input signal pin.
 
-    gpt_capture_filter_t capture_filter_gtiocb;        ///< Debounce filter for GTIOCxB input signal pin.
+    gpt_capture_filter_t capture_filter_gtiocb;         ///< Debounce filter for GTIOCxB input signal pin.
 
-    uint8_t capture_a_ipl;                             ///< Capture A interrupt priority
-    uint8_t capture_b_ipl;                             ///< Capture B interrupt priority
-    uint8_t dead_time_ipl;                             ///< Dead time error interrupt priority
+    uint8_t capture_a_ipl;                              ///< Capture A interrupt priority
+    uint8_t capture_b_ipl;                              ///< Capture B interrupt priority
+    uint8_t compare_match_c_ipl;                        ///< Compare match C interrupt priority
+    uint8_t compare_match_d_ipl;                        ///< Compare match D interrupt priority
+    uint8_t compare_match_e_ipl;                        ///< Compare match E interrupt priority
+    uint8_t compare_match_f_ipl;                        ///< Compare match F interrupt priority
+    uint8_t dead_time_ipl;                              ///< Dead time error interrupt priority
 
-    uint8_t icds;                                      ///< Input Capture Operation Select at Count Stop
+    uint8_t icds;                                       ///< Input Capture Operation Select at Count Stop
  #if 1U == BSP_FEATURE_GPT_INPUT_CAPTURE_SIGNAL_SELECTABLE
-    gpt_input_signal_select_t gtioc_isel;              ///< Input Capture Signal Select
+    gpt_input_signal_select_t gtioc_isel;               ///< Input Capture Signal Select
  #endif
-    IRQn_Type capture_a_irq;                           ///< Capture A interrupt
-    IRQn_Type capture_b_irq;                           ///< Capture B interrupt
-    uint32_t  compare_match_value[2];                  ///< Storing compare match value for channels
-    uint8_t   compare_match_status;                    ///< Storing the compare match register status
-    IRQn_Type dead_time_irq;                           ///< Dead time error interrupt
-
-    gpt_extended_pwm_cfg_t const * p_pwm_cfg;          ///< Advanced PWM features, optional
-    uint8_t             capture_a_source_select;       ///< Capture A interrupt source select
-    uint8_t             capture_b_source_select;       ///< Capture B interrupt source select
-    uint8_t             cycle_end_source_select;       ///< Cycle end interrupt source select
-    uint8_t             dead_time_error_source_select; ///< Dead time error interrupt source select
-    uint8_t             trough_source_select;          ///< Trough interrupt source select
-    gpt_gtior_setting_t gtior_setting;                 ///< Custom GTIOR settings used for configuring GTIOCxA and GTIOCxB pins.
-    void              * p_reg;                         ///< Register base address for specified channel
+    IRQn_Type capture_a_irq;                            ///< Capture A interrupt
+    IRQn_Type capture_b_irq;                            ///< Capture B interrupt
+    IRQn_Type compare_match_c_irq;                      ///< Compare match C interrupt
+    IRQn_Type compare_match_d_irq;                      ///< Compare match D interrupt
+    IRQn_Type compare_match_e_irq;                      ///< Compare match E interrupt
+    IRQn_Type compare_match_f_irq;                      ///< Compare match F interrupt
+    uint32_t  compare_match_value[6];                   ///< Storing compare match value for channels
+    uint8_t   compare_match_status;                     ///< Storing the compare match register status
+    IRQn_Type dead_time_irq;                            ///< Dead time error interrupt
+    gpt_extended_pwm_cfg_t const * p_pwm_cfg;           ///< Advanced PWM features, optional
+    uint8_t              capture_a_source_select;       ///< Capture A interrupt source select
+    uint8_t              capture_b_source_select;       ///< Capture B interrupt source select
+    uint8_t              compare_match_c_source_select;  ///< Comapre match C interrupt source select
+    uint8_t              compare_match_d_source_select;  ///< Comapre match D interrupt source select
+    uint8_t              compare_match_e_source_select;  ///< Comapre match E interrupt source select
+    uint8_t              compare_match_f_source_select;  ///< Comapre match F interrupt source select
+    uint8_t              cycle_end_source_select;       ///< Cycle end interrupt source select
+    uint8_t              dead_time_error_source_select; ///< Dead time error interrupt source select
+    uint8_t              trough_source_select;          ///< Trough interrupt source select
+    gpt_gtior_setting_t  gtior_setting;                 ///< Custom GTIOR settings used for configuring GTIOCxA and GTIOCxB pins.
+    void               * p_reg;                         ///< Register base address for specified channel
 };
 
 /** GPT extension configures the output pins for GPT. Please refer to the struct st_gpt_extended_cfg. */

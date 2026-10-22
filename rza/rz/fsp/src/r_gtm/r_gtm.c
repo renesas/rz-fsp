@@ -122,13 +122,13 @@ fsp_err_t R_GTM_Open (timer_ctrl_t * const p_ctrl, timer_cfg_t const * const p_c
     R_BSP_MODULE_START(FSP_IP_GTM, p_cfg->channel);
 
     /* Forcibly stop timer. */
-    p_instance_ctrl->p_reg->OSTMnTT = 1;
+    p_instance_ctrl->p_reg->OSTMnTT = 1U;
 
     /* Set period register */
     r_gtm_period_register_set(p_instance_ctrl, p_cfg->period_counts);
 
     /* Set counter mode (GTMnMD) */
-    uint32_t             gtmnmd = 0;
+    uint32_t             gtmnmd = 0U;
     gtm_extended_cfg_t * p_ext  = (gtm_extended_cfg_t *) p_cfg->p_extend;
     if (GTM_GIWS_TYPE_ENABLED == p_ext->generate_interrupt_when_starts)
     {
@@ -174,7 +174,7 @@ fsp_err_t R_GTM_Start (timer_ctrl_t * const p_ctrl)
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
     /* Start timer */
-    p_instance_ctrl->p_reg->OSTMnTS = 1;
+    p_instance_ctrl->p_reg->OSTMnTS = 1U;
 
     return FSP_SUCCESS;
 }
@@ -194,7 +194,7 @@ fsp_err_t R_GTM_Stop (timer_ctrl_t * const p_ctrl)
     FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
     /* Stop timer */
-    p_instance_ctrl->p_reg->OSTMnTT = 1;
+    p_instance_ctrl->p_reg->OSTMnTT = 1U;
 
     return FSP_SUCCESS;
 }
@@ -431,7 +431,7 @@ fsp_err_t R_GTM_Close (timer_ctrl_t * const p_ctrl)
     /* Cleanup the device: Stop counter, disable interrupts, and power down if no other channels are in use. */
 
     /* Stop timer */
-    p_instance_ctrl->p_reg->OSTMnTT = 1;
+    p_instance_ctrl->p_reg->OSTMnTT = 1U;
 
     if (FSP_INVALID_VECTOR != p_instance_ctrl->p_cfg->cycle_end_irq)
     {
@@ -587,7 +587,7 @@ void gtm_int_isr (IRQn_Type const irq)
     if (TIMER_MODE_ONE_SHOT == p_instance_ctrl->p_cfg->mode)
     {
         /* Stop timer */
-        p_instance_ctrl->p_reg->OSTMnTT = 1;
+        p_instance_ctrl->p_reg->OSTMnTT = 1U;
     }
 
     /* Invoke the callback function if it is set. */

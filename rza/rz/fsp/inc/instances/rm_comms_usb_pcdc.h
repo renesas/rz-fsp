@@ -74,7 +74,7 @@ struct st_rm_comms_usb_pcdc_instance_ctrl
     usb_pcdc_ctrllinestate_t ctrl_line_state;                 ///< Line State Control
     usb_pcdc_linecoding_t    line_coding;                     ///< Line Coding to store COM port settings
 
-    void   (* p_callback)(rm_comms_callback_args_t * p_args); ///< Pointer to callback that is called when a usb_status_t occurs.
+    void   (* p_callback)(rm_comms_callback_args_t * p_args); ///< Pointer to the user callback function. This function is called when an rm_comms_event_t event occurs.
     void * p_context;                                         ///< Pointer to context passed into callback function
 };
 

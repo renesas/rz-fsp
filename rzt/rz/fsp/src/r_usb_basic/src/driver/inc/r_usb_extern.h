@@ -14,8 +14,9 @@
 #endif
 
 #if (BSP_CFG_RTOS == 2)
-#include "r_usb_cstd_rtos.h"
-#endif /* (BSP_CFG_RTOS == 2) */
+ #include "r_usb_cstd_rtos.h"
+#endif                                 /* (BSP_CFG_RTOS == 2) */
+
 /*****************************************************************************
  * Public Variables
  ******************************************************************************/
@@ -37,15 +38,62 @@ extern uint16_t  g_usb_cstd_int_msg_cnt[];                    /* Interrupt messa
 extern usb_utr_t * g_p_usb_pstd_pipe[USB_MAX_PIPE_NO + 1U];
 extern uint32_t    g_usb_pstd_data_cnt[USB_MAX_PIPE_NO + 1U]; /* PIPEn Buffer counter */
 extern uint8_t   * gp_usb_pstd_data[USB_MAX_PIPE_NO + 1U];    /* PIPEn Buffer pointer(8bit) */
+extern uint8_t     g_usb_pipe_peri[USB_MAX_PIPE_POS_PERI];    /* Pipe number of USB Peri transfer.(Read pipe/Write pipe) */
+
+ #if defined(USB_CFG_PCDC_USE)
+extern uint8_t g_usb_pcdc_bulk_in_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_pcdc_bulk_out_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_pcdc_int_in_pipe[USB_NUM_USBIP];
+  #if defined(USB_CFG_PCDC2_USE)
+extern uint8_t g_usb_pcdc2_bulk_in_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_pcdc2_bulk_out_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_pcdc2_int_in_pipe[USB_NUM_USBIP];
+  #endif                               /* defined(USB_CFG_PCDC2_USE) */
+ #endif                                /* defined(USB_CFG_PCDC_USE) */
+
+ #if defined(USB_CFG_PHID_USE)
+extern uint8_t g_usb_phid_int_in_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_phid_int_out_pipe[USB_NUM_USBIP];
+  #if defined(USB_CFG_PHID2_USE)
+extern uint8_t g_usb_phid2_int_in_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_phid2_int_out_pipe[USB_NUM_USBIP];
+  #endif                               /* defined(USB_CFG_PHID2_USE) */
+ #endif                                /* defined(USB_CFG_PHID_USE) */
+
+ #if defined(USB_CFG_PMSC_USE)
+extern uint8_t g_usb_pmsc_bulk_in_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_pmsc_bulk_out_pipe[USB_NUM_USBIP];
+ #endif                                /* defined(USB_CFG_PMSC_USE) */
 
 #endif  /* (USB_CFG_MODE & USB_CFG_PERI) == USB_CFG_PERI */
 
 #if ((USB_CFG_MODE & USB_CFG_HOST) == USB_CFG_HOST)
-extern usb_utr_t * g_p_usb_hstd_pipe[][USB_MAX_PIPE_NO + 1U];           /* Message pipe */
-extern uint8_t   * gp_usb_hstd_data_ptr[][USB_MAX_PIPE_NO + 1U];        /* PIPEn Buffer pointer(8bit) */
-extern uint32_t    g_usb_hstd_data_cnt[][USB_MAX_PIPE_NO + 1U];         /* PIPEn Buffer counter */
-extern uint32_t    g_usb_hstd_data_cnt_pipe0[];                         /* PIPE0 Control transfer data stage receive size */
-extern uint16_t    g_usb_hstd_hs_enable[];                              /* Hi-speed enable */
+extern usb_utr_t * g_p_usb_hstd_pipe[][USB_MAX_PIPE_NO + 1U];    /* Message pipe */
+extern uint8_t   * gp_usb_hstd_data_ptr[][USB_MAX_PIPE_NO + 1U]; /* PIPEn Buffer pointer(8bit) */
+extern uint32_t    g_usb_hstd_data_cnt[][USB_MAX_PIPE_NO + 1U];  /* PIPEn Buffer counter */
+extern uint32_t    g_usb_hstd_data_cnt_pipe0[];                  /* PIPE0 Control transfer data stage receive size */
+extern uint16_t    g_usb_hstd_hs_enable[];                       /* Hi-speed enable */
+extern uint8_t     g_usb_pipe_host[USB_MAX_PIPE_POS_HOST];       /* Pipe number of USB Host transfer.(Read pipe/Write pipe) */
+ #if defined(USB_CFG_HCDC_USE)
+  #include "r_usb_hcdc_cfg.h"
+extern uint8_t g_usb_hcdc_bulk_in_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_hcdc_bulk_out_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_hcdc_int_in_pipe[USB_NUM_USBIP];
+  #if (USB_CFG_HCDC_MULTI == USB_CFG_ENABLE)
+extern uint8_t g_usb_hcdc2_bulk_in_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_hcdc2_bulk_out_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_hcdc2_int_in_pipe[USB_NUM_USBIP];
+  #endif                               /* (USB_CFG_HCDC_MULTI == USB_CFG_ENABLE) */
+ #endif                                /* defined(USB_CFG_HCDC_USE) */
+ #if defined(USB_CFG_HHID_USE)
+  #include "r_usb_hhid_cfg.h"
+extern uint8_t g_usb_hhid_int_in_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_hhid_int_out_pipe[USB_NUM_USBIP];
+  #if (USB_CFG_HHID_MULTI == USB_CFG_ENABLE)
+extern uint8_t g_usb_hhid2_int_in_pipe[USB_NUM_USBIP];
+extern uint8_t g_usb_hhid3_int_in_pipe[USB_NUM_USBIP];
+  #endif
+ #endif                                                                 /* defined(USB_CFG_HHID_USE) */
 
 /* r_usb_hdriver.c */
 extern uint16_t          g_usb_hstd_ignore_cnt[][USB_MAX_PIPE_NO + 1U]; /* Ignore count */
@@ -142,7 +190,7 @@ extern usb_utr_t g_usb_pdata[USB_MAXPIPE_NUM + 1];
 
 #if (BSP_CFG_RTOS == 2)
 extern usb_instance_ctrl_t g_usb_cstd_event[];
-extern rtos_task_id_t           g_usb_cur_task_hdl[];
+extern rtos_task_id_t      g_usb_cur_task_hdl[];
 #else                                  /* #if (BSP_CFG_RTOS == 2) */
 extern usb_event_t g_usb_cstd_event;
 #endif                                 /*#if (BSP_CFG_RTOS == 2)*/
@@ -184,9 +232,8 @@ extern uint16_t g_usb_hstd_use_pipe[];
 extern rtos_sem_id_t g_usb_semaphore_hdl[];
 extern usb_utr_t * get_usb_int_buf(void);
 
-
 #endif                                 /*#if (BSP_CFG_RTOS == 2)*/
-extern usb_callback_t * g_usb_apl_callback[USB_NUM_USBIP];
+extern usb_callback_t      * g_usb_apl_callback[USB_NUM_USBIP];
 extern usb_callback_args_t * g_usb_apl_callback_memory[USB_NUM_USBIP];
 
 /* r_usb_pbc.c */
@@ -261,7 +308,7 @@ void      usb_hstd_receive_start(usb_utr_t * ptr, uint16_t pipe);
 void      usb_hstd_fifo_to_buf(usb_utr_t * ptr, uint16_t pipe, uint16_t useport);
 uint16_t  usb_hstd_read_data(usb_utr_t * ptr, uint16_t pipe, uint16_t pipemode);
 void      usb_hstd_data_end(usb_utr_t * ptr, uint16_t pipe, uint16_t status);
-usb_er_t  usb_hstd_transfer_end (usb_utr_t *ptr, uint16_t pipe_id);
+usb_er_t  usb_hstd_transfer_end(usb_utr_t * ptr, uint16_t pipe_id);
 usb_er_t  usb_hstd_change_device_state(usb_utr_t * ptr, usb_cb_t complete, uint16_t msginfo, uint16_t member);
 usb_er_t  usb_hstd_mgr_open(usb_utr_t * ptr);
 void      usb_hstd_driver_registration(usb_utr_t * ptr, usb_hcdreg_t * callback);

@@ -17,17 +17,26 @@
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZN
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZN_USB_HMSC
  * @{
  **********************************************************************************************************************/
+
+/**********************************************************************************************************************
+ * Exported global variables
+ **********************************************************************************************************************/
+
+/** @cond INC_HEADER_DEFS_SEC */
+extern const usb_hmsc_api_t g_hmsc_on_usb;
+
+/** @endcond */
 
 /******************************************************************************
  * Exported global functions (to be accessed by other files)
@@ -55,11 +64,11 @@ extern uint8_t g_format_flag;
 /*******************************************************************************************************************//**
  * @} (end addtogroup USB_HMSC)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

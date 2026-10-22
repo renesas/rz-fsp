@@ -108,7 +108,7 @@ fsp_err_t R_GTM_StatusGet(timer_ctrl_t * const p_ctrl, timer_status_t * const p_
 fsp_err_t R_GTM_Stop(timer_ctrl_t * const p_ctrl);
 fsp_err_t R_GTM_Open(timer_ctrl_t * const p_ctrl, timer_cfg_t const * const p_cfg);
 fsp_err_t R_GTM_CallbackSet(timer_ctrl_t * const          p_api_ctrl,
-                            void (                      * p_callback)(timer_callback_args_t * p_arg),
+                            void (                      * p_callback)(timer_callback_args_t *),
                             void * const                  p_context,
                             timer_callback_args_t * const p_callback_memory);
 fsp_err_t R_GTM_CompareMatchSet(timer_ctrl_t * const        p_ctrl,

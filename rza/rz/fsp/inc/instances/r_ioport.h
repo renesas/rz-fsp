@@ -27,13 +27,12 @@ FSP_HEADER
 /* Private definition to set enumeration values. */
  #define IOPORT_PRV_PFS_PSEL_OFFSET    (24)
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZA
 {
-#endif
-#endif
-
+  #endif
+ #endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZA_IOPORT
@@ -48,7 +47,7 @@ namespace RZA
 struct st_ioport_instance_ctrl
 {
     uint32_t             open;
-    void const         * p_context;
+    void               * p_context;
     ioport_cfg_t const * p_cfg;
 };
 
@@ -344,11 +343,11 @@ fsp_err_t R_IOPORT_PortWrite(ioport_ctrl_t * const p_ctrl, bsp_io_port_t port, i
  * @} (end defgroup IOPORT)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
-#endif
-#endif
+  #endif
+ #endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

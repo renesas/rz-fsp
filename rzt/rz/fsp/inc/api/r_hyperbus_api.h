@@ -152,14 +152,14 @@ typedef struct st_hyperbus_api
      * @param[in] p_ctrl               Pointer to a driver handle
      * @param[in] p_cfg                Pointer to a configuration structure
      **/
-    fsp_err_t (* open)(hyperbus_ctrl_t * p_ctrl, hyperbus_cfg_t const * const p_cfg);
+    fsp_err_t (* open)(hyperbus_ctrl_t * const p_ctrl, hyperbus_cfg_t const * const p_cfg);
 
     /** Set Burst type.
      *
      * @param[in] p_ctrl               Pointer to a driver handle
      * @param[in] burst_type           Burst type
      **/
-    fsp_err_t (* burstTypeSet)(hyperbus_ctrl_t * p_ctrl, hyperbus_burst_type_t burst_type);
+    fsp_err_t (* burstTypeSet)(hyperbus_ctrl_t * const p_ctrl, hyperbus_burst_type_t burst_type);
 
     /** Set Access space.
      *
@@ -199,7 +199,7 @@ typedef struct st_hyperbus_api
      * @param[in] p_ctrl               Pointer to a driver handle
      * @param[out] p_status            Current status of the HyperBus flash device stored here.
      **/
-    fsp_err_t (* statusGet)(hyperbus_ctrl_t * const ctrl_t, hyperbus_status_t * const p_status);
+    fsp_err_t (* statusGet)(hyperbus_ctrl_t * const p_ctrl, hyperbus_status_t * const p_status);
 
     /** AutoCalibrate the HyperBus driver module. Expected to be used when auto-calibrating HyperRAM device.
      *
@@ -211,7 +211,7 @@ typedef struct st_hyperbus_api
      *
      * @param[in] p_ctrl               Pointer to a driver handle
      **/
-    fsp_err_t (* close)(hyperbus_ctrl_t * const ctrl_t);
+    fsp_err_t (* close)(hyperbus_ctrl_t * const p_ctrl);
 } hyperbus_api_t;
 
 /** This structure encompasses everything that is needed to use an instance of this interface. */

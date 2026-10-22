@@ -59,7 +59,7 @@
 #define ICSR2_NACKF_BIT                                    (0x10U)
 
 /* I2C Bus Control Register 1 Masks */
-#define IIC_SLAVE_PRV_SCL_SDA_NOT_DRIVEN                   (0x1FU)
+#define IIC_SLAVE_ICCR1_SCL_SDA_OUTPUT_MASK                (0x1FU)
 #define IIC_SLAVE_ICCR1_ICE_BIT_MASK                       (0x80)
 #define IIC_SLAVE_ICCR1_IICRST_BIT_MASK                    (0x40)
 
@@ -250,8 +250,8 @@ fsp_err_t R_IIC_SLAVE_Open (i2c_slave_ctrl_t * const p_ctrl, i2c_slave_cfg_t con
     /* Indicate that restart and stop condition detection yet to be enabled */
     p_instance_ctrl->start_interrupt_enabled = false;
 
-    /* Open the hardware in slave mode. Performs IIC initialization as described in hardware manual (see Section
-     * 'Initial Settings' of the RZ microprocessor manual). */
+    /* Open the hardware in slave mode. Performs IIC initialization as described in hardware manual (see
+     * "Initial Settings" in the IIC Operation section of the relevant hardware manual). */
     iic_open_hw_slave(p_instance_ctrl);
 
 #if IIC_SLAVE_CFG_DMAC_ENABLE
@@ -510,7 +510,7 @@ static void iic_slave_notify (iic_slave_instance_ctrl_t * const p_instance_ctrl,
     p_instance_ctrl->p_reg->ICIER = (uint8_t) ((uint8_t) IIC_RXI_EN_BIT | (uint8_t) IIC_TXI_EN_BIT);
 
     /* Wait for the value to reflect at the peripheral.
-     * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual */
+     * See 'Note' under table "Interrupt sources" in the IIC section of the relevant hardware manual. */
     uint32_t timeout_count = IIC_SLAVE_PERIPHERAL_REG_MAX_WAIT;
     IIC_SLAVE_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICIER,
                                      ((uint8_t) IIC_RXI_EN_BIT | (uint8_t) IIC_TXI_EN_BIT),
@@ -547,25 +547,23 @@ static void iic_slave_notify (iic_slave_instance_ctrl_t * const p_instance_ctrl,
         p_instance_ctrl->p_reg->ICSR2 = 0x00;
 
         /* Wait for the value to reflect at the peripheral.
-         * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual. */
+         * See 'Note' under table "Interrupt sources" in the IIC section of the relevant hardware manual. */
         IIC_SLAVE_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICSR2, 0x00U, timeout_count);
     }
     /*
      * Since the transaction resulted in an error or is not completed at the master (this is a bus hang situation)
      * the slave must do an internal reset to release the bus.
-     * Refer the note in Section 'I2C Bus Control Register 1 (ICCR1)' under
-     * 'IICRST bit (IIC-Bus Interface Internal Reset)' description
-     * of the RZ microprocessor manual
+     * See note "I2C Bus Control Register 1 (ICCR1)" under
+     * "IICRST bit (IIC-Bus Interface Internal Reset)" description
+     * in the IIC section of the relevant hardware manual.
      */
     else
     {
         /* Internal reset */
-        p_instance_ctrl->p_reg->ICCR1 =
-            (uint8_t) (IIC_SLAVE_ICCR1_ICE_BIT_MASK | IIC_SLAVE_ICCR1_IICRST_BIT_MASK |
-                       IIC_SLAVE_PRV_SCL_SDA_NOT_DRIVEN);
+        p_instance_ctrl->p_reg->ICCR1_b.IICRST = 1UL;
 
         /* Release IIC from internal reset */
-        p_instance_ctrl->p_reg->ICCR1 = (uint8_t) (IIC_SLAVE_ICCR1_ICE_BIT_MASK | IIC_SLAVE_PRV_SCL_SDA_NOT_DRIVEN);
+        p_instance_ctrl->p_reg->ICCR1_b.IICRST = 0UL;
     }
 
     /* Save transaction count */
@@ -606,26 +604,32 @@ static void iic_slave_callback_request (iic_slave_instance_ctrl_t * const p_inst
 }
 
 /******************************************************************************************************************//**
- * Performs the hardware initialization sequence when operating as a slave (see Section
- * 'Initial Settings' of the RZ microprocessor manual).
+ * Performs the hardware initialization sequence when operating as a slave (see
+ * "Initial Settings" in the IIC Operation section of the relevant hardware manual).
  *
  * @param[in]       p_instance_ctrl     Pointer to the control structure.
  *********************************************************************************************************************/
 static void iic_open_hw_slave (iic_slave_instance_ctrl_t * const p_instance_ctrl)
 {
-    uint8_t digital_filter_stages =
+    uint32_t timeout_count         = 0;
+    uint8_t  digital_filter_stages =
         (((iic_slave_extended_cfg_t *) p_instance_ctrl->p_cfg->p_extend)->clock_settings.digital_filter_stages);
 
     /* Perform IIC reset */
-    p_instance_ctrl->p_reg->ICCR1 = (uint8_t) IIC_SLAVE_PRV_SCL_SDA_NOT_DRIVEN;
+    /* S1. Set the ICCR1.ICE bit to 0 to set the SCLn and SDAn pins to the inactive state. */
+    p_instance_ctrl->p_reg->ICCR1_b.ICE = 0UL;
 
-    /* Reset */
-    p_instance_ctrl->p_reg->ICCR1 = (uint8_t) (IIC_SLAVE_ICCR1_IICRST_BIT_MASK | IIC_SLAVE_PRV_SCL_SDA_NOT_DRIVEN);
+    /* S2. Set the ICCR1.IICRST bit to 1 to initiate IIC reset. */
+    p_instance_ctrl->p_reg->ICCR1_b.IICRST = 1UL;
 
-    /* Come out of IIC reset to internal reset */
-    p_instance_ctrl->p_reg->ICCR1 =
-        (uint8_t) (IIC_SLAVE_ICCR1_ICE_BIT_MASK | IIC_SLAVE_ICCR1_IICRST_BIT_MASK |
-                   IIC_SLAVE_PRV_SCL_SDA_NOT_DRIVEN);
+    /* Wait for IICRST to be set. */
+    timeout_count = IIC_SLAVE_PERIPHERAL_REG_MAX_WAIT;
+    IIC_SLAVE_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICCR1_b.IICRST, 1U, timeout_count);
+
+    /* S3. Set the ICCR1.ICE bit to 1 to initiate internal reset. */
+    p_instance_ctrl->p_reg->ICCR1_b.ICE = 1UL;
+
+    /* S4. Set other registers as required. */
 
     /* Set Slave address in SARLx and SARUx. and Set ICSER */
     /*7 bit mode selected, clear SARU and set SARL */
@@ -658,7 +662,7 @@ static void iic_open_hw_slave (iic_slave_instance_ctrl_t * const p_instance_ctrl
      * 6. Do not use the digital noise filter circuit.
      * 7. Use the SCL synchronous circuit.
      * 8. Enable FM+ slope circuit if fast mode plus is enabled.
-     * (see Section 'I2C Bus Function Enable Register' of the RZ microprocessor manual for more details)
+     * (see "I2C Bus Function Enable Register" in the IIC section of the relevant hardware manual).
      */
     p_instance_ctrl->p_reg->ICFER =
         (uint8_t) (((uint8_t) (0 < digital_filter_stages) << 5U) |
@@ -684,9 +688,9 @@ static void iic_open_hw_slave (iic_slave_instance_ctrl_t * const p_instance_ctrl
     /* 1. Set the digital filter.
      * 2. ACKBT should be set to 0 after reset to send out an ACK upon slave address match.
      * 3. Set WAIT bit based on user config.
-     * Refer Section ICMR3 : I2C Bus Mode Register 3 :
+     * See "ICMR3 : I2C Bus Mode Register 3" :
      * 'WAIT bit (WAIT)' and 'RDRFS bit (RDRF Flag Set Timing Select)'
-     * of the RZ microprocessor manual.
+     * in the IIC section of the relevant hardware manual.
      * Since RDRFS = 0:
      * - SCLn line will *not* be held low at the falling edge of the 8th clock cycle.
      * - RDRF flag will be set at the rising edge of the 9th clock cycle. (Cause of iic_rxi_slave)
@@ -712,7 +716,7 @@ static void iic_open_hw_slave (iic_slave_instance_ctrl_t * const p_instance_ctrl
     p_instance_ctrl->p_reg->ICIER = (uint8_t) ((uint8_t) IIC_RXI_EN_BIT | (uint8_t) IIC_TXI_EN_BIT);
 
     /* Release IIC from internal reset */
-    p_instance_ctrl->p_reg->ICCR1 = (uint8_t) (IIC_SLAVE_ICCR1_ICE_BIT_MASK | IIC_SLAVE_PRV_SCL_SDA_NOT_DRIVEN);
+    p_instance_ctrl->p_reg->ICCR1_b.IICRST = 0UL;
 }
 
 /*******************************************************************************************************************//**
@@ -775,7 +779,7 @@ static void iic_slave_initiate_transaction (iic_slave_instance_ctrl_t * p_instan
                 p_instance_ctrl->p_reg->ICSR2 &= ((uint8_t) ~((uint8_t) ICSR2_STOP_BIT | (uint8_t) ICSR2_START_BIT));
 
                 /* Wait for the value to reflect at the peripheral.
-                 * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual. */
+                 * See 'Note' under table "Interrupt sources" in the IIC section of the relevant hardware manual. */
                 uint32_t timeout_count = IIC_SLAVE_PERIPHERAL_REG_MAX_WAIT;
                 IIC_SLAVE_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICSR2_b.STOP, 0U, timeout_count);
                 IIC_SLAVE_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICSR2_b.START, 0U, timeout_count);
@@ -865,7 +869,7 @@ static void iic_rxi_slave (iic_slave_instance_ctrl_t * p_instance_ctrl)
         }
 
         /* Wait for the value to reflect at the peripheral.
-         * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual. */
+         * See 'Note' under table "Interrupt sources" in the IIC section of the relevant hardware manual. */
         uint32_t timeout_count = IIC_SLAVE_PERIPHERAL_REG_MAX_WAIT;
         IIC_SLAVE_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICSR2_b.STOP, 0U, timeout_count);
 
@@ -1159,7 +1163,7 @@ static void iic_tei_slave (iic_slave_instance_ctrl_t * p_instance_ctrl)
     p_instance_ctrl->p_reg->ICIER_b.TEIE = 0U;
 
     /* Wait for the value to reflect at the peripheral.
-     * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual */
+     * See 'Note' under table "Interrupt sources" in the IIC section of the relevant hardware manual. */
     IIC_SLAVE_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICIER_b.TEIE, 0U, timeout_count);
 }
 
@@ -1254,7 +1258,7 @@ static void iic_err_slave (iic_slave_instance_ctrl_t * p_instance_ctrl)
     {
         /* NACK interrupt will be triggered on MasterReadSlaveWrite operation.
          * Do dummy read to release SCL
-         * Refer point number 5 under Section "Slave Transmit Operation" of the RZ microprocessor manual
+         * Refer point #5 under Section "Slave Transmit Operation" in the IIC section of the relevant hardware manual.
          */
         FSP_REGISTER_READ(p_instance_ctrl->p_reg->ICDRR);
 
@@ -1264,7 +1268,7 @@ static void iic_err_slave (iic_slave_instance_ctrl_t * p_instance_ctrl)
         p_instance_ctrl->p_reg->ICIER &= (uint8_t) ~(uint8_t) IIC_NAK_EN_BIT;
 
         /* Wait for the value to reflect at the peripheral.
-         * See 'Note' under Table "Interrupt sources" of the RZ microprocessor manual */
+         * See 'Note' under table "Interrupt sources" in the IIC section of the relevant hardware manual. */
         uint32_t timeout_count = IIC_SLAVE_PERIPHERAL_REG_MAX_WAIT;
         IIC_SLAVE_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_reg->ICIER_b.NAKIE, 0U, timeout_count);
 

@@ -223,7 +223,7 @@ struct st_sci_b_uart_extended_cfg
     sci_b_uart_noise_cancellation_t noise_cancel;      ///< Noise cancellation setting
     sci_b_baud_setting_t          * p_baud_setting;    ///< Register settings for a desired baud rate.
     sci_b_uart_rx_fifo_trigger_t    rx_fifo_trigger;   ///< Receive FIFO trigger level, unused if channel has no FIFO or if DTC or DMAC is used.
-    bsp_io_port_pin_t               flow_control_pin;  ///< UART Driver Enable pin
+    bsp_io_port_pin_t               flow_control_pin;  ///< RTS pin used for UART flow control
     sci_b_uart_flow_control_t       flow_control;      ///< CTS/RTS function of the SSn pin
     sci_b_uart_rs485_setting_t      rs485_setting;     ///< RS-485 settings.
     sci_b_uart_half_data_setting_t  half_data_setting; ///< Half Data Function settings

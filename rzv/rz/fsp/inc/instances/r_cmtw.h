@@ -30,12 +30,12 @@ FSP_HEADER
  #define CMTW_MAX_PERIOD_32BIT    (UINT32_MAX + 1U)
  #define CMTW_MAX_PERIOD_16BIT    (UINT16_MAX + 1U)
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZV_CMTW
@@ -131,7 +131,7 @@ struct st_cmtw_extended_cfg
     uint8_t   compare_oc1_ipl;                ///< OutputCompare 1 interrupt priority
     IRQn_Type compare_oc0_irq;                ///< OutputCompare 0 interrupt
     IRQn_Type compare_oc1_irq;                ///< OutputCompare 1 interrupt
-    void * p_reg;                             ///< Register base address for specified channel
+    void    * p_reg;                          ///< Register base address for specified channel
 };
 
 /** Optional CMTW extension data structure. Please refer to the struct st_cmtw_extended_cfg. */
@@ -154,6 +154,9 @@ fsp_err_t R_CMTW_Reset(timer_ctrl_t * const p_ctrl);
 fsp_err_t R_CMTW_Start(timer_ctrl_t * const p_ctrl);
 fsp_err_t R_CMTW_Enable(timer_ctrl_t * const p_ctrl);
 fsp_err_t R_CMTW_Disable(timer_ctrl_t * const p_ctrl);
+fsp_err_t R_CMTW_CompareMatchSet(timer_ctrl_t * const        p_ctrl,
+                                 uint32_t const              compare_match_value,
+                                 timer_compare_match_t const match_channel);
 fsp_err_t R_CMTW_InfoGet(timer_ctrl_t * const p_ctrl, timer_info_t * const p_info);
 fsp_err_t R_CMTW_StatusGet(timer_ctrl_t * const p_ctrl, timer_status_t * const p_status);
 fsp_err_t R_CMTW_Stop(timer_ctrl_t * const p_ctrl);
@@ -169,11 +172,11 @@ fsp_err_t R_CMTW_CallbackSet(timer_ctrl_t * const          p_api_ctrl,
  * @} (end defgroup CMTW)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 

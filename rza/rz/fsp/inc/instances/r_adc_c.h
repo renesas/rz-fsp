@@ -11,7 +11,7 @@
  * Includes
  **********************************************************************************************************************/
 
- #include <r_adc_c_cfg.h>
+ #include "r_adc_c_cfg.h"
  #include "r_adc_api.h"
  #include "bsp_api.h"
 
@@ -30,7 +30,8 @@ namespace RZA
  #endif
 
 /*******************************************************************************************************************//**
- * @addtogroup RZA_ADC
+ * @addtogroup RZA_ADC_C
+ *
  * @{
  **********************************************************************************************************************/
 
@@ -41,6 +42,13 @@ typedef enum e_adc_c_mask
     ADC_C_MASK_OFF       = (0U),       ///< No channels selected
     ADC_C_MASK_CHANNEL_0 = (1U << 0U), ///< Channel 0 mask
     ADC_C_MASK_CHANNEL_1 = (1U << 1U), ///< Channel 1 mask
+    ADC_C_MASK_CHANNEL_2 = (1U << 2U), ///< Channel 2 mask
+    ADC_C_MASK_CHANNEL_3 = (1U << 3U), ///< Channel 3 mask
+    ADC_C_MASK_CHANNEL_4 = (1U << 4U), ///< Channel 4 mask
+    ADC_C_MASK_CHANNEL_5 = (1U << 5U), ///< Channel 5 mask
+    ADC_C_MASK_CHANNEL_6 = (1U << 6U), ///< Channel 6 mask
+    ADC_C_MASK_CHANNEL_7 = (1U << 7U), ///< Channel 7 mask
+    ADC_C_MASK_CHANNEL_8 = (1U << 8U), ///< Channel 8 mask (Temperature sensor channel mask)
 } adc_c_mask_t;
 
 /** ADC trigger mode select */
@@ -70,6 +78,18 @@ typedef enum e_adc_c_active_trigger
     ADC_C_ACTIVE_TRIGGER_TRG7BN    = 14U, ///< Compare match between MTU7.TADCORB and MTU7.TCNT
     ADC_C_ACTIVE_TRIGGER_TRG7AN_BN = 15U, ///< Compare match between MTU7.TADCORA and MTU7.TCNT, or between MTU7.TADCORB and MTU7.TCNT
     ADC_C_ACTIVE_TRIGGER_TRG7ABN   = 16U, ///< Compare match between MTU7.TADCORA and MTU7.TCNT, and between MTU7.TADCORB and MTU7.TCNT
+    ADC_C_ACTIVE_TRIGGER_ADTRGA0    = 17U, ///< Compare match with GPT0.GTADTRA
+    ADC_C_ACTIVE_TRIGGER_ADTRGB0    = 18U, ///< Compare match with GPT0.GTADTRB
+    ADC_C_ACTIVE_TRIGGER_ADTRGA1    = 19U, ///< Compare match with GPT1.GTADTRA
+    ADC_C_ACTIVE_TRIGGER_ADTRGB1    = 20U, ///< Compare match with GPT1.GTADTRB
+    ADC_C_ACTIVE_TRIGGER_ADTRGA2    = 21U, ///< Compare match with GPT2.GTADTRA
+    ADC_C_ACTIVE_TRIGGER_ADTRGB2    = 22U, ///< Compare match with GPT2.GTADTRB
+    ADC_C_ACTIVE_TRIGGER_ADTRGA3    = 23U, ///< Compare match with GPT3.GTADTRA
+    ADC_C_ACTIVE_TRIGGER_ADTRGB3    = 24U, ///< Compare match with GPT3.GTADTRB
+    ADC_C_ACTIVE_TRIGGER_ADTRGA0_B0 = 25U, ///< Compare match with GPT0.GTADTRA or GPT0.GTADTRB
+    ADC_C_ACTIVE_TRIGGER_ADTRGA1_B1 = 26U, ///< Compare match with GPT1.GTADTRA or GPT1.GTADTRB
+    ADC_C_ACTIVE_TRIGGER_ADTRGA2_B2 = 27U, ///< Compare match with GPT2.GTADTRA or GPT2.GTADTRB
+    ADC_C_ACTIVE_TRIGGER_ADTRGA3_B3 = 28U, ///< Compare match with GPT3.GTADTRA or GPT3.GTADTRB
 } adc_c_active_trigger_t;
 
 /** valid edge of the trigger select */
@@ -152,7 +172,7 @@ typedef struct st_adc_c_channel_cfg adc_c_channel_cfg_t;
 /** ADC instance control block. DO NOT INITIALIZE.  Initialized in @ref adc_api_t::open(). */
 struct st_adc_c_instance_ctrl
 {
-    R_ADC0_Type     * p_reg;           // Base register
+    R_ADC_C0_Type   * p_reg;           // Base register
     adc_cfg_t const * p_cfg;
     uint32_t          opened;          // Boolean to verify that the Unit has been initialized
     uint32_t          initialized;     // Initialized status of ADC
@@ -177,7 +197,7 @@ typedef struct st_adc_c_instance_ctrl adc_c_instance_ctrl_t;
 
 /** @cond INC_HEADER_DEFS_SEC */
 /** Interface Structure for user access */
-extern const adc_api_t g_adc_on_adc;
+extern const adc_api_t g_adc_on_adc_c;
 
 /** @endcond */
 
@@ -203,9 +223,8 @@ fsp_err_t R_ADC_C_CallbackSet(adc_ctrl_t * const          p_api_ctrl,
                               adc_callback_args_t * const p_callback_memory);
 
 /*******************************************************************************************************************//**
- * @} (end defgroup ADC)
+ * @} (end defgroup ADC_C)
  **********************************************************************************************************************/
-
  #ifdef __FOR_FSP_DOCUMENT__
   #ifdef __cplusplus
 }

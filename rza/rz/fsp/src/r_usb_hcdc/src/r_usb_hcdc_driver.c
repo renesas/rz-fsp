@@ -15,7 +15,7 @@
 #include "../../../r_usb_basic/src/driver/inc/r_usb_extern.h"
 #include "../../../r_usb_basic/src/hw/inc/r_usb_bitdefine.h"
 #include "r_usb_hcdc_api.h"
-#include "inc/r_usb_hcdc.h"
+#include "inc/r_usb_hcdc_driver.h"
 
 #define USB_VALUE_32    (32)
 

@@ -15,6 +15,7 @@
 
 #include "r_usb_hcdc_api.h"
 #include "r_usb_hcdc.h"
+#include "r_usb_hcdc_driver.h"
 
 #ifdef __FOR_FSP_DOCUMENT__
  #ifdef __cplusplus
@@ -37,8 +38,19 @@ namespace RZT
 /******************************************************************************
  * Exported global variables (to be accessed by other files)
  ******************************************************************************/
-extern volatile uint32_t g_usb_open_class[];
+extern volatile uint16_t g_usb_open_class[];
 extern uint16_t          g_usb_hcdc_vendor_table[];
+
+/***********************************************************************************************************************
+ * Global variables
+ **********************************************************************************************************************/
+
+const usb_hcdc_api_t g_hcdc_on_usb =
+{
+    .controlDataRead = R_USB_HCDC_ControlDataRead,
+    .deviceRegister  = R_USB_HCDC_SpecificDeviceRegister,
+    .infoGet         = R_USB_HCDC_DeviceInfoGet,
+};
 
 /*************************************************************************//**
  * @brief Read Control Data.(CDC Interrupt IN data)

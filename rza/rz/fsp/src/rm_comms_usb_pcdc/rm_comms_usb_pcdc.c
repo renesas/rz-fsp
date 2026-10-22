@@ -59,10 +59,10 @@ static usb_callback_args_t g_comms_usb_pcdc_event_callback[USB_NUM_USBIP];
 #endif
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -230,28 +230,28 @@ fsp_err_t RM_COMMS_USB_PCDC_Close (rm_comms_ctrl_t * const p_api_ctrl)
 #if BSP_CFG_RTOS == 2
     if (NULL != p_extend->p_tx_mutex)
     {
-        /* Init mutex for writing */
+        /* Destroy mutex for writing */
         err = rm_comms_recursive_mutex_destroy(p_extend->p_tx_mutex);
         FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
     }
 
     if (NULL != p_extend->p_rx_mutex)
     {
-        /* Init mutex for reading */
+        /* Destroy mutex for reading */
         err = rm_comms_recursive_mutex_destroy(p_extend->p_rx_mutex);
         FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
     }
 
     if (NULL != p_extend->p_tx_semaphore)
     {
-        /* Init semaphore for writing */
+        /* Destroy semaphore for writing */
         err = rm_comms_semaphore_destroy(p_extend->p_tx_semaphore);
         FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
     }
 
     if (NULL != p_extend->p_rx_semaphore)
     {
-        /* Init semaphore for reading */
+        /* Destroy semaphore for reading */
         err = rm_comms_semaphore_destroy(p_extend->p_rx_semaphore);
         FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
     }
@@ -337,25 +337,27 @@ fsp_err_t RM_COMMS_USB_PCDC_Read (rm_comms_ctrl_t * const p_api_ctrl, uint8_t * 
 
     /* Use USB PDCD driver to read data */
     err = p_usb->p_api->read(p_usb->p_ctrl, p_dest, bytes, USB_CLASS_PCDC);
-    FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
 #if BSP_CFG_RTOS == 2
-    if (NULL != p_extend->p_rx_semaphore)
+    fsp_err_t sem_err   = FSP_SUCCESS;
+    fsp_err_t mutex_err = FSP_SUCCESS;
+    if ((FSP_SUCCESS == err) && (NULL != p_extend->p_rx_semaphore))
     {
         /* Wait for read to complete */
-        err = rm_comms_semaphore_acquire(p_extend->p_rx_semaphore, p_ctrl->p_cfg->semaphore_timeout);
-        FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+        sem_err = rm_comms_semaphore_acquire(p_extend->p_rx_semaphore, p_ctrl->p_cfg->semaphore_timeout);
     }
 
     if (NULL != p_extend->p_rx_mutex)
     {
         /* Release read mutex */
-        err = rm_comms_recursive_mutex_release(p_extend->p_rx_mutex);
-        FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+        mutex_err = rm_comms_recursive_mutex_release(p_extend->p_rx_mutex);
     }
+
+    FSP_ERROR_RETURN(FSP_SUCCESS == sem_err, sem_err);
+    FSP_ERROR_RETURN(FSP_SUCCESS == mutex_err, mutex_err);
 #endif
 
-    return FSP_SUCCESS;
+    return err;
 }
 
 /*******************************************************************************************************************//**
@@ -405,25 +407,27 @@ fsp_err_t RM_COMMS_USB_PCDC_Write (rm_comms_ctrl_t * const p_api_ctrl, uint8_t *
 
     /* Use USB PDCD driver to write data */
     err = p_usb->p_api->write(p_usb->p_ctrl, p_src, bytes, USB_CLASS_PCDC);
-    FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
 #if BSP_CFG_RTOS == 2
-    if (NULL != p_extend->p_tx_semaphore)
+    fsp_err_t sem_err   = FSP_SUCCESS;
+    fsp_err_t mutex_err = FSP_SUCCESS;
+    if ((FSP_SUCCESS == err) && (NULL != p_extend->p_tx_semaphore))
     {
         /* Wait for write to complete */
-        err = rm_comms_semaphore_acquire(p_extend->p_tx_semaphore, p_ctrl->p_cfg->semaphore_timeout);
-        FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+        sem_err = rm_comms_semaphore_acquire(p_extend->p_tx_semaphore, p_ctrl->p_cfg->semaphore_timeout);
     }
 
     if (NULL != p_extend->p_tx_mutex)
     {
         /* Release write mutex */
-        err = rm_comms_recursive_mutex_release(p_extend->p_tx_mutex);
-        FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+        mutex_err = rm_comms_recursive_mutex_release(p_extend->p_tx_mutex);
     }
+
+    FSP_ERROR_RETURN(FSP_SUCCESS == sem_err, sem_err);
+    FSP_ERROR_RETURN(FSP_SUCCESS == mutex_err, mutex_err);
 #endif
 
-    return FSP_SUCCESS;
+    return err;
 }
 
 /*******************************************************************************************************************//**
@@ -446,9 +450,9 @@ fsp_err_t RM_COMMS_USB_PCDC_WriteRead (rm_comms_ctrl_t * const            p_api_
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 void rm_comms_usb_pcdc_notify_application (rm_comms_usb_pcdc_instance_ctrl_t const * p_ctrl, rm_comms_event_t event)
@@ -466,7 +470,7 @@ void rm_comms_usb_pcdc_notify_application (rm_comms_usb_pcdc_instance_ctrl_t con
 }
 
 /*******************************************************************************************************************//**
- * @brief Common function to update dectection status.
+ * @brief Common function to update detection status.
  **********************************************************************************************************************/
 static rm_comms_event_t rm_comms_usb_pcdc_update_detection_status (rm_comms_usb_pcdc_instance_ctrl_t * const p_ctrl,
                                                                    uint16_t                                  line_state_value)

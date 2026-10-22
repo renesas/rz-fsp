@@ -20,12 +20,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZG
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZG_MHU_B_NS_SWINT_SET
@@ -71,7 +71,7 @@ extern const mhu_ns_swint_set_api_t g_mhu_ns_swint_set_on_mhu_b_ns_swint_set;
 /***********************************************************************************************************************
  * Public APIs
  **********************************************************************************************************************/
-fsp_err_t R_MHU_B_NS_SWINT_SET_Open(mhu_ns_swint_set_ctrl_t * p_ctrl, mhu_ns_swint_set_cfg_t const * const p_cfg);
+fsp_err_t R_MHU_B_NS_SWINT_SET_Open(mhu_ns_swint_set_ctrl_t * const p_ctrl, mhu_ns_swint_set_cfg_t const * const p_cfg);
 
 fsp_err_t R_MHU_B_NS_SWINT_SET_InterruptSet(mhu_ns_swint_set_ctrl_t * const p_ctrl);
 
@@ -80,11 +80,11 @@ fsp_err_t R_MHU_B_NS_SWINT_SET_Close(mhu_ns_swint_set_ctrl_t * const p_ctrl);
 /*******************************************************************************************************************//**
  * @} (end ingroup MHU_B_NS_SWINT_SET)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

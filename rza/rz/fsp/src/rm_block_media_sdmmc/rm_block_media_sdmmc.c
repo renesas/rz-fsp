@@ -57,10 +57,10 @@ const rm_block_media_api_t g_rm_block_media_on_sdmmc =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -362,7 +362,7 @@ fsp_err_t RM_BLOCK_MEDIA_SDMMC_StatusGet (rm_block_media_ctrl_t * const   p_api_
 /*******************************************************************************************************************//**
  * Retrieves module information.  Implements @ref rm_block_media_api_t::infoGet().
  *
- * @retval     FSP_SUCCESS                   Erase operation requested.
+ * @retval     FSP_SUCCESS                   Successfully retrieved module information.
  * @retval     FSP_ERR_ASSERTION             An input parameter is invalid.
  * @retval     FSP_ERR_NOT_OPEN              Module is not open.
  * @retval     FSP_ERR_NOT_INITIALIZED       Module has not been initialized.
@@ -419,9 +419,9 @@ fsp_err_t RM_BLOCK_MEDIA_SDMMC_Close (rm_block_media_ctrl_t * const p_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

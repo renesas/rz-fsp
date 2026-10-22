@@ -23,12 +23,12 @@ FSP_HEADER
  #define SCIF_UART_INVALID_16BIT_PARAM    (0xFFFFU)
  #define SCIF_UART_INVALID_8BIT_PARAM     (0xFFU)
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZV_SCIF_UART
@@ -202,7 +202,7 @@ struct st_scif_uart_extended_cfg
     scif_uart_mode_t               uart_mode;        ///< UART communication mode selection
     scif_uart_flow_control_t       flow_control;     ///< CTS/RTS function
     scif_uart_rs485_setting_t      rs485_setting;    ///< RS-485 settings.
-    void                         * p_reg;            ///< Register base address for specified channel
+    void * p_reg;                                    ///< Register base address for specified channel
 };
 
 /** UART on SCIF device Configuration. Please refer to the struct st_scif_uart_extended_cfg. */
@@ -231,7 +231,7 @@ fsp_err_t R_SCIF_UART_BaudCalculate(uart_ctrl_t * const         p_api_ctrl,
                                     uint32_t                    baud_rate_error_x_1000,
                                     scif_baud_setting_t * const p_baud_setting);
 fsp_err_t R_SCIF_UART_CallbackSet(uart_ctrl_t * const          p_api_ctrl,
-                                  void (                     * p_callback)(uart_callback_args_t * p_arg),
+                                  void (                     * p_callback)(uart_callback_args_t *),
                                   void * const                 p_context,
                                   uart_callback_args_t * const p_callback_memory);
 fsp_err_t R_SCIF_UART_ReadStop(uart_ctrl_t * const p_api_ctrl, uint32_t * remaining_bytes);
@@ -242,11 +242,11 @@ fsp_err_t R_SCIF_UART_ReceiveResume(uart_ctrl_t * const p_api_ctrl);
  * @} (end addtogroup SCIF_UART)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

@@ -301,9 +301,8 @@ fsp_err_t RM_RAI_DATA_COLLECTOR_SnapshotStart (rai_data_collector_ctrl_t * const
     }
 
     err = p_timer->p_api->start(p_timer->p_ctrl);
-    FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
-    return FSP_SUCCESS;
+    return err;
 }
 
 /*******************************************************************************************************************//**
@@ -334,9 +333,8 @@ fsp_err_t RM_RAI_DATA_COLLECTOR_SnapshotStop (rai_data_collector_ctrl_t * const 
 
     transfer_instance_t const * p_transfer = p_ctrl->p_cfg->p_snapshot_cfg->p_transfer;
     err = p_transfer->p_api->disable(p_transfer->p_ctrl);
-    FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
-    return FSP_SUCCESS;
+    return err;
 }
 
 /*******************************************************************************************************************//**
@@ -344,7 +342,7 @@ fsp_err_t RM_RAI_DATA_COLLECTOR_SnapshotStop (rai_data_collector_ctrl_t * const 
  *
  * Implements @ref RZA::rai_data_collector_api_t::channelBufferGet().
  *
- * @retval FSP_SUCCESS              Buffer avaialble.
+ * @retval FSP_SUCCESS              Buffer available.
  * @retval FSP_ERR_ASSERTION        An input parameter was invalid.
  * @retval FSP_ERR_NOT_OPEN         Module not open.
  *
@@ -581,7 +579,7 @@ static void rm_rai_data_collector_dtc_update_info (rai_data_collector_instance_c
     for (uint8_t i = 0; i < p_ctrl->p_cfg->p_snapshot_cfg->channels; i++)
     {
         rai_data_collector_data_type_t data_type =
-            p_ctrl->p_extend->p_ping_pong_buf[i + p_ctrl->p_cfg->p_data_feed_cfg->channels].data_type;
+            p_ctrl->p_extend->p_ping_pong_buf[i + channel].data_type;
 
         switch (data_type)
         {
@@ -671,12 +669,12 @@ static void rm_rai_data_collector_dtc_update_info (rai_data_collector_instance_c
     uint32_t offset = p_ctrl->p_extend->p_ping_pong_buf_hnd[channel].buf_idx * p_ctrl->p_cfg->required_frame_len;
     for (uint8_t i = 0; i < p_ctrl->p_cfg->p_snapshot_cfg->channels; i++)
     {
-        if (p_ctrl->p_extend->p_ping_pong_buf[i + p_ctrl->p_cfg->p_data_feed_cfg->channels].data_type !=
+        if (p_ctrl->p_extend->p_ping_pong_buf[i + channel].data_type !=
             RAI_DATA_COLLECTOR_DATA_TYPE_DOUBLE)
         {
             p_info[i].length = p_ctrl->p_cfg->p_snapshot_cfg->transfer_len;
             p_info[i].p_dest =
-                (uint8_t *) p_ctrl->p_extend->p_ping_pong_buf[i + p_ctrl->p_cfg->p_data_feed_cfg->channels].p_buf +
+                (uint8_t *) p_ctrl->p_extend->p_ping_pong_buf[i + channel].p_buf +
                 ((offset + p_ctrl->p_extend->p_ping_pong_buf_hnd[channel].accumulated_len) <<
                     p_info[i].transfer_settings_word_b.size);
         }
@@ -687,7 +685,7 @@ static void rm_rai_data_collector_dtc_update_info (rai_data_collector_instance_c
              */
             p_info[i].length = (uint16_t) (p_ctrl->p_cfg->p_snapshot_cfg->transfer_len << 1);
             p_info[i].p_dest =
-                (uint8_t *) p_ctrl->p_extend->p_ping_pong_buf[i + p_ctrl->p_cfg->p_data_feed_cfg->channels].p_buf +
+                (uint8_t *) p_ctrl->p_extend->p_ping_pong_buf[i + channel].p_buf +
                 ((offset + p_ctrl->p_extend->p_ping_pong_buf_hnd[channel].accumulated_len) << 3);
         }
 

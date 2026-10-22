@@ -53,10 +53,10 @@ const rai_data_shipper_api_t g_ds_on_rai_data_shipper =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -305,9 +305,9 @@ fsp_err_t RM_RAI_DATA_SHIPPER_Close (rai_data_shipper_ctrl_t * const p_api_ctrl)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /**********************************************************************************************************************
@@ -343,7 +343,7 @@ static void rai_data_shipper_start_next_transmission (rai_data_shipper_instance_
     if (p_ctrl->data_ready_mask > 0)
     {
         /* Find the next instance to send */
-        uint8_t next = (p_ctrl->index + 1UL) % RM_RAI_DATA_SHIPPER_MAX_NUMBER_OF_DC_INSTANCES;
+        uint8_t next = (uint8_t) ((p_ctrl->index + 1UL) % RM_RAI_DATA_SHIPPER_MAX_NUMBER_OF_DC_INSTANCES);
 
         do
         {
@@ -368,7 +368,7 @@ static void rai_data_shipper_start_next_transmission (rai_data_shipper_instance_
                 rai_data_shipper_notify_application(p_ctrl, next, RM_COMMS_EVENT_ERROR);
             }
 
-            next = (next + 1UL) % RM_RAI_DATA_SHIPPER_MAX_NUMBER_OF_DC_INSTANCES;
+            next = (uint8_t) ((next + 1UL) % RM_RAI_DATA_SHIPPER_MAX_NUMBER_OF_DC_INSTANCES);
         } while (p_ctrl->index != next);
     }
 }

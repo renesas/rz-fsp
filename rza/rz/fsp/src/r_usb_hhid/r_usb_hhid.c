@@ -19,16 +19,26 @@
 #include "src/inc/r_usb_hhid_driver.h"
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZA_USB_HHID
  * @{
  **********************************************************************************************************************/
+
+/***********************************************************************************************************************
+ * Global variables
+ **********************************************************************************************************************/
+
+const usb_hhid_api_t g_hhid_on_usb =
+{
+    .typeGet          = R_USB_HHID_TypeGet,
+    .maxPacketSizeGet = R_USB_HHID_MaxPacketSizeGet,
+};
 
 /*************************************************************************//**
  * @brief Get HID protocol.(USB Mouse/USB Keyboard/Other Type.)
@@ -197,7 +207,7 @@ fsp_err_t R_USB_HHID_MaxPacketSizeGet (usb_ctrl_t * const p_api_ctrl,
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif

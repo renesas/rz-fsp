@@ -823,7 +823,7 @@ fsp_err_t R_GMAC_B_GetLinkStatus (ether_ctrl_t * const p_ctrl, uint8_t port, gma
     GMAC_ERROR_RETURN(NULL != p_status, FSP_ERR_INVALID_POINTER);
     GMAC_ERROR_RETURN(BSP_FEATURE_GMAC_MAX_PORTS > port, FSP_ERR_INVALID_ARGUMENT);
 
-    GMAC_ERROR_RETURN(0 != ((gmac_b_extend_cfg_t *) p_instance_ctrl->p_gmac_cfg->p_extend)->pp_phy_instance[port],
+    GMAC_ERROR_RETURN(0 != (*((gmac_b_extend_cfg_t *) p_instance_ctrl->p_gmac_cfg->p_extend)->pp_phy_instance)[port],
                       FSP_ERR_INVALID_ARGUMENT);
 #endif
 
@@ -1618,7 +1618,7 @@ static void gmac_config_ethernet (gmac_b_instance_ctrl_t const * const p_instanc
     }
 #endif
 
-    p_reg->DMA_CH[0].DCRCR      = (uint32_t) ((uint16_t) p_gmac_cfg->ether_buffer_size << R_GBETH0_DCRCR0_RBSZ_4_0_Pos); /* rx buffer size */
+    p_reg->DMA_CH[0].DCRCR      = (uint32_t) ((uint16_t) p_gmac_cfg->ether_buffer_size << R_GBETH0_DCRCR0_RBSZ_x_0_Pos); /* rx buffer size */
     p_reg->DMA_CH[0].DCRCR_b.SR = 1;                                                                                     /* rx start */
 
     p_reg->MACRC0_b.RXQ0EN  = 2;
@@ -1748,7 +1748,6 @@ static void gmac_b_configure_mac (gmac_b_instance_ctrl_t * const p_instance_ctrl
     {
         p_reg->MAC_ADDRESS[1].MACAHR_b.AE  = 1; /* enable address */
         p_reg->MAC_ADDRESS[1].MACAHR_b.DCS = 0;
-        p_reg->MAC_ADDRESS[1].MACAHR_b.MBC = 0;
 
         p_reg->MAC_ADDRESS[1].MACAHR_b.ADDRHI = (uint16_t) ((mac_addr1[5] << 8) |
                                                             (mac_addr1[4]));
@@ -1765,7 +1764,6 @@ static void gmac_b_configure_mac (gmac_b_instance_ctrl_t * const p_instance_ctrl
     {
         p_reg->MAC_ADDRESS[2].MACAHR_b.AE  = 1; /* enable address */
         p_reg->MAC_ADDRESS[2].MACAHR_b.DCS = 0;
-        p_reg->MAC_ADDRESS[2].MACAHR_b.MBC = 0;
 
         p_reg->MAC_ADDRESS[2].MACAHR_b.ADDRHI = (uint16_t) ((mac_addr2[5] << 8) |
                                                             (mac_addr2[4]));

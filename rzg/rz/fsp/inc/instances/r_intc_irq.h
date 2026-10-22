@@ -20,12 +20,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZG
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZG_INTC_IRQ
@@ -44,9 +44,9 @@ struct st_intc_irq_instance_ctrl
     uint8_t   channel;                                          ///< Channel
 
  #if BSP_TZ_SECURE_BUILD
-    external_irq_callback_args_t * p_callback_memory;           // Pointer to non-secure memory that can be used to pass arguments to a callback in non-secure memory.
+    external_irq_callback_args_t * p_callback_memory;           ///< Pointer to non-secure memory that can be used to pass arguments to a callback in non-secure memory.
  #endif
-    void (* p_callback)(external_irq_callback_args_t * p_args); // Pointer to callback that is called when an edge is detected on the external irq pin.
+    void (* p_callback)(external_irq_callback_args_t * p_args); ///< Pointer to callback that is called when an edge is detected on the external irq pin.
 
     /** Placeholder for user data.  Passed to the user callback in RZG::external_irq_callback_args_t. */
     void * p_context;
@@ -85,11 +85,11 @@ fsp_err_t R_INTC_IRQ_ExternalIrqClose(external_irq_ctrl_t * const p_api_ctrl);
 /*******************************************************************************************************************//**
  * @} (end defgroup INTC_IRQ)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

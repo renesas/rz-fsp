@@ -91,6 +91,7 @@
 #define BSP_FEATURE_CANFD_RXMB_MAX                                        (32U)
 #define BSP_FEATURE_CANFD_ERROR_GLOBAL_CH0_ECC_REG_POS                    (28U)
 #define BSP_FEATURE_CANFD_NUM_COMMON_FIFOS                                (6U)
+#define BSP_FEATURE_CANFD_64BIT_SYSTEM                                    (0U)
 
 /* Cortex-M33 Feature Definitions */
 #define BSP_FEATURE_MCORE_HAS_DSP                                         (0U)
@@ -141,6 +142,7 @@
 #define BSP_FEATURE_DMAC_MAX_CHANNEL                                      (16U)
 #define BSP_FEATURE_DMAC_MAX_UNIT                                         (2U)
 #define BSP_FEATURE_DMAC_B_64BIT_SYSTEM                                   (0U)
+#define BSP_FEATURE_DMAC_VALID_UNIT_MASK                                  (0x1U) // Mask of valid units for DMAC.
 
 /* GPT-Related Definitions */
 #define BSP_FEATURE_GPT_VALID_CHANNEL_MASK                                (0xFFU)
@@ -168,7 +170,7 @@
 #define BSP_FEATURE_ICU_HAS_INTPMSEL_REG                                  (1)
 
 /* IIC-Related Definitions */
-#define BSP_FEATURE_IIC_SOURCE_CLOCK(channel)                             (FSP_PRIV_CLOCK_P0CLK)
+#define BSP_FEATURE_IIC_SOURCE_CLOCK(channel)    (FSP_PRIV_CLOCK_P0CLK)
 #define BSP_FEATURE_IIC_MAX_CHANNEL                                       (4U)
 #define BSP_FEATURE_IIC_VALID_CHANNEL_MASK                                (0x0F)
 
@@ -258,7 +260,7 @@
 
 /* SCIF-Related Definitions */
 #define BSP_FEATURE_SCIF_MAX_CHANNEL                                      (6U)
-#define BSP_FEATURE_SCIF_CHANNEL_MASK                                     (0x3FU)
+#define BSP_FEATURE_SCIF_CHANNELS_MASK                                    (0x3FU)
 #define BSP_FEATURE_SCIF_RTSCTS_SUPPORT                                   (1)
 #define BSP_FEATURE_SCIF_CKS2_LIMITATION                                  (1)
 #define BSP_FEATURE_SCIF_CLOCK                                            (FSP_PRIV_CLOCK_P0CLK)

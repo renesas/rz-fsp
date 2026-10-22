@@ -20,12 +20,12 @@ FSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZG
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZG_MHU_NS_SWINT_GET
@@ -39,20 +39,19 @@ namespace RZG
 /** Channel control block. DO NOT INITIALIZE.  Initialization occurs when @ref mhu_ns_swint_get_api_t::open is called. */
 struct st_mhu_ns_swint_get_instance_ctrl
 {
-    uint32_t open;                         ///< Indicates whether the open() API has been successfully called.
-    mhu_ns_swint_get_cfg_t const * p_cfg;  ///< Pointer to instance configuration
-    R_MHU_SWINT0_Type            * p_regs; ///< Base register for this channel
+    uint32_t open;                                           ///< Indicates whether the open() API has been successfully called
+    mhu_ns_swint_get_cfg_t const * p_cfg;                    ///< Pointer to instance configuration
+    R_MHU_SWINT0_Type            * p_regs;                   ///< Base register for this channel
 
-    uint32_t channel;                      ///< channel
+    uint32_t channel;                                        ///< channel
 
  #if BSP_TZ_SECURE_BUILD
-    bool callback_is_secure;               ///< p_callback is in secure memory
+    bool callback_is_secure;                                 ///< p_callback is in secure memory
  #endif
 
-    /* Pointer to callback and optional working memory */
-    void (* p_callback)(mhu_ns_swint_get_callback_args_t *);
-    mhu_ns_swint_get_callback_args_t * p_callback_memory; // Pointer to non-secure memory that can be used to pass arguments to a callback in non-secure memory.
-    void * p_context;                                     // Pointer to context to be passed into callback function
+    void (* p_callback)(mhu_ns_swint_get_callback_args_t *); ///< Pointer to callback and optional working memory
+    mhu_ns_swint_get_callback_args_t * p_callback_memory;    ///< Pointer to non-secure memory that can be used to pass arguments to a callback in non-secure memory
+    void * p_context;                                        ///< Pointer to context to be passed into callback function
 };
 
 /** Channel control block. DO NOT INITIALIZE.  Initialization occurs when @ref mhu_ns_swint_get_api_t::open is called. Please refer to the struct st_mhu_ns_swint_get_instance_ctrl. */
@@ -80,7 +79,7 @@ extern const mhu_ns_swint_get_api_t g_mhu_ns_swint_get_on_mhu_ns_swint_get;
 /***********************************************************************************************************************
  * Public APIs
  **********************************************************************************************************************/
-fsp_err_t R_MHU_NS_SWINT_GET_Open(mhu_ns_swint_get_ctrl_t * p_ctrl, mhu_ns_swint_get_cfg_t const * const p_cfg);
+fsp_err_t R_MHU_NS_SWINT_GET_Open(mhu_ns_swint_get_ctrl_t * const p_ctrl, mhu_ns_swint_get_cfg_t const * const p_cfg);
 
 fsp_err_t R_MHU_NS_SWINT_GET_Close(mhu_ns_swint_get_ctrl_t * const p_ctrl);
 
@@ -95,11 +94,11 @@ void R_MHU_NS_SWINT_GET_IsrSub(uint32_t irq);
 /*******************************************************************************************************************//**
  * @} (end ingroup MHU_NS_SWINT_GET)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

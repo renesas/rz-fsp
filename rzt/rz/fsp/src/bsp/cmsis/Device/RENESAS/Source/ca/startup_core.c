@@ -744,7 +744,6 @@ void IRQ_ExecuteHandler (void)
     if (p_vector)
     {
         g_current_interrupt_num[g_current_interrupt_pointer++] = irq;
-        __DMB();
 
         (*p_vector)();
     }
@@ -778,7 +777,6 @@ void FIQ_ExecuteHandler (void)
     irq = (IRQn_Type) (target_int_id - BSP_CORTEX_VECTOR_TABLE_ENTRIES);
 
     g_current_interrupt_num[g_current_interrupt_pointer++] = irq;
-    __DMB();
 
     /* Enable nested interrupts */
     BSP_INTERRUPT_ENABLE;

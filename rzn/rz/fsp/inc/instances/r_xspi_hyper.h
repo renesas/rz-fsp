@@ -45,13 +45,6 @@ typedef enum e_xspi_hyper_chip_select
     XSPI_HYPER_CHIP_SELECT_1,          ///< Device connected to Chip-Select 1
 } xspi_hyper_chip_select_t;
 
-/* XSPI_HYPER Memory device type select */
-typedef enum e_xspi_hyper_device_type
-{
-    XSPI_HYPER_DEVICE_TYPE_FLASH = 0,  ///< Device Memory type HyperFlash
-    XSPI_HYPER_DEVICE_TYPE_RAM,        ///< Device Memory type HyperRAM
-} xspi_hyper_device_type_t;
-
 /* XSPI_HYPER device memory size */
 typedef enum e_xspi_hyper_memory_size
 {
@@ -63,6 +56,13 @@ typedef enum e_xspi_hyper_memory_size
     XSPI_HYPER_MEMORY_SIZE_32MB = 0x1F, ///< Memory size 32MB
     XSPI_HYPER_MEMORY_SIZE_64MB = 0x3F, ///< Memory size 64MB
 } xspi_hyper_memory_size_t;
+
+/* Behavior when xSPI received WRAP burst AXI transaction. */
+typedef enum e_xspi_hyper_wrap_separate
+{
+    XSPI_HYPER_WRAP_SEPARATE_ENABLE,   ///< Separate xSPI transfer at the wrapping address boundary
+    XSPI_HYPER_WRAP_SEPARATE_DISABLE,  ///< Not separate xSPI transfer at the wrapping address boundary
+} xspi_hyper_wrap_separate_t;
 
 /* Interval clocks between former transaction and new access */
 typedef enum e_xspi_hyper_transaction_interval_clocks
@@ -141,17 +141,19 @@ typedef struct st_hyper_address_space xspi_hyper_address_space_t;
 /** Extended configuration */
 struct st_xspi_hyper_extended_cfg
 {
-    uint8_t unit;                                                                   ///< Unit number
-    xspi_hyper_chip_select_t               chip_select;                             ///< Device number to be used for memory device
-    uint32_t                               memory_size;                             ///< Size of memory device
-    xspi_hyper_device_type_t               memory_type;                             ///< Type of memory device
-    xspi_hyper_prefetch_function_t         prefetch_en;                             ///< Prefetch function settings
-    xspi_hyper_io_voltage_t                io_voltage;                              ///< Voltage setting of xSPI IO domains
-    uint32_t                               data_latching_delay_clock;               ///< Specify delay between DQ and RWDS. Set to 0 to auto-callibrate.
-    uint8_t                              * p_autocalibration_preamble_pattern_addr; ///< HyperBus memory address holding the preamble pattern
-    xspi_hyper_cs_timing_setting_t const * p_cs_timing_settings;                    ///< Chip select bus timing settings
-    xspi_hyper_address_space_t const     * p_address_space;                         ///< Memory mapped address space settings
-    void * p_reg;                                                                   ///< Register base address for specified channel
+    uint8_t unit;                                                ///< Unit number
+    xspi_hyper_chip_select_t chip_select;                        ///< Device number to be used for memory device
+    uint32_t                 memory_size;                        ///< Size of memory device
+    uint8_t address_msb_mask;                                    ///< Mask of bits to zero when using memory-mapped operations; only applies to the most-significant byte.
+    xspi_hyper_wrap_separate_t wrap_separate;                    ///< Behavior when xSPI received WRAP burst AXI transaction
+    uint32_t write_buffer_size;                                  ///< Size of program buffer
+    xspi_hyper_prefetch_function_t prefetch_en;                  ///< Prefetch function settings
+    xspi_hyper_io_voltage_t        io_voltage;                   ///< Voltage setting of xSPI IO domains
+    uint32_t  data_latching_delay_clock;                         ///< Specify delay between DQ and RWDS. Set to 0 to auto-callibrate.
+    uint8_t * p_autocalibration_preamble_pattern_addr;           ///< HyperBus memory address holding the preamble pattern
+    xspi_hyper_cs_timing_setting_t const * p_cs_timing_settings; ///< Chip select bus timing settings
+    xspi_hyper_address_space_t const     * p_address_space;      ///< Memory mapped address space settings
+    void * p_reg;                                                ///< Register base address for specified channel
 };
 
 /** Extended configuration. Please refer to the struct st_xspi_hyper_extended_cfg. */

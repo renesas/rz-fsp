@@ -40,6 +40,10 @@ static const uint32_t gs_hmac_length[] =
     [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512]     = RSIP_PRV_BYTE_SIZE_DIGEST_SHA512,
     [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512_224] = RSIP_PRV_BYTE_SIZE_DIGEST_SHA512_224,
     [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512_256] = RSIP_PRV_BYTE_SIZE_DIGEST_SHA512_256,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_224]   = RSIP_PRV_BYTE_SIZE_DIGEST_SHA3_224,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_256]   = RSIP_PRV_BYTE_SIZE_DIGEST_SHA3_256,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_384]   = RSIP_PRV_BYTE_SIZE_DIGEST_SHA3_384,
+    [RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_512]   = RSIP_PRV_BYTE_SIZE_DIGEST_SHA3_512
 };
 
 /***********************************************************************************************************************
@@ -47,10 +51,10 @@ static const uint32_t gs_hmac_length[] =
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -634,10 +638,41 @@ fsp_err_t R_RSIP_HMAC_Init (rsip_ctrl_t * const p_ctrl, rsip_wrapped_key_t const
             break;
         }
 
-        /* SHA-384, SHA-512 */
-        default:
+        /* SHA-384, SHA-512, SHA-512/224, SHA-512/256 */
+        case RSIP_PRV_KEY_SUBTYPE_HMAC_SHA384:
+        case RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512:
+        case RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512_224:
+        case RSIP_PRV_KEY_SUBTYPE_HMAC_SHA512_256:
         {
             p_handle->block_size = RSIP_PRV_BYTE_SIZE_HASH_BLOCK_SHA384_SHA512;
+            break;
+        }
+
+        /* SHA3-224 */
+        case RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_224:
+        {
+            p_handle->block_size = RSIP_PRV_BYTE_SIZE_HASH_BLOCK_SHA3_224;
+            break;
+        }
+
+        /* SHA3-256 */
+        case RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_256:
+        {
+            p_handle->block_size = RSIP_PRV_BYTE_SIZE_HASH_BLOCK_SHA3_256;
+            break;
+        }
+
+        /* SHA3-384 */
+        case RSIP_PRV_KEY_SUBTYPE_HMAC_SHA3_384:
+        {
+            p_handle->block_size = RSIP_PRV_BYTE_SIZE_HASH_BLOCK_SHA3_384;
+            break;
+        }
+
+        /* SHA3-512 */
+        default:
+        {
+            p_handle->block_size = RSIP_PRV_BYTE_SIZE_HASH_BLOCK_SHA3_512;
         }
     }
 
@@ -1079,9 +1114,9 @@ fsp_err_t R_RSIP_HMAC_Resume (rsip_ctrl_t * const p_ctrl, rsip_hmac_handle_t con
  * @}
  **********************************************************************************************************************/
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**

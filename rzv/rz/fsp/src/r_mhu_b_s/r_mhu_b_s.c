@@ -487,7 +487,7 @@ void metal_irq_isr_wrapper_s (void)
 #endif
 
 /*********************************************************************************************************************
- * MHU_B_S receive interrupt (for bere mhu_b_s application).
+ * MHU_B_S receive interrupt (for bare mhu_b_s application).
  **********************************************************************************************************************/
 void mhu_b_s_int_isr (void)
 {

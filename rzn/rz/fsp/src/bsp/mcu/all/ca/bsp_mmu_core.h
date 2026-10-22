@@ -7,25 +7,6 @@
 #ifndef BSP_MMU_CORE_H
  #define BSP_MMU_CORE_H
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
-namespace RZN
-{
- #endif
-#endif
-
-/*******************************************************************************************************************//**
- * @addtogroup RZN_BSP_MCU
- * @{
- **********************************************************************************************************************/
-
-/** @} (end addtogroup BSP_MCU) */
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
-}
- #endif
-#endif
-
 /***********************************************************************************************************************
  * Includes   <System Includes> , "Project Includes"
  **********************************************************************************************************************/
@@ -279,10 +260,30 @@ typedef enum e_bsp_mmu_conversion_flag
  * Exported global functions (to be accessed by other files)
  **********************************************************************************************************************/
 
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+namespace RZN
+{
+  #endif
+ #endif
+
+/*******************************************************************************************************************//**
+ * @addtogroup RZN_BSP_MCU
+ * @{
+ **********************************************************************************************************************/
+
 fsp_err_t R_BSP_MmuVatoPa(uint64_t vaddress, uint64_t * p_paddress);
 fsp_err_t R_BSP_MmuPatoVa(uint64_t paddress, uint64_t * p_vaddress, bsp_mmu_conversion_flag_t cache_flag);
 fsp_err_t R_BSP_MemoryMap(r_mmu_pgtbl_cfg_t * p_memory_map_cfg);
 fsp_err_t R_BSP_MemoryUnMap(void);
-void      bsp_mmu_configure(void);
+
+/** @} (end addtogroup BSP_MCU) */
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+}
+  #endif
+ #endif
+
+void bsp_mmu_configure(void);
 
 #endif                                 /* RZN_FSP_SRC_BSP_MCU_ALL_CA_BSP_MMU_H_ */

@@ -68,6 +68,7 @@
 
 #define BSP_FEATURE_DMAC_MAX_CHANNEL                      (16U)
 #define BSP_FEATURE_DMAC_64BIT_SYSTEM                     (1U)
+#define BSP_FEATURE_DMAC_VALID_UNIT_MASK                  (0x2U) // Mask of valid units for DMAC.
 
 #define BSP_FEATURE_GTM_MAX_CHANNELS                      (3U)
 #define BSP_FEATURE_GTM_VALID_CHANNEL_MASK                (0x7)
@@ -120,7 +121,7 @@
 #define BSP_FEATURE_SCI_CLOCK                             (FSP_PRIV_CLOCK_P0CLK)
 #define BSP_FEATURE_SCI_MAX_CHANNELS                      (2U)
 
-#define BSP_FEATURE_SCIF_CHANNELS                         (0x1FU)
+#define BSP_FEATURE_SCIF_CHANNELS_MASK                    (0x1FU)
 #define BSP_FEATURE_SCIF_CHANNELS_HAS_RTSCTS              (0x07U)
 #define BSP_FEATURE_SCIF_CLOCK                            (FSP_PRIV_CLOCK_P0CLK)
 #define BSP_FEATURE_SCIF_MAX_CHANNELS                     (5U)

@@ -15,11 +15,11 @@
  * Macro definitions
  **********************************************************************************************************************/
 
-#define SCI_B_SPI_PRV_DTC_RX_TRANSFER_SETTINGS    ((TRANSFER_MODE_NORMAL << 30U) | (TRANSFER_SIZE_1_BYTE << 28U) | \
+#define SCI_B_SPI_PRV_DMA_RX_TRANSFER_SETTINGS    ((TRANSFER_MODE_NORMAL << 30U) | (TRANSFER_SIZE_1_BYTE << 28U) | \
                                                    (TRANSFER_ADDR_MODE_FIXED << 26U) | (TRANSFER_IRQ_END << 21U) | \
                                                    (TRANSFER_ADDR_MODE_INCREMENTED << 18U))
 
-#define SCI_B_SPI_PRV_DTC_TX_TRANSFER_SETTINGS    ((TRANSFER_MODE_NORMAL << 30U) | (TRANSFER_SIZE_1_BYTE << 28U) |       \
+#define SCI_B_SPI_PRV_DMA_TX_TRANSFER_SETTINGS    ((TRANSFER_MODE_NORMAL << 30U) | (TRANSFER_SIZE_1_BYTE << 28U) |       \
                                                    (TRANSFER_ADDR_MODE_INCREMENTED << 26U) | (TRANSFER_IRQ_END << 21U) | \
                                                    (TRANSFER_ADDR_MODE_FIXED << 18U))
 
@@ -32,7 +32,6 @@
  */
 #define SCI_B_SPI_PRV_CLK_MAX_N                   (0xFFU)
 #define SCI_B_SPI_PRV_CLK_MAX_n                   (3U)
-#define SCI_B_SPI_PRV_CLK_MIN_DIV                 (4U)
 #define SCI_B_SPI_PRV_CLK_MAX_DIV                 ((SCI_B_SPI_PRV_CLK_MAX_N + 1) * 8 * \
                                                    (1 << (2 * SCI_B_SPI_PRV_CLK_MAX_n - 1)))
 #define SCI_B_SPI_PRV_CHR_RST_VALUE               (0x0200U)
@@ -142,10 +141,10 @@ fsp_err_t R_SCI_B_SPI_Open (spi_ctrl_t * p_api_ctrl, spi_cfg_t const * const p_c
     FSP_ASSERT(NULL != p_extend->p_reg);
     FSP_ASSERT(NULL != p_cfg->p_callback);
     FSP_ERROR_RETURN(BSP_FEATURE_SCI_CHANNELS_MASK & (1U << p_cfg->channel), FSP_ERR_IP_CHANNEL_NOT_PRESENT);
-    FSP_ASSERT(p_cfg->rxi_irq >= 0);
-    FSP_ASSERT(p_cfg->txi_irq >= 0);
     FSP_ASSERT(p_cfg->tei_irq >= 0);
     FSP_ASSERT(p_cfg->eri_irq >= 0);
+    FSP_ASSERT(p_cfg->rxi_irq >= 0);
+    FSP_ASSERT(p_cfg->txi_irq >= 0);
 #else
     sci_b_spi_extended_cfg_t * p_extend = (sci_b_spi_extended_cfg_t *) p_cfg->p_extend;
 #endif
@@ -168,8 +167,22 @@ fsp_err_t R_SCI_B_SPI_Open (spi_ctrl_t * p_api_ctrl, spi_cfg_t const * const p_c
     r_sci_b_spi_hw_config(p_ctrl);
 
     /* Enable required interrupts. */
+#if SCI_B_SPI_CFG_DMAC_SUPPORT_ENABLE == 1
+    if (NULL == p_ctrl->p_cfg->p_transfer_rx)
+    {
+        R_BSP_IrqCfgEnable(p_cfg->rxi_irq, p_cfg->rxi_ipl, p_ctrl);
+    }
+
+    if (NULL == p_ctrl->p_cfg->p_transfer_tx)
+    {
+        R_BSP_IrqCfgEnable(p_cfg->txi_irq, p_cfg->txi_ipl, p_ctrl);
+    }
+
+#else
     R_BSP_IrqCfgEnable(p_cfg->rxi_irq, p_cfg->rxi_ipl, p_ctrl);
     R_BSP_IrqCfgEnable(p_cfg->txi_irq, p_cfg->txi_ipl, p_ctrl);
+#endif
+
     R_BSP_IrqCfgEnable(p_cfg->tei_irq, p_cfg->tei_ipl, p_ctrl);
     R_BSP_IrqCfgEnable(p_cfg->eri_irq, p_cfg->eri_ipl, p_ctrl);
 
@@ -418,8 +431,22 @@ fsp_err_t R_SCI_B_SPI_Close (spi_ctrl_t * const p_api_ctrl)
      * when TE is set to 0, the SCI peripheral works abnormally next time the TE made to 1.*/
     p_ctrl->p_reg->CCR3 = 0U;
 
+#if SCI_B_SPI_CFG_DMAC_SUPPORT_ENABLE == 1
+    if (NULL == p_ctrl->p_cfg->p_transfer_tx)
+    {
+        R_BSP_IrqDisable(p_ctrl->p_cfg->txi_irq);
+    }
+
+    if (NULL == p_ctrl->p_cfg->p_transfer_rx)
+    {
+        R_BSP_IrqDisable(p_ctrl->p_cfg->rxi_irq);
+    }
+
+#else
     R_BSP_IrqDisable(p_ctrl->p_cfg->txi_irq);
     R_BSP_IrqDisable(p_ctrl->p_cfg->rxi_irq);
+#endif
+
     R_BSP_IrqDisable(p_ctrl->p_cfg->eri_irq);
     R_BSP_IrqDisable(p_ctrl->p_cfg->tei_irq);
 
@@ -480,29 +507,31 @@ fsp_err_t R_SCI_B_SPI_CalculateBitrate (uint32_t                  bitrate,
     FSP_ASSERT(bitrate >= (peripheral_clock / SCI_B_SPI_PRV_CLK_MAX_DIV));
 #endif
 
-    int32_t divisor = 0;
-    int32_t brr     = 0;
-    int32_t cks     = -1;
+    uint32_t divisor = 0;
+    uint32_t brr     = 0;
 
-    for (uint32_t i = 0; i <= 3; i++)
+    for (uint8_t cks = 0; cks <= 3; cks++)
     {
-        cks++;
-        divisor = (1 << (2 * (i + 1))) * (int32_t) bitrate;
-
-        /* Calculate BRR so that the bit rate is the largest possible value less than or equal to the desired
-         * bitrate. */
-        brr = ((int32_t) peripheral_clock + divisor - 1) / divisor - 1;
-
-        if (brr <= UINT8_MAX)
+        for (int8_t bgdm = 1; bgdm >= 0; bgdm--)
         {
-            break;
+            divisor = (1 << (2 * (cks + 1) - bgdm)) * bitrate;
+
+            /* Calculate BRR so that the bit rate is the largest possible value less than or equal to the desired
+             * bitrate. */
+            brr = (peripheral_clock + divisor - 1) / divisor - 1;
+
+            if (brr <= UINT8_MAX)
+            {
+                sclk_div->brr  = (uint8_t) brr;
+                sclk_div->cks  = (uint8_t) (cks & 3);
+                sclk_div->bgdm = (uint8_t) (bgdm & 1);
+
+                return FSP_SUCCESS;
+            }
         }
     }
 
-    sclk_div->brr = (uint8_t) brr;
-    sclk_div->cks = (uint8_t) (cks & 3);
-
-    return FSP_SUCCESS;
+    return FSP_ERR_INVALID_ARGUMENT;
 }
 
 /*******************************************************************************************************************//**
@@ -534,7 +563,8 @@ static void r_sci_b_spi_hw_config (sci_b_spi_instance_ctrl_t * const p_ctrl)
     uint32_t cfclr = 0U;
     uint32_t ffclr = 0U;
 
-    /* SCI Initialization in Simple SPI Mode. */
+    /* SCI Initialization in Simple SPI Mode (See "SCI Initialization in Simple SPI Mode" in the SCI section
+     * of the relevant hardware manual). */
 
     /* Write settings to CCR3:
      * - Set Bypass Synchronizer circuit between bus clock and operation clock.
@@ -568,7 +598,8 @@ static void r_sci_b_spi_hw_config (sci_b_spi_instance_ctrl_t * const p_ctrl)
     /* In order to get sampling on the even clock edge set CCR3.CPHA = 1. */
     if (SPI_CLK_POLARITY_LOW == p_cfg->clk_polarity)
     {
-        /* set CCR3.CPOL = 0 for clock polarity as low during idle. */
+        /* set CCR3.CPOL = 0 for clock polarity as low during idle. (See figure "Relation between clock signal and transmit or receive data in simple SPI mode"
+         * in the SCI section of the relevant hardware manual). */
         ccr3 &= ~R_SCI_B0_CCR3_CPOL_Msk;
     }
 
@@ -583,10 +614,11 @@ static void r_sci_b_spi_hw_config (sci_b_spi_instance_ctrl_t * const p_ctrl)
         /* Write settings to CCR2:
          * - Write the BRR setting.
          * - Write the clock divider setting.
+         * - Write the Baud Rate Generator Double-Speed Mode setting.
          */
         ccr2 |= (uint32_t) (p_extend->clk_div.cks << R_SCI_B0_CCR2_CKS_Pos);
-
         ccr2 |= (uint32_t) ((p_extend->clk_div.brr) << R_SCI_B0_CCR2_BRR_Pos);
+        ccr2 |= (uint32_t) ((p_extend->clk_div.bgdm) << R_SCI_B0_CCR2_BGDM_Pos);
 
         /* Write the receive sampling adjustment setting. This setting adjusts
          * the master receive sampling timing to account for the propagation delay
@@ -609,7 +641,8 @@ static void r_sci_b_spi_hw_config (sci_b_spi_instance_ctrl_t * const p_ctrl)
     /* Set TEIE, TIE, RIE, TE, and RE to 0. */
     p_ctrl->p_reg->CCR0 = 0;
 
-    /* If TCLK is slower than the bus clock, then wait for the internal state to be updated. */
+    /* If TCLK is slower than the bus clock, then wait for the internal state to be updated (See "Notes regarding register access when operation clock (TCLK) is slower than bus
+     * clock (PCLK)" in the SCI section of the relevant hardware manual). */
     FSP_HARDWARE_REGISTER_WAIT(p_ctrl->p_reg->CESR, 0U);
 
     /* Clear status flags. */
@@ -618,10 +651,11 @@ static void r_sci_b_spi_hw_config (sci_b_spi_instance_ctrl_t * const p_ctrl)
             R_SCI_B0_CFCLR_ERSC_Msk;
     ffclr = R_SCI_B0_FFCLR_DRC_Msk;
 
-    /* Set FCR. Reset fifo/data registers. */
+    /* Set FCR. Reset FIFO/data registers. */
     p_ctrl->p_reg->FCR = R_SCI_B0_FCR_TFRST_Msk | R_SCI_B0_FCR_RFRST_Msk;
 
-    /* Write all settings except MOD[2:0] to CCR3 (See "SCI Initialization Flowchart Example (Clock Synchronous Mode)" in the Hardware Manual). */
+    /* Write all settings except MOD[2:0] to CCR3 (See Table "Example flow of SCI initialization in clock synchronous mode with
+     * non-FIFO selected" in the SCI section of the relevant hardware manual). */
     p_ctrl->p_reg->CCR3 = ccr3 & ~(R_SCI_B0_CCR3_MOD_Msk);
 
 #if SCI_B_SPI_DMAC_SUPPORT_ENABLE
@@ -674,7 +708,7 @@ static fsp_err_t r_sci_b_spi_transfer_config (sci_b_spi_instance_ctrl_t * const 
         p_info->src_addr_mode  = TRANSFER_ADDR_MODE_FIXED;
         p_info->dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED;
  #else
-        p_transfer->p_cfg->p_info->transfer_settings_word = SCI_B_SPI_PRV_DTC_RX_TRANSFER_SETTINGS;
+        p_transfer->p_cfg->p_info->transfer_settings_word = SCI_B_SPI_PRV_DMA_RX_TRANSFER_SETTINGS;
  #endif
         p_transfer->p_cfg->p_info->p_src = (void *) &p_ctrl->p_reg->RDR;
 
@@ -695,7 +729,7 @@ static fsp_err_t r_sci_b_spi_transfer_config (sci_b_spi_instance_ctrl_t * const 
         p_info->src_addr_mode  = TRANSFER_ADDR_MODE_INCREMENTED;
         p_info->dest_addr_mode = TRANSFER_ADDR_MODE_FIXED;
  #else
-        p_transfer->p_cfg->p_info->transfer_settings_word = SCI_B_SPI_PRV_DTC_TX_TRANSFER_SETTINGS;
+        p_transfer->p_cfg->p_info->transfer_settings_word = SCI_B_SPI_PRV_DMA_TX_TRANSFER_SETTINGS;
  #endif
         p_transfer->p_cfg->p_info->p_dest = (void *) &p_ctrl->p_reg->TDR;
 
@@ -755,7 +789,7 @@ static fsp_err_t r_sci_b_spi_write_read_common (sci_b_spi_instance_ctrl_t * cons
 #endif
 
     /* TE and RE must be zero in order to write one to TE or RE (TE and RE will only be set if there is a transfer in
-     * progress. */
+     * progress. See "Serial Control Register (SCR)" description in the SCI section of the relevant hardware manual.) */
     FSP_ERROR_RETURN(0 == (p_ctrl->p_reg->CCR0 & (R_SCI_B0_CCR0_RE_Msk | R_SCI_B0_CCR0_TE_Msk)), FSP_ERR_IN_USE);
 
     /* Setup the control block. */

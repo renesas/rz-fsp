@@ -169,6 +169,8 @@ fsp_err_t R_CANFD_Open (can_ctrl_t * const p_ctrl, can_cfg_t const * const p_cfg
     canfd_extended_cfg_t * p_extend = (canfd_extended_cfg_t *) p_cfg->p_extend;
     FSP_ASSERT(p_extend->p_global_cfg);
 
+    FSP_ASSERT(p_extend->p_reg);
+
     /* Check nominal bit timing parameters for correctness */
     FSP_ERROR_RETURN(r_canfd_bit_timing_parameter_check(p_cfg->p_bit_timing, false), FSP_ERR_CAN_INIT_FAILED);
 
@@ -230,7 +232,19 @@ fsp_err_t R_CANFD_Open (can_ctrl_t * const p_ctrl, can_cfg_t const * const p_cfg
 
         /* Configure rule count for both channels */
 #if BSP_FEATURE_CANFD_NUM_INSTANCES > 1
-        p_reg->CFDGAFLCFG0 = (CANFD_CFG_AFL_CH0_RULE_NUM << R_CANFD_CFDGAFLCFG0_RNC0_Pos);
+        if (channel == 1)
+        {
+            /* On MPUs with more than one instance of CANFD the registers are duplicated
+             * and the RNC for each instance is on the appropriate CFDGAFLCFG0.
+             *
+             * Currently only two instances per device are supported by this driver. */
+            p_reg->CFDGAFLCFG0 = (CANFD_CFG_AFL_CH1_RULE_NUM << R_CANFD_CFDGAFLCFG0_RNC0_Pos);
+        }
+        else
+        {
+            p_reg->CFDGAFLCFG0 = (CANFD_CFG_AFL_CH0_RULE_NUM << R_CANFD_CFDGAFLCFG0_RNC0_Pos);
+        }
+
 #else
         p_reg->CFDGAFLCFG0 = (CANFD_CFG_AFL_CH0_RULE_NUM << R_CANFD_CFDGAFLCFG0_RNC0_Pos) |
                              CANFD_CFG_AFL_CH1_RULE_NUM;
@@ -916,7 +930,7 @@ static void r_canfd_mb_read (R_CANFD_Type * p_reg, uint32_t buffer, can_frame_t 
     if (is_mb)
     {
         /* Clear RXMB New Data bit */
-        p_reg->CFDRMND0 &= ~(1U << buffer);
+        p_reg->CFDRMND0 = ~(1U << buffer);
     }
     else if (is_cfifo)
     {
@@ -1027,7 +1041,7 @@ void canfd_error_isr (void)
     {
 #if BSP_FEATURE_CANFD_NUM_INSTANCES > 1
 
-        /* If there are seperate instances of CANFD, then loop over each instance to handle the source of the global
+        /* If there are separate instances of CANFD, then loop over each instance to handle the source of the global
          * error IRQ. */
         for (uint32_t i = 0; i < BSP_FEATURE_CANFD_NUM_INSTANCES; i++)
         {
@@ -1142,7 +1156,7 @@ void canfd_rx_fifo_isr (void)
 
 #if BSP_FEATURE_CANFD_NUM_INSTANCES > 1
 
-    /* If there are seperate instances of CANFD, then loop over each instance to handle the source of the global
+    /* If there are separate instances of CANFD, then loop over each instance to handle the source of the global
      * receive IRQ. */
     for (uint32_t i = 0; i < BSP_FEATURE_CANFD_NUM_INSTANCES; i++)
     {

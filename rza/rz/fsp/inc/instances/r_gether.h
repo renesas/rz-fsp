@@ -207,7 +207,7 @@ fsp_err_t R_GETHER_Read(ether_ctrl_t * const p_ctrl, void * const p_buffer, uint
 
 fsp_err_t R_GETHER_BufferRelease(ether_ctrl_t * const p_ctrl);
 
-fsp_err_t R_GETHER_RxBufferUpdate(ether_ctrl_t * const p_ctrl, void * const p_buffer);
+fsp_err_t R_GETHER_RxBufferUpdate(ether_ctrl_t * const p_ctrl, __attribute__((unused)) void * const p_buffer);
 
 fsp_err_t R_GETHER_Write(ether_ctrl_t * const p_ctrl, void * const p_buffer, uint32_t const frame_length);
 
@@ -215,7 +215,8 @@ fsp_err_t R_GETHER_LinkProcess(ether_ctrl_t * const p_ctrl);
 
 fsp_err_t R_GETHER_WakeOnLANEnable(ether_ctrl_t * const p_ctrl);
 
-fsp_err_t R_GETHER_TxStatusGet(ether_ctrl_t * const p_ctrl, void * const p_buffer_address);
+fsp_err_t R_GETHER_TxStatusGet(__attribute__((unused)) ether_ctrl_t * const p_ctrl,
+                               __attribute__((unused)) void * const         p_buffer_address);
 
 fsp_err_t R_GETHER_CallbackSet(ether_ctrl_t * const          p_api_ctrl,
                                void (                      * p_callback)(ether_callback_args_t *),

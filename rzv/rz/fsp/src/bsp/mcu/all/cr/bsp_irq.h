@@ -360,6 +360,20 @@ __STATIC_INLINE uint32_t R_BSP_IrqMaskLevelGet (void)
 }
 
  #else
+
+  #ifdef __FOR_FSP_DOCUMENT__
+   #ifdef __cplusplus
+namespace RZV
+{
+   #endif
+  #endif
+
+/*******************************************************************************************************************//**
+ * @addtogroup RZV_BSP_MCU
+ *
+ * @{
+ **********************************************************************************************************************/
+
 void     R_BSP_IrqDetectTypeSet(IRQn_Type const irq, uint8_t detect_type);
 void     R_BSP_IrqStatusClear(IRQn_Type irq);
 void     R_BSP_IrqClearPending(IRQn_Type irq);
@@ -373,14 +387,21 @@ void     R_BSP_IrqGroupSet(IRQn_Type const irq, uint32_t interrupt_group);
 void     R_BSP_IrqMaskLevelSet(uint32_t mask_level);
 uint32_t R_BSP_IrqMaskLevelGet(void);
 
+/** @} (end addtogroup BSP_MCU) */
+  #ifdef __FOR_FSP_DOCUMENT__
+   #ifdef __cplusplus
+}
+   #endif
+  #endif
+
  #endif
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZV
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @internal
@@ -396,11 +417,11 @@ __WEAK void IRQ_Handler(void);
 
 /** @} (end addtogroup RZV_BSP_MCU_PRV) */
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

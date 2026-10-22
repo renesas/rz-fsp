@@ -142,6 +142,7 @@
 SVC_Handler:
     /* Save the context of the current task and select a new task to run. */
     portSAVE_CONTEXT
+    BIC sp, sp, #7
     LDR R0, =vTaskSwitchContext
     BLX R0
     portRESTORE_CONTEXT
@@ -181,8 +182,9 @@ IRQ_Handler:
     MOV     r2, sp
     AND     r2, r2, #4
     SUB     sp, sp, r2
-    PUSH    {r2}
+    PUSH    {r2, r3}
 
+    PUSH    {r0-r4, lr}
     BLX     FreeRTOS_GetActiveIRQ
     MOV     r4, r0
 
@@ -194,9 +196,10 @@ IRQ_Handler:
 
     MOV     r0, r4
     BLX     FreeRTOS_EndOfInterrupt
+    POP     {r0-r4, lr}
 
-    /* Restore spack pointer */
-    POP     {r2}
+    /* Restore stack pointer */
+    POP     {r2, r3}
     ADD     sp, sp, r2
 
     /* Did the interrupt request a context switch?  r1 holds the address of
@@ -218,7 +221,7 @@ exit_without_switch:
     MOVS    PC, LR
 
 switch_before_exit:
-    /* A context swtich is to be performed.  Clear the context switch pending
+    /* A context switch is to be performed.  Clear the context switch pending
     flag. */
     MOV     r0, #0
     STR     r0, [r1]
@@ -236,6 +239,7 @@ switch_before_exit:
     vTaskSwitchContext() if vTaskSwitchContext() uses LDRD or STRD
     instructions, or 8 byte aligned stack allocated data.  LR does not need
     saving as a new LR will be loaded by portRESTORE_CONTEXT anyway. */
+    BIC     sp, sp, #7
     LDR     R0, =vTaskSwitchContext
     BLX     R0
 

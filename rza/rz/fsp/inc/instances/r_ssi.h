@@ -92,7 +92,7 @@ typedef struct st_ssi_instance_ctrl ssi_instance_ctrl_t;
 /** SSI configuration extension. This extension is optional. */
 struct st_ssi_extended_cfg
 {
-    ssi_audio_clock_t audio_clock;     ///< Audio clock source, default is SSI_AUDIO_CLOCK_EXTERNAL
+    ssi_audio_clock_t audio_clock;     ///< Audio clock source, default is SSI_AUDIO_CLOCK_EXTERNAL1
     ssi_clock_div_t   bit_clock_div;   ///< Select bit clock division ratio
     void            * p_reg;           ///< Register base address for specified channel
 };

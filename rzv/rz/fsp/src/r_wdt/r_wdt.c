@@ -35,7 +35,6 @@
 #define WDT_PRV_WDTCR_WINDOW_START_BIT          (12)
 
 #define WDT_PRV_WDTRCR_RESET_CONTROL_BIT        (7)
-#define WDT_PRV_WDTCSTPR_STOP_CONTROL_BIT       (7)
 
 #define WDT_PRV_WDTCR_TIMEOUT_MASK              (0x3U) // Bits 0-1
 #define WDT_PRV_WDTCR_CLOCK_DIVISION_MASK       (0xFU) // Bits 4-7
@@ -145,7 +144,7 @@ namespace RZV
 
 /*******************************************************************************************************************//**
  * Configures the WDT driver based on the input configurations. This function sets the callback function,
- * the timeout count value, and enables the overflow interrupt. Implements
+ * the timeout count value, and enables the underflow interrupt. Implements
  * @ref wdt_api_t::open.
  *
  * This function should only be called once as WDT configuration registers can only be written to once so subsequent

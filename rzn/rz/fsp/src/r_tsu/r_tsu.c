@@ -135,7 +135,7 @@ fsp_err_t R_TSU_ScanStart (adc_ctrl_t * p_ctrl)
     /* Enable the temperature sensor and ADC. */
     R_TSU->TSUSM = R_TSU_TSUSM_TSEN_Msk | R_TSU_TSUSM_ADCEN_Msk;
 
-    /* Wait 60us. See the "Operation" section of the RZ microprocessor manual. */
+    /* Wait 60us. See "Operation" in the TSU section of the relevant hardware manual. */
     R_BSP_SoftwareDelay(TSU_START_STABILIZATION_TIME_US, BSP_DELAY_UNITS_MICROSECONDS);
 
     /* Start A/D conversion. */
@@ -170,13 +170,13 @@ fsp_err_t R_TSU_ScanStop (adc_ctrl_t * p_ctrl)
 #endif
 
     /* Read TSUSAD before setting START bit to 0.
-     * See the "Register Descriptions" section of the RZ microprocessor manual. */
+     * See "Register Descriptions" in the TSU section of the relevant hardware manual. */
     FSP_REGISTER_READ(R_TSU->TSUSAD);
 
     /* Stop A/D conversion. */
     R_TSU->TSUST = 0U;
 
-    /* Confirm TSUSS.CONV = 0. See the "Operation" section of the RZ microprocessor manual. */
+    /* Confirm TSUSS.CONV = 0. See "Operation" in the TSU section of the relevant hardware manual. */
     FSP_HARDWARE_REGISTER_WAIT(R_TSU->TSUSS, 0U);
 
     /* Disable the temperature sensor and ADC. */
@@ -244,7 +244,7 @@ fsp_err_t R_TSU_Read (adc_ctrl_t * p_ctrl, adc_channel_t const reg_id, uint16_t 
 #endif
 
     /* Verify TSUST.START bit is 1 before reading the sensor data.
-     * See the "Operation" section of the RZ microprocessor manual. */
+     * See "Operation" in the TSU section of the relevant hardware manual. */
     FSP_ERROR_RETURN(1U == R_TSU->TSUST, FSP_ERR_INVALID_STATE);
 
     /* Read the sensor data from the register and return it. */

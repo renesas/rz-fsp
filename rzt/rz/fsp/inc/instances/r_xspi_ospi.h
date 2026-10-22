@@ -61,7 +61,14 @@ typedef enum e_xspi_ospi_memory_size
     XSPI_OSPI_MEMORY_SIZE_64MB = 0x3F, ///< Memory size 64MB
 } xspi_ospi_memory_size_t;
 
-/* OSPI command to command interval*/
+/* Behavior when xSPI receive WRAP transaction */
+typedef enum e_xspi_ospi_wrap_separate
+{
+    XSPI_OSPI_WRAP_SEPARATE_ENABLE,    ///< Separate xSPI frame at the wrapping address boundary
+    XSPI_OSPI_WRAP_SEPARATE_DISABLE,   ///< Not separate xSPI frame at the wrapping address boundary
+} xspi_ospi_wrap_separate_t;
+
+/* OSPI command to command interval */
 typedef enum e_xspi_ospi_command_interval_clocks
 {
     XSPI_OSPI_COMMAND_INTERVAL_CLOCKS_1,  ///< 1 interval clocks
@@ -161,6 +168,8 @@ struct st_xspi_ospi_extended_cfg
     uint8_t                             unit;                                    ///< Unit number of xSPI
     xspi_ospi_chip_select_t             chip_select;                             ///< Device number to be used for memory device
     uint32_t                            memory_size;                             ///< Size of memory device
+    uint8_t                             address_msb_mask;                        ///< Mask of bits to zero when using memory-mapped operations; only applies to the most-significant byte.
+    xspi_ospi_wrap_separate_t           wrap_separate;                           ///< Behavior when xSPI receive WRAP transaction
     xspi_ospi_timing_setting_t const  * p_timing_settings;                       ///< Memory mapped timing settings
     xspi_ospi_opi_command_set_t const * p_opi_commands;                          ///< If OPI commands are not used set this to NULL
     uint8_t                             opi_mem_read_dummy_cycles;               ///< Dummy cycles to be inserted for memory mapped reads

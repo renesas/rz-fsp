@@ -191,11 +191,6 @@ void sci_uart_tei_isr(IRQn_Type const irq);
  * Private global variables
  **********************************************************************************************************************/
 
-/* Name of module used by error logger macro */
-#if BSP_CFG_ERROR_LOG != 0
-static const char g_module_name[] = "sci_uart";
-#endif
-
 /* Baud rate divisor information (UART mode) */
 static const baud_setting_const_t g_async_baud[SCI_UART_NUM_DIVISORS_ASYNC] =
 {
@@ -449,7 +444,9 @@ fsp_err_t R_SCI_UART_Close (uart_ctrl_t * const p_api_ctrl)
  *
  * @retval  FSP_SUCCESS                  Data reception successfully ends.
  * @retval  FSP_ERR_ASSERTION            Pointer to UART control block is NULL.
- *                                       Number of transfers outside the max or min boundary when transfer instance used
+ *                                       Number of transfers outside the max or min boundary when transfer instance used.
+ *                                       Pointer to address is NULL.
+ *                                       Transfer size is 0.
  * @retval  FSP_ERR_INVALID_ARGUMENT     Destination address or data size is not valid for 9-bit mode.
  * @retval  FSP_ERR_NOT_OPEN             The control block has not been opened
  * @retval  FSP_ERR_IN_USE               A previous read operation is still in progress.
@@ -507,7 +504,9 @@ fsp_err_t R_SCI_UART_Read (uart_ctrl_t * const p_api_ctrl, uint8_t * const p_des
  *
  * @retval  FSP_SUCCESS                  Data transmission finished successfully.
  * @retval  FSP_ERR_ASSERTION            Pointer to UART control block is NULL.
- *                                       Number of transfers outside the max or min boundary when transfer instance used
+ *                                       Number of transfers outside the max or min boundary when transfer instance used.
+ *                                       Pointer to address is NULL.
+ *                                       Transfer size is 0.
  * @retval  FSP_ERR_INVALID_ARGUMENT     Source address or data size is not valid for 9-bit mode.
  * @retval  FSP_ERR_NOT_OPEN             The control block has not been opened
  * @retval  FSP_ERR_IN_USE               A UART transmission is in progress
@@ -812,7 +811,7 @@ fsp_err_t R_SCI_UART_Abort (uart_ctrl_t * const p_api_ctrl, uart_dir_t communica
  * @retval  FSP_SUCCESS                  UART transaction aborted successfully.
  * @retval  FSP_ERR_ASSERTION            Pointer to UART control block is NULL.
  * @retval  FSP_ERR_NOT_OPEN             The control block has not been opened.
- * @retval  FSP_ERR_UNSUPPORTED          The requested Abort direction is unsupported.
+ * @retval  FSP_ERR_UNSUPPORTED          The requested read stop operation is unsupported because receive functionality is disabled.
  *
  * @return                       See @ref RZA_RENESAS_ERROR_CODES or functions called by this function for other possible
  *                               return codes. This function calls:
@@ -898,8 +897,8 @@ fsp_err_t R_SCI_UART_BaudCalculate (uint32_t               baudrate,
     {
         for (uint32_t i = 0U; i < SCI_UART_NUM_DIVISORS_ASYNC; i++)
         {
-            /* if select_16_base_clk_cycles == true:  Skip this calculation for divisors that are not acheivable with 16 base clk cycles per bit.
-             *  if select_16_base_clk_cycles == false: Skip this calculation for divisors that are only acheivable without 16 base clk cycles per bit.
+            /* if select_16_base_clk_cycles == true:  Skip this calculation for divisors that are not achievable with 16 base clk cycles per bit.
+             *  if select_16_base_clk_cycles == false: Skip this calculation for divisors that are only achievable without 16 base clk cycles per bit.
              */
             if (((uint8_t) select_16_base_clk_cycles) ^ (g_async_baud[i].abcs))
             {
@@ -1078,7 +1077,9 @@ static void r_sci_negate_de_pin (sci_uart_instance_ctrl_t const * const p_ctrl)
  *
  * @retval  FSP_SUCCESS              No parameter error found
  * @retval  FSP_ERR_NOT_OPEN         The control block has not been opened
- * @retval  FSP_ERR_ASSERTION        Pointer to UART control block or configuration structure is NULL
+ * @retval  FSP_ERR_ASSERTION        Pointer to UART control block or configuration structure is NULL.
+ *                                   Pointer to address is NULL.
+ *                                   Transfer size is 0.
  * @retval  FSP_ERR_INVALID_ARGUMENT Address is not aligned to 2-byte boundary or size is the odd number when the data
  *                                   length is 9-bit
  **********************************************************************************************************************/

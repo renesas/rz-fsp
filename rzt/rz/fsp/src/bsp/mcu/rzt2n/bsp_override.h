@@ -89,8 +89,10 @@ FSP_HEADER
  #define BSP_OVERRIDE_ETHER_CALLBACK_ARGS_T
  #define BSP_OVERRIDE_ETHER_PHY_LSI_TYPE_T
  #define BSP_OVERRIDE_ETHER_SWITCH_EVENT_T
+ #define BSP_OVERRIDE_ETHER_SWITCH_LINK_STATUS_BITMAPS_T
  #define BSP_OVERRIDE_ETHER_SWITCH_CALLBACK_ARGS_T
- #define BSP_OVERRIDE_NAND_FLASH_TIMING_INFO_T
+ #define BSP_OVERRIDE_NAND_FLASH_DEVICE_FEATURE_T
+ #define BSP_OVERRIDE_NAND_FLASH_OPTIONAL_COMMANDS_T
  #define BSP_OVERRIDE_POE3_STATE_T
  #define BSP_OVERRIDE_POE3_ACTIVE_LEVEL_T
  #define BSP_OVERRIDE_POEG_STATE_T
@@ -725,7 +727,6 @@ typedef enum e_ioport_pin_pfc
     IOPORT_PIN_P007_PFC_1A_DEE0            = (0x1AU << IOPORT_PFC_OFFSET),                            ///< P00_7 / SCIEn / DEE0
     IOPORT_PIN_P007_PFC_1B_DEE6            = (0x1BU << IOPORT_PFC_OFFSET),                            ///< P00_7 / SCIEn / DEE6
     IOPORT_PIN_P007_PFC_1E_SPI_SSL22       = (0x1EU << IOPORT_PFC_OFFSET),                            ///< P00_7 / SPIn / SPI_SSL22
-    IOPORT_PIN_P007_PFC_25_MBX_HINT        = (0x25U << IOPORT_PFC_OFFSET),                            ///< P00_7 / MBXSEM / MBX_HINT
     IOPORT_PIN_P007_PFC_26_ENCIFOE0        = (0x26U << IOPORT_PFC_OFFSET),                            ///< P00_7 / ENCIFn / ENCIFOE0
     IOPORT_PIN_P007_PFC_27_ENCIFOE6        = (0x27U << IOPORT_PFC_OFFSET),                            ///< P00_7 / ENCIFn / ENCIFOE6
     IOPORT_PIN_P007_PFC_2E_HERROUT         = (0x2EU << IOPORT_PFC_OFFSET),                            ///< P00_7 / PHOSTIF / HERROUT
@@ -926,7 +927,7 @@ typedef enum e_ioport_pin_pfc
     IOPORT_PIN_P025_PFC_09_GTIOC1_3B       = (0x09U << IOPORT_PFC_OFFSET),                            ///< P02_5 / GPTn / GTIOC1_3B
     IOPORT_PIN_P025_PFC_0A_GTADSM3_1       = (0x0AU << IOPORT_PFC_OFFSET),                            ///< P02_5 / GPTn / GTADSM3_1
     IOPORT_PIN_P025_PFC_0F_ETH4_RXD0       = (0x0FU << IOPORT_PFC_OFFSET),                            ///< P02_5 / ETHER_ETHn / ETH4_RXD0
-    IOPORT_PIN_P025_PFC_11_GMAC2_PTPTRG0   = (0x11U << IOPORT_PFC_OFFSET),                            ///< P02_5 / ETHER_GMACn / GMAC2_PTPTRG0
+    IOPORT_PIN_P025_PFC_11_GMAC2_PTPTRG1   = (0x11U << IOPORT_PFC_OFFSET),                            ///< P02_5 / ETHER_GMACn / GMAC2_PTPTRG0
     IOPORT_PIN_P025_PFC_18_RXD2_SCL2_MISO2 = (0x18U << IOPORT_PFC_OFFSET),                            ///< P02_5 / SCIn / RXD2_SCL2_MISO2
     IOPORT_PIN_P025_PFC_1A_DEE1            = (0x1AU << IOPORT_PFC_OFFSET),                            ///< P02_5 / SCIEn / DEE1
     IOPORT_PIN_P025_PFC_1E_SPI_SSL32       = (0x1EU << IOPORT_PFC_OFFSET),                            ///< P02_5 / SPIn / SPI_SSL32
@@ -941,7 +942,7 @@ typedef enum e_ioport_pin_pfc
     IOPORT_PIN_P026_PFC_09_GTIOC1_4A       = (0x09U << IOPORT_PFC_OFFSET),                            ///< P02_6 / GPTn / GTIOC1_4A
     IOPORT_PIN_P026_PFC_0A_GTADSM4_0       = (0x0AU << IOPORT_PFC_OFFSET),                            ///< P02_6 / GPTn / GTADSM4_0
     IOPORT_PIN_P026_PFC_0F_ETH4_RXD1       = (0x0FU << IOPORT_PFC_OFFSET),                            ///< P02_6 / ETHER_ETHn / ETH4_RXD1
-    IOPORT_PIN_P026_PFC_11_GMAC2_PTPTRG1   = (0x11U << IOPORT_PFC_OFFSET),                            ///< P02_6 / ETHER_GMACn / GMAC2_PTPTRG1
+    IOPORT_PIN_P026_PFC_11_GMAC2_PTPTRG0   = (0x11U << IOPORT_PFC_OFFSET),                            ///< P02_6 / ETHER_GMACn / GMAC2_PTPTRG1
     IOPORT_PIN_P026_PFC_15_ESC_LEDSTER     = (0x15U << IOPORT_PFC_OFFSET),                            ///< P02_6 / ETHER_ESC / ESC_LEDSTER
     IOPORT_PIN_P026_PFC_18_TXD2_SDA2_MOSI2 = (0x18U << IOPORT_PFC_OFFSET),                            ///< P02_6 / SCIn / TXD2_SDA2_MOSI2
     IOPORT_PIN_P026_PFC_1A_TXDE1           = (0x1AU << IOPORT_PFC_OFFSET),                            ///< P02_6 / SCIEn / TXDE1
@@ -1257,7 +1258,7 @@ typedef enum e_ioport_pin_pfc
     IOPORT_PIN_P057_PFC_18_SCK3         = (0x18U << IOPORT_PFC_OFFSET),                               ///< P05_7 / SCIn / SCK3
     IOPORT_PIN_P057_PFC_1A_SCKE5        = (0x1AU << IOPORT_PFC_OFFSET),                               ///< P05_7 / SCIEn / SCKE5
     IOPORT_PIN_P057_PFC_1E_SPI_RSPCK0   = (0x1EU << IOPORT_PFC_OFFSET),                               ///< P05_7 / SPIn / SPI_RSPCK0
-    IOPORT_PIN_P057_PFC_21_MDAT00       = (0x21U << IOPORT_PFC_OFFSET),                               ///< P05_7 / DSMIFn / MDAT00
+    IOPORT_PIN_P057_PFC_21_MCLK00       = (0x21U << IOPORT_PFC_OFFSET),                               ///< P05_7 / DSMIFn / MCLK00
     IOPORT_PIN_P057_PFC_26_ENCIFCK5     = (0x26U << IOPORT_PFC_OFFSET),                               ///< P05_7 / ENCIFn / ENCIFCK5
     IOPORT_PIN_P057_PFC_28_DUEI4        = (0x28U << IOPORT_PFC_OFFSET),                               ///< P05_7 / ENDATn / DUEI4
     IOPORT_PIN_P057_PFC_29_HDSL2_SEL2   = (0x29U << IOPORT_PFC_OFFSET),                               ///< P05_7 / HDSLn / HDSL2_SEL2
@@ -1708,7 +1709,7 @@ typedef enum e_ioport_pin_pfc
     IOPORT_PIN_P113_PFC_08_POE4            = (0x08U << IOPORT_PFC_OFFSET),                            ///< P11_3 / MTU_POE3 / POE4
     IOPORT_PIN_P113_PFC_0C_GTETRGD         = (0x0CU << IOPORT_PFC_OFFSET),                            ///< P11_3 / GPT_POEG / GTETRGD
     IOPORT_PIN_P113_PFC_18_RXD0_SCL0_MISO0 = (0x18U << IOPORT_PFC_OFFSET),                            ///< P11_3 / SCIn / RXD0_SCL0_MISO0
-    IOPORT_PIN_P113_PFC_1C_IIC_SCL0        = (0x1CU << IOPORT_PFC_OFFSET),                            ///< P11_3 / IICn / IIC_SCL0
+    IOPORT_PIN_P113_PFC_1C_IIC_SCL1        = (0x1CU << IOPORT_PFC_OFFSET),                            ///< P11_3 / IICn / IIC_SCL1
 
     IOPORT_PIN_P114_PFC_0C_GTETRGSA        = (0x0CU << IOPORT_PFC_OFFSET),                            ///< P11_4 / GPT_POEG / GTETRGSA
     IOPORT_PIN_P114_PFC_18_TXD0_SDA0_MOSI0 = (0x18U << IOPORT_PFC_OFFSET),                            ///< P11_4 / SCIn / TXD0_SDA0_MOSI0
@@ -1870,19 +1871,19 @@ typedef enum e_ioport_pin_pfc
     IOPORT_PIN_P141_PFC_29_HDSL0_LINK = (0x29U << IOPORT_PFC_OFFSET),                                 ///< P14_1 / HDSLn / HDSL0_LINK
     IOPORT_PIN_P141_PFC_2E_HD0        = (0x2EU << IOPORT_PFC_OFFSET),                                 ///< P14_1 / PHOSTIF / HD0
 
-    IOPORT_PIN_P142_PFC_04_D1          = (0x04U << IOPORT_PFC_OFFSET),                                ///< P14_2 / BSC / D1
-    IOPORT_PIN_P142_PFC_06_MTIOC3D     = (0x06U << IOPORT_PFC_OFFSET),                                ///< P14_2 / MTU3n / MTIOC3D
-    IOPORT_PIN_P142_PFC_07_MTIOC8B     = (0x07U << IOPORT_PFC_OFFSET),                                ///< P14_2 / MTU3n / MTIOC8B
-    IOPORT_PIN_P142_PFC_09_GTIOC2_0B   = (0x09U << IOPORT_PFC_OFFSET),                                ///< P14_2 / GPTn / GTIOC2_0B
-    IOPORT_PIN_P142_PFC_0A_GTIOC4_6B   = (0x0AU << IOPORT_PFC_OFFSET),                                ///< P14_2 / GPTn / GTIOC4_6B
-    IOPORT_PIN_P142_PFC_0B_GTIOC0_0B   = (0x0BU << IOPORT_PFC_OFFSET),                                ///< P14_2 / GPTn / GTIOC0_0B
-    IOPORT_PIN_P142_PFC_0F_ETH3_RXER   = (0x0FU << IOPORT_PFC_OFFSET),                                ///< P14_2 / ETHER_ETHn / ETH3_RXER
-    IOPORT_PIN_P142_PFC_10_ETH2_RXER   = (0x10U << IOPORT_PFC_OFFSET),                                ///< P14_2 / ETHER_ETHn / ETH2_RXER
-    IOPORT_PIN_P142_PFC_17_USB_OVERCUR = (0x17U << IOPORT_PFC_OFFSET),                                ///< P14_2 / USB / USB_OVERCUR
-    IOPORT_PIN_P142_PFC_1A_DEE6        = (0x1AU << IOPORT_PFC_OFFSET),                                ///< P14_2 / SCIEn / DEE6
-    IOPORT_PIN_P142_PFC_26_ENCIFOE6    = (0x26U << IOPORT_PFC_OFFSET),                                ///< P14_2 / ENCIFn / ENCIFOE6
-    IOPORT_PIN_P142_PFC_29_HDSL0_SMPL  = (0x29U << IOPORT_PFC_OFFSET),                                ///< P14_2 / HDSLn / HDSL0_SMPL
-    IOPORT_PIN_P142_PFC_2E_HD1         = (0x2EU << IOPORT_PFC_OFFSET),                                ///< P14_2 / PHOSTIF / HD1
+    IOPORT_PIN_P142_PFC_04_D1         = (0x04U << IOPORT_PFC_OFFSET),                                 ///< P14_2 / BSC / D1
+    IOPORT_PIN_P142_PFC_06_MTIOC3D    = (0x06U << IOPORT_PFC_OFFSET),                                 ///< P14_2 / MTU3n / MTIOC3D
+    IOPORT_PIN_P142_PFC_07_MTIOC8B    = (0x07U << IOPORT_PFC_OFFSET),                                 ///< P14_2 / MTU3n / MTIOC8B
+    IOPORT_PIN_P142_PFC_09_GTIOC2_0B  = (0x09U << IOPORT_PFC_OFFSET),                                 ///< P14_2 / GPTn / GTIOC2_0B
+    IOPORT_PIN_P142_PFC_0A_GTIOC4_6B  = (0x0AU << IOPORT_PFC_OFFSET),                                 ///< P14_2 / GPTn / GTIOC4_6B
+    IOPORT_PIN_P142_PFC_0B_GTIOC0_0B  = (0x0BU << IOPORT_PFC_OFFSET),                                 ///< P14_2 / GPTn / GTIOC0_0B
+    IOPORT_PIN_P142_PFC_0F_ETH3_RXER  = (0x0FU << IOPORT_PFC_OFFSET),                                 ///< P14_2 / ETHER_ETHn / ETH3_RXER
+    IOPORT_PIN_P142_PFC_10_ETH2_RXER  = (0x10U << IOPORT_PFC_OFFSET),                                 ///< P14_2 / ETHER_ETHn / ETH2_RXER
+    IOPORT_PIN_P142_PFC_17_USB_OVRCUR = (0x17U << IOPORT_PFC_OFFSET),                                 ///< P14_2 / USB / USB_OVRCUR
+    IOPORT_PIN_P142_PFC_1A_DEE6       = (0x1AU << IOPORT_PFC_OFFSET),                                 ///< P14_2 / SCIEn / DEE6
+    IOPORT_PIN_P142_PFC_26_ENCIFOE6   = (0x26U << IOPORT_PFC_OFFSET),                                 ///< P14_2 / ENCIFn / ENCIFOE6
+    IOPORT_PIN_P142_PFC_29_HDSL0_SMPL = (0x29U << IOPORT_PFC_OFFSET),                                 ///< P14_2 / HDSLn / HDSL0_SMPL
+    IOPORT_PIN_P142_PFC_2E_HD1        = (0x2EU << IOPORT_PFC_OFFSET),                                 ///< P14_2 / PHOSTIF / HD1
 
     IOPORT_PIN_P143_PFC_04_D2         = (0x04U << IOPORT_PFC_OFFSET),                                 ///< P14_3 / BSC / D2
     IOPORT_PIN_P143_PFC_08_POE0       = (0x08U << IOPORT_PFC_OFFSET),                                 ///< P14_3 / MTU_POE3 / POE0
@@ -2344,7 +2345,7 @@ typedef enum e_ioport_pin_pfc
     IOPORT_PIN_P216_PFC_0F_ETH1_TXEN  = (0x0FU << IOPORT_PFC_OFFSET),                                 ///< P21_6 / ETHER_ETHn / ETH1_TXEN
     IOPORT_PIN_P216_PFC_29_HDSL6_LINK = (0x29U << IOPORT_PFC_OFFSET),                                 ///< P21_6 / HDSLn / HDSL6_LINK
 
-    IOPORT_PIN_P217_PFC_0A_GTOPC4_4A  = (0x0AU << IOPORT_PFC_OFFSET),                                 ///< P21_7 / GPTn / GTOPC4_4A
+    IOPORT_PIN_P217_PFC_0A_GTIOC4_4A  = (0x0AU << IOPORT_PFC_OFFSET),                                 ///< P21_7 / GPTn / GTIOC4_4A
     IOPORT_PIN_P217_PFC_0F_ETH1_RXCLK = (0x0FU << IOPORT_PFC_OFFSET),                                 ///< P21_7 / ETHER_ETHn / ETH1_RXCLK
     IOPORT_PIN_P217_PFC_29_HDSL6_SMPL = (0x29U << IOPORT_PFC_OFFSET),                                 ///< P21_7 / HDSLn / HDSL6_SMPL
 
@@ -2698,25 +2699,64 @@ typedef enum e_ether_phy_lsi_type
  * NAND FLASH API Overrides
  *==============================================*/
 
-/** Timing information during communication with the NAND Flash */
-struct st_nand_flash_timing_info
+/** Features supported bytes in ONFI parameter page for the NAND Flash
+ *  (Bit field definition is a superset of Features supported bytes across multiple ONFI specification versions) */
+typedef struct st_nand_flash_device_feature
 {
-    uint32_t we_pulse_width;                        ///< WE_n pulse width cycles
-    uint32_t we_high_hold_time;                     ///< WE_n high hold time cycles
-    uint32_t re_pulse_width;                        ///< RE_n pulse width cycles
-    uint32_t re_high_hold_time;                     ///< RE_n high hold time cycles
-    uint32_t re_high_to_we_low_time;                ///< RE_n high to WE_n low time cycles
-    uint32_t we_high_to_re_low_time;                ///< WE_n high to RE_n low time cycles
-    uint32_t ale_to_data_loading_time;              ///< ALE to data loading time cycles
-    uint32_t command_end_to_sr6_low;                ///< Command end timing to SR[6] low cycles
-    uint32_t re_high_to_output_hiz;                 ///< RE_n high to output hi-Z cycles
-    uint32_t ce_setup_time;                         ///< CE_n setup time cycles
-    uint32_t ce_high_hold_time;                     ///< CE_n high hold time cycles
-    uint32_t interface_and_timing_mode_change_time; ///< Interface and Timing Mode Change time cycles
-};
+    union
+    {
+        uint16_t device_features;
 
-/** Timing information during communication with the NAND Flash Please refer to the struct st_nand_flash_timing_info. */
-typedef struct st_nand_flash_timing_info nand_flash_timing_info_t;
+        struct
+        {
+            uint16_t supports_16_bit_data_bus_width                    : 1; ///< Features supported bit 0 in ONFI 1.0
+            uint16_t supports_multi_lun_operations                     : 1; ///< Features supported bit 1 in ONFI 1.0
+            uint16_t supports_non_sequential_page_programming          : 1; ///< Features supported bit 2 in ONFI 1.0
+            uint16_t supports_interleaved_program_and_erase_operations : 1; ///< Features supported bit 3 in ONFI 1.0 (Later also defined as 'multi-plane program and erase operations')
+            uint16_t supports_odd_to_even_page_copyback                : 1; ///< Features supported bit 4 in ONFI 1.0
+            uint16_t supports_synchronous_ddr_mode                     : 1; ///< Features supported bit 5 in ONFI 2.0 (Later also defined as 'NV-DDR')
+            uint16_t supports_interleaved_read_operations              : 1; ///< Features supported bit 6 in ONFI 2.1 (Later also defined as 'multi-plane read operations')
+            uint16_t supports_extended_parameter_page                  : 1; ///< Features supported bit 7 in ONFI 2.1
+            uint16_t supports_program_page_register_clear_enhancement  : 1; ///< Features supported bit 8 in ONFI 2.2
+            uint16_t supports_eznand                                   : 1; ///< Features supported bit 9 in ONFI 2.3 (Later also defined as 'NV-LPDDR4')
+            uint16_t supports_nv_ddr_2                                 : 1; ///< Features supported bit 10 in ONFI 3.0.
+            uint16_t supports_volume_addressing                        : 1; ///< Features supported bit 11 in ONFI 3.0.
+            uint16_t supports_external_vpp                             : 1; ///< Features supported bit 12 in ONFI 3.0.
+            uint16_t supports_nv_ddr_3                                 : 1; ///< Features supported bit 13 in ONFI 4.0.
+            uint16_t supports_zq_calibration                           : 1; ///< Features supported bit 14 in ONFI 4.0.
+            uint16_t supports_package_eletrical_specification          : 1; ///< Features supported bit 15 in ONFI 4.0.
+        } device_features_bit;
+    };
+} nand_flash_device_feature_t;
+
+/** Optional commands bytes in ONFI parameter page for the NAND Flash
+ *  (Bit field definition is a superset of Optional commands bytes across multiple ONFI specification versions) */
+typedef struct st_nand_flash_optional_commands
+{
+    union
+    {
+        uint16_t optional_commands;
+
+        struct
+        {
+            uint16_t supports_page_cache_program_command    : 1; ///< Optional commands bit 0 in ONFI 1.0
+            uint16_t supports_read_cache_command            : 1; ///< Optional commands bit 1 in ONFI 1.0
+            uint16_t supports_get_and_set_features          : 1; ///< Optional commands bit 2 in ONFI 1.0
+            uint16_t supports_read_status_enhanced_command  : 1; ///< Optional commands bit 3 in ONFI 1.0
+            uint16_t supports_copyback                      : 1; ///< Optional commands bit 4 in ONFI 1.0
+            uint16_t supports_read_unique_id                : 1; ///< Optional commands bit 5 in ONFI 1.0
+            uint16_t supports_change_read_column_enhanced   : 1; ///< Optional commands bit 6 in ONFI 2.1
+            uint16_t supports_change_row_address_for_onfi   : 1; ///< Optional commands bit 7 in ONFI 2.1
+            uint16_t supports_change_small_data_move        : 1; ///< Optional commands bit 8 in ONFI 2.1
+            uint16_t supports_reset_lun                     : 1; ///< Optional commands bit 9 in ONFI 2.2
+            uint16_t supports_volume_select                 : 1; ///< Optional commands bit 10 in ONFI 3.0
+            uint16_t supports_odt_configure                 : 1; ///< Optional commands bit 11 in ONFI 3.0
+            uint16_t supports_lun_get_and_lun_set_features  : 1; ///< Optional commands bit 12 in ONFI 3.1
+            uint16_t supports_zq_calibration_long_and_short : 1; ///< Optional commands bit 13 in ONFI 4.0
+            uint16_t reserved                               : 2;
+        } optional_commands_bit;
+    };
+} nand_flash_optional_commands_t;
 
 /*==============================================
  * POE3 API Overrides

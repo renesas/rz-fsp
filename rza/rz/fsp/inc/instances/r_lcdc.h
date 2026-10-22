@@ -33,6 +33,13 @@ namespace RZA
  * Typedef definitions
  **********************************************************************************************************************/
 
+/** LCDC output source selection. */
+typedef enum e_lcdc_output_source
+{
+    LCDC_OUTPUT_SOURCE_PARALLEL = 0,   ///< Display Parallel I/F output
+    LCDC_OUTPUT_SOURCE_MIPI_DSI = 1,   ///< MIPI-DSI output
+} lcdc_output_source_t;
+
 /** LCDC hardware specific configuration */
 struct st_lcdc_extended_cfg
 {

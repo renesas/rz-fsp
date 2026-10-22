@@ -27,12 +27,12 @@ FSP_HEADER
 /** Maximum period value allowed for GTM. */
  #define GTM_MAX_PERIOD          ((uint64_t) UINT32_MAX + 1ULL)
 
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZG
 {
+  #endif
  #endif
-#endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZG_GTM
@@ -106,7 +106,7 @@ fsp_err_t R_GTM_StatusGet(timer_ctrl_t * const p_ctrl, timer_status_t * const p_
 fsp_err_t R_GTM_Stop(timer_ctrl_t * const p_ctrl);
 fsp_err_t R_GTM_Open(timer_ctrl_t * const p_ctrl, timer_cfg_t const * const p_cfg);
 fsp_err_t R_GTM_CallbackSet(timer_ctrl_t * const          p_api_ctrl,
-                            void (                      * p_callback)(timer_callback_args_t * p_arg),
+                            void (                      * p_callback)(timer_callback_args_t *),
                             void * const                  p_context,
                             timer_callback_args_t * const p_callback_memory);
 fsp_err_t R_GTM_CompareMatchSet(timer_ctrl_t * const        p_ctrl,
@@ -116,11 +116,11 @@ fsp_err_t R_GTM_CompareMatchSet(timer_ctrl_t * const        p_ctrl,
 /*******************************************************************************************************************//**
  * @} (end defgroup GTM)
  **********************************************************************************************************************/
-#ifdef __FOR_FSP_DOCUMENT__
- #ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
+  #endif
  #endif
-#endif
 
 /* Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 

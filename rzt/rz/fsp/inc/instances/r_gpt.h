@@ -656,6 +656,10 @@ struct st_gpt_extended_cfg
 
     uint8_t capture_a_ipl;                             ///< Capture A interrupt priority
     uint8_t capture_b_ipl;                             ///< Capture B interrupt priority
+    uint8_t compare_match_c_ipl;                       ///< Compare match C interrupt priority
+    uint8_t compare_match_d_ipl;                       ///< Compare match D interrupt priority
+    uint8_t compare_match_e_ipl;                       ///< Compare match E interrupt priority
+    uint8_t compare_match_f_ipl;                       ///< Compare match F interrupt priority
     uint8_t dead_time_ipl;                             ///< Dead time error interrupt priority
 
     uint8_t icds;                                      ///< Input Capture Operation Select at Count Stop
@@ -664,13 +668,20 @@ struct st_gpt_extended_cfg
  #endif
     IRQn_Type capture_a_irq;                           ///< Capture A interrupt
     IRQn_Type capture_b_irq;                           ///< Capture B interrupt
-    uint32_t  compare_match_value[2];                  ///< Storing compare match value for channels
+    IRQn_Type compare_match_c_irq;                     ///< Compare match C interrupt
+    IRQn_Type compare_match_d_irq;                     ///< Compare match D interrupt
+    IRQn_Type compare_match_e_irq;                     ///< Compare match E interrupt
+    IRQn_Type compare_match_f_irq;                     ///< Compare match F interrupt
+    uint32_t  compare_match_value[6];                  ///< Storing compare match value for channels
     uint8_t   compare_match_status;                    ///< Storing the compare match register status
     IRQn_Type dead_time_irq;                           ///< Dead time error interrupt
-
     gpt_extended_pwm_cfg_t const * p_pwm_cfg;          ///< Advanced PWM features, optional
     uint8_t             capture_a_source_select;       ///< Capture A interrupt source select
     uint8_t             capture_b_source_select;       ///< Capture B interrupt source select
+    uint8_t             compare_match_c_source_select; ///< Comapre match C interrupt source select
+    uint8_t             compare_match_d_source_select; ///< Comapre match D interrupt source select
+    uint8_t             compare_match_e_source_select; ///< Comapre match E interrupt source select
+    uint8_t             compare_match_f_source_select; ///< Comapre match F interrupt source select
     uint8_t             cycle_end_source_select;       ///< Cycle end interrupt source select
     uint8_t             dead_time_error_source_select; ///< Dead time error interrupt source select
     uint8_t             trough_source_select;          ///< Trough interrupt source select

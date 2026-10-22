@@ -174,8 +174,8 @@ fsp_err_t R_PDM_Open (pdm_ctrl_t * const p_ctrl, pdm_cfg_t const * const p_cfg)
     /* Enable PDM module */
     R_BSP_MODULE_START(FSP_IP_PDM, p_cfg->unit);
 
-    /* Initialize PDM IP according to "PDM-IF Start Flow" in
-     * section "Start Flow" from the hardware manual. */
+    /* Initialize PDM IP according to "PDM-IF Start Flow"
+     * in the PDM-IF section of the relevant hardware manual. */
 
     /* Set Channel's Mode setting */
     PDM_REG_CH(p_reg->PDMDSRCH0, p_cfg->channel) =
@@ -333,7 +333,7 @@ fsp_err_t R_PDM_Start (pdm_ctrl_t * const p_ctrl,
     p_instance_ctrl->rx_int_count_max = number_of_data_to_callback;
 
     /* Start communication according to "PDM-IF normal processing flow" in
-     * section "Normal Processing Flow" from the hardware manual. */
+     * "Normal Processing Flow" of the relevant hardware manual. */
 
     /* Set Channel's Data Read Enable */
     PDM_REG_CH(p_reg->PDDRCRCH0, p_cfg->channel) = R_PDM_PDDRCRCH0_DATRE_Msk;
@@ -566,7 +566,7 @@ fsp_err_t R_PDM_Close (pdm_ctrl_t * const p_ctrl)
     r_pdm_stop_sub(p_instance_ctrl);
 
     /* Stop PDM according to "PDM-IF Stop Flow" in
-     * section "Stop Flow" from the hardware manual. */
+     * "Stop Flow" of the relevant hardware manual. */
 
     /* Stop target channel's filtering */
     PDM_REG_CH(p_reg->PDSTPTRCH0, p_cfg->channel) = R_PDM_PDSTPTRCH0_STPTRG_Msk;
@@ -763,7 +763,7 @@ static fsp_err_t r_pdm_dependent_drivers_configure (pdm_instance_ctrl_t * p_inst
 static void r_pdm_stop_sub (pdm_instance_ctrl_t * const p_instance_ctrl)
 {
     /* Stop communication according to "PDM-IF normal processing flow" in
-     * section "Normal Processing Flow" from the hardware manual. */
+     * "Normal Processing Flow" of the relevant hardware manual. */
     R_PDM0_Type           * p_reg = p_instance_ctrl->p_reg;
     pdm_cfg_t const * const p_cfg = p_instance_ctrl->p_cfg;
 

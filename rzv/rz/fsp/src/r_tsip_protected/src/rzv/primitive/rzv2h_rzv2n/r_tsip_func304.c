@@ -1,0 +1,1529 @@
+/*
+* Copyright (c) 2020 - 2026 Renesas Electronics Corporation and/or its affiliates
+*
+* SPDX-License-Identifier: BSD-3-Clause
+*/
+
+/***********************************************************************************************************************
+ * Includes
+ **********************************************************************************************************************/
+#include "r_tsip_primitive.h"
+#include "r_tsip_reg.h"
+#include "r_tsip_util.h"
+
+/***********************************************************************************************************************
+ * Macro definitions
+ **********************************************************************************************************************/
+
+/***********************************************************************************************************************
+ * Typedef definitions
+ **********************************************************************************************************************/
+
+/***********************************************************************************************************************
+ * Private function prototypes
+ **********************************************************************************************************************/
+
+/***********************************************************************************************************************
+ * Private global variables
+ **********************************************************************************************************************/
+
+/***********************************************************************************************************************
+ * Global variables
+ **********************************************************************************************************************/
+
+/***********************************************************************************************************************
+ * Functions
+ **********************************************************************************************************************/
+
+TSIP_PRV_PRIMITIVE_FUNC
+
+void r_tsip_func304 (void)
+{
+    uint32_t iLoop;
+    uint32_t iLoop2;
+    uint32_t jLoop;
+    uint32_t kLoop;
+    uint32_t oLoop;
+    uint32_t oLoop1;
+    uint32_t oLoop2;
+    uint32_t OFS_ADR;
+    (void) iLoop;
+    (void) iLoop2;
+    (void) jLoop;
+    (void) kLoop;
+    (void) oLoop;
+    (void) oLoop1;
+    (void) oLoop2;
+    (void) OFS_ADR;
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000024U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00003c1eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_00ECH, 0x0000d779U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0028H, 0x00870001U);
+    WR1_PROG(REG_00ECH, 0x00000b18U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x80010300U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00008307U);
+    WR1_PROG(REG_002CH, 0x000000adU);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_0000H, 0x0000031fU);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_00ECH, 0x3800db1fU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x00000080U);
+    WR1_PROG(REG_001CH, 0x00A60000U);
+    r_tsip_func100(0x39be7cdeU, 0xd8129216U, 0xe305727cU, 0x38e0e7aaU);
+    WR1_PROG(REG_001CH, 0x00400000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    if (CHCK_STS(REG_001CH, 22U, 1U))
+    {
+        r_tsip_func101(0x10a5dd49U, 0xb947f125U, 0xc23c0c4aU, 0x73ade7e8U);
+    }
+    else
+    {
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_0024H, 0x000001c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0034H, 0x00000400U);
+        WR1_PROG(REG_0024H, 0x800080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x00000581U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        WR1_PROG(REG_0024H, 0x000001c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x04001991U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x0000c0c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_0024H, 0x000011c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0034H, 0x00000004U);
+        WR1_PROG(REG_0024H, 0x82001191U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        WR1_PROG(REG_00ECH, 0x0000d379U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        r_tsip_func101(0x5418bb90U, 0xfc4d964cU, 0x9d72174dU, 0x8898a34bU);
+    }
+
+    r_tsip_func100(0x1a60e773U, 0xc36b1c6fU, 0x96bc102cU, 0xc0f0c1e7U);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x014ebbd4U));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    r_tsip_func100(0xa62584bcU, 0x40e2e875U, 0x0896b6e1U, 0xe437ca19U);
+    WR1_PROG(REG_0000H, 0x00012303U);
+    WR1_PROG(REG_002CH, 0x00000024U);
+    r_tsip_func313(1156);
+    r_tsip_func100(0x80c79e2cU, 0x749f3332U, 0x7425e9fcU, 0x82764b91U);
+    r_tsip_func314(1156 + 64);
+    WR1_PROG(REG_00ECH, 0x00000b5aU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0024H, 0x000001c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_00ECH, 0x0000d77cU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x3800db7aU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x00000080U);
+    WR1_PROG(REG_001CH, 0x00A60000U);
+    r_tsip_func100(0x8f4455c2U, 0x8fdb4bbeU, 0x92abb578U, 0xbb2f53e9U);
+    WR1_PROG(REG_001CH, 0x00400000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    if (CHCK_STS(REG_001CH, 22U, 1U))
+    {
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_0024H, 0x000001c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0034H, 0x00000400U);
+        WR1_PROG(REG_0024H, 0x800080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0104H, 0x00000157U);
+        WR1_PROG(REG_002CH, 0x00000050U);
+        WAIT_STS(REG_0104H, 31U, 1U);
+        WR1_PROG(REG_0100H, bswap_32big(0x00000001U));
+        WR1_PROG(REG_00E0H, 0x8181001eU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0000H, 0x00003807U);
+        WR1_PROG(REG_002CH, 0x00000110U);
+        WAIT_STS(REG_0000H, 25U, 0U);
+        WR1_PROG(REG_001CH, 0x00001800U);
+        WR1_PROG(REG_002CH, 0x00000050U);
+        WAIT_STS(REG_0104H, 31U, 1U);
+        WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+        WR1_PROG(REG_0024H, 0x000011c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        oLoop1 = 1;
+        while (oLoop1 == 1)
+        {
+            WR1_PROG(REG_001CH, 0x00210000U);
+            r_tsip_func100(0x7c9946d4U, 0x8c3f72a6U, 0x575a7f05U, 0x6450a888U);
+            WR1_PROG(REG_001CH, 0x00400000U);
+            WR1_PROG(REG_01D0H, 0x00000000U);
+            if (CHCK_STS(REG_001CH, 22U, 1U))
+            {
+                WR1_PROG(REG_0024H, 0x000009c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x04001981U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000040c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00800001U);
+                WR1_PROG(REG_0024H, 0x000011c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0034H, 0x00000004U);
+                WR1_PROG(REG_0024H, 0x82001181U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000080c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00bf0001U);
+                WR1_PROG(REG_00ECH, 0x00003340U);
+                WR1_PROG(REG_01D0H, 0x00000000U);
+                r_tsip_func101(0x4166abb5U, 0xf086c805U, 0x66fd66a5U, 0x96b217caU);
+            }
+            else
+            {
+                r_tsip_func101(0xe38c1523U, 0xdaa84150U, 0x2cbf4846U, 0xd3f24af7U);
+                oLoop1 = 0;
+            }
+        }
+
+        WR1_PROG(REG_00ECH, 0x0000d37cU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000b9cU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00002b9aU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x0000375cU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        r_tsip_func101(0x2f20e1ebU, 0x3936a9a3U, 0x6e3399d8U, 0x509f64e8U);
+    }
+    else
+    {
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_00E0H, 0x8181001eU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0000H, 0x00003807U);
+        WR1_PROG(REG_002CH, 0x00000010U);
+        WAIT_STS(REG_0000H, 25U, 0U);
+        WR1_PROG(REG_001CH, 0x00001800U);
+        WR1_PROG(REG_0024H, 0x000001c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0034H, 0x00000400U);
+        WR1_PROG(REG_0024H, 0x800080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        WR1_PROG(REG_0024H, 0x000009c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x04001991U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000040c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_0024H, 0x000011c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0034H, 0x00000004U);
+        WR1_PROG(REG_0024H, 0x82001191U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        oLoop1 = 1;
+        while (oLoop1 == 1)
+        {
+            WR1_PROG(REG_001CH, 0x00210000U);
+            r_tsip_func100(0x3d7ddedfU, 0x590dd65dU, 0x9ff8404dU, 0x294993d9U);
+            WR1_PROG(REG_001CH, 0x00400000U);
+            WR1_PROG(REG_01D0H, 0x00000000U);
+            if (CHCK_STS(REG_001CH, 22U, 1U))
+            {
+                WR1_PROG(REG_0024H, 0x000009c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x04001981U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000040c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00800001U);
+                WR1_PROG(REG_0024H, 0x000011c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0034H, 0x00000004U);
+                WR1_PROG(REG_0024H, 0x82001181U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000080c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00bf0001U);
+                r_tsip_func101(0x61350df0U, 0xe5bd5cc9U, 0x18e85121U, 0x6cd712d7U);
+                oLoop1 = 0;
+            }
+            else
+            {
+                WR1_PROG(REG_0024H, 0x000009c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x04001991U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000040c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00800001U);
+                WR1_PROG(REG_0024H, 0x000011c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0034H, 0x00000004U);
+                WR1_PROG(REG_0024H, 0x82001191U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000080c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00bf0001U);
+                WR1_PROG(REG_00ECH, 0x00002f40U);
+                WR1_PROG(REG_01D0H, 0x00000000U);
+                r_tsip_func101(0x3fe949c9U, 0xc017dcf0U, 0xd62bfac5U, 0x8c810462U);
+            }
+        }
+
+        r_tsip_func101(0xa6e25004U, 0x23c41460U, 0xfb2225ecU, 0x65d3043dU);
+    }
+
+    WR1_PROG(REG_0024H, 0x000088d0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x000000a0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x81c0001eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00013803U);
+    WR1_PROG(REG_002CH, 0x00000012U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x000000a0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x80c0001eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00018303U);
+    WR1_PROG(REG_002CH, 0x00000020U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_00ECH, 0x00000b39U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0024H, 0x000001c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_00ECH, 0x0000d77dU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000004U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x3800db7bU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x00000080U);
+    WR1_PROG(REG_001CH, 0x00A60000U);
+    r_tsip_func100(0xafd17b0cU, 0x338a2d37U, 0xeb21b913U, 0xd766139fU);
+    WR1_PROG(REG_001CH, 0x00400000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    if (CHCK_STS(REG_001CH, 22U, 1U))
+    {
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_0024H, 0x000001c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0034H, 0x00000400U);
+        WR1_PROG(REG_0024H, 0x800080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0104H, 0x00000157U);
+        WR1_PROG(REG_002CH, 0x00000050U);
+        WAIT_STS(REG_0104H, 31U, 1U);
+        WR1_PROG(REG_0100H, bswap_32big(0x00000001U));
+        WR1_PROG(REG_00E0H, 0x8181001eU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0000H, 0x00003807U);
+        WR1_PROG(REG_002CH, 0x00000110U);
+        WAIT_STS(REG_0000H, 25U, 0U);
+        WR1_PROG(REG_001CH, 0x00001800U);
+        WR1_PROG(REG_002CH, 0x00000050U);
+        WAIT_STS(REG_0104H, 31U, 1U);
+        WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+        WR1_PROG(REG_0024H, 0x000011c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        oLoop1 = 1;
+        while (oLoop1 == 1)
+        {
+            WR1_PROG(REG_001CH, 0x00210000U);
+            r_tsip_func100(0x62ad67f3U, 0x7402c19bU, 0x6cdcd17eU, 0xcd0f5eeaU);
+            WR1_PROG(REG_001CH, 0x00400000U);
+            WR1_PROG(REG_01D0H, 0x00000000U);
+            if (CHCK_STS(REG_001CH, 22U, 1U))
+            {
+                WR1_PROG(REG_0024H, 0x000009c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x04001981U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000040c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00800001U);
+                WR1_PROG(REG_0024H, 0x000011c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0034H, 0x00000004U);
+                WR1_PROG(REG_0024H, 0x82001181U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000080c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00bf0001U);
+                WR1_PROG(REG_00ECH, 0x00003320U);
+                WR1_PROG(REG_01D0H, 0x00000000U);
+                r_tsip_func101(0xb4ca61c2U, 0x0d1a79f1U, 0x561ce2adU, 0xa8242068U);
+            }
+            else
+            {
+                r_tsip_func101(0xfda3a880U, 0xbc2023c8U, 0x033bb143U, 0x3c7d6911U);
+                oLoop1 = 0;
+            }
+        }
+
+        WR1_PROG(REG_00ECH, 0x0000d37dU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000b9cU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00002b99U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x0000373cU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        r_tsip_func101(0x1273b8b3U, 0x38372322U, 0xe4bf750eU, 0x89393326U);
+    }
+    else
+    {
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_00E0H, 0x8181001eU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0000H, 0x00003807U);
+        WR1_PROG(REG_002CH, 0x00000010U);
+        WAIT_STS(REG_0000H, 25U, 0U);
+        WR1_PROG(REG_001CH, 0x00001800U);
+        WR1_PROG(REG_0024H, 0x000001c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0034H, 0x00000400U);
+        WR1_PROG(REG_0024H, 0x800080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        WR1_PROG(REG_0024H, 0x000009c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x04001991U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000040c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_0024H, 0x000011c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0034H, 0x00000004U);
+        WR1_PROG(REG_0024H, 0x82001191U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        oLoop1 = 1;
+        while (oLoop1 == 1)
+        {
+            WR1_PROG(REG_001CH, 0x00210000U);
+            r_tsip_func100(0x783f00e5U, 0x5f742924U, 0xaca1f004U, 0xf23c02a5U);
+            WR1_PROG(REG_001CH, 0x00400000U);
+            WR1_PROG(REG_01D0H, 0x00000000U);
+            if (CHCK_STS(REG_001CH, 22U, 1U))
+            {
+                WR1_PROG(REG_0024H, 0x000009c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x04001981U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000040c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00800001U);
+                WR1_PROG(REG_0024H, 0x000011c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0034H, 0x00000004U);
+                WR1_PROG(REG_0024H, 0x82001181U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000080c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00bf0001U);
+                r_tsip_func101(0x09702610U, 0x4440a0acU, 0x3ce3da17U, 0xbc1d6e79U);
+                oLoop1 = 0;
+            }
+            else
+            {
+                WR1_PROG(REG_0024H, 0x000009c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x04001991U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000040c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00800001U);
+                WR1_PROG(REG_0024H, 0x000011c0U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0034H, 0x00000004U);
+                WR1_PROG(REG_0024H, 0x82001191U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0024H, 0x000080c1U);
+                WAIT_STS(REG_0024H, 21U, 0U);
+                WR1_PROG(REG_0028H, 0x00bf0001U);
+                WR1_PROG(REG_00ECH, 0x00002f20U);
+                WR1_PROG(REG_01D0H, 0x00000000U);
+                r_tsip_func101(0x06c11beaU, 0xf567bad4U, 0xdc2681d0U, 0x830e1661U);
+            }
+        }
+
+        r_tsip_func101(0x46318349U, 0xa8addef9U, 0xf5fd77adU, 0xd21ca715U);
+    }
+
+    r_tsip_func100(0xcad18caaU, 0xe19b44f1U, 0xe5f3218cU, 0xd4af3de1U);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x01ed46a5U));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    r_tsip_func100(0x7315d21eU, 0xe4265665U, 0xee22c07aU, 0x9624eb6dU);
+    WR1_PROG(REG_0000H, 0x00012303U);
+    WR1_PROG(REG_002CH, 0x00000022U);
+    r_tsip_func313(1088);
+    r_tsip_func100(0xdbeafc48U, 0x4443f77aU, 0x0f5c2e30U, 0x07c8f305U);
+    r_tsip_func314(1088 + 64);
+    r_tsip_func100(0xa4936806U, 0x750decf4U, 0xc282ee79U, 0xaffbd30dU);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_0024H, 0x000088d0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x000000a0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x81c0001eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00013803U);
+    WR1_PROG(REG_002CH, 0x00000012U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_0028H, 0x00870001U);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000050U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x8088001eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00008323U);
+    WR1_PROG(REG_002CH, 0x00000022U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000070U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x8088001eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00008323U);
+    WR1_PROG(REG_002CH, 0x00000020U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_0024H, 0x0000480cU);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x0149ac4bU));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    r_tsip_func100(0x3953b4ddU, 0x5f17f70eU, 0x24815343U, 0x46873b3fU);
+    WR1_PROG(REG_0000H, 0x00012303U);
+    WR1_PROG(REG_002CH, 0x00000022U);
+    r_tsip_func313(1224);
+    r_tsip_func100(0xd9f9c313U, 0xf511a060U, 0x49cdaeacU, 0xec2787ccU);
+    r_tsip_func314(1224 + 64);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x000000a0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x81c0001eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00013803U);
+    WR1_PROG(REG_002CH, 0x00000012U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_0028H, 0x00800001U);
+    WR1_PROG(REG_002CH, 0x00000000U);
+    WR1_PROG(REG_0024H, 0x0000080aU);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_00E0H, 0x80010380U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00008307U);
+    WR1_PROG(REG_002CH, 0x00000020U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_0028H, 0x00870001U);
+    WR1_PROG(REG_00E0H, 0x800103a0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00008307U);
+    WR1_PROG(REG_002CH, 0x000000adU);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_0000H, 0x0000031fU);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_002CH, 0x00000012U);
+    WR1_PROG(REG_0104H, 0x00000767U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x40000000U));
+    WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+    WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+    WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+    WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+    WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+    WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+    WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+    WR1_PROG(REG_0034H, 0x00000030U);
+    WR1_PROG(REG_0024H, 0x80001dc0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_00ECH, 0x3800dbbeU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x00000080U);
+    WR1_PROG(REG_001CH, 0x00A60000U);
+    r_tsip_func100(0x1f992de0U, 0xc77e9e09U, 0x63465c1bU, 0xc1357dd4U);
+    WR1_PROG(REG_001CH, 0x00400000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    if (CHCK_STS(REG_001CH, 22U, 1U))
+    {
+        WR1_PROG(REG_0024H, 0x00000991U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_00ECH, 0x0000d375U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        r_tsip_func101(0x821fe17eU, 0x90eda5b0U, 0x98a13336U, 0xb45d3cffU);
+    }
+    else
+    {
+        WR1_PROG(REG_0024H, 0x00000981U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_00ECH, 0x0000d775U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        r_tsip_func101(0xb3f83b6aU, 0x9281e40fU, 0x90b140e5U, 0xa2b82f22U);
+    }
+
+    r_tsip_func100(0x0d03372aU, 0xd276e167U, 0x45bdf9b2U, 0x6ed4425dU);
+    WR1_PROG(REG_0034H, 0x00000c00U);
+    WR1_PROG(REG_0024H, 0x8000e0c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x0197b2cdU));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    r_tsip_func100(0x629c8958U, 0x7af3a550U, 0x79d1a9a0U, 0x3c7c7294U);
+    WR1_PROG(REG_0000H, 0x00012303U);
+    WR1_PROG(REG_002CH, 0x00000024U);
+    r_tsip_func313(1428);
+    r_tsip_func100(0xb345ee90U, 0x5735b26aU, 0x25640706U, 0x0c1f0b29U);
+    r_tsip_func314(1428 + 64);
+    r_tsip_func100(0xf1c5bcbfU, 0xc5640927U, 0x95b0644eU, 0xc567c16cU);
+    WR1_PROG(REG_0028H, 0x00870001U);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000050U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x8188001eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00003823U);
+    WR1_PROG(REG_002CH, 0x00000012U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000070U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x8188001eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00003823U);
+    WR1_PROG(REG_002CH, 0x00000010U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_0024H, 0x000009c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000019a1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000040c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000011c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000019a1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000080c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x0000c80cU);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x0149ac4bU));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    WR1_PROG(REG_0000H, 0x00013203U);
+    WR1_PROG(REG_002CH, 0x00000012U);
+    r_tsip_func312(1224);
+    WR1_PROG(REG_00ECH, 0x0000d776U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x3800db75U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x00000080U);
+    WR1_PROG(REG_001CH, 0x00A60000U);
+    r_tsip_func100(0xa250408fU, 0x0a8fe0e8U, 0xfd58fa79U, 0xbe3f17f3U);
+    WR1_PROG(REG_001CH, 0x00400000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    if (CHCK_STS(REG_001CH, 22U, 1U))
+    {
+        WR1_PROG(REG_0024H, 0x000019c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x00000991U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000040c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_001CH, 0x00210000U);
+        r_tsip_func100(0xc754c957U, 0xe435a2a3U, 0x2c9d05beU, 0xc79ea785U);
+        WR1_PROG(REG_001CH, 0x00400000U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        if (CHCK_STS(REG_001CH, 22U, 1U))
+        {
+            WR1_PROG(REG_00ECH, 0x0000d376U);
+            WR1_PROG(REG_01D0H, 0x00000000U);
+            WR1_PROG(REG_0028H, 0x00800001U);
+            WR1_PROG(REG_0104H, 0x00000257U);
+            WR1_PROG(REG_002CH, 0x00000050U);
+            WAIT_STS(REG_0104H, 31U, 1U);
+            WR1_PROG(REG_0100H, bswap_32big(0x00000001U));
+            WR1_PROG(REG_002CH, 0x00000110U);
+            WAIT_STS(REG_0104H, 31U, 1U);
+            WR1_PROG(REG_0100H, bswap_32big(0xFFFFFFFFU));
+            WR1_PROG(REG_002CH, 0x00000050U);
+            WAIT_STS(REG_0104H, 31U, 1U);
+            WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+            WR1_PROG(REG_0028H, 0x00bf0001U);
+            r_tsip_func101(0xf938b346U, 0x3456ea15U, 0x3594ad5fU, 0x6eae4685U);
+        }
+        else
+        {
+            WR1_PROG(REG_00ECH, 0x0000d776U);
+            WR1_PROG(REG_01D0H, 0x00000000U);
+            WR1_PROG(REG_0028H, 0x00800001U);
+            WR1_PROG(REG_002CH, 0x00000010U);
+            WR1_PROG(REG_0104H, 0x00000067U);
+            WAIT_STS(REG_0104H, 31U, 1U);
+            WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+            WR1_PROG(REG_0028H, 0x00bf0001U);
+            r_tsip_func101(0xc2a68d10U, 0xe88b90fdU, 0x65cb44b3U, 0x0012b723U);
+        }
+    }
+    else
+    {
+        WR1_PROG(REG_0024H, 0x000009c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x00001991U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000040c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_001CH, 0x00210000U);
+        r_tsip_func100(0x2b3163f9U, 0xd012510eU, 0x0a6a3d9dU, 0xd4605186U);
+        WR1_PROG(REG_001CH, 0x00400000U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        if (CHCK_STS(REG_001CH, 22U, 1U))
+        {
+            WR1_PROG(REG_00ECH, 0x0000d376U);
+            WR1_PROG(REG_01D0H, 0x00000000U);
+            WR1_PROG(REG_0028H, 0x00800001U);
+            WR1_PROG(REG_0104H, 0x00000257U);
+            WR1_PROG(REG_002CH, 0x00000050U);
+            WAIT_STS(REG_0104H, 31U, 1U);
+            WR1_PROG(REG_0100H, bswap_32big(0x00000001U));
+            WR1_PROG(REG_002CH, 0x00000110U);
+            WAIT_STS(REG_0104H, 31U, 1U);
+            WR1_PROG(REG_0100H, bswap_32big(0xFFFFFFFFU));
+            WR1_PROG(REG_002CH, 0x00000050U);
+            WAIT_STS(REG_0104H, 31U, 1U);
+            WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+            WR1_PROG(REG_0028H, 0x00bf0001U);
+            r_tsip_func101(0xa948814cU, 0x96765c0fU, 0x82565c90U, 0x34c97688U);
+        }
+        else
+        {
+            WR1_PROG(REG_00ECH, 0x0000d776U);
+            WR1_PROG(REG_01D0H, 0x00000000U);
+            WR1_PROG(REG_0028H, 0x00800001U);
+            WR1_PROG(REG_002CH, 0x00000010U);
+            WR1_PROG(REG_0104H, 0x00000067U);
+            WAIT_STS(REG_0104H, 31U, 1U);
+            WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+            WR1_PROG(REG_0028H, 0x00bf0001U);
+            r_tsip_func101(0xa7ad6d3dU, 0xb137020fU, 0x8c2ffb0fU, 0x3c94f812U);
+        }
+    }
+
+    r_tsip_func100(0xef641bf2U, 0x4dbf0658U, 0x00fe3e1cU, 0x63dc129bU);
+    WR1_PROG(REG_0024H, 0x000009c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x04000189U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000040c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0028H, 0x00800001U);
+    WR1_PROG(REG_0024H, 0x000011c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x02000189U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000080c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_0024H, 0x000009c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x04000189U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000040c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0028H, 0x00800001U);
+    WR1_PROG(REG_0024H, 0x000011c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x02000189U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000080c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x0153e245U));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    r_tsip_func100(0xb64b24c9U, 0x011be3dfU, 0xe6301885U, 0x7239d8f8U);
+    WR1_PROG(REG_0000H, 0x00012303U);
+    WR1_PROG(REG_002CH, 0x00000022U);
+    r_tsip_func313(1360);
+    r_tsip_func100(0x868ab2f0U, 0x3bbafdc4U, 0x5aeda745U, 0xf5a69393U);
+    r_tsip_func314(1360 + 64);
+    r_tsip_func100(0xc01e7852U, 0x25bc7ffdU, 0xd9c2360fU, 0x4a6ecbbaU);
+    WR1_PROG(REG_0028H, 0x00800001U);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000008U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x8081001eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00008307U);
+    WR1_PROG(REG_002CH, 0x00000020U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_0028H, 0x00800001U);
+    WR1_PROG(REG_00ECH, 0x000037dcU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x0153e245U));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    r_tsip_func100(0x72ade422U, 0xffe1787dU, 0x609ea754U, 0xfa2a9c93U);
+    WR1_PROG(REG_0000H, 0x00013203U);
+    WR1_PROG(REG_002CH, 0x00000012U);
+    r_tsip_func312(1360);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x014ebbd4U));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    r_tsip_func100(0x0bcefa69U, 0xdd90a087U, 0x971fcbc3U, 0x620c57ddU);
+    WR1_PROG(REG_0000H, 0x00013203U);
+    WR1_PROG(REG_002CH, 0x00000010U);
+    r_tsip_func312(1156);
+    WR1_PROG(REG_0028H, 0x00800001U);
+    WR1_PROG(REG_00E0H, 0x80010380U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00008307U);
+    WR1_PROG(REG_002CH, 0x00000020U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_002CH, 0x00000000U);
+    WR1_PROG(REG_0024H, 0x0000080aU);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_00E0H, 0x810103c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00003807U);
+    WR1_PROG(REG_002CH, 0x00000012U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_0024H, 0x000009c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x00001191U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000080c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_00E0H, 0x81010380U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00003807U);
+    WR1_PROG(REG_002CH, 0x00000012U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_002CH, 0x00000000U);
+    WR1_PROG(REG_0024H, 0x0000080aU);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_002CH, 0x00000000U);
+    WR1_PROG(REG_0024H, 0x0000080aU);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_00E0H, 0x800103c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00008307U);
+    WR1_PROG(REG_002CH, 0x00000020U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_00ECH, 0x00008fc0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000000fU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d777U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000b7a0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000010U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x3000dbc3U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00020020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00002bddU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00070020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d377U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000b9cU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00002b9eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x000037dcU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000080U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000080U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_0024H, 0x000001c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000040c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000080c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x0197b2cdU));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    WR1_PROG(REG_0000H, 0x00013203U);
+    WR1_PROG(REG_002CH, 0x00000014U);
+    r_tsip_func312(1428);
+    WR1_PROG(REG_00ECH, 0x00000bffU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x3800db77U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x00000080U);
+    WR1_PROG(REG_001CH, 0x00A60000U);
+    r_tsip_func100(0x5f9dde9aU, 0x2538914eU, 0xfc338b2aU, 0x6ad6cfcfU);
+    WR1_PROG(REG_001CH, 0x00400000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    if (CHCK_STS(REG_001CH, 22U, 1U))
+    {
+        r_tsip_func100(0x2c157b26U, 0xc6b639c1U, 0x7fff141bU, 0x691b4592U);
+        WR1_PROG(REG_00E0H, 0x810103c0U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0004H, 0x00000607U);
+        WAIT_STS(REG_0004H, 30U, 1U);
+        RD1_ADDR(bswap_32big(REG_0100H), &S_RAM[0]);
+        for (oLoop2 = 0; oLoop2 < S_RAM[0]; oLoop2 = oLoop2 + 1)
+        {
+            WR1_PROG(REG_0024H, 0x000009c0U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0024H, 0x04001991U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0024H, 0x000040c1U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0028H, 0x00800001U);
+            WR1_PROG(REG_0024H, 0x000011c0U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0034H, 0x00000004U);
+            WR1_PROG(REG_0024H, 0x82001191U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0024H, 0x000080c1U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0028H, 0x00bf0001U);
+            WR1_PROG(REG_00ECH, 0x00002fe0U);
+            WR1_PROG(REG_01D0H, 0x00000000U);
+            r_tsip_func101(0x99b94531U, 0x9eb72be6U, 0x7d37b77dU, 0x359d2a2dU);
+        }
+
+        r_tsip_func101(0x954ad7beU, 0x20ac0406U, 0x3ec2b516U, 0xfa6eb347U);
+    }
+    else
+    {
+        r_tsip_func100(0x282c3f7aU, 0xc7b9370bU, 0x6ddece7aU, 0x681e6ce5U);
+        WR1_PROG(REG_00E0H, 0x810103c0U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0004H, 0x00000607U);
+        WAIT_STS(REG_0004H, 30U, 1U);
+        RD1_ADDR(bswap_32big(REG_0100H), &S_RAM[0]);
+        for (oLoop2 = 0; oLoop2 < S_RAM[0]; oLoop2 = oLoop2 + 1)
+        {
+            WR1_PROG(REG_0024H, 0x000009c0U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0024H, 0x04001981U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0024H, 0x000040c1U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0028H, 0x00800001U);
+            WR1_PROG(REG_0024H, 0x000011c0U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0034H, 0x00000004U);
+            WR1_PROG(REG_0024H, 0x82001181U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0024H, 0x000080c1U);
+            WAIT_STS(REG_0024H, 21U, 0U);
+            WR1_PROG(REG_0028H, 0x00bf0001U);
+            WR1_PROG(REG_00ECH, 0x00002fe0U);
+            WR1_PROG(REG_01D0H, 0x00000000U);
+            r_tsip_func101(0xef8bf33dU, 0x03d8c6c5U, 0xd5708706U, 0x175719fbU);
+        }
+
+        r_tsip_func101(0x2763c812U, 0x0be331d1U, 0x75fdd048U, 0x1821d49dU);
+    }
+
+    WR1_PROG(REG_00ECH, 0x38000bdfU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x00000080U);
+    WR1_PROG(REG_001CH, 0x00260000U);
+    WR1_PROG(REG_001CH, 0x00402000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func100(0x762ef0e0U, 0x49239538U, 0x1d82fd3eU, 0x8158b323U);
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000008U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x0153e245U));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    WR1_PROG(REG_0000H, 0x00013203U);
+    WR1_PROG(REG_002CH, 0x00000014U);
+    r_tsip_func312(1360);
+    WR1_PROG(REG_00ECH, 0x3800db76U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x00000080U);
+    WR1_PROG(REG_001CH, 0x00A60000U);
+    r_tsip_func100(0x8720c91cU, 0x3627a5bdU, 0xb39e6e19U, 0xf01e209fU);
+    WR1_PROG(REG_001CH, 0x00400000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    if (CHCK_STS(REG_001CH, 22U, 1U))
+    {
+        r_tsip_func315(0x00000190U);
+        r_tsip_func101(0x0a7295aeU, 0x2d904efdU, 0x79e914f6U, 0xf69e185eU);
+    }
+    else
+    {
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_00E0H, 0x8181001eU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0000H, 0x00003807U);
+        WR1_PROG(REG_002CH, 0x00000090U);
+        WAIT_STS(REG_0000H, 25U, 0U);
+        WR1_PROG(REG_001CH, 0x00001800U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        r_tsip_func101(0xb93213beU, 0x267b922bU, 0x8006ffbeU, 0x6f038bc6U);
+    }
+
+    WR1_PROG(REG_0024H, 0x000009c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x04001981U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000040c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0028H, 0x00800001U);
+    WR1_PROG(REG_0024H, 0x000011c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0034H, 0x00000004U);
+    WR1_PROG(REG_0024H, 0x82001181U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000080c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_00ECH, 0x00000bdeU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x02816fdeU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x30008bc0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00020020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d378U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000060U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d778U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000080U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func100(0x70ef8287U, 0xae813f28U, 0x6b4b4fa0U, 0xf90c3e4cU);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x01353309U));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    r_tsip_func100(0xa7856962U, 0x6765fa17U, 0xea0c48a7U, 0x14c6ae82U);
+    WR1_PROG(REG_0000H, 0x00012303U);
+    WR1_PROG(REG_002CH, 0x00000022U);
+    r_tsip_func313(1292);
+    r_tsip_func100(0x201b2143U, 0x9802fa88U, 0x2bd1b37fU, 0x198d0e7dU);
+    r_tsip_func314(1292 + 64);
+    r_tsip_func100(0x0e8a46beU, 0x42cfed21U, 0xc9db9eaeU, 0xd5b072feU);
+    WR1_PROG(REG_0028H, 0x00800001U);
+    WR1_PROG(REG_00E0H, 0x81010320U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00003807U);
+    WR1_PROG(REG_002CH, 0x00000010U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_00E0H, 0x81010340U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00003807U);
+    WR1_PROG(REG_002CH, 0x00000012U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_002CH, 0x00000000U);
+    WR1_PROG(REG_0024H, 0x0000080aU);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_00E0H, 0x80010300U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00008307U);
+    WR1_PROG(REG_002CH, 0x00000020U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_00ECH, 0x0000d77eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000bdeU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x3000db7cU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00020020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00002fc0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000080U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x3000db7dU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00020020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00002fc0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000080U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x3000dbc0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00030020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d77eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000060U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d37eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000080U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_0024H, 0x000001c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000040c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000080c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x01ed46a5U));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    WR1_PROG(REG_0000H, 0x00013203U);
+    WR1_PROG(REG_002CH, 0x00000014U);
+    r_tsip_func312(1088);
+    WR1_PROG(REG_00ECH, 0x3000db7cU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00030020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d76bU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000060U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d36bU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000080U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x000037daU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000b400U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000097U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func101(0x7b597e9eU, 0x3ac00e51U, 0x75f4a4fbU, 0x91ee76d7U);
+    r_tsip_func310();
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x000000a0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x81c0001eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_0000H, 0x00013803U);
+    WR1_PROG(REG_002CH, 0x00000014U);
+    WAIT_STS(REG_0000H, 25U, 0U);
+    WR1_PROG(REG_001CH, 0x00001800U);
+    WR1_PROG(REG_00ECH, 0x3000db7dU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00030020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d76bU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000060U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d36bU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000080U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x000037d9U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000b400U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000098U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func101(0x91ab7a82U, 0x3a82b132U, 0xa39f8d45U, 0x56c589b5U);
+    r_tsip_func310();
+    r_tsip_func100(0x86c8fcc1U, 0x7db2d838U, 0xf9faac87U, 0x146a565fU);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x014ebbd4U));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    WR1_PROG(REG_0000H, 0x00013203U);
+    WR1_PROG(REG_002CH, 0x00000014U);
+    r_tsip_func312(1156);
+    WR1_PROG(REG_00ECH, 0x3000db7eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00030020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d76bU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000060U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000d36bU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000080U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x000037d8U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000b400U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000099U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func101(0x12c63c41U, 0x8cf35a2aU, 0xa9a1f447U, 0x490714dfU);
+    r_tsip_func310();
+    r_tsip_func100(0x88361d86U, 0x54a6cc19U, 0xc46f6bcaU, 0xf49b94aeU);
+    WR1_PROG(REG_0104H, 0x00000058U);
+    WR1_PROG(REG_00E0H, 0x80010020U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WAIT_STS(REG_0104H, 31U, 1U);
+    WR1_PROG(REG_0100H, bswap_32big(0x01353309U));
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    r_tsip_func080();
+    WR1_PROG(REG_0000H, 0x00013203U);
+    WR1_PROG(REG_002CH, 0x00000014U);
+    r_tsip_func312(1292);
+    WR1_PROG(REG_00ECH, 0x3800db78U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x00000080U);
+    WR1_PROG(REG_001CH, 0x00A60000U);
+    r_tsip_func100(0xee6b8541U, 0x8cc1d66dU, 0x0ac5e2a8U, 0xb7cd7fdcU);
+    WR1_PROG(REG_001CH, 0x00400000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    if (CHCK_STS(REG_001CH, 22U, 1U))
+    {
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_0104H, 0x00000257U);
+        WR1_PROG(REG_002CH, 0x00000050U);
+        WAIT_STS(REG_0104H, 31U, 1U);
+        WR1_PROG(REG_0100H, bswap_32big(0x00000001U));
+        WR1_PROG(REG_002CH, 0x00000190U);
+        WAIT_STS(REG_0104H, 31U, 1U);
+        WR1_PROG(REG_0100H, bswap_32big(0xFFFFFFFFU));
+        WR1_PROG(REG_002CH, 0x00000050U);
+        WAIT_STS(REG_0104H, 31U, 1U);
+        WR1_PROG(REG_0100H, bswap_32big(0x00000000U));
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        r_tsip_func101(0x5858e243U, 0x71f5bd0eU, 0xfc173180U, 0xe0371b2bU);
+    }
+    else
+    {
+        r_tsip_func101(0x94fbc300U, 0x1d68c2bfU, 0x55e131c2U, 0xfd995562U);
+    }
+
+    WR1_PROG(REG_0024H, 0x000009c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x04001981U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000040c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0028H, 0x00800001U);
+    WR1_PROG(REG_0024H, 0x000011c0U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0034H, 0x00000004U);
+    WR1_PROG(REG_0024H, 0x82001181U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0024H, 0x000080c1U);
+    WAIT_STS(REG_0024H, 21U, 0U);
+    WR1_PROG(REG_0028H, 0x00bf0001U);
+    WR1_PROG(REG_00ECH, 0x3800db79U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00E0H, 0x00000080U);
+    WR1_PROG(REG_001CH, 0x00A60000U);
+    r_tsip_func100(0xdeb8e120U, 0xf2a95029U, 0xd7a43364U, 0x137c0872U);
+    WR1_PROG(REG_001CH, 0x00400000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    if (CHCK_STS(REG_001CH, 22U, 1U))
+    {
+        r_tsip_func100(0xe8a41fc4U, 0x11c43155U, 0x62134684U, 0xb922b553U);
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_0024H, 0x000001c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0034H, 0x00000400U);
+        WR1_PROG(REG_0024H, 0x800080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        WR1_PROG(REG_0024H, 0x000001c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x04000991U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000040c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_0034H, 0x00000004U);
+        WR1_PROG(REG_0024H, 0x800011c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x02001191U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        WR1_PROG(REG_00ECH, 0x00000bdeU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x02816fdeU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x30008bc0U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000000U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00020020U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x0000d368U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000060U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x0000d768U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000080U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_00ECH, 0x0000b7c0U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x0000001cU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00E0H, 0x8081001eU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0000H, 0x00008307U);
+        WR1_PROG(REG_002CH, 0x00000020U);
+        WAIT_STS(REG_0000H, 25U, 0U);
+        WR1_PROG(REG_001CH, 0x00001800U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        WR1_PROG(REG_0104H, 0x00000058U);
+        WR1_PROG(REG_00E0H, 0x80010020U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WAIT_STS(REG_0104H, 31U, 1U);
+        WR1_PROG(REG_0100H, bswap_32big(0x0149ac4bU));
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        r_tsip_func080();
+        WR1_PROG(REG_0000H, 0x00013203U);
+        WR1_PROG(REG_002CH, 0x00000014U);
+        r_tsip_func312(1224);
+        WR1_PROG(REG_0024H, 0x000019c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x04000991U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x0000c0c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_0034H, 0x00000004U);
+        WR1_PROG(REG_0024H, 0x800011c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x02001191U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        WR1_PROG(REG_00ECH, 0x00000bdeU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x02816fdeU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x30008bc0U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000000U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00020020U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x0000d372U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000060U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x0000d772U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000080U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_00ECH, 0x0000b7c0U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000018U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00E0H, 0x8081001eU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0000H, 0x00008307U);
+        WR1_PROG(REG_002CH, 0x00000020U);
+        WAIT_STS(REG_0000H, 25U, 0U);
+        WR1_PROG(REG_001CH, 0x00001800U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        WR1_PROG(REG_0024H, 0x000098d0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        r_tsip_func101(0x04b41fd9U, 0xbd0ba0b0U, 0x1d9eaed3U, 0x1df5dab5U);
+    }
+    else
+    {
+        r_tsip_func100(0x6a7af61aU, 0x869430d9U, 0x320238c2U, 0x7eb5173bU);
+        WR1_PROG(REG_00ECH, 0x00000bdeU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x02816fdeU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x30008bc0U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000000U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00020020U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x0000d368U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000060U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x0000d768U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000080U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_00ECH, 0x0000b7c0U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x0000001cU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00E0H, 0x8081001eU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0000H, 0x00008307U);
+        WR1_PROG(REG_002CH, 0x00000020U);
+        WAIT_STS(REG_0000H, 25U, 0U);
+        WR1_PROG(REG_001CH, 0x00001800U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        WR1_PROG(REG_0028H, 0x00800001U);
+        WR1_PROG(REG_00ECH, 0x0000b7c0U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_00ECH, 0x00000018U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0024H, 0x000001c0U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_0024H, 0x000080c1U);
+        WAIT_STS(REG_0024H, 21U, 0U);
+        WR1_PROG(REG_00E0H, 0x8081001eU);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0000H, 0x00008307U);
+        WR1_PROG(REG_002CH, 0x00000020U);
+        WAIT_STS(REG_0000H, 25U, 0U);
+        WR1_PROG(REG_001CH, 0x00001800U);
+        WR1_PROG(REG_0028H, 0x00bf0001U);
+        WR1_PROG(REG_00ECH, 0x0000d772U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WR1_PROG(REG_0104H, 0x00000058U);
+        WR1_PROG(REG_00E0H, 0x80010020U);
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        WAIT_STS(REG_0104H, 31U, 1U);
+        WR1_PROG(REG_0100H, bswap_32big(0x0149ac4bU));
+        WR1_PROG(REG_01D0H, 0x00000000U);
+        r_tsip_func080();
+        WR1_PROG(REG_0000H, 0x00013203U);
+        WR1_PROG(REG_002CH, 0x00000010U);
+        r_tsip_func312(1224);
+        r_tsip_func101(0x4c8f5feeU, 0x9afaa26dU, 0x8454a138U, 0x61b5e32cU);
+    }
+
+    WR1_PROG(REG_00ECH, 0x0000b7c0U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00000024U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x0000381eU);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_00ECH, 0x00007c00U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+    WR1_PROG(REG_001CH, 0x00602000U);
+    WR1_PROG(REG_01D0H, 0x00000000U);
+}

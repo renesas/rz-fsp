@@ -47,7 +47,17 @@ typedef enum e_ether_switch_event
     ETHER_SWITCH_EVENT_RX_QUEUE_FULL,   ///< A RX descriptor queue is full.
     ETHER_SWITCH_EVENT_RX_MESSAGE_LOST, ///< Receive a frame when a RX descriptor queue is full.
     ETHER_SWITCH_EVENT_TAS_ERROR,       ///< TAS gate error.
+    ETHER_SWITCH_EVENT_LINK_CHANGE,     ///< Link status change detection event.
 } ether_switch_event_t;
+#endif
+
+#ifndef BSP_OVERRIDE_ETHER_SWITCH_LINK_STATUS_BITMAPS_T
+
+/** Link status bitmap */
+typedef struct st_ether_switch_link_status_bitmaps
+{
+    uint32_t link_status[((BSP_FEATURE_ETHER_NUM_CHANNELS - 1) / 32) + 1]; ///< Link status of each port.
+} ether_switch_link_status_bitmaps_t;
 #endif
 
 #ifndef BSP_OVERRIDE_ETHER_SWITCH_CALLBACK_ARGS_T
@@ -55,12 +65,13 @@ typedef enum e_ether_switch_event
 /** Callback function parameter data */
 typedef struct st_ether_switch_callback_args
 {
-    uint32_t             channel;      ///< Device channel number
-    uint32_t             ports;        ///< Bitmap of ports on which the interrupt occurred.
-    uint32_t             queue_index;  ///< Queue index where a interrupt occurs.
-    ether_switch_event_t event;        ///< The event can be used to identify what caused the callback.
+    uint32_t                           channel;     ///< Device channel number
+    uint32_t                           ports;       ///< Bitmap of ports on which the interrupt occurred.
+    uint32_t                           queue_index; ///< Queue index where a interrupt occurs.
+    ether_switch_event_t               event;       ///< The event can be used to identify what caused the callback.
+    ether_switch_link_status_bitmaps_t link_status; ///< Link status of each port
 
-    void * p_context;                  ///< Placeholder for user data.  Set in @ref ether_switch_api_t::open function in @ref ether_switch_cfg_t.
+    void * p_context;                               ///< Placeholder for user data.  Set in @ref ether_switch_api_t::open function in @ref ether_switch_cfg_t.
 } ether_switch_callback_args_t;
 #endif
 

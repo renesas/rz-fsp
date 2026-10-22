@@ -73,13 +73,6 @@ static void r_spi_receive(spi_instance_ctrl_t * p_instance_ctrl);
 static void r_spi_transmit(spi_instance_ctrl_t * p_instance_ctrl);
 static void r_spi_call_callback(spi_instance_ctrl_t * p_instance_ctrl, spi_event_t event);
 
-static void spi_rxi_common(spi_instance_ctrl_t * p_instance_ctrl);
-
-#if SPI_TRANSMIT_FROM_RXI_ISR == 0
-static void spi_txi_common(spi_instance_ctrl_t * p_instance_ctrl);
-
-#endif
-
 /***********************************************************************************************************************
  * ISR prototypes
  **********************************************************************************************************************/
@@ -88,8 +81,8 @@ void spi_txi_isr(void);
 void spi_tei_isr(void);
 void spi_eri_isr(void);
 
-void spi_tx_dmac_callback(spi_instance_ctrl_t * p_instance_ctrl);
-void spi_rx_dmac_callback(spi_instance_ctrl_t * p_instance_ctrl);
+void spi_tx_dmac_callback(spi_instance_ctrl_t const * const p_instance_ctrl);
+void spi_rx_dmac_callback(spi_instance_ctrl_t const * const p_instance_ctrl);
 
 /***********************************************************************************************************************
  * Private global variables
@@ -358,7 +351,13 @@ fsp_err_t R_SPI_Close (spi_ctrl_t * const p_ctrl)
     }
 #endif
 
-    /* Disable interrupts in GIC. */
+    /* Disable SPI interrupts. */
+    p_instance_ctrl->p_regs->SPCR &=
+        ~((uint32_t) (R_SPI0_SPCR_SPTIE_Msk | R_SPI0_SPCR_SPRIE_Msk | R_SPI0_SPCR_CENDIE_Msk | R_SPI0_SPCR_SPEIE_Msk));
+
+    /*  Disable interrupts in GIC. When using DMA for data transfer, TXI and RXI interrupts
+     * are not required and typically disabled. Check if the IRQ number is valid (>= 0) before calling R_BSP_IrqDisable()
+     * to avoid disabling nonexistent interrupts. */
     if (p_instance_ctrl->p_cfg->txi_irq >= 0)
     {
         R_BSP_IrqDisable(p_instance_ctrl->p_cfg->txi_irq);
@@ -378,6 +377,9 @@ fsp_err_t R_SPI_Close (spi_ctrl_t * const p_ctrl)
     /* Clear the status register. */
     p_instance_ctrl->p_regs->SPSRC = (R_SPI0_SPSRC_SPDRFC_Msk) | (R_SPI0_SPSRC_OVRFC_Msk) | (R_SPI0_SPSRC_MODFC_Msk) |
                                      (R_SPI0_SPSRC_PERFC_Msk) | (R_SPI0_SPSRC_UDRFC_Msk);
+
+    /* Reset FIFO buffer (TX/RX pointers initialized). */
+    p_instance_ctrl->p_regs->SPFCR = R_SPI0_SPFCR_SPFRST_Msk;
 
     /* Remove power to the channel. */
     /* Disable the clock to the SPI channel. */
@@ -709,7 +711,6 @@ static void r_spi_hw_config (spi_instance_ctrl_t * p_instance_ctrl)
     R_BSP_RegisterProtectEnable(BSP_REG_PROTECT_LPC_RESET);
 
     /* Write registers */
-    p_instance_ctrl->p_regs->SPCR     = spcr;
     p_instance_ctrl->p_regs->SSLP     = (uint8_t) sslp;
     p_instance_ctrl->p_regs->SPPCR    = (uint8_t) sppcr;
     p_instance_ctrl->p_regs->SPBR     = p_extend->spck_div.spbr;
@@ -723,6 +724,15 @@ static void r_spi_hw_config (spi_instance_ctrl_t * p_instance_ctrl)
     p_instance_ctrl->p_regs->MRCKD    = (uint8_t) mrckd;
     p_instance_ctrl->p_regs->SPDRCR   = (uint8_t) spdrcr;
 
+    /* Set all SPCR bits except MSTR */
+    p_instance_ctrl->p_regs->SPCR = spcr & ~((uint32_t) R_SPI0_SPCR_MSTR_Msk);
+
+    /* Read back SPCR to ensure 1 PCLKSPIn has passed
+     * (see Note 1 of figure "Example of initialization flowchart in master mode (SPI operation)" in the SPI section of the relevant hardware manual) */
+    p_instance_ctrl->p_regs->SPCR;
+
+    /* Include MSTR bit */
+    p_instance_ctrl->p_regs->SPCR = spcr;
 #if BSP_FEATURE_SPI_HAS_SPCR3 == 1
     p_instance_ctrl->p_regs->SPCR3 = R_SPI0_SPCR3_CENDIE_Msk;
 #endif
@@ -749,7 +759,7 @@ static void r_spi_gic_config (spi_instance_ctrl_t * p_instance_ctrl)
 
     R_BSP_IrqCfg(p_instance_ctrl->p_cfg->tei_irq, p_instance_ctrl->p_cfg->tei_ipl, p_instance_ctrl);
 
-    /* Note tei_irq is not enabled until the last data frame is transfered. */
+    /* Note tei_irq is not enabled until the last data frame is transferred. */
 }
 
 /*******************************************************************************************************************//**
@@ -1122,10 +1132,19 @@ static void r_spi_call_callback (spi_instance_ctrl_t * p_instance_ctrl, spi_even
 }
 
 /*******************************************************************************************************************//**
- * Common processing for RXI interrupt and DMA transfer completion interrupt in SPI read operation.
+ * ISR called when data is loaded into SPI data register from the shift register.
  **********************************************************************************************************************/
-static void spi_rxi_common (spi_instance_ctrl_t * p_instance_ctrl)
+void spi_rxi_isr (void)
 {
+    SPI_CFG_MULTIPLEX_INTERRUPT_ENABLE;
+
+    /* Save context if RTOS is used */
+    FSP_CONTEXT_SAVE;
+
+    IRQn_Type irq = R_FSP_CurrentIrqGet();
+
+    spi_instance_ctrl_t * p_instance_ctrl = (spi_instance_ctrl_t *) R_FSP_IsrContextGet(irq);
+
     r_spi_receive(p_instance_ctrl);
 
 #if SPI_TRANSMIT_FROM_RXI_ISR == 1
@@ -1154,22 +1173,6 @@ static void spi_rxi_common (spi_instance_ctrl_t * p_instance_ctrl)
 
     /* Clear the receive buffer full flag */
     p_instance_ctrl->p_regs->SPSRC = R_SPI0_SPSRC_SPRFC_Msk;
-}
-
-/*******************************************************************************************************************//**
- * ISR called when data is loaded into SPI data register from the shift register. This function calls spi_rxi_common().
- **********************************************************************************************************************/
-void spi_rxi_isr (void)
-{
-    SPI_CFG_MULTIPLEX_INTERRUPT_ENABLE;
-
-    /* Save context if RTOS is used */
-    FSP_CONTEXT_SAVE;
-
-    IRQn_Type irq = R_FSP_CurrentIrqGet();
-
-    spi_instance_ctrl_t * p_instance_ctrl = (spi_instance_ctrl_t *) R_FSP_IsrContextGet(irq);
-    spi_rxi_common(p_instance_ctrl);
 
     /* Restore context if RTOS is used */
     FSP_CONTEXT_RESTORE;
@@ -1182,23 +1185,58 @@ void spi_rxi_isr (void)
  *
  * @param[in]     p_instance_ctrl     Pointer to SPI instance control block
  **********************************************************************************************************************/
-void spi_rx_dmac_callback (spi_instance_ctrl_t * p_instance_ctrl)
+void spi_rx_dmac_callback (spi_instance_ctrl_t const * const p_instance_ctrl)
 {
     SPI_CFG_MULTIPLEX_INTERRUPT_ENABLE;
 
-    spi_rxi_common(p_instance_ctrl);
+    r_spi_receive((spi_instance_ctrl_t *) p_instance_ctrl);
+
+#if SPI_TRANSMIT_FROM_RXI_ISR == 1
+
+    /* It is a little faster to handle the transmit buffer empty event in the receive buffer full ISR.
+     * Note that this is only possible when the instance is not using a transfer instance to receive data. */
+    r_spi_transmit((spi_instance_ctrl_t *) p_instance_ctrl);
+#endif
+
+    if (p_instance_ctrl->rx_count == p_instance_ctrl->count)
+    {
+        /* If the transmit and receive ISRs are too slow to keep up at high bitrates,
+         * the hardware will generate an interrupt before all of the transfers are completed.
+         * By enabling the transfer end ISR here, all of the transfers are guaranteed to be completed. */
+        R_BSP_IrqEnableNoClear(p_instance_ctrl->p_cfg->tei_irq);
+
+        /* Enable Transmit end interrupt */
+        p_instance_ctrl->p_regs->SPCR_b.CENDIE = 1;
+    }
+
+    /* Clear the SPI Receive Data Ready Flag */
+    if (1 == p_instance_ctrl->p_regs->SPSR_b.SPDRF)
+    {
+        p_instance_ctrl->p_regs->SPSRC_b.SPDRFC = 1;
+    }
+
+    /* Clear the receive buffer full flag */
+    p_instance_ctrl->p_regs->SPSRC = R_SPI0_SPSRC_SPRFC_Msk;
 
     SPI_CFG_MULTIPLEX_INTERRUPT_DISABLE;
 }
 
-#if SPI_TRANSMIT_FROM_RXI_ISR == 0
-
 /*******************************************************************************************************************//**
- * Common processing for TXI interrupt and DMA transfer completion interrupt in SPI write operation.
+ * ISR called when data is copied from the SPI data register into the SPI shift register. This function calls
+ * spi_txi_common().
  **********************************************************************************************************************/
-static void spi_txi_common (spi_instance_ctrl_t * p_instance_ctrl)
+void spi_txi_isr (void)
 {
-    spi_extended_cfg_t * p_extend = ((spi_extended_cfg_t *) p_instance_ctrl->p_cfg->p_extend);
+    SPI_CFG_MULTIPLEX_INTERRUPT_ENABLE;
+
+    /* Save context if RTOS is used */
+    FSP_CONTEXT_SAVE;
+
+    IRQn_Type irq = R_FSP_CurrentIrqGet();
+
+#if SPI_TRANSMIT_FROM_RXI_ISR == 0
+    spi_instance_ctrl_t * p_instance_ctrl = (spi_instance_ctrl_t *) R_FSP_IsrContextGet(irq);
+    spi_extended_cfg_t  * p_extend        = ((spi_extended_cfg_t *) p_instance_ctrl->p_cfg->p_extend);
     if (p_extend && (SPI_COMMUNICATION_TRANSMIT_ONLY == p_extend->spi_comm))
     {
         /* Only enable the transfer end ISR if there are no receive buffer full interrupts expected to be handled
@@ -1215,7 +1253,7 @@ static void spi_txi_common (spi_instance_ctrl_t * p_instance_ctrl)
         }
         else if (p_instance_ctrl->p_cfg->p_transfer_tx)
         {
-            /* If DMA is used to transmit data, enable the interrupt after all the data has been transfered, but do not
+            /* If DMA is used to transmit data, enable the interrupt after all the data has been transferred, but do not
              * clear the IRQ Pending Bit. */
             R_BSP_IrqEnableNoClear(p_instance_ctrl->p_cfg->tei_irq);
 
@@ -1236,26 +1274,7 @@ static void spi_txi_common (spi_instance_ctrl_t * p_instance_ctrl)
     {
         p_instance_ctrl->p_regs->SPSRC = R_SPI0_SPSRC_SPTEFC_Msk;
     }
-}
 
-#endif
-
-/*******************************************************************************************************************//**
- * ISR called when data is copied from the SPI data register into the SPI shift register. This function calls
- * spi_txi_common().
- **********************************************************************************************************************/
-void spi_txi_isr (void)
-{
-    SPI_CFG_MULTIPLEX_INTERRUPT_ENABLE;
-
-    /* Save context if RTOS is used */
-    FSP_CONTEXT_SAVE;
-
-    IRQn_Type irq = R_FSP_CurrentIrqGet();
-
-#if SPI_TRANSMIT_FROM_RXI_ISR == 0
-    spi_instance_ctrl_t * p_instance_ctrl = (spi_instance_ctrl_t *) R_FSP_IsrContextGet(irq);
-    spi_txi_common(p_instance_ctrl);
 #else
     FSP_PARAMETER_NOT_USED(irq);
 #endif
@@ -1271,12 +1290,50 @@ void spi_txi_isr (void)
  *
  * @param[in]     p_instance_ctrl     Pointer to SPI instance control block
  **********************************************************************************************************************/
-void spi_tx_dmac_callback (spi_instance_ctrl_t * p_instance_ctrl)
+void spi_tx_dmac_callback (spi_instance_ctrl_t const * const p_instance_ctrl)
 {
     SPI_CFG_MULTIPLEX_INTERRUPT_ENABLE;
 
 #if SPI_TRANSMIT_FROM_RXI_ISR == 0
-    spi_txi_common(p_instance_ctrl);
+    spi_extended_cfg_t * p_extend = ((spi_extended_cfg_t *) p_instance_ctrl->p_cfg->p_extend);
+    if (p_extend && (SPI_COMMUNICATION_TRANSMIT_ONLY == p_extend->spi_comm))
+    {
+        /* Only enable the transfer end ISR if there are no receive buffer full interrupts expected to be handled
+         * after this interrupt. */
+        if (p_instance_ctrl->tx_count == p_instance_ctrl->count - 1)
+        {
+            /* If the transmit and receive ISRs are too slow to keep up at high bitrates,
+             * the hardware will generate an interrupt before all of the transfers are completed.
+             * By enabling the transfer end ISR here, all of the transfers are guaranteed to be completed. */
+            R_BSP_IrqEnable(p_instance_ctrl->p_cfg->tei_irq);
+
+            /* Enable Transmit end interrupt */
+            p_instance_ctrl->p_regs->SPCR_b.CENDIE = 1;
+        }
+        else if (p_instance_ctrl->p_cfg->p_transfer_tx)
+        {
+            /* If DMA is used to transmit data, enable the interrupt after all the data has been transferred, but do not
+             * clear the IRQ Pending Bit. */
+            R_BSP_IrqEnableNoClear(p_instance_ctrl->p_cfg->tei_irq);
+
+            /* Enable Transmit end interrupt */
+            p_instance_ctrl->p_regs->SPCR_b.CENDIE = 1;
+        }
+        else
+        {
+        }
+    }
+
+    /* Transmit happens after checking if the last transfer has been written to the transmit buffer in order
+     * to ensure that the end interrupt is not enabled while there is data still in the transmit buffer. */
+    r_spi_transmit((spi_instance_ctrl_t *) p_instance_ctrl);
+
+    /* Clear transmit buffer empty flag */
+    if (p_instance_ctrl->tx_count != p_instance_ctrl->count)
+    {
+        p_instance_ctrl->p_regs->SPSRC = R_SPI0_SPSRC_SPTEFC_Msk;
+    }
+
 #else
     FSP_PARAMETER_NOT_USED(p_instance_ctrl);
 #endif
@@ -1298,29 +1355,42 @@ void spi_tei_isr (void)
 
     spi_instance_ctrl_t * p_instance_ctrl = (spi_instance_ctrl_t *) R_FSP_IsrContextGet(irq);
 
+    /* Clear the communication end flag */
+    p_instance_ctrl->p_regs->SPSRC = R_SPI0_SPSRC_CENDFC_Msk;
+
     /* Since the FIFO threshold is set to 0, there is no need to perform final data read. */
 
     if ((0 == p_instance_ctrl->p_regs->SPSR_b.IDLNF) || (SPI_MODE_SLAVE == p_instance_ctrl->p_cfg->operating_mode))
     {
         R_BSP_IrqDisable(irq);
-
-        /* Writing 0 to SPE generates a TXI IRQ. Disable the TXI IRQ.
-         * (See Section "Initialization by Clearing the SPE Bit" in the RZ microprocessor manual). */
-        R_BSP_IrqDisable(p_instance_ctrl->p_cfg->txi_irq);
-
-        /* Disable the SPI Transfer. */
-        p_instance_ctrl->p_regs->SPCR_b.SPE = 0;
+        uint32_t timeout_count = SPI_PERIPHERAL_REG_MAX_WAIT;
 
         /* Disable the transmit end interrupt */
         p_instance_ctrl->p_regs->SPCR_b.CENDIE = 0;
 
-        /* Check SPCR.SPE = 0 */
-        uint32_t timeout_count = SPI_PERIPHERAL_REG_MAX_WAIT;
+        /* Writing 0 to SPE generates a TXI IRQ. Disable the TXI IRQ.
+         * (See Section "Initialization by Clearing the SPE Bit" in the RZ microprocessor manual). */
+        if (p_instance_ctrl->p_cfg->txi_irq >= 0)
+        {
+            R_BSP_IrqDisable(p_instance_ctrl->p_cfg->txi_irq);
 
-        SPI_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_regs->SPPSR_b.SPEPS, 0, timeout_count);
+            /* Disable the SPI Transfer. */
+            p_instance_ctrl->p_regs->SPCR_b.SPE = 0;
 
-        /* Re-enable the TXI IRQ and clear the pending IRQ. */
-        R_BSP_IrqEnable(p_instance_ctrl->p_cfg->txi_irq);
+            /* Check SPCR.SPE = 0 */
+            SPI_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_regs->SPPSR_b.SPEPS, 0, timeout_count);
+
+            /* Re-enable the TXI IRQ and clear the pending IRQ. */
+            R_BSP_IrqEnable(p_instance_ctrl->p_cfg->txi_irq);
+        }
+        else
+        {
+            /* Disable the SPI Transfer. */
+            p_instance_ctrl->p_regs->SPCR_b.SPE = 0;
+
+            /* Check SPCR.SPE = 0 */
+            SPI_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_regs->SPPSR_b.SPEPS, 0, timeout_count);
+        }
 
         /* Signal that a transfer has completed. */
         r_spi_call_callback(p_instance_ctrl, SPI_EVENT_TRANSFER_COMPLETE);
@@ -1344,24 +1414,34 @@ void spi_eri_isr (void)
 
     IRQn_Type             irq             = R_FSP_CurrentIrqGet();
     spi_instance_ctrl_t * p_instance_ctrl = (spi_instance_ctrl_t *) R_FSP_IsrContextGet(irq);
+    uint32_t              timeout_count   = SPI_PERIPHERAL_REG_MAX_WAIT;
 
     /* Writing 0 to SPE generates a TXI IRQ. Disable the TXI IRQ.
      * (See Section "Initialization by Clearing the SPE Bit" in the RZ microprocessor manual). */
-    R_BSP_IrqDisable(p_instance_ctrl->p_cfg->txi_irq);
+    if (p_instance_ctrl->p_cfg->txi_irq >= 0)
+    {
+        R_BSP_IrqDisable(p_instance_ctrl->p_cfg->txi_irq);
 
-    /* Disable the SPI Transfer. */
-    p_instance_ctrl->p_regs->SPCR_b.SPE = 0;
+        /* Disable the SPI Transfer. */
+        p_instance_ctrl->p_regs->SPCR_b.SPE = 0;
+
+        /* Check SPCR.SPE = 0 */
+        SPI_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_regs->SPPSR_b.SPEPS, 0, timeout_count);
+
+        /* Re-enable the TXI IRQ and clear the pending IRQ. */
+        R_BSP_IrqEnable(p_instance_ctrl->p_cfg->txi_irq);
+    }
+    else
+    {
+        /* Disable the SPI Transfer. */
+        p_instance_ctrl->p_regs->SPCR_b.SPE = 0;
+
+        /* Check SPCR.SPE = 0 */
+        SPI_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_regs->SPPSR_b.SPEPS, 0, timeout_count);
+    }
 
     /* Read the status register. */
     uint16_t status = p_instance_ctrl->p_regs->SPSR;
-
-    /* Check SPCR.SPE = 0 */
-    uint32_t timeout_count = SPI_PERIPHERAL_REG_MAX_WAIT;
-
-    SPI_HARDWARE_REGISTER_WAIT(p_instance_ctrl->p_regs->SPPSR_b.SPEPS, 0, timeout_count);
-
-    /* Re-enable the TXI IRQ and clear the pending IRQ. */
-    R_BSP_IrqEnable(p_instance_ctrl->p_cfg->txi_irq);
 
     /* Clear the flag */
     p_instance_ctrl->p_regs->SPSRC = (R_SPI0_SPSRC_PERFC_Msk) | (R_SPI0_SPSRC_MODFC_Msk) | (R_SPI0_SPSRC_OVRFC_Msk) |

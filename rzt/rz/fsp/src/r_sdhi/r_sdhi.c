@@ -953,7 +953,7 @@ fsp_err_t R_SDHI_Close (sdmmc_ctrl_t * const p_api_ctrl)
     r_sdhi_command_send_no_wait(p_ctrl, SDHI_PRV_CMD_GO_IDLE_STATE, 0);
 
     /* Do not set the module stop bit since the CMD0 may not be complete yet. Do not wait for CMD0 to complete because
-     * the card could be unplugged and waiting for the response timeout in this function is not desireable. */
+     * the card could be unplugged and waiting for the response timeout in this function is not desirable. */
 
     return FSP_SUCCESS;
 }

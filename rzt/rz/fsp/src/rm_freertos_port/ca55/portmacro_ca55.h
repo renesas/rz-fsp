@@ -77,6 +77,7 @@ typedef uint64_t TickType_t;
  #define portTICK_PERIOD_MS         ((TickType_t) 1000 / configTICK_RATE_HZ)
  #define portBYTE_ALIGNMENT         16
  #define portPOINTER_SIZE_TYPE      uint64_t
+ #define portDONT_DISCARD           BSP_DONT_REMOVE
 
 /*-----------------------------------------------------------*/
 
@@ -213,11 +214,11 @@ void vPortTaskUsesFPU(void);
 
  #endif                                /* configUSE_PORT_OPTIMISED_TASK_SELECTION */
 
- #ifdef configASSERT
+ #if (configASSERT_DEFINED == 1)
 void vPortValidateInterruptPriority(void);
 
   #define portASSERT_IF_INTERRUPT_PRIORITY_INVALID()    vPortValidateInterruptPriority()
- #endif                                /* configASSERT */
+ #endif                                /* configASSERT_DEFINED == 1 */
 
  #define portNOP()                                      __asm volatile ("NOP")
 

@@ -350,8 +350,15 @@ typedef enum e_fsp_err
     FSP_ERR_CRYPTO_RSIP_FAIL              = 0x10102, ///< Internal error
     FSP_ERR_CRYPTO_RSIP_KEY_SET_FAIL      = 0x10103, ///< Input key type is illegal
     FSP_ERR_CRYPTO_RSIP_AUTHENTICATION    = 0x10104, ///< Authentication failed
+    FSP_ERR_CRYPTO_RSIP_DLMS_ERROR        = 0x10105, ///< An error occurred during DLMS processing
 
     FSP_ERR_CRYPTO_RSIP_LBIST_CHECK_BUSY  = 0x101ff, ///< LBIST Check BUSY
+
+    /* Start of Crypto TSIP specific (0x10200) */
+    FSP_ERR_CRYPTO_TSIP_FATAL             = 0x10200, ///< Hardware fatal error or unexpected return
+    FSP_ERR_CRYPTO_TSIP_FAIL              = 0x10201, ///< Cryptographic operation is failed
+    FSP_ERR_CRYPTO_TSIP_KEY_SET_FAIL      = 0x10202, ///< Input key type or data is illegal
+    FSP_ERR_CRYPTO_TSIP_AUTHENTICATION    = 0x10203, ///< Authentication failed
 
     /* Start of SF_CRYPTO specific */
     FSP_ERR_CRYPTO_COMMON_NOT_OPENED      = 0x20000, ///< Crypto Framework Common is not opened
@@ -361,10 +368,6 @@ typedef enum e_fsp_err
     FSP_ERR_CRYPTO_INVALID_OPERATION_MODE = 0x20004, ///< Invalid operation mode.
     FSP_ERR_MESSAGE_TOO_LONG              = 0x20005, ///< Message for RSA encryption is too long.
     FSP_ERR_RSA_DECRYPTION_ERROR          = 0x20006, ///< RSA Decryption error.
-
-    /** @note SF_CRYPTO APIs may return an error code starting from 0x10000 which is of Crypto module.
-     *        Refer to sf_cryoto_err.h for Crypto error codes.
-     */
 
     /* Start of Sensor specific */
     FSP_ERR_SENSOR_INVALID_DATA             = 0x30000, ///< Data is invalid.

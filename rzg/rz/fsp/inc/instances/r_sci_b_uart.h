@@ -100,7 +100,8 @@ struct st_sci_b_uart_instance_ctrl
     uart_callback_args_t * p_callback_memory;    // Pointer to non-secure memory that can be used to pass arguments to a callback in non-secure memory.
 
     /* Pointer to context to be passed into callback function */
-    void * p_context;
+    void   * p_context;
+    uint32_t delay_loops;                        // Number of software delay loops before enabling TEI
 };
 
 /** UART instance control block. Please refer to the struct st_sci_b_uart_instance_ctrl. */
@@ -236,11 +237,12 @@ struct st_sci_b_uart_extended_cfg
     sci_b_uart_noise_cancellation_t noise_cancel;      ///< Noise cancellation setting
     sci_b_baud_setting_t          * p_baud_setting;    ///< Register settings for a desired baud rate.
     sci_b_uart_rx_fifo_trigger_t    rx_fifo_trigger;   ///< Receive FIFO trigger level, unused if channel has no FIFO or if DTC or DMAC is used.
-    bsp_io_port_pin_t               flow_control_pin;  ///< UART Driver Enable pin
+    bsp_io_port_pin_t               flow_control_pin;  ///< RTS pin used for UART flow control
     sci_b_uart_flow_control_t       flow_control;      ///< CTS/RTS function of the SSn pin
     sci_b_uart_rs485_setting_t      rs485_setting;     ///< RS-485 settings.
     sci_b_uart_half_data_setting_t  half_data_setting; ///< Half Data Function settings
-    void * p_reg;                                      ///< Register base address for specified channel
+    void  * p_reg;                                     ///< Register base address for specified channel
+    uint8_t delay_cycles;                              ///< Number of TCLK cycles to delay after writing last byte to TDR
 };
 
 /** UART on SCI device Configuration. Please refer to the struct st_sci_b_uart_extended_cfg. */

@@ -51,10 +51,10 @@ const usb_hmsc_api_t g_hmsc_on_usb =
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -102,8 +102,8 @@ fsp_err_t R_USB_HMSC_StorageCommand (usb_ctrl_t * const p_api_ctrl, uint8_t * bu
     utr.ipp                = usb_hstd_get_usb_ip_adr(utr.ip);
     p_ctrl->device_address = destination;
 #if USB_IP_EHCI_OHCI == 0
-    utr.p_transfer_rx      = p_ctrl->p_transfer_rx;
-    utr.p_transfer_tx      = p_ctrl->p_transfer_tx;
+    utr.p_transfer_rx = p_ctrl->p_transfer_rx;
+    utr.p_transfer_tx = p_ctrl->p_transfer_tx;
 #endif
     R_USB_InfoGet(p_ctrl, &info, p_ctrl->device_address);
     FSP_ERROR_RETURN(USB_STATUS_CONFIGURED == info.device_status, FSP_ERR_USB_FAILED)
@@ -122,8 +122,8 @@ fsp_err_t R_USB_HMSC_StorageCommand (usb_ctrl_t * const p_api_ctrl, uint8_t * bu
         if (USB_HMSC_CSW_ERR == utr.result)
         {
             p_ctrl->status         = USB_CSW_RESULT_FAIL;
-            p_ctrl->module_number  = utr.ip;                /* Module number setting */
-            p_ctrl->pipe           = (uint8_t) utr.keyword; /* Pipe number setting */
+            p_ctrl->module_number  = utr.ip;                                     /* Module number setting */
+            p_ctrl->pipe           = (uint8_t) g_usb_hmsc_in_pipe[utr.ip][side]; /* Pipe number setting */
             p_ctrl->device_address = (uint8_t) (usb_hstd_get_devsel(&utr, p_ctrl->pipe) >> 12);
             p_ctrl->data_size      = 0;
  #if (BSP_CFG_RTOS == 2)
@@ -145,8 +145,8 @@ fsp_err_t R_USB_HMSC_StorageCommand (usb_ctrl_t * const p_api_ctrl, uint8_t * bu
 #if (BSP_CFG_RTOS == 2)
     else
     {
-        p_ctrl->module_number  = utr.ip;                /* Module number setting */
-        p_ctrl->pipe           = (uint8_t) utr.keyword; /* Pipe number setting */
+        p_ctrl->module_number  = utr.ip;                                     /* Module number setting */
+        p_ctrl->pipe           = (uint8_t) g_usb_hmsc_in_pipe[utr.ip][side]; /* Pipe number setting */
         p_ctrl->device_address = (uint8_t) (usb_hstd_get_devsel(&utr, p_ctrl->pipe) >> 12);
         p_ctrl->data_size      = 0;
 
@@ -295,6 +295,7 @@ fsp_err_t R_USB_HMSC_StorageReadSector (uint16_t        drive_number,
         p_cfg = (usb_cfg_t *) R_FSP_IsrContextGet((IRQn_Type) VECTOR_NUMBER_USB_HI);
 #endif                                 /* #if defined(VECTOR_NUMBER_USBFS_INT) */
     }
+
 #if USB_IP_EHCI_OHCI == 0
     ptr.p_transfer_rx = p_cfg->p_transfer_rx;
     ptr.p_transfer_tx = p_cfg->p_transfer_tx;
@@ -375,6 +376,7 @@ fsp_err_t R_USB_HMSC_StorageWriteSector (uint16_t              drive_number,
         p_cfg = (usb_cfg_t *) R_FSP_IsrContextGet((IRQn_Type) VECTOR_NUMBER_USB_HI);
 #endif                                 /* #if defined(VECTOR_NUMBER_USBFS_INT) */
     }
+
 #if USB_IP_EHCI_OHCI == 0
     ptr.p_transfer_rx = p_cfg->p_transfer_rx;
     ptr.p_transfer_tx = p_cfg->p_transfer_tx;
@@ -482,7 +484,7 @@ fsp_err_t R_USB_HMSC_SemaphoreRelease (void)
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif

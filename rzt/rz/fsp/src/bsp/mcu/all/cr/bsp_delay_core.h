@@ -37,7 +37,7 @@ FSP_HEADER
  * Exported global functions (to be accessed by other files)
  **********************************************************************************************************************/
 
-BSP_ATTRIBUTE_STACKLESS void r_bsp_software_delay_loop(uint32_t loop_cnt);
+BSP_ATTRIBUTE_STACKLESS void r_bsp_software_delay_loop(uint32_t loop_cnt) BSP_PLACE_IN_SECTION(".software_delay");
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

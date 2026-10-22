@@ -413,7 +413,13 @@ void     hw_usb_hrmw_devadd(usb_utr_t * ptr, uint16_t devsel, uint16_t data, uin
 void     hw_usb_hset_usbspd(usb_utr_t * ptr, uint16_t devsel, uint16_t data);
 
 #endif                                 /* (USB_CFG_MODE & USB_CFG_HOST) == USB_CFG_HOST */
-#endif /* HW_USB_REG_ACCESS_H */
+
+/************/
+/* USBCTR   */
+/************/
+void hw_usb_set_pll_rst(void);
+
+#endif                                 /* HW_USB_REG_ACCESS_H */
 
 /******************************************************************************
  * End of file

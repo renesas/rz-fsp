@@ -302,7 +302,8 @@ fsp_err_t R_CMTW_Enable (timer_ctrl_t * const p_ctrl)
 }
 
 /*******************************************************************************************************************//**
- * Disables external event triggers that start, stop, clear, or capture the counter. Implements @ref timer_api_t::disable.
+ * Disables external event triggers that start, stop, clear, or capture the counter.
+ * Implements @ref timer_api_t::disable.
  *
  * @retval FSP_SUCCESS                 External events successfully disabled.
  * @retval FSP_ERR_ASSERTION           p_ctrl was NULL.
@@ -334,8 +335,8 @@ fsp_err_t R_CMTW_Disable (timer_ctrl_t * const p_ctrl)
 }
 
 /*******************************************************************************************************************//**
- * Updates period. The new period is updated immediately. Implements
- * @ref timer_api_t::periodSet.
+ * Updates period. The new period is updated immediately.
+ * Implements @ref timer_api_t::periodSet.
  *
  * @warning Stop the timer before calling this function if one-shot output is used.
  *
@@ -557,8 +558,8 @@ fsp_err_t R_CMTW_CallbackSet (timer_ctrl_t * const          p_ctrl,
 }
 
 /*******************************************************************************************************************//**
- * Stops counter, disables interrupts, disables output pins, and clears internal driver data.  Implements
- * @ref timer_api_t::close.
+ * Stops counter, disables interrupts, disables output pins, and clears internal driver data.
+ * Implements @ref timer_api_t::close.
  *
  *
  *
@@ -631,6 +632,7 @@ static fsp_err_t r_cmtw_open_param_checking (cmtw_instance_ctrl_t * p_instance_c
     FSP_ERROR_RETURN(CMTW_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
 
     cmtw_extended_cfg_t * p_extend = (cmtw_extended_cfg_t *) p_cfg->p_extend;
+    FSP_ASSERT(NULL != p_extend->p_reg);
 
     /* Enable IRQ if user supplied a callback function,
      *  or if the timer is a one-shot timer (so the driver is able to

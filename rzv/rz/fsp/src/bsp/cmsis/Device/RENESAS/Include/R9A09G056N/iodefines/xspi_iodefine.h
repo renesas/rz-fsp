@@ -214,8 +214,7 @@ typedef struct
         __IOM uint32_t COMCFG;
         struct
         {
-            __IOM uint32_t ARBMD   : 2;
-            uint32_t               : 14;
+            uint32_t               : 16;
             __IOM uint32_t OEASTEX : 1;
             __IOM uint32_t OENEGEX : 1;
             uint32_t               : 14;
@@ -235,23 +234,10 @@ typedef struct
             __IOM uint32_t CMBTIM  : 8;
         } BMCFG_b;
     };
-    union
-    {
-        __IOM uint32_t BMCFGCH1;
-        struct
-        {
-            __IOM uint32_t WRMD    : 1;
-            uint32_t               : 6;
-            __IOM uint32_t MWRCOMB : 1;
-            __IOM uint32_t MWRSIZE : 8;
-            __IOM uint32_t PREEN   : 1;
-            uint32_t               : 7;
-            __IOM uint32_t CMBTIM  : 8;
-        } BMCFGCH1_b;
-    };
 
+    __IM uint32_t          RESERVED1;
     __IOM R_XSPI0_CSa_Type CSa[2];
-    __IM uint32_t          RESERVED1[8];
+    __IM uint32_t          RESERVED2[8];
     union
     {
         __IOM uint32_t LIOCFGCS[2];
@@ -270,7 +256,7 @@ typedef struct
             __IOM uint32_t DDRSMPEX  : 4;
         } LIOCFGCS_b[2];
     };
-    __IM uint32_t RESERVED2[2];
+    __IM uint32_t RESERVED3[2];
     union
     {
         __IOM uint32_t BMCTL0;
@@ -278,9 +264,7 @@ typedef struct
         {
             __IOM uint32_t CS0ACC    : 2;
             __IOM uint32_t CS1ACC    : 2;
-            __IOM uint32_t CH1CS0ACC : 2;
-            __IOM uint32_t CH1CS1ACC : 2;
-            uint32_t                 : 24;
+            uint32_t                 : 28;
         } BMCTL0_b;
     };
     union
@@ -290,10 +274,9 @@ typedef struct
         {
             uint32_t                 : 8;
             __OM uint32_t MWRPUSH    : 1;
-            __OM uint32_t MWRPUSHCH1 : 1;
+            uint32_t                 : 1;
             __OM uint32_t PBUFCLR    : 1;
-            __OM uint32_t PBUFCLRCH1 : 1;
-            uint32_t                 : 20;
+            uint32_t                 : 21;
         } BMCTL1_b;
     };
     union
@@ -307,17 +290,8 @@ typedef struct
             uint32_t                 : 15;
         } CMCTL_b;
     };
-    union
-    {
-        __IOM uint32_t CMCTLCH1;
-        struct
-        {
-            __IOM uint32_t XIPENCODE : 8;
-            __IOM uint32_t XIPEXCODE : 8;
-            __IOM uint32_t XIPEN     : 1;
-            uint32_t                 : 15;
-        } CMCTLCH1_b;
-    };
+
+    __IM uint32_t RESERVED4;
     union
     {
         __IOM uint32_t CDCTL0;
@@ -351,9 +325,9 @@ typedef struct
             __IOM uint32_t PERMSK : 32;
         } CDCTL2_b;
     };
-    __IM uint32_t          RESERVED3;
+    __IM uint32_t          RESERVED5;
     __IOM R_XSPI0_BUF_Type BUF[4];
-    __IM uint32_t          RESERVED4[16];
+    __IM uint32_t          RESERVED6[16];
     union
     {
         __IOM uint32_t LPCTL0;
@@ -401,9 +375,9 @@ typedef struct
             uint32_t              : 14;
         } LIOCTL_b;
     };
-    __IM uint32_t          RESERVED5[9];
+    __IM uint32_t          RESERVED7[9];
     __IOM R_XSPI0_CSb_Type CSb[2];
-    __IM uint32_t          RESERVED6[4];
+    __IM uint32_t          RESERVED8[4];
     union
     {
         __IM uint32_t VERSTT;
@@ -418,13 +392,11 @@ typedef struct
         struct
         {
             __IM uint32_t MEMACC     : 1;
-            __IM uint32_t MEMACCCH1  : 1;
-            uint32_t                 : 2;
+            uint32_t                 : 3;
             __IM uint32_t PBUFNE     : 1;
-            __IM uint32_t PBUFNECH1  : 1;
+            uint32_t                 : 1;
             __IM uint32_t WRBUFNE    : 1;
-            __IM uint32_t WRBUFNECH1 : 1;
-            uint32_t                 : 8;
+            uint32_t                 : 9;
             __IM uint32_t ECSCS0     : 1;
             __IM uint32_t INTCS0     : 1;
             __IM uint32_t RSTOCS0    : 1;
@@ -462,8 +434,7 @@ typedef struct
             __IM uint32_t INTCS1    : 1;
             uint32_t                : 6;
             __IM uint32_t BUSERR    : 1;
-            __IM uint32_t BUSERRCH1 : 1;
-            uint32_t                : 6;
+            uint32_t                : 7;
             __IM uint32_t CAFAILCS0 : 1;
             __IM uint32_t CAFAILCS1 : 1;
             __IM uint32_t CASUCCS0  : 1;
@@ -489,8 +460,7 @@ typedef struct
             __OM uint32_t INTCS1C    : 1;
             uint32_t                 : 6;
             __OM uint32_t BUSERRC    : 1;
-            __OM uint32_t BUSERRCH1C : 1;
-            uint32_t                 : 6;
+            uint32_t                 : 7;
             __OM uint32_t CAFAILCS0C : 1;
             __OM uint32_t CAFAILCS1C : 1;
             __OM uint32_t CASUCCS0C  : 1;
@@ -516,8 +486,7 @@ typedef struct
             __IOM uint32_t INTCS1E    : 1;
             uint32_t                  : 6;
             __IOM uint32_t BUSERRE    : 1;
-            __IOM uint32_t BUSERRCH1E : 1;
-            uint32_t                  : 6;
+            uint32_t                  : 7;
             __IOM uint32_t CAFAILCS0E : 1;
             __IOM uint32_t CAFAILCS1E : 1;
             __IOM uint32_t CASUCCS0E  : 1;

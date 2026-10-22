@@ -39,7 +39,8 @@ namespace RZG
 struct st_sci_b_spi_div_setting
 {
     uint8_t brr;
-    uint8_t cks : 2;
+    uint8_t cks  : 2;
+    uint8_t bgdm : 1;
 };
 
 /** Settings for adjusting the SPI CLK. Please refer to the struct st_sci_b_spi_div_setting. */

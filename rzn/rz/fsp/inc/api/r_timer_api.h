@@ -81,6 +81,8 @@ typedef enum e_timer_compare_match
     TIMER_COMPARE_MATCH_H = 7U,        ///< Compare match H value
 } timer_compare_match_t;
 
+#ifndef BSP_OVERRIDE_TIMER_CALLBACK_ARGS_T
+
 /** Callback function parameter data */
 typedef struct st_timer_callback_args
 {
@@ -92,9 +94,13 @@ typedef struct st_timer_callback_args
     uint32_t capture;
 } timer_callback_args_t;
 
+#endif
+
 /** Timer control block.  Allocate an instance specific control block to pass into the timer API calls.
  */
 typedef void timer_ctrl_t;
+
+#ifndef BSP_OVERRIDE_TIMER_STATE_T
 
 /** Possible status values returned by @ref timer_api_t::statusGet. */
 typedef enum e_timer_state
@@ -103,24 +109,33 @@ typedef enum e_timer_state
     TIMER_STATE_COUNTING = 1,          ///< Timer is running
     TIMER_STATE_UNKNOWN  = 2           ///< Timer state could not be defined
 } timer_state_t;
+
+#endif
+
 #ifndef BSP_OVERRIDE_TIMER_MODE_T
 
 /** Timer operational modes */
 typedef enum e_timer_mode
 {
-    TIMER_MODE_PERIODIC,                          ///< Timer restarts after period elapses.
-    TIMER_MODE_ONE_SHOT,                          ///< Timer stops after period elapses.
-    TIMER_MODE_PWM,                               ///< Timer generates saw-wave PWM output.
-    TIMER_MODE_ONE_SHOT_PULSE,                    ///< Saw-wave one-shot pulse mode (fixed buffer operation).
-    TIMER_MODE_TRIANGLE_WAVE_SYMMETRIC_PWM  = 4U, ///< Timer generates symmetric triangle-wave PWM output.
-    TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM = 5U, ///< Timer generates asymmetric triangle-wave PWM output.
+    TIMER_MODE_PERIODIC                               = 0U,         ///< Timer restarts after period elapses.
+    TIMER_MODE_ONE_SHOT                               = 1U,         ///< Timer stops after period elapses.
+    TIMER_MODE_PWM                                    = 2U,         ///< Timer generates saw-wave PWM output.
+    TIMER_MODE_ONE_SHOT_PULSE                         = 3U,         ///< Saw-wave one-shot pulse mode (fixed buffer operation).
+    TIMER_MODE_TRIANGLE_WAVE_SYMMETRIC_PWM            = 4U,         ///< Timer generates symmetric triangle-wave PWM output.
+    TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM           = 5U,         ///< Timer generates asymmetric triangle-wave PWM output.
 
     /**
      * Timer generates Asymmetric Triangle-wave PWM output. In PWM mode 3, the duty cycle does
      * not need to be updated at each tough/crest interrupt. Instead, the trough and crest duty cycle values can be
      * set once and only need to be updated when the application needs to change the duty cycle.
      */
-    TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM_MODE3 = 6U
+    TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM_MODE3     = 6U,         ///< Timer generates asymmetric triangle-wave PWM output (Mode 3).
+
+    /** Complementary PWM Modes  */
+    TIMER_MODE_COMPLEMENTARY_PWM_MODE1                = 12U,        ///< Complementary PWM mode 1 (transfer at crest).
+    TIMER_MODE_COMPLEMENTARY_PWM_MODE2                = 13U,        ///< Complementary PWM mode 2 (transfer at trough).
+    TIMER_MODE_COMPLEMENTARY_PWM_MODE3                = 14U,        ///< Complementary PWM mode 3 (transfer at crest/trough).
+    TIMER_MODE_COMPLEMENTARY_PWM_MODE4                = 15U         ///< Complementary PWM mode 4 (immediate transfer).
 } timer_mode_t;
 
 #endif
@@ -164,12 +179,16 @@ typedef struct st_timer_info
     uint32_t period_counts;
 } timer_info_t;
 
+#ifndef BSP_OVERRIDE_TIMER_STATUS_T
+
 /** Current timer status. */
 typedef struct st_timer_status
 {
     uint32_t      counter;             ///< Current counter value
     timer_state_t state;               ///< Current timer state (running or stopped)
 } timer_status_t;
+
+#endif
 
 /** User configuration structure, used in open function */
 typedef struct st_timer_cfg

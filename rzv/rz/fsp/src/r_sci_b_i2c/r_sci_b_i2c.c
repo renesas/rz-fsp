@@ -566,7 +566,8 @@ static fsp_err_t sci_b_i2c_read_write (i2c_master_ctrl_t * const p_api_ctrl,
             (uint8_t) (((p_ctrl->slave >> 7U) | SCI_B_I2C_PRV_CODE_10BIT) & (uint8_t) ~(SCI_B_I2C_PRV_CODE_READ));
         p_ctrl->addr_low = (uint8_t) p_ctrl->slave;
 
-        /* Addr total = 3 for Read and 2 for Write (See section "Communication Data Format" in the Hardware Manual). */
+        /* Addr total = 3 for Read and 2 for Write (See "Communication Data Format" in the IIC section of the relevant
+         * hardware manual). */
         p_ctrl->addr_total = (uint8_t) ((uint8_t) direction + SCI_B_I2C_PRV_SLAVE_10_BIT_ADDR_LEN_ADJUST);
     }
 #endif
@@ -692,7 +693,8 @@ static void sci_b_i2c_abort_seq_master (sci_b_i2c_instance_ctrl_t * const p_ctrl
  **********************************************************************************************************************/
 static void sci_b_i2c_open_hw_master (sci_b_i2c_instance_ctrl_t * const p_ctrl, i2c_master_cfg_t const * const p_cfg)
 {
-    /* SCI Initialization in Simple IIC Mode */
+    /* SCI Initialization in Simple IIC Mode (See "SCI Initialization (Simple I2C mode)" in the SCI section of the
+     * relevant hardware manual). */
 
     sci_b_i2c_extended_cfg_t * p_extend = (sci_b_i2c_extended_cfg_t *) p_ctrl->p_cfg->p_extend;
 
@@ -1111,7 +1113,10 @@ static fsp_err_t sci_b_i2c_transfer_configure (sci_b_i2c_instance_ctrl_t        
     }
     else
     {
-        /* In case of read operation using DTC/DMAC, the TXI interrupt will trigger the DTC/DMAC to write 0xFF into TDR */
+        /* In case of read operation using DTC/DMAC, the TXI interrupt will trigger the DTC/DMAC to write 0xFF into TDR (See Figure
+         * "Example of the Procedure for Master Reception Operations in Simple I2C Mode (when ICR.IICINTM is 1b, and
+         * Transmission Interrupts and Reception Interrupts are in Use.)" in the SCI section of the relevant hardware manual). */
+
         /* In case of Write operation this will be reconfigured */
  #ifdef SCI_B_I2C_CFG_DMAC_ENABLE
         p_info->mode           = TRANSFER_MODE_NORMAL;
@@ -1320,7 +1325,10 @@ static void sci_b_i2c_txi_send_data (sci_b_i2c_instance_ctrl_t * const p_ctrl)
         }
     }
 
-    /* Write 1 byte data to data register.
+    /* Write 1 byte data to data register (See Figure "Example of the Procedure for Master Transmission Operations in
+     * Simple I2C Mode (when ICR.IICINTM is 1b, and when Confirming ACK/NACK by Address Transmission Only.)" and
+     * Figure "Example of the Procedure for Master Reception Operations in Simple I2C Mode (when ICR.IICINTM is 1b, and
+     * Transmission Interrupts and Reception Interrupts are in Use.)" in the SCI section of the relevant hardware manual).
      * - In case of write operation this will be data from user buffer.
      * - In case of read operation this will be 0xFF as required by HW.
      */

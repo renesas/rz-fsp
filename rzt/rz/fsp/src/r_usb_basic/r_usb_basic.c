@@ -195,7 +195,7 @@ namespace RZT
  * @brief Applies power to the USB module specified in the argument (p_ctrl).
  *
  * @retval FSP_SUCCESS           Success in open.
- * @retval FSP_ERR_USB_BUSY      Specified USB module now in use.
+ * @retval FSP_ERR_USB_BUSY      The request is already being processed.
  * @retval FSP_ERR_ASSERTION     Parameter is NULL error.
  * @retval FSP_ERR_USB_FAILED    The function could not be completed successfully.
  * @retval FSP_ERR_USB_PARAMETER Parameter error.
@@ -383,6 +383,10 @@ fsp_err_t R_USB_Open (usb_ctrl_t * const p_ctrl, usb_cfg_t const * const p_cfg)
                 hw_usb_pset_dprpu(p_instance_ctrl->module_number);
             }
         }
+        else
+        {
+            USB_PRINTF1("### usb_module_start FSP_ERR_USB_BUSY:%d\n", err);
+        }
 #endif                                 /* (USB_CFG_MODE & USB_CFG_PERI) == USB_CFG_REPI */
     }
 
@@ -399,12 +403,12 @@ fsp_err_t R_USB_Open (usb_ctrl_t * const p_ctrl, usb_cfg_t const * const p_cfg)
         else
         {
 #if defined(USB_CFG_PCDC_USE)
-            g_usb_open_class[p_instance_ctrl->module_number] |= (uint16_t) (1 << USB_CLASS_INTERNAL_PCDC);
-            g_usb_open_class[p_instance_ctrl->module_number] |= (uint16_t) (1 << USB_CLASS_INTERNAL_PCDCC);
+            g_usb_open_class[p_instance_ctrl->module_number] |= (1 << USB_CLASS_INTERNAL_PCDC);
+            g_usb_open_class[p_instance_ctrl->module_number] |= (1 << USB_CLASS_INTERNAL_PCDCC);
 #endif                                 /* defined(USB_CFG_PCDC_USE) */
 
 #if defined(USB_CFG_PHID_USE)
-            g_usb_open_class[p_instance_ctrl->module_number] |= (uint16_t) (1 << USB_CLASS_INTERNAL_PHID);
+            g_usb_open_class[p_instance_ctrl->module_number] |= (1 << USB_CLASS_INTERNAL_PHID);
 #endif                                 /* defined(USB_CFG_PHID_USE) */
 
 #if defined(USB_CFG_PMSC_USE)
@@ -412,7 +416,7 @@ fsp_err_t R_USB_Open (usb_ctrl_t * const p_ctrl, usb_cfg_t const * const p_cfg)
 #endif                                 /* defined(USB_CFG_PMSC_USE) */
 
 #if defined(USB_CFG_PVND_USE)
-            g_usb_open_class[p_instance_ctrl->module_number] |= (uint16_t) (1 << USB_CLASS_INTERNAL_PVND);
+            g_usb_open_class[p_instance_ctrl->module_number] |= (1 << USB_CLASS_INTERNAL_PVND);
 #endif                                 /* defined(USB_CFG_PVND_USE) */
         }
     }
@@ -503,6 +507,10 @@ fsp_err_t R_USB_Close (usb_ctrl_t * const p_ctrl)
  #ifdef VECTOR_NUMBER_USB_HI
     R_BSP_IrqDisable((IRQn_Type) VECTOR_NUMBER_USB_HI); /* USBI disable */
  #endif
+#else
+ #if defined(BSP_MCU_GROUP_RZT2H)
+    hw_usb_set_pll_rst();                               /* PLL_RST = 1 */
+ #endif
 #endif /* USB_IP_EHCI_OHCI == 1 */
     ret_code = usb_module_stop(p_instance_ctrl->module_number);
     if (FSP_SUCCESS == ret_code)
@@ -553,6 +561,8 @@ fsp_err_t R_USB_Close (usb_ctrl_t * const p_ctrl)
     }
     else
     {
+        USB_PRINTF0("### usb_module_stop FSP_ERR_USB_NOT_OPEN\n");
+
         ret_code = FSP_ERR_USB_NOT_OPEN;
     }
 
@@ -574,7 +584,7 @@ fsp_err_t R_USB_Close (usb_ctrl_t * const p_ctrl)
  *   (USB_STATUS_READ_COMPLETE) of the R_USB_GetEvent function. The received data size is set in member
  *   (size) of the usb_ctrl_t structure. To figure out the size of the data when a read is complete,
  *   check the return value (USB_STATUS_READ_COMPLETE) of the R_USB_GetEvent function, and then
- *   refer to the member (size) of the usb_crtl_t structure.
+ *   refer to the member (size) of the usb_ctrl_t structure.
  *
  * 2. Control data transfer
  *
@@ -583,8 +593,7 @@ fsp_err_t R_USB_Close (usb_ctrl_t * const p_ctrl)
  *
  * @retval FSP_SUCCESS           Successfully completed (Data read request completed).
  * @retval FSP_ERR_USB_FAILED    The function could not be completed successfully.
- * @retval FSP_ERR_USB_BUSY      Data receive request already in process for
- *                               USB device with same device address.
+ * @retval FSP_ERR_USB_BUSY      The request is already being processed.
  * @retval FSP_ERR_ASSERTION     Parameter is NULL error.
  * @retval FSP_ERR_USB_PARAMETER Parameter error.
  * @note The address specified in the argument p_buf must be 4-byte aligned.
@@ -668,8 +677,12 @@ fsp_err_t R_USB_Read (usb_ctrl_t * const p_ctrl, uint8_t * p_buf, uint32_t size,
         }
         else
         {
-            /* Noting */
+            result = FSP_ERR_USB_FAILED;
         }
+    }
+    else
+    {
+        result = FSP_ERR_USB_FAILED;
     }
 
     return result;
@@ -694,8 +707,7 @@ fsp_err_t R_USB_Read (usb_ctrl_t * const p_ctrl, uint8_t * p_buf, uint32_t size,
  *
  * @retval FSP_SUCCESS           Successfully completed. (Data write request completed)
  * @retval FSP_ERR_USB_FAILED    The function could not be completed successfully.
- * @retval FSP_ERR_USB_BUSY      Data write request already in process for
- *                               USB device with same device address.
+ * @retval FSP_ERR_USB_BUSY      The request is already being processed.
  * @retval FSP_ERR_ASSERTION     Parameter is NULL error.
  * @retval FSP_ERR_USB_PARAMETER Parameter error.
  * @note The address specified in the argument p_buf must be 4-byte aligned.
@@ -779,8 +791,12 @@ fsp_err_t R_USB_Write (usb_ctrl_t * const p_ctrl, uint8_t const * const p_buf, u
         }
         else
         {
-            /* Noting */
+            result = FSP_ERR_USB_FAILED;
         }
+    }
+    else
+    {
+        result = FSP_ERR_USB_FAILED;
     }
 
     return result;
@@ -796,7 +812,7 @@ fsp_err_t R_USB_Write (usb_ctrl_t * const p_ctrl, uint8_t const * const p_buf, u
  * @retval FSP_SUCCESS           Successfully completed. (stop completed)
  * @retval FSP_ERR_USB_FAILED    The function could not be completed successfully.
  * @retval FSP_ERR_ASSERTION     Parameter is NULL error.
- * @retval FSP_ERR_USB_BUSY      Stop processing is called multiple times.
+ * @retval FSP_ERR_USB_BUSY      The request is already being processed.
  * @retval FSP_ERR_USB_PARAMETER Parameter error.
  * @note Do not call this API in the following function.
  * @note (1). Interrupt function.
@@ -877,7 +893,7 @@ fsp_err_t R_USB_Stop (usb_ctrl_t * const p_ctrl, usb_transfer_t direction, uint8
     }
     else
     {
-        /* Nothing */
+        result = FSP_ERR_USB_FAILED;
     }
 
     return result;
@@ -885,15 +901,14 @@ fsp_err_t R_USB_Stop (usb_ctrl_t * const p_ctrl, usb_transfer_t direction, uint8
 
 /**************************************************************************//**
  * @brief Sends a SUSPEND signal from the USB module assigned to the member
- * (module) of the usb_crtl_t structure.
+ * (module) of the usb_ctrl_t structure.
  *
  * After the suspend request is completed, confirm the operation with the return value
  * (USB_STATUS_SUSPEND) of the R_USB_EventGet function.
  *
  * @retval FSP_SUCCESS           Successfully completed.
  * @retval FSP_ERR_USB_FAILED    The function could not be completed successfully.
- * @retval FSP_ERR_USB_BUSY      During a suspend request to the specified USB module,
- *                               or when the USB module is already in the suspended state.
+ * @retval FSP_ERR_USB_BUSY      The request is already being processed.
  * @retval FSP_ERR_ASSERTION     Parameter is NULL error.
  * @retval FSP_ERR_USB_PARAMETER Parameter error.
  * @note Do not call this API in the following function.
@@ -992,8 +1007,7 @@ fsp_err_t R_USB_Suspend (usb_ctrl_t * const p_ctrl)
  *
  * @retval FSP_SUCCESS              Successfully completed.
  * @retval FSP_ERR_USB_FAILED       The function could not be completed successfully.
- * @retval FSP_ERR_USB_BUSY         Resume already requested for same device address.
- *                                  (USB host mode only)
+ * @retval FSP_ERR_USB_BUSY         The request is already being processed.
  * @retval FSP_ERR_USB_NOT_SUSPEND  USB device is not in the SUSPEND state.
  * @retval FSP_ERR_ASSERTION        Parameter is NULL error.
  * @retval FSP_ERR_USB_PARAMETER    Parameter error.
@@ -1416,10 +1430,10 @@ fsp_err_t R_USB_InfoGet (usb_ctrl_t * const p_ctrl, usb_info_t * p_info, uint8_t
  * return value(USB_STATUS_READ_COMPLETE).
  * To figure out the size of the data when a read is complete, check the return
  * value (USB_STATUS_READ_COMPLETE) of the R_USB_GetEvent function, and then
- * refer to the member (size) of the usb_crtl_t structure.
+ * refer to the member (size) of the usb_ctrl_t structure.
  *
  * @retval FSP_SUCCESS              Successfully completed.
- * @retval FSP_ERR_USB_BUSY         Specified pipe now handling data receive/send request.
+ * @retval FSP_ERR_USB_BUSY         The request is already being processed.
  * @retval FSP_ERR_USB_FAILED       The function could not be completed successfully.
  * @retval FSP_ERR_ASSERTION        Parameter is NULL error.
  * @retval FSP_ERR_USB_PARAMETER    Parameter error.
@@ -1515,6 +1529,7 @@ fsp_err_t R_USB_PipeRead (usb_ctrl_t * const p_ctrl, uint8_t * p_buf, uint32_t s
             }
             else
             {
+                ret_code = FSP_ERR_USB_FAILED;
             }
   #endif                               /* (USB_CFG_MODE & USB_CFG_HOST) == USB_CFG_HOST */
  #endif                                /* #if defined(USB_CFG_HVND_USE) */
@@ -1546,6 +1561,7 @@ fsp_err_t R_USB_PipeRead (usb_ctrl_t * const p_ctrl, uint8_t * p_buf, uint32_t s
             }
             else
             {
+                ret_code = FSP_ERR_USB_FAILED;
             }
   #endif                               /* (USB_CFG_MODE & USB_CFG_PERI) == USB_CFG_PERI */
  #endif                                /* defined(USB_CFG_PVND_USE) */
@@ -1564,7 +1580,7 @@ fsp_err_t R_USB_PipeRead (usb_ctrl_t * const p_ctrl, uint8_t * p_buf, uint32_t s
  * To request the transmission of a NULL packet, assign USB_NULL (0) to the third argument (size).
  *
  * @retval FSP_SUCCESS              Successfully completed.
- * @retval FSP_ERR_USB_BUSY         Specified pipe now handling data receive/send request.
+ * @retval FSP_ERR_USB_BUSY         The request is already being processed.
  * @retval FSP_ERR_USB_FAILED       The function could not be completed successfully.
  * @retval FSP_ERR_ASSERTION        Parameter is NULL error.
  * @retval FSP_ERR_USB_PARAMETER    Parameter error.
@@ -1691,6 +1707,7 @@ fsp_err_t R_USB_PipeWrite (usb_ctrl_t * const p_ctrl, uint8_t * p_buf, uint32_t 
             }
             else
             {
+                ret_code = FSP_ERR_USB_FAILED;
             }
   #endif                               /* defined(USB_CFG_PVND_USE) */
  #endif                                /* (USB_CFG_MODE & USB_CFG_PERI) == USB_CFG_PERI */
@@ -1778,7 +1795,7 @@ fsp_err_t R_USB_PipeStop (usb_ctrl_t * const p_ctrl, uint8_t pipe_number)
 }
 
 /**************************************************************************//**
- * @brief Gets the selected pipe number (number of the pipe that has completed initalization) via bit map information.
+ * @brief Gets the selected pipe number (number of the pipe that has completed initialization) via bit map information.
  *
  * The bit map information is stored in the area specified in argument (p_pipe).
  * Based on the information (module member and address member) assigned to the usb_ctrl_t structure,
@@ -1905,7 +1922,7 @@ fsp_err_t R_USB_PipeInfoGet (usb_ctrl_t * const p_ctrl, usb_pipe_t * p_info, uin
     FSP_ERROR_RETURN(!((USB_IP0 != p_instance_ctrl->module_number) && (USB_IP1 != p_instance_ctrl->module_number)),
                      FSP_ERR_USB_PARAMETER)
 
-    FSP_ERROR_RETURN(!(USB_MAXPIPE_NUM < p_instance_ctrl->pipe), FSP_ERR_USB_PARAMETER)
+    FSP_ERROR_RETURN(!(USB_MAXPIPE_NUM < pipe_number), FSP_ERR_USB_PARAMETER)
 #endif                                 /* USB_CFG_PARAM_CHECKING_ENABLE */
 
     utr.ip = p_instance_ctrl->module_number;
@@ -2139,7 +2156,7 @@ fsp_err_t R_USB_PullUp (usb_ctrl_t * const p_ctrl, uint8_t state)
  * @retval FSP_ERR_USB_FAILED       The function could not be completed successfully.
  * @retval FSP_ERR_ASSERTION        Parameter is NULL error.
  * @retval FSP_ERR_USB_PARAMETER    Parameter error.
- * @retval FSP_ERR_USB_BUSY         Specified pipe now handling data receive/send request.
+ * @retval FSP_ERR_USB_BUSY         The request is already being processed.
  * @note The address specified in the argument p_buf must be 4-byte aligned.
  * @note Do not call this API in the following function.
  * @note (1). Interrupt function.
@@ -2216,7 +2233,7 @@ fsp_err_t R_USB_HostControlTransfer (usb_ctrl_t * const p_ctrl,
  * @retval FSP_SUCCESS              Successful completion.
  * @retval FSP_ERR_USB_FAILED       The function could not be completed successfully.
  * @retval FSP_ERR_ASSERTION        Parameter is NULL error.
- * @retval FSP_ERR_USB_BUSY         Specified pipe now handling data receive/send request.
+ * @retval FSP_ERR_USB_BUSY         The request is already being processed.
  * @retval FSP_ERR_USB_PARAMETER    Parameter error.
  * @note The address specified in the argument p_buf must be 4-byte aligned.
  * @note Do not call this API in the following function.
@@ -2273,7 +2290,7 @@ fsp_err_t R_USB_PeriControlDataGet (usb_ctrl_t * const p_ctrl, uint8_t * p_buf, 
  * @retval FSP_SUCCESS              Successful completion.
  * @retval FSP_ERR_USB_FAILED       The function could not be completed successfully.
  * @retval FSP_ERR_ASSERTION        Parameter is NULL error.
- * @retval FSP_ERR_USB_BUSY         Specified pipe now handling data receive/send request.
+ * @retval FSP_ERR_USB_BUSY         The request is already being processed.
  * @retval FSP_ERR_USB_PARAMETER    Parameter error.
  * @note The address specified in the argument p_buf must be 4-byte aligned.
  * @note Do not call this API in the following function.
@@ -2379,7 +2396,7 @@ fsp_err_t R_USB_PeriControlStatusSet (usb_ctrl_t * const p_ctrl, usb_setup_statu
  * @retval FSP_ERR_USB_FAILED       The function could not be completed successfully.
  * @retval FSP_ERR_ASSERTION        Parameter is NULL error.
  * @retval FSP_ERR_USB_NOT_SUSPEND  Device is not suspended.
- * @retval FSP_ERR_USB_BUSY         The device is in resume operation.
+ * @retval FSP_ERR_USB_BUSY         The request is already being processed.
  * @note Do not call this API in the following function.
  * @note (1). Interrupt function.
  * @note (2). Callback function ( for RTOS ).

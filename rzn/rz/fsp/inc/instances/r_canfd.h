@@ -280,19 +280,16 @@ typedef enum e_canfd_frame_option
 /** CAN Instance Control Block   */
 struct st_canfd_instance_ctrl
 {
-    R_CANFD_Type * p_reg;                       // Pointer to register base address
+    R_CANFD_Type * p_reg;                                        // Pointer to register base address
 
     /* Parameters to control CAN peripheral device */
-    can_cfg_t const    * p_cfg;                 // Pointer to the configuration structure
-    uint32_t             open;                  // Open status of channel.
-    can_operation_mode_t operation_mode;        // Can operation mode.
-    can_test_mode_t      test_mode;             // Can operation mode.
- #if BSP_TZ_SECURE_BUILD
-    bool callback_is_secure;                    // If the callback is in non-secure memory then a security state transistion is required to call p_callback (BLXNS)
- #endif
-    void (* p_callback)(can_callback_args_t *); // Pointer to callback
-    can_callback_args_t * p_callback_memory;    // Pointer to optional callback argument memory
-    void                * p_context;            // Pointer to context to be passed into callback function
+    can_cfg_t const     * p_cfg;                                 // Pointer to the configuration structure
+    uint32_t              open;                                  // Open status of channel.
+    can_operation_mode_t  operation_mode;                        // Can operation mode.
+    can_test_mode_t       test_mode;                             // Can operation mode.
+    void                  (* p_callback)(can_callback_args_t *); // Pointer to callback
+    can_callback_args_t * p_callback_memory;                     // Pointer to optional callback argument memory
+    void                * p_context;                             // Pointer to context to be passed into callback function
 };
 
 /** CAN Instance Control Block. Please refer to the struct st_canfd_instance_ctrl. */

@@ -348,31 +348,31 @@
 /* =========================================================================================================================== */
 
 /* ==========================================================  ID  =========================================================== */
-#define R_CANFD_CFDTM_ID_TMID_Pos        (0UL)          /*!< TMID (Bit 0)                                          */
-#define R_CANFD_CFDTM_ID_TMID_Msk        (0x1fffffffUL) /*!< TMID (Bitfield-Mask: 0x1fffffff)                      */
-#define R_CANFD_CFDCF_ID_THLEN_Pos       (29UL)         /*!< THLEN (Bit 29)                                        */
-#define R_CANFD_CFDCF_ID_THLEN_Msk       (0x20000000UL) /*!< THLEN (Bitfield-Mask: 0x01)                           */
-#define R_CANFD_CFDTM_ID_TMRTR_Pos       (30UL)         /*!< TMRTR (Bit 30)                                        */
-#define R_CANFD_CFDTM_ID_TMRTR_Msk       (0x40000000UL) /*!< TMRTR (Bitfield-Mask: 0x01)                           */
-#define R_CANFD_CFDTM_ID_TMIDE_Pos       (31UL)         /*!< TMIDE (Bit 31)                                        */
-#define R_CANFD_CFDTM_ID_TMIDE_Msk       (0x80000000UL) /*!< TMIDE (Bitfield-Mask: 0x01)                           */
+#define R_CANFD_CFDTM_GRP_BCP_ID_TMID_Pos        (0UL)          /*!< TMID (Bit 0)                                          */
+#define R_CANFD_CFDTM_GRP_BCP_ID_TMID_Msk        (0x1fffffffUL) /*!< TMID (Bitfield-Mask: 0x1fffffff)                      */
+#define R_CANFD_CFDCF_GRP_BCP_ID_THLEN_Pos       (29UL)         /*!< THLEN (Bit 29)                                        */
+#define R_CANFD_CFDCF_GRP_BCP_ID_THLEN_Msk       (0x20000000UL) /*!< THLEN (Bitfield-Mask: 0x01)                           */
+#define R_CANFD_CFDTM_GRP_BCP_ID_TMRTR_Pos       (30UL)         /*!< TMRTR (Bit 30)                                        */
+#define R_CANFD_CFDTM_GRP_BCP_ID_TMRTR_Msk       (0x40000000UL) /*!< TMRTR (Bitfield-Mask: 0x01)                           */
+#define R_CANFD_CFDTM_GRP_BCP_ID_TMIDE_Pos       (31UL)         /*!< TMIDE (Bit 31)                                        */
+#define R_CANFD_CFDTM_GRP_BCP_ID_TMIDE_Msk       (0x80000000UL) /*!< TMIDE (Bitfield-Mask: 0x01)                           */
 /* ==========================================================  PTR  ========================================================== */
-#define R_CANFD_CFDTM_PTR_TMDLC_Pos      (28UL)         /*!< TMDLC (Bit 28)                                        */
-#define R_CANFD_CFDTM_PTR_TMDLC_Msk      (0xf0000000UL) /*!< TMDLC (Bitfield-Mask: 0x0f)                           */
+#define R_CANFD_CFDTM_GRP_BCP_PTR_TMDLC_Pos      (28UL)         /*!< TMDLC (Bit 28)                                        */
+#define R_CANFD_CFDTM_GRP_BCP_PTR_TMDLC_Msk      (0xf0000000UL) /*!< TMDLC (Bitfield-Mask: 0x0f)                           */
 /* =========================================================  FDCTR  ========================================================= */
-#define R_CANFD_CFDTM_FDCTR_TMESI_Pos    (0UL)          /*!< TMESI (Bit 0)                                         */
-#define R_CANFD_CFDTM_FDCTR_TMESI_Msk    (0x1UL)        /*!< TMESI (Bitfield-Mask: 0x01)                           */
-#define R_CANFD_CFDTM_FDCTR_TMBRS_Pos    (1UL)          /*!< TMBRS (Bit 1)                                         */
-#define R_CANFD_CFDTM_FDCTR_TMBRS_Msk    (0x2UL)        /*!< TMBRS (Bitfield-Mask: 0x01)                           */
-#define R_CANFD_CFDTM_FDCTR_TMFDF_Pos    (2UL)          /*!< TMFDF (Bit 2)                                         */
-#define R_CANFD_CFDTM_FDCTR_TMFDF_Msk    (0x4UL)        /*!< TMFDF (Bitfield-Mask: 0x01)                           */
-#define R_CANFD_CFDTM_FDCTR_TMIFL_Pos    (8UL)          /*!< TMIFL (Bit 8)                                         */
-#define R_CANFD_CFDTM_FDCTR_TMIFL_Msk    (0x300UL)      /*!< TMIFL (Bitfield-Mask: 0x03)                           */
-#define R_CANFD_CFDTM_FDCTR_TMPTR_Pos    (16UL)         /*!< TMPTR (Bit 16)                                        */
-#define R_CANFD_CFDTM_FDCTR_TMPTR_Msk    (0xffff0000UL) /*!< TMPTR (Bitfield-Mask: 0xffff)                         */
+#define R_CANFD_CFDTM_GRP_BCP_FDCTR_TMESI_Pos    (0UL)          /*!< TMESI (Bit 0)                                         */
+#define R_CANFD_CFDTM_GRP_BCP_FDCTR_TMESI_Msk    (0x1UL)        /*!< TMESI (Bitfield-Mask: 0x01)                           */
+#define R_CANFD_CFDTM_GRP_BCP_FDCTR_TMBRS_Pos    (1UL)          /*!< TMBRS (Bit 1)                                         */
+#define R_CANFD_CFDTM_GRP_BCP_FDCTR_TMBRS_Msk    (0x2UL)        /*!< TMBRS (Bitfield-Mask: 0x01)                           */
+#define R_CANFD_CFDTM_GRP_BCP_FDCTR_TMFDF_Pos    (2UL)          /*!< TMFDF (Bit 2)                                         */
+#define R_CANFD_CFDTM_GRP_BCP_FDCTR_TMFDF_Msk    (0x4UL)        /*!< TMFDF (Bitfield-Mask: 0x01)                           */
+#define R_CANFD_CFDTM_GRP_BCP_FDCTR_TMIFL_Pos    (8UL)          /*!< TMIFL (Bit 8)                                         */
+#define R_CANFD_CFDTM_GRP_BCP_FDCTR_TMIFL_Msk    (0x300UL)      /*!< TMIFL (Bitfield-Mask: 0x03)                           */
+#define R_CANFD_CFDTM_GRP_BCP_FDCTR_TMPTR_Pos    (16UL)         /*!< TMPTR (Bit 16)                                        */
+#define R_CANFD_CFDTM_GRP_BCP_FDCTR_TMPTR_Msk    (0xffff0000UL) /*!< TMPTR (Bitfield-Mask: 0xffff)                         */
 /* ==========================================================  DF  =========================================================== */
-#define R_CANFD_CFDTM_DF_TMDB_Pos        (0UL)          /*!< TMDB (Bit 0)                                          */
-#define R_CANFD_CFDTM_DF_TMDB_Msk        (0xffUL)       /*!< TMDB (Bitfield-Mask: 0xff)                            */
+#define R_CANFD_CFDTM_GRP_BCP_DF_TMDB_Pos        (0UL)          /*!< TMDB (Bit 0)                                          */
+#define R_CANFD_CFDTM_GRP_BCP_DF_TMDB_Msk        (0xffUL)       /*!< TMDB (Bitfield-Mask: 0xff)                            */
 
 /* =========================================================================================================================== */
 /* ================                                          R_CANFD                                          ================ */

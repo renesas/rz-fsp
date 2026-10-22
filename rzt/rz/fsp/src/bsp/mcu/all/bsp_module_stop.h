@@ -39,7 +39,7 @@ namespace RZT
  #define R_BSP_MODULE_START(ip, channel)    {FSP_CRITICAL_SECTION_DEFINE;                                           \
                                              FSP_CRITICAL_SECTION_ENTER;                                            \
                                              BSP_MSTP_REG_ ## ip(channel) &= ~BSP_MSTP_BIT_ ## ip(channel);         \
-                                             BSP_MSTP_REG_ ## ip(channel);                                          \
+                                             (void) BSP_MSTP_REG_ ## ip(channel);                                   \
                                              uint8_t dummy_read_cnt = BSP_FEATURE_BSP_MODULE_STOP_DUMMY_READ_COUNT; \
                                              while (dummy_read_cnt)                                                 \
                                              {                                                                      \
@@ -57,7 +57,7 @@ namespace RZT
  #define R_BSP_MODULE_STOP(ip, channel)     {FSP_CRITICAL_SECTION_DEFINE;                                  \
                                              FSP_CRITICAL_SECTION_ENTER;                                   \
                                              BSP_MSTP_REG_ ## ip(channel) |= BSP_MSTP_BIT_ ## ip(channel); \
-                                             BSP_MSTP_REG_ ## ip(channel);                                 \
+                                             (void) BSP_MSTP_REG_ ## ip(channel);                          \
                                              FSP_CRITICAL_SECTION_EXIT;}
 
 /** @} (end addtogroup BSP_MCU) */
@@ -344,7 +344,7 @@ namespace RZT
  #define BSP_MSTP_BIT_FSP_IP_MTU3(channel)              (1U)
  #define BSP_MSTP_DMY_FSP_IP_MTU3(channel)              ((8U >= channel) ? R_MTU0->TCR : bsp_assert_channel(0))
 
- #if (18 == BSP_FEATURE_GPT_CHANNEL)
+ #if (18U == BSP_FEATURE_GPT_CHANNEL)
   #define BSP_MSTP_REG_FSP_IP_GPT(channel)              *((13U >= channel) ? &R_SYSC_NS->MSTPCRC : &R_SYSC_S->MSTPCRG)
   #define BSP_MSTP_BIT_FSP_IP_GPT(channel)              ((6U >= channel) ? (1U << (1U)) :   \
                                                          ((13U >= channel) ? (1U << (2U)) : \
@@ -384,7 +384,7 @@ namespace RZT
             bsp_assert_channel(0);         \
         }                                  \
     } while (0);
- #elif (31 == BSP_FEATURE_GPT_CHANNEL)
+ #elif (31U == BSP_FEATURE_GPT_CHANNEL)
   #define BSP_MSTP_REG_FSP_IP_GPT(channel)              *((26U >= channel) ? &R_SYSC_NS->MSTPCRC : &R_SYSC_S->MSTPCRG)
   #define BSP_MSTP_BIT_FSP_IP_GPT(channel)              ((4U >= channel) ? (1U << (1U)) :       \
                                                          ((9U >= channel) ? (1U << (2U)) :      \
@@ -440,7 +440,7 @@ namespace RZT
             bsp_assert_channel(0);         \
         }                                  \
     } while (0);
- #elif (56 == BSP_FEATURE_GPT_CHANNEL)
+ #elif (56U == BSP_FEATURE_GPT_CHANNEL)
   #define BSP_MSTP_REG_FSP_IP_GPT(channel)              *((51U >= channel) ? &R_SYSC_NS->MSTPCRC : &R_SYSC_S->MSTPCRG)
   #define BSP_MSTP_BIT_FSP_IP_GPT(channel)              ((4U >= channel) ? (1U << (1U)) :            \
                                                          ((9U >= channel) ? (1U << (2U)) :           \
@@ -528,23 +528,40 @@ namespace RZT
     } while (0);
  #endif
 
- #if (1 == BSP_FEATURE_TFU_UNIT)
+ #if (1U == BSP_FEATURE_TFU_UNIT)
   #define BSP_MSTP_REG_FSP_IP_TFU(channel)              R_SYSC_NS->MSTPCRC
   #define BSP_MSTP_BIT_FSP_IP_TFU(channel)              (1U << (5U))
   #define BSP_MSTP_DMY_FSP_IP_TFU(channel)              ((0U == channel) ? R_TFU->TRGSTS : bsp_assert_channel(0))
- #elif (2 == BSP_FEATURE_TFU_UNIT)
+ #elif (2U == BSP_FEATURE_TFU_UNIT)
   #define BSP_MSTP_REG_FSP_IP_TFU(channel)              R_SYSC_NS->MSTPCRC
   #define BSP_MSTP_BIT_FSP_IP_TFU(channel)              ((0U == channel) ? (1U << (5U)) :   \
                                                          ((1U >= channel) ? (1U << (24U)) : \
                                                           bsp_assert_channel(0)))
-  #if (0 == BSP_FEATURE_TFU_UNIT_NUMBER)
-   #define BSP_MSTP_DMY_FSP_IP_TFU(channel)             ((0U == channel) ? R_TFU0->TRGSTS : bsp_assert_channel(0))
-  #elif (1 == BSP_FEATURE_TFU_UNIT_NUMBER)
-   #define BSP_MSTP_DMY_FSP_IP_TFU(channel)             ((1U == channel) ? R_TFU1->TRGSTS : bsp_assert_channel(0))
-  #endif
+  #define BSP_MSTP_DMY_FSP_IP_TFU(channel) \
+    do                                     \
+    {                                      \
+        switch (channel)                   \
+        {                                  \
+            case 0:                        \
+            {                              \
+                R_TFU0->TRGSTS;            \
+                break;                     \
+            }                              \
+            case 1:                        \
+            {                              \
+                R_TFU1->TRGSTS;            \
+                break;                     \
+            }                              \
+            default:                       \
+            {                              \
+                bsp_assert_channel(0);     \
+                break;                     \
+            }                              \
+        }                                  \
+    } while (0);
  #endif
 
- #if (2 == BSP_FEATURE_ADC_UNIT)
+ #if (2U == BSP_FEATURE_ADC_UNIT)
   #define BSP_MSTP_REG_FSP_IP_ADC12(channel)            R_SYSC_NS->MSTPCRC
   #define BSP_MSTP_BIT_FSP_IP_ADC12(channel)            (1U << (6U + channel))
   #define BSP_MSTP_DMY_FSP_IP_ADC12(channel) \
@@ -569,7 +586,7 @@ namespace RZT
             }                                \
         }                                    \
     } while (0);
- #elif (3 == BSP_FEATURE_ADC_UNIT)
+ #elif (3U == BSP_FEATURE_ADC_UNIT)
   #define BSP_MSTP_REG_FSP_IP_ADC12(channel)            R_SYSC_NS->MSTPCRC
   #define BSP_MSTP_BIT_FSP_IP_ADC12(channel)            ((1U >= channel) ? (1U << (6U + channel)) : (1U << (25U)))
   #define BSP_MSTP_DMY_FSP_IP_ADC12(channel) \
@@ -601,7 +618,7 @@ namespace RZT
     } while (0);
  #endif
 
- #if (2 == BSP_FEATURE_DSMIF_UNIT)
+ #if (2U == BSP_FEATURE_DSMIF_UNIT)
   #define BSP_MSTP_REG_FSP_IP_DSMIF(channel)            R_SYSC_NS->MSTPCRD
   #define BSP_MSTP_BIT_FSP_IP_DSMIF(channel)            (1U << (0U + channel))
   #define BSP_MSTP_DMY_FSP_IP_DSMIF(channel) \
@@ -626,10 +643,10 @@ namespace RZT
             }                                \
         }                                    \
     } while (0);
- #elif (5 == BSP_FEATURE_DSMIF_UNIT)
+ #elif (5U == BSP_FEATURE_DSMIF_UNIT)
   #define BSP_MSTP_REG_FSP_IP_DSMIF(channel)            R_SYSC_NS->MSTPCRD
   #define BSP_MSTP_BIT_FSP_IP_DSMIF(channel)            ((1U >= channel) ? (1U << (0U + channel)) : \
-                                                         (1U << (14U + channel)));
+                                                         (1U << (14U + channel)))
   #define BSP_MSTP_DMY_FSP_IP_DSMIF(channel) \
     do                                       \
     {                                        \
@@ -667,7 +684,7 @@ namespace RZT
             }                                \
         }                                    \
     } while (0);
- #elif (10 == BSP_FEATURE_DSMIF_UNIT)
+ #elif (10U == BSP_FEATURE_DSMIF_UNIT)
   #define BSP_MSTP_REG_FSP_IP_DSMIF(channel)            R_SYSC_NS->MSTPCRD
   #define BSP_MSTP_BIT_FSP_IP_DSMIF(channel)            ((1U >= channel) ? (1U << (0U + channel)) : \
                                                          (1U << (14U + channel)))
@@ -792,7 +809,7 @@ namespace RZT
 
  #define BSP_MSTP_REG_FSP_IP_TSU(channel)               R_SYSC_NS->MSTPCRD
  #define BSP_MSTP_BIT_FSP_IP_TSU(channel)               (1U << (7U))
- #if (1 == BSP_FEATURE_TSU_VERSION)
+ #if (1U == BSP_FEATURE_TSU_VERSION)
   #define BSP_MSTP_DMY_FSP_IP_TSU(channel)              ((0U == channel) ? R_TSU->TSUSS : bsp_assert_channel(0))
  #else
   #define BSP_MSTP_DMY_FSP_IP_TSU(channel)              ((0U == channel) ? R_TSU_B0->SSR : bsp_assert_channel(0))
@@ -835,12 +852,12 @@ namespace RZT
  #define BSP_MSTP_BIT_FSP_IP_CKIO(channel)              (1U << (11U))
  #define BSP_MSTP_DMY_FSP_IP_CKIO(channel)              ((0U == channel) ? R_BSC->TOENR : bsp_assert_channel(0))
 
- #if (1 == BSP_FEATURE_GMAC_UNIT)
+ #if (1U == BSP_FEATURE_GMAC_UNIT)
   #define BSP_MSTP_REG_FSP_IP_GMAC(channel)             R_SYSC_NS->MSTPCRE
   #define BSP_MSTP_BIT_FSP_IP_GMAC(channel)             (1U)
   #define BSP_MSTP_DMY_FSP_IP_GMAC(channel)             ((0U == channel) ? R_GMAC->MAC_Configuration : \
                                                          bsp_assert_channel(0))
- #elif (3 == BSP_FEATURE_GMAC_UNIT)
+ #elif (3U == BSP_FEATURE_GMAC_UNIT)
   #define BSP_MSTP_REG_FSP_IP_GMAC(channel)             R_SYSC_NS->MSTPCRE
   #define BSP_MSTP_BIT_FSP_IP_GMAC(channel)             ((0U == channel) ? (1U) : (1U << (15U + channel)))
   #define BSP_MSTP_DMY_FSP_IP_GMAC(channel) \
@@ -872,9 +889,11 @@ namespace RZT
     } while (0);
  #endif
 
- #define BSP_MSTP_REG_FSP_IP_ETHSW(channel)             R_SYSC_NS->MSTPCRE
- #define BSP_MSTP_BIT_FSP_IP_ETHSW(channel)             (1U << (1U))
- #define BSP_MSTP_DMY_FSP_IP_ETHSW(channel)             ((0U == channel) ? R_ETHSW->REVISION : bsp_assert_channel(0))
+ #if BSP_FEATURE_ETHSW_SUPPORTED
+  #define BSP_MSTP_REG_FSP_IP_ETHSW(channel)            R_SYSC_NS->MSTPCRE
+  #define BSP_MSTP_BIT_FSP_IP_ETHSW(channel)            (1U << (1U))
+  #define BSP_MSTP_DMY_FSP_IP_ETHSW(channel)            ((0U == channel) ? R_ETHSW->REVISION : bsp_assert_channel(0))
+ #endif
 
  #define BSP_MSTP_REG_FSP_IP_ESC(channel)               R_SYSC_NS->MSTPCRE
  #define BSP_MSTP_BIT_FSP_IP_ESC(channel)               (1U << (2U))
@@ -920,7 +939,7 @@ namespace RZT
  #define BSP_MSTP_BIT_FSP_IP_RTC(channel)               (1U << (5U))
  #define BSP_MSTP_DMY_FSP_IP_RTC(channel) /* After module stop release, the waiting process is performed by the driver, \
                                            * so this macro does not define a register for dummy read. */
- #if (4 == BSP_FEATURE_CGC_CLMA_UNIT)
+ #if (4U == BSP_FEATURE_CGC_CLMA_UNIT)
   #define BSP_MSTP_REG_FSP_IP_CLMA(channel)             R_SYSC_S->MSTPCRG
   #define BSP_MSTP_BIT_FSP_IP_CLMA(channel)             ((2U >= channel) ? (1U << (9U + channel)) : \
                                                          (1U << (8U)))
@@ -956,7 +975,7 @@ namespace RZT
             }                               \
         }                                   \
     } while (0);
- #elif (7 == BSP_FEATURE_CGC_CLMA_UNIT)
+ #elif (7U == BSP_FEATURE_CGC_CLMA_UNIT)
   #define BSP_MSTP_REG_FSP_IP_CLMA(channel)             R_SYSC_S->MSTPCRG
   #define BSP_MSTP_BIT_FSP_IP_CLMA(channel)             ((5U >= channel) ? (1U << (9U + channel)) : \
                                                          (1U << (8U)))
@@ -1205,7 +1224,7 @@ namespace RZT
     } while (0);
  #endif
 
- #if (2 == BSP_FEATURE_BSP_HDSL_UNIT)
+ #if (2U == BSP_FEATURE_BSP_HDSL_UNIT)
   #define BSP_MSTP_REG_FSP_IP_HDSL(channel)             *((0U == channel) ? &R_SYSC_NS->MSTPCRJ : &R_SYSC_NS->MSTPCRK)
   #define BSP_MSTP_BIT_FSP_IP_HDSL(channel)             (1U << (1U))
   #define BSP_MSTP_DMY_FSP_IP_HDSL(channel) \
@@ -1230,7 +1249,7 @@ namespace RZT
             }                               \
         }                                   \
     } while (0);
- #elif (8 == BSP_FEATURE_BSP_HDSL_UNIT)
+ #elif (8U == BSP_FEATURE_BSP_HDSL_UNIT)
   #define BSP_MSTP_REG_FSP_IP_HDSL(channel)             R_SYSC_NS->MSTPCRJ
   #define BSP_MSTP_BIT_FSP_IP_HDSL(channel)             (1U << ((channel * 4U) + 1U))
   #define BSP_MSTP_DMY_FSP_IP_HDSL(channel) \
@@ -1285,7 +1304,7 @@ namespace RZT
             }                               \
         }                                   \
     } while (0);
- #elif (16 == BSP_FEATURE_BSP_HDSL_UNIT)
+ #elif (16U == BSP_FEATURE_BSP_HDSL_UNIT)
   #define BSP_MSTP_REG_FSP_IP_HDSL(channel)             *((7U >= channel) ? &R_SYSC_NS->MSTPCRJ : &R_SYSC_NS->MSTPCRK)
   #define BSP_MSTP_BIT_FSP_IP_HDSL(channel)             ((7U >= channel) ? (1U << ((channel * 4U) + 1U)) : \
                                                          (1U << (((channel - 8U) * 4U) + 1U)))
@@ -1383,7 +1402,7 @@ namespace RZT
     } while (0);
  #endif
 
- #if (2 == BSP_FEATURE_BSP_BISS_UNIT)
+ #if (2U == BSP_FEATURE_BSP_BISS_UNIT)
   #define BSP_MSTP_REG_FSP_IP_BISS(channel)             *((0U == channel) ? &R_SYSC_NS->MSTPCRJ : &R_SYSC_NS->MSTPCRK)
   #define BSP_MSTP_BIT_FSP_IP_BISS(channel)             (1U << (2U))
   #define BSP_MSTP_DMY_FSP_IP_BISS(channel) \
@@ -1408,7 +1427,7 @@ namespace RZT
             }                               \
         }                                   \
     } while (0);
- #elif (8 == BSP_FEATURE_BSP_BISS_UNIT)
+ #elif (8U == BSP_FEATURE_BSP_BISS_UNIT)
   #define BSP_MSTP_REG_FSP_IP_BISS(channel)             R_SYSC_NS->MSTPCRJ
   #define BSP_MSTP_BIT_FSP_IP_BISS(channel)             (1U << ((channel * 4U) + 2U))
   #define BSP_MSTP_DMY_FSP_IP_BISS(channel) \
@@ -1463,7 +1482,7 @@ namespace RZT
             }                               \
         }                                   \
     } while (0);
- #elif (16 == BSP_FEATURE_BSP_BISS_UNIT)
+ #elif (16U == BSP_FEATURE_BSP_BISS_UNIT)
   #define BSP_MSTP_REG_FSP_IP_BISS(channel)             *((7U >= channel) ? &R_SYSC_NS->MSTPCRJ : &R_SYSC_NS->MSTPCRK)
   #define BSP_MSTP_BIT_FSP_IP_BISS(channel)             ((7U >= channel) ? (1U << ((channel * 4U) + 2U)) : \
                                                          (1U << (((channel - 8U) * 4U) + 2U)))
@@ -1561,7 +1580,7 @@ namespace RZT
     } while (0);
  #endif
 
- #if (2 == BSP_FEATURE_BSP_ENDAT_UNIT)
+ #if (2U == BSP_FEATURE_BSP_ENDAT_UNIT)
   #define BSP_MSTP_REG_FSP_IP_ENDAT(channel)            *((0U == channel) ? &R_SYSC_NS->MSTPCRJ : &R_SYSC_NS->MSTPCRK)
   #define BSP_MSTP_BIT_FSP_IP_ENDAT(channel)            (1U << (3U))
   #define BSP_MSTP_DMY_FSP_IP_ENDAT(channel) \
@@ -1586,10 +1605,9 @@ namespace RZT
             }                                \
         }                                    \
     } while (0);
- #elif (8 == BSP_FEATURE_BSP_ENDAT_UNIT)
+ #elif (8U == BSP_FEATURE_BSP_ENDAT_UNIT)
   #define BSP_MSTP_REG_FSP_IP_ENDAT(channel)            R_SYSC_NS->MSTPCRJ
-  #define BSP_MSTP_BIT_FSP_IP_ENDAT(channel)            ((8U >= channel) ? (1U << ((channel * 4U) + 3U)) : \
-                                                         (1U << (((channel - 8U) * 4U) + 3U)))
+  #define BSP_MSTP_BIT_FSP_IP_ENDAT(channel)            (1U << ((channel * 4U) + 3U))
   #define BSP_MSTP_DMY_FSP_IP_ENDAT(channel) \
     do                                       \
     {                                        \
@@ -1642,7 +1660,7 @@ namespace RZT
             }                                \
         }                                    \
     } while (0);
- #elif (16 == BSP_FEATURE_BSP_ENDAT_UNIT)
+ #elif (16U == BSP_FEATURE_BSP_ENDAT_UNIT)
   #define BSP_MSTP_REG_FSP_IP_ENDAT(channel)            *((7U >= channel) ? &R_SYSC_NS->MSTPCRJ : &R_SYSC_NS->MSTPCRK)
   #define BSP_MSTP_BIT_FSP_IP_ENDAT(channel)            ((7U >= channel) ? (1U << ((channel * 4U) + 3U)) : \
                                                          (1U << (((channel - 8U) * 4U) + 3U)))
@@ -1761,12 +1779,12 @@ namespace RZT
  #endif
 
  #if BSP_FEATURE_BSP_PCIE_SUPPORTED
-  #if (1 == BSP_FEATURE_BSP_PCIE_TYPE)
+  #if (1U == BSP_FEATURE_BSP_PCIE_TYPE)
    #define BSP_MSTP_REG_FSP_IP_PCIE(channel)            R_SYSC_NS->MSTPCRM
    #define BSP_MSTP_BIT_FSP_IP_PCIE(channel)            (1U << (8U))
    #define BSP_MSTP_DMY_FSP_IP_PCIE(channel)            ((0U == channel) ? R_PCIE_LNK->PCIE_LINKMODE : \
                                                          bsp_assert_channel(0))
-  #elif (2 == BSP_FEATURE_BSP_PCIE_TYPE)
+  #elif (2U == BSP_FEATURE_BSP_PCIE_TYPE)
    #define BSP_MSTP_REG_FSP_IP_PCIE(channel)            R_SYSC_NS->MSTPCRM
    #define BSP_MSTP_BIT_FSP_IP_PCIE(channel)            (1U << (8U))
    #define BSP_MSTP_DMY_FSP_IP_PCIE(channel)            ((0U == channel) ? R_PCIE_SPL0->PCIE_MODE : \
@@ -1837,16 +1855,16 @@ namespace RZT
  #if BSP_FEATURE_BSP_MSTP_CA55_HAS_MSTPCRN
   #define BSP_MSTP_REG_FSP_IP_CA55(channel)             R_SYSC_S->MSTPCRN
   #define BSP_MSTP_BIT_FSP_IP_CA55(channel)             (1U << (channel + 2U))
-  #if (2 == BSP_FEATURE_BSP_CA55_CORE_NUM)
+  #if (2U == BSP_FEATURE_BSP_CA55_CORE_NUM)
    #define BSP_MSTP_DMY_FSP_IP_CA55(channel)            ((1U >= channel) ? R_CA55->RVBA[channel].L : \
                                                          bsp_assert_channel(0))
-  #elif (4 == BSP_FEATURE_BSP_CA55_CORE_NUM)
+  #elif (4U == BSP_FEATURE_BSP_CA55_CORE_NUM)
    #define BSP_MSTP_DMY_FSP_IP_CA55(channel)            ((3U >= channel) ? R_CA55->RVBA[channel].L : \
                                                          bsp_assert_channel(0))
   #endif
  #endif
 
- #if (4 == BSP_FEATURE_BSP_BISSL_UNIT)
+ #if (4U == BSP_FEATURE_BSP_BISSL_UNIT)
   #define BSP_MSTP_REG_FSP_IP_BISSL(channel)            R_SYSC_NS->MSTPCRO
   #define BSP_MSTP_BIT_FSP_IP_BISSL(channel)            (1U << (channel * 4U))
   #define BSP_MSTP_DMY_FSP_IP_BISSL(channel) \
@@ -1883,7 +1901,7 @@ namespace RZT
     } while (0);
  #endif
 
- #if (4 == BSP_FEATURE_BSP_ENDAT3_UNIT)
+ #if (4U == BSP_FEATURE_BSP_ENDAT3_UNIT)
   #define BSP_MSTP_REG_FSP_IP_ENDAT3_RXTX(channel)      R_SYSC_NS->MSTPCRO
   #define BSP_MSTP_BIT_FSP_IP_ENDAT3_RXTX(channel)      (1U << ((channel * 4U) + 1U))
   #define BSP_MSTP_DMY_FSP_IP_ENDAT3_RXTX(channel) \

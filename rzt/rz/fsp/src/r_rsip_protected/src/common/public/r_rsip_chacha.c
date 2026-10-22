@@ -13,7 +13,8 @@
  * Macro definitions
  **********************************************************************************************************************/
 
-#define RSIP_PRV_CHACHA_INIT_LEN    (0xFFFFFFFFU)
+#define RSIP_PRV_CHACHA_INIT_LEN                    (0xFFFFFFFFU)
+#define RSIP_PRV_CHACHA_POLY_INTERNAL_STATE_SIZE    (19U)
 
 /***********************************************************************************************************************
  * Typedef definitions
@@ -53,10 +54,10 @@ static fsp_err_t chacha_poly_verify(rsip_ctrl_t * const   p_ctrl,
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZT
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -730,9 +731,9 @@ fsp_err_t R_RSIP_ChaCha20_Poly1305_Verify (rsip_ctrl_t * const   p_ctrl,
  * @} (end addtogroup RSIP)
  **********************************************************************************************************************/
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************
@@ -921,7 +922,7 @@ static fsp_err_t chacha_poly_update (rsip_ctrl_t         * p_ctrl,
     rsip_chacha20_poly1305_handle_t      * p_handle        = &p_instance_ctrl->handle.chacha20_poly1305;
     rsip_func_subset_chacha20_poly1305_t * p_func          = (rsip_func_subset_chacha20_poly1305_t *) p_handle->p_func;
 
-    uint32_t length_rest = 0;
+    uint32_t processed_len = 0;
     *p_output_length = 0;
 
     /* If plaintext/ciphertext is input for the first time, input remaining AAD and prohibit new AAD input */
@@ -932,7 +933,7 @@ static fsp_err_t chacha_poly_update (rsip_ctrl_t         * p_ctrl,
         case RSIP_STATE_CHACHA_POLY_DEC_UPDATE_AAD:
         {
             /* The suspend function always returns RSIP_RET_PASS, so the return value is not checked */
-            uint32_t internal_state[16];
+            uint32_t internal_state[RSIP_PRV_CHACHA_POLY_INTERNAL_STATE_SIZE];
             p_func->p_suspend(internal_state);
 
             /* Select resume function */
@@ -980,54 +981,43 @@ static fsp_err_t chacha_poly_update (rsip_ctrl_t         * p_ctrl,
     }
 
     /* Input plaintext/ciphertext */
-    if (RSIP_RET_PASS_1 == rsip_ret)
+    if ((RSIP_RET_PASS_1 == rsip_ret) && (0 != input_length))
     {
-        if (0 != input_length)
+        const uint8_t * p_msg_pos = p_input;
+        p_handle->total_length += input_length;
+
+        /* (1) Remaining message in buffer and head of new input message */
+        if ((0 != p_handle->buffered_length) &&
+            (RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK < (p_handle->buffered_length + input_length)))
         {
-            p_handle->total_length += input_length;
-            if ((p_handle->buffered_length + input_length) >= RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK)
-            {
-                /* Input remaining data in buffer */
-                memcpy((&p_handle->buffer[0] + p_handle->buffered_length),
-                       p_input,
-                       RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK - p_handle->buffered_length);
+            uint32_t len = RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK - p_handle->buffered_length;
 
-                /* Call function (cast to match the argument type with the primitive function) */
-                p_func->p_update((uint32_t *) (p_handle->buffer), (uint32_t *) (p_output),
-                                 r_rsip_byte_to_word_convert(RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK));
-                length_rest = input_length -
-                              (RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK - p_handle->buffered_length);
-                *p_output_length += RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK;
-                memset(p_handle->buffer, 0, sizeof(p_handle->buffer));
+            /* Copy head of new message to buffer */
+            memcpy(p_handle->buffer + p_handle->buffered_length, p_msg_pos, len);
 
-                /* Input block data */
-                if (length_rest >= RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK)
-                {
-                    uint32_t block_data_length = (length_rest / RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK) *
-                                                 RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK;
+            /* Call function (cast to match the argument type with the primitive function) */
+            p_func->p_update((uint32_t *) (p_handle->buffer), (uint32_t *) (p_output),
+                             r_rsip_byte_to_word_convert(RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK));
 
-                    /* Call function (cast to match the argument type with the primitive function) */
-                    p_func->p_update((const uint32_t *) (p_input +
-                                                         (RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK -
-                                                          p_handle->buffered_length)),
-                                     (uint32_t *) (p_output + RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK),
-                                     r_rsip_byte_to_word_convert(block_data_length));
-                    length_rest      -= block_data_length;
-                    *p_output_length += block_data_length;
-                }
+            memset(p_handle->buffer, 0, sizeof(p_handle->buffer));
+            p_handle->buffered_length = 0;
+            processed_len            += len;
+            *p_output_length         += RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK;
+        }
 
-                p_handle->buffered_length = 0;
+        /* (2) New input message except last block */
+        if (RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK < input_length)
+        {
+            uint32_t len = ((input_length - processed_len - 1) / RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK) *
+                           RSIP_PRV_BYTE_SIZE_CHACHA20_BLOCK;
 
-                /* Store remaining data to buffer */
-                memcpy(p_handle->buffer, p_input + (input_length - length_rest), length_rest);
-                p_handle->buffered_length = length_rest;
-            }
-            else
-            {
-                /* Store remaining data to buffer */
-                memcpy(&p_handle->buffer[0] + p_handle->buffered_length, p_input, input_length);
-                p_handle->buffered_length += input_length;
-            }
+            /* Call function */
+            p_func->p_update((uint32_t *) (p_input + processed_len),
+                             (uint32_t *) (p_output + *p_output_length),
+                             r_rsip_byte_to_word_convert(len));
+
+            processed_len    += len;
+            *p_output_length += len;
         }
     }
 
@@ -1037,6 +1027,9 @@ static fsp_err_t chacha_poly_update (rsip_ctrl_t         * p_ctrl,
     {
         case RSIP_RET_PASS_1:
         {
+            /* (3) Last block */
+            memcpy(p_handle->buffer + p_handle->buffered_length, p_input + processed_len, input_length - processed_len);
+            p_handle->buffered_length += input_length - processed_len;
             err = FSP_SUCCESS;
             break;
         }
@@ -1086,7 +1079,7 @@ static fsp_err_t chacha_poly_finish (rsip_ctrl_t * const p_ctrl,
     FSP_ERROR_RETURN(p_handle->total_length >= 1, FSP_ERR_INVALID_SIZE);
 
     /* The suspend function always returns RSIP_RET_PASS, so the return value is not checked */
-    uint32_t internal_state[16];
+    uint32_t internal_state[RSIP_PRV_CHACHA_POLY_INTERNAL_STATE_SIZE];
     p_func->p_suspend(internal_state);
 
     /* Reflect remaining Text length and total Text length in the internal state */
@@ -1157,7 +1150,7 @@ static fsp_err_t chacha_poly_verify (rsip_ctrl_t * const   p_ctrl,
     FSP_ERROR_RETURN((p_handle->total_length >= 1) && (tag_length == 16), FSP_ERR_INVALID_SIZE);
 
     /* The suspend function always returns RSIP_RET_PASS, so the return value is not checked */
-    uint32_t internal_state[16];
+    uint32_t internal_state[RSIP_PRV_CHACHA_POLY_INTERNAL_STATE_SIZE];
     p_func->p_suspend(internal_state);
 
     /* Reflect remaining Text length and total Text length in the internal state */

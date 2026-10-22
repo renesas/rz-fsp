@@ -229,7 +229,6 @@ void bsp_common_interrupt_handler (uint32_t id)
 
     /* Remain the interrupt number */
     g_current_interrupt_num[g_current_interrupt_pointer++] = irq;
-    __asm volatile ("dmb");
 
     BSP_CFG_TFU_SAVE_ENABLE;
     BSP_CFG_MULTIPLEX_INTERRUPT_ENABLE;

@@ -64,12 +64,11 @@ const mhu_ns_swint_set_api_t g_mhu_ns_swint_set_on_mhu_b_ns_swint_set =
     .close        = R_MHU_B_NS_SWINT_SET_Close,
 };
 
-
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZG
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -147,7 +146,7 @@ fsp_err_t R_MHU_B_NS_SWINT_SET_InterruptSet (mhu_ns_swint_set_ctrl_t * const p_c
  *********************************************************************************************************************/
 
 /*******************************************************************************************************************//**
- * Disables interrupts, clears internal driver data.
+ * Clears internal driver data.
  * @ref mhu_ns_swint_set_api_t::close.
  *
  *
@@ -175,9 +174,9 @@ fsp_err_t R_MHU_B_NS_SWINT_SET_Close (mhu_ns_swint_set_ctrl_t * const p_ctrl)
 /** @} (end addtogroup MHU_B_NS_SWINT_SET) */
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /***********************************************************************************************************************

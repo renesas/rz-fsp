@@ -12,6 +12,7 @@
     .cfi_sections .debug_frame
 
     .extern  __stack_end     // Linker symbol from scatter file
+    .extern  __isr_stack_end // Linker symbol from scatter file (dedicated FIQ/IRQ stack, SP_EL3)
 
     .weak    DTBL_F
     .weak    BTBL_F
@@ -67,8 +68,22 @@ reset_handler:
     MSR  SCTLR_EL1, x0
 
 //==================================================================
-// Setting up Stack Area (EL3)
+// Setting up dedicated FIQ/IRQ stack (SP_EL3) in on-chip SRAM.
+// SPSel is 1 out of reset, so this initializes SP_EL3 -- the stack
+// register that matches the current EL and that the AArch64
+// exception model always switches to on FIQ/IRQ entry, regardless
+// of what SP mainline code is using at the time.
 //==================================================================
+    LDR  x1, =__isr_stack_end
+    MOV  sp, x1
+
+//==================================================================
+// Setting up Stack Area (EL0) for mainline execution.
+// Switch to SPSel=0 and stay there: mainline runs on its own
+// SP_EL0 stack, isolated from the dedicated SP_EL3 stack used by
+// the FIQ/IRQ handlers above.
+//==================================================================
+    MSR  SPSEL, #0
     LDR  x1, =__stack_end
     MOV  sp, x1
 

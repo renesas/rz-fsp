@@ -202,6 +202,7 @@ fsp_err_t R_NANDC_Open (nand_flash_ctrl_t * const p_ctrl, nand_flash_cfg_t const
 
 #if NANDC_CFG_PARAM_CHECKING_ENABLE
     FSP_ASSERT(NULL != p_cfg_extend);
+    FSP_ASSERT(NULL != p_cfg_extend->p_reg);
     FSP_ERROR_RETURN(NANDC_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
 #endif
 

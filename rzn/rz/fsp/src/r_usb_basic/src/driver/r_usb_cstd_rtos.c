@@ -56,9 +56,7 @@ static rtos_task_id_t g_pcd_tsk_hdl;
  #endif                                /* ((USB_CFG_MODE & USB_CFG_PERI) == USB_CFG_PERI) */
 
  #if defined(USB_CFG_PMSC_USE)
-  #if (USB_UT_MODE == 0)
 static rtos_task_id_t g_pmsc_tsk_hdl;
-  #endif                               /* (USB_UT_MODE == 0) */
  #endif                                /* defined(USB_CFG_PMSC_USE) */
 
  #if defined(USB_CFG_HMSC_USE)
@@ -464,20 +462,23 @@ usb_rtos_err_t usb_rtos_configuration (void)
         for (i = 0; i < QUEUE_SIZE; i++)
         {
             tmptr = pvPortMalloc(sizeof(usb_utr_t));
-            if (NULL == tmptr)
+            if (NULL != tmptr)
+            {
+                if (UsbRtos_Success == err)
+                {
+                    g_p_hcdc_mpl[i] = tmptr;
+                    xQueueSend(g_hcdc_mpl_hdl, &tmptr, 0);
+                }
+                else
+                {
+                    /* None */
+                }
+            }
+            else
             {
                 err = UsbRtos_Err_Init_Mpl;
 
                 return err;
-            }
-            else if (UsbRtos_Success == err)
-            {
-                g_p_hcdc_mpl[i] = tmptr;
-                xQueueSend(g_hcdc_mpl_hdl, &tmptr, 0);
-            }
-            else
-            {
-                /* None */
             }
         }
     }
@@ -504,16 +505,16 @@ usb_rtos_err_t usb_rtos_configuration (void)
         for (i = 0; i < QUEUE_SIZE; i++)
         {
             tmptr = pvPortMalloc(sizeof(usb_utr_t));
-            if (NULL == tmptr)
+            if (NULL != tmptr)
+            {
+                g_p_hhid_mpl[i] = tmptr;
+                xQueueSend(g_hhid_mpl_hdl, &tmptr, 0);
+            }
+            else
             {
                 err = UsbRtos_Err_Init_Mpl;
 
                 return err;
-            }
-            else
-            {
-                g_p_hhid_mpl[i] = tmptr;
-                xQueueSend(g_hhid_mpl_hdl, &tmptr, 0);
             }
         }
     }
@@ -1316,7 +1317,7 @@ void usb_cstd_pipe0_msg_re_forward (uint16_t ip_no)
 
 /******************************************************************************
  * Function Name   : usb_cstd_pipe_msg_forward
- * Description     : Message foward to PIPE Transfer wait que.
+ * Description     : Message forward to PIPE Transfer wait que.
  * Arguments       : usb_utr_t *ptr       : Pointer to usb_utr_t structure.
  *               : uint16_t  pipe_no    : Pipe no.
  * Return          : none
@@ -1338,7 +1339,7 @@ void usb_cstd_pipe_msg_forward (usb_utr_t * ptr, uint16_t pipe_no)
 
 /******************************************************************************
  * Function Name   : usb_cstd_pipe0_msg_forward
- * Description     : Message foward to PIPE0 Transfer wait que.
+ * Description     : Message forward to PIPE0 Transfer wait que.
  * Arguments       : usb_utr_t *ptr       : Pointer to usb_utr_t structure.
  *               : uint16_t  dev_addr   : device address
  * Return          : none

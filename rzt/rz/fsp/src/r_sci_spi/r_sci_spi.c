@@ -19,22 +19,25 @@
  * Macro definitions
  **********************************************************************************************************************/
 
-#define SCI_SPI_PRV_CLK_MAX_N              (0xFFU)
-#define SCI_SPI_PRV_CLK_MAX_n              (3U)
-#define SCI_SPI_PRV_CLK_MIN_DIV            (4U)
-#define SCI_SPI_PRV_CLK_MAX_DIV            ((SCI_SPI_PRV_CLK_MAX_N + 1) * 8 * \
-                                            (1 << (2 * SCI_SPI_PRV_CLK_MAX_n - 1)))
-#define SCI_SPI_PRV_CHR_RST_VALUE          (0x0200U)
-#define SCI_SPI_PRV_DATA_REG_MASK          (0xFFFFFF00)
-#define SCI_SPI_PRV_RDAT_MASK              (0xFFU)
+#define SCI_SPI_PRV_CLK_MAX_N               (0xFFU)
+#define SCI_SPI_PRV_CLK_MAX_n               (3U)
+#define SCI_SPI_PRV_CLK_MAX_DIV             ((SCI_SPI_PRV_CLK_MAX_N + 1) * 8 * \
+                                             (1 << (2 * SCI_SPI_PRV_CLK_MAX_n - 1)))
+#define SCI_SPI_PRV_CHR_RST_VALUE           (0x0200U)
+#define SCI_SPI_PRV_DATA_REG_MASK           (0xFFFFFF00)
+#define SCI_SPI_PRV_RDAT_MASK               (0xFFU)
+#define SCI_SPI_PRV_FCR_TRIGGER_MASK        (R_SCI0_FCR_RSTRG_Msk)
+#define SCI_SPI_PRV_FCR_RESET_FIFOS_MASK    (R_SCI0_FCR_TFRST_Msk | R_SCI0_FCR_RFRST_Msk)
+#define SCI_SPI_PRV_FCR_RST_VALUE           (R_SCI0_FCR_RSTRG_Msk | R_SCI0_FCR_RTRG_Msk)
 
 /** Worst-case register access interval. */
-#define SCI_SPI_PRV_MAX_ACCESS_INTERVAL    (BSP_FEATURE_SCI_SPI_MAX_CPUCLK_MHZ * 3U /  \
-                                            BSP_FEATURE_SCI_SPI_MIN_SCINASYNCCLK_MHZ + \
-                                            BSP_FEATURE_SCI_SPI_MAX_CPUCLK_MHZ * 3U / BSP_FEATURE_SCI_SPI_MIN_PCLKM_MHZ)
+#define SCI_SPI_PRV_MAX_ACCESS_INTERVAL     (BSP_FEATURE_SCI_SPI_MAX_CPUCLK_MHZ * 3U /  \
+                                             BSP_FEATURE_SCI_SPI_MIN_SCINASYNCCLK_MHZ + \
+                                             BSP_FEATURE_SCI_SPI_MAX_CPUCLK_MHZ * 3U /  \
+                                             BSP_FEATURE_SCI_SPI_MIN_PCLKM_MHZ)
 
 /** "SCIS" in ASCII, used to determine if channel is open. */
-#define SCI_SPI_OPEN                       (0x53434953ULL)
+#define SCI_SPI_OPEN                        (0x53434953ULL)
 
 /***********************************************************************************************************************
  * Private global variables.
@@ -117,6 +120,7 @@ namespace RZT
  * @retval     FSP_ERR_ALREADY_OPEN            The instance has already been opened.
  * @retval     FSP_ERR_IP_CHANNEL_NOT_PRESENT  The channel number is invalid.
  * @retval     FSP_ERR_INVALID_ARGUMENT        Invalid input parameter.
+ * @retval     FSP_ERR_UNSUPPORTED             Fifo mode is requested but a transfer interface is not used
  **********************************************************************************************************************/
 fsp_err_t R_SCI_SPI_Open (spi_ctrl_t * p_ctrl, spi_cfg_t const * const p_cfg)
 {
@@ -130,6 +134,16 @@ fsp_err_t R_SCI_SPI_Open (spi_ctrl_t * p_ctrl, spi_cfg_t const * const p_cfg)
     FSP_ASSERT(NULL != p_cfg->p_extend);
     FSP_ASSERT(NULL != p_cfg->p_callback);
     FSP_ERROR_RETURN(BSP_FEATURE_SCI_CHANNELS & (1U << p_cfg->channel), FSP_ERR_IP_CHANNEL_NOT_PRESENT);
+    sci_spi_extended_cfg_t * p_extend = (sci_spi_extended_cfg_t *) p_cfg->p_extend;
+
+ #if SCI_SPI_CFG_FIFO_SUPPORT
+
+    /* FIFO mode is only supported when using a transfer interface for both transmission and reception */
+    FSP_ERROR_RETURN(((SCI_SPI_TX_FIFO_TRIGGER_DISABLED == p_extend->tx_fifo_trigger) ||
+                      (p_cfg->p_transfer_tx && p_cfg->p_transfer_rx)),
+                     FSP_ERR_UNSUPPORTED);
+ #endif
+
     FSP_ASSERT(p_cfg->rxi_irq >= 0);
     FSP_ASSERT(p_cfg->txi_irq >= 0);
     FSP_ASSERT(p_cfg->tei_irq >= 0);
@@ -142,9 +156,9 @@ fsp_err_t R_SCI_SPI_Open (spi_ctrl_t * p_ctrl, spi_cfg_t const * const p_cfg)
         FSP_ERROR_RETURN(BSP_FEATURE_SCI_SAFETY_CHANNEL != p_cfg->channel, FSP_ERR_INVALID_ARGUMENT);
     }
  #endif
-#endif
-
+#else
     sci_spi_extended_cfg_t * p_extend = (sci_spi_extended_cfg_t *) p_cfg->p_extend;
+#endif
 
 #if SCI_SPI_CFG_PARAM_CHECKING_ENABLE
     FSP_ASSERT(NULL != p_extend->p_reg);
@@ -183,6 +197,7 @@ fsp_err_t R_SCI_SPI_Open (spi_ctrl_t * p_ctrl, spi_cfg_t const * const p_cfg)
     R_BSP_IrqCfgEnable(p_cfg->rxi_irq, p_cfg->rxi_ipl, p_instance_ctrl);
     R_BSP_IrqCfgEnable(p_cfg->txi_irq, p_cfg->txi_ipl, p_instance_ctrl);
 #endif
+
     R_BSP_IrqCfgEnable(p_cfg->tei_irq, p_cfg->tei_ipl, p_instance_ctrl);
     R_BSP_IrqCfgEnable(p_cfg->eri_irq, p_cfg->eri_ipl, p_instance_ctrl);
 
@@ -397,7 +412,20 @@ fsp_err_t R_SCI_SPI_Close (spi_ctrl_t * const p_ctrl)
     FSP_ERROR_RETURN(SCI_SPI_OPEN == p_instance_ctrl->open, FSP_ERR_NOT_OPEN);
 #endif
 
-    /* Clear the RE and TE bits in CCR0. */
+#if SCI_SPI_CFG_FIFO_SUPPORT
+
+    /* Set all bits in CCR0 to 0, except TE */
+    p_instance_ctrl->p_reg->CCR0 &= R_SCI0_CCR0_TE_Msk;
+
+    /* Reset the transmit fifo */
+    p_instance_ctrl->p_reg->FCR_b.TFRST = 1U;
+
+    /* Clear the CCR3_b.FM bit. This is necessary to set the TEND bit before setting the TE bit. If TEND is 0
+     * when TE is set to 0, the SCI peripheral works abnormally next time the TE made to 1.*/
+    p_instance_ctrl->p_reg->CCR3 = 0U;
+#endif
+
+    /* Disable transmission */
     p_instance_ctrl->p_reg->CCR0 = 0;
     FSP_HARDWARE_REGISTER_WAIT((p_instance_ctrl->p_reg->CCR0 & (R_SCI0_CCR0_RE_Msk | R_SCI0_CCR0_TE_Msk)), 0);
 
@@ -416,6 +444,7 @@ fsp_err_t R_SCI_SPI_Close (spi_ctrl_t * const p_ctrl)
     R_BSP_IrqDisable(p_instance_ctrl->p_cfg->txi_irq);
     R_BSP_IrqDisable(p_instance_ctrl->p_cfg->rxi_irq);
 #endif
+
     R_BSP_IrqDisable(p_instance_ctrl->p_cfg->eri_irq);
     R_BSP_IrqDisable(p_instance_ctrl->p_cfg->tei_irq);
 
@@ -445,8 +474,10 @@ fsp_err_t R_SCI_SPI_Close (spi_ctrl_t * const p_ctrl)
  * @param[in]  bitrate            bitrate [bps]. For example, 250,000; 500,00; 2,500,000; etc.
  * @param      clock_source       clock source (PCLKM or SCInASYNCCLK) used for bit rate calculation.
  * @param      sclk_div           Pointer to sci_spi_div_setting_t used to configure baudrate settings.
- * @retval     FSP_SUCCESS        Baud rate is set successfully.
- * @retval     FSP_ERR_ASSERTION  Baud rate is not achievable.
+ *
+ * @retval     FSP_SUCCESS               Baud rate is set successfully.
+ * @retval     FSP_ERR_ASSERTION         Baud rate is not achievable.
+ * @retval     FSP_ERR_INVALID_ARGUMENT  Invalid input parameter.
  * @note       The application must pause for 1 bit time after the BRR register is loaded before transmitting/receiving
  *             to allow time for the clock to settle.
  **********************************************************************************************************************/
@@ -477,29 +508,31 @@ fsp_err_t R_SCI_SPI_CalculateBitrate (uint32_t                bitrate,
     FSP_ASSERT(bitrate >= (peripheral_clock + SCI_SPI_PRV_CLK_MAX_DIV - 1U) / SCI_SPI_PRV_CLK_MAX_DIV);
 #endif
 
-    int32_t divisor = 0;
-    int32_t brr     = 0;
-    int32_t cks     = -1;
+    uint32_t divisor = 0;
+    uint32_t brr     = 0;
 
-    for (uint32_t i = 0; i <= 3; i++)
+    for (uint8_t cks = 0; cks <= 3; cks++)
     {
-        cks++;
-        divisor = (1 << (2 * (i + 1))) * (int32_t) bitrate;
-
-        /* Calculate BRR so that the bit rate is the largest possible value less than or equal to the desired
-         * bitrate. */
-        brr = ((int32_t) peripheral_clock + divisor - 1) / divisor - 1;
-
-        if (brr <= UINT8_MAX)
+        for (int8_t bgdm = 1; bgdm >= 0; bgdm--)
         {
-            break;
+            divisor = (1 << (2 * (cks + 1) - bgdm)) * bitrate;
+
+            /* Calculate BRR so that the bit rate is the largest possible value less than or equal to the desired
+             * bitrate. */
+            brr = (peripheral_clock + divisor - 1) / divisor - 1;
+
+            if (brr <= UINT8_MAX)
+            {
+                sclk_div->brr  = (uint8_t) brr;
+                sclk_div->cks  = (uint8_t) (cks & 3);
+                sclk_div->bgdm = (uint8_t) (bgdm & 1);
+
+                return FSP_SUCCESS;
+            }
         }
     }
 
-    sclk_div->brr = (uint8_t) brr;
-    sclk_div->cks = (uint8_t) (cks & 3);
-
-    return FSP_SUCCESS;
+    return FSP_ERR_INVALID_ARGUMENT;
 }
 
 /*******************************************************************************************************************//**
@@ -530,9 +563,10 @@ static void r_sci_spi_hw_config (sci_spi_instance_ctrl_t * const p_instance_ctrl
     uint32_t ccr4  = 0U;
     uint32_t cfclr = 0U;
     uint32_t ffclr = 0U;
+    uint32_t fcr   = SCI_SPI_PRV_FCR_RST_VALUE;
 
-    /* SCI Initialization in Simple SPI Mode (See Section 'SCI Initialization in Simple-SPI Mode' and 'Initializing
-     * the SCI (Clock Synchronous Mode)' in RZ microprocessor manual). */
+    /* SCI Initialization in Simple SPI Mode (See "SCI Initialization in Simple-SPI Mode" in the SCI section
+     * of the relevant hardware manual). */
 
     /* Write settings to CCR3:
      * - Set Bypass Synchronizer circuit between bus clock and operation clock.
@@ -566,8 +600,8 @@ static void r_sci_spi_hw_config (sci_spi_instance_ctrl_t * const p_instance_ctrl
     /* In order to get sampling on the even clock edge set CCR3.CPHA = 1. */
     if (SPI_CLK_POLARITY_LOW == p_cfg->clk_polarity)
     {
-        /* Set CCR3.CPOL = 0 for clock polarity as low during idle (See Figure 'Relationship between clock and transmit
-         * data/receive data in simple-SPI mode' in RZ microprocessor manual). */
+        /* Set CCR3.CPOL = 0 for clock polarity as low during idle (See Figure "Relationship between clock and transmit
+         * data/receive data in simple-SPI mode" in the SCI section of the relevant hardware manual). */
         ccr3 &= (uint32_t) ~R_SCI0_CCR3_CPOL_Msk;
     }
 
@@ -580,13 +614,38 @@ static void r_sci_spi_hw_config (sci_spi_instance_ctrl_t * const p_instance_ctrl
     /* Set Simple SPI mode. */
     ccr3 |= 3U << R_SCI0_CCR3_MOD_Pos;
 
-    /* Write settings to CCR2:
-     * - Write the BRR setting.
-     * - Write the clock divider setting.
-     */
-    ccr2 |= (uint32_t) (p_extend->clk_div.cks << R_SCI0_CCR2_CKS_Pos);
+#if SCI_SPI_CFG_FIFO_SUPPORT
 
-    ccr2 |= (uint32_t) ((p_extend->clk_div.brr) << R_SCI0_CCR2_BRR_Pos);
+    /* Select FIFO mode enabled/disabled */
+    uint8_t fifo_mode = p_extend->tx_fifo_trigger > SCI_SPI_TX_FIFO_TRIGGER_DISABLED;
+    ccr3 |= (uint32_t) (fifo_mode << R_SCI0_CCR3_FM_Pos);
+#endif
+
+    if (SPI_MODE_MASTER == p_cfg->operating_mode)
+    {
+        /* Write settings to CCR2:
+         * - Write the BRR setting.
+         * - Write the clock divider setting.
+         * - Write the Baud Rate Generator Double-Speed Mode setting.
+         */
+        ccr2 |= (uint32_t) (p_extend->clk_div.cks << R_SCI0_CCR2_CKS_Pos);
+        ccr2 |= (uint32_t) ((p_extend->clk_div.brr) << R_SCI0_CCR2_BRR_Pos);
+        ccr2 |= (uint32_t) ((p_extend->clk_div.bgdm) << R_SCI0_CCR2_BGDM_Pos);
+
+        /* Write the receive sampling adjustment setting. This setting adjusts
+         * the master receive sampling timing to account for the propagation delay
+         * of SCK and MISO. Refer to the diagram "Reception sampling timing
+         * adjustment operation in clock synchronous mode (master)" in the
+         * SCI section of the relevant hardware manual.
+         *
+         * Note the enum value is 1 greater than the AST register value.
+         */
+        if (p_extend->rx_sampling_delay > SCI_SPI_RX_SAMPLING_DELAY_CYCLES_0)
+        {
+            ccr4 |= R_SCI0_CCR4_ASEN_Msk |
+                    ((p_extend->rx_sampling_delay - 1U) << R_SCI0_CCR4_AST_Pos);
+        }
+    }
 
     /* Enable Clock for the SCI Channel. */
     R_BSP_RegisterProtectDisable(BSP_REG_PROTECT_LPC_RESET);
@@ -603,20 +662,38 @@ static void r_sci_spi_hw_config (sci_spi_instance_ctrl_t * const p_instance_ctrl
             R_SCI0_CFCLR_ERSC_Msk;
     ffclr = R_SCI0_FFCLR_DRC_Msk;
 
-    /* Set FCR. Reset FIFO/data registers. */
-    p_instance_ctrl->p_reg->FCR = R_SCI0_FCR_TFRST_Msk | R_SCI0_FCR_RFRST_Msk;
+#if SCI_SPI_CFG_FIFO_SUPPORT
+    if (fifo_mode)
+    {
+        /* Keep receive trigger at default level of 0 (1 byte RX trigger level) so that the
+         * transfer IP pulls out data as soon as it is available. */
+        fcr = SCI_SPI_PRV_FCR_TRIGGER_MASK | (uint32_t) (p_extend->tx_fifo_trigger << R_SCI0_FCR_TTRG_Pos);
+    }
+#endif
 
-    /* Write all settings except MOD[2:0] to CCR3 (See Figure 'SCI initialization flowchart example (clock synchronous
-     * mode) in RZ microprocessor manual). */
+    /* Initialize FCR and Reset FIFO/data registers. */
+    p_instance_ctrl->p_reg->FCR = fcr | SCI_SPI_PRV_FCR_RESET_FIFOS_MASK;
+
+    /* Write all settings except MOD[2:0] to CCR3 (See Figure "SCI initialization flowchart example (clock synchronous
+     * mode)" in the SCI section of the relevant hardware manual). */
     p_instance_ctrl->p_reg->CCR3 = ccr3 & (uint32_t) ~(R_SCI0_CCR3_MOD_Msk);
 
     /* Wait the interval for writing access to the same register. It takes a long time to get the clock, so it always
-     * waits regardless of whether PCLKSCIn is slower than PCLKM. Reference section 'Notes Regarding Register Access
-     * When Operation Clock (PCLKSCIn) Is Slower Than Bus Clock (PCLKM)' in the RZ microprocessor manual. */
+     * waits regardless of whether PCLKSCIn is slower than PCLKM (See "Notes Regarding Register Access When Operation Clock (PCLKSCIn) Is Slower Than Bus
+     * Clock (PCLKM)" in the SCI section of the relevant hardware manual). */
     bsp_prv_software_delay_loop(BSP_DELAY_LOOPS_CALCULATE(SCI_SPI_PRV_MAX_ACCESS_INTERVAL));
 
     /* Write settings to registers. */
-    p_instance_ctrl->p_reg->CCR3  = ccr3;
+    p_instance_ctrl->p_reg->CCR3 = ccr3;
+
+#if SCI_SPI_CFG_FIFO_SUPPORT
+    if (fifo_mode)
+    {
+        /* In FIFO mode, the FIFOs need to be reset after CCF3.FM has been enabled */
+        p_instance_ctrl->p_reg->FCR = fcr | SCI_SPI_PRV_FCR_RESET_FIFOS_MASK;
+    }
+#endif
+
     p_instance_ctrl->p_reg->CCR2  = ccr2;
     p_instance_ctrl->p_reg->CCR1  = ccr1;
     p_instance_ctrl->p_reg->CCR4  = ccr4;
@@ -721,7 +798,7 @@ static fsp_err_t r_sci_spi_write_read_common (sci_spi_instance_ctrl_t * const p_
 #endif
 
     /* TE and RE must be zero in order to write one to TE or RE (TE and RE will only be set if there is a transfer in
-     * progress). Reference section 'CCR0 : Common Control Register 0' in the RZ microprocessor manual. */
+     * progress. See "CCR0 : Common Control Register 0" description in the SCI section of the relevant hardware manual.) */
     FSP_ERROR_RETURN(0 == (p_instance_ctrl->p_reg->CCR0 & (R_SCI0_CCR0_RE_Msk | R_SCI0_CCR0_TE_Msk)), FSP_ERR_IN_USE);
 
     /* Setup the control block. */
@@ -941,7 +1018,7 @@ static void sci_spi_txi_common (sci_spi_instance_ctrl_t * p_instance_ctrl)
  * The Transmit Buffer Empty IRQ is enabled in the following conditions:
  *   - The transfer is started using R_SCI_SPI_Write API (There is no data to receive).
  *   - The RXI IRQ is serviced using a DMAC instance.
- *   - The TXI IRQ is serviced using a DMAC instance (The interrupt will fire on the last byte transfered).
+ *   - The TXI IRQ is serviced using a DMAC instance (The interrupt will fire on the last byte transferred).
  *
  **********************************************************************************************************************/
 void sci_spi_txi_isr (void)
@@ -971,7 +1048,15 @@ void sci_spi_tx_dmac_callback (sci_spi_instance_ctrl_t * p_instance_ctrl)
 {
     SCI_SPI_CFG_MULTIPLEX_INTERRUPT_ENABLE;
 
-    sci_spi_txi_common(p_instance_ctrl);
+    if (NULL == p_instance_ctrl->p_dest)
+    {
+        /* If the last byte is transmitted and there is no data to receive then enable the transmit end IRQ and disable
+         * the transmit IRQ. */
+        uint32_t ccr0_temp = p_instance_ctrl->p_reg->CCR0;
+        ccr0_temp |= R_SCI0_CCR0_TEIE_Msk;
+        ccr0_temp &= (uint32_t) ~(R_SCI0_CCR0_TIE_Msk);
+        p_instance_ctrl->p_reg->CCR0 = ccr0_temp;
+    }
 
     SCI_SPI_CFG_MULTIPLEX_INTERRUPT_DISABLE;
 }
@@ -1036,16 +1121,17 @@ void sci_spi_rxi_isr (void)
 void sci_spi_rx_dmac_callback (sci_spi_instance_ctrl_t * p_instance_ctrl)
 {
     SCI_SPI_CFG_MULTIPLEX_INTERRUPT_ENABLE;
-
-    sci_spi_rxi_common(p_instance_ctrl);
-
+    uint32_t ccr0_temp = p_instance_ctrl->p_reg->CCR0;
+    ccr0_temp |= R_SCI0_CCR0_TEIE_Msk;
+    ccr0_temp &= (uint32_t) ~(R_SCI0_CCR0_TIE_Msk | R_SCI0_CCR0_RIE_Msk);
+    p_instance_ctrl->p_reg->CCR0 = ccr0_temp;
     SCI_SPI_CFG_MULTIPLEX_INTERRUPT_DISABLE;
 }
 
 /*******************************************************************************************************************//**
  * This function is the ISR handler for R_SCI_SPI Transmit End IRQ.
  *
- * The Transmit End IRQ is enabled after the last byte of data has been transfered.
+ * The Transmit End IRQ is enabled after the last byte of data has been transferred.
  *
  **********************************************************************************************************************/
 void sci_spi_tei_isr (void)

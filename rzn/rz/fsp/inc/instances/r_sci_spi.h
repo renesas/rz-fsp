@@ -39,7 +39,8 @@ namespace RZN
 struct st_sci_spi_div_setting
 {
     uint8_t brr;
-    uint8_t cks : 2;
+    uint8_t cks  : 2;
+    uint8_t bgdm : 1;
 };
 
 /** Settings for adjusting the SPI CLK. Please refer to the struct st_sci_spi_div_setting. */
@@ -57,6 +58,23 @@ typedef enum e_sci_spi_clock_source
     SCI_SPI_CLOCK_SOURCE_PCLKM        = 6,
 } sci_spi_clock_source_t;
 
+/** Adjustment value for receive sampling timing delay for RXDn */
+typedef enum e_sci_spi_rx_sampling_delay
+{
+    SCI_SPI_RX_SAMPLING_DELAY_CYCLES_0 = 0, ///< Use the default receive sampling timing
+    SCI_SPI_RX_SAMPLING_DELAY_CYCLES_1 = 1, ///< Delay the receive sampling timing by 1 PCLKSCIn cycle
+    SCI_SPI_RX_SAMPLING_DELAY_CYCLES_2 = 2, ///< Delay the receive sampling timing by 2 PCLKSCIn cycles
+    SCI_SPI_RX_SAMPLING_DELAY_CYCLES_3 = 3, ///< Delay the receive sampling timing by 3 PCLKSCIn cycles
+    SCI_SPI_RX_SAMPLING_DELAY_CYCLES_4 = 4, ///< Delay the receive sampling timing by 4 PCLKSCIn cycles
+} sci_spi_rx_sampling_delay_t;
+
+/** Transmit FIFO trigger configuration. */
+typedef enum e_sci_spi_tx_fifo_trigger
+{
+    SCI_SPI_TX_FIFO_TRIGGER_DISABLED = 0x0, ///< FIFO mode not used
+    SCI_SPI_TX_FIFO_TRIGGER_MAX      = 0xF, ///< TXI is generated when FIFO is full or after 15 bit times with no data (fewer interrupts)
+} sci_spi_tx_fifo_trigger_t;
+
 /** SCI SPI extended configuration */
 struct st_sci_spi_extended_cfg
 {
@@ -64,6 +82,12 @@ struct st_sci_spi_extended_cfg
 
     /** Clock source to generate SCK can either be selected as PCLKM or SCInASYNCCLK. */
     sci_spi_clock_source_t clock_source;
+
+    /** Receive sampling timing adjustment. */
+    sci_spi_rx_sampling_delay_t rx_sampling_delay;
+
+    /** Transmit FIFO trigger level. */
+    sci_spi_tx_fifo_trigger_t tx_fifo_trigger;
 
     void * p_reg;                      ///< Register base address.
 };

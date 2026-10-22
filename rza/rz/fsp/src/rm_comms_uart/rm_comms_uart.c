@@ -38,10 +38,10 @@ rm_comms_api_t const g_comms_on_comms_uart =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -198,7 +198,7 @@ fsp_err_t RM_COMMS_UART_Close (rm_comms_ctrl_t * const p_api_ctrl)
  **********************************************************************************************************************/
 fsp_err_t RM_COMMS_UART_CallbackSet (rm_comms_ctrl_t * const p_api_ctrl,
                                      void (                * p_callback)(rm_comms_callback_args_t *),
-                                     void            * const p_context)
+                                     void * const            p_context)
 {
     rm_comms_uart_instance_ctrl_t * p_ctrl = (rm_comms_uart_instance_ctrl_t *) p_api_ctrl;
 
@@ -249,25 +249,29 @@ fsp_err_t RM_COMMS_UART_Read (rm_comms_ctrl_t * const p_api_ctrl, uint8_t * cons
 
     /* Use UART driver to read data */
     err = p_uart_api->read(p_extend->p_uart->p_ctrl, p_dest, bytes);
-    FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
 #if BSP_CFG_RTOS
-    if (NULL != p_extend->p_rx_semaphore)
+    fsp_err_t sem_err   = FSP_SUCCESS;
+    fsp_err_t mutex_err = FSP_SUCCESS;
+
+    if ((FSP_SUCCESS == err) && (NULL != p_extend->p_rx_semaphore))
     {
         /* Wait for read to complete */
-        err = rm_comms_semaphore_acquire(p_extend->p_rx_semaphore, p_ctrl->p_cfg->semaphore_timeout);
-        FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+        sem_err = rm_comms_semaphore_acquire(p_extend->p_rx_semaphore, p_ctrl->p_cfg->semaphore_timeout);
     }
 
     if (NULL != p_extend->p_rx_mutex)
     {
         /* Release read mutex */
-        err = rm_comms_recursive_mutex_release(p_extend->p_rx_mutex);
+        mutex_err = rm_comms_recursive_mutex_release(p_extend->p_rx_mutex);
         FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
     }
+
+    FSP_ERROR_RETURN(FSP_SUCCESS == sem_err, sem_err);
+    FSP_ERROR_RETURN(FSP_SUCCESS == mutex_err, mutex_err);
 #endif
 
-    return FSP_SUCCESS;
+    return err;
 }
 
 /*******************************************************************************************************************//**
@@ -304,25 +308,28 @@ fsp_err_t RM_COMMS_UART_Write (rm_comms_ctrl_t * const p_api_ctrl, uint8_t * con
 
     /* Use UART driver to write data */
     err = p_uart_api->write(p_extend->p_uart->p_ctrl, p_src, bytes);
-    FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
 
 #if BSP_CFG_RTOS
-    if (NULL != p_extend->p_tx_semaphore)
+    fsp_err_t sem_err   = FSP_SUCCESS;
+    fsp_err_t mutex_err = FSP_SUCCESS;
+
+    if ((FSP_SUCCESS == err) && (NULL != p_extend->p_tx_semaphore))
     {
         /* Wait for write to complete */
-        err = rm_comms_semaphore_acquire(p_extend->p_tx_semaphore, p_ctrl->p_cfg->semaphore_timeout);
-        FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+        sem_err = rm_comms_semaphore_acquire(p_extend->p_tx_semaphore, p_ctrl->p_cfg->semaphore_timeout);
     }
 
     if (NULL != p_extend->p_tx_mutex)
     {
         /* Release write mutex */
-        err = rm_comms_recursive_mutex_release(p_extend->p_tx_mutex);
-        FSP_ERROR_RETURN(FSP_SUCCESS == err, err);
+        mutex_err = rm_comms_recursive_mutex_release(p_extend->p_tx_mutex);
     }
+
+    FSP_ERROR_RETURN(FSP_SUCCESS == sem_err, sem_err);
+    FSP_ERROR_RETURN(FSP_SUCCESS == mutex_err, mutex_err);
 #endif
 
-    return FSP_SUCCESS;
+    return err;
 }
 
 /*******************************************************************************************************************//**
@@ -345,9 +352,9 @@ fsp_err_t RM_COMMS_UART_WriteRead (rm_comms_ctrl_t * const            p_api_ctrl
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 static void rm_comms_uart_notify_application (rm_comms_uart_instance_ctrl_t const * p_ctrl, rm_comms_event_t event)

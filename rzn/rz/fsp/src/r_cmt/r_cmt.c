@@ -68,10 +68,10 @@ const timer_api_t g_timer_on_cmt =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZN
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -213,7 +213,8 @@ fsp_err_t R_CMT_Enable (timer_ctrl_t * const p_ctrl)
 }
 
 /*******************************************************************************************************************//**
- * Disables external event triggers that start, stop, clear, or capture the counter. Implements @ref timer_api_t::disable.
+ * Disables external event triggers that start, stop, clear, or capture the counter.
+ * Implements @ref timer_api_t::disable.
  *
  * @retval FSP_ERR_UNSUPPORTED                 API not supported by CMT.
  **********************************************************************************************************************/
@@ -226,7 +227,6 @@ fsp_err_t R_CMT_Disable (timer_ctrl_t * const p_ctrl)
 
 /*******************************************************************************************************************//**
  * Updates period. The new period is updated immediately and the counter is reset to 0.
- *
  * Implements @ref timer_api_t::periodSet.
  *
  * @retval FSP_SUCCESS                 Period value written successfully.
@@ -450,9 +450,9 @@ fsp_err_t R_CMT_Close (timer_ctrl_t * const p_ctrl)
 
 /** @} (end addtogroup CMT) */
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -503,7 +503,7 @@ static void cmt_hardware_initialize (cmt_instance_ctrl_t * const p_instance_ctrl
     p_instance_ctrl->p_reg->UNT[unit].CM[channel].CNT = 0U;
 
     /* Initialization sets all register required for up counting as described in hardware manual
-     * (RZ microprocessor manual) and other registers required by the driver. */
+     * (see "Periodic Count Operation" in the CMT Operation section of the relevant hardware manual) and other registers required by the driver. */
 
     /* For setting CMCR.CKS, use formula (source_div - 3) / 2
      * TIMER_SOURCE_DIV_8 = 3 -> CMCR.CKS = 0 (8 division)
@@ -518,10 +518,11 @@ static void cmt_hardware_initialize (cmt_instance_ctrl_t * const p_instance_ctrl
     /* Store period register setting. */
     uint32_t cmcor = p_cfg->period_counts - 1U;
 
-    /* Counter must be stopped to update CMCR. */
+    /* Counter must be stopped to update CMCR. See "CMCR : Compare Match Timer Control Register" description
+     * in the CMT section of the relevant hardware manual. */
     p_instance_ctrl->p_reg->UNT[unit].CM[channel].CR = cmcr & CMT_CMCR_VALUE_MASK;
 
-    /* Set period. The actual period is one cycle longer than the register value. */
+    /* Set period. The actual period is one cycle longer than the register value. Reference section "CMCOR : Compare Match Timer Constant Register". */
     p_instance_ctrl->p_reg->UNT[unit].CM[channel].COR = cmcor & CMT_CMCOR_VALUE_MASK;
 
     /* Reset counter to 0. */

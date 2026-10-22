@@ -52,10 +52,10 @@ extern void   d1_free(void * ptr);
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -337,13 +337,13 @@ d1_int_t d1_copyfromvidmem (d1_device * handle, void * dst, const void * src, d1
 }
 
 /*******************************************************************************************************************//**
- * Flush CPU data caches.
+ * Flush CPU data caches. This function may be overridden by the user to perform cache maintenance.
  *
  * @param[in] handle    Pointer to the d1_device object (not used).
  * @param[in] memtype   Memory pools to flush (can be ORed together; not used).
  * @retval    1         The function always return 1.
  **********************************************************************************************************************/
-d1_int_t d1_cacheflush (d1_device * handle, d1_int_t memtype)
+BSP_WEAK_REFERENCE d1_int_t d1_cacheflush (d1_device * handle, d1_int_t memtype)
 {
     FSP_PARAMETER_NOT_USED(handle);
     FSP_PARAMETER_NOT_USED(memtype);
@@ -354,7 +354,7 @@ d1_int_t d1_cacheflush (d1_device * handle, d1_int_t memtype)
 }
 
 /*******************************************************************************************************************//**
- * Flush part of CPU data caches.
+ * Flush part of CPU data caches. This function may be overridden by the user to perform cache maintenance.
  *
  * @param[in] handle    Pointer to the d1_device object (not used).
  * @param[in] memtype   Memory pools to flush (can be ORed together; not used).
@@ -362,7 +362,7 @@ d1_int_t d1_cacheflush (d1_device * handle, d1_int_t memtype)
  * @param[in] size      Size of memory to be flushed.
  * @retval    1         The function always return 1.
  **********************************************************************************************************************/
-d1_int_t d1_cacheblockflush (d1_device * handle, d1_int_t memtype, const void * ptr, d1_uint_t size)
+BSP_WEAK_REFERENCE d1_int_t d1_cacheblockflush (d1_device * handle, d1_int_t memtype, const void * ptr, d1_uint_t size)
 {
     FSP_PARAMETER_NOT_USED(handle);
     FSP_PARAMETER_NOT_USED(memtype);
@@ -376,7 +376,7 @@ d1_int_t d1_cacheblockflush (d1_device * handle, d1_int_t memtype, const void * 
  * @}
  **********************************************************************************************************************/
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif

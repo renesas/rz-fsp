@@ -80,6 +80,7 @@
 #define BSP_FEATURE_CANFD_RXMB_MAX                            (96U)
 #define BSP_FEATURE_CANFD_ERROR_GLOBAL_CH0_ECC_REG_POS        (28U)
 #define BSP_FEATURE_CANFD_NUM_COMMON_FIFOS                    (18U)
+#define BSP_FEATURE_CANFD_64BIT_SYSTEM                        (0U)
 
 /* CPG-Related Definitions */
 #define BSP_FEATURE_CPG_HAS_ICLK                              (1U)
@@ -134,6 +135,7 @@
 #define BSP_FEATURE_DMAC_MAX_CHANNEL                          (16U)
 #define BSP_FEATURE_DMAC_MAX_UNIT                             (5U)
 #define BSP_FEATURE_DMAC_B_64BIT_SYSTEM                       (0U)
+#define BSP_FEATURE_DMAC_VALID_UNIT_MASK                      (0x1FU) // Mask of valid units for DMAC.
 
 /* GBETH-Related Definitions */
 #define BSP_FEATURE_ESC_MAX_PORTS                             (0U)
@@ -285,6 +287,6 @@
 #define BSP_FEATURE_XSPI_START_ADDRESS                        (0x20000000)
 #define BSP_FEATURE_XSPI_DEVICE_CS0_1_ADDRESS_DELTA           (0x08000000)
 #define BSP_FEATURE_XSPI_DEVICE_START_MIRROR_ADDRESS          (0x20000000)
-#define BSP_FEATURE_XSPI_NUM_BRIDGE_CONTROL_CHANNEL           (2U)
+#define BSP_FEATURE_XSPI_NUM_BRIDGE_CONTROL_CHANNEL           (1U)
 
 #endif                                 /* BSP_FEATURE_H */

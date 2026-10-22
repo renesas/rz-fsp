@@ -268,8 +268,8 @@ fsp_err_t R_RTC_CalendarTimeSet (rtc_ctrl_t * const p_ctrl, rtc_time_t * const p
     FSP_PARAMETER_NOT_USED(p_instance_ctrl);
 #endif
 
-    /* See section "Writing to Counters While Clock Counter Operation is Enabled" and "Initial Setting" of
-     * the RZ microprocessor manual */
+    /* See "Writing to Counters While Clock Counter Operation is Enabled" and "Initial Setting"
+     * in the RTC section of the relevant hardware manual for steps to set the time */
 
     if (1U == R_RTC->RTCA0CTL0_b.RTCA0CE)
     {
@@ -332,7 +332,7 @@ fsp_err_t R_RTC_CalendarTimeGet (rtc_ctrl_t * const p_ctrl, rtc_time_t * const p
 
     fsp_err_t err = FSP_SUCCESS;
 
-    /* See section "Reading Clock Counters While Clock Counter Operation is Enabled" of the RZ microprocessor manual */
+    /* See "Reading Clock Counters While Clock Counter Operation is Enabled" in the RTC section of the relevant hardware manual */
 
     /* Check that previous write operations to RTCA0SEC to RTCA0YEAR have been completed */
     FSP_HARDWARE_REGISTER_WAIT(R_RTC->RTCA0CTL2_b.RTCA0WST, 0U);
@@ -663,7 +663,7 @@ static void r_rtc_set_clock_source (rtc_cfg_t const * const p_cfg)
     R_BSP_RegisterProtectEnable(BSP_REG_PROTECT_LPC_RESET);
 
     /* After release of module stop, processing is required for each model.
-     * (See section "Module-Stop Function" of the RZ microprocessor manual) */
+     * (See "Module-Stop Function" in the Low-Power Consumption Function section of the relevant hardware manual) */
 #if 1U == BSP_FEATURE_RTC_MODULE_START_TYPE
     R_BSP_SoftwareDelay(RTC_DERAY_US_FOR_MODULE_START, BSP_DELAY_UNITS_MICROSECONDS);
 #elif 2U == BSP_FEATURE_RTC_MODULE_START_TYPE
@@ -795,7 +795,7 @@ static fsp_err_t r_rtc_time_validate (rtc_time_t * p_time)
  * This difference will be taken care in the Set and Get functions.
  *
  * As per HW manual, value of Year is between 0 to 99, the RTC has a 100 year calendar from 2000 to 2099.
- * (see section "Overview" of the RZ microprocessor manual)
+ * (see section "Overview" in the RTC section of the relevant hardware manual)
  * But as per C standards, tm_year is years since 1900.
  * A sample year set in an application would be like time.tm_year = 2019-1900; (to set year 2019)
  * Since RTC API follows the Date and time structure defined in C standard library <time.h>, the valid value of year is

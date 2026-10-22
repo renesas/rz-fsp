@@ -62,7 +62,8 @@ void usb_pcdc_read_complete (usb_utr_t * mess, uint16_t data1, uint16_t data2)
  #if (USB_CFG_DMA == USB_CFG_ENABLE)
         memcpy((void *) g_data_buf_addr[mess->ip][ctrl.pipe], (void *) mess->p_tranadr, ctrl.data_size);
  #endif
-        if (USB_CFG_PCDC_BULK_OUT == ctrl.pipe)
+ #if defined(USB_CFG_PCDC2_USE)
+        if (g_usb_pcdc2_bulk_out_pipe[mess->ip] == ctrl.pipe)
         {
             ctrl.type = USB_CLASS_PCDC;  /* CDC Data class  */
         }
@@ -70,6 +71,9 @@ void usb_pcdc_read_complete (usb_utr_t * mess, uint16_t data1, uint16_t data2)
         {
             ctrl.type = USB_CLASS_PCDC2; /* CDC Data class  */
         }
+ #else
+        ctrl.type = USB_CLASS_PCDC;      /* CDC Data class  */
+ #endif
 
         switch (mess->status)
         {
@@ -130,7 +134,7 @@ void usb_pcdc_write_complete (usb_utr_t * mess, uint16_t data1, uint16_t data2)
     {
         ctrl.pipe = (uint8_t) mess->keyword; /* Pipe number setting */
 
-        if (USB_CFG_PCDC_BULK_IN == ctrl.pipe)
+        if (g_usb_pcdc_bulk_in_pipe[mess->ip] == ctrl.pipe)
         {
             ctrl.type = USB_CLASS_PCDC;      /* CDC Data class  */
         }
@@ -145,16 +149,19 @@ void usb_pcdc_write_complete (usb_utr_t * mess, uint16_t data1, uint16_t data2)
         {
             ctrl.status = FSP_SUCCESS;
         }
-        else if (USB_CFG_PCDC_BULK_IN2 == ctrl.pipe)
+
+ #if defined(USB_CFG_PCDC2_USE)
+        else if (g_usb_pcdc2_bulk_in_pipe[mess->ip] == ctrl.pipe)
         {
             ctrl.type = USB_CLASS_PCDC2; /* CDC Data class  */
         }
 
         /* USB_CFG_PCDC_INT_IN2 */
-        else if (USB_CFG_PCDC_INT_IN2 == ctrl.pipe)
+        else if (g_usb_pcdc2_int_in_pipe[mess->ip] == ctrl.pipe)
         {
             ctrl.type = USB_CLASS_PCDCC2; /* CDC Control class  */
         }
+ #endif
         else
         {
             ctrl.status = FSP_ERR_USB_FAILED;

@@ -13,7 +13,7 @@
 #ifndef ___IOBITMASK_HEADER__
 #define ___IOBITMASK_HEADER__
 
-#include "iobitmasks/adc_iobitmask.h"
+#include "iobitmasks/adc_c_iobitmask.h"
 #include "iobitmasks/canfd_iobitmask.h"
 #include "iobitmasks/cpg_iobitmask.h"
 #include "iobitmasks/cru_iobitmask.h"

@@ -1522,6 +1522,7 @@ namespace RZV
 
  #define R_BSP_MODULE_START_FSP_IP_GBETH(ip, ch)    {BSP_MODULE_CLKON_GBETH(ch); \
                                                      R_BSP_MSTP_START(ip, ch)    \
+                                                     R_BSP_MODULE_RSTON(ip, ch); \
                                                      R_BSP_MODULE_RSTOFF(ip, ch);}
 
 /*******************************************************************************************************************//**

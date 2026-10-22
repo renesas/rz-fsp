@@ -554,7 +554,17 @@ typedef struct
         } DF_b[64];
     };
     __IM uint8_t RESERVED[52];
-} R_CANFD_CFDTM_Type;                  /*!< Size = 128 (0x80)                                                         */
+} R_CANFD_CFDTM_GRP_BCP_Type;          /*!< Size = 128 (0x80)                                                         */
+
+typedef struct
+{
+    __IOM R_CANFD_CFDTM_GRP_BCP_Type BCP[32];
+} R_CANFD_CFDTM_GRP_Type;
+
+typedef struct
+{
+    __IOM R_CANFD_CFDTM_GRP_Type GRP[2];
+} R_CANFD_CFDTM_Type;
 
 /* =========================================================================================================================== */
 /* ================                                          R_CANFD                                          ================ */
@@ -1673,16 +1683,16 @@ typedef struct                         /*!< (@ 0x400B0000) R_CANFD Structure    
 
     union
     {
-        __IOM uint32_t CFDRPGACC[64];    /*!< (@ 0x00008400) RAM Test Page Access Registers                             */
+        __IOM uint32_t CFDRPGACC[64];  /*!< (@ 0x00008400) RAM Test Page Access Registers                             */
 
         struct
         {
-            __IOM uint32_t RDTA : 32;    /*!< [31..0] RAM Data Test Access                                              */
+            __IOM uint32_t RDTA : 32;  /*!< [31..0] RAM Data Test Access                                              */
         } CFDRPGACC_b[64];
     };
     __IM uint8_t             RESERVED45[31488];
-    __IOM R_CANFD_CFDTM_Type CFDTM[192]; /*!< (@ 0x00010000) TX Message Buffer Access Registers                         */
-} R_CANFD_Type;                          /*!< Size = 81920 (0x14000)                                                    */
+    __IOM R_CANFD_CFDTM_Type CFDTM[3]; /*!< (@ 0x00010000) TX Message Buffer Access Registers                         */
+} R_CANFD_Type;                        /*!< Size = 81920 (0x14000)                                                    */
 
 /* =========================================================================================================================== */
 /* ================                          Device Specific Peripheral Address Map                           ================ */

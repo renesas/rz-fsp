@@ -17,21 +17,31 @@
  ******************************************************************************/
 #include "r_usb_hhid_cfg.h"
 #include "r_usb_basic_api.h"
+#include "r_usb_hhid_api.h"
 
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZA
 {
-#endif
-#endif
+  #endif
+ #endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZA_USB_HHID
  * @{
  **********************************************************************************************************************/
+
+/**********************************************************************************************************************
+ * Exported global variables
+ **********************************************************************************************************************/
+
+/** @cond INC_HEADER_DEFS_SEC */
+extern const usb_hhid_api_t g_hhid_on_usb;
+
+/** @endcond */
 
 /******************************************************************************
  * Exported global functions (to be accessed by other files)
@@ -47,11 +57,11 @@ void r_usb_hhid_task(void);
  * @} (end addtogroup USB_HHID)
  **********************************************************************************************************************/
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
-#endif
-#endif
+  #endif
+ #endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

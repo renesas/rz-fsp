@@ -71,7 +71,7 @@ extern const mhu_ns_swint_set_api_t g_mhu_ns_swint_set_on_mhu_ns_swint_set;
 /***********************************************************************************************************************
  * Public APIs
  **********************************************************************************************************************/
-fsp_err_t R_MHU_NS_SWINT_SET_Open(mhu_ns_swint_set_ctrl_t * p_ctrl, mhu_ns_swint_set_cfg_t const * const p_cfg);
+fsp_err_t R_MHU_NS_SWINT_SET_Open(mhu_ns_swint_set_ctrl_t * const p_ctrl, mhu_ns_swint_set_cfg_t const * const p_cfg);
 
 fsp_err_t R_MHU_NS_SWINT_SET_InterruptSet(mhu_ns_swint_set_ctrl_t * const p_ctrl);
 

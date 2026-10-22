@@ -370,6 +370,9 @@ fsp_err_t R_DMAC_B_SoftwareStart (transfer_ctrl_t * const p_api_ctrl, transfer_s
     uint8_t group   = DMAC_B_PRV_GROUP(p_extend->channel);
     uint8_t channel = DMAC_B_PRV_CHANNEL(p_extend->channel);
 
+    /* All previous loads and stores must be ordered and completed before DMAC channel software start. */
+    __DSB();
+
     /* Set auto clear bit and software start bit. */
     p_ctrl->p_reg->GRP[group].CH[channel].CHCTRL = R_DMAC_B0_GRP_CH_CHCTRL_STG_Msk;
 
@@ -731,6 +734,9 @@ static fsp_err_t r_dmac_b_prv_enable (dmac_b_instance_ctrl_t * p_ctrl)
     /* Resets the channel status register. */
     p_ctrl->p_reg->GRP[group].CH[channel].CHCTRL = R_DMAC_B0_GRP_CH_CHCTRL_SWRST_Msk;
 
+    /* All previous loads and stores must be ordered and completed before DMAC channel enable. */
+    __DSB();
+
     /* Enable transfer. */
     p_ctrl->p_reg->GRP[group].CH[channel].CHCTRL = R_DMAC_B0_GRP_CH_CHCTRL_SETEN_Msk;
 
@@ -1003,6 +1009,7 @@ static void r_dmac_b_config_transfer_info_link_mode (dmac_b_instance_ctrl_t * p_
  * @retval FSP_ERR_IP_CHANNEL_NOT_PRESENT The configured channel is invalid.
  * @retval FSP_ERR_IRQ_BSP_DISABLED       Callback is NULL and the DMAC IRQ is not enabled.
  * @retval FSP_ERR_ALREADY_OPEN           The control structure is already opened.
+ * @retval FSP_ERR_IP_UNIT_NOT_PRESENT    The configured unit is invalid.
  **********************************************************************************************************************/
 static fsp_err_t r_dmac_b_open_parameter_checking (dmac_b_instance_ctrl_t * const p_ctrl,
                                                    transfer_cfg_t const * const   p_cfg)
@@ -1012,7 +1019,12 @@ static fsp_err_t r_dmac_b_open_parameter_checking (dmac_b_instance_ctrl_t * cons
     FSP_ASSERT(NULL != p_cfg);
     FSP_ASSERT(NULL != p_cfg->p_extend);
     dmac_b_extended_cfg_t * p_extend = (dmac_b_extended_cfg_t *) p_cfg->p_extend;
+
+    /* Verify the channel exists on the MPU. */
     FSP_ERROR_RETURN(p_extend->channel < BSP_FEATURE_DMAC_MAX_CHANNEL, FSP_ERR_IP_CHANNEL_NOT_PRESENT);
+
+    /* Verify the unit exists on the MPU. */
+    FSP_ERROR_RETURN(((1U << p_extend->unit) & BSP_FEATURE_DMAC_VALID_UNIT_MASK), FSP_ERR_IP_UNIT_NOT_PRESENT);
 
     if (NULL != p_extend->p_callback)
     {

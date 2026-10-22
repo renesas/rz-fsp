@@ -229,8 +229,9 @@ FSP_HEADER
 #define BSP_FEATURE_DMAC_MAX_CHANNEL                                       (16U)
 #define BSP_FEATURE_DMAC_MAX_UNIT                                          (2U)
 #define BSP_FEATURE_DMAC_UNIT0_ERROR_NUM                                   (5U)
+#define BSP_FEATURE_DMAC_VALID_UNIT_MASK                                   (0x3U) // Mask of valid units for DMAC.
 
-#define BSP_FEATURE_DOC_VERSION                                            (1UL) // The version of the DOC peripheral.
+#define BSP_FEATURE_DOC_VERSION                                            (1UL)  // The version of the DOC peripheral.
 
 #define BSP_FEATURE_DSMIF_ADDRESS_OFFSET                                   (0x0400)
 #define BSP_FEATURE_DSMIF_CHANNEL_STATUS                                   (1U)

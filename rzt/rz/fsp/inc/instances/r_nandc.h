@@ -58,7 +58,7 @@ typedef enum e_nandc_ecc
     NANDC_ECC_ENABLE,                  ///< ECC enabled
 } nandc_ecc_t;
 
-/** Error correction ability for ECC */
+/** DEPRECATED - Error correction ability for ECC */
 typedef enum e_nandc_ecc_correction
 {
     NANDC_ECC_CORRECTION_8_BITS,       ///< Insert ECC check-bits to enable correction of 8 bits per sector

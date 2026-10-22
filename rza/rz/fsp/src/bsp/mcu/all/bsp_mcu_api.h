@@ -5,12 +5,10 @@
 */
 
 #ifndef BSP_MCU_API_H
-#define BSP_MCU_API_H
+ #define BSP_MCU_API_H
 
 /** Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
-fsp_err_t R_BSP_GroupIrqWrite(bsp_grp_irq_t irq, void (* p_callback)(bsp_grp_irq_t irq));
-void      R_BSP_SoftwareDelay(uint32_t delay, bsp_delay_units_t units) __attribute__((section("FASTCODE")));
 
 /***********************************************************************************************************************
  * function prototype
@@ -76,18 +74,21 @@ unsigned long long R_BSP_CACHE_DisableInst(void);
  **********************************************************************************************************************/
 unsigned long long R_BSP_CACHE_DisableData(void);
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 namespace RZA
 {
-#endif
-#endif
+  #endif
+ #endif
 
 /*******************************************************************************************************************//**
  * @addtogroup RZA_BSP_MCU
  *
  * @{
  **********************************************************************************************************************/
+
+void      R_BSP_SoftwareDelay(uint32_t delay, bsp_delay_units_t units) __attribute__((section("FASTCODE")));
+fsp_err_t R_BSP_GroupIrqWrite(bsp_grp_irq_t irq, void (* p_callback)(bsp_grp_irq_t irq));
 
 /*******************************************************************************************************************//**
  * Clean whole cache.
@@ -151,18 +152,18 @@ void R_BSP_CACHE_CleanInvalidateRange(uint64_t base_address, uint64_t length);
  *
  * Invalidates cached copies of translation table entries from TLBs
  **********************************************************************************************************************/
-__STATIC_INLINE void R_BSP_TLB_Invalidate(void)
+__STATIC_INLINE void R_BSP_TLB_Invalidate (void)
 {
-     __asm__ volatile ("TLBI ALLE3\n");
+    __asm__ volatile ("TLBI ALLE3\n");
 }
 
 /** @} (end addtogroup BSP_MCU) */
 
-#ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
 }
-#endif
-#endif
+  #endif
+ #endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

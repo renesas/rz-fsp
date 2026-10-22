@@ -230,7 +230,7 @@ fsp_err_t R_SCIF_UART_BaudCalculate(uart_ctrl_t * const         p_api_ctrl,
                                     uint32_t                    baud_rate_error_x_1000,
                                     scif_baud_setting_t * const p_baud_setting);
 fsp_err_t R_SCIF_UART_CallbackSet(uart_ctrl_t * const          p_api_ctrl,
-                                  void (                     * p_callback)(uart_callback_args_t * p_arg),
+                                  void (                     * p_callback)(uart_callback_args_t *),
                                   void * const                 p_context,
                                   uart_callback_args_t * const p_callback_memory);
 fsp_err_t R_SCIF_UART_ReadStop(uart_ctrl_t * const p_api_ctrl, uint32_t * remaining_bytes);

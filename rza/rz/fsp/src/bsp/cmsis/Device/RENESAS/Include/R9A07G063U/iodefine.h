@@ -13,7 +13,7 @@
 #ifndef ___IODEFINE_HEADER__
 #define ___IODEFINE_HEADER__
 
-#include "iodefines/adc_iodefine.h"
+#include "iodefines/adc_c_iodefine.h"
 #include "iodefines/canfd_iodefine.h"
 #include "iodefines/cpg_iodefine.h"
 #include "iodefines/cru_iodefine.h"

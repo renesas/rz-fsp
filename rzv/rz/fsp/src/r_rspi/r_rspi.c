@@ -135,6 +135,8 @@ namespace RZV
  * @retval     FSP_SUCCESS                     Channel initialized successfully.
  * @retval     FSP_ERR_ALREADY_OPEN            Instance was already initialized.
  * @retval     FSP_ERR_ASSERTION               An invalid argument was given in the configuration structure.
+ * @retval     FSP_ERR_UNSUPPORTED             A requested setting is not possible on this device with the current build
+ *                                             configuration.
  * @retval     FSP_ERR_IP_CHANNEL_NOT_PRESENT  The channel number is invalid.
  * @return     See @ref RZV_RENESAS_ERROR_CODES or functions called by this function for other possible return codes.
  * @note       This function is reentrant.
@@ -154,6 +156,13 @@ fsp_err_t R_RSPI_Open (spi_ctrl_t * p_api_ctrl, spi_cfg_t const * const p_cfg)
     FSP_ASSERT(NULL != p_extend->p_reg);
     FSP_ERROR_RETURN(BSP_FEATURE_RSPI_VALID_CHANNELS_MASK & (1 << p_cfg->channel), FSP_ERR_IP_CHANNEL_NOT_PRESENT);
     FSP_ASSERT(p_cfg->eri_irq >= 0);
+
+    /* CPHA=0 is not supported in slave mode because of hardware limitations. See "Slave
+     * mode operation" in the SPI section of the relevant hardware manual. */
+    if (SPI_MODE_SLAVE == p_cfg->operating_mode)
+    {
+        FSP_ERROR_RETURN(SPI_CLK_PHASE_EDGE_EVEN == p_cfg->clk_phase, FSP_ERR_UNSUPPORTED);
+    }
 #endif
 
     /* Initialize the control structure */

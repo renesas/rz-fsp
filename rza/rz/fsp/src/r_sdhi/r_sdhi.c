@@ -1247,7 +1247,7 @@ fsp_err_t R_SDHI_Close (sdmmc_ctrl_t * const p_api_ctrl)
     r_sdhi_command_send_no_wait(p_ctrl, SDHI_PRV_CMD_GO_IDLE_STATE, 0);
 
     /* Do not set the module stop bit since the CMD0 may not be complete yet. Do not wait for CMD0 to complete because
-     * the card could be unplugged and waiting for the response timeout in this function is not desireable. */
+     * the card could be unplugged and waiting for the response timeout in this function is not desirable. */
 
     /* Remove power to the channel. */
     R_BSP_MODULE_STOP(FSP_IP_SDHI, p_ctrl->p_cfg->channel);
@@ -1726,8 +1726,8 @@ static fsp_err_t r_sdhi_hw_cfg (sdhi_instance_ctrl_t * const p_ctrl)
      * 6.4.1.1 "Power Up Time of Card" in the SD Physical Layer Specification Version 6.00. */
     R_BSP_SoftwareDelay(1U, BSP_DELAY_UNITS_MILLISECONDS);
 
-    /* Automatic clock control can be enabled only after 74 SD/MMC clock cycles are output.  Reference section 43.4.3
-     * Automatic Control of SD/MMC Clock Output (SD/MMC) of the RA6M3 manual R01UH0886EJ0110. */
+    /* Automatic clock control can be enabled only after 74 SD/MMC clock cycles are output. See
+     * "Automatic Control of SD/MMC Clock Output (SD/MMC)" in the SDHI section of the relevant hardware manual. */
     p_ctrl->p_reg->SD_CLK_CTRL_long.L = SDHI_PRV_SD_CLK_CTRL_DEFAULT | SDHI_PRV_SDHI_PRV_SD_CLK_CTRL_CLKCTRLEN_MASK; // Automatic clock control enabled.
 
     return FSP_SUCCESS;

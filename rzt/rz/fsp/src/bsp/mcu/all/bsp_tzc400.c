@@ -126,48 +126,49 @@ static const bsp_tzc400_cfg_data_t g_bsp_tzc_module_cfg_data[] =
 void bsp_tzc_400_cfg (void)
 {
     /* Initialize local variable */
-    volatile uint8_t    tzc400module;
+    uint8_t             tzc400module;
     uintptr_t           basetzc400;
     volatile uint32_t * p_reg;
 
     /* Loop all modules of TZC400 */
     for (tzc400module = 0; tzc400module < BSP_TZC_400_MAX_MODULE; tzc400module++)
     {
-        bsp_tzc400_cfg_data_t module_cfg_data = g_bsp_tzc_module_cfg_data[tzc400module];
-
-        if (0 != module_cfg_data.gatekeeper)
+        if (0 != g_bsp_tzc_module_cfg_data[tzc400module].gatekeeper)
         {
             /* Get base address of each module */
             basetzc400 = (uintptr_t) (BSP_TZC_400_BASEADRESS + (BSP_TZC_400_MODULE_OFFSET * tzc400module));
 
             /* Setting for GATE_KEEPER */
             p_reg  = (uint32_t *) (basetzc400 + BSP_TZC_400_REGION_GATEKEEPER_OFFSET);
-            *p_reg = module_cfg_data.gatekeeper;
+            *p_reg = g_bsp_tzc_module_cfg_data[tzc400module].gatekeeper;
             FSP_REGISTER_READ(*(volatile uint32_t *) (p_reg));
             __DSB();
             __ISB();
 
             /* Setting for SPECULATION_CTRL */
             p_reg  = (uint32_t *) (basetzc400 + BSP_TZC_400_REGION_SPEC_DISABLEULATION_CTL_OFFSET);
-            *p_reg = (uint32_t) ((module_cfg_data.write_spec_disable << 1) |
-                                 (module_cfg_data.read_spec_disable << 0));
+            *p_reg = (uint32_t) ((g_bsp_tzc_module_cfg_data[tzc400module].write_spec_disable << 1) |
+                                 (g_bsp_tzc_module_cfg_data[tzc400module].read_spec_disable << 0));
             FSP_REGISTER_READ(*(volatile uint32_t *) (p_reg));
             __DSB();
             __ISB();
 
             /* Setting attribute for region 0 only as BSP_TZC_400_MAX_REGION_SUPPORT */
             p_reg  = (uint32_t *) (basetzc400 + BSP_TZC_400_REGION_ATTR_N_OFFSET(0));
-            *p_reg = (uint32_t) ((module_cfg_data.region[0].attr_rd_en << 30) |
-                                 (module_cfg_data.region[0].attr_wr_en << 31) |
-                                 (module_cfg_data.region[0].attr_filter));
+            *p_reg = (uint32_t) ((g_bsp_tzc_module_cfg_data[tzc400module].region[0].attr_rd_en << 30) |
+                                 (g_bsp_tzc_module_cfg_data[tzc400module].region[0].attr_wr_en << 31) |
+                                 (g_bsp_tzc_module_cfg_data[tzc400module].region[0].attr_filter));
             FSP_REGISTER_READ(*(volatile uint32_t *) (p_reg));
             __DSB();
             __ISB();
 
             /* Setting id access for region 0 only as BSP_TZC_400_MAX_REGION_SUPPORT */
             p_reg  = (uint32_t *) (basetzc400 + BSP_TZC_400_REGION_ID_ACCESS_N_OFFSET(0));
-            *p_reg = (uint32_t) ((module_cfg_data.region[0].id_access_rd_en << BSP_TZC_400_NUMBER_SHIFT_NSAID_RD_EN) |
-                                 (module_cfg_data.region[0].id_access_wr_en << BSP_TZC_400_NUMBER_SHIFT_NSAID_WR_EN));
+            *p_reg =
+                (uint32_t) ((g_bsp_tzc_module_cfg_data[tzc400module].region[0].id_access_rd_en <<
+                             BSP_TZC_400_NUMBER_SHIFT_NSAID_RD_EN) |
+                            (g_bsp_tzc_module_cfg_data[tzc400module].region[0].id_access_wr_en <<
+                             BSP_TZC_400_NUMBER_SHIFT_NSAID_WR_EN));
             FSP_REGISTER_READ(*(volatile uint32_t *) (p_reg));
             __DSB();
             __ISB();

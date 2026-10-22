@@ -146,7 +146,7 @@ fsp_err_t R_MHU_B_NS_SWINT_SET_InterruptSet (mhu_ns_swint_set_ctrl_t * const p_c
  *********************************************************************************************************************/
 
 /*******************************************************************************************************************//**
- * Disables interrupts, clears internal driver data.
+ * Clears internal driver data.
  * @ref mhu_ns_swint_set_api_t::close.
  *
  *

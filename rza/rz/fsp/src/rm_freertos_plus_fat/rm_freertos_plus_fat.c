@@ -68,10 +68,10 @@ const rm_freertos_plus_fat_api_t g_fat_on_freertos =
 };
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 namespace RZA
 {
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
@@ -349,20 +349,20 @@ fsp_err_t RM_FREERTOS_PLUS_FAT_Close (rm_freertos_plus_fat_ctrl_t * const p_ctrl
  **********************************************************************************************************************/
 
 #ifdef __FOR_FSP_DOCUMENT__
-#ifdef __cplusplus
+ #ifdef __cplusplus
 }
-#endif
+ #endif
 #endif
 
 /*******************************************************************************************************************//**
- * Writes sectors to block media device.
+ * Reads sectors from the block media device.
  *
  * @param[in] p_data                   Buffer to store read data.
  * @param[in] sector                   Sector to read from.
  * @param[in] num_sectors              Number of sectors to read.
  * @param[in] p_disk                   Pointer to FreeRTOS+FAT disk structure.
  *
- * @retval     FF_ERR_NONE             Read is complete.
+ * @retval     FF_ERR_NONE             Read completed successfully with no errors.
  * @retval     FF_ERR_IOMAN_DRIVER_FATAL_ERROR    Error reported by block media driver during read.
  **********************************************************************************************************************/
 int32_t rm_freertos_plus_fat_read (uint8_t * p_data, uint32_t sector, uint32_t num_sectors, FF_Disk_t * p_disk) {
@@ -408,7 +408,7 @@ int32_t rm_freertos_plus_fat_read (uint8_t * p_data, uint32_t sector, uint32_t n
  * @param[in] num_sectors              Number of sectors to write.
  * @param[in] p_disk                   Pointer to FreeRTOS+FAT disk structure.
  *
- * @retval     FF_ERR_NONE             Write is complete.
+ * @retval     FF_ERR_NONE             Write completed successfully with no errors.
  * @retval     FF_ERR_IOMAN_DRIVER_FATAL_ERROR    Error reported by block media driver during write.
  **********************************************************************************************************************/
 int32_t rm_freertos_plus_fat_write (uint8_t * p_data, uint32_t sector, uint32_t num_sectors, FF_Disk_t * p_disk) {

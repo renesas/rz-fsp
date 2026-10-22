@@ -5,10 +5,23 @@
 */
 
 #ifndef BSP_MCU_API_H
-#define BSP_MCU_API_H
+ #define BSP_MCU_API_H
 
 /** Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
+
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+namespace RZG
+{
+  #endif
+ #endif
+
+/*******************************************************************************************************************//**
+ * @addtogroup RZG_BSP_MCU
+ * @{
+ **********************************************************************************************************************/
+
 fsp_err_t R_BSP_GroupIrqWrite(bsp_grp_irq_t irq, void (* p_callback)(bsp_grp_irq_t irq));
 void      R_BSP_SoftwareDelay(uint32_t delay, bsp_delay_units_t units);
 uint32_t  R_BSP_SlaveAddressConversion(uint32_t original_address);
@@ -16,6 +29,14 @@ void      R_BSP_SystemResetStatusGet(void);
 void      R_BSP_SystemResetStatusClear(const bsp_system_reset_signal_t signal);
 fsp_err_t R_BSP_ClockSelectorSet(fsp_priv_clock_selector_t selector, uint32_t clock_sel);
 fsp_err_t R_BSP_ClockDividerSet(fsp_priv_clock_divider_t divider, uint32_t clock_div);
+
+/** @} (end addtogroup BSP_MCU) */
+
+ #ifdef __FOR_FSP_DOCUMENT__
+  #ifdef __cplusplus
+}
+  #endif
+ #endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
 FSP_FOOTER

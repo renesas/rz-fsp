@@ -3417,9 +3417,9 @@ fsp_err_t R_ETHSW_StatisticsEfpGet (ether_switch_ctrl_t * const p_ctrl,
     }
 
     /* Qci Gate (All) Passed Packet Count */
-    volatile const uint32_t * pn_qgppc = &p_switch_reg->P0_QGPPC;
+    volatile const uint32_t * pn_qgppc = &p_switch_reg->P0_QGPPC0;
     pn_qgppc += ((ETHSW_PORT_OFFSET / 4) * port);
-    p_statistics_efp->qci_gate_passed_pkts = (*pn_qgppc & R_ETHSW_P0_QGPPC_QGPPC_Msk);
+    p_statistics_efp->qci_gate_passed_pkts = (*pn_qgppc & R_ETHSW_P0_QGPPC0_QGPPC_Msk);
 
     /* Qci Gate g Dropped Packet Count */
     volatile const uint32_t * pn_qgdpcg = &p_switch_reg->P0_QGDPC0;

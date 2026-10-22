@@ -815,7 +815,7 @@ fsp_err_t R_GMAC_B_GetLinkStatus (ether_ctrl_t * const p_ctrl, uint8_t port, gma
     GMAC_ERROR_RETURN(NULL != p_status, FSP_ERR_INVALID_POINTER);
     GMAC_ERROR_RETURN(BSP_FEATURE_GMAC_MAX_PORTS > port, FSP_ERR_INVALID_ARGUMENT);
 
-    GMAC_ERROR_RETURN(0 != ((gmac_b_extend_cfg_t *) p_instance_ctrl->p_gmac_cfg->p_extend)->pp_phy_instance[port],
+    GMAC_ERROR_RETURN(0 != (*((gmac_b_extend_cfg_t *) p_instance_ctrl->p_gmac_cfg->p_extend)->pp_phy_instance)[port],
                       FSP_ERR_INVALID_ARGUMENT);
 #endif
 

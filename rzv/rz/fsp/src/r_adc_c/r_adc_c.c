@@ -758,7 +758,7 @@ static void r_adc_c_scan_cfg (adc_c_instance_ctrl_t * const     p_instance_ctrl,
         /* Set the temperature sensor to place in the normal operating mode. */
         R_TSU->TSU_SM = R_TSU_TSU_SM_EN_Msk;
 
-        /* Wait 30us. See the TSU "Operation" section of the RZ microprocessor manual. */
+        /* Wait 30us. See the TSU "Operation" section of the hardware manual. */
         R_BSP_SoftwareDelay(BSP_FEATURE_ADC_C_TSU_ENABLE_STABILIZATION_TIME_US, BSP_DELAY_UNITS_MICROSECONDS);
 
         /* Enable the temperature sensor. */

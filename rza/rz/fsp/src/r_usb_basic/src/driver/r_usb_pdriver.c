@@ -673,8 +673,15 @@ static void usb_pstd_interrupt (usb_utr_t * p_mess)
  * Arguments       : none
  * Return value    : none
  ******************************************************************************/
+ #if (BSP_CFG_RTOS == 1)
+void usb_pstd_pcd_task (ULONG entry_input)
+ #else                                 /* #if (BSP_CFG_RTOS == 1) */
 void usb_pstd_pcd_task (void)
+ #endif /* #if (BSP_CFG_RTOS == 1) */
 {
+ #if (BSP_CFG_RTOS == 1)
+    (void) entry_input;
+ #endif                                /* #if (BSP_CFG_RTOS == 1) */
  #if (BSP_CFG_RTOS == 0)
     if (g_usb_pstd_usb_int.wp != g_usb_pstd_usb_int.rp)
     {

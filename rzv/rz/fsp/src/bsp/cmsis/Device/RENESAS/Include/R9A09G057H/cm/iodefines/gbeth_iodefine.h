@@ -56,8 +56,8 @@ typedef struct
         struct
         {
             __IOM uint32_t SR        : 1;
-            __IOM uint32_t RBSZ_4_0  : 4;
-            __IOM uint32_t RBSZ_13_5 : 10;
+            __IOM uint32_t RBSZ_x_0  : 4;
+            __IOM uint32_t RBSZ_13_y : 10;
             uint32_t                 : 1;
             __IOM uint32_t RxPBL     : 6;
             uint32_t                 : 9;
@@ -274,8 +274,8 @@ typedef struct
         __IM uint32_t MTLTDR;
         struct
         {
-            __IM uint32_t TXQPAUSED : 2;
-            __IM uint32_t TRCSTS    : 1;
+            __IM uint32_t TXQPAUSED : 1;
+            __IM uint32_t TRCSTS    : 2;
             __IM uint32_t TWCSTS    : 1;
             __IM uint32_t TXQSTS    : 1;
             __IM uint32_t TXSTSFSTS : 1;
@@ -414,8 +414,9 @@ typedef struct
         __IOM uint32_t MTLRCR;
         struct
         {
-            __IOM uint32_t RXQ_WEGT : 3;
-            uint32_t                : 29;
+            __IOM uint32_t RXQ_WEGT      : 3;
+            __IOM uint32_t RXQ_FRM_ARBIT : 1;
+            uint32_t                     : 28;
         } MTLRCR_b;
     };
 } R_GBETH_MTL_Q_Type;
@@ -429,9 +430,7 @@ typedef struct
         {
             __IOM uint32_t ADDRHI : 16;
             __IOM uint32_t DCS    : 4;
-            uint32_t              : 4;
-            __IOM uint32_t MBC    : 6;
-            __IOM uint32_t SA     : 1;
+            uint32_t              : 11;
             __IOM uint32_t AE     : 1;
         } MACAHR_b;
     };
@@ -476,7 +475,7 @@ typedef struct
             __IOM uint32_t GPSLCE : 1;
             __IOM uint32_t IPG    : 3;
             __IOM uint32_t IPC    : 1;
-            __IOM uint32_t SARC   : 3;
+            uint32_t              : 3;
             __IOM uint32_t ARPEN  : 1;
         } MACCR_b;
     };
@@ -491,12 +490,11 @@ typedef struct
             __IOM uint32_t SPEN   : 1;
             __IOM uint32_t USP    : 1;
             __IOM uint32_t PDC    : 1;
-            __IOM uint32_t HDSMS  : 3;
-            uint32_t              : 1;
+            uint32_t              : 4;
             __IOM uint32_t EIPGEN : 1;
             __IOM uint32_t EIPG   : 5;
             __IOM uint32_t APDIM  : 1;
-            __IOM uint32_t FHE    : 1;
+            uint32_t              : 1;
         } MACECR_b;
     };
     union
@@ -617,11 +615,8 @@ typedef struct
             uint32_t               : 1;
             __IOM uint32_t EVLRXS  : 1;
             __IOM uint32_t VTHM    : 1;
-            __IOM uint32_t EDVLP   : 1;
-            __IOM uint32_t ERIVLT  : 1;
-            __IOM uint32_t EIVLS   : 2;
-            uint32_t               : 1;
-            __IOM uint32_t EIVLRXS : 1;
+            uint32_t               : 6;
+
         } MACVTCR_b;
     };
     union
@@ -636,8 +631,7 @@ typedef struct
                 __IOM uint32_t ETV     : 1;
                 __IOM uint32_t DOVLTC  : 1;
                 __IOM uint32_t ERSVLM  : 1;
-                __IOM uint32_t ERIVLT  : 1;
-                uint32_t               : 3;
+                uint32_t               : 4;
                 __IOM uint32_t DMACHEN : 1;
                 __IOM uint32_t DMACHN  : 2;
                 uint32_t               : 5;
@@ -693,9 +687,7 @@ typedef struct
         {
             __IOM uint32_t RFE  : 1;
             __IOM uint32_t UP   : 1;
-            uint32_t            : 6;
-            __IOM uint32_t PFCE : 1;
-            uint32_t            : 23;
+            uint32_t            : 30;
         } MACRFCR_b;
     };
     union
@@ -743,8 +735,7 @@ typedef struct
             __IOM uint32_t MCBCQEN : 1;
             __IOM uint32_t TACPQE  : 1;
             __IOM uint32_t TPQC    : 2;
-            __IOM uint32_t FPRQ    : 3;
-            uint32_t               : 1;
+            uint32_t               : 4;
             __IOM uint32_t OMCBCQ  : 1;
             __IOM uint32_t TBRQE   : 1;
             uint32_t               : 2;
@@ -780,13 +771,9 @@ typedef struct
             __IM uint32_t TSIS      : 1;
             __IM uint32_t TXSTSIS   : 1;
             __IM uint32_t RXSTSIS   : 1;
-            __IM uint32_t GPIIS     : 1;
-            uint32_t                : 1;
-            __IM uint32_t FPEIS     : 1;
+            uint32_t                : 3;
             __IM uint32_t MDIOIS    : 1;
-            __IM uint32_t MFTIS     : 1;
-            __IM uint32_t MFRIS     : 1;
-            uint32_t                : 11;
+            uint32_t                : 13;
         } MACISR_b;
     };
     union
@@ -803,8 +790,7 @@ typedef struct
             __IOM uint32_t TSIE     : 1;
             __IOM uint32_t TXSTSIE  : 1;
             __IOM uint32_t RXSTSIE  : 1;
-            uint32_t                : 2;
-            __IOM uint32_t FPEIE    : 1;
+            uint32_t                : 3;
             __IOM uint32_t MDIOIE   : 1;
             uint32_t                : 13;
         } MACIER_b;
@@ -960,16 +946,11 @@ typedef struct
         {
             __IOM uint32_t TC        : 1;
             __IOM uint32_t LUD       : 1;
-            __IOM uint32_t SFTERR    : 1;
-            uint32_t                 : 1;
-            __IOM uint32_t SMIDRXS   : 1;
-            uint32_t                 : 11;
+            uint32_t                 : 14;
             __IM uint32_t LNKMOD     : 1;
             __IM uint32_t LNKSPEED   : 2;
             __IM uint32_t LNKSTS     : 1;
-            __IM uint32_t JABTO      : 1;
-            __IM uint32_t FALSCARDET : 1;
-            uint32_t                 : 10;
+            uint32_t                 : 12;
         } MACPHYCSR_b;
     };
     __IM uint8_t RESERVED8[20];
@@ -2124,25 +2105,7 @@ typedef struct
         __IOM uint32_t MACLARR00;
         struct
         {
-            __IOM uint32_t L3PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L3SAM0  : 1;
-            __IOM uint32_t L3SAIM0 : 1;
-            __IOM uint32_t L3DAM0  : 1;
-            __IOM uint32_t L3DAIM0 : 1;
-            __IOM uint32_t L3HSBM0 : 5;
-            __IOM uint32_t L3HDBM0 : 5;
-            __IOM uint32_t L4PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L4SPM0  : 1;
-            __IOM uint32_t L4SPIM0 : 1;
-            __IOM uint32_t L4DPM0  : 1;
-            __IOM uint32_t L4DPIM0 : 1;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHN0  : 2;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHEN0 : 1;
-            uint32_t               : 3;
+            __IOM uint32_t L3A00 : 32;
         } MACLARR00_b;
     };
     union
@@ -2211,25 +2174,7 @@ typedef struct
         __IOM uint32_t MACLARR01;
         struct
         {
-            __IOM uint32_t L3PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L3SAM0  : 1;
-            __IOM uint32_t L3SAIM0 : 1;
-            __IOM uint32_t L3DAM0  : 1;
-            __IOM uint32_t L3DAIM0 : 1;
-            __IOM uint32_t L3HSBM0 : 5;
-            __IOM uint32_t L3HDBM0 : 5;
-            __IOM uint32_t L4PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L4SPM0  : 1;
-            __IOM uint32_t L4SPIM0 : 1;
-            __IOM uint32_t L4DPM0  : 1;
-            __IOM uint32_t L4DPIM0 : 1;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHN0  : 2;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHEN0 : 1;
-            uint32_t               : 3;
+            __IOM uint32_t L3A00 : 32;
         } MACLARR01_b;
     };
     union
@@ -2298,25 +2243,7 @@ typedef struct
         __IOM uint32_t MACLARR02;
         struct
         {
-            __IOM uint32_t L3PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L3SAM0  : 1;
-            __IOM uint32_t L3SAIM0 : 1;
-            __IOM uint32_t L3DAM0  : 1;
-            __IOM uint32_t L3DAIM0 : 1;
-            __IOM uint32_t L3HSBM0 : 5;
-            __IOM uint32_t L3HDBM0 : 5;
-            __IOM uint32_t L4PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L4SPM0  : 1;
-            __IOM uint32_t L4SPIM0 : 1;
-            __IOM uint32_t L4DPM0  : 1;
-            __IOM uint32_t L4DPIM0 : 1;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHN0  : 2;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHEN0 : 1;
-            uint32_t               : 3;
+            __IOM uint32_t L3A00 : 32;
         } MACLARR02_b;
     };
     union
@@ -2385,25 +2312,7 @@ typedef struct
         __IOM uint32_t MACLARR03;
         struct
         {
-            __IOM uint32_t L3PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L3SAM0  : 1;
-            __IOM uint32_t L3SAIM0 : 1;
-            __IOM uint32_t L3DAM0  : 1;
-            __IOM uint32_t L3DAIM0 : 1;
-            __IOM uint32_t L3HSBM0 : 5;
-            __IOM uint32_t L3HDBM0 : 5;
-            __IOM uint32_t L4PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L4SPM0  : 1;
-            __IOM uint32_t L4SPIM0 : 1;
-            __IOM uint32_t L4DPM0  : 1;
-            __IOM uint32_t L4DPIM0 : 1;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHN0  : 2;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHEN0 : 1;
-            uint32_t               : 3;
+            __IOM uint32_t L3A00 : 32;
         } MACLARR03_b;
     };
     union
@@ -2472,25 +2381,7 @@ typedef struct
         __IOM uint32_t MACLARR04;
         struct
         {
-            __IOM uint32_t L3PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L3SAM0  : 1;
-            __IOM uint32_t L3SAIM0 : 1;
-            __IOM uint32_t L3DAM0  : 1;
-            __IOM uint32_t L3DAIM0 : 1;
-            __IOM uint32_t L3HSBM0 : 5;
-            __IOM uint32_t L3HDBM0 : 5;
-            __IOM uint32_t L4PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L4SPM0  : 1;
-            __IOM uint32_t L4SPIM0 : 1;
-            __IOM uint32_t L4DPM0  : 1;
-            __IOM uint32_t L4DPIM0 : 1;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHN0  : 2;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHEN0 : 1;
-            uint32_t               : 3;
+            __IOM uint32_t L3A00 : 32;
         } MACLARR04_b;
     };
     union
@@ -2559,25 +2450,7 @@ typedef struct
         __IOM uint32_t MACLARR05;
         struct
         {
-            __IOM uint32_t L3PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L3SAM0  : 1;
-            __IOM uint32_t L3SAIM0 : 1;
-            __IOM uint32_t L3DAM0  : 1;
-            __IOM uint32_t L3DAIM0 : 1;
-            __IOM uint32_t L3HSBM0 : 5;
-            __IOM uint32_t L3HDBM0 : 5;
-            __IOM uint32_t L4PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L4SPM0  : 1;
-            __IOM uint32_t L4SPIM0 : 1;
-            __IOM uint32_t L4DPM0  : 1;
-            __IOM uint32_t L4DPIM0 : 1;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHN0  : 2;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHEN0 : 1;
-            uint32_t               : 3;
+            __IOM uint32_t L3A00 : 32;
         } MACLARR05_b;
     };
     union
@@ -2646,25 +2519,7 @@ typedef struct
         __IOM uint32_t MACLARR06;
         struct
         {
-            __IOM uint32_t L3PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L3SAM0  : 1;
-            __IOM uint32_t L3SAIM0 : 1;
-            __IOM uint32_t L3DAM0  : 1;
-            __IOM uint32_t L3DAIM0 : 1;
-            __IOM uint32_t L3HSBM0 : 5;
-            __IOM uint32_t L3HDBM0 : 5;
-            __IOM uint32_t L4PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L4SPM0  : 1;
-            __IOM uint32_t L4SPIM0 : 1;
-            __IOM uint32_t L4DPM0  : 1;
-            __IOM uint32_t L4DPIM0 : 1;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHN0  : 2;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHEN0 : 1;
-            uint32_t               : 3;
+            __IOM uint32_t L3A00 : 32;
         } MACLARR06_b;
     };
     union
@@ -2733,25 +2588,7 @@ typedef struct
         __IOM uint32_t MACLARR07;
         struct
         {
-            __IOM uint32_t L3PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L3SAM0  : 1;
-            __IOM uint32_t L3SAIM0 : 1;
-            __IOM uint32_t L3DAM0  : 1;
-            __IOM uint32_t L3DAIM0 : 1;
-            __IOM uint32_t L3HSBM0 : 5;
-            __IOM uint32_t L3HDBM0 : 5;
-            __IOM uint32_t L4PEN0  : 1;
-            uint32_t               : 1;
-            __IOM uint32_t L4SPM0  : 1;
-            __IOM uint32_t L4SPIM0 : 1;
-            __IOM uint32_t L4DPM0  : 1;
-            __IOM uint32_t L4DPIM0 : 1;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHN0  : 2;
-            uint32_t               : 2;
-            __IOM uint32_t DMCHEN0 : 1;
-            uint32_t               : 3;
+            __IOM uint32_t L3A00 : 32;
         } MACLARR07_b;
     };
     union
@@ -2809,10 +2646,8 @@ typedef struct
             struct
             {
                 __IOM uint32_t TYP  : 16;
-                uint32_t            : 3;
-                __IOM uint32_t TMRQ : 1;
-                __IOM uint32_t PFEX : 1;
-                uint32_t            : 11;
+                __IOM uint32_t TMRQ : 3;
+                uint32_t            : 13;
             } MACTRR0_b;
         };
     };
@@ -2822,10 +2657,8 @@ typedef struct
         struct
         {
             __IOM uint32_t TYP  : 16;
-            uint32_t            : 3;
-            __IOM uint32_t TMRQ : 1;
-            __IOM uint32_t PFEX : 1;
-            uint32_t            : 11;
+            __IOM uint32_t TMRQ : 3;
+            uint32_t            : 13;
         } MACTRR1_b;
     };
     union
@@ -2834,10 +2667,8 @@ typedef struct
         struct
         {
             __IOM uint32_t TYP  : 16;
-            uint32_t            : 3;
-            __IOM uint32_t TMRQ : 1;
-            __IOM uint32_t PFEX : 1;
-            uint32_t            : 11;
+            __IOM uint32_t TMRQ : 3;
+            uint32_t            : 13;
         } MACTRR2_b;
     };
     union
@@ -2846,10 +2677,8 @@ typedef struct
         struct
         {
             __IOM uint32_t TYP  : 16;
-            uint32_t            : 3;
-            __IOM uint32_t TMRQ : 1;
-            __IOM uint32_t PFEX : 1;
-            uint32_t            : 11;
+            __IOM uint32_t TMRQ : 3;
+            uint32_t            : 13;
         } MACTRR3_b;
     };
     union
@@ -2858,10 +2687,8 @@ typedef struct
         struct
         {
             __IOM uint32_t TYP  : 16;
-            uint32_t            : 3;
-            __IOM uint32_t TMRQ : 1;
-            __IOM uint32_t PFEX : 1;
-            uint32_t            : 11;
+            __IOM uint32_t TMRQ : 3;
+            uint32_t            : 13;
         } MACTRR4_b;
     };
     union
@@ -2870,10 +2697,8 @@ typedef struct
         struct
         {
             __IOM uint32_t TYP  : 16;
-            uint32_t            : 3;
-            __IOM uint32_t TMRQ : 1;
-            __IOM uint32_t PFEX : 1;
-            uint32_t            : 11;
+            __IOM uint32_t TMRQ : 3;
+            uint32_t            : 13;
         } MACTRR5_b;
     };
     union
@@ -2882,10 +2707,8 @@ typedef struct
         struct
         {
             __IOM uint32_t TYP  : 16;
-            uint32_t            : 3;
-            __IOM uint32_t TMRQ : 1;
-            __IOM uint32_t PFEX : 1;
-            uint32_t            : 11;
+            __IOM uint32_t TMRQ : 3;
+            uint32_t            : 13;
         } MACTRR6_b;
     };
     union
@@ -2894,10 +2717,8 @@ typedef struct
         struct
         {
             __IOM uint32_t TYP  : 16;
-            uint32_t            : 3;
-            __IOM uint32_t TMRQ : 1;
-            __IOM uint32_t PFEX : 1;
-            uint32_t            : 11;
+            __IOM uint32_t TMRQ : 3;
+            uint32_t            : 13;
         } MACTRR7_b;
     };
     __IM uint8_t RESERVED38[108];
@@ -3357,7 +3178,8 @@ typedef struct
         __IOM uint32_t MTLOMR;
         struct
         {
-            uint32_t               : 2;
+            uint32_t               : 1;
+            __IOM uint32_t DTXSTS  : 1;
             __IOM uint32_t RAA     : 1;
             uint32_t               : 2;
             __IOM uint32_t SCHALG  : 2;
@@ -3377,9 +3199,7 @@ typedef struct
             __IM uint32_t Q1IS  : 1;
             __IM uint32_t Q2IS  : 1;
             __IM uint32_t Q3IS  : 1;
-            uint32_t            : 12;
-            __IM uint32_t MACIS : 1;
-            uint32_t            : 15;
+            uint32_t            : 28;
         } MTLTISR_b;
     };
     __IM uint8_t RESERVED45[12];
@@ -3415,15 +3235,13 @@ typedef struct
         struct
         {
             __IOM uint32_t SWR  : 1;
-            __IOM uint32_t DA   : 1;
+            uint32_t            : 1;
             __IOM uint32_t TAA  : 3;
             uint32_t            : 3;
             __IOM uint32_t DSPW : 1;
-            __IOM uint32_t ARBC : 1;
-            uint32_t            : 1;
+            uint32_t            : 2;
             __IOM uint32_t TXPR : 1;
-            __IOM uint32_t PR   : 3;
-            uint32_t            : 1;
+            uint32_t            : 4;
             __IOM uint32_t INTM : 2;
             uint32_t            : 14;
         } DMR_b;

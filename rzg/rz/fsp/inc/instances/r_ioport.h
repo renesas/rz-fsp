@@ -47,7 +47,7 @@ namespace RZG
 struct st_ioport_instance_ctrl
 {
     uint32_t             open;
-    void const         * p_context;
+    void               * p_context;
     ioport_cfg_t const * p_cfg;
 };
 

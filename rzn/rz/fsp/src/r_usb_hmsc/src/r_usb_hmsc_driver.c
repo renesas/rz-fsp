@@ -3679,7 +3679,7 @@ usb_er_t usb_hmsc_get_max_unit (usb_utr_t * ptr, uint16_t addr, uint8_t * buff, 
     get_max_lun_table.setup.request_length = 0x0001;
     get_max_lun_table.address              = addr;
 
-    /* Recieve MaxLUN */
+    /* Receive MaxLUN */
     g_usb_hmsc_class_control[ptr->ip].keyword   = USB_PIPE0;
     g_usb_hmsc_class_control[ptr->ip].p_tranadr = buff;
     g_usb_hmsc_class_control[ptr->ip].tranlen   = get_max_lun_table.setup.request_length;
@@ -4004,7 +4004,7 @@ uint16_t usb_hmsc_mode_select10 (usb_utr_t * ptr, uint16_t side, uint8_t * buff)
 /******************************************************************************
  * Function Name   : usb_hmsc_get_dev_sts
  * Description     : Responds to HMSCD operation state
- * Arugments       : uint16_t     side    : Drive number
+ * Arguments       : uint16_t     side    : Drive number
  * Return value    : uint16_t :
  ******************************************************************************/
 uint16_t usb_hmsc_get_dev_sts (uint16_t side)
@@ -4063,7 +4063,7 @@ uint16_t usb_hmsc_alloc_drvno (uint16_t devadr)
 /******************************************************************************
  * Function Name   : usb_hmsc_free_drvno
  * Description     : Release Drive no.
- * Arugments       : uint16_t     side    : Drive number
+ * Arguments       : uint16_t     side    : Drive number
  * Return value    : result
  ******************************************************************************/
 uint16_t usb_hmsc_free_drvno (uint16_t side)
@@ -4130,7 +4130,7 @@ uint16_t usb_hmsc_ref_drvno (uint16_t devadr)
 /******************************************************************************
  * Function Name   : usb_hhub_task
  * Description     : HUB task
- * Arguments       : usb_vp_int_t stacd          : Start Code of Hub Task
+ * Arguments       : void * stacd          : Start Code of Hub Task
  * Return value    : none
  ******************************************************************************/
 void usb_hhub_task (void * stacd)

@@ -91,7 +91,7 @@ void sci_smci_eri_isr(void);
 /* This is just a lookup table for S (which is different than F) */
 
 /* This table is the "Base clock settings in smart card interface mode" table from the
- * hardware manual. */
+ * SCI section of the relevant hardware manual. */
 static const sci_smci_bcp_setting_const_t g_bit_clock_conversion_setting_lut[SCI_SMCI_S_LOOKUP_TABLE_ENTRIES] =
 {
     /* BCP, S */
@@ -148,7 +148,7 @@ static const uint8_t g_d_value_lut[SMCI_BAUDRATE_ADJUSTMENT_INTEGER_MAX] =
     [15] = 0
 };
 
-/* This is the divisor 2^(2n+1) as defined in Table "Relationship between N setting in BRR and bit rate B" in RZ microprocessor manual. */
+/* This is the divisor 2^(2n+1) as defined in Table "Relationship between N setting in BRR and bit rate B" in the SCI section of the relevant hardware manual. */
 static const uint8_t g_clock_div_setting[SCI_SMCI_NUM_DIVISORS] =
 {
     2U,
@@ -255,7 +255,7 @@ fsp_err_t R_SCI_SMCI_Open (smci_ctrl_t * const p_ctrl, smci_cfg_t const * const 
     R_BSP_MODULE_START(FSP_IP_SCI, p_cfg->channel);
     R_BSP_RegisterProtectEnable(BSP_REG_PROTECT_LPC_RESET);
 
-    /* Initialize registers. See section "Initialization of SCI (Smart Card Interface Mode)" in the RZ microprocessor manual. */
+    /* Initialize registers. See section "Initialization of SCI (Smart Card Interface Mode)" in the SCI section of the relevant hardware manual. */
     r_sci_smci_config_set(p_instance_ctrl, &comm_params);
 
     p_instance_ctrl->p_tx_src          = NULL;
@@ -556,8 +556,8 @@ fsp_err_t R_SCI_SMCI_StatusGet (smci_ctrl_t * const p_ctrl, smci_status_t * cons
 
 /*******************************************************************************************************************//**
  * Enable or disable the clock signal that is provided by interface the baud rate. When the clock is enabled, reception
- * is enabled at the end of this function. See section "Clock Output Control" in Smart Card Interface Mode in the RZ
- * microprocessor manual or the relevant section for the MPU being used.
+ * is enabled at the end of this function. See section "Clock Output Control" in Smart Card Interface Mode
+ * in the SCI section of the relevant hardware manual.
  * Implements @ref smci_api_t::clockControl
  *
  * @warning This terminates any in-progress transmission and reception.
@@ -824,8 +824,8 @@ static fsp_err_t r_sci_smci_brr_calculate (smci_speed_params_t const * const p_s
          cks_value < (SCI_SMCI_NUM_DIVISORS) && (hit_bit_err > ((int32_t) baud_rate_error_x_1000));
          cks_value++)
     {
-        /* This is the based on SMCI BRR setting as defined in Table "Relationship between N setting in BRR and bit rate B" in the RZ
-         * microprocessor manual or the relevant section for the MPU being used. */
+        /* This is the based on SMCI BRR setting as defined in Table "Relationship between N setting in BRR and bit rate B"
+         * in the SCI section of the relevant hardware manual. */
         divisor = (uint32_t) g_clock_div_setting[cks_value] * target_baudrate *
                   s_value;
         temp_brr = freq_hz / divisor;

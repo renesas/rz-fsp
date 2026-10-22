@@ -319,6 +319,9 @@ fsp_err_t R_DMAC_SoftwareStart (transfer_ctrl_t * const p_api_ctrl, transfer_sta
 
     FSP_PARAMETER_NOT_USED(mode);
 
+    /* All previous loads and stores must be ordered and completed before DMAC channel software start. */
+    __DSB();
+
     /* Set auto clear bit and software start bit. */
     p_ctrl->p_reg->CHCTRL = R_DMA_CHCTRL_STG_Msk;
 
@@ -625,6 +628,9 @@ static fsp_err_t r_dmac_prv_enable (dmac_instance_ctrl_t * p_ctrl)
     /* Resets the channel status register. */
     p_ctrl->p_reg->CHCTRL = R_DMA_CHCTRL_SWRST_Msk;
 
+    /* All previous loads and stores must be ordered and completed before DMAC channel enable. */
+    __DSB();
+
     /* Enable transfer. */
     p_ctrl->p_reg->CHCTRL = R_DMA_CHCTRL_SETEN_Msk;
 
@@ -835,6 +841,7 @@ static void r_dmac_config_transfer_info_link_mode (dmac_instance_ctrl_t * p_ctrl
  * @retval FSP_ERR_IP_CHANNEL_NOT_PRESENT The configured channel is invalid.
  * @retval FSP_ERR_IRQ_BSP_DISABLED       Callback is NULL and the DMAC IRQ is not enabled.
  * @retval FSP_ERR_ALREADY_OPEN           The control structure is already opened.
+ * @retval FSP_ERR_IP_UNIT_NOT_PRESENT    The configured unit is invalid.
  **********************************************************************************************************************/
 static fsp_err_t r_dma_open_parameter_checking (dmac_instance_ctrl_t * const p_ctrl, transfer_cfg_t const * const p_cfg)
 {
@@ -846,7 +853,12 @@ static fsp_err_t r_dma_open_parameter_checking (dmac_instance_ctrl_t * const p_c
     FSP_ASSERT(NULL != p_cfg->p_info->p_extend_info);
     dmac_extended_cfg_t  * p_extend      = (dmac_extended_cfg_t *) p_cfg->p_extend;
     dmac_extended_info_t * p_extend_info = (dmac_extended_info_t *) p_cfg->p_info->p_extend_info;
+
+    /* Verify the channel exists on the MPU. */
     FSP_ERROR_RETURN(p_extend->channel < BSP_FEATURE_DMAC_MAX_CHANNEL, FSP_ERR_IP_CHANNEL_NOT_PRESENT);
+
+    /* Verify the unit exists on the MPU. */
+    FSP_ERROR_RETURN(((1U << p_extend->unit) & BSP_FEATURE_DMAC_VALID_UNIT_MASK), FSP_ERR_IP_UNIT_NOT_PRESENT);
 
     if (DMAC_CONTINUOUS_SETTING_TRANSFER_NEXT0_ONCE != p_extend->continuous_setting)
     {

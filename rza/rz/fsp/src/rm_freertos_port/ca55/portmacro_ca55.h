@@ -32,9 +32,10 @@
  #ifdef __cplusplus
 extern "C" {
  #endif
-#if defined (BSP_MCU_GROUP_RZA3M) || defined (BSP_MCU_GROUP_RZA3UL)
- #include "r_timer_api.h"
-#endif
+ #if defined(BSP_MCU_GROUP_RZA3M) || defined(BSP_MCU_GROUP_RZA3UL)
+  #include "r_timer_api.h"
+ #endif
+
 /*-----------------------------------------------------------
  * Port specific definitions.
  *
@@ -46,17 +47,17 @@ extern "C" {
  */
 
 /* Type definitions. */
- #define portCHAR          char
- #define portFLOAT         float
- #define portDOUBLE        double
- #define portLONG          long
- #define portSHORT         short
-#if defined (BSP_MCU_GROUP_RZA3M) || defined (BSP_MCU_GROUP_RZA3UL)
- #define portSTACK_TYPE    uint64_t
-#else
- #define portSTACK_TYPE    size_t
-#endif
- #define portBASE_TYPE     long
+ #define portCHAR           char
+ #define portFLOAT          float
+ #define portDOUBLE         double
+ #define portLONG           long
+ #define portSHORT          short
+ #if defined(BSP_MCU_GROUP_RZA3M) || defined(BSP_MCU_GROUP_RZA3UL)
+  #define portSTACK_TYPE    uint64_t
+ #else
+  #define portSTACK_TYPE    size_t
+ #endif
+ #define portBASE_TYPE      long
 
 typedef portSTACK_TYPE StackType_t;
 typedef portBASE_TYPE  BaseType_t;
@@ -76,6 +77,7 @@ typedef uint64_t TickType_t;
  #define portTICK_PERIOD_MS         ((TickType_t) 1000 / configTICK_RATE_HZ)
  #define portBYTE_ALIGNMENT         16
  #define portPOINTER_SIZE_TYPE      uint64_t
+ #define portDONT_DISCARD           BSP_DONT_REMOVE
 
 /*-----------------------------------------------------------*/
 
@@ -176,11 +178,13 @@ extern void        vApplicationIdleHook(void);
 
 /* Prototype of the FreeRTOS tick handler.  This must be installed as the
  * handler for whichever peripheral is used to generate the RTOS tick. */
-#if defined (BSP_MCU_GROUP_RZA3M) || defined (BSP_MCU_GROUP_RZA3UL)
+ #if defined(BSP_MCU_GROUP_RZA3M) || defined(BSP_MCU_GROUP_RZA3UL)
 void FreeRTOS_Tick_Handler(timer_callback_args_t * unused);
-#else
+
+ #else
 void FreeRTOS_Tick_Handler(void);
-#endif
+
+ #endif
 
 /* Any task that uses the floating point unit MUST call vPortTaskUsesFPU()
  * before any floating point instructions are executed. */
@@ -210,11 +214,11 @@ void vPortTaskUsesFPU(void);
 
  #endif                                /* configUSE_PORT_OPTIMISED_TASK_SELECTION */
 
- #ifdef configASSERT
+ #if (configASSERT_DEFINED == 1)
 void vPortValidateInterruptPriority(void);
 
   #define portASSERT_IF_INTERRUPT_PRIORITY_INVALID()    vPortValidateInterruptPriority()
- #endif                                /* configASSERT */
+ #endif                                /* configASSERT_DEFINED == 1 */
 
  #define portNOP()                                      __asm volatile ("NOP")
 
