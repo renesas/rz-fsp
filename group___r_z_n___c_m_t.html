@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -211,14 +211,13 @@ Features</h2>
 <li>Configurable period (counts per timer cycle).</li>
 <li>Supports runtime reconfiguration of period.</li>
 <li>APIs are provided to start, stop, and reset the counter.</li>
-<li>APIs are provided to get the current period, source clock frequency, and count direction. RZN_um_timer_count_direction</li>
-<li>APIs are provided to get the current timer status and counter value. RZN_um_timer_status</li>
+<li>APIs are provided to get the current period, source clock frequency, and count direction.<a class="anchor" id="RZN_um_timer_count_direction"></a></li>
+<li>APIs are provided to get the current timer status and counter value.<a class="anchor" id="RZN_um_timer_status"></a></li>
 <li>Supports start, stop, clear, count up.</li>
 </ul>
 <h1><a class="anchor" id="RZN_r-cmt-configuration"></a>
 Configuration</h1>
-<p>RZN_um_timer_multiple_channels</p>
-<p><h2>Build Time Configurations for r_cmt</h2>
+<p><a class="anchor" id="RZN_um_timer_multiple_channels"></a> <h2>Build Time Configurations for r_cmt</h2>
 The following build time configurations are defined in fsp_cfg/r_cmt_cfg.h:<br />
 </p><table class="doxtable">
 <tr>
@@ -318,8 +317,7 @@ Usage Notes</h1>
 <p>The period is updated after calling <a class="el" href="group___r_z_n___c_m_t.html#ga9151976a4b9b4c53dac63dc88a7eb122">R_CMT_PeriodSet()</a>.</p>
 <dl class="section note"><dt>Note</dt><dd>When manually changing the timer period count, the maximum value is 0x10000.</dd></dl>
 <h2>One-Shot Mode</h2>
-<p>RZN_um_timer_one_shot_mode</p>
-<p>The CMT timer does not support one-shot mode natively. One-shot mode is achieved by stopping the timer in the interrupt service routine before the callback is called. If the interrupt is not serviced before the timer period expires again, the timer generates more than one event.</p>
+<p><a class="anchor" id="RZN_um_timer_one_shot_mode"></a> The CMT timer does not support one-shot mode natively. One-shot mode is achieved by stopping the timer in the interrupt service routine before the callback is called. If the interrupt is not serviced before the timer period expires again, the timer generates more than one event.</p>
 <h1><a class="anchor" id="RZN_r-cmt-examples"></a>
 Examples</h1>
 <h2>CMT Basic Example</h2>
@@ -569,8 +567,7 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Updates period. The new period is updated immediately and the counter is reset to 0.</p>
-<p>Implements <a class="el" href="group___r_z_n___t_i_m_e_r___a_p_i.html#a385d71f8afc519184892ed4d0ff6274e">timer_api_t::periodSet</a>.</p>
+<p>Updates period. The new period is updated immediately and the counter is reset to 0. Implements <a class="el" href="group___r_z_n___t_i_m_e_r___a_p_i.html#a385d71f8afc519184892ed4d0ff6274e">timer_api_t::periodSet</a>.</p>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Period value written successfully. </td></tr>
@@ -859,7 +856,7 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

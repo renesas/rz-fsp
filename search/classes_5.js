@@ -1,14 +1,5 @@
 var searchData=
 [
-  ['rm_5fethosu_5finstance_5fctrl_5ft',['rm_ethosu_instance_ctrl_t',['../group___r_z_g___r_m___e_t_h_o_s_u.html#structrm__ethosu__instance__ctrl__t',1,'']]],
-  ['rsip_5fhashed_5fauth_5fpassword_5ft',['rsip_hashed_auth_password_t',['../group___r_z_n___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__hashed__auth__password__t',1,'rsip_hashed_auth_password_t'],['../group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__hashed__auth__password__t',1,'rsip_hashed_auth_password_t']]],
-  ['rsip_5fhmac_5fhandle_5ft',['rsip_hmac_handle_t',['../group___r_z_n___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__hmac__handle__t',1,'rsip_hmac_handle_t'],['../group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__hmac__handle__t',1,'rsip_hmac_handle_t']]],
-  ['rsip_5finstance_5fctrl_5ft',['rsip_instance_ctrl_t',['../group___r_z_n___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__instance__ctrl__t',1,'rsip_instance_ctrl_t'],['../group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__instance__ctrl__t',1,'rsip_instance_ctrl_t']]],
-  ['rsip_5fkdf_5fhmac_5fhandle_5ft',['rsip_kdf_hmac_handle_t',['../group___r_z_n___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__kdf__hmac__handle__t',1,'rsip_kdf_hmac_handle_t'],['../group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__kdf__hmac__handle__t',1,'rsip_kdf_hmac_handle_t']]],
-  ['rsip_5fkdf_5fsha_5fhandle_5ft',['rsip_kdf_sha_handle_t',['../group___r_z_n___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__kdf__sha__handle__t',1,'rsip_kdf_sha_handle_t'],['../group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__kdf__sha__handle__t',1,'rsip_kdf_sha_handle_t']]],
-  ['rsip_5froot_5fcert_5fmac_5ft',['rsip_root_cert_mac_t',['../group___r_z_n___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__root__cert__mac__t',1,'rsip_root_cert_mac_t'],['../group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__root__cert__mac__t',1,'rsip_root_cert_mac_t']]],
-  ['rsip_5fsb_5fcommon_5fkey_5ft',['rsip_sb_common_key_t',['../group___r_z_n___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__sb__common__key__t',1,'rsip_sb_common_key_t'],['../group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__sb__common__key__t',1,'rsip_sb_common_key_t']]],
-  ['rsip_5fsha_5fhandle_5ft',['rsip_sha_handle_t',['../group___r_z_n___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__sha__handle__t',1,'rsip_sha_handle_t'],['../group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__sha__handle__t',1,'rsip_sha_handle_t']]],
-  ['rsip_5fverified_5fcert_5finfo_5ft',['rsip_verified_cert_info_t',['../group___r_z_n___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__verified__cert__info__t',1,'rsip_verified_cert_info_t'],['../group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__verified__cert__info__t',1,'rsip_verified_cert_info_t']]],
-  ['rsip_5fwrapped_5fsecret_5ft',['rsip_wrapped_secret_t',['../group___r_z_n___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__wrapped__secret__t',1,'rsip_wrapped_secret_t'],['../group___r_z_t___r_s_i_p___p_r_o_t_e_c_t_e_d.html#structrsip__wrapped__secret__t',1,'rsip_wrapped_secret_t']]]
+  ['nand_5fflash_5fdevice_5ffeature_5ft',['nand_flash_device_feature_t',['../structnand__flash__device__feature__t.html',1,'']]],
+  ['nand_5fflash_5foptional_5fcommands_5ft',['nand_flash_optional_commands_t',['../structnand__flash__optional__commands__t.html',1,'']]]
 ];

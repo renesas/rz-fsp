@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['adc_20_28r_5fadc_5fc_29',['ADC (r_adc_c)',['../group___r_z_a___a_d_c.html',1,'']]],
   ['adc_20interface',['ADC Interface',['../group___r_z_a___a_d_c___a_p_i.html',1,'']]],
+  ['adc_20_28r_5fadc_5fc_29',['ADC (r_adc_c)',['../group___r_z_a___a_d_c___c.html',1,'']]],
   ['ai',['AI',['../group___r_z_a___r_e_n_e_s_a_s___a_i___i_n_t_e_r_f_a_c_e_s.html',1,'']]],
   ['ai',['AI',['../group___r_z_a___r_e_n_e_s_a_s___a_i___m_o_d_u_l_e_s.html',1,'']]],
   ['analog',['Analog',['../group___r_z_a___r_e_n_e_s_a_s___a_n_a_l_o_g___i_n_t_e_r_f_a_c_e_s.html',1,'']]],
@@ -19,6 +19,7 @@ var searchData=
   ['analog',['Analog',['../group___r_z_g___r_e_n_e_s_a_s___a_n_a_l_o_g___m_o_d_u_l_e_s.html',1,'']]],
   ['audio',['Audio',['../group___r_z_g___r_e_n_e_s_a_s___a_u_d_i_o___i_n_t_e_r_f_a_c_e_s.html',1,'']]],
   ['audio',['Audio',['../group___r_z_g___r_e_n_e_s_a_s___a_u_d_i_o___m_o_d_u_l_e_s.html',1,'']]],
+  ['arm_20mailbox_20_28rm_5farm_5fmailbox_5fmhu_29',['Arm Mailbox (rm_arm_mailbox_mhu)',['../group___r_z_g___r_m___a_r_m___m_a_i_l_b_o_x___m_h_u.html',1,'']]],
   ['adc_20_28r_5fadc_29',['ADC (r_adc)',['../group___r_z_n___a_d_c.html',1,'']]],
   ['adc_20interface',['ADC Interface',['../group___r_z_n___a_d_c___a_p_i.html',1,'']]],
   ['analog',['Analog',['../group___r_z_n___r_e_n_e_s_a_s___a_n_a_l_o_g___i_n_t_e_r_f_a_c_e_s.html',1,'']]],

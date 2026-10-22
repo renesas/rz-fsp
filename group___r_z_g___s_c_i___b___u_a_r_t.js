@@ -23,7 +23,8 @@ var group___r_z_g___s_c_i___b___u_a_r_t =
       [ "flow_control", "group___r_z_g___s_c_i___b___u_a_r_t.html#a9ddc2bf788519a1c5e385839d660c41d", null ],
       [ "rs485_setting", "group___r_z_g___s_c_i___b___u_a_r_t.html#a09e279ddb45933fad8db146ca44886de", null ],
       [ "half_data_setting", "group___r_z_g___s_c_i___b___u_a_r_t.html#a97498e86a04a43345a1b08ce036af855", null ],
-      [ "p_reg", "group___r_z_g___s_c_i___b___u_a_r_t.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
+      [ "p_reg", "group___r_z_g___s_c_i___b___u_a_r_t.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ],
+      [ "delay_cycles", "group___r_z_g___s_c_i___b___u_a_r_t.html#a13691b89c6884467e7ff6ad3e93032db", null ]
     ] ],
     [ "sci_b_uart_instance_ctrl_t", "group___r_z_g___s_c_i___b___u_a_r_t.html#gae0d6193a07d140fcba221ae77e6970c5", null ],
     [ "sci_b_baud_setting_t", "group___r_z_g___s_c_i___b___u_a_r_t.html#ga274f826083ab2bf31b501ddeee29ec3b", null ],

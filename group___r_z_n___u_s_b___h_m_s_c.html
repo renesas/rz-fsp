@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -247,7 +247,9 @@ Limitations</h2>
 <li>A device that does not respond to the READ_CAPACITY command operates as a device with a sector size of 512 bytes.</li>
 <li>The continuous transfer mode cannot be used when using DMA.</li>
 <li>This module must be incorporated into a project using r_usb_basic and does not provide any public APIs.</li>
-<li>This driver does not support Low-speed.</li>
+<li><p class="startli">When using ff_fread() / ff_fwrite(), please append USB_BUFFER_PLACE_IN_SECTION to the declaration of the memory area specified as the first argument (pvBuffer), as shown below:</p>
+<p class="startli">Example: uint8_t g_buffer[x] USB_BUFFER_PLACE_IN_SECTION;</p>
+</li>
 </ol>
 <h1><a class="anchor" id="RZN_r-usb_hmsc-examples"></a>
 Examples</h1>
@@ -544,7 +546,7 @@ usb_apl_task</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

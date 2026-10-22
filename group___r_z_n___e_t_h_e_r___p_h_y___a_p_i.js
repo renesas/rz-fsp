@@ -1,5 +1,11 @@
 var group___r_z_n___e_t_h_e_r___p_h_y___a_p_i =
 [
+    [ "st_ether_phy_callback_args", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#struct_r_z_n_1_1st__ether__phy__callback__args", [
+      [ "channel", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#a0c72dd5e18823aef187a34137983c9a6", null ],
+      [ "port", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#a83a04ad582de2b7d36b96f9db429c2c6", null ],
+      [ "event", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#a8be0a8a47636deeb0908ac288dfa3a60", null ],
+      [ "p_context", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#aa207a6ef4d9f49f00f01a37810ac301d", null ]
+    ] ],
     [ "st_ether_phy_cfg", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#struct_r_z_n_1_1st__ether__phy__cfg", [
       [ "channel", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#a715f5cb061d11eb75981741eda4dafcd", null ],
       [ "phy_lsi_address", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#a505ef8f208a4fcdfdf9975ec7162b220", null ],
@@ -30,6 +36,7 @@ var group___r_z_n___e_t_h_e_r___p_h_y___a_p_i =
       [ "p_cfg", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#afb15946d4843448be341d3ae74c4270b", null ],
       [ "p_api", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#a0d243d4a4d31435bfdd99f83688ebb2c", null ]
     ] ],
+    [ "ether_phy_callback_args_t", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ga364bdffbf469fd3ec95d15074542aa4d", null ],
     [ "ether_phy_ctrl_t", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ga3896c518dba03a28855c9a86f747e03c", null ],
     [ "ether_phy_cfg_t", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ga62a0750b43212823923040adaf88d8ee", null ],
     [ "ether_phy_lsi_cfg_t", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#gacabf36d97e246b965677a8c8e6cea4c4", null ],
@@ -42,6 +49,7 @@ var group___r_z_n___e_t_h_e_r___p_h_y___a_p_i =
       [ "ETHER_PHY_LSI_TYPE_DP83620", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ga52ba7820524fdf3472ec06b109d4e9a5af3ca93247dd58484b187bba066282686", null ],
       [ "ETHER_PHY_LSI_TYPE_ICS1894", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ga52ba7820524fdf3472ec06b109d4e9a5a64f1f8634b4c7b356c34780b587b4303", null ],
       [ "ETHER_PHY_LSI_TYPE_GPY111", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ga52ba7820524fdf3472ec06b109d4e9a5af7929b2e75e0519dd5529309192b5bb8", null ],
+      [ "ETHER_PHY_LSI_TYPE_VSC8541", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ga52ba7820524fdf3472ec06b109d4e9a5a462464d39a2eb86230c443ab7a807d74", null ],
       [ "ETHER_PHY_LSI_TYPE_CUSTOM", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ga52ba7820524fdf3472ec06b109d4e9a5a971d172eaa2cd7fb58b308a8b32bfa62", null ],
       [ "ETHER_PHY_LSI_TYPE_DEFAULT", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ga52ba7820524fdf3472ec06b109d4e9a5a51d3a0be0adaa941938290686f93e432", null ],
       [ "ETHER_PHY_LSI_TYPE_VSC8541", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ga52ba7820524fdf3472ec06b109d4e9a5a462464d39a2eb86230c443ab7a807d74", null ],
@@ -76,5 +84,10 @@ var group___r_z_n___e_t_h_e_r___p_h_y___a_p_i =
       [ "ETHER_PHY_MII_TYPE_RMII", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ggaafbecb98180b1f07abe8449332b5a122a4a69b11865eb1f04c1e6726f34d32aeb", null ],
       [ "ETHER_PHY_MII_TYPE_GMII", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ggaafbecb98180b1f07abe8449332b5a122aa10a91dcf39a722cdc50e918cce8a735", null ],
       [ "ETHER_PHY_MII_TYPE_RGMII", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ggaafbecb98180b1f07abe8449332b5a122aef0f7560aa2acc87ebef70f9323eee53", null ]
+    ] ],
+    [ "ether_phy_event_t", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#ga118294e3043fe8486e757ea45c792bde", [
+      [ "ETHER_PHY_EVENT_PREEMPTION_LINK_VERIFY_FAIL", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#gga118294e3043fe8486e757ea45c792bdea209902097191fb7e72d0c75e0461f854", null ],
+      [ "ETHER_PHY_EVENT_PREEMPTION_LINK_VERIFY_SUCCESS", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#gga118294e3043fe8486e757ea45c792bdea2c929292e59bcffb1f2d5084907a4b27", null ],
+      [ "ETHER_PHY_EVENT_PREEMPTION_LINK_VERIFY_RECEIVE", "group___r_z_n___e_t_h_e_r___p_h_y___a_p_i.html#gga118294e3043fe8486e757ea45c792bdea2883ef45e2155a2b00b411b0ccc1625c", null ]
     ] ]
 ];

@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -162,18 +162,18 @@ $(document).ready(function(){initNavTree('group___r_z_n___r_m___f_r_e_e_r_t_o_s_
 <div class="title">FreeRTOS Port (rm_freertos_port)<div class="ingroups"><a class="el" href="group___r_z_n.html">RZN</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___m_o_d_u_l_e_s.html">Modules</a> &raquo; <a class="el" href="group___r_z_n___r_e_n_e_s_a_s___r_t_o_s___m_o_d_u_l_e_s.html">RTOS</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-<p>FreeRTOS port for RZ/N2L MPU. </p>
+<p>FreeRTOS port for RZ/N MPU. </p>
 <h1><a class="anchor" id="RZN_rm-freertos-port-overview"></a>
 Overview</h1>
 <dl class="section note"><dt>Note</dt><dd><b>The FreeRTOS Port does not provide any interfaces to the user. Consult the FreeRTOS documentation at <a href="https://www.freertos.org/Documentation/00-Overview">https://www.freertos.org/Documentation/00-Overview</a> for further information.</b></dd></dl>
 <h2><a class="anchor" id="RZN_rm-freertos-port-features"></a>
 Features</h2>
-<p>The RZ/N2L FreeRTOS port supports the following features:</p><ul>
+<p>The RZ/N FreeRTOS port supports the following features:</p><ul>
 <li>Standard FreeRTOS configurations<a class="anchor" id="RZN_um_freertos_tick_configuration"></a><a class="anchor" id="RZN_um_freertos_stack_monitor"></a> </li>
 </ul>
 <h1><a class="anchor" id="RZN_rm-freertos-port-configuration"></a>
 Configuration</h1>
-<dl class="section note"><dt>Note</dt><dd><b>The FreeRTOS Port and libraries use <code>printf</code> by default when logging is enabled. <code>printf</code> requires a heap (BSP Tab -&gt; Properties -&gt; RZN2L -&gt; Heap size (bytes)).</b></dd></dl>
+<dl class="section note"><dt>Note</dt><dd><b>The FreeRTOS Port and libraries use <code>printf</code> by default when logging is enabled. <code>printf</code> requires a heap (BSP Tab -&gt; Properties -&gt; RZN2L / RZN2H -&gt; Heap size (bytes)).</b></dd></dl>
 <p><h2>Build Time Configurations for all</h2>
 The following build time configurations are defined in aws/FreeRTOSConfig.h:<br />
 </p><table class="doxtable">
@@ -363,7 +363,7 @@ Older versions of FreeRTOS specified stack sizes using variables of type UBaseTy
 <br />
 Below is explanation for macros that are set based on this value from FreeRTOS website.<br />
 <br />
-In the RZ MPUs port, configKERNEL_INTERRUPT_PRIORITY is not used and the kernel runs at the lowest priority.<br />
+In the RZ microprocessor port, configKERNEL_INTERRUPT_PRIORITY is not used and the kernel runs at the lowest priority.<br />
 <br />
 Note in the following discussion that only API functions that end in "FromISR" can be called from within an interrupt service routine.<br />
 <br />
@@ -373,11 +373,11 @@ A full interrupt nesting model is achieved by setting configMAX_SYSCALL_INTERRUP
 <br />
 Interrupts that do not call API functions can execute at priorities above configMAX_SYSCALL_INTERRUPT_PRIORITY and therefore never be delayed by the RTOS kernel execution.<br />
 <br />
-A special note for ARM Cortex-M users: Please read the page dedicated to interrupt priority settings on ARM Cortex-M devices. As a minimum, remember that ARM Cortex-M cores use numerically low priority numbers to represent HIGH priority interrupts, which can seem counter-intuitive and is easy to forget! If you wish to assign an interrupt a low priority do NOT assign it a priority of 0 (or other low numeric value) as this can result in the interrupt actually having the highest priority in the system - and therefore potentially make your system crash if this priority is above configMAX_SYSCALL_INTERRUPT_PRIORITY.<br />
-<br />
-The lowest priority on a ARM Cortex-M core is in fact 255 - however different ARM Cortex-M vendors implement a different number of priority bits and supply library functions that expect priorities to be specified in different ways. For example, on the RA6M3 the lowest priority you can specify is 15 - and the highest priority you can specify is 0. </td></tr>
+RZ microprocessor the lowest priority you can specify is 30 - and the highest priority you can specify is 0. </td></tr>
 <tr>
-<td>General &gt; Assert</td><td>Manual Entry</td><td>assert(x) </td><td>The semantics of the configASSERT() macro are the same as the standard C assert() macro. An assertion is triggered if the parameter passed into configASSERT() is zero.<br />
+<td>General &gt; Max Syscall Interrupt Priority</td><td>Manual Entry</td><td>configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY </td><td>Sets the interrupt priority above which FreeRTOS API calls must not be made. </td></tr>
+<tr>
+<td>General &gt; Assert</td><td>Manual Entry</td><td></td><td>The semantics of the configASSERT() macro are the same as the standard C assert() macro. An assertion is triggered if the parameter passed into configASSERT() is zero.<br />
 configASSERT() is called throughout the FreeRTOS source files to check how the application is using FreeRTOS. It is highly recommended to develop FreeRTOS applications with configASSERT() defined.<br />
 <br />
 The example definition (shown at the top of the file and replicated below) calls vAssertCalled(), passing in the file name and line number of the triggering configASSERT() call (__FILE__ and __LINE__ are standard macros provided by most compilers). This is just for demonstration as vAssertCalled() is not a FreeRTOS function, configASSERT() can be defined to take whatever action the application writer deems appropriate.<br />
@@ -488,7 +488,7 @@ Disabled</li>
 </ul>
 </td><td>Disabled </td><td>The Run Time Stats page describes the use of this parameter. </td></tr>
 <tr>
-<td>Memory Allocation &gt; Support Static Allocation</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Memory Allocations &gt; Support Static Allocation</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
@@ -505,7 +505,7 @@ If Support Static Allocation is Enabled then the application writer must also pr
 /* Support Static Allocation is Enabled, so the application must provide an<br />
 implementation of vApplicationGetIdleTaskMemory() to provide the memory that is<br />
 used by the Idle task. */<br />
-void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer,&lt;br&gt;                                    StackType_t **ppxIdleTaskStackBuffer,&lt;br&gt;                                    uint32_t *pulIdleTaskStackSize )<br />
+void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer,&lt;br&gt;                                    StackType_t **ppxIdleTaskStackBuffer,&lt;br&gt;                                    configSTACK_DEPTH_TYPE *pulIdleTaskStackSize )<br />
 {<br />
 /* If the buffers to be provided to the Idle task are declared inside this<br />
 function then they must be declared static - otherwise they will be allocated on<br />
@@ -530,7 +530,7 @@ static StackType_t uxIdleTaskStack[ configMINIMAL_STACK_SIZE ];<br />
 /* Support Static Allocation and Use Timers are both Enabled, so the<br />
 application must provide an implementation of vApplicationGetTimerTaskMemory()<br />
 to provide the memory that is used by the Timer service task. */<br />
-void vApplicationGetTimerTaskMemory( StaticTask_t **ppxTimerTaskTCBBuffer,&lt;br&gt;                                     StackType_t **ppxTimerTaskStackBuffer,&lt;br&gt;                                     uint32_t *pulTimerTaskStackSize )<br />
+void vApplicationGetTimerTaskMemory( StaticTask_t **ppxTimerTaskTCBBuffer,&lt;br&gt;                                     StackType_t **ppxTimerTaskStackBuffer,&lt;br&gt;                                     configSTACK_DEPTH_TYPE *pulTimerTaskStackSize )<br />
 {<br />
 /* If the buffers to be provided to the Timer task are declared inside this<br />
 function then they must be declared static - otherwise they will be allocated on<br />
@@ -557,7 +557,7 @@ is Enabled.<br />
 <br />
 See the Static Vs Dynamic Memory Allocation page for more information. </td></tr>
 <tr>
-<td>Memory Allocation &gt; Support Dynamic Allocation</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Memory Allocations &gt; Support Dynamic Allocation</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
@@ -568,10 +568,10 @@ If Support Dynamic Allocation is set to 0 then RTOS objects can only be created 
 <br />
 See the Static Vs Dynamic Memory Allocation page for more information. </td></tr>
 <tr>
-<td>Memory Allocation &gt; Total Heap Size</td><td>Value must be positive integer greater than or equal to 0</td><td>1024 </td><td>The total amount of RAM available in the FreeRTOS heap.<br />
+<td>Memory Allocations &gt; Total Heap Size</td><td>Value must be positive integer greater than or equal to 0</td><td>1024 </td><td>The total amount of RAM available in the FreeRTOS heap.<br />
 This value will only be used if Support Dynamic Allocation is Enabled and the application makes use of one of the sample memory allocation schemes provided in the FreeRTOS source code download. See the memory configuration section for further details. </td></tr>
 <tr>
-<td>Memory Allocation &gt; Application Allocated Heap</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Memory Allocations &gt; Application Allocated Heap</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Enabled</li>
 <li>
@@ -785,7 +785,7 @@ Debug</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

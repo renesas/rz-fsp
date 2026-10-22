@@ -62,6 +62,7 @@ var group___r_z_g___c_m_t_w =
     [ "R_CMTW_Start", "group___r_z_g___c_m_t_w.html#ga874d0098275f48ec3c84e8587d262fce", null ],
     [ "R_CMTW_Enable", "group___r_z_g___c_m_t_w.html#gadba23fc3303d81ce926ba6ebe9245e6a", null ],
     [ "R_CMTW_Disable", "group___r_z_g___c_m_t_w.html#ga414c89c292c18a33619337489cd43787", null ],
+    [ "R_CMTW_CompareMatchSet", "group___r_z_g___c_m_t_w.html#ga8993bf4cbf0ede99b610b3b2f1a3246c", null ],
     [ "R_CMTW_InfoGet", "group___r_z_g___c_m_t_w.html#gae56c5935864ef5ef23eeae25a95ab079", null ],
     [ "R_CMTW_StatusGet", "group___r_z_g___c_m_t_w.html#gacbdfc3716f8d5bd47edaa801eb50d1b7", null ],
     [ "R_CMTW_Stop", "group___r_z_g___c_m_t_w.html#ga842bb3b9c5c12cdfff41dd8595defc70", null ],

@@ -1,16 +1,15 @@
 var group___r_z_v___i3_c___b =
 [
     [ "st_i3c_b_clock_stalling", "group___r_z_v___i3_c___b.html#struct_r_z_v_1_1st__i3c__b__clock__stalling", [
+      [ "clock_stalling_time", "group___r_z_v___i3_c___b.html#ac9d608ced737310700988811cb6e825c", null ],
       [ "assigned_address_phase_enable", "group___r_z_v___i3_c___b.html#a3de2ad9fdc4f115c0c3eb1ae8d309310", null ],
       [ "transition_phase_enable", "group___r_z_v___i3_c___b.html#a1e17c7ba051cbbc0ff57d90fea790529", null ],
       [ "parity_phase_enable", "group___r_z_v___i3_c___b.html#a6d4b6b31e9050c2c8ecf09bc5cde62a9", null ],
-      [ "ack_phase_enable", "group___r_z_v___i3_c___b.html#a4760badf6fcc5695df7c4c8e58f7f9cb", null ],
-      [ "clock_stalling_time", "group___r_z_v___i3_c___b.html#ad201fd4faf0f7853730805bc021cd4e0", null ]
+      [ "ack_phase_enable", "group___r_z_v___i3_c___b.html#a4760badf6fcc5695df7c4c8e58f7f9cb", null ]
     ] ],
     [ "st_i3c_b_bitrate_settings", "group___r_z_v___i3_c___b.html#struct_r_z_v_1_1st__i3c__b__bitrate__settings", [
       [ "stdbr", "group___r_z_v___i3_c___b.html#a01c93295963a1e8e0c9d360ba64dece8", null ],
-      [ "extbr", "group___r_z_v___i3_c___b.html#a81410f4ed8c831ab3a557a098ace2fd7", null ],
-      [ "clock_stalling", "group___r_z_v___i3_c___b.html#a33cca3dffdec68983a92137890232718", null ]
+      [ "extbr", "group___r_z_v___i3_c___b.html#a81410f4ed8c831ab3a557a098ace2fd7", null ]
     ] ],
     [ "st_i3c_b_ibi_control", "group___r_z_v___i3_c___b.html#struct_r_z_v_1_1st__i3c__b__ibi__control", [
       [ "hot_join_acknowledge", "group___r_z_v___i3_c___b.html#afdcaea75728a0d9827cf375837cf3d0b", null ],
@@ -85,6 +84,16 @@ var group___r_z_v___i3_c___b =
       [ "ipl", "group___r_z_v___i3_c___b.html#ad0ceb75a6f1ed97fa3e8829eb645d655", null ],
       [ "eei_ipl", "group___r_z_v___i3_c___b.html#a82045d48ad198cbb387110abedea3236", null ],
       [ "p_reg", "group___r_z_v___i3_c___b.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
+    ] ],
+    [ "st_i3c_b_bitrate_settings.__unnamed__", "group___r_z_v___i3_c___b.html#union_r_z_v_1_1st__i3c__b__bitrate__settings_8____unnamed____", [
+      [ "scstlctl", "group___r_z_v___i3_c___b.html#a1b897e125f20d2e789046965ebc6a694", null ],
+      [ "__PACKED_STRUCT", "group___r_z_v___i3_c___b.html#ab8b9a8f7f746c73a08b47755db78c2b8", null ],
+      [ "assigned_address_phase_enable", "group___r_z_v___i3_c___b.html#a68a829ba721db26d872d05e0d9b77db5", null ],
+      [ "transition_phase_enable", "group___r_z_v___i3_c___b.html#ae5cc71575ce57a4876cc2f9190f159e1", null ],
+      [ "parity_phase_enable", "group___r_z_v___i3_c___b.html#ad83bd006efaed0c05245ced4e6aa7311", null ],
+      [ "ack_phase_enable", "group___r_z_v___i3_c___b.html#a06b72b8db529f75692fc64497fcb9d16", null ],
+      [ "scstlctl_b", "group___r_z_v___i3_c___b.html#a63b73a96cd8a997612219bd1ba5c5372", null ],
+      [ "clock_stalling", "group___r_z_v___i3_c___b.html#a5b5fc75bdae5969ad071e681956a9437", null ]
     ] ],
     [ "I3C_B_EVENT_STATUS_SUCCESS", "group___r_z_v___i3_c___b.html#ga66e705cb2af31c57eacd0492b2417145", null ],
     [ "I3C_B_EVENT_STATUS_PARITY", "group___r_z_v___i3_c___b.html#ga20332b13e43cafe1a0ee0dbc195d7467", null ],

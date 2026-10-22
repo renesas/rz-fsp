@@ -8,6 +8,7 @@ var group___r_z_g___r_e_n_e_s_a_s___m_o_d_u_l_e_s =
     [ "Input", "group___r_z_g___r_e_n_e_s_a_s___i_n_p_u_t___m_o_d_u_l_e_s.html", "group___r_z_g___r_e_n_e_s_a_s___i_n_p_u_t___m_o_d_u_l_e_s" ],
     [ "Monitoring", "group___r_z_g___r_e_n_e_s_a_s___m_o_n_i_t_o_r_i_n_g___m_o_d_u_l_e_s.html", "group___r_z_g___r_e_n_e_s_a_s___m_o_n_i_t_o_r_i_n_g___m_o_d_u_l_e_s" ],
     [ "RTOS", "group___r_z_g___r_e_n_e_s_a_s___r_t_o_s___m_o_d_u_l_e_s.html", "group___r_z_g___r_e_n_e_s_a_s___r_t_o_s___m_o_d_u_l_e_s" ],
+    [ "Security", "group___r_z_g___r_e_n_e_s_a_s___s_e_c_u_r_i_t_y___m_o_d_u_l_e_s.html", "group___r_z_g___r_e_n_e_s_a_s___s_e_c_u_r_i_t_y___m_o_d_u_l_e_s" ],
     [ "Sensor", "group___r_z_g___r_e_n_e_s_a_s___s_e_n_s_o_r___m_o_d_u_l_e_s.html", "group___r_z_g___r_e_n_e_s_a_s___s_e_n_s_o_r___m_o_d_u_l_e_s" ],
     [ "Storage", "group___r_z_g___r_e_n_e_s_a_s___s_t_o_r_a_g_e___m_o_d_u_l_e_s.html", "group___r_z_g___r_e_n_e_s_a_s___s_t_o_r_a_g_e___m_o_d_u_l_e_s" ],
     [ "System", "group___r_z_g___r_e_n_e_s_a_s___s_y_s_t_e_m___m_o_d_u_l_e_s.html", "group___r_z_g___r_e_n_e_s_a_s___s_y_s_t_e_m___m_o_d_u_l_e_s" ],

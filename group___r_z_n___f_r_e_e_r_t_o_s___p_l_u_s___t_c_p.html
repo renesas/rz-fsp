@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -208,7 +208,7 @@ Enable </li>
 </ul>
 </td><td>Disable </td><td>Set to 1 to print out non debugging messages, for example the output of the FreeRTOS_netstat() command, and ping replies. If ipconfigHAS_PRINTF is set to 1 then FreeRTOS_printf should be set to the function used to print out the messages. </td></tr>
 <tr>
-<td>Byte order of the target MPU</td><td>pdFREERTOS_LITTLE_ENDIAN </td><td>pdFREERTOS_LITTLE_ENDIAN </td><td>Define the byte order of the target MPU </td></tr>
+<td>Byte order of the target MCU</td><td>pdFREERTOS_LITTLE_ENDIAN </td><td>pdFREERTOS_LITTLE_ENDIAN </td><td>Define the byte order of the target MCU </td></tr>
 <tr>
 <td>IP/TCP/UDP checksums</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -459,8 +459,11 @@ Disable</li>
 Enable </li>
 </ul>
 </td><td>Disable </td><td>Possible optimisation for expert users - requires network driver support. It is is useful when there is high network traffic. If non-zero value then instead of passing received packets into the IP task one at a time the network interface can chain received packets together and pass them into the IP task in one go. If set to 0 then only one buffer will be sent at a time. </td></tr>
+</table>
+ <h2>Configurations for Networking &gt; FreeRTOS+TCP Wrapper to ethernet driver (rm_freertos_plus_tcp)</h2>
+<table class="doxtable">
 <tr>
-<td>Ethernet minimum packet bytes</td><td>Value must be an integer</td><td>60 </td><td>Defines the minimum size of an Ethernet frame. If the Ethernet frame is less than the minimum size, it will be padded. </td></tr>
+<th>Configuration</th><th>Options</th><th>Default</th><th>Description </th></tr>
 </table>
 </p>
 <h1><a class="anchor" id="RZN_rm-freertos-plus-tcp-usage-notes"></a>
@@ -493,7 +496,7 @@ Limitations</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

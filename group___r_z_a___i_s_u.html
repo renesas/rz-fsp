@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -444,7 +444,7 @@ Image conversion IRQ number. </td></tr>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Initializes the ISU modules. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to the control block is NULL. </td></tr>
-    <tr><td class="paramname">FSP_ERR_ALREADY_OPEN</td><td>IRU module is already open </td></tr>
+    <tr><td class="paramname">FSP_ERR_ALREADY_OPEN</td><td>ISU module is already open </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ARGUMENT</td><td>Invalid argument error </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ALIGNMENT</td><td>Input buffer alignment </td></tr>
   </table>
@@ -498,9 +498,9 @@ Image conversion IRQ number. </td></tr>
 <p>　Start scaling the input image</p>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">FSP_SUCCESS</td><td>start a capture. </td></tr>
+    <tr><td class="paramname">FSP_SUCCESS</td><td>Start scaling the input image. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to the control block is NULL. </td></tr>
-    <tr><td class="paramname">FSP_ERR_INVALID_MODE</td><td>ISU module is not ready. </td></tr>
+    <tr><td class="paramname">FSP_ERR_INVALID_MODE</td><td>ISU module is not ISU_IN_PROGRESS. </td></tr>
   </table>
   </dd>
 </dl>
@@ -537,7 +537,7 @@ Image conversion IRQ number. </td></tr>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Change scaling configuration. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to the control block is NULL. </td></tr>
-    <tr><td class="paramname">FSP_ERR_INVALID_MODE</td><td>ISU module is not ready. </td></tr>
+    <tr><td class="paramname">FSP_ERR_INVALID_MODE</td><td>ISU module is not ISU_STATE_BUSY. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ARGUMENT</td><td>Invalid argument error </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ALIGNMENT</td><td>Invalid alignment error </td></tr>
   </table>
@@ -552,7 +552,7 @@ Image conversion IRQ number. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

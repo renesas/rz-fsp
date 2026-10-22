@@ -2,8 +2,8 @@ var searchData=
 [
   ['d1_5fallocmem',['d1_allocmem',['../namespace_r_z_a.html#ad8133f82308348dee0f52cfee8720821',1,'RZA']]],
   ['d1_5fallocvidmem',['d1_allocvidmem',['../namespace_r_z_a.html#a1966422eff74b0fa5d2cc5a8569c5095',1,'RZA']]],
-  ['d1_5fcacheblockflush',['d1_cacheblockflush',['../namespace_r_z_a.html#adada0c5777b16ea965b7951aa3a2e2e9',1,'RZA']]],
-  ['d1_5fcacheflush',['d1_cacheflush',['../namespace_r_z_a.html#a4cf0e27e0bc2d4a6ae808a787e458d18',1,'RZA']]],
+  ['d1_5fcacheblockflush',['d1_cacheblockflush',['../namespace_r_z_a.html#aa2f953707b71743f9b0fc00bd97cc378',1,'RZA']]],
+  ['d1_5fcacheflush',['d1_cacheflush',['../namespace_r_z_a.html#aed8979c108817fbfcaf16a8ac664f60b',1,'RZA']]],
   ['d1_5fclosedevice',['d1_closedevice',['../namespace_r_z_a.html#a8ef67dd82ad4c2b91b28cbed07a56771',1,'RZA']]],
   ['d1_5fcopyfromvidmem',['d1_copyfromvidmem',['../namespace_r_z_a.html#af94b55d66b0ceb571d8c5447770ed4cd',1,'RZA']]],
   ['d1_5fcopytovidmem',['d1_copytovidmem',['../namespace_r_z_a.html#a6f09669e80f5a42a178ab448824b17fa',1,'RZA']]],

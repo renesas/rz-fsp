@@ -11,6 +11,10 @@ var group___r_z_a___l_c_d_c =
     [ "lcdc_extended_cfg_t", "group___r_z_a___l_c_d_c.html#ga5db7a45887071423284f25505ded5f38", null ],
     [ "lcdc_ctrl_t", "group___r_z_a___l_c_d_c.html#gafe39907a0ea71c9ab58b1144496e9e72", null ],
     [ "lcdc_instance_ctrl_t", "group___r_z_a___l_c_d_c.html#ga4f3ed7858410c9286b743115ce85ac49", null ],
+    [ "lcdc_output_source_t", "group___r_z_a___l_c_d_c.html#ga16820b967c0e0c4932bf0f04f3ac896b", [
+      [ "LCDC_OUTPUT_SOURCE_PARALLEL", "group___r_z_a___l_c_d_c.html#gga16820b967c0e0c4932bf0f04f3ac896ba25b8a837fa75edc70c986bf42b62664d", null ],
+      [ "LCDC_OUTPUT_SOURCE_MIPI_DSI", "group___r_z_a___l_c_d_c.html#gga16820b967c0e0c4932bf0f04f3ac896ba9b5e631ae05b1075b0d0985709100307", null ]
+    ] ],
     [ "R_LCDC_Open", "group___r_z_a___l_c_d_c.html#gaf009b813646f33a37898b5c147fe245e", null ],
     [ "R_LCDC_Close", "group___r_z_a___l_c_d_c.html#gac912c4bd861925e762c71543d2227c9a", null ],
     [ "R_LCDC_Start", "group___r_z_a___l_c_d_c.html#gaa77209f3aa3592f8274d83d5b2755537", null ],

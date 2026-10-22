@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -184,6 +184,8 @@ Functions</h2></td></tr>
 <tr class="separator:gadba23fc3303d81ce926ba6ebe9245e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga414c89c292c18a33619337489cd43787"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___c_m_t_w.html#ga414c89c292c18a33619337489cd43787">R_CMTW_Disable</a> (<a class="el" href="group___r_z_v___t_i_m_e_r___a_p_i.html#ga2da99b474151cb687d5882ad21b09c2a">timer_ctrl_t</a> *const p_ctrl)</td></tr>
 <tr class="separator:ga414c89c292c18a33619337489cd43787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8993bf4cbf0ede99b610b3b2f1a3246c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___c_m_t_w.html#ga8993bf4cbf0ede99b610b3b2f1a3246c">R_CMTW_CompareMatchSet</a> (<a class="el" href="group___r_z_v___t_i_m_e_r___a_p_i.html#ga2da99b474151cb687d5882ad21b09c2a">timer_ctrl_t</a> *const p_ctrl, uint32_t const compare_match_value, <a class="el" href="group___r_z_v___t_i_m_e_r___a_p_i.html#gaf5f22f5e34fe6ea640fd6a1c7e864cd9">timer_compare_match_t</a> const match_channel)</td></tr>
+<tr class="separator:ga8993bf4cbf0ede99b610b3b2f1a3246c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae56c5935864ef5ef23eeae25a95ab079"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___c_m_t_w.html#gae56c5935864ef5ef23eeae25a95ab079">R_CMTW_InfoGet</a> (<a class="el" href="group___r_z_v___t_i_m_e_r___a_p_i.html#ga2da99b474151cb687d5882ad21b09c2a">timer_ctrl_t</a> *const p_ctrl, <a class="el" href="group___r_z_v___t_i_m_e_r___a_p_i.html#gaf372937699a6b2055a52c7444aea71b4">timer_info_t</a> *const p_info)</td></tr>
 <tr class="separator:gae56c5935864ef5ef23eeae25a95ab079"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacbdfc3716f8d5bd47edaa801eb50d1b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___c_m_t_w.html#gacbdfc3716f8d5bd47edaa801eb50d1b7">R_CMTW_StatusGet</a> (<a class="el" href="group___r_z_v___t_i_m_e_r___a_p_i.html#ga2da99b474151cb687d5882ad21b09c2a">timer_ctrl_t</a> *const p_ctrl, <a class="el" href="group___r_z_v___t_i_m_e_r___a_p_i.html#ga8160de0e701f5d6acebcaf9d2c86120f">timer_status_t</a> *const p_status)</td></tr>
@@ -1001,6 +1003,48 @@ Register base address for specified channel. </td></tr>
 
 </div>
 </div>
+<a id="ga8993bf4cbf0ede99b610b3b2f1a3246c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8993bf4cbf0ede99b610b3b2f1a3246c">&#9670;&nbsp;</a></span>R_CMTW_CompareMatchSet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> R_CMTW_CompareMatchSet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___r_z_v___t_i_m_e_r___a_p_i.html#ga2da99b474151cb687d5882ad21b09c2a">timer_ctrl_t</a> *const&#160;</td>
+          <td class="paramname"><em>p_ctrl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t const&#160;</td>
+          <td class="paramname"><em>compare_match_value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group___r_z_v___t_i_m_e_r___a_p_i.html#gaf5f22f5e34fe6ea640fd6a1c7e864cd9">timer_compare_match_t</a> const&#160;</td>
+          <td class="paramname"><em>match_channel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set value for compare match feature. Implements <a class="el" href="group___r_z_v___t_i_m_e_r___a_p_i.html#a80597964500da2286564afd9dc9cec67">timer_api_t::compareMatchSet</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>This API should be used when timer is stop counting. And shall not be used along with PWM operation.</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>CMTW compare match set is not supported. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="gae56c5935864ef5ef23eeae25a95ab079"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gae56c5935864ef5ef23eeae25a95ab079">&#9670;&nbsp;</a></span>R_CMTW_InfoGet()</h2>
 
@@ -1272,7 +1316,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

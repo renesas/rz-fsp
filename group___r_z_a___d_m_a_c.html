@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -216,7 +216,7 @@ Features</h2>
 <li>See "Table On-Chip Module Requests" in the hardware manual</li>
 </ul>
 </li>
-<li>Supports 1, 2, 4, 8, 16, 32, 64, 128 byte data units<a class="anchor" id="RZA_um_transfer_unit"></a><a class="anchor" id="RZA_um_dmac_src_unit"></a><a class="anchor" id="RZA_um_dmac_dest_unit"></a></li>
+<li>Supports 1, 2, 4, 8, 16, 32, 64, and 128 byte data units<a class="anchor" id="RZA_um_transfer_unit"></a><a class="anchor" id="RZA_um_dmac_src_unit"></a><a class="anchor" id="RZA_um_dmac_dest_unit"></a></li>
 <li>Configurable DMA transfer activation request source, detection method of DMA request signal and DACK output mode<a class="anchor" id="RZA_um_dmac_activation_request_source_set"></a><a class="anchor" id="RZA_um_dmac_request_signal_set"></a><a class="anchor" id="RZA_um_dmac_dack_output_mode_set"></a></li>
 <li>Configurable DMA transfer interval<a class="anchor" id="RZA_um_dmac_transfer_interval_set"></a></li>
 <li>Configurable DMAC channel priority<a class="anchor" id="RZA_um_dmac_channel_priority_set"></a> </li>
@@ -301,45 +301,9 @@ Block</li>
 </ul>
 </td><td>Normal </td><td>Select the transfer mode. </td></tr>
 <tr>
-<td>Register Mode &gt; Source Data Size</td><td><ul style="margin-top:0;margin-bottom:0;">
-<li>
-1 Byte</li>
-<li>
-2 Bytes</li>
-<li>
-4 Bytes</li>
-<li>
-8 Bytes</li>
-<li>
-16 Bytes</li>
-<li>
-32 Bytes</li>
-<li>
-64 Bytes</li>
-<li>
-128 Bytes</li>
-</ul>
-</td><td>2 Bytes </td><td>Select the source data size. </td></tr>
+<td>Register Mode &gt; Source Data Size</td><td>MCU Specific Options</td><td></td><td>Select the source data size. </td></tr>
 <tr>
-<td>Register Mode &gt; Destination Data Size</td><td><ul style="margin-top:0;margin-bottom:0;">
-<li>
-1 Byte</li>
-<li>
-2 Bytes</li>
-<li>
-4 Bytes</li>
-<li>
-8 Bytes</li>
-<li>
-16 Bytes</li>
-<li>
-32 Bytes</li>
-<li>
-64 Bytes</li>
-<li>
-128 Bytes</li>
-</ul>
-</td><td>2 Bytes </td><td>Select the destination data size. </td></tr>
+<td>Register Mode &gt; Destination Data Size</td><td>MCU Specific Options</td><td></td><td>Select the destination data size. </td></tr>
 <tr>
 <td>Register Mode &gt; Destination Address Mode</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -416,8 +380,8 @@ Usage Notes</h1>
 <h2>Transfer Modes</h2>
 <p>The DMAC Module supports two modes of operation.</p>
 <ul>
-<li><b>Normal Mode</b> - In normal mode, a single data unit is forwarded each time a configured peripheral module event is received by the DMAC channel. The data unit can be 1 byte, 2 bytes, 4 bytes, 8 bytes, 16 bytes, 32 bytes, 64 bytes, or 128 bytes. The source and destination addresses can be fixed or incremented. The 32-bit counter decrements on every transfer. When the counter reaches 0, the peripheral module event no longer triggers the transfer and you can interrupt the CPU to signal that all transfers have finished.</li>
-<li><b>Block Mode</b> - In block mode, the amount of data units transfered by each interrupt. For one DMA request, performs transfers until a DMA transfer completes. When the counter reaches 0, transfers will no longer be triggered by the peripheral module event and the CPU can be interrupted to signal that all transfers have finished.</li>
+<li><b>Normal Mode</b> - In normal mode, a single data unit is forwarded each time a configured peripheral module event is received by the DMAC channel. A data unit can be 1-byte, 2-byte, 4-byte, 8-byte, 16-byte, 32-byte, 64-byte, or 128-byte. The source and destination addresses can be fixed or incremented. The 32-bit counter decrements on every transfer. When the counter reaches 0, the peripheral module event no longer triggers the transfer and you can interrupt the CPU to signal that all transfers have finished.</li>
+<li><b>Block Mode</b> - In block mode, the amount of data units transferred by each interrupt. For one DMA request, performs transfers until a DMA transfer completes. When the counter reaches 0, transfers will no longer be triggered by the peripheral module event and the CPU can be interrupted to signal that all transfers have finished.</li>
 </ul>
 <h2>Link Mode</h2>
 <p>In Link mode, a DMA transfer is performed by reading a descriptor placed in the memory as the transfer information. The descriptor is configured by dmac_link_cfg_t struct. For more information see 'Link Mode' section in the hardware manual.</p>
@@ -1668,7 +1632,7 @@ p_next1_register_setting</td>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

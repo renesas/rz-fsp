@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -174,6 +174,8 @@ Summary</h1>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:struct_r_z_n_1_1st__ether__switch__link__status__bitmaps"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#struct_r_z_n_1_1st__ether__switch__link__status__bitmaps">st_ether_switch_link_status_bitmaps</a></td></tr>
+<tr class="separator:struct_r_z_n_1_1st__ether__switch__link__status__bitmaps"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_n_1_1st__ether__switch__callback__args"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#struct_r_z_n_1_1st__ether__switch__callback__args">st_ether_switch_callback_args</a></td></tr>
 <tr class="separator:struct_r_z_n_1_1st__ether__switch__callback__args"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_n_1_1st__ether__switch__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#struct_r_z_n_1_1st__ether__switch__cfg">st_ether_switch_cfg</a></td></tr>
@@ -185,6 +187,8 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:gad1ae32aa50e4414578640ecbe2dd07ee"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#struct_r_z_n_1_1st__ether__switch__link__status__bitmaps">st_ether_switch_link_status_bitmaps</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gad1ae32aa50e4414578640ecbe2dd07ee">ether_switch_link_status_bitmaps_t</a></td></tr>
+<tr class="separator:gad1ae32aa50e4414578640ecbe2dd07ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadc03bc3dfccf088c6599fdc8a469f18d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#struct_r_z_n_1_1st__ether__switch__callback__args">st_ether_switch_callback_args</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gadc03bc3dfccf088c6599fdc8a469f18d">ether_switch_callback_args_t</a></td></tr>
 <tr class="separator:gadc03bc3dfccf088c6599fdc8a469f18d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga64fa5aecbe46856bea7ed1bf4ff56bed"><td class="memItemLeft" align="right" valign="top">typedef void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#ga64fa5aecbe46856bea7ed1bf4ff56bed">ether_switch_ctrl_t</a></td></tr>
@@ -202,6 +206,30 @@ Enumerations</h2></td></tr>
 <tr class="separator:gacd79a4b5f23db68c622b963ff8aa8524"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
+<a name="struct_r_z_n_1_1st__ether__switch__link__status__bitmaps" id="struct_r_z_n_1_1st__ether__switch__link__status__bitmaps"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_n_1_1st__ether__switch__link__status__bitmaps">&#9670;&nbsp;</a></span>RZN::st_ether_switch_link_status_bitmaps</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct RZN::st_ether_switch_link_status_bitmaps</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Link status bitmap </p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a id="a2e4a3fb8f72b62477984d3223db8c180"></a>uint32_t</td>
+<td class="fieldname">
+link_status[((BSP_FEATURE_ETHER_NUM_CHANNELS - 1)/32)+1]</td>
+<td class="fielddoc">
+Link status of each port. </td></tr>
+</table>
+
+</div>
+</div>
 <a name="struct_r_z_n_1_1st__ether__switch__callback__args" id="struct_r_z_n_1_1st__ether__switch__callback__args"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_n_1_1st__ether__switch__callback__args">&#9670;&nbsp;</a></span>RZN::st_ether_switch_callback_args</h2>
 
@@ -242,6 +270,12 @@ event</td>
 <td class="fielddoc">
 The event can be used to identify what caused the callback. <p>Event code. </p>
 </td></tr>
+<tr><td class="fieldtype">
+<a id="a51c7e58caaf99e8d7abcce49b14c5488"></a><a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gad1ae32aa50e4414578640ecbe2dd07ee">ether_switch_link_status_bitmaps_t</a></td>
+<td class="fieldname">
+link_status</td>
+<td class="fielddoc">
+Link status of each port. </td></tr>
 <tr><td class="fieldtype">
 <a id="a6de3966558ac6f22e0d23fffc1ebadd5"></a>void *</td>
 <td class="fieldname">
@@ -418,6 +452,21 @@ Pointer to the API structure for this instance. </td></tr>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
+<a id="gad1ae32aa50e4414578640ecbe2dd07ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad1ae32aa50e4414578640ecbe2dd07ee">&#9670;&nbsp;</a></span>ether_switch_link_status_bitmaps_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#struct_r_z_n_1_1st__ether__switch__link__status__bitmaps">st_ether_switch_link_status_bitmaps</a> <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#gad1ae32aa50e4414578640ecbe2dd07ee">ether_switch_link_status_bitmaps_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Link status bitmap Please refer to the struct <a class="el" href="group___r_z_n___e_t_h_e_r___s_w_i_t_c_h___a_p_i.html#struct_r_z_n_1_1st__ether__switch__link__status__bitmaps">st_ether_switch_link_status_bitmaps</a>. </p>
+
+</div>
+</div>
 <a id="gadc03bc3dfccf088c6599fdc8a469f18d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gadc03bc3dfccf088c6599fdc8a469f18d">&#9670;&nbsp;</a></span>ether_switch_callback_args_t</h2>
 
@@ -518,9 +567,14 @@ Pointer to the API structure for this instance. </td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524ac49554d86f33aab93cc7d939089fca1f"></a>ETHER_SWITCH_EVENT_TAS_ERROR&#160;</td><td class="fielddoc"><p>TAS gate error. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5"></a>ETHER_SWITCH_EVENT_LINK_CHANGE&#160;</td><td class="fielddoc"><p>Change Link status. </p>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5"></a>ETHER_SWITCH_EVENT_LINK_CHANGE&#160;</td><td class="fielddoc"><p>Link status change detection event. </p>
+<p>Change Link status. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5"></a>ETHER_SWITCH_EVENT_LINK_CHANGE&#160;</td><td class="fielddoc"><p>Change Link status. </p>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5"></a>ETHER_SWITCH_EVENT_LINK_CHANGE&#160;</td><td class="fielddoc"><p>Link status change detection event. </p>
+<p>Change Link status. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gacd79a4b5f23db68c622b963ff8aa8524a274780e29e87f9f4f4dfb8a79e2ae5b5"></a>ETHER_SWITCH_EVENT_LINK_CHANGE&#160;</td><td class="fielddoc"><p>Link status change detection event. </p>
+<p>Change Link status. </p>
 </td></tr>
 </table>
 
@@ -532,7 +586,7 @@ Pointer to the API structure for this instance. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

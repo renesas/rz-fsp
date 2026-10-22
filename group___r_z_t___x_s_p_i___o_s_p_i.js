@@ -24,6 +24,8 @@ var group___r_z_t___x_s_p_i___o_s_p_i =
       [ "unit", "group___r_z_t___x_s_p_i___o_s_p_i.html#a09d6c95f1069687d2d2dd559bda5a3a3", null ],
       [ "chip_select", "group___r_z_t___x_s_p_i___o_s_p_i.html#a6d0751eb4597c6d179f1a97ed492821e", null ],
       [ "memory_size", "group___r_z_t___x_s_p_i___o_s_p_i.html#afa720d7b457a80ef9f27d644a51ad157", null ],
+      [ "address_msb_mask", "group___r_z_t___x_s_p_i___o_s_p_i.html#adbf37b9a3c91cc9d42452b8ebd3ffc78", null ],
+      [ "wrap_separate", "group___r_z_t___x_s_p_i___o_s_p_i.html#aacda3bd678331b8287d683522b422f31", null ],
       [ "p_timing_settings", "group___r_z_t___x_s_p_i___o_s_p_i.html#a153a85bdebdd0a41fd6cc0885555608d", null ],
       [ "p_opi_commands", "group___r_z_t___x_s_p_i___o_s_p_i.html#a2b2d6a6d046bc3ab5ae871aba4003b47", null ],
       [ "opi_mem_read_dummy_cycles", "group___r_z_t___x_s_p_i___o_s_p_i.html#a07205a200f0f90f6d2115d0094645b6a", null ],
@@ -53,6 +55,10 @@ var group___r_z_t___x_s_p_i___o_s_p_i =
       [ "XSPI_OSPI_MEMORY_SIZE_16MB", "group___r_z_t___x_s_p_i___o_s_p_i.html#gga4755de6951a4090de81dc608dca4b6f2ae14a7eebf98959e529951573af4fdd81", null ],
       [ "XSPI_OSPI_MEMORY_SIZE_32MB", "group___r_z_t___x_s_p_i___o_s_p_i.html#gga4755de6951a4090de81dc608dca4b6f2a0beda24c43de098447ca5c70b5ce665e", null ],
       [ "XSPI_OSPI_MEMORY_SIZE_64MB", "group___r_z_t___x_s_p_i___o_s_p_i.html#gga4755de6951a4090de81dc608dca4b6f2a9093e89c75ef3953a0040e7c896a4c8b", null ]
+    ] ],
+    [ "xspi_ospi_wrap_separate_t", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga50e13aa805dfa30804ca81249a4642c5", [
+      [ "XSPI_OSPI_WRAP_SEPARATE_ENABLE", "group___r_z_t___x_s_p_i___o_s_p_i.html#gga50e13aa805dfa30804ca81249a4642c5a3ce2790c5c1d807cc4d4b01d7d2c20c5", null ],
+      [ "XSPI_OSPI_WRAP_SEPARATE_DISABLE", "group___r_z_t___x_s_p_i___o_s_p_i.html#gga50e13aa805dfa30804ca81249a4642c5abcd021e72754287a2e77e483f49fd681", null ]
     ] ],
     [ "xspi_ospi_command_interval_clocks_t", "group___r_z_t___x_s_p_i___o_s_p_i.html#ga45613ac5bf636dc0e3f5856b5245e4f7", [
       [ "XSPI_OSPI_COMMAND_INTERVAL_CLOCKS_1", "group___r_z_t___x_s_p_i___o_s_p_i.html#gga45613ac5bf636dc0e3f5856b5245e4f7a8e7b8dd3a5a8bc0d3b53b675842e95e1", null ],

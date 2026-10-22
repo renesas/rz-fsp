@@ -1,6 +1,6 @@
 var group___r_z_a___u_s_b___h_c_d_c =
 [
-    [ "R_USB_HCDC_ControlDataRead", "group___r_z_a___u_s_b___h_c_d_c.html#gae15a20b0fdacb09b75d182c7c276e749", null ],
-    [ "R_USB_HCDC_SpecificDeviceRegister", "group___r_z_a___u_s_b___h_c_d_c.html#ga391ba766bce873bb32485c6cf8662842", null ],
-    [ "R_USB_HCDC_DeviceInfoGet", "group___r_z_a___u_s_b___h_c_d_c.html#gae19d9b46c1eca0155ac0de7f68b83296", null ]
+    [ "R_USB_HCDC_ControlDataRead", "group___r_z_a___u_s_b___h_c_d_c.html#ga8088d3a63f032a4fdaddec7f81f5da60", null ],
+    [ "R_USB_HCDC_SpecificDeviceRegister", "group___r_z_a___u_s_b___h_c_d_c.html#ga111d39b0fc53e4eb07f894ca7a0cd505", null ],
+    [ "R_USB_HCDC_DeviceInfoGet", "group___r_z_a___u_s_b___h_c_d_c.html#ga6b2015ee504e6091a3e380b57e246581", null ]
 ];

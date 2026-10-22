@@ -17,6 +17,8 @@ var group___r_z_n___x_s_p_i___q_s_p_i =
       [ "unit", "group___r_z_n___x_s_p_i___q_s_p_i.html#a09d6c95f1069687d2d2dd559bda5a3a3", null ],
       [ "chip_select", "group___r_z_n___x_s_p_i___q_s_p_i.html#acf5b4c3c44365b100b0a0344e5ceb516", null ],
       [ "memory_size", "group___r_z_n___x_s_p_i___q_s_p_i.html#afa720d7b457a80ef9f27d644a51ad157", null ],
+      [ "address_msb_mask", "group___r_z_n___x_s_p_i___q_s_p_i.html#adbf37b9a3c91cc9d42452b8ebd3ffc78", null ],
+      [ "wrap_separate", "group___r_z_n___x_s_p_i___q_s_p_i.html#a9149f86f9a7eb9921c59fd2a32fe4e2e", null ],
       [ "p_timing_settings", "group___r_z_n___x_s_p_i___q_s_p_i.html#a2cc0c9dd0dd908322adf0ba0130296d1", null ],
       [ "prefetch_en", "group___r_z_n___x_s_p_i___q_s_p_i.html#a51cf2c4c92844f4962e2fed771e2016f", null ],
       [ "io_voltage", "group___r_z_n___x_s_p_i___q_s_p_i.html#a76a6205306bafd351c3f0f60855fc56c", null ],
@@ -40,6 +42,10 @@ var group___r_z_n___x_s_p_i___q_s_p_i =
       [ "XSPI_QSPI_MEMORY_SIZE_16MB", "group___r_z_n___x_s_p_i___q_s_p_i.html#gga760382ea0170990436140690f193bd65a9ac43acaa7d21c3ba76800735a579208", null ],
       [ "XSPI_QSPI_MEMORY_SIZE_32MB", "group___r_z_n___x_s_p_i___q_s_p_i.html#gga760382ea0170990436140690f193bd65a67f21ed518757add425655b28b865f4c", null ],
       [ "XSPI_QSPI_MEMORY_SIZE_64MB", "group___r_z_n___x_s_p_i___q_s_p_i.html#gga760382ea0170990436140690f193bd65a2c0d20ccd99bfe1c7171778ebb3818f1", null ]
+    ] ],
+    [ "xspi_qspi_wrap_separate_t", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga9ee5e26a970616d29047d45f8ebe8518", [
+      [ "XSPI_QSPI_WRAP_SEPARATE_ENABLE", "group___r_z_n___x_s_p_i___q_s_p_i.html#gga9ee5e26a970616d29047d45f8ebe8518af4cad42c16faf9287be69c80417581ae", null ],
+      [ "XSPI_QSPI_WRAP_SEPARATE_DISABLE", "group___r_z_n___x_s_p_i___q_s_p_i.html#gga9ee5e26a970616d29047d45f8ebe8518a5c10b0f5641ba7444cb19cb420831c31", null ]
     ] ],
     [ "xspi_qspi_command_interval_clocks_t", "group___r_z_n___x_s_p_i___q_s_p_i.html#ga8428f80201f33286966d2a84e0fb1f19", [
       [ "XSPI_QSPI_COMMAND_INTERVAL_CLOCKS_1", "group___r_z_n___x_s_p_i___q_s_p_i.html#gga8428f80201f33286966d2a84e0fb1f19a4543d64f407a096d164d15e3365603e8", null ],

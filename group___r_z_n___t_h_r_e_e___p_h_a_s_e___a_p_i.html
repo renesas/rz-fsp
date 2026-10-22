@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -180,8 +180,8 @@ Classes</h2></td></tr>
 <tr class="separator:struct_r_z_n_1_1st__three__phase__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_n_1_1st__three__phase__api"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_n_1_1st__three__phase__api">st_three_phase_api</a></td></tr>
 <tr class="separator:struct_r_z_n_1_1st__three__phase__api"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:struct_r_z_n_1_1st__gpt__three__phase__instance"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_n_1_1st__gpt__three__phase__instance">st_gpt_three_phase_instance</a></td></tr>
-<tr class="separator:struct_r_z_n_1_1st__gpt__three__phase__instance"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_r_z_n_1_1st__three__phase__instance"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_n_1_1st__three__phase__instance">st_three_phase_instance</a></td></tr>
+<tr class="separator:struct_r_z_n_1_1st__three__phase__instance"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -193,8 +193,8 @@ Typedefs</h2></td></tr>
 <tr class="separator:gad49a5dffd3986f3c11cea891a53a2e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3e178899ee02c1926a6716782d9a8861"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_n_1_1st__three__phase__api">st_three_phase_api</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#ga3e178899ee02c1926a6716782d9a8861">three_phase_api_t</a></td></tr>
 <tr class="separator:ga3e178899ee02c1926a6716782d9a8861"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga70ac794cdf05ed1db09ee91bcbbf6709"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_n_1_1st__gpt__three__phase__instance">st_gpt_three_phase_instance</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#ga70ac794cdf05ed1db09ee91bcbbf6709">three_phase_instance_t</a></td></tr>
-<tr class="separator:ga70ac794cdf05ed1db09ee91bcbbf6709"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3d95ad74c0432919b3e74b3251e5d168"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_n_1_1st__three__phase__instance">st_three_phase_instance</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#ga3d95ad74c0432919b3e74b3251e5d168">three_phase_instance_t</a></td></tr>
+<tr class="separator:ga3d95ad74c0432919b3e74b3251e5d168"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -223,15 +223,13 @@ Enumerations</h2></td></tr>
 <td class="fieldname">
 duty[3]</td>
 <td class="fielddoc">
-<p>Duty cycle. Note: When the GPT instances are configured in TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM_MODE3, this value sets the duty cycle count that is transferred to GTCCRA/B at the trough. </p>
-</td></tr>
+Duty cycle. </td></tr>
 <tr><td class="fieldtype">
 <a id="a58a1829743330b57668b43e952c09486"></a>uint32_t</td>
 <td class="fieldname">
 duty_buffer[3]</td>
 <td class="fielddoc">
-<p>Double-buffer for duty cycle values. Note: When the GPT instances are configured in TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM_MODE3, this value sets the duty cycle count that is transferred to GTCCRA/B at the crest. </p>
-</td></tr>
+Double-buffer for duty cycle values. </td></tr>
 </table>
 
 </div>
@@ -443,7 +441,7 @@ Extension parameter for hardware specific settings. </td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">p_ctrl</td><td>Control block set in <a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#a36a19a811da6355e0b0551c1a5f66083">three_phase_api_t::open</a> call. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">p_callback</td><td>Callback function to register with GPT U-channel </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">p_callback</td><td>Callback function to register with timer channel </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">p_context</td><td>Pointer to send to callback function </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">p_working_memory</td><td>Pointer to volatile memory where callback structure can be allocated. Callback arguments allocated here are only valid during the callback. </td></tr>
   </table>
@@ -476,14 +474,14 @@ Extension parameter for hardware specific settings. </td></tr>
 
 </div>
 </div>
-<a name="struct_r_z_n_1_1st__gpt__three__phase__instance" id="struct_r_z_n_1_1st__gpt__three__phase__instance"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_n_1_1st__gpt__three__phase__instance">&#9670;&nbsp;</a></span>RZN::st_gpt_three_phase_instance</h2>
+<a name="struct_r_z_n_1_1st__three__phase__instance" id="struct_r_z_n_1_1st__three__phase__instance"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_r_z_n_1_1st__three__phase__instance">&#9670;&nbsp;</a></span>RZN::st_three_phase_instance</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct RZN::st_gpt_three_phase_instance</td>
+          <td class="memname">struct RZN::st_three_phase_instance</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -573,18 +571,18 @@ Pointer to the API structure for this instance. </td></tr>
 
 </div>
 </div>
-<a id="ga70ac794cdf05ed1db09ee91bcbbf6709"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga70ac794cdf05ed1db09ee91bcbbf6709">&#9670;&nbsp;</a></span>three_phase_instance_t</h2>
+<a id="ga3d95ad74c0432919b3e74b3251e5d168"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3d95ad74c0432919b3e74b3251e5d168">&#9670;&nbsp;</a></span>three_phase_instance_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_n_1_1st__gpt__three__phase__instance">st_gpt_three_phase_instance</a> <a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#ga70ac794cdf05ed1db09ee91bcbbf6709">three_phase_instance_t</a></td>
+          <td class="memname">typedef struct <a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_n_1_1st__three__phase__instance">st_three_phase_instance</a> <a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#ga3d95ad74c0432919b3e74b3251e5d168">three_phase_instance_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This structure encompasses everything that is needed to use an instance of this interface. Please refer to the struct <a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_n_1_1st__gpt__three__phase__instance">st_gpt_three_phase_instance</a>. </p>
+<p>This structure encompasses everything that is needed to use an instance of this interface. Please refer to the struct <a class="el" href="group___r_z_n___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_n_1_1st__three__phase__instance">st_three_phase_instance</a>. </p>
 
 </div>
 </div>
@@ -639,7 +637,7 @@ Pointer to the API structure for this instance. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

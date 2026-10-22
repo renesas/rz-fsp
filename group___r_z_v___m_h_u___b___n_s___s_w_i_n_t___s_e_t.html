@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -169,8 +169,8 @@ $(document).ready(function(){initNavTree('group___r_z_v___m_h_u___b___n_s___s_w_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaba5433742015125a5bf5d8e3ef75b980"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gaba5433742015125a5bf5d8e3ef75b980">R_MHU_B_NS_SWINT_SET_Open</a> (<a class="el" href="group___r_z_v___m_h_u___n_s___s_w_i_n_t___s_e_t___a_p_i.html#gafb79b34149ed743c1378fc3b74ab3287">mhu_ns_swint_set_ctrl_t</a> *p_ctrl, <a class="el" href="group___r_z_v___m_h_u___n_s___s_w_i_n_t___s_e_t___a_p_i.html#gaa9273723b620247bc58be6e6eda0468b">mhu_ns_swint_set_cfg_t</a> const *const p_cfg)</td></tr>
-<tr class="separator:gaba5433742015125a5bf5d8e3ef75b980"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae0e576ab148b1fcfb06defa87040218f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gae0e576ab148b1fcfb06defa87040218f">R_MHU_B_NS_SWINT_SET_Open</a> (<a class="el" href="group___r_z_v___m_h_u___n_s___s_w_i_n_t___s_e_t___a_p_i.html#gafb79b34149ed743c1378fc3b74ab3287">mhu_ns_swint_set_ctrl_t</a> *const p_ctrl, <a class="el" href="group___r_z_v___m_h_u___n_s___s_w_i_n_t___s_e_t___a_p_i.html#gaa9273723b620247bc58be6e6eda0468b">mhu_ns_swint_set_cfg_t</a> const *const p_cfg)</td></tr>
+<tr class="separator:gae0e576ab148b1fcfb06defa87040218f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaddd83232518e56d27b705f7c8fc99f17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gaddd83232518e56d27b705f7c8fc99f17">R_MHU_B_NS_SWINT_SET_InterruptSet</a> (<a class="el" href="group___r_z_v___m_h_u___n_s___s_w_i_n_t___s_e_t___a_p_i.html#gafb79b34149ed743c1378fc3b74ab3287">mhu_ns_swint_set_ctrl_t</a> *const p_ctrl)</td></tr>
 <tr class="separator:gaddd83232518e56d27b705f7c8fc99f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae96425edecc8f21ed9681028dfb81019"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gae96425edecc8f21ed9681028dfb81019">R_MHU_B_NS_SWINT_SET_Close</a> (<a class="el" href="group___r_z_v___m_h_u___n_s___s_w_i_n_t___s_e_t___a_p_i.html#gafb79b34149ed743c1378fc3b74ab3287">mhu_ns_swint_set_ctrl_t</a> *const p_ctrl)</td></tr>
@@ -189,9 +189,11 @@ Overview</h1>
 Features</h2>
 <p>The MHU_B_NS_SWINT_SET module supports the following features:</p>
 <ul>
-<li>Generate software interrupt via MHU. </li>
+<li>Generate software interrupt via MHU.</li>
 </ul>
-<table class="memberdecls">
+<h2>MHU_B_NS_SWINT_SET Basic Example</h2>
+<p>This is a basic example of minimal use of the MHU_B_NS_SWINT_SET in an application.</p>
+<div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> mhu_b_ns_swint_set_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_v___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_v___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gae0e576ab148b1fcfb06defa87040218f">R_MHU_B_NS_SWINT_SET_Open</a>(&amp;g_mhu_b_ns_swint_set0_ctrl, &amp;g_mhu_b_ns_swint_set0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Send the interrupt. */</span></div><div class="line">    err = <a class="code" href="group___r_z_v___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gaddd83232518e56d27b705f7c8fc99f17">R_MHU_B_NS_SWINT_SET_InterruptSet</a>(&amp;g_mhu_b_ns_swint_set0_ctrl);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* De-initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_v___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gae96425edecc8f21ed9681028dfb81019">R_MHU_B_NS_SWINT_SET_Close</a>(&amp;g_mhu_b_ns_swint_set0_ctrl);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_v_1_1st__mhu__b__ns__swint__set__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_v___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#struct_r_z_v_1_1st__mhu__b__ns__swint__set__instance__ctrl">st_mhu_b_ns_swint_set_instance_ctrl</a></td></tr>
@@ -305,8 +307,8 @@ Register base address for specified channel. </td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gaba5433742015125a5bf5d8e3ef75b980"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaba5433742015125a5bf5d8e3ef75b980">&#9670;&nbsp;</a></span>R_MHU_B_NS_SWINT_SET_Open()</h2>
+<a id="gae0e576ab148b1fcfb06defa87040218f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae0e576ab148b1fcfb06defa87040218f">&#9670;&nbsp;</a></span>R_MHU_B_NS_SWINT_SET_Open()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -385,7 +387,7 @@ Register base address for specified channel. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Disables interrupts, clears internal driver data. <a class="el" href="group___r_z_v___m_h_u___n_s___s_w_i_n_t___s_e_t___a_p_i.html#a496e691651d7947c6bb5b3c43b52ca5d">mhu_ns_swint_set_api_t::close</a>.</p>
+<p>Clears internal driver data. <a class="el" href="group___r_z_v___m_h_u___n_s___s_w_i_n_t___s_e_t___a_p_i.html#a496e691651d7947c6bb5b3c43b52ca5d">mhu_ns_swint_set_api_t::close</a>.</p>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>MHU_B_NS_SWINT_SET closed. </td></tr>
@@ -403,7 +405,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

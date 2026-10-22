@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -244,7 +244,7 @@ Enable</li>
 <li>
 Disable</li>
 </ul>
-</td><td>Disable </td><td>Enable RS232 and RS485 flow control support using a user provided pin. </td></tr>
+</td><td>Disable </td><td>Enable RS232 flow control support using a user provided pin. </td></tr>
 <tr>
 <td>RS-485 Support</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -304,7 +304,7 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>Enabling baud rate modulation reduces the percent error of the actual baud rate with respect to the requested baud rate. It does this by modulating the number of cycles per clock, so some bits are slightly longer than others. </td></tr>
 <tr>
-<td>Baud &gt; Max Error (%)</td><td>Must be a valid non negative integer with a maximum configurable value of 100</td><td>5 </td><td>Maximum percent error allowed during baud calculation. This is used by the algorithm to determine whether or not to consider using less accurate alternative register settings.<br />
+<td>Baud &gt; Max Error (%)</td><td>Must be a valid non negative integer with a maximum configurable value of 15</td><td>5 </td><td>Maximum percent error allowed during baud calculation. This is used by the algorithm to determine whether or not to consider using less accurate alternative register settings.<br />
 <br />
 NOTE: The baud calculation does not show an error in the tool if this percent error was not achieved. The calculated percent error is recorded in a comment in the generated baud_setting_t structure. </td></tr>
 <tr>
@@ -326,7 +326,7 @@ Active Low</li>
 <li>
 Active High</li>
 </ul>
-</td><td>Active High </td><td>Select the polarity of the DE pin. </td></tr>
+</td><td>Active High </td><td>Select the polarity of the DE pin. Active High uses a high level to assert the DE signal, while Active Low uses a low level to assert the DE signal. </td></tr>
 <tr>
 <td>Extra &gt; RS-485 &gt; DE Pin Number</td><td>MCU Specific Options</td><td></td><td>GPIO output pin number to use for generating the DE signal. </td></tr>
 <tr>
@@ -360,13 +360,13 @@ Disable</li>
 <tr>
 <td>Interrupts &gt; Callback</td><td>Name must be a valid C symbol</td><td>NULL </td><td>A user callback function can be provided. If this callback function is provided, it will be called from the interrupt service routine (ISR). </td></tr>
 <tr>
-<td>Interrupts &gt; Receive Interrupt Priority</td><td>Value must be an integer between 0 and 31</td><td>24 </td><td>Select the receive interrupt priority. </td></tr>
+<td>Interrupts &gt; Receive Interrupt Priority</td><td>Value must be an integer between 0 and 255</td><td>24 </td><td>Select the receive interrupt priority. </td></tr>
 <tr>
-<td>Interrupts &gt; Transmit Data Empty Interrupt Priority</td><td>Value must be an integer between 0 and 31</td><td>24 </td><td>Select the transmit interrupt priority. </td></tr>
+<td>Interrupts &gt; Transmit Data Empty Interrupt Priority</td><td>Value must be an integer between 0 and 255</td><td>24 </td><td>Select the transmit interrupt priority. </td></tr>
 <tr>
-<td>Interrupts &gt; Transmit End Interrupt Priority</td><td>Value must be an integer between 0 and 31</td><td>24 </td><td>Select the transmit end interrupt priority. </td></tr>
+<td>Interrupts &gt; Transmit End Interrupt Priority</td><td>Value must be an integer between 0 and 255</td><td>24 </td><td>Select the transmit end interrupt priority. </td></tr>
 <tr>
-<td>Interrupts &gt; Error Interrupt Priority</td><td>Value must be an integer between 0 and 31</td><td>24 </td><td>Select the error interrupt priority. </td></tr>
+<td>Interrupts &gt; Error Interrupt Priority</td><td>Value must be an integer between 0 and 255</td><td>24 </td><td>Select the error interrupt priority. </td></tr>
 </table>
 </p>
 <h2><a class="anchor" id="RZG_r-sci-uart-clock-configuration"></a>
@@ -487,7 +487,7 @@ Enumerations</h2></td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="a4798770980e644b6532b450dfc5b3efa"></a>union <a class="el" href="group___r_z_g___s_c_i___u_a_r_t.html#union_r_z_g_1_1st__baud__setting_8____unnamed____">st_baud_setting</a></td>
+<a id="af7fc8e97aae72eee57d5bd18fcb18823"></a>union <a class="el" href="group___r_z_g___s_c_i___u_a_r_t.html#union_r_z_g_1_1st__baud__setting_8____unnamed____">st_baud_setting</a></td>
 <td class="fieldname">
 __unnamed__</td>
 <td class="fielddoc">
@@ -593,13 +593,13 @@ Register settings for a desired baud rate. </td></tr>
 <td class="fieldname">
 rx_fifo_trigger</td>
 <td class="fielddoc">
-Receive FIFO trigger level, unused if channel has no FIFO or if DTC is used. </td></tr>
+Receive FIFO trigger level, unused if channel has no FIFO or if DTC or DMAC is used. </td></tr>
 <tr><td class="fieldtype">
 <a id="a17546a8e0f2c1d25bca24a9e70729f49"></a><a class="el" href="group___r_z_g___b_s_p___i_o.html#ga0adbfd4b7db319886d667acb4804d80a">bsp_io_port_pin_t</a></td>
 <td class="fieldname">
 flow_control_pin</td>
 <td class="fielddoc">
-UART Driver Enable pin. </td></tr>
+RTS pin used for UART flow control. </td></tr>
 <tr><td class="fieldtype">
 <a id="adbfb2a4f1a4bcb2726db44c8e1135331"></a><a class="el" href="group___r_z_g___s_c_i___u_a_r_t.html#gab4823b86315f1b32fe6f2c0d56c2b139">sci_uart_flow_control_t</a></td>
 <td class="fieldname">
@@ -918,7 +918,7 @@ Register base address for specified channel. </td></tr>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Data reception successfully ends. </td></tr>
-    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to UART control block is NULL. Number of transfers outside the max or min boundary when transfer instance used </td></tr>
+    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to UART control block is NULL. Number of transfers outside the max or min boundary when transfer instance used. Pointer to address is NULL. Transfer size is 0. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ARGUMENT</td><td>Destination address or data size is not valid for 9-bit mode. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The control block has not been opened </td></tr>
     <tr><td class="paramname">FSP_ERR_IN_USE</td><td>A previous read operation is still in progress. </td></tr>
@@ -969,7 +969,7 @@ Register base address for specified channel. </td></tr>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Data transmission finished successfully. </td></tr>
-    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to UART control block is NULL. Number of transfers outside the max or min boundary when transfer instance used </td></tr>
+    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to UART control block is NULL. Number of transfers outside the max or min boundary when transfer instance used. Pointer to address is NULL. Transfer size is 0. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ARGUMENT</td><td>Source address or data size is not valid for 9-bit mode. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The control block has not been opened </td></tr>
     <tr><td class="paramname">FSP_ERR_IN_USE</td><td>A UART transmission is in progress </td></tr>
@@ -1268,7 +1268,7 @@ Register base address for specified channel. </td></tr>
     <tr><td class="paramname">FSP_SUCCESS</td><td>UART transaction aborted successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to UART control block is NULL. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The control block has not been opened. </td></tr>
-    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>The requested Abort direction is unsupported.</td></tr>
+    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>The requested read stop operation is unsupported because receive functionality is disabled.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1335,7 +1335,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

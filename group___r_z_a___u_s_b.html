@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -184,7 +184,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga6b594879fb754ed4ae76685d6c261e5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests a data read/write transfer be terminated when a data read/write transfer is being performed.  <a href="group___r_z_a___u_s_b.html#ga6b594879fb754ed4ae76685d6c261e5d">More...</a><br /></td></tr>
 <tr class="separator:ga6b594879fb754ed4ae76685d6c261e5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga78ea3782bd018162fc06e3d24dc46b83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_a___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_a___u_s_b.html#ga78ea3782bd018162fc06e3d24dc46b83">R_USB_Suspend</a> (<a class="el" href="group___r_z_a___u_s_b___a_p_i.html#ga00a5a797b57dec247564f11056ac7230">usb_ctrl_t</a> *const p_api_ctrl)</td></tr>
-<tr class="memdesc:ga78ea3782bd018162fc06e3d24dc46b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a SUSPEND signal from the USB module assigned to the member (module) of the usb_crtl_t structure.  <a href="group___r_z_a___u_s_b.html#ga78ea3782bd018162fc06e3d24dc46b83">More...</a><br /></td></tr>
+<tr class="memdesc:ga78ea3782bd018162fc06e3d24dc46b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a SUSPEND signal from the USB module assigned to the member (module) of the usb_ctrl_t structure.  <a href="group___r_z_a___u_s_b.html#ga78ea3782bd018162fc06e3d24dc46b83">More...</a><br /></td></tr>
 <tr class="separator:ga78ea3782bd018162fc06e3d24dc46b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9851b21f1891e71de574a47589ea0282"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_a___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_a___u_s_b.html#ga9851b21f1891e71de574a47589ea0282">R_USB_Resume</a> (<a class="el" href="group___r_z_a___u_s_b___a_p_i.html#ga00a5a797b57dec247564f11056ac7230">usb_ctrl_t</a> *const p_api_ctrl)</td></tr>
 <tr class="memdesc:ga9851b21f1891e71de574a47589ea0282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a RESUME signal from the USB module assigned to the member (module) of the usb_ctrl_tstructure.  <a href="group___r_z_a___u_s_b.html#ga9851b21f1891e71de574a47589ea0282">More...</a><br /></td></tr>
@@ -269,7 +269,7 @@ Functions</h2></td></tr>
 <tr class="separator:gaaedca302f2e3938e2d85e4a82c44d44b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>Driver for the USB peripheral on RZ MPUs. This module implements the <a class="el" href="group___r_z_a___u_s_b___a_p_i.html">USB Interface</a>. </p>
+<p>Driver for the USB peripheral on RZ/A. This module implements the <a class="el" href="group___r_z_a___u_s_b___a_p_i.html">USB Interface</a>. </p>
 <h1><a class="anchor" id="RZA_r-usb_basic-overview"></a>
 Overview</h1>
 <p>The USB module operates in combination with the device class drivers provided by Renesas to form a complete USB stack.</p>
@@ -493,7 +493,6 @@ Usage Notes</h1>
 Limitations</h2>
 <p>Developers should be aware of the following limitations when using the USB driver: </p><h3>Peripheral Limitations</h3>
 <ul>
-<li>The current USB driver does not support DMA.</li>
 <li>Multiconfigurations are not supported.</li>
 <li>This driver does not support CPU transfers using the D0FIFO/D1FIFO register.</li>
 <li>Only one device-class driver may be used at a time.</li>
@@ -565,7 +564,7 @@ Typedefs</h2></td></tr>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Success in open. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>Specified USB module now in use. </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_PARAMETER</td><td>Parameter error. </td></tr>
@@ -656,7 +655,7 @@ Typedefs</h2></td></tr>
 <p>Bulk/interrupt data transfer and control data transfer. </p>
 <ol type="1">
 <li><p class="startli">Bulk/interrupt data transfer</p>
-<p class="startli">Requests USB data read (bulk/interrupt transfer). The read data is stored in the area specified by argument (p_buf). After data read is completed, confirm the operation by checking the return value (USB_STATUS_READ_COMPLETE) of the R_USB_GetEvent function. The received data size is set in member (size) of the usb_ctrl_t structure. To figure out the size of the data when a read is complete, check the return value (USB_STATUS_READ_COMPLETE) of the R_USB_GetEvent function, and then refer to the member (size) of the usb_crtl_t structure.</p>
+<p class="startli">Requests USB data read (bulk/interrupt transfer). The read data is stored in the area specified by argument (p_buf). After data read is completed, confirm the operation by checking the return value (USB_STATUS_READ_COMPLETE) of the R_USB_GetEvent function. The received data size is set in member (size) of the usb_ctrl_t structure. To figure out the size of the data when a read is complete, check the return value (USB_STATUS_READ_COMPLETE) of the R_USB_GetEvent function, and then refer to the member (size) of the usb_ctrl_t structure.</p>
 </li>
 <li><p class="startli">Control data transfer</p>
 <p class="startli">The R_USB_Read function is used to receive data in the data stage and the R_USB_Write function is used to send data to the USB host.</p>
@@ -666,7 +665,7 @@ Typedefs</h2></td></tr>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Successfully completed (Data read request completed). </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>Data receive request already in process for USB device with same device address. </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_PARAMETER</td><td>Parameter error. </td></tr>
   </table>
@@ -733,7 +732,7 @@ Do not call this API in the following function. </dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Successfully completed. (Data write request completed) </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>Data write request already in process for USB device with same device address. </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_PARAMETER</td><td>Parameter error. </td></tr>
   </table>
@@ -788,7 +787,7 @@ Do not call this API in the following function. </dd>
     <tr><td class="paramname">FSP_SUCCESS</td><td>Successfully completed. (stop completed) </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>Stop processing is called multiple times. </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_PARAMETER</td><td>Parameter error. </td></tr>
   </table>
   </dd>
@@ -817,13 +816,13 @@ Do not call this API in the following function. </dd>
       </table>
 </div><div class="memdoc">
 
-<p>Sends a SUSPEND signal from the USB module assigned to the member (module) of the usb_crtl_t structure. </p>
+<p>Sends a SUSPEND signal from the USB module assigned to the member (module) of the usb_ctrl_t structure. </p>
 <p>After the suspend request is completed, confirm the operation with the return value (USB_STATUS_SUSPEND) of the R_USB_EventGet function.</p>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Successfully completed. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>During a suspend request to the specified USB module, or when the USB module is already in the suspended state. </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_PARAMETER</td><td>Parameter error. </td></tr>
   </table>
@@ -859,7 +858,7 @@ Do not call this API in the following function. </dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Successfully completed. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>Resume already requested for same device address. (USB host mode only) </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_NOT_SUSPEND</td><td>USB device is not in the SUSPEND state. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_PARAMETER</td><td>Parameter error. </td></tr>
@@ -1002,11 +1001,11 @@ Do not call this API in the following function. </dd>
 </div><div class="memdoc">
 
 <p>Requests a data read (bulk/interrupt transfer) via the pipe specified in the argument. </p>
-<p>The read data is stored in the area specified in the argument (p_buf). After the data read is completed, confirm the operation with the R_USB_GetEvent function return value(USB_STATUS_READ_COMPLETE). To figure out the size of the data when a read is complete, check the return value (USB_STATUS_READ_COMPLETE) of the R_USB_GetEvent function, and then refer to the member (size) of the usb_crtl_t structure.</p>
+<p>The read data is stored in the area specified in the argument (p_buf). After the data read is completed, confirm the operation with the R_USB_GetEvent function return value(USB_STATUS_READ_COMPLETE). To figure out the size of the data when a read is complete, check the return value (USB_STATUS_READ_COMPLETE) of the R_USB_GetEvent function, and then refer to the member (size) of the usb_ctrl_t structure.</p>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Successfully completed. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>Specified pipe now handling data receive/send request. </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_PARAMETER</td><td>Parameter error. </td></tr>
@@ -1066,7 +1065,7 @@ Do not call this API in the following function. </dd>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Successfully completed. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>Specified pipe now handling data receive/send request. </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_PARAMETER</td><td>Parameter error. </td></tr>
@@ -1378,7 +1377,7 @@ Do not call this API in the interrupt function. </dd></dl>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_PARAMETER</td><td>Parameter error. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>Specified pipe now handling data receive/send request. </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1430,7 +1429,7 @@ Do not call this API in the following function. </dd>
     <tr><td class="paramname">FSP_SUCCESS</td><td>Successful completion. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>Specified pipe now handling data receive/send request. </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_PARAMETER</td><td>Parameter error. </td></tr>
   </table>
   </dd>
@@ -1483,7 +1482,7 @@ Do not call this API in the following function. </dd>
     <tr><td class="paramname">FSP_SUCCESS</td><td>Successful completion. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>Specified pipe now handling data receive/send request. </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_PARAMETER</td><td>Parameter error. </td></tr>
   </table>
   </dd>
@@ -1564,7 +1563,7 @@ Do not call this API in the following function. </dd>
     <tr><td class="paramname">FSP_ERR_USB_FAILED</td><td>The function could not be completed successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Parameter is NULL error. </td></tr>
     <tr><td class="paramname">FSP_ERR_USB_NOT_SUSPEND</td><td>Device is not suspended. </td></tr>
-    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The device is in resume operation. </td></tr>
+    <tr><td class="paramname">FSP_ERR_USB_BUSY</td><td>The request is already being processed. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1969,7 +1968,7 @@ Do not call this API in the following function. </dd>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

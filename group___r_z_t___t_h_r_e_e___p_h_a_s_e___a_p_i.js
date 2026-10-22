@@ -21,7 +21,7 @@ var group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i =
       [ "callbackSet", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#a61e5896a3a8895e31bc65c66a642ac9b", null ],
       [ "close", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#adbf5e62ffcba2e3bd1128dd09095b82f", null ]
     ] ],
-    [ "st_gpt_three_phase_instance", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_t_1_1st__gpt__three__phase__instance", [
+    [ "st_three_phase_instance", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#struct_r_z_t_1_1st__three__phase__instance", [
       [ "p_ctrl", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#a67556d9598ca710f977133fdc2b83ed5", null ],
       [ "p_cfg", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#a2b32432551485c9d2aad2b568ad03646", null ],
       [ "p_api", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#a757dad300accd2d783c1c079024c3976", null ]
@@ -30,7 +30,7 @@ var group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i =
     [ "three_phase_ctrl_t", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#ga4743a00c79aa11107190e48e8bce7c10", null ],
     [ "three_phase_cfg_t", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#gad49a5dffd3986f3c11cea891a53a2e6c", null ],
     [ "three_phase_api_t", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#ga3e178899ee02c1926a6716782d9a8861", null ],
-    [ "three_phase_instance_t", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#ga70ac794cdf05ed1db09ee91bcbbf6709", null ],
+    [ "three_phase_instance_t", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#ga3d95ad74c0432919b3e74b3251e5d168", null ],
     [ "three_phase_channel_t", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#ga012330a6f9685e6143def5e3e3dd3829", [
       [ "THREE_PHASE_CHANNEL_U", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#gga012330a6f9685e6143def5e3e3dd3829adbd8e756792980f936cba835004f9657", null ],
       [ "THREE_PHASE_CHANNEL_V", "group___r_z_t___t_h_r_e_e___p_h_a_s_e___a_p_i.html#gga012330a6f9685e6143def5e3e3dd3829af0f00883ade0daa8e4d71bf1e4eb853b", null ],

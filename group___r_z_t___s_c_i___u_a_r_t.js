@@ -24,7 +24,8 @@ var group___r_z_t___s_c_i___u_a_r_t =
       [ "rs485_setting", "group___r_z_t___s_c_i___u_a_r_t.html#a05879f7553ad0eeabb7a2b870900e537", null ],
       [ "p_reg", "group___r_z_t___s_c_i___u_a_r_t.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ],
       [ "clock_source", "group___r_z_t___s_c_i___u_a_r_t.html#ade79f538b210444a89020a93931a58bb", null ],
-      [ "unit", "group___r_z_t___s_c_i___u_a_r_t.html#a540f93b70c47db3ed09ef66a1d5b50cb", null ]
+      [ "unit", "group___r_z_t___s_c_i___u_a_r_t.html#a540f93b70c47db3ed09ef66a1d5b50cb", null ],
+      [ "delay_cycles", "group___r_z_t___s_c_i___u_a_r_t.html#a13691b89c6884467e7ff6ad3e93032db", null ]
     ] ],
     [ "sci_uart_instance_ctrl_t", "group___r_z_t___s_c_i___u_a_r_t.html#gafc65fd64db25db3cb87229e34d86b062", null ],
     [ "sci_uart_baud_calculation_t", "group___r_z_t___s_c_i___u_a_r_t.html#ga481d576a670a42b3e37b385849b88a19", null ],

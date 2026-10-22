@@ -17,7 +17,9 @@ var group___r_z_t___x_s_p_i___h_y_p_e_r =
       [ "unit", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#a09d6c95f1069687d2d2dd559bda5a3a3", null ],
       [ "chip_select", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#a89e70667212a522cc0af327764fb0af3", null ],
       [ "memory_size", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#afa720d7b457a80ef9f27d644a51ad157", null ],
-      [ "memory_type", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#a4cc204928da506906cf8060085fe084b", null ],
+      [ "address_msb_mask", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#adbf37b9a3c91cc9d42452b8ebd3ffc78", null ],
+      [ "wrap_separate", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#a6c0e7dfa6255cf65a1af6529d3dc5ef6", null ],
+      [ "write_buffer_size", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#abe393738f1e9062c75a94a442eb156ea", null ],
       [ "prefetch_en", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#aec5c691b190524be2018a82760ed78fc", null ],
       [ "io_voltage", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#aafca774b89665be0b89e1083fcc3d16d", null ],
       [ "data_latching_delay_clock", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#a3dd9250906329d05c0d02fafbe13bef1", null ],
@@ -35,10 +37,6 @@ var group___r_z_t___x_s_p_i___h_y_p_e_r =
       [ "XSPI_HYPER_CHIP_SELECT_0", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga585ed0d7516ff895de6ea0c98d602ce3a9adac39894c50c962d55fd22fc8b77c7", null ],
       [ "XSPI_HYPER_CHIP_SELECT_1", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga585ed0d7516ff895de6ea0c98d602ce3ac92c314d90380329350dd453ff380ce8", null ]
     ] ],
-    [ "xspi_hyper_device_type_t", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#ga589217595b3f7033749a79e31d03717b", [
-      [ "XSPI_HYPER_DEVICE_TYPE_FLASH", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga589217595b3f7033749a79e31d03717baee9b850a0c415f23d1ca2db5d68ee3da", null ],
-      [ "XSPI_HYPER_DEVICE_TYPE_RAM", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga589217595b3f7033749a79e31d03717ba6c3ee738d3aa98f3e72862d845f9f252", null ]
-    ] ],
     [ "xspi_hyper_memory_size_t", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#ga3ab2852ecb0fb609dd472ca66ffaee1c", [
       [ "XSPI_HYPER_MEMORY_SIZE_1MB", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga3ab2852ecb0fb609dd472ca66ffaee1ca47b30e038f462db81c0f3db1e54343b8", null ],
       [ "XSPI_HYPER_MEMORY_SIZE_2MB", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga3ab2852ecb0fb609dd472ca66ffaee1ca562d69826b2b8e7a441bc02eb58599fc", null ],
@@ -47,6 +45,10 @@ var group___r_z_t___x_s_p_i___h_y_p_e_r =
       [ "XSPI_HYPER_MEMORY_SIZE_16MB", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga3ab2852ecb0fb609dd472ca66ffaee1caa776079ecec0d0db54236a9ad982b3fd", null ],
       [ "XSPI_HYPER_MEMORY_SIZE_32MB", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga3ab2852ecb0fb609dd472ca66ffaee1caba9a9eefc70f08101b912eeac80d2d32", null ],
       [ "XSPI_HYPER_MEMORY_SIZE_64MB", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga3ab2852ecb0fb609dd472ca66ffaee1ca4936202f2fdc8d56d3e6f9edd93c824a", null ]
+    ] ],
+    [ "xspi_hyper_wrap_separate_t", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#ga01528da2c832d0b3549c1eee03f87060", [
+      [ "XSPI_HYPER_WRAP_SEPARATE_ENABLE", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga01528da2c832d0b3549c1eee03f87060ab33ce2244327ce2c07ee4044474003ea", null ],
+      [ "XSPI_HYPER_WRAP_SEPARATE_DISABLE", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gga01528da2c832d0b3549c1eee03f87060ac50b869fa9ad755824befb02f3904e8b", null ]
     ] ],
     [ "xspi_hyper_transaction_interval_clocks_t", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#gaed2991cbbbbcce92799356a9f55e7403", [
       [ "XSPI_HYPER_TRANSACTION_INTERVAL_CLOCKS_1", "group___r_z_t___x_s_p_i___h_y_p_e_r.html#ggaed2991cbbbbcce92799356a9f55e7403a927643cff429a8e5269c41510652f914", null ],

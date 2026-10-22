@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -169,8 +169,8 @@ $(document).ready(function(){initNavTree('group___r_z_g___m_h_u___s.html','');})
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gad777d9161d5147e0eb546d107cf64259"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_h_u___s.html#gad777d9161d5147e0eb546d107cf64259">R_MHU_S_Open</a> (<a class="el" href="group___r_z_g___m_h_u___a_p_i.html#gab4529354e4994392568d5ebd6aabfcd7">mhu_ctrl_t</a> *p_ctrl, <a class="el" href="group___r_z_g___m_h_u___a_p_i.html#ga445e6cb7e0cc95ed6f27a1c28e1f8e71">mhu_cfg_t</a> const *const p_cfg)</td></tr>
-<tr class="separator:gad777d9161d5147e0eb546d107cf64259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5225e34d858528bb168571e3676d895e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_h_u___s.html#ga5225e34d858528bb168571e3676d895e">R_MHU_S_Open</a> (<a class="el" href="group___r_z_g___m_h_u___a_p_i.html#gab4529354e4994392568d5ebd6aabfcd7">mhu_ctrl_t</a> *const p_ctrl, <a class="el" href="group___r_z_g___m_h_u___a_p_i.html#ga445e6cb7e0cc95ed6f27a1c28e1f8e71">mhu_cfg_t</a> const *const p_cfg)</td></tr>
+<tr class="separator:ga5225e34d858528bb168571e3676d895e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gace961f8d144fe82cf739f96762a681a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_h_u___s.html#gace961f8d144fe82cf739f96762a681a3">R_MHU_S_MsgSend</a> (<a class="el" href="group___r_z_g___m_h_u___a_p_i.html#gab4529354e4994392568d5ebd6aabfcd7">mhu_ctrl_t</a> *const p_ctrl, uint32_t const msg)</td></tr>
 <tr class="separator:gace961f8d144fe82cf739f96762a681a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaaaee4d1fe5df68815f36021a1daefe46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_h_u___s.html#gaaaee4d1fe5df68815f36021a1daefe46">R_MHU_S_Close</a> (<a class="el" href="group___r_z_g___m_h_u___a_p_i.html#gab4529354e4994392568d5ebd6aabfcd7">mhu_ctrl_t</a> *const p_ctrl)</td></tr>
@@ -189,10 +189,12 @@ Overview</h1>
 Features</h2>
 <p>The MHU_S module supports the following features:</p>
 <ul>
-<li>Generete interrupt to notify Cortex-A55 when the message/response is stored in shared RAM(On-chip RAM).</li>
-<li>Receive interrupt when the message/response is stored by Cortex-A55 in shared RAM(On-chip RAM). </li>
+<li>Generate interrupt to notify Cortex-A55 when the message/response is stored in shared RAM(On-chip RAM).</li>
+<li>Receive interrupt when the message/response is stored by Cortex-A55 in shared RAM(On-chip RAM).</li>
 </ul>
-<table class="memberdecls">
+<h2>MHU_S Basic Example</h2>
+<p>This is a basic example of minimal use of the MHU_S in an application.</p>
+<div class="fragment"><div class="line"><span class="keyword">static</span> uint32_t g_val;</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> mhu_s_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_g___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err;</div><div class="line">    uint32_t  msg = 0x0;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_h_u___s.html#ga5225e34d858528bb168571e3676d895e">R_MHU_S_Open</a>(&amp;g_mhu_s0_ctrl, &amp;g_mhu_s0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Set the user callback. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_h_u___s.html#gaf067173bdf62df00120c8669d711be68">R_MHU_S_CallbackSet</a>(&amp;g_mhu_s0_ctrl, mhu_s_example_callback, NULL, NULL);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Send the data. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_h_u___s.html#gace961f8d144fe82cf739f96762a681a3">R_MHU_S_MsgSend</a>(&amp;g_mhu_s0_ctrl, msg);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* De-initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_g___m_h_u___s.html#gaaaee4d1fe5df68815f36021a1daefe46">R_MHU_S_Close</a>(&amp;g_mhu_s0_ctrl);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> mhu_s_example_callback (<a class="code" href="group___r_z_g___m_h_u___a_p_i.html#gac7ea6e3682ab79aa19eb0f2f40266577">mhu_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    g_val = p_args-&gt;msg;</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:struct_r_z_g_1_1st__mhu__s__instance__ctrl"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_h_u___s.html#struct_r_z_g_1_1st__mhu__s__instance__ctrl">st_mhu_s_instance_ctrl</a></td></tr>
@@ -250,6 +252,18 @@ uint32_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 uint32_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_h_u___s.html#afe794b23a3abd783cdf531b4bc442f1f">p_shared_memory_rx</a></td></tr>
 <tr class="memdesc:afe794b23a3abd783cdf531b4bc442f1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to recv data area. <br /></td></tr>
 <tr class="separator:afe794b23a3abd783cdf531b4bc442f1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab845658f7b87570a6fedd500a7c482b1"><td class="memItemLeft" align="right" valign="top"><a id="ab845658f7b87570a6fedd500a7c482b1"></a>
+void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_h_u___s.html#ab845658f7b87570a6fedd500a7c482b1">p_callback</a> )(<a class="el" href="group___r_z_g___m_h_u___a_p_i.html#gac7ea6e3682ab79aa19eb0f2f40266577">mhu_callback_args_t</a> *)</td></tr>
+<tr class="memdesc:ab845658f7b87570a6fedd500a7c482b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to callback and optional working memory. <br /></td></tr>
+<tr class="separator:ab845658f7b87570a6fedd500a7c482b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd46ced6fe0a328740027044ca6e48f0"><td class="memItemLeft" align="right" valign="top"><a id="acd46ced6fe0a328740027044ca6e48f0"></a>
+<a class="el" href="group___r_z_g___m_h_u___a_p_i.html#gac7ea6e3682ab79aa19eb0f2f40266577">mhu_callback_args_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_h_u___s.html#acd46ced6fe0a328740027044ca6e48f0">p_callback_memory</a></td></tr>
+<tr class="memdesc:acd46ced6fe0a328740027044ca6e48f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to non-secure memory that can be used to pass arguments to a callback in non-secure memory. <br /></td></tr>
+<tr class="separator:acd46ced6fe0a328740027044ca6e48f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa207a6ef4d9f49f00f01a37810ac301d"><td class="memItemLeft" align="right" valign="top"><a id="aa207a6ef4d9f49f00f01a37810ac301d"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___m_h_u___s.html#aa207a6ef4d9f49f00f01a37810ac301d">p_context</a></td></tr>
+<tr class="memdesc:aa207a6ef4d9f49f00f01a37810ac301d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to context to be passed into callback function. <br /></td></tr>
+<tr class="separator:aa207a6ef4d9f49f00f01a37810ac301d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 
 </div>
@@ -310,8 +324,8 @@ Register base address for specified channel. </td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gad777d9161d5147e0eb546d107cf64259"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad777d9161d5147e0eb546d107cf64259">&#9670;&nbsp;</a></span>R_MHU_S_Open()</h2>
+<a id="ga5225e34d858528bb168571e3676d895e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5225e34d858528bb168571e3676d895e">&#9670;&nbsp;</a></span>R_MHU_S_Open()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -494,7 +508,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

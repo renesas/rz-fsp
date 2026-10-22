@@ -33,6 +33,11 @@ var group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i =
     [ "external_irq_api_t", "group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i.html#ga352d71c887afd9d67d00d6f18445af9b", null ],
     [ "external_irq_instance_t", "group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i.html#gac7b4e950b350d5c7750cf59a30dee436", null ],
     [ "external_irq_trigger_t", "group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i.html#ga2d1960d763da14da209e16fbb972d57c", [
+      [ "EXTERNAL_IRQ_TRIGGER_FALLING", "group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i.html#gga2d1960d763da14da209e16fbb972d57ca844b8e1d71f072e3851ae09cb35f4446", null ],
+      [ "EXTERNAL_IRQ_TRIGGER_RISING", "group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i.html#gga2d1960d763da14da209e16fbb972d57ca2807fd02e94df49de80d4a98d377294b", null ],
+      [ "EXTERNAL_IRQ_TRIGGER_BOTH_EDGE", "group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i.html#gga2d1960d763da14da209e16fbb972d57cac10d825f3f880bd793da60e33a7cb710", null ],
+      [ "EXTERNAL_IRQ_TRIGGER_LEVEL_LOW", "group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i.html#gga2d1960d763da14da209e16fbb972d57ca1ea0cbe55d01890d65e586ec51ca853c", null ],
+      [ "EXTERNAL_IRQ_TRIGGER_LEVEL_HIGH", "group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i.html#gga2d1960d763da14da209e16fbb972d57ca88f2fa1dbf960a6eea261ba0504b8b79", null ],
       [ "EXTERNAL_IRQ_TRIG_FALLING", "group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i.html#gga2d1960d763da14da209e16fbb972d57caace14d51313fed5f17da4b9828fd5412", null ],
       [ "EXTERNAL_IRQ_TRIG_RISING", "group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i.html#gga2d1960d763da14da209e16fbb972d57ca2d7a4f8fd21fad6f5a671336152d46b0", null ],
       [ "EXTERNAL_IRQ_TRIG_BOTH_EDGE", "group___r_z_v___e_x_t_e_r_n_a_l___i_r_q___a_p_i.html#gga2d1960d763da14da209e16fbb972d57ca0a2ebac83c3e8ca3da64e703dda65b71", null ],

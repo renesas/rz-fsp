@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -218,16 +218,16 @@ Features</h2>
 <li>FIFO support</li>
 <li>DMAC support</li>
 <li>Callback Events<ul>
-<li>Transfer Complete</li>
-<li>RX Overflow Error (The SPI shift register is copied to the data register before previous data was read)</li>
-<li>TX Underrun Error (No data to load into shift register for transmitting)</li>
+<li>Transfer Complete <a class="anchor" id="RZN_um_spi_api_rx_overflow_callback"></a></li>
+<li>RX Overflow Error (The SPI shift register is copied to the data register before previous data was read) <a class="anchor" id="RZN_um_spi_api_tx_underrun_callback"></a></li>
+<li>TX Underrun Error (No data to load into shift register for transmitting) <a class="anchor" id="RZN_um_spi_parity_error_callback"></a></li>
 <li>Parity Error (When parity is enabled and a parity error is detected)</li>
 </ul>
 </li>
 </ul>
 <h1><a class="anchor" id="RZN_r-spi-configuration"></a>
 Configuration</h1>
-<p><h2>Build Time Configurations for r_spi</h2>
+<p><a class="anchor" id="RZN_um_spi_api_bitrate"></a><a class="anchor" id="RZN_um_spi_api_clk_polarity"></a><a class="anchor" id="RZN_um_spi_api_clock_phase"></a><a class="anchor" id="RZN_um_spi_api_msb_lsb"></a><a class="anchor" id="RZN_um_spi_api_transfer_count"></a><a class="anchor" id="RZN_um_spi_ssl"></a><a class="anchor" id="RZN_um_spi_transmit_only"></a><a class="anchor" id="RZN_um_spi_parity"></a><a class="anchor" id="RZN_um_spi_byte_swap"></a><a class="anchor" id="RZN_um_spi_mosi_idle"></a><a class="anchor" id="RZN_um_spi_clock_delay_settings"></a> <a class="anchor" id="RZN_um_spi_fifo"></a><a class="anchor" id="RZN_um_spi_receive_data_ready_detect"></a> <h2>Build Time Configurations for r_spi</h2>
 The following build time configurations are defined in fsp_cfg/r_spi_cfg.h:<br />
 </p><table class="doxtable">
 <tr>
@@ -383,7 +383,7 @@ Enable</li>
 <tr>
 <td>Clock Source</td><td>MCU Specific Options</td><td></td><td>Select the clock source for communication. </td></tr>
 <tr>
-<td>Bitrate</td><td>Value must be an integer greater than 0</td><td>16000000 </td><td>Enter the desired bitrate, change the bitrate to a value supported by MPU. If the requested bitrate cannot be achieved, the settings with the largest possible value that is less than or equal to the requested bitrate is used. The theoretical bitrate is printed in a comment in the generated spi_extended_cfg_t structure. </td></tr>
+<td>Bitrate</td><td>Value must be an integer greater than 0</td><td>16000000 </td><td>Enter the desired bitrate, change the bitrate to a value supported by MPU. If the requested bitrate cannot be achieved, the settings with the largest possible value that is less than or equal to the requested bitrate is used. The actual bitrate is printed in a comment in the generated spi_extended_cfg_t structure. </td></tr>
 <tr>
 <td>Clock Delay</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -451,13 +451,13 @@ Enable</li>
 <tr>
 <td>Receive Data Ready Detect Adjustment</td><td>Value must be an integer between 0 and 255</td><td>0 </td><td>Configure the timing to detect the received data ready. </td></tr>
 <tr>
-<td>Master Receive Clock</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>Master Receive Clock (Sampling Timing Adjustable)</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
-MRIOCLK</li>
+MRIOCLK (Adjust with Analog Delay)</li>
 <li>
-MRCLK</li>
+MRCLK (Adjust with Digital Delay)</li>
 </ul>
-</td><td>MRIOCLK </td><td>Select the master receive clock. </td></tr>
+</td><td>MRCLK (Adjust with Digital Delay) </td><td>Select the master receive clock used for data sampling in master mode. Sampling timing can be adjusted with the corresponding delay setting. </td></tr>
 <tr>
 <td>MRIOCLK Max Analog Delay</td><td>MCU Specific Options</td><td></td><td>Select the max analog delay for MRIOCLK. </td></tr>
 <tr>
@@ -488,7 +488,7 @@ Clock Configuration</h2>
 <h2><a class="anchor" id="RZN_r-spi-pin-configuration"></a>
 Pin Configuration</h2>
 <p>This module uses MOSI, MISO, RSPCK, and SSL pins to communicate with on board devices.</p>
-<dl class="section note"><dt>Note</dt><dd>At high bitrates, it might be necessary to configure the pins with IOPORT_CFG_DRIVE_HIGH.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>It is recommended to configure the pins with high drive strength (or high-speed high if available) to maintain signal integrity, particularly at high bitrates. The drive strength can be set by opening the e2 studio pin configuration editor, selecting the pin, and configuring 'Drive Capacity'.</dd></dl>
 <h1><a class="anchor" id="RZN_r-spi-usage_notes"></a>
 Usage Notes</h1>
 <h2>Performance</h2>
@@ -1479,7 +1479,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

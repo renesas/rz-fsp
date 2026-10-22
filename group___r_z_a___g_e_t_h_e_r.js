@@ -36,9 +36,9 @@ var group___r_z_a___g_e_t_h_e_r =
     [ "R_GETHER_Close", "group___r_z_a___g_e_t_h_e_r.html#ga8c7a0cf1af404830786e0f4786ed36b1", null ],
     [ "R_GETHER_Read", "group___r_z_a___g_e_t_h_e_r.html#gae016d59c87c057571470a2935a57aab3", null ],
     [ "R_GETHER_BufferRelease", "group___r_z_a___g_e_t_h_e_r.html#gab6389f74a46dddbe195fd5a4efca73aa", null ],
+    [ "R_GETHER_RxBufferUpdate", "group___r_z_a___g_e_t_h_e_r.html#gab8cbb949266413cc4a598e641d30bf76", null ],
     [ "R_GETHER_Write", "group___r_z_a___g_e_t_h_e_r.html#ga2b60f8ac3dfedcffa0d6b7b3a312b51b", null ],
     [ "R_GETHER_LinkProcess", "group___r_z_a___g_e_t_h_e_r.html#ga7280977fc26137e2fdaf652d650e0175", null ],
     [ "R_GETHER_WakeOnLANEnable", "group___r_z_a___g_e_t_h_e_r.html#gaac407ed3fc8ae8e6ed98a2655ee8c00c", null ],
-    [ "R_GETHER_RxBufferUpdate", "group___r_z_a___g_e_t_h_e_r.html#ga38b6234852292775859d6db2e3e8949f", null ],
-    [ "R_GETHER_TxStatusGet", "group___r_z_a___g_e_t_h_e_r.html#gada04bd7c8c42aadab2ab1693f5f094e5", null ]
+    [ "R_GETHER_TxStatusGet", "group___r_z_a___g_e_t_h_e_r.html#gab669c8be88de12133986ee28096ee01b", null ]
 ];

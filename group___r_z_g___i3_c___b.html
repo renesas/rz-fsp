@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -324,13 +324,7 @@ Disabled</li>
 </ul>
 </td><td>Disabled </td><td>Enable clock stalling during the Address Assignment Phase of ENTDAA. </td></tr>
 <tr>
-<td>Bitrate Settings &gt; Clock Stalling &gt; Transition Phase</td><td><ul style="margin-top:0;margin-bottom:0;">
-<li>
-Enabled</li>
-<li>
-Disabled</li>
-</ul>
-</td><td>Disabled </td><td>Enable clock stalling during the Transition Bit of a read transfer. </td></tr>
+<td>Bitrate Settings &gt; Clock Stalling &gt; Transition Phase</td><td>MCU Specific Options</td><td></td><td>Enable clock stalling during the Transition Bit of a read transfer. </td></tr>
 <tr>
 <td>Bitrate Settings &gt; Clock Stalling &gt; Parity Phase</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -474,9 +468,9 @@ Disabled</li>
 <tr>
 <td>Slave Mode &gt; Command Response Info &gt; GETXTIME &gt; Inaccuracy Byte</td><td>Value must be in the range [0, 255].</td><td>0 </td><td>Set the oscillator inaccuracy byte in increments of 0.5% </td></tr>
 <tr>
-<td>Interrupts &gt; Interrupt Priority</td><td>Channel number must be a positive integer</td><td>10 </td><td>The interrupt priority of the RX, TX, RESPONSE, RCV_STATUS, and IBI ISRs. </td></tr>
+<td>Interrupts &gt; Interrupt Priority</td><td>Value must be an positive integer between 0 and 255</td><td>10 </td><td>The interrupt priority of the RX, TX, RESPONSE, RCV_STATUS, and IBI ISRs. </td></tr>
 <tr>
-<td>Interrupts &gt; Error and Event Interrupt Priority</td><td>Channel number must be a positive integer</td><td>10 </td><td>The interrupt priority of the EEI ISR which is used to notify the application when an Internal Error, HDR Exit Pattern, or Timeout is detected. </td></tr>
+<td>Interrupts &gt; Error and Event Interrupt Priority</td><td>Value must be an positive integer between 0 and 255</td><td>10 </td><td>The interrupt priority of the EEI ISR which is used to notify the application when an Internal Error, HDR Exit Pattern, or Timeout is detected. </td></tr>
 <tr>
 <td>Name</td><td>Name must be a valid C symbol</td><td>g_i3c0 </td><td>Module name. </td></tr>
 <tr>
@@ -520,7 +514,7 @@ Clock Configuration</h2>
 <li>Open Drain High Period (T<sub>HIGH</sub>)</li>
 <li>Open Drain Frequency</li>
 <li>Push-Pull High Period (T<sub>HIGH</sub>)</li>
-<li>Push-Pull Frquency</li>
+<li>Push-Pull Frequency</li>
 </ul>
 </li>
 <li><a class="el" href="group___r_z_g___i3_c___b.html#gac8fb0ec859c44282b8323eb13de6ad3c">i3c_b_bitrate_mode_t</a> (Set during <a class="el" href="group___r_z_g___i3_c___a_p_i.html#ab2461dbfe03cff471b207d43062777b9">i3c_api_t::deviceSelect</a>)</li>
@@ -625,6 +619,8 @@ Classes</h2></td></tr>
 <tr class="separator:struct_r_z_g_1_1st__i3c__b__instance__ctrl"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:struct_r_z_g_1_1st__i3c__b__extended__cfg"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#struct_r_z_g_1_1st__i3c__b__extended__cfg">st_i3c_b_extended_cfg</a></td></tr>
 <tr class="separator:struct_r_z_g_1_1st__i3c__b__extended__cfg"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:union_r_z_g_1_1st__i3c__b__bitrate__settings_8____unnamed____"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_g___i3_c___b.html#union_r_z_g_1_1st__i3c__b__bitrate__settings_8____unnamed____">st_i3c_b_bitrate_settings.__unnamed__</a></td></tr>
+<tr class="separator:union_r_z_g_1_1st__i3c__b__bitrate__settings_8____unnamed____"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -698,9 +694,21 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p>Clock stalling settings. </p>
+<div class="textblock"><p>Clock stalling settings. DEPRECATED, use scstlctl_b instead. </p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a id="ac9d608ced737310700988811cb6e825c"></a>uint32_t</td>
+<td class="fieldname">
+clock_stalling_time: 16</td>
+<td class="fielddoc">
+The amount of time to stall the clock in I3C source clock ticks. </td></tr>
+<tr><td class="fieldtype">
+<a id="a3e57c2ef1c3ffb36722f000cc1156824"></a>uint32_t</td>
+<td class="fieldname">
+__pad0__: 12</td>
+<td class="fielddoc">
+</td></tr>
 <tr><td class="fieldtype">
 <a id="a3de2ad9fdc4f115c0c3eb1ae8d309310"></a>uint32_t</td>
 <td class="fieldname">
@@ -725,12 +733,6 @@ Enable Clock Stalling during the parity bit period in write transfers. </td></tr
 ack_phase_enable: 1</td>
 <td class="fielddoc">
 Enable Clock Stalling during the ACK/NACK phase. </td></tr>
-<tr><td class="fieldtype">
-<a id="ad201fd4faf0f7853730805bc021cd4e0"></a>uint16_t</td>
-<td class="fieldname">
-clock_stalling_time</td>
-<td class="fielddoc">
-The amount of time to stall the clock in I3C source clock ticks. </td></tr>
 </table>
 
 </div>
@@ -762,9 +764,9 @@ extbr</td>
 <td class="fielddoc">
 The extended bitrate settings. </td></tr>
 <tr><td class="fieldtype">
-<a id="a33cca3dffdec68983a92137890232718"></a><a class="el" href="group___r_z_g___i3_c___b.html#ga584cadd192b48b2f550d3950c650867d">i3c_b_clock_stalling_t</a></td>
+<a id="a45af5cdf42179f746f576ae0b6ff1037"></a>union <a class="el" href="group___r_z_g___i3_c___b.html#union_r_z_g_1_1st__i3c__b__bitrate__settings_8____unnamed____">st_i3c_b_bitrate_settings</a></td>
 <td class="fieldname">
-clock_stalling</td>
+__unnamed__</td>
 <td class="fielddoc">
 <p>Clock Stalling settings (See Master Clock Stalling in the MIPI I3C Specification v1.0). </p>
 </td></tr>
@@ -1232,6 +1234,78 @@ Error and Event Interrupt Priority. </td></tr>
 p_reg</td>
 <td class="fielddoc">
 Register base address for specified channel. </td></tr>
+</table>
+
+</div>
+</div>
+<a name="union_r_z_g_1_1st__i3c__b__bitrate__settings_8____unnamed____" id="union_r_z_g_1_1st__i3c__b__bitrate__settings_8____unnamed____"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#union_r_z_g_1_1st__i3c__b__bitrate__settings_8____unnamed____">&#9670;&nbsp;</a></span>RZG::st_i3c_b_bitrate_settings.__unnamed__</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union RZG::st_i3c_b_bitrate_settings.__unnamed__</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Clock Stalling settings (See Master Clock Stalling in the MIPI I3C Specification v1.0). </p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a id="a1b897e125f20d2e789046965ebc6a694"></a>uint32_t</td>
+<td class="fieldname">
+scstlctl</td>
+<td class="fielddoc">
+SCL Stalling Control. </td></tr>
+<tr><td class="fieldtype">
+<a id="ab8b9a8f7f746c73a08b47755db78c2b8"></a></td>
+<td class="fieldname">
+__PACKED_STRUCT</td>
+<td class="fielddoc">
+The amount of time to stall the clock in I3C source clock ticks. </td></tr>
+<tr><td class="fieldtype">
+<a id="a74a47a7eac047138ff811ede153943e6"></a>uint32_t</td>
+<td class="fieldname">
+__pad0__: 12</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a68a829ba721db26d872d05e0d9b77db5"></a>uint32_t</td>
+<td class="fieldname">
+assigned_address_phase_enable: 1</td>
+<td class="fielddoc">
+Enable Clock Stalling during the address phase of the ENTDAA command. </td></tr>
+<tr><td class="fieldtype">
+<a id="ae5cc71575ce57a4876cc2f9190f159e1"></a>uint32_t</td>
+<td class="fieldname">
+transition_phase_enable: 1</td>
+<td class="fielddoc">
+Enable Clock Stalling during the transition bit in read transfers. </td></tr>
+<tr><td class="fieldtype">
+<a id="ad83bd006efaed0c05245ced4e6aa7311"></a>uint32_t</td>
+<td class="fieldname">
+parity_phase_enable: 1</td>
+<td class="fielddoc">
+Enable Clock Stalling during the parity bit period in write transfers. </td></tr>
+<tr><td class="fieldtype">
+<a id="a06b72b8db529f75692fc64497fcb9d16"></a>uint32_t</td>
+<td class="fieldname">
+ack_phase_enable: 1</td>
+<td class="fielddoc">
+Enable Clock Stalling during the ACK/NACK phase. </td></tr>
+<tr><td class="fieldtype">
+<a id="a63b73a96cd8a997612219bd1ba5c5372"></a></td>
+<td class="fieldname">
+scstlctl_b</td>
+<td class="fielddoc">
+SCL Stalling Control bitfield. </td></tr>
+<tr><td class="fieldtype">
+<a id="a5b5fc75bdae5969ad071e681956a9437"></a><a class="el" href="group___r_z_g___i3_c___b.html#ga584cadd192b48b2f550d3950c650867d">i3c_b_clock_stalling_t</a></td>
+<td class="fieldname">
+clock_stalling</td>
+<td class="fielddoc">
+DEPRECATED, use scstlctl_b instead. </td></tr>
 </table>
 
 </div>
@@ -2186,7 +2260,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

@@ -11,7 +11,7 @@ var group___r_z_g___m_h_u___b___n_s___s_w_i_n_t___s_e_t =
     ] ],
     [ "mhu_b_ns_swint_set_instance_ctrl_t", "group___r_z_g___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gac8ee053fb3ea70232e97cabb182fbe8c", null ],
     [ "mhu_b_ns_swint_set_extended_cfg_t", "group___r_z_g___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gafed6556b0003d5b232b93884aec5be35", null ],
-    [ "R_MHU_B_NS_SWINT_SET_Open", "group___r_z_g___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gaba5433742015125a5bf5d8e3ef75b980", null ],
+    [ "R_MHU_B_NS_SWINT_SET_Open", "group___r_z_g___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gae0e576ab148b1fcfb06defa87040218f", null ],
     [ "R_MHU_B_NS_SWINT_SET_InterruptSet", "group___r_z_g___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gaddd83232518e56d27b705f7c8fc99f17", null ],
     [ "R_MHU_B_NS_SWINT_SET_Close", "group___r_z_g___m_h_u___b___n_s___s_w_i_n_t___s_e_t.html#gae96425edecc8f21ed9681028dfb81019", null ]
 ];

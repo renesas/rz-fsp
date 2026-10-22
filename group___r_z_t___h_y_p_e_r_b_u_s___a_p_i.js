@@ -19,15 +19,15 @@ var group___r_z_t___h_y_p_e_r_b_u_s___a_p_i =
       [ "p_extend", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#ae177ce684886720c6bed92815d8d101d", null ]
     ] ],
     [ "st_hyperbus_api", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#struct_r_z_t_1_1st__hyperbus__api", [
-      [ "open", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#aba8f2f09e934978faa717394dcfbf863", null ],
-      [ "burstTypeSet", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#af94dc3071bc29c767eebd66157f9ebb5", null ],
+      [ "open", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#a4a6aa297eb2cab814ffdd16fc458d90a", null ],
+      [ "burstTypeSet", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#aeec310ed13fda207b813531432015463", null ],
       [ "accessSpaceSet", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#a6b2d524a9f34ab4066b145010297ca56", null ],
       [ "directTransfer", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#a402408e9af3b90571788cd5b18554b8d", null ],
       [ "write", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#a4f3d0f8890bb1e3fa681624cf0eb5d9b", null ],
       [ "erase", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#a40b2316006f37a726f33631f25b7044c", null ],
-      [ "statusGet", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#ab4ed254fd98a3db4efc725d630a8474d", null ],
+      [ "statusGet", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#a2f7e0d1bb796c1b3a4c4b34511636aba", null ],
       [ "autoCalibrate", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#afae4c149e3ee48e19c66fdee797981a6", null ],
-      [ "close", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#a8ddb926e208d20686053bb038b37301a", null ]
+      [ "close", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#a77d6f7a7607f076f20c039bff70f69c7", null ]
     ] ],
     [ "st_hyperbus_instance", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#struct_r_z_t_1_1st__hyperbus__instance", [
       [ "p_ctrl", "group___r_z_t___h_y_p_e_r_b_u_s___a_p_i.html#a1b7497d9793bd769f8d38d45f705c9b8", null ],

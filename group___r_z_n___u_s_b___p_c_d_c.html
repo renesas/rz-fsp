@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -182,46 +182,6 @@ The following build time configurations are defined in fsp_cfg/r_usb_pcdc_cfg.h:
 </p><table class="doxtable">
 <tr>
 <th>Configuration</th><th>Options</th><th>Default</th><th>Description </th></tr>
-<tr>
-<td>Bulk In Pipe</td><td><ul style="margin-top:0;margin-bottom:0;">
-<li>
-USB PIPE1</li>
-<li>
-USB PIPE2</li>
-<li>
-USB PIPE3</li>
-<li>
-USB PIPE4</li>
-<li>
-USB PIPE5</li>
-</ul>
-</td><td>USB PIPE1 </td><td>Select the USB pipe to use for bulk input transfers. </td></tr>
-<tr>
-<td>Bulk Out Pipe</td><td><ul style="margin-top:0;margin-bottom:0;">
-<li>
-USB PIPE1</li>
-<li>
-USB PIPE2</li>
-<li>
-USB PIPE3</li>
-<li>
-USB PIPE4</li>
-<li>
-USB PIPE5</li>
-</ul>
-</td><td>USB PIPE2 </td><td>Select the USB pipe to use for bulk output transfers. </td></tr>
-<tr>
-<td>Interrupt Out Pipe</td><td><ul style="margin-top:0;margin-bottom:0;">
-<li>
-USB PIPE6</li>
-<li>
-USB PIPE7</li>
-<li>
-USB PIPE8</li>
-<li>
-USB PIPE9</li>
-</ul>
-</td><td>USB PIPE6 </td><td>Select the USB pipe to use for interrupts. </td></tr>
 </table>
  <h2>Configurations for Connectivity &gt; USB PCDC (r_usb_pcdc)</h2>
 This module can be added to the Stacks tab via New Stack &gt; Connectivity &gt; USB PCDC (r_usb_pcdc).<br />
@@ -294,6 +254,7 @@ Limitations</h2>
 <ul>
 <li>This module must be incorporated into a project using r_usb_basic and does not provide any public APIs.</li>
 <li>This driver does not support Low-speed.</li>
+<li>This driver does not support composite device operation.</li>
 </ul>
 <h1><a class="anchor" id="RZN_r-usb_pcdc-examples"></a>
 Examples</h1>
@@ -311,7 +272,7 @@ Example Operating Environment</div></div>
 <img src="rzn_r_usb_pcdc_task_flow_sample.png" alt="rzn_r_usb_pcdc_task_flow_sample.png"/>
 <div class="caption">
 Main Loop processing (Echo mode)</div></div>
- <div class="fragment"><div class="line"><span class="keywordtype">void</span> usb_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ga35135240e273801e417633077d1d3abf">usb_event_info_t</a> event_info;</div><div class="line">    <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ga56bea25fbffdbda134044c49d40d5e40">usb_status_t</a>     event;</div><div class="line"></div><div class="line">    g_usb_on_usb.open(&amp;g_basic0_ctrl, &amp;g_basic0_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keywordflow">while</span> (1)</div><div class="line">    {</div><div class="line"></div><div class="line">        <span class="comment">/* Get USB event data */</span></div><div class="line">        g_usb_on_usb.eventGet(&amp;event_info, &amp;event);</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">/* Handle the received event (if any) */</span></div><div class="line">        <span class="keywordflow">switch</span> (event)</div><div class="line">        {</div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40ab5c3bd23fe62533150eef3a4e8c8d13c">USB_STATUS_CONFIGURED</a>:</div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40ad44448290b4f36868a09b48e4588b29d">USB_STATUS_WRITE_COMPLETE</a>:</div><div class="line"></div><div class="line"></div><div class="line">                <span class="comment">/* Initialization complete; get data from host */</span></div><div class="line">                g_usb_on_usb.read(&amp;g_basic0_ctrl, g_buf, DATA_LEN, <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ggab1dc4a2240edf1a50cca3945f31dc9f2a80c133e3ac3ddabc6aa656c3daf78c5e">USB_CLASS_PCDC</a>);</div><div class="line"></div><div class="line">                <span class="keywordflow">break</span>;</div><div class="line"></div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40a63dd4552584256ef9d1a0d5da2159e9c">USB_STATUS_READ_COMPLETE</a>:</div><div class="line"></div><div class="line"></div><div class="line">                <span class="comment">/* Loop back received data to host */</span></div><div class="line">                g_usb_on_usb.write(&amp;g_basic0_ctrl, g_buf, event_info.data_size, <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ggab1dc4a2240edf1a50cca3945f31dc9f2a80c133e3ac3ddabc6aa656c3daf78c5e">USB_CLASS_PCDC</a>);</div><div class="line"></div><div class="line">                <span class="keywordflow">break</span>;</div><div class="line"></div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40a8b49ebc4d15054963bdbe8d843a2cf5a">USB_STATUS_REQUEST</a>:   <span class="comment">/* Receive Class Request */</span></div><div class="line">                <span class="keywordflow">if</span> (<a class="code" href="group___r_z_a___u_s_b___p_c_d_c___a_p_i.html#ga9e76ac14dae5e5e44b5df6e8cbee6bd0">USB_PCDC_SET_LINE_CODING</a> == (event_info.setup.request_type &amp; <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ga3a6743f3e336fc05e70e59b05206f634">USB_BREQUEST</a>))</div><div class="line">                {</div><div class="line">                    <span class="comment">/* Configure virtual UART settings */</span></div><div class="line">                    g_usb_on_usb.periControlDataGet(&amp;g_basic0_ctrl, (uint8_t *) &amp;g_line_coding, LINE_CODING_LENGTH);</div><div class="line">                }</div><div class="line">                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group___r_z_a___u_s_b___p_c_d_c___a_p_i.html#ga3e7ae95dcfc42bd8912fe18339893d82">USB_PCDC_GET_LINE_CODING</a> == (event_info.setup.request_type &amp; <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ga3a6743f3e336fc05e70e59b05206f634">USB_BREQUEST</a>))</div><div class="line">                {</div><div class="line">                    <span class="comment">/* Send virtual UART settings back to host */</span></div><div class="line">                    g_usb_on_usb.periControlDataSet(&amp;g_basic0_ctrl, (uint8_t *) &amp;g_line_coding, LINE_CODING_LENGTH);</div><div class="line">                }</div><div class="line">                <span class="keywordflow">else</span></div><div class="line">                {</div><div class="line">                    <span class="comment">/* ACK all other status requests */</span></div><div class="line">                    g_usb_on_usb.periControlStatusSet(&amp;g_basic0_ctrl, <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga386cabe04206e06b3be8dbafc0bc3d86a20a1e7b4a77141981d824649cab7554b">USB_SETUP_STATUS_ACK</a>);</div><div class="line">                }</div><div class="line"></div><div class="line">                <span class="keywordflow">break</span>;</div><div class="line"></div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40adb879552af43dda95b70261eaa810777">USB_STATUS_SUSPEND</a>:</div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40ae9bcf94bdb90960ca692b1dfecb98e78">USB_STATUS_DETACH</a>:</div><div class="line">                <span class="keywordflow">break</span>;</div><div class="line"></div><div class="line">            <span class="keywordflow">default</span>:</div><div class="line">                <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h1><a class="anchor" id="RZN_r-usb_pcdc-descriptor"></a>
+ <div class="fragment"><div class="line"><span class="keywordtype">void</span> usb_basic_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ga35135240e273801e417633077d1d3abf">usb_event_info_t</a> event_info;</div><div class="line">    <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ga56bea25fbffdbda134044c49d40d5e40">usb_status_t</a>     event;</div><div class="line"></div><div class="line">    g_usb_on_usb.open(&amp;g_basic0_ctrl, &amp;g_basic0_cfg);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keywordflow">while</span> (1)</div><div class="line">    {</div><div class="line"></div><div class="line">        <span class="comment">/* Get USB event data */</span></div><div class="line">        g_usb_on_usb.eventGet(&amp;event_info, &amp;event);</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">/* Handle the received event (if any) */</span></div><div class="line">        <span class="keywordflow">switch</span> (event)</div><div class="line">        {</div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40ab5c3bd23fe62533150eef3a4e8c8d13c">USB_STATUS_CONFIGURED</a>:</div><div class="line"></div><div class="line"></div><div class="line">                <span class="comment">/* Initialization complete; get data from host */</span></div><div class="line">                g_usb_on_usb.read(&amp;g_basic0_ctrl, g_buf, DATA_LEN, <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ggab1dc4a2240edf1a50cca3945f31dc9f2a80c133e3ac3ddabc6aa656c3daf78c5e">USB_CLASS_PCDC</a>);</div><div class="line"></div><div class="line">                <span class="keywordflow">break</span>;</div><div class="line"></div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40ad44448290b4f36868a09b48e4588b29d">USB_STATUS_WRITE_COMPLETE</a>:</div><div class="line">                <span class="keywordflow">if</span> (FSP_SUCCESS == event_info.status)</div><div class="line">                {</div><div class="line"></div><div class="line">                    <span class="comment">/* Initialization complete; get data from host */</span></div><div class="line">                    g_usb_on_usb.read(&amp;g_basic0_ctrl, g_buf, DATA_LEN, <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ggab1dc4a2240edf1a50cca3945f31dc9f2a80c133e3ac3ddabc6aa656c3daf78c5e">USB_CLASS_PCDC</a>);</div><div class="line"></div><div class="line">                }</div><div class="line"></div><div class="line">                <span class="keywordflow">break</span>;</div><div class="line"></div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40a63dd4552584256ef9d1a0d5da2159e9c">USB_STATUS_READ_COMPLETE</a>:</div><div class="line">                <span class="keywordflow">if</span> ((FSP_SUCCESS == event_info.status) || (FSP_ERR_USB_SIZE_SHORT == event_info.status))</div><div class="line">                {</div><div class="line"></div><div class="line">                    <span class="comment">/* Loop back received data to host */</span></div><div class="line">                    g_usb_on_usb.write(&amp;g_basic0_ctrl, g_buf, event_info.data_size, <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ggab1dc4a2240edf1a50cca3945f31dc9f2a80c133e3ac3ddabc6aa656c3daf78c5e">USB_CLASS_PCDC</a>);</div><div class="line"></div><div class="line">                }</div><div class="line"></div><div class="line">                <span class="keywordflow">break</span>;</div><div class="line"></div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40a8b49ebc4d15054963bdbe8d843a2cf5a">USB_STATUS_REQUEST</a>:   <span class="comment">/* Receive Class Request */</span></div><div class="line">                <span class="keywordflow">if</span> (<a class="code" href="group___r_z_a___u_s_b___p_c_d_c___a_p_i.html#ga9e76ac14dae5e5e44b5df6e8cbee6bd0">USB_PCDC_SET_LINE_CODING</a> == (event_info.setup.request_type &amp; <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ga3a6743f3e336fc05e70e59b05206f634">USB_BREQUEST</a>))</div><div class="line">                {</div><div class="line">                    <span class="comment">/* Configure virtual UART settings */</span></div><div class="line">                    g_usb_on_usb.periControlDataGet(&amp;g_basic0_ctrl, (uint8_t *) &amp;g_line_coding, LINE_CODING_LENGTH);</div><div class="line">                }</div><div class="line">                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="group___r_z_a___u_s_b___p_c_d_c___a_p_i.html#ga3e7ae95dcfc42bd8912fe18339893d82">USB_PCDC_GET_LINE_CODING</a> == (event_info.setup.request_type &amp; <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#ga3a6743f3e336fc05e70e59b05206f634">USB_BREQUEST</a>))</div><div class="line">                {</div><div class="line">                    <span class="comment">/* Send virtual UART settings back to host */</span></div><div class="line">                    g_usb_on_usb.periControlDataSet(&amp;g_basic0_ctrl, (uint8_t *) &amp;g_line_coding, LINE_CODING_LENGTH);</div><div class="line">                }</div><div class="line">                <span class="keywordflow">else</span></div><div class="line">                {</div><div class="line">                    <span class="comment">/* ACK all other status requests */</span></div><div class="line">                    g_usb_on_usb.periControlStatusSet(&amp;g_basic0_ctrl, <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga386cabe04206e06b3be8dbafc0bc3d86a20a1e7b4a77141981d824649cab7554b">USB_SETUP_STATUS_ACK</a>);</div><div class="line">                }</div><div class="line"></div><div class="line">                <span class="keywordflow">break</span>;</div><div class="line"></div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40adb879552af43dda95b70261eaa810777">USB_STATUS_SUSPEND</a>:</div><div class="line">            <span class="keywordflow">case</span> <a class="code" href="group___r_z_a___u_s_b___a_p_i.html#gga56bea25fbffdbda134044c49d40d5e40ae9bcf94bdb90960ca692b1dfecb98e78">USB_STATUS_DETACH</a>:</div><div class="line">                <span class="keywordflow">break</span>;</div><div class="line"></div><div class="line">            <span class="keywordflow">default</span>:</div><div class="line">                <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h1><a class="anchor" id="RZN_r-usb_pcdc-descriptor"></a>
 Descriptor</h1>
 <p>A template for PCDC descriptors can be found in rzn/fsp/src/r_usb_pcdc/r_usb_pcdc_descriptor.c.template. Also, please be sure to use your vendor ID.</p>
 </div><!-- contents -->
@@ -320,7 +281,7 @@ Descriptor</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

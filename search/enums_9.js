@@ -28,5 +28,5 @@ var searchData=
   ['layer3_5fswitch_5fvlan_5fingress_5fmode_5ft',['layer3_switch_vlan_ingress_mode_t',['../group___r_z_t___l_a_y_e_r3___s_w_i_t_c_h.html#ga67505de50455180044c38c855caae713',1,'RZT']]],
   ['layer3_5fswitch_5fvlan_5fmode_5ft',['layer3_switch_vlan_mode_t',['../group___r_z_t___l_a_y_e_r3___s_w_i_t_c_h.html#ga1c9d922fd96fab6fec1e248190d13587',1,'RZT']]],
   ['layer3_5fswitch_5fwrite_5fback_5fmode_5ft',['layer3_switch_write_back_mode_t',['../group___r_z_t___l_a_y_e_r3___s_w_i_t_c_h.html#ga97af1e0d115b4f3b917e9095f1edfde3',1,'RZT']]],
-  ['lcdc_5foutput_5fsource_5ft',['lcdc_output_source_t',['../group___r_z_g___l_c_d_c.html#ga16820b967c0e0c4932bf0f04f3ac896b',1,'RZG']]]
+  ['lcdc_5foutput_5fsource_5ft',['lcdc_output_source_t',['../group___r_z_a___l_c_d_c.html#ga16820b967c0e0c4932bf0f04f3ac896b',1,'RZA::lcdc_output_source_t()'],['../group___r_z_g___l_c_d_c.html#ga16820b967c0e0c4932bf0f04f3ac896b',1,'RZG::lcdc_output_source_t()']]]
 ];

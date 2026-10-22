@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -265,7 +265,7 @@ Size of erase for associated command, set to SPI_FLASH_ERASE_SIZE_CHIP_ERASE for
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="a193c0153b9867d671d68ee02afc440af"></a>union <a class="el" href="group___r_z_t___s_p_i___f_l_a_s_h___a_p_i.html#union_r_z_t_1_1st__spi__flash__direct__transfer_8____unnamed____">st_spi_flash_direct_transfer</a></td>
+<a id="ab4a3154878deb37b2e2ec26f34323ad2"></a>union <a class="el" href="group___r_z_t___s_p_i___f_l_a_s_h___a_p_i.html#union_r_z_t_1_1st__spi__flash__direct__transfer_8____unnamed____">st_spi_flash_direct_transfer</a></td>
 <td class="fieldname">
 __unnamed__</td>
 <td class="fielddoc">
@@ -582,7 +582,7 @@ write_in_progress</td>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">p_ctrl</td><td>Pointer to a driver handle </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">p_data</td><td>Pointer to command, address and data values and lengths </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">p_transfer</td><td>Pointer to command, address and data values and lengths </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">direction</td><td>Direct Read/Write </td></tr>
   </table>
   </dd>
@@ -989,9 +989,13 @@ Pointer to the API structure for this instance. </td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="gga17c347a498a8a9d38ffc36c0de49a535acf8fc61585bd2209fc3953d8d2eb4606"></a>SPI_FLASH_PROTOCOL_8D_8D_8D&#160;</td><td class="fielddoc"><p>8D-8D-8D protocol mode </p>
 </td></tr>
+<tr><td class="fieldname"><a id="gga17c347a498a8a9d38ffc36c0de49a535a94f860f2241dbf3cc97e0303b13b892e"></a>SPI_FLASH_PROTOCOL_8D_8D_8S&#160;</td><td class="fielddoc"><p>8D-8D-8S protocol mode </p>
+</td></tr>
 <tr><td class="fieldname"><a id="gga17c347a498a8a9d38ffc36c0de49a535a6d421df12293ebbae4fa97b4cf152081"></a>SPI_FLASH_PROTOCOL_1S_2S_2S&#160;</td><td class="fielddoc"><p>1S-2S-2S protocol mode </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga17c347a498a8a9d38ffc36c0de49a535a668b4a0330a7e2de10b77f25fbea4567"></a>SPI_FLASH_PROTOCOL_2S_2S_2S&#160;</td><td class="fielddoc"><p>2S-2S-2S protocol mode </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga17c347a498a8a9d38ffc36c0de49a535abf265362fd4fcc206394da6071c33b7a"></a>SPI_FLASH_PROTOCOL_1S_1S_4S&#160;</td><td class="fielddoc"><p>1S-1S-4S protocol mode </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga17c347a498a8a9d38ffc36c0de49a535acd8ffe88180ff5b8288dee7739e581a8"></a>SPI_FLASH_PROTOCOL_1S_4S_4S&#160;</td><td class="fielddoc"><p>1S-4S-4S protocol mode </p>
 </td></tr>
@@ -1144,6 +1148,12 @@ Pointer to the API structure for this instance. </td></tr>
       </table>
 </div><div class="memdoc">
 <p>Direct Read and Write direction </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga80ecf65e658f5b36bfe0bf2d88dd3ca5a58b6091f3cbe4b1bddce69ae1b3ad740"></a>SPI_FLASH_DIRECT_TRANSFER_DIR_READ&#160;</td><td class="fielddoc"><p>Direct read. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga80ecf65e658f5b36bfe0bf2d88dd3ca5aff5ed46e82fdd8904d5c1d2649d5c6be"></a>SPI_FLASH_DIRECT_TRANSFER_DIR_WRITE&#160;</td><td class="fielddoc"><p>Direct write. </p>
+</td></tr>
+</table>
 
 </div>
 </div>
@@ -1153,7 +1163,7 @@ Pointer to the API structure for this instance. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

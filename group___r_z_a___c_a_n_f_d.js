@@ -9,7 +9,7 @@ var group___r_z_a___c_a_n_f_d =
       [ "rx_mb_config", "group___r_z_a___c_a_n_f_d.html#a37735a953d74f717926223e9d80fa23e", null ],
       [ "global_err_ipl", "group___r_z_a___c_a_n_f_d.html#af7f15f7f456aaf6d10dc5ec829655203", null ],
       [ "rx_fifo_ipl", "group___r_z_a___c_a_n_f_d.html#a8ca47aa74e34c776b6c4dea0dce963da", null ],
-      [ "common_fifo_config", "group___r_z_a___c_a_n_f_d.html#af2b47c0e714591e13410d69dbde1c0ab", null ]
+      [ "common_fifo_config", "group___r_z_a___c_a_n_f_d.html#a101a63e99933946b06d1acccc7e426f4", null ]
     ] ],
     [ "st_canfd_extended_cfg", "group___r_z_a___c_a_n_f_d.html#struct_r_z_a_1_1st__canfd__extended__cfg", [
       [ "p_afl", "group___r_z_a___c_a_n_f_d.html#abe24263cbe685badf80431f837841bc0", null ],
@@ -62,6 +62,7 @@ var group___r_z_a___c_a_n_f_d =
       [ "CANFD_ERROR_GLOBAL_CH0_ECC", "group___r_z_a___c_a_n_f_d.html#gga1598f08872dd960675f060c7e8c35cf4acc2641aa9a3f9543af9d27313ba09001", null ],
       [ "CANFD_ERROR_GLOBAL_CH1_ECC", "group___r_z_a___c_a_n_f_d.html#gga1598f08872dd960675f060c7e8c35cf4a632b3d6e96c5d7f468dfd4c0b33b1f86", null ]
     ] ],
+    [ "canfd_tx_buffer_t", "group___r_z_a___c_a_n_f_d.html#ga785e3753523bf1cf87d70553285ba4af", null ],
     [ "canfd_tx_mb_t", "group___r_z_a___c_a_n_f_d.html#gaa7408bbf08466fb0f6025a8dfd93c714", null ],
     [ "canfd_rx_buffer_t", "group___r_z_a___c_a_n_f_d.html#gacccf33f0942180054dd71c26c512844d", null ],
     [ "canfd_rx_mb_t", "group___r_z_a___c_a_n_f_d.html#ga888e511bc0fbb0ba049b49250400631f", null ],

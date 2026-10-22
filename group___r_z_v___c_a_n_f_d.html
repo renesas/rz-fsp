@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -1813,7 +1813,7 @@ Limitations</h2>
 </ul>
 </li>
 <li>The CANFD peripheral has a limited amount of buffer pool RAM available for allocating RX MBs and FIFO stages. See the <a class="el" href="group___r_z_v___c_a_n_f_d.html#RZV_r-canfd-buffer-pool">RX Buffer Pool</a> section above for more information.</li>
-<li>When switching modes with <a class="el" href="group___r_z_v___c_a_n_f_d.html#ga00c7557917ce6e78eb2969d7b5855890">R_CANFD_ModeTransition</a> a delay of up to several CAN frames may be incurred. Consult Section "Channel Modes" in the Hardware Manual for details.</li>
+<li>When switching modes with <a class="el" href="group___r_z_v___c_a_n_f_d.html#ga00c7557917ce6e78eb2969d7b5855890">R_CANFD_ModeTransition</a> a delay of up to several CAN frames may be incurred. Consult Section "Timing of Channel Mode Change" in the CANFD section of the relevant hardware manual for details.</li>
 <li>Only one channel will receive callbacks for Global Errors. If a different channel is opened first these error interrupts will be suppressed until the specified handler channel is opened.</li>
 </ul>
 <h1><a class="anchor" id="RZV_r-canfd-examples"></a>
@@ -2584,7 +2584,7 @@ Register base address for specified channel. </td></tr>
       </table>
 </div><div class="memdoc">
 <p>Read data from a CANFD Message Buffer or FIFO.</p>
-<p>Example: snippet r_canfd_example.c R_CANFD_Read</p>
+<p>Example: snippet rzv_r_canfd_example.c R_CANFD_Read</p>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Operation succeeded. </td></tr>
@@ -2735,7 +2735,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

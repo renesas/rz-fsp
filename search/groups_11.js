@@ -20,6 +20,8 @@ var searchData=
   ['transfer',['Transfer',['../group___r_z_g___r_e_n_e_s_a_s___t_r_a_n_s_f_e_r___m_o_d_u_l_e_s.html',1,'']]],
   ['timer_20interface',['Timer Interface',['../group___r_z_g___t_i_m_e_r___a_p_i.html',1,'']]],
   ['transfer_20interface',['Transfer Interface',['../group___r_z_g___t_r_a_n_s_f_e_r___a_p_i.html',1,'']]],
+  ['trusted_20secure_20ip_20_28r_5ftsip_5fprotected_29',['Trusted Secure IP (r_tsip_protected)',['../group___r_z_g___t_s_i_p___p_r_o_t_e_c_t_e_d.html',1,'']]],
+  ['tsip_20interface',['TSIP Interface',['../group___r_z_g___t_s_i_p___p_r_o_t_e_c_t_e_d___a_p_i.html',1,'']]],
   ['temperature_20sensor_20unit_20_28r_5ftsu_5fb_29',['Temperature Sensor Unit (r_tsu_b)',['../group___r_z_g___t_s_u___b.html',1,'']]],
   ['timer_2c_20compare_20match_20_28r_5fcmt_29',['Timer, Compare Match (r_cmt)',['../group___r_z_n___c_m_t.html',1,'']]],
   ['timer_2c_20compare_20match_20w_20_28r_5fcmtw_29',['Timer, Compare Match W (r_cmtw)',['../group___r_z_n___c_m_t_w.html',1,'']]],
@@ -64,5 +66,7 @@ var searchData=
   ['transfer',['Transfer',['../group___r_z_v___r_e_n_e_s_a_s___t_r_a_n_s_f_e_r___m_o_d_u_l_e_s.html',1,'']]],
   ['timer_20interface',['Timer Interface',['../group___r_z_v___t_i_m_e_r___a_p_i.html',1,'']]],
   ['transfer_20interface',['Transfer Interface',['../group___r_z_v___t_r_a_n_s_f_e_r___a_p_i.html',1,'']]],
+  ['trusted_20secure_20ip_20_28r_5ftsip_5fprotected_29',['Trusted Secure IP (r_tsip_protected)',['../group___r_z_v___t_s_i_p___p_r_o_t_e_c_t_e_d.html',1,'']]],
+  ['tsip_20interface',['TSIP Interface',['../group___r_z_v___t_s_i_p___p_r_o_t_e_c_t_e_d___a_p_i.html',1,'']]],
   ['temperature_20sensor_20unit_20_28r_5ftsu_5fb_29',['Temperature Sensor Unit (r_tsu_b)',['../group___r_z_v___t_s_u___b.html',1,'']]]
 ];

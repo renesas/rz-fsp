@@ -21,8 +21,9 @@ var group___r_z_a___a_d_c___a_p_i =
       [ "room_calibration_data", "group___r_z_a___a_d_c___a_p_i.html#a1ad984649f1e91357e30046e15f30561", null ],
       [ "low_calibration_data", "group___r_z_a___a_d_c___a_p_i.html#a784a042c203e6b1ca16647b377e6fca8", null ],
       [ "slope_microvolts", "group___r_z_a___a_d_c___a_p_i.html#af04e8684628a98a771f202f4da70bac2", null ],
-      [ "p_address", "group___r_z_a___a_d_c___a_p_i.html#aeb04db97a86a85ffb16de37060a3ceca", null ],
-      [ "calibration_ongoing", "group___r_z_a___a_d_c___a_p_i.html#a28d584275d3f12b8b6f5fa7301833389", null ]
+      [ "p_address", "group___r_z_a___a_d_c___a_p_i.html#a5e2003748412a29210476f7bb8667ec2", null ],
+      [ "calibration_data1", "group___r_z_a___a_d_c___a_p_i.html#acf872a4d9d73c1fe3a4bc88fb43ed09f", null ],
+      [ "calibration_data2", "group___r_z_a___a_d_c___a_p_i.html#a0c021619cf2e025f91670fa2aaabef23", null ]
     ] ],
     [ "st_adc_cfg", "group___r_z_a___a_d_c___a_p_i.html#struct_r_z_a_1_1st__adc__cfg", [
       [ "unit", "group___r_z_a___a_d_c___a_p_i.html#a1e8ce93d382bc1a38b1d49f70acf0d24", null ],

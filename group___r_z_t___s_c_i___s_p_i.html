@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -208,16 +208,16 @@ Features</h2>
 </ul>
 </li>
 <li>Configurable bit rate</li>
-<li>DMAC Support</li>
+<li>DMAC Support (with or without FIFO mode)</li>
 <li>Callback Events<ul>
-<li>Transfer Complete</li>
+<li>Transfer Complete <a class="anchor" id="RZT_um_spi_api_rx_overflow_callback"></a></li>
 <li>RX Overflow Error (The SCI shift register is copied to the data register before previous data was read)</li>
 </ul>
 </li>
 </ul>
 <h1><a class="anchor" id="RZT_r_sci_spi-configuration"></a>
 Configuration</h1>
-<p><h2>Build Time Configurations for r_sci_spi</h2>
+<p><a class="anchor" id="RZT_um_spi_api_bitrate"></a><a class="anchor" id="RZT_um_spi_api_clk_polarity"></a><a class="anchor" id="RZT_um_spi_api_clock_phase"></a><a class="anchor" id="RZT_um_spi_api_msb_lsb"></a><a class="anchor" id="RZT_um_spi_api_transfer_count"></a><a class="anchor" id="RZT_um_spi_api_tx_underrun_callback"></a> <h2>Build Time Configurations for r_sci_spi</h2>
 The following build time configurations are defined in fsp_cfg/r_sci_spi_cfg.h:<br />
 </p><table class="doxtable">
 <tr>
@@ -248,6 +248,14 @@ Enabled</li>
 Disabled</li>
 </ul>
 </td><td>Disabled </td><td>Enable nested interrupt for a single driver. </td></tr>
+<tr>
+<td>FIFO Support</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Enabled</li>
+<li>
+Disabled</li>
+</ul>
+</td><td>Disabled </td><td>Enable FIFO support for the SCI_SPI module. </td></tr>
 </table>
  <h2>Configurations for Connectivity &gt; SPI (r_sci_spi)</h2>
 This module can be added to the Stacks tab via New Stack &gt; Connectivity &gt; SPI (r_sci_spi).<br />
@@ -311,7 +319,29 @@ PCLKM</li>
 <tr>
 <td>Bitrate</td><td>Value must be an integer greater than 0</td><td>8000000 </td><td>Enter the desired bitrate.<br />
 <br />
-If the requested bitrate cannot be achieved, the settings with the largest possible value that is less than or equal to the requested bitrate is used. The theoretical bitrate is printed in a comment in the generated sci_spi_extended_cfg_t structure. </td></tr>
+If the requested bitrate cannot be achieved, the settings with the largest possible value that is less than or equal to the requested bitrate is used. The actual bitrate is printed in a comment in the generated sci_spi_extended_cfg_t structure. </td></tr>
+<tr>
+<td>Transmit FIFO Trigger Level</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Disabled</li>
+<li>
+15 (Max)</li>
+</ul>
+</td><td>Disabled </td><td>Select Disabled to disable the TX FIFO trigger, or 15 (Max) to trigger the reload when the FIFO is full or after 15 bit times with no data. </td></tr>
+<tr>
+<td>Receive Sampling Timing Adjustment (Master Only)</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Default (No Delay)</li>
+<li>
+1 PCLKSCIn Cycle</li>
+<li>
+2 PCLKSCIn Cycles</li>
+<li>
+3 PCLKSCIn Cycles</li>
+<li>
+4 PCLKSCIn Cycles</li>
+</ul>
+</td><td>Default (No Delay) </td><td>Select the sampling timing delay of the RXDn pin (master mode only). Configuring this property may be required at high bitrates for the master to sample the received data accurately. This setting has no effect in slave mode. </td></tr>
 </table>
 </p>
 <h2><a class="anchor" id="RZT_r_sci_spi-clock-configuration"></a>
@@ -320,13 +350,21 @@ Clock Configuration</h2>
 <h2><a class="anchor" id="RZT_r_sci_spi-pin-configuration"></a>
 Pin Configuration</h2>
 <p>This module uses SCIn_MOSI, SCIn_MISO, SCIn_SPCK, and SCIn_SS pins to communicate with on board devices.</p>
-<dl class="section note"><dt>Note</dt><dd>At high bit rates, it might be necessary to configure the pins with IOPORT_CFG_DRIVE_HIGH.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>It is recommended to configure the pins with high drive strength (or high-speed high if available) to maintain signal integrity, particularly at high bitrates. The drive strength can be set by opening the e2 studio pin configuration editor, selecting the pin, and configuring 'Drive Capacity'.</dd></dl>
 <h1><a class="anchor" id="RZT_r_sci_spi-usage_notes"></a>
 Usage Notes</h1>
 <h2>Transfer Complete Event</h2>
-<p>The transfer complete event is triggered when all of the data has been transfered. In slave mode if the SS pin is de-asserted then no transfer complete event is generated until the SS pin is asserted and the remaining data is transferred.</p>
+<p>The transfer complete event is triggered when all of the data has been transferred. In slave mode if the SS pin is de-asserted then no transfer complete event is generated until the SS pin is asserted and the remaining data is transferred.</p>
 <h2>Performance</h2>
-<p>At high bit rates, interrupts may not be able to service transfers fast enough. In master mode this means there will be a delay between each data frame. In slave mode this could result in RX Overflow errors. In order to improve performance at high bit rates, it is recommended that the instance be configured to service transfers using the DMAC.</p>
+<p>At high bit rates, interrupts may not be able to service transfers fast enough. In master mode this means there will be a delay between each data frame. This may also result in <a class="el" href="group___r_z_t___s_p_i___a_p_i.html#gga6e4960e8b344a8a8ec60f0c11d60f54ca71a3d6fe1922346e01054bb11993b26a">SPI_EVENT_ERR_READ_OVERFLOW</a> errors.</p>
+<p>In order to improve performance at high bit rates, consider the following recommendations:</p>
+<ul>
+<li>Enable DMAC. Note that DMAC will provide the best performance.</li>
+<li>Enable the Transmit Fifo Trigger in the module properties.</li>
+<li>Configure the Receive Sampling Timing Adjustment in the module properties (master mode only). For more information about Receive Sampling Timing Adjustment, refer to the diagram "Reception Sampling Timing Adjustment Operation in Clock Synchronous Mode (Master)" in the HW User's Manual for the selected MCU.</li>
+<li>When using DMAC, set the RX DMAC channel to a higher priority (lower channel number) than the TX channel.</li>
+<li>When using DMAC, consider pausing operation of higher-priority DMAC instances in the project during SPI transfers or reassigning priorities to ensure high-speed SPI channels have top priority to avoid bus contention.</li>
+</ul>
 <p>Also note when using DMAC for data transfer, SCI SPI can experience overrun error if the application makes heavy use of another DMAC instance. This is because the arbitration between different triggers/transfers in DMAC is done based on interrupt/trigger priority. Overrun error can be averted with one of the following options:</p><ol type="1">
 <li>If SCI SPI uses DMAC for data transfer, avoid the use of another DMAC instance in an application.</li>
 <li>If DMAC is a must for other data transfers, avoid the use of DMAC with SCI SPI.</li>
@@ -373,6 +411,10 @@ Typedefs</h2></td></tr>
 Enumerations</h2></td></tr>
 <tr class="memitem:ga20b273db6ca4654e4eb5e8d5d414f4bd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___s_c_i___s_p_i.html#ga20b273db6ca4654e4eb5e8d5d414f4bd">sci_spi_clock_source_t</a> </td></tr>
 <tr class="separator:ga20b273db6ca4654e4eb5e8d5d414f4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga350b439dc573ebbb6f530be2e36ed423"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___s_c_i___s_p_i.html#ga350b439dc573ebbb6f530be2e36ed423">sci_spi_rx_sampling_delay_t</a> </td></tr>
+<tr class="separator:ga350b439dc573ebbb6f530be2e36ed423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga293bbc044f51abf116e62b477f2dcaac"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_t___s_c_i___s_p_i.html#ga293bbc044f51abf116e62b477f2dcaac">sci_spi_tx_fifo_trigger_t</a> </td></tr>
+<tr class="separator:ga293bbc044f51abf116e62b477f2dcaac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
 <a name="struct_r_z_t_1_1st__sci__spi__div__setting" id="struct_r_z_t_1_1st__sci__spi__div__setting"></a>
@@ -416,6 +458,20 @@ clk_div</td>
 clock_source</td>
 <td class="fielddoc">
 <p>Clock source to generate SCK can either be selected as PCLKM or SCInASYNCCLK. </p>
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a0ef05b12ca09b2e46f08e3a6a24236b2"></a><a class="el" href="group___r_z_t___s_c_i___s_p_i.html#ga350b439dc573ebbb6f530be2e36ed423">sci_spi_rx_sampling_delay_t</a></td>
+<td class="fieldname">
+rx_sampling_delay</td>
+<td class="fielddoc">
+<p>Receive sampling timing adjustment. </p>
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a8a607f6c025d713e72f33e007267748a"></a><a class="el" href="group___r_z_t___s_c_i___s_p_i.html#ga293bbc044f51abf116e62b477f2dcaac">sci_spi_tx_fifo_trigger_t</a></td>
+<td class="fieldname">
+tx_fifo_trigger</td>
+<td class="fielddoc">
+<p>Transmit FIFO trigger level. </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="afe62c2bbb07bedc4bd4dad60b8c3c69c"></a>void *</td>
@@ -504,6 +560,54 @@ Register base address. </td></tr>
 
 </div>
 </div>
+<a id="ga350b439dc573ebbb6f530be2e36ed423"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga350b439dc573ebbb6f530be2e36ed423">&#9670;&nbsp;</a></span>sci_spi_rx_sampling_delay_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_t___s_c_i___s_p_i.html#ga350b439dc573ebbb6f530be2e36ed423">sci_spi_rx_sampling_delay_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adjustment value for receive sampling timing delay for RXDn </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga350b439dc573ebbb6f530be2e36ed423a4d377f4a7fad2e8ef547f03f62a2ed3c"></a>SCI_SPI_RX_SAMPLING_DELAY_CYCLES_0&#160;</td><td class="fielddoc"><p>Use the default receive sampling timing. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga350b439dc573ebbb6f530be2e36ed423a17575ff9f06df5e3499cdc0e091679a7"></a>SCI_SPI_RX_SAMPLING_DELAY_CYCLES_1&#160;</td><td class="fielddoc"><p>Delay the receive sampling timing by 1 PCLKSCIn cycle. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga350b439dc573ebbb6f530be2e36ed423a2821422566570f1d7b8819e91c3b13ec"></a>SCI_SPI_RX_SAMPLING_DELAY_CYCLES_2&#160;</td><td class="fielddoc"><p>Delay the receive sampling timing by 2 PCLKSCIn cycles. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga350b439dc573ebbb6f530be2e36ed423ae2ffb253c5aea95d49534759adb53217"></a>SCI_SPI_RX_SAMPLING_DELAY_CYCLES_3&#160;</td><td class="fielddoc"><p>Delay the receive sampling timing by 3 PCLKSCIn cycles. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga350b439dc573ebbb6f530be2e36ed423ab747c07efed191bc1496773ad85192f1"></a>SCI_SPI_RX_SAMPLING_DELAY_CYCLES_4&#160;</td><td class="fielddoc"><p>Delay the receive sampling timing by 4 PCLKSCIn cycles. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga293bbc044f51abf116e62b477f2dcaac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga293bbc044f51abf116e62b477f2dcaac">&#9670;&nbsp;</a></span>sci_spi_tx_fifo_trigger_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___r_z_t___s_c_i___s_p_i.html#ga293bbc044f51abf116e62b477f2dcaac">sci_spi_tx_fifo_trigger_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Transmit FIFO trigger configuration. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga293bbc044f51abf116e62b477f2dcaaca08077f8799104d74ddee53646ff70e25"></a>SCI_SPI_TX_FIFO_TRIGGER_DISABLED&#160;</td><td class="fielddoc"><p>FIFO mode not used. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga293bbc044f51abf116e62b477f2dcaaca22d1052c8ef59efc6993aa55dd487f70"></a>SCI_SPI_TX_FIFO_TRIGGER_MAX&#160;</td><td class="fielddoc"><p>TXI is generated when FIFO is full or after 15 bit times with no data (fewer interrupts) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga6adb1757becedc515c59a60becd6799e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga6adb1757becedc515c59a60becd6799e">&#9670;&nbsp;</a></span>R_SCI_SPI_Open()</h2>
@@ -551,6 +655,7 @@ Register base address. </td></tr>
     <tr><td class="paramname">FSP_ERR_ALREADY_OPEN</td><td>The instance has already been opened. </td></tr>
     <tr><td class="paramname">FSP_ERR_IP_CHANNEL_NOT_PRESENT</td><td>The channel number is invalid. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ARGUMENT</td><td>Invalid input parameter. </td></tr>
+    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>Fifo mode is requested but a transfer interface is not used </td></tr>
   </table>
   </dd>
 </dl>
@@ -926,7 +1031,7 @@ Register base address. </td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">bitrate</td><td>bitrate [bps]. For example, 250,000; 500,00; 2,500,000; etc. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">clock_source</td><td>clock source (PCLKM or SCInASYNCCLK) used for bit rate calculation. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">sclk_div</td><td>Pointer to sci_spi_div_setting_t used to configure baudrate settings. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">sclk_div</td><td>Pointer to sci_spi_div_setting_t used to configure baudrate settings.</td></tr>
   </table>
   </dd>
 </dl>
@@ -934,6 +1039,7 @@ Register base address. </td></tr>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Baud rate is set successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Baud rate is not achievable. </td></tr>
+    <tr><td class="paramname">FSP_ERR_INVALID_ARGUMENT</td><td>Invalid input parameter. </td></tr>
   </table>
   </dd>
 </dl>
@@ -947,7 +1053,7 @@ Register base address. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

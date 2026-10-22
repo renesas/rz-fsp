@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -196,9 +196,9 @@ Overview</h1>
 <h2><a class="anchor" id="RZA_rm-comms-usb-pcdc-features"></a>
 Features</h2>
 <p>The implementation of the USB_PCDC communications interface has the following key features:</p><ul>
-<li>Non-blocking API for bare metal<a class="anchor" id="RZA_um_rm_comms_read_usb"></a><a class="anchor" id="RZA_um_rm_comms_write_usb"></a></li>
-<li>Non-blocking and blocking API for RTOS<a class="anchor" id="RZA_um_rm_comms_writeread_usb"></a></li>
-<li>USB connection detection mode<a class="anchor" id="RZA_um_rm_comms_special_case_usb"></a> </li>
+<li>Non-blocking API for bare metal<a class="anchor" id="RZA_um_rm_comms_read"></a><a class="anchor" id="RZA_um_rm_comms_write"></a></li>
+<li>Non-blocking and blocking API for RTOS<a class="anchor" id="RZA_um_rm_comms_writeread"></a></li>
+<li>USB connection detection mode<a class="anchor" id="RZA_um_rm_comms_special_case"></a> </li>
 </ul>
 <h1><a class="anchor" id="RZA_rm-comms-usb-pcdc-configuration"></a>
 Configuration</h1>
@@ -264,7 +264,7 @@ This module can be added to the Stacks tab via New Stack &gt; Connectivity &gt; 
 <tr>
 <th>Configuration</th><th>Options</th><th>Default</th><th>Description </th></tr>
 <tr>
-<td>RTOS &gt; Write Mutex</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>RTOS &gt; Recursive Write Mutex</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Do Not Use</li>
 <li>
@@ -272,7 +272,7 @@ Use</li>
 </ul>
 </td><td>Use </td><td>Lock device for writing in using RTOS. </td></tr>
 <tr>
-<td>RTOS &gt; Read Mutex</td><td><ul style="margin-top:0;margin-bottom:0;">
+<td>RTOS &gt; Recursive Read Mutex</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
 Do Not Use</li>
 <li>
@@ -310,21 +310,21 @@ Baudrate Configuration</li>
 <li>
 Control Line State</li>
 </ul>
-</td><td>Disabled </td><td>Enable it only when application wants to process the error of USB host tool not opened. </td></tr>
+</td><td>Disabled </td><td>Enable this option only if the application needs to detect and handle the condition where the USB host tool is not open. </td></tr>
 <tr>
 <td>Callback</td><td>Name must be a valid C symbol</td><td>NULL </td><td>A user callback function can be provided. </td></tr>
 </table>
 </p>
 <h1><a class="anchor" id="RZA_rm-comms-usb-pcdc-notes"></a>
 Usage Notes</h1>
-<p>USB connection detection has two modes: Baudrate Configuration mode and Control Line State mode. The former depends on line coding request, and the latter relies on control line state request. When it is enabled, rm_comms_usb_pcdc_write API will return FSP_ERR_NOT_ENABLED when USB host tool is not opened. By default it is disabled.</p>
+<p>USB connection detection has two modes: Baud rate Configuration mode and Control Line State mode. The former depends on line coding request, and the latter relies on control line state request. When it is enabled, rm_comms_usb_pcdc_write API will return FSP_ERR_NOT_ENABLED when USB host tool is not opened. By default it is disabled.</p>
 <h2><a class="anchor" id="RZA_rm-comms-usb-pcdc-limitations"></a>
 Limitations</h2>
 <ul>
 <li>RM_COMMS_API are not reentrant in non blocking mode</li>
 <li>When in blocking mode, <a class="el" href="group___r_z_a___r_m___c_o_m_m_s___u_s_b___p_c_d_c.html#ga0c967085c304078c11e95bf7700eead3">RM_COMMS_USB_PCDC_Write()</a> and <a class="el" href="group___r_z_a___r_m___c_o_m_m_s___u_s_b___p_c_d_c.html#gad8bbc0e261e312c8a958ef6a4cae903d">RM_COMMS_USB_PCDC_Read()</a> cannot be called in callback.</li>
 <li>RM_COMMS_USB_PCDC_WriteRead API is not implemented</li>
-<li>USB connection detection could be platform specific when it is enabled. For Windows USB host, Baudrate configuration mode should be used.</li>
+<li>USB connection detection could be platform specific when it is enabled. For Windows USB host, Baud rate configuration mode should be used.</li>
 </ul>
 <h1><a class="anchor" id="RZA_rm-comms-usb-pcdc-examples"></a>
 Examples</h1>
@@ -449,7 +449,7 @@ usb_callback_args_t *&#160;</td><td class="memItemRight" valign="bottom"><a clas
 <tr class="separator:afe43714dbc7fc52589b1f8d17ff8659f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8105fe9038945effd5ed84a0de8a4c12"><td class="memItemLeft" align="right" valign="top"><a id="a8105fe9038945effd5ed84a0de8a4c12"></a>
 void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_a___r_m___c_o_m_m_s___u_s_b___p_c_d_c.html#a8105fe9038945effd5ed84a0de8a4c12">p_callback</a> )(<a class="el" href="group___r_z_a___r_m___c_o_m_m_s___a_p_i.html#ga67e9f6a4d2569eee53e9c4b9a9477ff7">rm_comms_callback_args_t</a> *p_args)</td></tr>
-<tr class="memdesc:a8105fe9038945effd5ed84a0de8a4c12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to callback that is called when a usb_status_t occurs. <br /></td></tr>
+<tr class="memdesc:a8105fe9038945effd5ed84a0de8a4c12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the user callback function. This function is called when an rm_comms_event_t event occurs. <br /></td></tr>
 <tr class="separator:a8105fe9038945effd5ed84a0de8a4c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa207a6ef4d9f49f00f01a37810ac301d"><td class="memItemLeft" align="right" valign="top"><a id="aa207a6ef4d9f49f00f01a37810ac301d"></a>
 void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_z_a___r_m___c_o_m_m_s___u_s_b___p_c_d_c.html#aa207a6ef4d9f49f00f01a37810ac301d">p_context</a></td></tr>
@@ -737,7 +737,7 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gr
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

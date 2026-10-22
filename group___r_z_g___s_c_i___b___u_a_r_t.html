@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -238,9 +238,9 @@ Enable</li>
 <li>
 Disable</li>
 </ul>
-</td><td>Enable </td><td>Enable FIFO support for the SCI_UART module. </td></tr>
+</td><td>Enable </td><td>Enable FIFO support for the SCI_B_UART module. </td></tr>
 <tr>
-<td>DMAC Support</td><td>MCU Specific Options</td><td></td><td>Enable DMAC Support for the SCI_UART module. </td></tr>
+<td>DMAC Support</td><td>MCU Specific Options</td><td></td><td>Enable DMAC Support for the SCI_B_UART module. </td></tr>
 <tr>
 <td>Flow Control Support</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -300,7 +300,7 @@ Enabled</li>
 </ul>
 </td><td>Disabled </td><td>Enabling baud rate modulation reduces the percent error of the actual baud rate with respect to the requested baud rate. It does this by modulating the number of cycles per clock, so some bits are slightly longer than others. </td></tr>
 <tr>
-<td>Baud &gt; Max Error (%)</td><td>Must be a valid non-negative integer with a maximum configurable value of 100</td><td>5 </td><td>Maximum percent error allowed during baud calculation. This is used by the algorithm to determine whether or not to consider using less accurate alternative register settings.<br />
+<td>Baud &gt; Max Error (%)</td><td>Must be a valid non-negative integer with a maximum configurable value of 15</td><td>5 </td><td>Maximum percent error allowed during baud calculation. This is used by the algorithm to determine whether or not to consider using less accurate alternative register settings.<br />
 <br />
 NOTE: The baud calculation does not show an error in the tool if this percent error was not achieved. The calculated percent error is recorded in a comment in the generated sci_b_baud_setting_t structure. </td></tr>
 <tr>
@@ -322,7 +322,7 @@ Active Low</li>
 <li>
 Active High</li>
 </ul>
-</td><td>Active High </td><td>Select the polarity of the DE pin. </td></tr>
+</td><td>Active High </td><td>Select the polarity of the DE pin. Active High uses a high level to assert the DE signal, while Active Low uses a low level to assert the DE signal. </td></tr>
 <tr>
 <td>Extra &gt; RS-485 &gt; DE Pin Assertion Time</td><td>Must be a valid integer greater than 0 and less than or equal to 31.</td><td>1 </td><td>Configure the time between assertion of the DE pin and the start of a write transfer. The time is specified in multiples of the SCI base clock period. </td></tr>
 <tr>
@@ -366,6 +366,8 @@ Enable</li>
 </ul>
 </td><td>Disable </td><td>Enable or disable the half data function. </td></tr>
 <tr>
+<td>Extra &gt; TXI/TEI Synchronization Delay Cycles</td><td>Must be an integer between 0 and 3.</td><td>0 </td><td>Configure the optional delay, in TCLK cycles, between writing the last data byte in the transmit data empty (TXI) interrupt and enabling the transmit end (TEI) interrupt. Only required when TCLK is much slower than the bus clock (PCLK). </td></tr>
+<tr>
 <td>Interrupts &gt; Callback</td><td>Name must be a valid C symbol</td><td>NULL </td><td>A user callback function can be provided. If this callback function is provided, it will be called from the interrupt service routine (ISR). </td></tr>
 <tr>
 <td>Interrupts &gt; Receive Interrupt Priority</td><td>Value must be a non-negative integer</td><td>12 </td><td>Set the receive interrupt priority. </td></tr>
@@ -386,13 +388,9 @@ Clock Configuration</h2>
 <tr>
 <th>MCU Group</th><th>Peripheral Clock </th></tr>
 <tr>
-<td>RZG2L</td><td>P0CLK</td></tr>
+<td>RZA3M</td><td>P0CLK</td></tr>
 <tr>
-<td>RZG2UL</td><td>P0CLK</td></tr>
-<tr>
-<td>RZG3E</td><td>P5CLK</td></tr>
-<tr>
-<td>RZG3S</td><td>P0CLK</td></tr>
+<td>RZA3UL</td><td>P0CLK</td></tr>
 </table>
 </p>
 <table class="doxtable">
@@ -426,6 +424,7 @@ Usage Notes</h1>
 Limitations</h2>
 <ul>
 <li>Reception is still enabled after <a class="el" href="group___r_z_g___u_a_r_t___a_p_i.html#a2d6bf1579ab7a85535e83de0cb1cf4fb">uart_api_t::communicationAbort</a> API is called. Any characters received after abort and before the next call to read will arrive via the callback function with event UART_EVENT_RX_CHAR.</li>
+<li>When TCLK is much slower than PCLK, it may be necessary to delay up to 3 cycles of TCLK after writing the last data to TDR to avoid early termination of the transmission. The delay can be configured using the property Extra &gt; TXI/TEI Synchronization Delay Cycles.</li>
 </ul>
 <h2><a class="anchor" id="RZG_r-sci-b-uart-dmac"></a>
 DMAC Limitations</h2>
@@ -515,7 +514,7 @@ Enumerations</h2></td></tr>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="a7179e4989ec896f92620a384b8cba1e4"></a>union <a class="el" href="group___r_z_g___s_c_i___b___u_a_r_t.html#union_r_z_g_1_1st__sci__b__baud__setting_8____unnamed____">st_sci_b_baud_setting</a></td>
+<a id="abdf56754e94d44f53794ea2f699a4f4e"></a>union <a class="el" href="group___r_z_g___s_c_i___b___u_a_r_t.html#union_r_z_g_1_1st__sci__b__baud__setting_8____unnamed____">st_sci_b_baud_setting</a></td>
 <td class="fieldname">
 __unnamed__</td>
 <td class="fielddoc">
@@ -645,7 +644,7 @@ Receive FIFO trigger level, unused if channel has no FIFO or if DTC or DMAC is u
 <td class="fieldname">
 flow_control_pin</td>
 <td class="fielddoc">
-UART Driver Enable pin. </td></tr>
+RTS pin used for UART flow control. </td></tr>
 <tr><td class="fieldtype">
 <a id="a9ddc2bf788519a1c5e385839d660c41d"></a><a class="el" href="group___r_z_g___s_c_i___b___u_a_r_t.html#gac7f2f9b2d11f95e1f0c627b7523bfa89">sci_b_uart_flow_control_t</a></td>
 <td class="fieldname">
@@ -670,6 +669,12 @@ Half Data Function settings. </td></tr>
 p_reg</td>
 <td class="fielddoc">
 Register base address for specified channel. </td></tr>
+<tr><td class="fieldtype">
+<a id="a13691b89c6884467e7ff6ad3e93032db"></a>uint8_t</td>
+<td class="fieldname">
+delay_cycles</td>
+<td class="fielddoc">
+Number of TCLK cycles to delay after writing last byte to TDR. </td></tr>
 </table>
 
 </div>
@@ -1079,7 +1084,7 @@ Register base address for specified channel. </td></tr>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Data reception successfully ends. </td></tr>
-    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to UART control block is NULL. Number of transfers outside the max or min boundary when transfer instance used </td></tr>
+    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to UART control block is NULL. Number of transfers outside the max or min boundary when transfer instance used. Pointer to address is NULL. Transfer size is 0. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ARGUMENT</td><td>Destination address or data size is not valid for 9-bit mode. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The control block has not been opened </td></tr>
     <tr><td class="paramname">FSP_ERR_IN_USE</td><td>A previous read operation is still in progress. </td></tr>
@@ -1130,7 +1135,7 @@ Register base address for specified channel. </td></tr>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">FSP_SUCCESS</td><td>Data transmission finished successfully. </td></tr>
-    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to UART control block is NULL. Number of transfers outside the max or min boundary when transfer instance used </td></tr>
+    <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to UART control block is NULL. Number of transfers outside the max or min boundary when transfer instance used. Pointer to address is NULL. Transfer size is 0. </td></tr>
     <tr><td class="paramname">FSP_ERR_INVALID_ARGUMENT</td><td>Source address or data size is not valid for 9-bit mode. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The control block has not been opened </td></tr>
     <tr><td class="paramname">FSP_ERR_IN_USE</td><td>A UART transmission is in progress </td></tr>
@@ -1436,7 +1441,7 @@ Register base address for specified channel. </td></tr>
     <tr><td class="paramname">FSP_SUCCESS</td><td>UART transaction aborted successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>Pointer to UART control block is NULL. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The control block has not been opened. </td></tr>
-    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>The requested Abort direction is unsupported.</td></tr>
+    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>The requested read stop operation is unsupported because receive functionality is disabled.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1503,7 +1508,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

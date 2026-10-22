@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -224,9 +224,10 @@ Features</h2>
 <li>Supports runtime reconfiguration of period.</li>
 <li>Supports runtime reconfiguration of duty cycle in PWM mode.</li>
 <li>Supports runtime reconfiguration of compare match value.</li>
+<li>Supports up to 6 compare match channels (A, B, C, D, E, F) corresponding to GTCCRA through GTCCRF registers.</li>
 <li>APIs are provided to start, stop, and reset the counter.</li>
-<li>APIs are provided to get the current period, source clock frequency, and count direction.</li>
-<li>APIs are provided to get the current timer status and counter value.</li>
+<li>APIs are provided to get the current period, source clock frequency, and count direction.<a class="anchor" id="RZN_um_timer_count_direction"></a></li>
+<li>APIs are provided to get the current timer status and counter value.<a class="anchor" id="RZN_um_timer_status"></a></li>
 <li>Supports start, stop, clear, count up, count down, and capture by external sources from GTETRG pins, GTIOC pins, or ELC events.<a class="anchor" id="RZN_um_gpt_count_down_external_source"></a><a class="anchor" id="RZN_um_gpt_start_external_source"></a><a class="anchor" id="RZN_um_gpt_stop_external_source"></a><a class="anchor" id="RZN_um_gpt_clear_external_source"></a></li>
 <li>Supports symmetric and asymmetric PWM waveform generation.<a class="anchor" id="RZN_um_gpt_symmetric_pwm"></a><a class="anchor" id="RZN_um_gpt_asymmetric_pwm"></a><a class="anchor" id="RZN_um_gpt_pwm_mode3"></a></li>
 <li>Supports One shot synchronous pulse waveform generation.<a class="anchor" id="RZN_um_gpt_one_shot_pulse_mode"></a></li>
@@ -257,7 +258,7 @@ Selecting a Timer</h2>
 </table>
 <h1><a class="anchor" id="RZN_r-gpt-configuration"></a>
 Configuration</h1>
-<p><h2>Build Time Configurations for r_gpt</h2>
+<p><a class="anchor" id="RZN_um_timer_multiple_channels"></a> <h2>Build Time Configurations for r_gpt</h2>
 The following build time configurations are defined in fsp_cfg/r_gpt_cfg.h:<br />
 </p><table class="doxtable">
 <tr>
@@ -313,7 +314,7 @@ Disabled</li>
 </ul>
 </td><td>Disabled </td><td></td></tr>
 <tr>
-<td>General &gt; Compare Match &gt; Compare Match A &gt; Compare match value</td><td>Value must be a non-negative integer less than or equal to 0x40000000000</td><td>0 </td><td>Specify the compare match A value in units that selected in Period Unit section. </td></tr>
+<td>General &gt; Compare Match &gt; Compare Match A &gt; Compare match value</td><td>Value must be greater than 0 and less than or equal to 0x40000000000</td><td>0x10000 </td><td>Specify the value of compare match A in units matching those selected in the 'Period Unit' property. </td></tr>
 <tr>
 <td>General &gt; Compare Match &gt; Compare Match B &gt; Status</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -323,11 +324,54 @@ Disabled</li>
 </ul>
 </td><td>Disabled </td><td></td></tr>
 <tr>
-<td>General &gt; Compare Match &gt; Compare Match B &gt; Compare match value</td><td>Value must be a non-negative integer less than or equal to 0x40000000000</td><td>0 </td><td>Specify the compare match B value in units that selected in Period Unit section. </td></tr>
+<td>General &gt; Compare Match &gt; Compare Match B &gt; Compare match value</td><td>Value must be greater than 0 and less than or equal to 0x40000000000</td><td>0x10000 </td><td>Specify the value of compare match B in units matching those selected in the 'Period Unit' property. </td></tr>
+<tr>
+<td>General &gt; Compare Match &gt; Compare Match C &gt; Status</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Enabled</li>
+<li>
+Disabled</li>
+</ul>
+</td><td>Disabled </td><td></td></tr>
+<tr>
+<td>General &gt; Compare Match &gt; Compare Match C &gt; Compare match value</td><td>Value must be greater than 0 and less than or equal to 0x40000000000</td><td>0x10000 </td><td>Specify the value of compare match C in units matching those selected in the 'Period Unit' property. </td></tr>
+<tr>
+<td>General &gt; Compare Match &gt; Compare Match D &gt; Status</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Enabled</li>
+<li>
+Disabled</li>
+</ul>
+</td><td>Disabled </td><td></td></tr>
+<tr>
+<td>General &gt; Compare Match &gt; Compare Match D &gt; Compare match value</td><td>Value must be greater than 0 and less than or equal to 0x40000000000</td><td>0x10000 </td><td>Specify the value of compare match D in units matching those selected in the 'Period Unit' property. </td></tr>
+<tr>
+<td>General &gt; Compare Match &gt; Compare Match E &gt; Status</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Enabled</li>
+<li>
+Disabled</li>
+</ul>
+</td><td>Disabled </td><td></td></tr>
+<tr>
+<td>General &gt; Compare Match &gt; Compare Match E &gt; Compare match value</td><td>Value must be greater than 0 and less than or equal to 0x40000000000</td><td>0x10000 </td><td>Specify the value of compare match E in units matching those selected in the 'Period Unit' property. </td></tr>
+<tr>
+<td>General &gt; Compare Match &gt; Compare Match F &gt; Status</td><td><ul style="margin-top:0;margin-bottom:0;">
+<li>
+Enabled</li>
+<li>
+Disabled</li>
+</ul>
+</td><td>Disabled </td><td></td></tr>
+<tr>
+<td>General &gt; Compare Match &gt; Compare Match F &gt; Compare match value</td><td>Value must be greater than 0 and less than or equal to 0x40000000000</td><td>0x10000 </td><td>Specify the value of compare match F in units matching those selected in the 'Period Unit' property. </td></tr>
 <tr>
 <td>General &gt; Name</td><td>Name must be a valid C symbol</td><td>g_timer0 </td><td>Module name. </td></tr>
 <tr>
-<td>General &gt; Unit</td><td>Unit number must exist on this MPU</td><td>0 </td><td>Specify the hardware unit. For devices without units, each of the three groups(LLPP, NONSAFETY, and SAFETY) is treated as a unit. <br />
+<td>General &gt; Unit</td><td>Unit number must exist on this MPU</td><td>0 </td><td>For devices with units (RZ/N2H):<br />
+Specify the hardware unit.<br />
+For devices without units (RZ/N2L):<br />
+Each of the three groups (LLPP, NONSAFETY, and SAFETY) is treated as a unit.<br />
 LLPP: Unit 0<br />
 NONSAFETY: Unit 1<br />
 SAFETY: Unit 2 </td></tr>
@@ -589,6 +633,14 @@ Filter PCLKD / 64</li>
 <tr>
 <td>Interrupts &gt; Capture/Compare match B Interrupt Priority</td><td>MCU Specific Options</td><td></td><td>Select the interrupt priority for Capture/Compare match B. </td></tr>
 <tr>
+<td>Interrupts &gt; Compare match C Interrupt Priority</td><td>MCU Specific Options</td><td></td><td>Select the interrupt priority for Compare match C. </td></tr>
+<tr>
+<td>Interrupts &gt; Compare match D Interrupt Priority</td><td>MCU Specific Options</td><td></td><td>Select the interrupt priority for Compare match D. </td></tr>
+<tr>
+<td>Interrupts &gt; Compare match E Interrupt Priority</td><td>MCU Specific Options</td><td></td><td>Select the interrupt priority for Compare match E. </td></tr>
+<tr>
+<td>Interrupts &gt; Compare match F Interrupt Priority</td><td>MCU Specific Options</td><td></td><td>Select the interrupt priority for Compare match F. </td></tr>
+<tr>
 <td>Interrupts &gt; Underflow/Trough Interrupt Priority</td><td>MCU Specific Options</td><td></td><td>Select the interrupt priority for the trough interrupt (triangle-wave PWM only). </td></tr>
 <tr>
 <td>Interrupts &gt; Dead Time Error Interrupt Priority</td><td>MCU Specific Options</td><td></td><td>Select the interrupt priority for dead time error. </td></tr>
@@ -600,6 +652,14 @@ Filter PCLKD / 64</li>
 <td>Interrupts (GPT_SEL) &gt; Capture/Compare match A Interrupt Source</td><td>MCU Specific Options</td><td></td><td>Select the interrupt source for Capture/Compare match A. </td></tr>
 <tr>
 <td>Interrupts (GPT_SEL) &gt; Capture/Compare match B Interrupt Source</td><td>MCU Specific Options</td><td></td><td>Select the interrupt source for Capture/Compare match B. </td></tr>
+<tr>
+<td>Interrupts (GPT_SEL) &gt; Compare match C Interrupt Source</td><td>MCU Specific Options</td><td></td><td>Select the interrupt source for Compare match C. </td></tr>
+<tr>
+<td>Interrupts (GPT_SEL) &gt; Compare match D Interrupt Source</td><td>MCU Specific Options</td><td></td><td>Select the interrupt source for Compare match D. </td></tr>
+<tr>
+<td>Interrupts (GPT_SEL) &gt; Compare match E Interrupt Source</td><td>MCU Specific Options</td><td></td><td>Select the interrupt source for Compare match E. </td></tr>
+<tr>
+<td>Interrupts (GPT_SEL) &gt; Compare match F Interrupt Source</td><td>MCU Specific Options</td><td></td><td>Select the interrupt source for Compare match F. </td></tr>
 <tr>
 <td>Interrupts (GPT_SEL) &gt; Underflow/Trough Interrupt Source</td><td>MCU Specific Options</td><td></td><td>Select the interrupt source for the trough interrupt (triangle-wave PWM only). </td></tr>
 <tr>
@@ -907,9 +967,9 @@ Usage Notes</h1>
 <dl class="section note"><dt>Note</dt><dd>When manually changing the timer period counts the maximum value for a 32-bit GPT is 0x100000000. This number overflows the 32-bit value for <a class="el" href="group___r_z_n___t_i_m_e_r___a_p_i.html#a9a52263346542f55b207e4767613f681" title="Period in raw timer counts. ">timer_cfg_t::period_counts</a>. To configure the timer for the maximum period, set <a class="el" href="group___r_z_n___t_i_m_e_r___a_p_i.html#a9a52263346542f55b207e4767613f681" title="Period in raw timer counts. ">timer_cfg_t::period_counts</a> to 0.</dd></dl>
 <h2>Updating Period and Duty Cycle</h2>
 <p>The period and duty cycle are updated after the next counter overflow after calling <a class="el" href="group___r_z_n___g_p_t.html#gafedbfd8bc3f534d06969588ff10a351b">R_GPT_PeriodSet()</a> or <a class="el" href="group___r_z_n___g_p_t.html#gad14bacf6fb7fce88f3e877160be529ea">R_GPT_DutyCycleSet()</a>. To force them to update before the next counter overflow, call <a class="el" href="group___r_z_n___g_p_t.html#ga5eb494add3d40775dbc48c5498e15a3a">R_GPT_Reset()</a> while the counter is running.</p>
-<dl class="section note"><dt>Note</dt><dd>When manually changing the timer period counts and duty cycle, the order must be to call <a class="el" href="group___r_z_n___g_p_t.html#gafedbfd8bc3f534d06969588ff10a351b">R_GPT_PeriodSet()</a> first and <a class="el" href="group___r_z_n___g_p_t.html#gad14bacf6fb7fce88f3e877160be529ea">R_GPT_DutyCycleSet()</a> afterward. This order is necessary to prevent unwanted issues.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>When changing the period and duty cycle at the same time when Parameter Checking is enabled, call R_GPT_PeriodSet first followed by R_GPT_DutyCycleSet to ensure input validation is performed correctly.</dd></dl>
 <h2>One-Shot Mode</h2>
-<p>The GPT timer does not support one-shot mode natively. One-shot mode is achieved by stopping the timer in the interrupt service routine before the callback is called. If the interrupt is not serviced before the timer period expires again, the timer generates more than one event. The callback is only called once in this case.</p>
+<p><a class="anchor" id="RZN_um_timer_one_shot_mode"></a> The GPT timer does not support one-shot mode natively. One-shot mode is achieved by stopping the timer in the interrupt service routine before the callback is called. If the interrupt is not serviced before the timer period expires again, the timer generates more than one event. The callback is only called once in this case.</p>
 <h3>One-Shot Mode Output</h3>
 <p><a class="anchor" id="RZN_um_gpt_one_shot_output"></a> The output waveform in one-shot mode is one PCLK cycle less than the configured period. The configured period must be at least 2 counts to generate an output pulse.</p>
 <p>Examples of one-shot signals that can be generated by this module are shown below:</p>
@@ -1002,6 +1062,10 @@ The event links for the ELC must be configured outside this module.</dd></dl>
 <p>The GPT timer can trigger the start of other peripherals. The <a class="el" href="group___r_z_n___e_l_c.html">Event Link Controller (r_elc)</a> guide provides a list of all available peripherals.</p>
 <h2>Enabling External Sources for Start, Stop, Clear, or Capture</h2>
 <p><a class="el" href="group___r_z_n___g_p_t.html#ga6e14d15c781e316e640c280b4983be28">R_GPT_Enable()</a> must be called when external sources are used for start, stop, clear, or capture.</p>
+<h2>Compare Match Feature</h2>
+<p>In Periodic mode, if pin output support is enabled with the Compare Match feature, the output signal is no longer a default 50% duty cycle square wave. Instead, the duty cycle of the PWM waveform is determined by the configured compare match value.</p>
+<p>In One-Shot mode, Overflow event must be enabled when using Compare match feature. The interrupt progress of Compare match in One-Shot mode is: CMP_1 -&gt; CMP_2 -&gt; ... -&gt; OVF. The Overflow isr will stop the timer counter at the end of period so all Compare match events will not occur again.</p>
+<p>Additionally, the priorities of Overflow and Compare match events in One-shot mode must be equal to ensure the expected order of interrupt occurrence.</p>
 <h2>Interrupt Skipping</h2>
 <p>When an interrupt skipping source is selected a hardware counter will increment each time the selected event occurs. Each interrupt past the first (up to the specified skip count) will be suppressed. If ADC events are selected for skipping they will also be suppressed except during the timer period leading to the selected interrupt skipping event (see below diagram).</p>
 <div class="image">
@@ -1011,6 +1075,11 @@ Crest interrupt skipping in triangle-wave PWM modes (skip count 2)</div></div>
  <h2>Complementary Output</h2>
 <p>By using the Custom Waveform option the output pins can be made to output complementary waveforms. To ensure these waveforms stay in sync, the duty cycle for both pins can be set simultaneously by calling R_GPT_DutyCycleSet once with a pin parameter of GPT_IO_PIN_GTIOCA_AND_GTIOCB.</p>
 <dl class="section note"><dt>Note</dt><dd>The pin level for 0% and 100% duty cycle is determined by the Cycle End Output Level in normal PWM mode and the Initial Output Level in triangle PWM modes. 100% duty will output the configured level and 0% will output the opposite. Do not use Pin Level Toggle or Pin Level Retain for the Cycle End Output Level if normal PWM waveforms are desired.</dd></dl>
+<h2>Limitations</h2>
+<p>Developers should be aware of the following limitations when using GPT:</p>
+<ul>
+<li>When pin output is used on the same channel that compare match is enabled on then the pin duty cycle should NOT be updated while the timer is running to avoid resulting in erroneous output.</li>
+</ul>
 <h1><a class="anchor" id="RZN_r-gpt-examples"></a>
 Examples</h1>
 <h2>GPT Basic Example</h2>
@@ -1032,7 +1101,7 @@ Examples</h1>
 <div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when timer overflows. */</span></div><div class="line"><span class="keywordtype">void</span> gpt_overflow_callback (<a class="code" href="group___r_z_n___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_n___t_i_m_e_r___a_p_i.html#gac3bee51f7c9078f794c5ac19522f91ebaf35df6e894642f443099deff392469a1">TIMER_EVENT_CYCLE_END</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Use R_GPT_DutyCycleSet() API to set new values for each cycle.</span></div><div class="line"><span class="comment">         * - Use GPT_IO_PIN_ONE_SHOT_LEADING_EDGE to set the leading edge transition match value (GTCCRC or GTCCRE register).</span></div><div class="line"><span class="comment">         * - Use GPT_IO_PIN_ONE_SHOT_TRAILING_EDGE to set the trailing edge transition match value (GTCCRD or GTCCRF register).</span></div><div class="line"><span class="comment">         */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="preprocessor">#define GPT_ONE_SHOT_EXAMPLE_DUTY_CYCLE_GTCCRD_GTCCRF    (0x1000U)</span></div><div class="line"><span class="preprocessor">#define GPT_ONE_SHOT_EXAMPLE_DUTY_CYCLE_GTCCRC           (0x800U)</span></div><div class="line"><span class="preprocessor">#define GPT_ONE_SHOT_EXAMPLE_DUTY_CYCLE_GTCCRE           (0x100U)</span></div><div class="line"></div><div class="line"><span class="keywordtype">void</span> gpt_one_shot_pulse_mode_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_n___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___g_p_t.html#ga97d0a9c1a8fb6b88d1c12756dd8ce2d2">R_GPT_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Set the duty cycle for One-Shot-Pulse mode */</span></div><div class="line"></div><div class="line">    <span class="comment">/* GPT_IO_PIN_ONE_SHOT_LEADING_EDGE sets the initial value for the GTCCRC register if GTIOCnA is the selected pin for output. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___g_p_t.html#gad14bacf6fb7fce88f3e877160be529ea">R_GPT_DutyCycleSet</a>(&amp;g_timer0_ctrl,</div><div class="line">                             GPT_ONE_SHOT_EXAMPLE_DUTY_CYCLE_GTCCRC,</div><div class="line">                             <a class="code" href="group___r_z_n___g_p_t.html#ggaabd4a03d16b1b4254cc44c7779f44c60aec2d2c471241869efb57a9a48a5d0eda">GPT_IO_PIN_GTIOCA</a> | <a class="code" href="group___r_z_n___g_p_t.html#ggaabd4a03d16b1b4254cc44c7779f44c60ae3e479af00c84f4ccf6e7376b4b44c8d">GPT_IO_PIN_ONE_SHOT_LEADING_EDGE</a>);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* GPT_IO_PIN_ONE_SHOT_LEADING_EDGE sets the initial value for the GTCCRE register if GTIOCnB is the selected pin for output. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___g_p_t.html#gad14bacf6fb7fce88f3e877160be529ea">R_GPT_DutyCycleSet</a>(&amp;g_timer0_ctrl,</div><div class="line">                             GPT_ONE_SHOT_EXAMPLE_DUTY_CYCLE_GTCCRE,</div><div class="line">                             <a class="code" href="group___r_z_n___g_p_t.html#ggaabd4a03d16b1b4254cc44c7779f44c60aebd74a7b9507fb082ec4cce60ebe9369">GPT_IO_PIN_GTIOCB</a> | <a class="code" href="group___r_z_n___g_p_t.html#ggaabd4a03d16b1b4254cc44c7779f44c60ae3e479af00c84f4ccf6e7376b4b44c8d">GPT_IO_PIN_ONE_SHOT_LEADING_EDGE</a>);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* GPT_IO_PIN_ONE_SHOT_TRAILING_EDGE sets the initial value for the GTCCRD register if GTIOCnA is the selected pin for output. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___g_p_t.html#gad14bacf6fb7fce88f3e877160be529ea">R_GPT_DutyCycleSet</a>(&amp;g_timer0_ctrl,</div><div class="line">                             GPT_ONE_SHOT_EXAMPLE_DUTY_CYCLE_GTCCRD_GTCCRF,</div><div class="line">                             <a class="code" href="group___r_z_n___g_p_t.html#ggaabd4a03d16b1b4254cc44c7779f44c60aec2d2c471241869efb57a9a48a5d0eda">GPT_IO_PIN_GTIOCA</a> | <a class="code" href="group___r_z_n___g_p_t.html#ggaabd4a03d16b1b4254cc44c7779f44c60a59f7576cde98e497d35b98a926732e52">GPT_IO_PIN_ONE_SHOT_TRAILING_EDGE</a>);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* GPT_IO_PIN_ONE_SHOT_TRAILING_EDGE sets the initial value for the GTCCRF register if GTIOCnB is the selected pin for output.</span></div><div class="line"><span class="comment">     * GPT_BUFFER_FORCE_PUSH pushes set values to temporary registers to prepare for the initial output cycle. This must be done</span></div><div class="line"><span class="comment">     * when setting the duty cycle before starting the timer. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___g_p_t.html#gad14bacf6fb7fce88f3e877160be529ea">R_GPT_DutyCycleSet</a>(&amp;g_timer0_ctrl,</div><div class="line">                             GPT_ONE_SHOT_EXAMPLE_DUTY_CYCLE_GTCCRD_GTCCRF,</div><div class="line">                             <a class="code" href="group___r_z_n___g_p_t.html#ggaabd4a03d16b1b4254cc44c7779f44c60aebd74a7b9507fb082ec4cce60ebe9369">GPT_IO_PIN_GTIOCB</a> | <a class="code" href="group___r_z_n___g_p_t.html#ggaabd4a03d16b1b4254cc44c7779f44c60a59f7576cde98e497d35b98a926732e52">GPT_IO_PIN_ONE_SHOT_TRAILING_EDGE</a> | <a class="code" href="group___r_z_n___g_p_t.html#ggad88edb64095899568a918b753421c9faa23c94706bd1a34c9f1b9cfffea30f4cc">GPT_BUFFER_FORCE_PUSH</a>);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_n___g_p_t.html#ga2769f9fda49613246bc84dba41aa4863">R_GPT_Start</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line">    <span class="comment">/* (Optional) Stop the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_n___g_p_t.html#ga1e6af74d7faaf735f5847a34121eff71">R_GPT_Stop</a>(&amp;g_timer0_ctrl);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>GPT phase count Basic Example</h2>
 <p>This is an example of using the GPT to operate phase counting mode.</p>
 <div class="fragment"><div class="line"></div><div class="line"><span class="keywordtype">void</span> gpt_phase_count_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_n___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___g_p_t.html#ga97d0a9c1a8fb6b88d1c12756dd8ce2d2">R_GPT_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___g_p_t.html#ga2769f9fda49613246bc84dba41aa4863">R_GPT_Start</a>(&amp;g_timer0_ctrl);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line">    <span class="comment">/* Get phase counting information. Counter value is in status.counter. */</span></div><div class="line">    <a class="code" href="group___r_z_n___t_i_m_e_r___a_p_i.html#ga8160de0e701f5d6acebcaf9d2c86120f">timer_status_t</a> status;</div><div class="line">    err = <a class="code" href="group___r_z_n___g_p_t.html#gaa6234faf45320a83382d7ea1923a2c49">R_GPT_StatusGet</a>(&amp;g_timer0_ctrl, &amp;status);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <h2>GPT Compare Match Set Example</h2>
-<p>This example demonstrates the configuration and use of compare match with GPT timer.</p>
+<p><a class="anchor" id="RZN_um_timer_compare_match_set"></a> This example demonstrates the configuration and use of compare match with GPT timer.</p>
 <div class="fragment"><div class="line"></div><div class="line"><span class="comment">/* Example callback called when compare match occurs. */</span></div><div class="line"><span class="keywordtype">void</span> gpt_compare_match_callback (<a class="code" href="group___r_z_n___t_i_m_e_r___a_p_i.html#gaaa9540bd43c1cff91591fe35cf2320a6">timer_callback_args_t</a> * p_args)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group___r_z_n___t_i_m_e_r___a_p_i.html#gac3bee51f7c9078f794c5ac19522f91eba0c70d6721fc210edd653b582b451b5f8">TIMER_EVENT_COMPARE_A</a> == p_args-&gt;event)</div><div class="line">    {</div><div class="line">        <span class="comment">/* Add application code to be called periodically here. */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="preprocessor">#define GPT_COMPARE_MATCH_EXAMPLE_VALUE    (0x2000U)</span></div><div class="line"></div><div class="line"><span class="keywordtype">void</span> gpt_compare_match_set_example (<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <a class="code" href="group___r_z_n___r_e_n_e_s_a_s___e_r_r_o_r___c_o_d_e_s.html#gadfb1288da0fcc7ae1dc88c58601374f8">fsp_err_t</a> err = FSP_SUCCESS;</div><div class="line"></div><div class="line">    <span class="comment">/* Initializes the module. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___g_p_t.html#ga97d0a9c1a8fb6b88d1c12756dd8ce2d2">R_GPT_Open</a>(&amp;g_timer0_ctrl, &amp;g_timer0_cfg);</div><div class="line"></div><div class="line">    <span class="comment">/* Handle any errors. This function should be defined by the user. */</span></div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Set the compare match value (GPT_COMPARE_MATCH_EXAMPLE_VALUE). This value must be less than or equal to period value. */</span></div><div class="line">    err = <a class="code" href="group___r_z_n___g_p_t.html#ga834be7c118edc5297a74cf588a447106">R_GPT_CompareMatchSet</a>(&amp;g_timer0_ctrl, GPT_COMPARE_MATCH_EXAMPLE_VALUE, <a class="code" href="group___r_z_n___t_i_m_e_r___a_p_i.html#ggaf5f22f5e34fe6ea640fd6a1c7e864cd9aaaad342d8de564fe934da6046de43b1b">TIMER_COMPARE_MATCH_A</a>);</div><div class="line">    assert(FSP_SUCCESS == err);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* Start the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_n___g_p_t.html#ga2769f9fda49613246bc84dba41aa4863">R_GPT_Start</a>(&amp;g_timer0_ctrl);</div><div class="line"></div><div class="line">    <span class="comment">/* (Optional) Stop the timer. */</span></div><div class="line">    (void) <a class="code" href="group___r_z_n___g_p_t.html#ga1e6af74d7faaf735f5847a34121eff71">R_GPT_Stop</a>(&amp;g_timer0_ctrl);</div><div class="line">}</div><div class="line"></div></div><!-- fragment --><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -1397,6 +1466,30 @@ capture_b_ipl</td>
 <td class="fielddoc">
 Capture B interrupt priority. </td></tr>
 <tr><td class="fieldtype">
+<a id="af53c30d4e8653f692c54214d8e3d5415"></a>uint8_t</td>
+<td class="fieldname">
+compare_match_c_ipl</td>
+<td class="fielddoc">
+Compare match C interrupt priority. </td></tr>
+<tr><td class="fieldtype">
+<a id="a48047c5ec6de697c1017fd53422c1ae0"></a>uint8_t</td>
+<td class="fieldname">
+compare_match_d_ipl</td>
+<td class="fielddoc">
+Compare match D interrupt priority. </td></tr>
+<tr><td class="fieldtype">
+<a id="ab7daab31c2898cdb5509d0f27b373e88"></a>uint8_t</td>
+<td class="fieldname">
+compare_match_e_ipl</td>
+<td class="fielddoc">
+Compare match E interrupt priority. </td></tr>
+<tr><td class="fieldtype">
+<a id="aa5975cd4a965c2b2f3095f3920b03da6"></a>uint8_t</td>
+<td class="fieldname">
+compare_match_f_ipl</td>
+<td class="fielddoc">
+Compare match F interrupt priority. </td></tr>
+<tr><td class="fieldtype">
 <a id="a66a9d584f77b4ed928ae9bb6031d10a5"></a>uint8_t</td>
 <td class="fieldname">
 dead_time_ipl</td>
@@ -1421,9 +1514,33 @@ capture_b_irq</td>
 <td class="fielddoc">
 Capture B interrupt. </td></tr>
 <tr><td class="fieldtype">
-<a id="a0980a7104f365d9b541dba029a74c666"></a>uint32_t</td>
+<a id="ab1ad2b462b5af9bc18743f9e909aafc2"></a>IRQn_Type</td>
 <td class="fieldname">
-compare_match_value[2]</td>
+compare_match_c_irq</td>
+<td class="fielddoc">
+Compare match C interrupt. </td></tr>
+<tr><td class="fieldtype">
+<a id="acbbc5f16123c194aa71dcd70251d9a84"></a>IRQn_Type</td>
+<td class="fieldname">
+compare_match_d_irq</td>
+<td class="fielddoc">
+Compare match D interrupt. </td></tr>
+<tr><td class="fieldtype">
+<a id="a4f5279f707c7ad7e94ea3acb896571bd"></a>IRQn_Type</td>
+<td class="fieldname">
+compare_match_e_irq</td>
+<td class="fielddoc">
+Compare match E interrupt. </td></tr>
+<tr><td class="fieldtype">
+<a id="a7aa68efddad4751c7fd6eb4786e2ec52"></a>IRQn_Type</td>
+<td class="fieldname">
+compare_match_f_irq</td>
+<td class="fielddoc">
+Compare match F interrupt. </td></tr>
+<tr><td class="fieldtype">
+<a id="a5bcb5bd1f227d6ee4fa961158ca30fc1"></a>uint32_t</td>
+<td class="fieldname">
+compare_match_value[6]</td>
 <td class="fielddoc">
 Storing compare match value for channels. </td></tr>
 <tr><td class="fieldtype">
@@ -1456,6 +1573,30 @@ Capture A interrupt source select. </td></tr>
 capture_b_source_select</td>
 <td class="fielddoc">
 Capture B interrupt source select. </td></tr>
+<tr><td class="fieldtype">
+<a id="a677f6a673613d9f19c37fda625f2e8eb"></a>uint8_t</td>
+<td class="fieldname">
+compare_match_c_source_select</td>
+<td class="fielddoc">
+Comapre match C interrupt source select. </td></tr>
+<tr><td class="fieldtype">
+<a id="a41f22700e2afa9a2c60db0549de7f60e"></a>uint8_t</td>
+<td class="fieldname">
+compare_match_d_source_select</td>
+<td class="fielddoc">
+Comapre match D interrupt source select. </td></tr>
+<tr><td class="fieldtype">
+<a id="adddda660314d5612f879a4b3f1b51c01"></a>uint8_t</td>
+<td class="fieldname">
+compare_match_e_source_select</td>
+<td class="fielddoc">
+Comapre match E interrupt source select. </td></tr>
+<tr><td class="fieldtype">
+<a id="a5030f2c78fe877ca0fbd2fdb6b4fc159"></a>uint8_t</td>
+<td class="fieldname">
+compare_match_f_source_select</td>
+<td class="fielddoc">
+Comapre match F interrupt source select. </td></tr>
 <tr><td class="fieldtype">
 <a id="ad27e4c7590e207a639c8b6ffa1449bc9"></a>uint8_t</td>
 <td class="fieldname">
@@ -2241,7 +2382,7 @@ Register base address for specified channel. </td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">p_ctrl</td><td>Pointer to instance control block. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">duty_cycle_counts</td><td>Duty cycle to set in counts. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>Use gpt_io_pin_t to select GPT_IO_PIN_GTIOCA, GPT_IO_PIN_GTIOCB, or GPT_IO_PIN_GTIOCA_AND_GTIOCB.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>Use gpt_io_pin_t to select GPT_IO_PIN_GTIOCA or GPT_IO_PIN_GTIOCB or GPT_IO_PIN_GTIOCA_AND_GTIOCB.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2297,7 +2438,8 @@ Register base address for specified channel. </td></tr>
     <tr><td class="paramname">FSP_SUCCESS</td><td>Set the compare match value successfully. </td></tr>
     <tr><td class="paramname">FSP_ERR_ASSERTION</td><td>p_ctrl was NULL. </td></tr>
     <tr><td class="paramname">FSP_ERR_NOT_OPEN</td><td>The instance is not opened. </td></tr>
-    <tr><td class="paramname">FSP_ERR_NOT_ENABLED</td><td>Requested compare channel is disabled. </td></tr>
+    <tr><td class="paramname">FSP_ERR_UNSUPPORTED</td><td>Requested compare match channel is not supported. </td></tr>
+    <tr><td class="paramname">FSP_ERR_NOT_ENABLED</td><td>Requested compare match channel is disabled. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2616,7 +2758,7 @@ Register base address for specified channel. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

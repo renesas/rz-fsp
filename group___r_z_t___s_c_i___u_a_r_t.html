@@ -37,7 +37,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_scaled.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RZ Flexible Software Package Documentation
-   &#160;<span id="projectnumber">Release v4.2.0</span>
+   &#160;<span id="projectnumber">Release v4.3.0</span>
    </div>
   </td>
    <td>        <br /><div id="MSearchBox" class="MSearchBoxInactive">
@@ -335,9 +335,9 @@ Bypassed (The operating clock is same as PCLKM)</li>
 </ul>
 </td><td>Not Bypassed (The operation clock is SCInASYNCCLK) </td><td>Select whether to bypass the synchronizer circuit between the bus clock and operation clock. </td></tr>
 <tr>
-<td>Flow Controls &gt; CTS/RTS Selection</td><td>MCU Specific Options</td><td></td><td>Select either CTS or RTS function on the CTSn_RTSn pin of SCI channel n or select CTS function on CTSn pin and RTS function on CTSn_RTSn pin of SCI channel n (Available on selected MPUs and channels). </td></tr>
+<td>Flow Control &gt; CTS/RTS Selection</td><td>MCU Specific Options</td><td></td><td>Select either CTS or RTS function on the CTSn_RTSn pin of SCI channel n or select CTS function on CTSn pin and RTS function on CTSn_RTSn pin of SCI channel n (Available on selected MPUs and channels). </td></tr>
 <tr>
-<td>Flow Controls &gt; Software RTS Pin</td><td>MCU Specific Options</td><td></td><td>Specify the flow control pin for the MPU. </td></tr>
+<td>Flow Control &gt; Software RTS Pin</td><td>MCU Specific Options</td><td></td><td>Specify the flow control pin for the MPU. </td></tr>
 <tr>
 <td>Extra &gt; RS-485 &gt; DE Pin</td><td><ul style="margin-top:0;margin-bottom:0;">
 <li>
@@ -397,6 +397,8 @@ Disable</li>
 <tr>
 <td>Extra &gt; Receive FIFO Trigger Level</td><td>Refer to the <a class="el" href="namespace_r_z_t.html">RZT</a> Configuration tool for available options.</td><td>Max </td><td>Unused if the channel has no FIFO or if DMAC is used for reception. Set to One to get a callback immediately when each byte is received. Set to Max to get a callback when FIFO is full or after 15 bit times with no data (fewer interrupts). </td></tr>
 <tr>
+<td>Extra &gt; TXI/TEI Synchronization Delay Cycles</td><td>Must be an integer between 0 and 3.</td><td>0 </td><td>Configure the optional delay, in PCLKSCI cycles, between writing the last data byte in the transmit data empty (TXI) interrupt and enabling the transmit end (TEI) interrupt. Only required when PCLKSCI is much slower than the bus clock (PCLKM). </td></tr>
+<tr>
 <td>Interrupts &gt; Callback</td><td>Name must be a valid C symbol</td><td>NULL </td><td>A user callback function can be provided. If this callback function is provided, it will be called from the interrupt service routine (ISR). </td></tr>
 <tr>
 <td>Interrupts &gt; Receive Interrupt Priority</td><td>MCU Specific Options</td><td></td><td>Select the receive interrupt priority. </td></tr>
@@ -424,6 +426,7 @@ Usage Notes</h1>
 Limitations</h2>
 <ul>
 <li>Reception is still enabled after <a class="el" href="group___r_z_t___u_a_r_t___a_p_i.html#a2d6bf1579ab7a85535e83de0cb1cf4fb">uart_api_t::communicationAbort</a> API is called. Any characters received after abort and before the next call to read will arrive via the callback function with event UART_EVENT_RX_CHAR.</li>
+<li>When PCLKSCI is much slower than PCLKM, it may be necessary to delay up to 3 cycles of PCLKSCI after writing the last data to TDR to avoid early termination of the transmission. The delay can be configured using the property Extra &gt; TXI/TEI Synchronization Delay Cycles.</li>
 </ul>
 <h2><a class="anchor" id="RZT_r-sci-uart-dmac"></a>
 DMAC Limitations</h2>
@@ -677,6 +680,12 @@ clock_source</td>
 unit</td>
 <td class="fielddoc">
 Hardware unit selection (SCI or SCIE). </td></tr>
+<tr><td class="fieldtype">
+<a id="a13691b89c6884467e7ff6ad3e93032db"></a>uint8_t</td>
+<td class="fieldname">
+delay_cycles</td>
+<td class="fielddoc">
+Number of PCLKSCI cycles to delay after writing last byte to TDR. </td></tr>
 </table>
 
 </div>
@@ -1471,7 +1480,7 @@ Hardware unit selection (SCI or SCIE). </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-        <li class="footer">FSP Release v4.2.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
+        <li class="footer">FSP Release v4.3.0 User's Manual Copyright © (2026) Renesas Electronics Corporation. All Rights Reserved.</li>
   </ul>
 </div>
 </body>

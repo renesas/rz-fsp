@@ -23,7 +23,7 @@ var group___r_z_g___m_i_p_i___d_s_i___b =
       [ "data_ulps_active", "group___r_z_g___m_i_p_i___d_s_i___b.html#ab6b527cc0ea34bb7d7a7c46d2f96b116", null ],
       [ "clock_ulps_active", "group___r_z_g___m_i_p_i___d_s_i___b.html#aa11394a4da7e3d39c473f83cd9a33505", null ],
       [ "video_started", "group___r_z_g___m_i_p_i___d_s_i___b.html#abff96229e4837be67d5c6f4834401bef", null ],
-      [ "clock_state", "group___r_z_g___m_i_p_i___d_s_i___b.html#a8af8fccb9ae1e787856773bd330a504c", null ],
+      [ "clock_state", "group___r_z_g___m_i_p_i___d_s_i___b.html#a939b4675c0370d0935b3e547bdf52db3", null ],
       [ "ulps_status", "group___r_z_g___m_i_p_i___d_s_i___b.html#adee56c5f3a47a5ec2d13788b07b0a6ab", null ],
       [ "p_cfg", "group___r_z_g___m_i_p_i___d_s_i___b.html#a1ad64e0a9bc5b735a5b1908240429881", null ],
       [ "p_callback", "group___r_z_g___m_i_p_i___d_s_i___b.html#afd40a2a086df19725c727dc219388a40", null ],

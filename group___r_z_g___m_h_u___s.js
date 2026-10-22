@@ -7,14 +7,17 @@ var group___r_z_g___m_h_u___s =
       [ "channel", "group___r_z_g___m_h_u___s.html#a0c72dd5e18823aef187a34137983c9a6", null ],
       [ "send_type", "group___r_z_g___m_h_u___s.html#a4f343a42bfc4add5f86e79d7494993e6", null ],
       [ "p_shared_memory_tx", "group___r_z_g___m_h_u___s.html#a2e5e62a58ca2f8378ad20d2b4b1b70e6", null ],
-      [ "p_shared_memory_rx", "group___r_z_g___m_h_u___s.html#afe794b23a3abd783cdf531b4bc442f1f", null ]
+      [ "p_shared_memory_rx", "group___r_z_g___m_h_u___s.html#afe794b23a3abd783cdf531b4bc442f1f", null ],
+      [ "p_callback", "group___r_z_g___m_h_u___s.html#ab845658f7b87570a6fedd500a7c482b1", null ],
+      [ "p_callback_memory", "group___r_z_g___m_h_u___s.html#acd46ced6fe0a328740027044ca6e48f0", null ],
+      [ "p_context", "group___r_z_g___m_h_u___s.html#aa207a6ef4d9f49f00f01a37810ac301d", null ]
     ] ],
     [ "st_mhu_s_extended_cfg", "group___r_z_g___m_h_u___s.html#struct_r_z_g_1_1st__mhu__s__extended__cfg", [
       [ "p_reg", "group___r_z_g___m_h_u___s.html#afe62c2bbb07bedc4bd4dad60b8c3c69c", null ]
     ] ],
     [ "mhu_s_instance_ctrl_t", "group___r_z_g___m_h_u___s.html#ga353f561873d5807f78505193a05f6243", null ],
     [ "mhu_s_extended_cfg_t", "group___r_z_g___m_h_u___s.html#gaa224a9a8258dd2284d2bd0d2a35d7e9f", null ],
-    [ "R_MHU_S_Open", "group___r_z_g___m_h_u___s.html#gad777d9161d5147e0eb546d107cf64259", null ],
+    [ "R_MHU_S_Open", "group___r_z_g___m_h_u___s.html#ga5225e34d858528bb168571e3676d895e", null ],
     [ "R_MHU_S_MsgSend", "group___r_z_g___m_h_u___s.html#gace961f8d144fe82cf739f96762a681a3", null ],
     [ "R_MHU_S_Close", "group___r_z_g___m_h_u___s.html#gaaaee4d1fe5df68815f36021a1daefe46", null ],
     [ "R_MHU_S_CallbackSet", "group___r_z_g___m_h_u___s.html#gaf067173bdf62df00120c8669d711be68", null ],

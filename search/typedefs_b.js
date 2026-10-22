@@ -11,7 +11,6 @@ var searchData=
   ['nand_5fflash_5finstance_5ft',['nand_flash_instance_t',['../group___r_z_t___n_a_n_d___f_l_a_s_h___a_p_i.html#gae4ec33653b531d8343b6f64d51701210',1,'RZT']]],
   ['nand_5fflash_5foptional_5fcommands_5ft',['nand_flash_optional_commands_t',['../group___r_z_t___n_a_n_d___f_l_a_s_h___a_p_i.html#ga9399bbe8fd7f2dac04fbcc0d40e17919',1,'RZT']]],
   ['nand_5fflash_5fstatus_5ft',['nand_flash_status_t',['../group___r_z_t___n_a_n_d___f_l_a_s_h___a_p_i.html#ga4cb1f334a6f1f4380df34a84501f0453',1,'RZT']]],
-  ['nand_5fflash_5ftiming_5finfo_5ft',['nand_flash_timing_info_t',['../namespace_r_z_t.html#ac8326cf7c85109907a65191bdab3df15',1,'RZT']]],
   ['nand_5fflash_5ftiming_5fmode_5ft',['nand_flash_timing_mode_t',['../group___r_z_t___n_a_n_d___f_l_a_s_h___a_p_i.html#ga3f3238c3b93acb3fe66a8fd7823efbb2',1,'RZT']]],
   ['nandc_5fcommand_5fstatus_5ft',['nandc_command_status_t',['../group___r_z_t___n_a_n_d_c.html#ga6cbde0426c16aa3b3ae554a224534b00',1,'RZT']]],
   ['nandc_5fcontroller_5fstatus_5ft',['nandc_controller_status_t',['../group___r_z_t___n_a_n_d_c.html#ga977776a2ecda8992e2a418b458eb58ef',1,'RZT']]],
